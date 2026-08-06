@@ -1,0 +1,7 @@
+groq==0.11.0
+requests==2.32.3
+python-dotenv==1.0.1
+mplfinance==0.12.10b0
+matplotlib==3.8.4
+pandas==2.2.2
+pillow==10.4.0
