@@ -1,0 +1,19 @@
+{
+  "schedule": {
+    "posts_per_day": 8,
+    "interval_hours": 3,
+    "timezone": "UTC"
+  },
+  "duplicate_filter_hours": 24,
+  "trending": {
+    "top_n": 30,
+    "min_change_percent": 5,
+    "min_volume_usdt": 5000000
+  },
+  "trading": {
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "entry_type": "CMP",
+    "timeframes": ["1H", "4H"]
+  }
+}
