@@ -1,0 +1,47 @@
+name: Signal Poster - Every 3 Hours (8x Day)
+
+on:
+  schedule:
+    - cron: '0 */3 * * *'
+  workflow_dispatch:
+
+jobs:
+  post-signal:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Generate Trending Signal + Charts
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: python bot/main_signal.py
+
+      - name: Publish to Binance Square (Auto)
+        env:
+          BINANCE_API_KEY: ${{ secrets.BINANCE_API_KEY }}
+          BINANCE_API_SECRET: ${{ secrets.BINANCE_API_SECRET }}
+          BINANCE_SQUARE_TOKEN: ${{ secrets.BINANCE_SQUARE_TOKEN }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: |
+          cat data/latest_post.txt
+          ls -lh charts/ || true
+          python bot/publish_binance.py
+
+      - name: Auto-commit state
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@github.actions"
+          git add data/ charts/ || true
+          git commit -m "auto: signal ${{ github.run_id }} $(date -u)" || echo "No changes"
+          git push || echo "Push done"
