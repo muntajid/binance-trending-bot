@@ -1,0 +1,47 @@
+name: Live Monitor - Every 5 Minutes
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Check TP/SL and Auto Post Success to Binance
+        env:
+          BINANCE_API_KEY: ${{ secrets.BINANCE_API_KEY }}
+          BINANCE_API_SECRET: ${{ secrets.BINANCE_API_SECRET }}
+          BINANCE_SQUARE_TOKEN: ${{ secrets.BINANCE_SQUARE_TOKEN }}
+        run: |
+          python -c "
+          from bot.monitor import check_trades_and_maybe_post
+          from bot.publish_binance import publish_to_binance_square
+          def publish(post, charts):
+              print('=== AUTO PUBLISH SUCCESS POST ===')
+              print(post)
+              publish_to_binance_square(post, charts)
+          check_trades_and_maybe_post(publish)
+          "
+
+      - name: Auto-commit closed trades
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@github.actions"
+          git add data/ || true
+          git commit -m "auto: monitor $(date -u)" || echo "Nothing to commit"
+          git push || echo "Push done"
