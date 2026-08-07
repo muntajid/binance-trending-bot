@@ -1,16 +1,16 @@
 {
-  "coin": "SOL",
-  "trending_bonus": "BTC",
+  "coin": "ACE",
+  "trending_bonus": "BICO",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 383.67387021865585,
-  "tp1": 402.11,
-  "tp2": 429.45,
-  "sl": 369.41,
+  "entry_price": 0.1385,
+  "tp1": 0.165,
+  "tp2": 0.2,
+  "sl": 0.1,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
-  "confidence": 90,
-  "smc_logic": "Liquidity sweep reclaiming the 4H order block, while the 1H chart shows a clear Fair Value Gap with a Breaker of Structure, indicating a strong buy-side momentum, thus expecting continuation to higher buy-side liquidity levels, with the current price action forming a solid BOS, ChoCH is also indicating a strong bullish trend, all these factors align for a potential long trade, targeting higher highs.",
-  "smc_logic_short": "Liquidity sweep + OB reclaim + FVG",
-  "change": 20.604267752602325
+  "confidence": 80,
+  "smc_logic": "Given the 87.01% increase in the last 24 hours, ACE is showing strong upward momentum, suggesting a potential long position with a target near the next resistance level and a stop-loss below the recent low.",
+  "smc_logic_short": "Momentum based long.",
+  "change": 87.009
 }

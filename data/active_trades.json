@@ -52,5 +52,23 @@
     "change": 20.604267752602325,
     "created_at": "2026-08-07T06:13:09.101300",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "ACE",
+    "trending_bonus": "BICO",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.1385,
+    "tp1": 0.165,
+    "tp2": 0.2,
+    "sl": 0.1,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 87.01% increase in the last 24 hours, ACE is showing strong upward momentum, suggesting a potential long position with a target near the next resistance level and a stop-loss below the recent low.",
+    "smc_logic_short": "Momentum based long.",
+    "change": 87.009,
+    "created_at": "2026-08-07T08:57:49.499128",
+    "status": "ACTIVE"
   }
 ]
