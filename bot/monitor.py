@@ -1,6 +1,6 @@
 import json, os
 from datetime import datetime
-from poster import get_current_price, format_success_post
+from bot.poster import get_current_price, format_success_post
 
 ACTIVE_FILE = "data/active_trades.json"
 CLOSED_FILE = "data/closed_trades.json"
