@@ -45,7 +45,7 @@ def get_trending_coins(
     # Since market_data validates symbol-specific,
     # here we must call Binance vision ticker list endpoint manually.
 
-    from market_data import BASE_URL
+    from bot.market_data import BASE_URL
     import requests
 
     response = requests.get(
