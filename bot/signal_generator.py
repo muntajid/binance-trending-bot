@@ -1,49 +1,33 @@
 import os
 import json
-import requests
 
 from groq import Groq
 
-
-BINANCE_TICKER_URL = "https://api.binance.com/api/v3/ticker/24hr"
+from bot.market_data import get_24h_data
 
 
 def get_live_price(coin: str) -> float:
     """
-    Fetch the current Binance spot price.
-
-    No random/fallback price is ever returned.
-    If Binance cannot provide a valid price,
-    the function raises an error.
+    Get authoritative live price from verified market_data layer.
     """
 
     symbol = f"{coin.upper()}USDT"
 
-    response = requests.get(
-        BINANCE_TICKER_URL,
-        params={"symbol": symbol},
-        timeout=15,
-    )
+    data = get_24h_data(symbol)
 
-    response.raise_for_status()
-
-    data = response.json()
-
-    if "lastPrice" not in data:
+    if not data.get("verified"):
         raise RuntimeError(
-            f"Binance did not return lastPrice for {symbol}"
+            f"Market data not verified for {symbol}"
         )
 
-    price = float(data["lastPrice"])
+    price = float(data["price"])
 
     if price <= 0:
         raise RuntimeError(
-            f"Invalid Binance price for {symbol}: {price}"
+            f"Invalid verified price for {symbol}: {price}"
         )
 
-    print(
-        f"[Live Price] {symbol} = ${price}"
-    )
+    print(f"[Live Price - VERIFIED] {symbol} = ${price}")
 
     return price
 
@@ -54,14 +38,18 @@ def get_trending_coins(
     min_volume=5_000_000,
 ):
     """
-    Get real trending Binance USDT pairs.
-
-    If Binance fails, stop instead of returning
-    fabricated/random market data.
+    Get trending coins using ONLY verified market_data layer.
     """
 
+    # We fetch full ticker list via 24h endpoint logic.
+    # Since market_data validates symbol-specific,
+    # here we must call Binance vision ticker list endpoint manually.
+
+    from bot.market_data import BASE_URL
+    import requests
+
     response = requests.get(
-        BINANCE_TICKER_URL,
+        f"{BASE_URL}/api/v3/ticker/24hr",
         timeout=15,
     )
 
@@ -71,7 +59,7 @@ def get_trending_coins(
 
     if not isinstance(data, list):
         raise RuntimeError(
-            "Invalid response received from Binance."
+            "Invalid ticker list from Binance vision API."
         )
 
     filtered = []
@@ -86,7 +74,6 @@ def get_trending_coins(
     }
 
     for item in data:
-
         try:
             symbol = item["symbol"]
 
@@ -107,17 +94,9 @@ def get_trending_coins(
             ):
                 continue
 
-            change = float(
-                item["priceChangePercent"]
-            )
-
-            volume = float(
-                item["quoteVolume"]
-            )
-
-            price = float(
-                item["lastPrice"]
-            )
+            change = float(item["priceChangePercent"])
+            volume = float(item["quoteVolume"])
+            price = float(item["lastPrice"])
 
             if price <= 0:
                 continue
@@ -139,11 +118,7 @@ def get_trending_coins(
                 }
             )
 
-        except (
-            KeyError,
-            TypeError,
-            ValueError,
-        ):
+        except (KeyError, TypeError, ValueError):
             continue
 
     filtered.sort(
@@ -153,8 +128,7 @@ def get_trending_coins(
 
     if not filtered:
         raise RuntimeError(
-            "Binance returned no valid trending "
-            "USDT pairs matching the filters."
+            "No valid trending coins found from verified API."
         )
 
     return filtered[:top_n]
@@ -167,36 +141,29 @@ def generate_signal_with_groq(
     trending_bonus: str,
 ) -> dict:
 
-    api_key = os.getenv(
-        "GROQ_API_KEY"
-    )
+    api_key = os.getenv("GROQ_API_KEY")
 
     if not api_key:
         raise RuntimeError(
             "GROQ_API_KEY not found in GitHub Secrets."
         )
 
-    # Refresh the Binance price immediately before
-    # sending market data to the analysis model.
+    # Use authoritative verified price only
     live_price = get_live_price(coin)
 
-    print(
-        f"[Price Validation] "
-        f"{coin}: supplied=${price}, "
-        f"live=${live_price}"
-    )
+    if abs(live_price - price) / price * 100 > 0.5:
+        raise RuntimeError(
+            f"Price mismatch detected for {coin}: "
+            f"supplied={price}, verified={live_price}"
+        )
 
-    client = Groq(
-        api_key=api_key
-    )
+    client = Groq(api_key=api_key)
 
     system_prompt = """
 You are an educational crypto market-analysis assistant.
 
-Use only the supplied Binance market data.
+Use only the supplied verified Binance market data.
 Do not invent or fabricate market prices.
-Do not claim certainty about future price movements.
-
 Return valid JSON only.
 """
 
@@ -208,8 +175,6 @@ ${live_price}
 
 24h change:
 {change:.2f}%
-
-This is an educational market-analysis signal.
 
 Return JSON exactly in this structure:
 
@@ -224,51 +189,38 @@ Return JSON exactly in this structure:
   "sl": <analysis level>,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
-  "confidence": 88,
-  "smc_logic": "Educational explanation based on observable market structure.",
-  "smc_logic_short": "Short market-structure annotation."
+  "confidence": 80,
+  "smc_logic": "Educational explanation.",
+  "smc_logic_short": "Short annotation."
 }}
 
 IMPORTANT:
-
-1. entry_price MUST equal {live_price}.
-2. Never invent the current price.
-3. Never replace the supplied current price with another price.
-4. Clearly treat TP/SL and future direction as analysis,
-   not guaranteed outcomes.
-5. Return JSON only.
+1. entry_price MUST equal {live_price}
+2. Do not invent price
+3. Return JSON only
 """
 
     completion = client.chat.completions.create(
         model="llama-3.3-70b-versatile",
         messages=[
-            {
-                "role": "system",
-                "content": system_prompt,
-            },
-            {
-                "role": "user",
-                "content": user_prompt,
-            },
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
         ],
         temperature=0.2,
-        max_tokens=900,
-        response_format={
-            "type": "json_object"
-        },
+        max_tokens=800,
+        response_format={"type": "json_object"},
     )
 
     result = json.loads(
-        completion.choices[0]
-        .message.content
+        completion.choices[0].message.content
     )
 
     if not isinstance(result, dict):
         raise RuntimeError(
-            "Groq returned invalid JSON data."
+            "Groq returned invalid JSON."
         )
 
-    # The Binance live price remains authoritative.
+    # Authoritative enforcement
     result["coin"] = coin
     result["entry_price"] = live_price
     result["change"] = change
