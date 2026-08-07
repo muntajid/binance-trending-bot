@@ -1,16 +1,16 @@
 {
-  "coin": "BICO",
-  "trending_bonus": "ACE",
+  "coin": "TST",
+  "trending_bonus": "EPIC",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 0.04616,
-  "tp1": 0.065,
-  "tp2": 0.085,
-  "sl": 0.035,
+  "entry_price": 0.01441,
+  "tp1": 0.0185,
+  "tp2": 0.0225,
+  "sl": 0.0105,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "Given the 48.94% increase in the last 24 hours, BICO is showing strong upward momentum, suggesting a potential long position with a medium risk profile.",
-  "smc_logic_short": "Momentum driven long.",
-  "change": 48.935
+  "smc_logic": "Given the 24h change of 35.49%, TST is showing strong upward momentum, suggesting a potential long position with a medium risk profile.",
+  "smc_logic_short": "Momentum driven long",
+  "change": 35.493
 }
