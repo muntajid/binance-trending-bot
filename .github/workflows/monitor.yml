@@ -1,4 +1,4 @@
-name: Live Monitor - Every 5 Minutes
+name: Live Monitor - Every 10 Minutes
 
 on:
   schedule:
