@@ -1,4 +1,4 @@
-from market_data import get_24h_data
+from bot.market_data import get_24h_data
 
 
 def format_signal_post(signal: dict) -> str:
