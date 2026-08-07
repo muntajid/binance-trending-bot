@@ -55,7 +55,7 @@ Return JSON exactly:
 Confidence 85-93. Prices realistic. smc_logic must be 250-350 chars.
 """
     completion = client.chat.completions.create(
-        model="llama-3.1-70b-versatile",
+        model="llama-3.3-70b-versatile",
         messages=[{"role":"system","content": system_prompt},{"role":"user","content": user_prompt}],
         temperature=0.75,
         max_tokens=900,
