@@ -1,16 +1,16 @@
 {
-  "coin": "TUT",
-  "trending_bonus": "BICO",
+  "coin": "EPIC",
+  "trending_bonus": "TUT",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 0.03804,
-  "tp1": 0.045,
-  "tp2": 0.055,
-  "sl": 0.028,
+  "entry_price": 1.1713,
+  "tp1": 1.35,
+  "tp2": 1.5,
+  "sl": 1.0,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "Given the 24-hour change of 42.56%, TUT is showing strong upward momentum, suggesting a potential long position with a medium risk profile.",
-  "smc_logic_short": "Momentum-based long entry",
-  "change": 42.557
+  "smc_logic": "Given the 24h change of 27.95%, EPIC is showing strong upward momentum, suggesting a potential long position with a target price of 1.35 for TP1 and 1.50 for TP2, and a stop loss at 1.00 to limit potential losses.",
+  "smc_logic_short": "Bullish momentum",
+  "change": 27.955
 }
