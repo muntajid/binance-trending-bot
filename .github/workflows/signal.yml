@@ -2,46 +2,79 @@ name: Signal Poster - Every 3 Hours (8x Day)
 
 on:
   schedule:
-    - cron: '0 */3 * * *'
+    - cron: "0 */3 * * *"
   workflow_dispatch:
 
 jobs:
   post-signal:
     runs-on: ubuntu-latest
+
     permissions:
       contents: write
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/setup-python@v5
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
-      - name: Install deps
-        run: pip install -r requirements.txt
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
 
-      - name: Generate Trending Signal + Charts
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Generate Trending Signal and Charts
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-        run: python bot/main_signal.py
+        run: |
+          python bot/main_signal.py
 
-      - name: Publish to Binance Square (Auto)
+      - name: Download official Binance Square posting scripts
+        run: |
+          git clone --depth 1 \
+            https://github.com/binance/binance-skills-hub.git \
+            /tmp/binance-skills-hub
+
+      - name: Publish to Binance Square
         env:
-          BINANCE_API_KEY: ${{ secrets.BINANCE_API_KEY }}
-          BINANCE_API_SECRET: ${{ secrets.BINANCE_API_SECRET }}
-          BINANCE_SQUARE_TOKEN: ${{ secrets.BINANCE_SQUARE_TOKEN }}
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          BINANCE_SQUARE_OPENAPI_KEY: ${{ secrets.BINANCE_SQUARE_OPENAPI_KEY }}
         run: |
-          cat data/latest_post.txt
-          ls -lh charts/ || true
-          python bot/publish_binance.py
+          set -e
 
-      - name: Auto-commit state
+          TEXT="$(cat data/latest_post.txt)"
+
+          IMAGES="$(find charts -maxdepth 1 -type f -iname '*.png' -print | sort | head -4 | paste -sd, -)"
+
+          if [ -n "$IMAGES" ]; then
+            echo "Publishing image post to Binance Square..."
+            node /tmp/binance-skills-hub/skills/binance/square-post/scripts/post-image.mjs \
+              --text "$TEXT" \
+              --images "$IMAGES"
+          else
+            echo "No chart images found. Publishing text post..."
+            node /tmp/binance-skills-hub/skills/binance/square-post/scripts/post-text.mjs \
+              --text "$TEXT"
+          fi
+
+      - name: Auto-commit generated state
         run: |
-          git config user.name "bot"
-          git config user.email "bot@github.actions"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git add data/ charts/ || true
-          git commit -m "auto: signal ${{ github.run_id }} $(date -u)" || echo "No changes"
-          git push || echo "Push done"
+
+          git commit \
+            -m "auto: signal ${{ github.run_id }} $(date -u)" \
+            || echo "No changes to commit"
+
+          git push || echo "Push skipped"
