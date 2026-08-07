@@ -3,7 +3,7 @@ import json
 
 from groq import Groq
 
-from bot.market_data import get_24h_data
+from market_data import get_24h_data
 
 
 def get_live_price(coin: str) -> float:
@@ -45,7 +45,7 @@ def get_trending_coins(
     # Since market_data validates symbol-specific,
     # here we must call Binance vision ticker list endpoint manually.
 
-    from bot.market_data import BASE_URL
+    from market_data import BASE_URL
     import requests
 
     response = requests.get(
