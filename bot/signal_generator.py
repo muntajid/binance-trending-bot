@@ -3,7 +3,7 @@ import json
 
 from groq import Groq
 
-from market_data import get_24h_data
+from bot.market_data import get_24h_data
 
 
 def get_live_price(coin: str) -> float:
