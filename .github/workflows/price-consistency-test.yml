@@ -21,3 +21,6 @@ jobs:
 
       - name: Run price consistency test
         run: python test_price_consistency.py
+      
+      - name: Run chart data consistency test
+        run: python test_chart_data_consistency.py
