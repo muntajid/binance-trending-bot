@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "coin": "BTC",
+    "trending_bonus": "ETH",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 94.70699863960141,
+    "tp1": 99.5,
+    "tp2": 106.3,
+    "sl": 90.5,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 88,
+    "smc_logic": "Observing a liquidity sweep on the 4H timeframe, with an order block reclaim indicating strong buyer interest. The 1H chart shows a Fair Value Gap plus a Breaker of Structure, suggesting a continuation to the upside as we test buy-side liquidity. This setup is further validated by the current trend and high attention on the coin, increasing the likelihood of a successful long position. With the current price action and market sentiment, we can expect a push towards the next level of resistance.",
+    "smc_logic_short": "Liquidity sweep + OB reclaim + FVG",
+    "change": 17.06753769240396,
+    "created_at": "2026-08-07T03:34:16.002340",
+    "status": "ACTIVE"
+  }
+]
