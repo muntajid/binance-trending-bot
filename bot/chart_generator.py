@@ -7,7 +7,7 @@ matplotlib.use("Agg")
 
 import matplotlib.pyplot as plt
 
-from bot.market_data import get_klines
+from market_data import get_klines
 
 
 def fetch_klines(symbol="BTCUSDT", interval="1h", limit=120):
