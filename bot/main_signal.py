@@ -9,7 +9,7 @@ from bot.signal_generator import (
 )
 
 from bot.chart_generator import generate_both_charts
-from poster import format_signal_post
+from bot.poster import format_signal_post
 
 
 POSTED_FILE = "data/posted_coins.json"
