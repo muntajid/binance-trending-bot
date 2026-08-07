@@ -2,13 +2,13 @@ import os
 import json
 import datetime
 
-from signal_generator import (
+from bot.signal_generator import (
     get_trending_coins,
     generate_signal_with_groq,
     get_live_price,
 )
 
-from chart_generator import generate_both_charts
+from bot.chart_generator import generate_both_charts
 from poster import format_signal_post
 
 
