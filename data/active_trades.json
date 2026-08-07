@@ -34,5 +34,23 @@
     "change": 8.493867429781732,
     "created_at": "2026-08-07T04:26:38.368149",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "SOL",
+    "trending_bonus": "BTC",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 383.67387021865585,
+    "tp1": 402.11,
+    "tp2": 429.45,
+    "sl": 369.41,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 90,
+    "smc_logic": "Liquidity sweep reclaiming the 4H order block, while the 1H chart shows a clear Fair Value Gap with a Breaker of Structure, indicating a strong buy-side momentum, thus expecting continuation to higher buy-side liquidity levels, with the current price action forming a solid BOS, ChoCH is also indicating a strong bullish trend, all these factors align for a potential long trade, targeting higher highs.",
+    "smc_logic_short": "Liquidity sweep + OB reclaim + FVG",
+    "change": 20.604267752602325,
+    "created_at": "2026-08-07T06:13:09.101300",
+    "status": "ACTIVE"
   }
 ]
