@@ -9,7 +9,10 @@ def publish_to_binance_square(content: str, image_paths: list = None):
         with open("data/publish_log.txt","a",encoding="utf-8") as f:
             f.write(content+"\n---\n")
         return {"mock": True}
-    headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+    headers = {
+    "X-MBX-APIKEY": token,
+    "Content-Type": "application/json"
+}
     payload = {"content": content, "images": image_paths or []}
     try:
         r = requests.post(SQUARE_API_URL, headers=headers, json=payload, timeout=15)
