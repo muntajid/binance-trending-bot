@@ -1,59 +1,440 @@
-import requests, pandas as pd, mplfinance as mpf, matplotlib, os
-matplotlib.use('Agg')
+import os
+
+import requests
+import pandas as pd
+import mplfinance as mpf
+import matplotlib
+
+matplotlib.use("Agg")
+
 import matplotlib.pyplot as plt
-import random
+
 
 BINANCE_KLINE_URL = "https://api.binance.com/api/v3/klines"
 
+
 def fetch_klines(symbol="BTCUSDT", interval="1h", limit=120):
-    params = {"symbol": symbol, "interval": interval, "limit": limit}
-    r = requests.get(BINANCE_KLINE_URL, params=params, timeout=10)
-    r.raise_for_status()
-    data = r.json()
-    df = pd.DataFrame(data, columns=["open_time","open","high","low","close","volume","close_time","quote_volume","trades","taker_buy_base","taker_buy_quote","ignore"])
-    df["open_time"] = pd.to_datetime(df["open_time"], unit="ms")
-    df.set_index("open_time", inplace=True)
-    df = df[["open","high","low","close","volume"]].astype(float)
+    """
+    Fetch REAL Binance candlestick data.
+
+    Important:
+    If Binance fails, this function raises an error.
+    It NEVER creates fake/random candles.
+    """
+
+    params = {
+        "symbol": symbol.upper(),
+        "interval": interval,
+        "limit": limit,
+    }
+
+    response = requests.get(
+        BINANCE_KLINE_URL,
+        params=params,
+        timeout=15,
+    )
+
+    response.raise_for_status()
+
+    data = response.json()
+
+    if not isinstance(data, list) or len(data) < 60:
+        raise RuntimeError(
+            f"Insufficient Binance candle data for {symbol} "
+            f"{interval}"
+        )
+
+    columns = [
+        "open_time",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume",
+        "close_time",
+        "quote_volume",
+        "trades",
+        "taker_buy_base",
+        "taker_buy_quote",
+        "ignore",
+    ]
+
+    df = pd.DataFrame(
+        data,
+        columns=columns,
+    )
+
+    df["open_time"] = pd.to_datetime(
+        df["open_time"],
+        unit="ms",
+    )
+
+    df.set_index(
+        "open_time",
+        inplace=True,
+    )
+
+    df = df[
+        [
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+        ]
+    ].astype(float)
+
+    # Basic data validation
+    if df.isnull().any().any():
+        raise RuntimeError(
+            f"Invalid/null candle data received for {symbol}"
+        )
+
+    if (df["high"] < df["low"]).any():
+        raise RuntimeError(
+            f"Invalid OHLC data received for {symbol}"
+        )
+
+    if (df["close"] <= 0).any():
+        raise RuntimeError(
+            f"Invalid close price received for {symbol}"
+        )
+
     return df
 
-def generate_trending_chart(coin: str, signal: dict, timeframe: str = "1h", save_path: str = "chart.png"):
-    symbol = f"{coin}USDT"
+
+def generate_trending_chart(
+    coin: str,
+    signal: dict,
+    timeframe: str = "1h",
+    save_path: str = "chart.png",
+):
+    """
+    Generate a chart using ONLY real Binance candle data.
+
+    No random/fallback candles are permitted.
+    """
+
+    symbol = f"{coin.upper()}USDT"
     interval = timeframe.lower()
-    try:
-        df = fetch_klines(symbol, interval, 120)
-    except:
-        import numpy as np
-        dates = pd.date_range(end=pd.Timestamp.now(), periods=120, freq='H' if interval=='1h' else '4H')
-        base = signal["entry_price"]
-        closes = base + np.cumsum(np.random.randn(120)*base*0.008)
-        df = pd.DataFrame({"open": closes*0.998, "high": closes*1.01, "low": closes*0.99, "close": closes, "volume": np.random.randint(1000,10000,120)}, index=dates)
-    mc = mpf.make_marketcolors(up='#26a69a', down='#ef5350', edge='inherit', wick='inherit', volume='in')
-    s = mpf.make_mpf_style(base_mpf_style='nightclouds', marketcolors=mc, facecolor='#131722', figcolor='#131722', edgecolor='#2a2e39', gridcolor='#2a2e39', gridstyle='--', y_on_right=True, rc={'axes.labelcolor': '#d1d4dc', 'xtick.color': '#848e9c', 'ytick.color': '#848e9c'})
-    df['EMA21'] = df['close'].ewm(span=21).mean()
-    df['EMA50'] = df['close'].ewm(span=50).mean()
-    apds = [mpf.make_addplot(df['EMA21'], color='#2962FF', width=1.1), mpf.make_addplot(df['EMA50'], color='#FF6D00', width=1.1)]
+
+    print(
+        f"[Chart] Fetching Binance data: "
+        f"{symbol} {interval}"
+    )
+
+    # If Binance data cannot be fetched, STOP.
+    df = fetch_klines(
+        symbol=symbol,
+        interval=interval,
+        limit=120,
+    )
+
+    # Work only with the candles that will actually be plotted.
     plot_df = df.tail(80).copy()
-    title = f"{coin}/USDT • {timeframe.upper()} • {signal.get('smc_logic_short','Liquidity sweep + OB reclaim')}"
-    fig, axlist = mpf.plot(plot_df, type='candle', style=s, addplot=apds, volume=True, figsize=(12,6.2), title=f"\n{title}", ylabel='Price (USDT)', ylabel_lower='Volume', returnfig=True, tight_layout=True, warn_too_much_data=1000)
+
+    if len(plot_df) < 50:
+        raise RuntimeError(
+            f"Not enough candles available for "
+            f"{symbol} {interval}"
+        )
+
+    # Indicators calculated on the same dataframe
+    # that is actually plotted.
+    plot_df["EMA21"] = (
+        plot_df["close"]
+        .ewm(span=21, adjust=False)
+        .mean()
+    )
+
+    plot_df["EMA50"] = (
+        plot_df["close"]
+        .ewm(span=50, adjust=False)
+        .mean()
+    )
+
+    market_colors = mpf.make_marketcolors(
+        up="#26a69a",
+        down="#ef5350",
+        edge="inherit",
+        wick="inherit",
+        volume="in",
+    )
+
+    style = mpf.make_mpf_style(
+        base_mpf_style="nightclouds",
+        marketcolors=market_colors,
+        facecolor="#131722",
+        figcolor="#131722",
+        edgecolor="#2a2e39",
+        gridcolor="#2a2e39",
+        gridstyle="--",
+        y_on_right=True,
+        rc={
+            "axes.labelcolor": "#d1d4dc",
+            "xtick.color": "#848e9c",
+            "ytick.color": "#848e9c",
+        },
+    )
+
+    addplots = [
+        mpf.make_addplot(
+            plot_df["EMA21"],
+            color="#2962FF",
+            width=1.1,
+        ),
+        mpf.make_addplot(
+            plot_df["EMA50"],
+            color="#FF6D00",
+            width=1.1,
+        ),
+    ]
+
+    smc_text = signal.get(
+        "smc_logic_short",
+        "Market structure analysis",
+    )
+
+    title = (
+        f"{coin.upper()}/USDT • "
+        f"{timeframe.upper()} • "
+        f"{smc_text}"
+    )
+
+    fig, axlist = mpf.plot(
+        plot_df[
+            [
+                "open",
+                "high",
+                "low",
+                "close",
+                "volume",
+            ]
+        ],
+        type="candle",
+        style=style,
+        addplot=addplots,
+        volume=True,
+        figsize=(12, 6.2),
+        title=f"\n{title}",
+        ylabel="Price (USDT)",
+        ylabel_lower="Volume",
+        returnfig=True,
+        tight_layout=True,
+        warn_too_much_data=1000,
+    )
+
     ax = axlist[0]
-    entry = signal["entry_price"]; tp1 = signal["tp1"]; tp2 = signal["tp2"]; sl = signal["sl"]
-    ax.axhline(entry, color='#787b86', linestyle='--', linewidth=1.0, alpha=0.9)
-    ax.axhline(tp1, color='#26a69a', linestyle=':', linewidth=1.1, alpha=0.9)
-    ax.axhline(tp2, color='#26a69a', linestyle=':', linewidth=1.1, alpha=0.9)
-    ax.axhline(sl, color='#ef5350', linestyle='--', linewidth=1.0, alpha=0.9)
-    ax.text(0.995, entry, f'  ENTRY {entry}', color='#d1d4dc', fontsize=7, va='center', ha='left', transform=ax.get_yaxis_transform(), bbox=dict(boxstyle="round,pad=0.2", fc="#2a2e39", ec="none", alpha=0.9))
-    ax.text(0.995, tp1, f'  TP1 {tp1}', color='#26a69a', fontsize=7, va='center', ha='left', transform=ax.get_yaxis_transform(), bbox=dict(boxstyle="round,pad=0.2", fc="#0f2f2a", ec="none", alpha=0.9))
-    ax.text(0.995, tp2, f'  TP2 {tp2}', color='#26a69a', fontsize=7, va='center', ha='left', transform=ax.get_yaxis_transform(), bbox=dict(boxstyle="round,pad=0.2", fc="#0f2f2a", ec="none", alpha=0.9))
-    ax.text(0.995, sl, f'  SL {sl}', color='#ef5350', fontsize=7, va='center', ha='left', transform=ax.get_yaxis_transform(), bbox=dict(boxstyle="round,pad=0.2", fc="#3a1a1a", ec="none", alpha=0.9))
-    fig.savefig(save_path, dpi=150, bbox_inches='tight', facecolor='#131722')
+
+    # Read values generated by the signal.
+    try:
+        entry = float(signal["entry_price"])
+        tp1 = float(signal["tp1"])
+        tp2 = float(signal["tp2"])
+        sl = float(signal["sl"])
+    except (KeyError, TypeError, ValueError) as exc:
+        plt.close(fig)
+
+        raise RuntimeError(
+            f"Invalid signal price data for "
+            f"{coin}: {exc}"
+        ) from exc
+
+    # Reference levels
+    ax.axhline(
+        entry,
+        color="#787b86",
+        linestyle="--",
+        linewidth=1.0,
+        alpha=0.9,
+    )
+
+    ax.axhline(
+        tp1,
+        color="#26a69a",
+        linestyle=":",
+        linewidth=1.1,
+        alpha=0.9,
+    )
+
+    ax.axhline(
+        tp2,
+        color="#26a69a",
+        linestyle=":",
+        linewidth=1.1,
+        alpha=0.9,
+    )
+
+    ax.axhline(
+        sl,
+        color="#ef5350",
+        linestyle="--",
+        linewidth=1.0,
+        alpha=0.9,
+    )
+
+    # Labels
+    ax.text(
+        0.995,
+        entry,
+        f"  ENTRY {entry}",
+        color="#d1d4dc",
+        fontsize=7,
+        va="center",
+        ha="left",
+        transform=ax.get_yaxis_transform(),
+        bbox=dict(
+            boxstyle="round,pad=0.2",
+            fc="#2a2e39",
+            ec="none",
+            alpha=0.9,
+        ),
+    )
+
+    ax.text(
+        0.995,
+        tp1,
+        f"  TP1 {tp1}",
+        color="#26a69a",
+        fontsize=7,
+        va="center",
+        ha="left",
+        transform=ax.get_yaxis_transform(),
+        bbox=dict(
+            boxstyle="round,pad=0.2",
+            fc="#0f2f2a",
+            ec="none",
+            alpha=0.9,
+        ),
+    )
+
+    ax.text(
+        0.995,
+        tp2,
+        f"  TP2 {tp2}",
+        color="#26a69a",
+        fontsize=7,
+        va="center",
+        ha="left",
+        transform=ax.get_yaxis_transform(),
+        bbox=dict(
+            boxstyle="round,pad=0.2",
+            fc="#0f2f2a",
+            ec="none",
+            alpha=0.9,
+        ),
+    )
+
+    ax.text(
+        0.995,
+        sl,
+        f"  SL {sl}",
+        color="#ef5350",
+        fontsize=7,
+        va="center",
+        ha="left",
+        transform=ax.get_yaxis_transform(),
+        bbox=dict(
+            boxstyle="round,pad=0.2",
+            fc="#3a1a1a",
+            ec="none",
+            alpha=0.9,
+        ),
+    )
+
+    # Make sure the output directory exists.
+    output_dir = os.path.dirname(save_path)
+
+    if output_dir:
+        os.makedirs(
+            output_dir,
+            exist_ok=True,
+        )
+
+    fig.savefig(
+        save_path,
+        dpi=150,
+        bbox_inches="tight",
+        facecolor="#131722",
+    )
+
     plt.close(fig)
-    print(f"[Chart] {timeframe} saved: {save_path}")
+
+    # Final file validation.
+    if not os.path.isfile(save_path):
+        raise RuntimeError(
+            f"Chart file was not created: {save_path}"
+        )
+
+    if os.path.getsize(save_path) < 1000:
+        raise RuntimeError(
+            f"Chart file appears empty/broken: {save_path}"
+        )
+
+    print(
+        f"[Chart] {timeframe.upper()} saved: "
+        f"{save_path}"
+    )
+
     return save_path
 
-def generate_both_charts(coin: str, signal: dict, out_dir="charts"):
-    os.makedirs(out_dir, exist_ok=True)
-    p1 = f"{out_dir}/{coin}_1H.png"
-    p2 = f"{out_dir}/{coin}_4H.png"
-    generate_trending_chart(coin, signal, "1h", p1)
-    generate_trending_chart(coin, signal, "4h", p2)
+
+def generate_both_charts(
+    coin: str,
+    signal: dict,
+    out_dir="charts",
+):
+    """
+    Generate both 1H and 4H charts.
+    Both must successfully exist.
+    """
+
+    os.makedirs(
+        out_dir,
+        exist_ok=True,
+    )
+
+    coin = coin.upper()
+
+    p1 = os.path.join(
+        out_dir,
+        f"{coin}_1H.png",
+    )
+
+    p2 = os.path.join(
+        out_dir,
+        f"{coin}_4H.png",
+    )
+
+    generate_trending_chart(
+        coin=coin,
+        signal=signal,
+        timeframe="1h",
+        save_path=p1,
+    )
+
+    generate_trending_chart(
+        coin=coin,
+        signal=signal,
+        timeframe="4h",
+        save_path=p2,
+    )
+
+    # Both files are mandatory.
+    for path in (p1, p2):
+        if not os.path.isfile(path):
+            raise RuntimeError(
+                f"Required chart missing: {path}"
+            )
+
+        if os.path.getsize(path) < 1000:
+            raise RuntimeError(
+                f"Required chart is invalid: {path}"
+            )
+
+    print(
+        f"[Chart] Both charts verified: "
+        f"{p1}, {p2}"
+    )
+
     return p1, p2
