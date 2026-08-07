@@ -40,7 +40,7 @@ jobs:
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
-          python bot/main_signal.py
+         python -m bot.main_signal
 
       - name: Download official Binance Square posting scripts
         run: |
