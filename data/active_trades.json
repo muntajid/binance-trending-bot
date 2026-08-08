@@ -143,5 +143,23 @@
     "change": 19.177,
     "created_at": "2026-08-08T14:05:47.381445",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "1000CAT",
+    "trending_bonus": "TUT",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.0023,
+    "tp1": 0.0035,
+    "tp2": 0.0045,
+    "sl": 0.0018,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 53.33% increase in the last 24 hours, the momentum is strong, suggesting a potential continuation of the uptrend. The entry price is set at the current market price of $0.0023. The first take-profit level is set at $0.0035, representing a 52% increase from the entry price. The second take-profit level is set at $0.0045, representing a 96% increase from the entry price. The stop-loss is set at $0.0018, representing a 22% decrease from the entry price.",
+    "smc_logic_short": "Riding the momentum.",
+    "change": 53.333,
+    "created_at": "2026-08-08T16:00:46.023968",
+    "status": "ACTIVE"
   }
 ]
