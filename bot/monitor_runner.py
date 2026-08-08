@@ -1,11 +1,17 @@
+import subprocess
 from bot.monitor import check_trades_and_maybe_post
-from bot.publish_binance import publish_to_binance_square
 
 
 def publish(post, charts):
     print("=== AUTO PUBLISH SUCCESS POST ===")
     print(post)
-    publish_to_binance_square(post, charts)
+
+    subprocess.run([
+        "node",
+        "/tmp/binance-skills-hub/skills/binance/square-post/scripts/post-text.mjs",
+        "--text",
+        post
+    ], check=True)
 
 
 if __name__ == "__main__":
