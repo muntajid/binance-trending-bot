@@ -54,25 +54,6 @@
     "status": "ACTIVE"
   },
   {
-    "coin": "TUT",
-    "trending_bonus": "BICO",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.03804,
-    "tp1": 0.045,
-    "tp2": 0.055,
-    "sl": 0.028,
-    "leverage": "3x-5x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "Given the 24-hour change of 42.56%, TUT is showing strong upward momentum, suggesting a potential long position with a medium risk profile.",
-    "smc_logic_short": "Momentum-based long entry",
-    "change": 42.557,
-    "created_at": "2026-08-07T20:04:33.263555",
-    "status": "ACTIVE",
-    "tp1_hit": true
-  },
-  {
     "coin": "EPIC",
     "trending_bonus": "TUT",
     "direction": "LONG",
