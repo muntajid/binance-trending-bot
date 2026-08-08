@@ -1,16 +1,16 @@
 {
-  "coin": "1000CAT",
+  "coin": "ACE",
   "trending_bonus": "TUT",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 0.0023,
-  "tp1": 0.0035,
-  "tp2": 0.0045,
-  "sl": 0.0018,
+  "entry_price": 0.142,
+  "tp1": 0.173,
+  "tp2": 0.206,
+  "sl": 0.115,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "Given the 53.33% increase in the last 24 hours, the momentum is strong, suggesting a potential continuation of the uptrend. The entry price is set at the current market price of $0.0023. The first take-profit level is set at $0.0035, representing a 52% increase from the entry price. The second take-profit level is set at $0.0045, representing a 96% increase from the entry price. The stop-loss is set at $0.0018, representing a 22% decrease from the entry price.",
-  "smc_logic_short": "Riding the momentum.",
-  "change": 53.333
+  "smc_logic": "Given the 24h change of 22.16%, ACE is showing strong upward momentum, suggesting a long position with a take profit at 21.8% and 44.6% above the current price, and a stop loss at 19% below the current price.",
+  "smc_logic_short": "Bullish momentum",
+  "change": 22.165
 }

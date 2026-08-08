@@ -161,5 +161,23 @@
     "change": 53.333,
     "created_at": "2026-08-08T16:00:46.023968",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "ACE",
+    "trending_bonus": "TUT",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.142,
+    "tp1": 0.173,
+    "tp2": 0.206,
+    "sl": 0.115,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 24h change of 22.16%, ACE is showing strong upward momentum, suggesting a long position with a take profit at 21.8% and 44.6% above the current price, and a stop loss at 19% below the current price.",
+    "smc_logic_short": "Bullish momentum",
+    "change": 22.165,
+    "created_at": "2026-08-08T19:19:10.588893",
+    "status": "ACTIVE"
   }
 ]
