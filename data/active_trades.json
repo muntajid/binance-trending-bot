@@ -179,5 +179,23 @@
     "change": 22.165,
     "created_at": "2026-08-08T19:19:10.588893",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "TUT",
+    "trending_bonus": "1000CAT",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.09467,
+    "tp1": 0.13465,
+    "tp2": 0.17452,
+    "sl": 0.06593,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the significant 24-hour price increase of 145.81%, TUT is demonstrating strong upward momentum, suggesting a potential long position with defined take-profit and stop-loss levels based on the current market price.",
+    "smc_logic_short": "Momentum-based long entry",
+    "change": 145.813,
+    "created_at": "2026-08-08T22:00:23.827683",
+    "status": "ACTIVE"
   }
 ]

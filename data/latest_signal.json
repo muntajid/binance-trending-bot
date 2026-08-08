@@ -1,16 +1,16 @@
 {
-  "coin": "ACE",
-  "trending_bonus": "TUT",
+  "coin": "TUT",
+  "trending_bonus": "1000CAT",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 0.142,
-  "tp1": 0.173,
-  "tp2": 0.206,
-  "sl": 0.115,
+  "entry_price": 0.09467,
+  "tp1": 0.13465,
+  "tp2": 0.17452,
+  "sl": 0.06593,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "Given the 24h change of 22.16%, ACE is showing strong upward momentum, suggesting a long position with a take profit at 21.8% and 44.6% above the current price, and a stop loss at 19% below the current price.",
-  "smc_logic_short": "Bullish momentum",
-  "change": 22.165
+  "smc_logic": "Given the significant 24-hour price increase of 145.81%, TUT is demonstrating strong upward momentum, suggesting a potential long position with defined take-profit and stop-loss levels based on the current market price.",
+  "smc_logic_short": "Momentum-based long entry",
+  "change": 145.813
 }
