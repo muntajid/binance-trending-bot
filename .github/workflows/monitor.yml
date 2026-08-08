@@ -8,35 +8,29 @@ on:
 jobs:
   monitor:
     runs-on: ubuntu-latest
+
     permissions:
       contents: write
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/setup-python@v5
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
-      - name: Install deps
+      - name: Install dependencies
         run: pip install -r requirements.txt
 
       - name: Check TP/SL and Auto Post Success to Binance
         env:
-          BINANCE_API_KEY: ${{ secrets.BINANCE_API_KEY }}
-          BINANCE_API_SECRET: ${{ secrets.BINANCE_API_SECRET }}
-          BINANCE_SQUARE_TOKEN: ${{ secrets.BINANCE_SQUARE_TOKEN }}
+          BINANCE_SQUARE_OPENAPI_KEY: ${{ secrets.BINANCE_SQUARE_OPENAPI_KEY }}
         run: |
-          python -c "
-          from bot.monitor import check_trades_and_maybe_post
-          from bot.publish_binance import publish_to_binance_square
-          def publish(post, charts):
-              print('=== AUTO PUBLISH SUCCESS POST ===')
-              print(post)
-              publish_to_binance_square(post, charts)
-          check_trades_and_maybe_post(publish)
-          "
+          python -m bot.monitor_runner
 
       - name: Auto-commit closed trades
         run: |
