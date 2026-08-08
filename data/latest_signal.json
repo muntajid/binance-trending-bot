@@ -1,16 +1,16 @@
 {
-  "coin": "MMT",
+  "coin": "SYN",
   "trending_bonus": "TUT",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 0.2068,
-  "tp1": 0.235,
-  "tp2": 0.26,
-  "sl": 0.185,
+  "entry_price": 0.11821,
+  "tp1": 0.1385,
+  "tp2": 0.161,
+  "sl": 0.095,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "Given the 24h change of 23.86%, MMT is showing strong upward momentum, suggesting a potential long position with a target profit at 0.235 and 0.26, and a stop loss at 0.185 to limit potential losses.",
-  "smc_logic_short": "Bullish momentum",
-  "change": 23.861
+  "smc_logic": "Given the 17.77% increase in the last 24 hours, SYN is showing strong upward momentum, suggesting a potential long position with a target profit at 17.5% and 36% above the current price, and a stop loss at 19.5% below the current price.",
+  "smc_logic_short": "Momentum based long.",
+  "change": 17.774
 }
