@@ -125,5 +125,23 @@
     "change": 16.228,
     "created_at": "2026-08-08T10:16:29.808462",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "DODO",
+    "trending_bonus": "TUT",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.02376,
+    "tp1": 0.028,
+    "tp2": 0.032,
+    "sl": 0.02,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 24h change of 19.18%, DODO is showing strong upward momentum, suggesting a potential long position with a target profit at 0.028 and 0.032, and a stop loss at 0.02 to limit losses.",
+    "smc_logic_short": "Bullish momentum",
+    "change": 19.177,
+    "created_at": "2026-08-08T14:05:47.381445",
+    "status": "ACTIVE"
   }
 ]
