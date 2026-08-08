@@ -69,8 +69,7 @@
     "smc_logic_short": "Momentum-based long entry",
     "change": 42.557,
     "created_at": "2026-08-07T20:04:33.263555",
-    "status": "ACTIVE",
-    "tp1_hit": true
+    "status": "ACTIVE"
   },
   {
     "coin": "EPIC",
