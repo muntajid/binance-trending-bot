@@ -69,7 +69,7 @@
     "smc_logic_short": "Momentum-based long entry",
     "change": 42.557,
     "created_at": "2026-08-07T20:04:33.263555",
-    "status": "ACTIVE",
+    "status": "ACTIVE"
   },
   {
     "coin": "EPIC",
@@ -105,6 +105,6 @@
     "smc_logic_short": "Bullish momentum",
     "change": 23.861,
     "created_at": "2026-08-08T04:00:27.275819",
-    "status": "ACTIVE",
+    "status": "ACTIVE"
   }
 ]
