@@ -3,7 +3,11 @@ import os, requests, json
 SQUARE_API_URL = os.getenv("SQUARE_API_URL", "https://www.binance.com/bapi/square/api/v1/post/create")
 
 def publish_to_binance_square(content: str, image_paths: list = None):
-    token = os.getenv("BINANCE_SQUARE_TOKEN") or os.getenv("BINANCE_API_KEY")
+    token = (
+    os.getenv("BINANCE_SQUARE_OPENAPI_KEY")
+    or os.getenv("BINANCE_SQUARE_TOKEN")
+    or os.getenv("BINANCE_API_KEY")
+    )
     if not token:
         print("[Publish] No token found, saving locally only")
         with open("data/publish_log.txt","a",encoding="utf-8") as f:
