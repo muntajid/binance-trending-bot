@@ -8,7 +8,6 @@ on:
 jobs:
   monitor:
     runs-on: ubuntu-latest
-
     permissions:
       contents: write
 
@@ -23,10 +22,21 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Python dependencies
         run: pip install -r requirements.txt
 
-      - name: Check TP/SL and Auto Post Success to Binance
+      - name: Download official Binance Square posting scripts
+        run: |
+          git clone --depth 1 \
+            https://github.com/binance/binance-skills-hub.git \
+            /tmp/binance-skills-hub
+
+      - name: Run monitor
         env:
           BINANCE_SQUARE_OPENAPI_KEY: ${{ secrets.BINANCE_SQUARE_OPENAPI_KEY }}
         run: |
