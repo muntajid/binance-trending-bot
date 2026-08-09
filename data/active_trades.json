@@ -217,5 +217,23 @@
     "change": 16.228,
     "created_at": "2026-08-09T16:03:33.979476",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "TST",
+    "trending_bonus": "BMT",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.02138,
+    "tp1": 0.0298,
+    "tp2": 0.0384,
+    "sl": 0.0152,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 24h change of 39.47%, TST is showing strong upward momentum, suggesting a potential long position with a take profit at 39% above the entry price and a stop loss at 29% below the entry price.",
+    "smc_logic_short": "Momentum based long.",
+    "change": 39.465,
+    "created_at": "2026-08-09T19:49:56.961314",
+    "status": "ACTIVE"
   }
 ]
