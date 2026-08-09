@@ -1,16 +1,16 @@
 {
-  "coin": "COOKIE",
+  "coin": "MUBARAK",
   "trending_bonus": "TUT",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 0.0127,
-  "tp1": 0.015,
-  "tp2": 0.018,
-  "sl": 0.0095,
+  "entry_price": 0.01978,
+  "tp1": 0.0265,
+  "tp2": 0.033,
+  "sl": 0.015,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "Given the 24h change of 35.11%, a long position is considered with a take profit at 15% and 30% above the entry price, and a stop loss at 25% below the entry price.",
-  "smc_logic_short": "Bullish trend continuation.",
-  "change": 35.106
+  "smc_logic": "Given the 24h change of 35.50%, a long position is considered with a take profit at 33% and 66% above the entry price, and a stop loss at 24% below the entry price.",
+  "smc_logic_short": "Long on strength.",
+  "change": 35.504
 }
