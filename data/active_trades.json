@@ -164,24 +164,6 @@
     "status": "ACTIVE"
   },
   {
-    "coin": "BMT",
-    "trending_bonus": "TUT",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.01836,
-    "tp1": 0.0265,
-    "tp2": 0.0312,
-    "sl": 0.0135,
-    "leverage": "3x-5x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "Given the 43.21% increase in the last 24 hours, BMT is showing strong upward momentum, suggesting a potential long position with a medium risk profile.",
-    "smc_logic_short": "Momentum driven long.",
-    "change": 43.214,
-    "created_at": "2026-08-09T08:09:36.594482",
-    "status": "ACTIVE"
-  },
-  {
     "coin": "COOKIE",
     "trending_bonus": "TUT",
     "direction": "LONG",
