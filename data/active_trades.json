@@ -234,5 +234,23 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "UTK",
+    "trending_bonus": "TUT",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.00795,
+    "tp1": 0.0092,
+    "tp2": 0.0105,
+    "sl": 0.0068,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 16.23% increase in the last 24 hours, UTK is showing strong upward momentum, suggesting a potential long position with a medium risk profile.",
+    "smc_logic_short": "Momentum based long",
+    "change": 16.228,
+    "created_at": "2026-08-09T16:03:33.979476",
+    "status": "ACTIVE"
   }
 ]
