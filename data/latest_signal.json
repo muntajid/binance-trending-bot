@@ -1,16 +1,16 @@
 {
-  "coin": "BMT",
+  "coin": "COOKIE",
   "trending_bonus": "TUT",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 0.01836,
-  "tp1": 0.0265,
-  "tp2": 0.0312,
-  "sl": 0.0135,
+  "entry_price": 0.0127,
+  "tp1": 0.015,
+  "tp2": 0.018,
+  "sl": 0.0095,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "Given the 43.21% increase in the last 24 hours, BMT is showing strong upward momentum, suggesting a potential long position with a medium risk profile.",
-  "smc_logic_short": "Momentum driven long.",
-  "change": 43.214
+  "smc_logic": "Given the 24h change of 35.11%, a long position is considered with a take profit at 15% and 30% above the entry price, and a stop loss at 25% below the entry price.",
+  "smc_logic_short": "Bullish trend continuation.",
+  "change": 35.106
 }
