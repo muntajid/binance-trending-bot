@@ -55,24 +55,6 @@
     "status": "ACTIVE"
   },
   {
-    "coin": "EPIC",
-    "trending_bonus": "TUT",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 1.1713,
-    "tp1": 1.35,
-    "tp2": 1.5,
-    "sl": 1.0,
-    "leverage": "3x-5x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "Given the 24h change of 27.95%, EPIC is showing strong upward momentum, suggesting a potential long position with a target price of 1.35 for TP1 and 1.50 for TP2, and a stop loss at 1.00 to limit potential losses.",
-    "smc_logic_short": "Bullish momentum",
-    "change": 27.955,
-    "created_at": "2026-08-07T23:01:10.569115",
-    "status": "ACTIVE"
-  },
-  {
     "coin": "MMT",
     "trending_bonus": "TUT",
     "direction": "LONG",
