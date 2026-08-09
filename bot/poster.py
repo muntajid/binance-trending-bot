@@ -135,3 +135,22 @@ def get_current_price(coin: str) -> float:
         raise RuntimeError(f"Invalid verified price for {symbol}: {price}")
 
     return price
+# ============================================
+# VERIFIED LIVE PRICE FETCH (Needed for Monitor)
+# ============================================
+
+def get_current_price(coin: str) -> float:
+    from bot.market_data import get_24h_data
+
+    symbol = f"{coin.upper()}USDT"
+    data = get_24h_data(symbol)
+
+    if not data.get("verified"):
+        raise RuntimeError(f"Market data not verified for {symbol}")
+
+    price = float(data["price"])
+
+    if price <= 0:
+        raise RuntimeError(f"Invalid verified price for {symbol}: {price}")
+
+    return price
