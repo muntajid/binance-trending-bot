@@ -220,24 +220,6 @@
     "status": "ACTIVE"
   },
   {
-    "coin": "TUT",
-    "trending_bonus": "BMT",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.19163,
-    "tp1": 0.25,
-    "tp2": 0.3,
-    "sl": 0.15,
-    "leverage": "3x-5x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "Given the significant 24-hour price increase of 106.77%, TUT is demonstrating strong upward momentum, suggesting a potential long position with a medium risk profile. The entry price is set at the current market price of $0.19163. The first take-profit level is set at $0.25, representing a 30% increase from the entry price, and the second take-profit level is set at $0.30, representing a 56% increase. The stop-loss is set at $0.15, which is approximately 22% below the entry price, to limit potential losses.",
-    "smc_logic_short": "Long TUT with medium risk",
-    "change": 106.767,
-    "created_at": "2026-08-09T22:03:15.593310",
-    "status": "ACTIVE"
-  },
-  {
     "coin": "NIL",
     "trending_bonus": "BMT",
     "direction": "LONG",
