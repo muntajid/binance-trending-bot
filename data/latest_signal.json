@@ -1,16 +1,16 @@
 {
-  "coin": "HOME",
-  "trending_bonus": "TST",
+  "coin": "DODO",
+  "trending_bonus": "UTK",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 0.01068,
-  "tp1": 0.0125,
-  "tp2": 0.015,
-  "sl": 0.009,
+  "entry_price": 0.02549,
+  "tp1": 0.031,
+  "tp2": 0.036,
+  "sl": 0.021,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "Given the 17.36% increase in the last 24 hours, the coin is showing strong upward momentum, suggesting a potential long position with a target profit at 0.0125 and 0.0150, and a stop loss at 0.0090 to limit potential losses.",
-  "smc_logic_short": "Bullish momentum",
-  "change": 17.363
+  "smc_logic": "Given the 24.79% increase in the last 24 hours, DODO is showing strong upward momentum, suggesting a potential long position with a medium risk profile.",
+  "smc_logic_short": "Momentum driven long.",
+  "change": 24.792
 }
