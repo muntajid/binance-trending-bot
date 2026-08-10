@@ -254,5 +254,23 @@
     "change": 106.767,
     "created_at": "2026-08-09T22:03:15.593310",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "NIL",
+    "trending_bonus": "BMT",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.04691,
+    "tp1": 0.065,
+    "tp2": 0.085,
+    "sl": 0.035,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 24h change of 39.06%, the coin is showing strong upward momentum, suggesting a potential long position with a take profit at 0.065 and 0.085, and a stop loss at 0.035.",
+    "smc_logic_short": "Momentum based long",
+    "change": 39.058,
+    "created_at": "2026-08-10T05:10:36.488485",
+    "status": "ACTIVE"
   }
 ]
