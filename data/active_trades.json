@@ -272,5 +272,23 @@
     "change": 16.228,
     "created_at": "2026-08-10T23:06:15.286133",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "RAD",
+    "trending_bonus": "HEI",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.29,
+    "tp1": 0.35,
+    "tp2": 0.42,
+    "sl": 0.23,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 24h change of 37.44%, RAD is showing strong upward momentum, suggesting a potential long position with a target price of 0.35 for TP1 and 0.42 for TP2, while setting a stop-loss at 0.23 to limit potential losses.",
+    "smc_logic_short": "Bullish momentum",
+    "change": 37.441,
+    "created_at": "2026-08-11T08:40:49.197877",
+    "status": "ACTIVE"
   }
 ]
