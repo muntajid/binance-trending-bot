@@ -17,15 +17,21 @@ USERNAME = "muntajid"
 REFERRAL_CODE = "768056928"
 
 ASSETS_DIR = "assets"
-PROFILE_PIC = os.path.join(ASSETS_DIR, "profile.png")
-QR_CODE = os.path.join(ASSETS_DIR, "qr_code.png")
+
+# User assets (your uploaded files)
+PROFILE_PIC = os.path.join(ASSETS_DIR, "IMG_20260811_163112.jpg")
+QR_CODE = os.path.join(ASSETS_DIR, "IMG_20260811_163137.png")
+
+# Auto-generated assets
 BINANCE_LOGO = os.path.join(ASSETS_DIR, "binance_logo.png")
 WATERMARK = os.path.join(ASSETS_DIR, "diamond_watermark.png")
 
+# Fonts (Inter 18pt series)
 FONTS_DIR = os.path.join(ASSETS_DIR, "fonts")
-FONT_BOLD = os.path.join(FONTS_DIR, "Inter-Bold.ttf")
-FONT_REGULAR = os.path.join(FONTS_DIR, "Inter-Regular.ttf")
-FONT_MEDIUM = os.path.join(FONTS_DIR, "Inter-Medium.ttf")
+FONT_BOLD = os.path.join(FONTS_DIR, "Inter_18pt-Bold.ttf")
+FONT_REGULAR = os.path.join(FONTS_DIR, "Inter_18pt-Regular.ttf")
+FONT_MEDIUM = os.path.join(FONTS_DIR, "Inter_18pt-Medium.ttf")
+FONT_SEMIBOLD = os.path.join(FONTS_DIR, "Inter_18pt-SemiBold.ttf")
 
 # Colors (Binance Theme)
 COLOR_BG = (0, 0, 0)
@@ -35,7 +41,7 @@ COLOR_RED = (246, 70, 93)
 COLOR_GRAY = (132, 142, 156)
 COLOR_YELLOW = (240, 185, 11)
 
-# Card dimensions (matches Binance share card)
+# Card dimensions
 CARD_WIDTH = 948
 CARD_HEIGHT = 1264
 
@@ -45,8 +51,11 @@ def get_font(path, size):
     try:
         if os.path.exists(path):
             return ImageFont.truetype(path, size)
-    except Exception:
-        pass
+        else:
+            print(f"[Font] ⚠️ Not found: {path}")
+    except Exception as e:
+        print(f"[Font] ⚠️ Error loading {path}: {e}")
+    
     try:
         return ImageFont.load_default(size=size)
     except Exception:
@@ -87,7 +96,7 @@ def generate_position_card(
     Generate Binance Futures position card (master copy of GENIUSUSDT).
     """
     
-    # Random settings
+    # Random settings if not provided
     if leverage is None:
         leverage = random.randint(15, 20)
     
@@ -107,18 +116,20 @@ def generate_position_card(
     draw = ImageDraw.Draw(card)
     
     # ============================================================
-    # 1. WATERMARK (Diamond background - right side)
+    # 1. WATERMARK (Diamond background - right side, larger)
     # ============================================================
     try:
         if os.path.exists(WATERMARK):
             wm = Image.open(WATERMARK).convert("RGBA")
-            wm_size = 800
+            wm_size = 900
             wm = wm.resize((wm_size, wm_size), Image.LANCZOS)
-            wm_x = CARD_WIDTH - wm_size + 200
-            wm_y = 100
+            wm_x = CARD_WIDTH - wm_size + 250
+            wm_y = 80
             card.paste(wm, (wm_x, wm_y), wm)
+        else:
+            print(f"[Card] ⚠️ Watermark not found: {WATERMARK}")
     except Exception as e:
-        print(f"[Card] Watermark skipped: {e}")
+        print(f"[Card] Watermark error: {e}")
     
     # ============================================================
     # 2. HEADER (Profile + Username + Timestamp)
@@ -137,17 +148,22 @@ def generate_position_card(
             mask_draw.ellipse((0, 0, profile_size, profile_size), fill=255)
             
             card.paste(profile, (60, header_y), mask)
+            print(f"[Card] ✅ Profile loaded: {PROFILE_PIC}")
         else:
-            # Fallback: yellow circle
+            print(f"[Card] ⚠️ Profile not found: {PROFILE_PIC}")
             draw.ellipse(
                 (60, header_y, 60 + profile_size, header_y + profile_size),
                 fill=COLOR_YELLOW,
             )
     except Exception as e:
-        print(f"[Card] Profile pic error: {e}")
+        print(f"[Card] Profile error: {e}")
+        draw.ellipse(
+            (60, header_y, 60 + profile_size, header_y + profile_size),
+            fill=COLOR_YELLOW,
+        )
     
     # Username
-    font_username = get_font(FONT_BOLD, 38)
+    font_username = get_font(FONT_BOLD, 40)
     draw.text((170, header_y + 5), USERNAME, font=font_username, fill=COLOR_WHITE)
     
     # Timestamp
@@ -159,12 +175,12 @@ def generate_position_card(
     # 3. COIN INFO
     # ============================================================
     coin_y = 400
-    font_coin = get_font(FONT_BOLD, 52)
+    font_coin = get_font(FONT_BOLD, 54)
     coin_text = f"{coin.upper()}USDT Perpetual"
     draw.text((60, coin_y), coin_text, font=font_coin, fill=COLOR_WHITE)
     
     # Direction | Leverage
-    dir_y = coin_y + 70
+    dir_y = coin_y + 75
     font_direction = get_font(FONT_MEDIUM, 34)
     
     direction_text = direction.upper().capitalize()
@@ -172,7 +188,10 @@ def generate_position_card(
     
     dir_bbox = draw.textbbox((60, dir_y), direction_text, font=font_direction)
     sep_x = dir_bbox[2] + 20
-    draw.text((sep_x, dir_y), "|", font=font_direction, fill=COLOR_GRAY)
+    
+    # Separator | (thin gray)
+    font_sep = get_font(FONT_REGULAR, 34)
+    draw.text((sep_x, dir_y), "|", font=font_sep, fill=COLOR_GRAY)
     
     lev_text = f"{leverage}x"
     draw.text((sep_x + 30, dir_y), lev_text, font=font_direction, fill=COLOR_WHITE)
@@ -181,7 +200,7 @@ def generate_position_card(
     # 4. BIG PNL
     # ============================================================
     pnl_y = 570
-    font_pnl_big = get_font(FONT_BOLD, 110)
+    font_pnl_big = get_font(FONT_BOLD, 115)
     
     pnl_sign = "+" if pnl_usdt >= 0 else ""
     pnl_text = f"{pnl_sign}{pnl_usdt:,.2f}"
@@ -189,15 +208,15 @@ def generate_position_card(
     
     pnl_bbox = draw.textbbox((60, pnl_y), pnl_text, font=font_pnl_big)
     usdt_x = pnl_bbox[2] + 25
-    usdt_y = pnl_y + 35
-    font_usdt = get_font(FONT_MEDIUM, 44)
+    usdt_y = pnl_y + 40
+    font_usdt = get_font(FONT_MEDIUM, 46)
     draw.text((usdt_x, usdt_y), "USDT", font=font_usdt, fill=COLOR_GRAY)
     
     # ============================================================
     # 5. ROI %
     # ============================================================
-    roi_y = pnl_y + 130
-    font_roi = get_font(FONT_BOLD, 56)
+    roi_y = pnl_y + 140
+    font_roi = get_font(FONT_BOLD, 58)
     roi_sign = "+" if roi_percent >= 0 else ""
     roi_text = f"{roi_sign}{roi_percent:,.2f}%"
     draw.text((60, roi_y), roi_text, font=font_roi, fill=pnl_color)
@@ -239,30 +258,32 @@ def generate_position_card(
     )
     
     # ============================================================
-    # 8. BINANCE LOGO (bottom left)
+    # 8. BINANCE LOGO (bottom left) - LARGER
     # ============================================================
-    logo_y = 1050
+    logo_y = 1040
     try:
         if os.path.exists(BINANCE_LOGO):
             logo = Image.open(BINANCE_LOGO).convert("RGBA")
-            logo_h = 90
+            logo_h = 110  # Bigger logo
             aspect = logo.width / logo.height
             logo_w = int(logo_h * aspect)
             logo = logo.resize((logo_w, logo_h), Image.LANCZOS)
             card.paste(logo, (60, logo_y), logo)
+            print(f"[Card] ✅ Logo loaded: {BINANCE_LOGO}")
         else:
-            font_logo = get_font(FONT_BOLD, 32)
+            print(f"[Card] ⚠️ Logo not found: {BINANCE_LOGO}")
+            font_logo = get_font(FONT_BOLD, 42)
             draw.text((60, logo_y), "◆ BINANCE", font=font_logo, fill=COLOR_YELLOW)
-            draw.text((60, logo_y + 40), "FUTURES", font=font_logo, fill=COLOR_WHITE)
+            draw.text((60, logo_y + 50), "FUTURES", font=font_logo, fill=COLOR_WHITE)
     except Exception as e:
-        print(f"[Card] Logo skipped: {e}")
+        print(f"[Card] Logo error: {e}")
     
     # ============================================================
     # 9. REFERRAL CODE
     # ============================================================
-    ref_y = 1180
-    font_ref_label = get_font(FONT_REGULAR, 26)
-    font_ref_code = get_font(FONT_BOLD, 28)
+    ref_y = 1200
+    font_ref_label = get_font(FONT_REGULAR, 28)
+    font_ref_code = get_font(FONT_BOLD, 30)
     
     draw.text((60, ref_y), "Referral Code", font=font_ref_label, fill=COLOR_WHITE)
     ref_label_bbox = draw.textbbox((60, ref_y), "Referral Code", font=font_ref_label)
@@ -279,11 +300,14 @@ def generate_position_card(
     try:
         if os.path.exists(QR_CODE):
             qr = Image.open(QR_CODE).convert("RGB")
-            qr_size = 180
+            qr_size = 200
             qr = qr.resize((qr_size, qr_size), Image.LANCZOS)
-            card.paste(qr, (CARD_WIDTH - qr_size - 60, 1050))
+            card.paste(qr, (CARD_WIDTH - qr_size - 60, 1030))
+            print(f"[Card] ✅ QR loaded: {QR_CODE}")
+        else:
+            print(f"[Card] ⚠️ QR not found: {QR_CODE}")
     except Exception as e:
-        print(f"[Card] QR skipped: {e}")
+        print(f"[Card] QR error: {e}")
     
     # ============================================================
     # SAVE
@@ -311,7 +335,7 @@ def generate_position_card(
 # ============================================================
 
 if __name__ == "__main__":
-    # Test with GENIUSUSDT sample (from your master copy)
+    # Test with GENIUSUSDT sample (matches your master copy)
     generate_position_card(
         coin="GENIUS",
         entry_price=0.6448343,
