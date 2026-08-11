@@ -280,5 +280,25 @@
     "status": "SL_HIT",
     "closed_price": 0.03881,
     "closed_at": "2026-08-11T08:14:24.824972"
+  },
+  {
+    "coin": "HOME",
+    "trending_bonus": "TST",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.01068,
+    "tp1": 0.0125,
+    "tp2": 0.015,
+    "sl": 0.009,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 17.36% increase in the last 24 hours, the coin is showing strong upward momentum, suggesting a potential long position with a target profit at 0.0125 and 0.0150, and a stop loss at 0.0090 to limit potential losses.",
+    "smc_logic_short": "Bullish momentum",
+    "change": 17.363,
+    "created_at": "2026-08-10T15:32:21.258273",
+    "status": "SL_HIT",
+    "closed_price": 0.00891,
+    "closed_at": "2026-08-11T11:09:59.223701"
   }
 ]
