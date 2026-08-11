@@ -308,5 +308,23 @@
     "change": 16.429,
     "created_at": "2026-08-11T15:30:36.044910",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "HOLO",
+    "trending_bonus": "RAD",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.0826,
+    "tp1": 0.0975,
+    "tp2": 0.1124,
+    "sl": 0.0657,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 17.50% increase in the last 24 hours, a long position could be considered with a target profit at 18% and 36% above the current price, and a stop loss at 20% below the current price.",
+    "smc_logic_short": "Bullish momentum.",
+    "change": 17.496,
+    "created_at": "2026-08-11T20:11:43.442150",
+    "status": "ACTIVE"
   }
 ]
