@@ -1,16 +1,16 @@
 {
-  "coin": "RAD",
-  "trending_bonus": "HEI",
+  "coin": "BANANAS31",
+  "trending_bonus": "RAD",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 0.29,
-  "tp1": 0.35,
-  "tp2": 0.42,
-  "sl": 0.23,
+  "entry_price": 0.010761,
+  "tp1": 0.0135,
+  "tp2": 0.0165,
+  "sl": 0.0085,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "Given the 24h change of 37.44%, RAD is showing strong upward momentum, suggesting a potential long position with a target price of 0.35 for TP1 and 0.42 for TP2, while setting a stop-loss at 0.23 to limit potential losses.",
-  "smc_logic_short": "Bullish momentum",
-  "change": 37.441
+  "smc_logic": "Given the 24h change of 25.73%, a long position is considered with a take profit at 25% and 50% above the entry price, and a stop loss at 20% below the entry price.",
+  "smc_logic_short": "Long with 25% and 50% TP, 20% SL.",
+  "change": 25.732
 }
