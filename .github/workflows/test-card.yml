@@ -1,0 +1,45 @@
+name: Test Card Generator
+
+on:
+  workflow_dispatch:  # Manual trigger only
+
+jobs:
+  test-card:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install Pillow
+      
+      - name: Generate assets (logo, watermark)
+        run: python assets/generate_assets.py
+      
+      - name: Generate sample card
+        run: python -m bot.card_generator
+      
+      - name: List generated files
+        run: |
+          echo "=== Assets ==="
+          ls -la assets/
+          echo "=== Charts ==="
+          ls -la charts/
+      
+      - name: Upload card as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sample-position-card
+          path: |
+            charts/test_card.png
+            assets/binance_logo.png
+            assets/diamond_watermark.png
+          retention-days: 7
