@@ -110,24 +110,6 @@
     "status": "ACTIVE"
   },
   {
-    "coin": "IOTX",
-    "trending_bonus": "TUT",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.00343,
-    "tp1": 0.005,
-    "tp2": 0.007,
-    "sl": 0.0025,
-    "leverage": "3x-5x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "Given the 53.12% increase in the last 24 hours, IOTX is showing strong upward momentum, suggesting a potential long position with a medium risk profile.",
-    "smc_logic_short": "Momentum based long.",
-    "change": 53.125,
-    "created_at": "2026-08-09T04:44:09.888404",
-    "status": "ACTIVE"
-  },
-  {
     "coin": "COOKIE",
     "trending_bonus": "TUT",
     "direction": "LONG",
@@ -274,24 +256,6 @@
     "status": "ACTIVE"
   },
   {
-    "coin": "DODO",
-    "trending_bonus": "UTK",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.02549,
-    "tp1": 0.031,
-    "tp2": 0.036,
-    "sl": 0.021,
-    "leverage": "3x-5x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "Given the 24.79% increase in the last 24 hours, DODO is showing strong upward momentum, suggesting a potential long position with a medium risk profile.",
-    "smc_logic_short": "Momentum driven long.",
-    "change": 24.792,
-    "created_at": "2026-08-10T20:09:59.195157",
-    "status": "ACTIVE"
-  },
-  {
     "coin": "UTK",
     "trending_bonus": "DODO",
     "direction": "LONG",
@@ -307,24 +271,6 @@
     "smc_logic_short": "Momentum driven long.",
     "change": 16.228,
     "created_at": "2026-08-10T23:06:15.286133",
-    "status": "ACTIVE"
-  },
-  {
-    "coin": "BICO",
-    "trending_bonus": "RAD",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.04952,
-    "tp1": 0.0619,
-    "tp2": 0.0743,
-    "sl": 0.0395,
-    "leverage": "3x-5x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "Given the 24h change of 25.53%, BICO is showing strong upward momentum, suggesting a potential long position with a target profit at 25% and 50% above the entry price, and a stop-loss at 20% below the entry price.",
-    "smc_logic_short": "Momentum driven long",
-    "change": 25.526,
-    "created_at": "2026-08-11T04:51:30.430155",
     "status": "ACTIVE"
   }
 ]
