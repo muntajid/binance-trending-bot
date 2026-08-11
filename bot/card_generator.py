@@ -1,6 +1,6 @@
 """
 Binance Futures Position Card Generator
-Master copy of GENIUSUSDT card style.
+Master copy of GENIUSUSDT card style - production ready.
 """
 
 import os
@@ -19,7 +19,7 @@ REFERRAL_CODE = "768056928"
 ASSETS_DIR = "assets"
 
 # User assets (your uploaded files)
-PROFILE_PIC = os.path.join(ASSETS_DIR, "IMG_20260811_163112.jpg")
+PROFILE_PIC = os.path.join(ASSETS_DIR, "23077.jpeg")
 QR_CODE = os.path.join(ASSETS_DIR, "IMG_20260811_163137.png")
 
 # Auto-generated assets
@@ -83,6 +83,21 @@ def calculate_pnl(entry_price, close_price, position_size, leverage, direction="
     return round(pnl_usdt, 2), round(roi_percent, 2)
 
 
+def add_qr_with_border(qr_image, size=200, border=10):
+    """Add white border/padding around QR code."""
+    # Resize QR
+    qr_resized = qr_image.resize((size, size), Image.LANCZOS)
+    
+    # Create white background (bigger than QR)
+    total_size = size + (border * 2)
+    bordered = Image.new("RGB", (total_size, total_size), (255, 255, 255))
+    
+    # Paste QR in center
+    bordered.paste(qr_resized, (border, border))
+    
+    return bordered
+
+
 def generate_position_card(
     coin: str,
     entry_price: float,
@@ -116,15 +131,16 @@ def generate_position_card(
     draw = ImageDraw.Draw(card)
     
     # ============================================================
-    # 1. WATERMARK (Diamond background - right side, larger)
+    # 1. WATERMARK (Top right corner - like master copy)
     # ============================================================
     try:
         if os.path.exists(WATERMARK):
             wm = Image.open(WATERMARK).convert("RGBA")
-            wm_size = 900
+            wm_size = 850
             wm = wm.resize((wm_size, wm_size), Image.LANCZOS)
-            wm_x = CARD_WIDTH - wm_size + 250
-            wm_y = 80
+            # Position: top right, most of it off-screen right
+            wm_x = CARD_WIDTH - wm_size + 300
+            wm_y = 50
             card.paste(wm, (wm_x, wm_y), wm)
         else:
             print(f"[Card] ⚠️ Watermark not found: {WATERMARK}")
@@ -135,7 +151,7 @@ def generate_position_card(
     # 2. HEADER (Profile + Username + Timestamp)
     # ============================================================
     header_y = 80
-    profile_size = 90
+    profile_size = 95
     
     try:
         if os.path.exists(PROFILE_PIC):
@@ -163,13 +179,13 @@ def generate_position_card(
         )
     
     # Username
-    font_username = get_font(FONT_BOLD, 40)
-    draw.text((170, header_y + 5), USERNAME, font=font_username, fill=COLOR_WHITE)
+    font_username = get_font(FONT_BOLD, 42)
+    draw.text((175, header_y + 5), USERNAME, font=font_username, fill=COLOR_WHITE)
     
     # Timestamp
     timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
     font_timestamp = get_font(FONT_REGULAR, 26)
-    draw.text((170, header_y + 55), timestamp, font=font_timestamp, fill=COLOR_GRAY)
+    draw.text((175, header_y + 60), timestamp, font=font_timestamp, fill=COLOR_GRAY)
     
     # ============================================================
     # 3. COIN INFO
@@ -258,13 +274,13 @@ def generate_position_card(
     )
     
     # ============================================================
-    # 8. BINANCE LOGO (bottom left) - LARGER
+    # 8. BINANCE LOGO (bottom left) - LARGER & BETTER
     # ============================================================
     logo_y = 1040
     try:
         if os.path.exists(BINANCE_LOGO):
             logo = Image.open(BINANCE_LOGO).convert("RGBA")
-            logo_h = 110  # Bigger logo
+            logo_h = 125  # Bigger logo
             aspect = logo.width / logo.height
             logo_w = int(logo_h * aspect)
             logo = logo.resize((logo_w, logo_h), Image.LANCZOS)
@@ -281,7 +297,7 @@ def generate_position_card(
     # ============================================================
     # 9. REFERRAL CODE
     # ============================================================
-    ref_y = 1200
+    ref_y = 1210
     font_ref_label = get_font(FONT_REGULAR, 28)
     font_ref_code = get_font(FONT_BOLD, 30)
     
@@ -295,14 +311,17 @@ def generate_position_card(
     )
     
     # ============================================================
-    # 10. QR CODE (bottom right)
+    # 10. QR CODE (bottom right) - WITH WHITE BORDER
     # ============================================================
     try:
         if os.path.exists(QR_CODE):
-            qr = Image.open(QR_CODE).convert("RGB")
-            qr_size = 200
-            qr = qr.resize((qr_size, qr_size), Image.LANCZOS)
-            card.paste(qr, (CARD_WIDTH - qr_size - 60, 1030))
+            qr_raw = Image.open(QR_CODE).convert("RGB")
+            
+            # Add white border/padding around QR
+            qr_with_border = add_qr_with_border(qr_raw, size=200, border=12)
+            
+            qr_total_size = qr_with_border.width
+            card.paste(qr_with_border, (CARD_WIDTH - qr_total_size - 60, 1030))
             print(f"[Card] ✅ QR loaded: {QR_CODE}")
         else:
             print(f"[Card] ⚠️ QR not found: {QR_CODE}")
