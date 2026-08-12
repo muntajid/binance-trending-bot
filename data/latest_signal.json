@@ -1,16 +1,16 @@
 {
-  "coin": "PROM",
-  "trending_bonus": "HOLO",
+  "coin": "KORUB",
+  "trending_bonus": "PROM",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 2.729,
-  "tp1": 3.2,
-  "tp2": 3.8,
-  "sl": 2.3,
+  "entry_price": 19.15,
+  "tp1": 21.75,
+  "tp2": 24.35,
+  "sl": 17.55,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "Given the 24h change of 28.36%, PROM is showing strong upward momentum, suggesting a potential long position with a take profit at 3.2 and 3.8, and a stop loss at 2.3 to limit losses.",
-  "smc_logic_short": "Bullish momentum",
-  "change": 28.363
+  "smc_logic": "Given the 24h change of 13.24%, a long position is suggested with a take profit at 21.75 and 24.35, considering the current momentum. The stop loss is set at 17.55 to limit potential losses.",
+  "smc_logic_short": "Long KORUB with caution.",
+  "change": 13.239
 }
