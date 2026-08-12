@@ -344,5 +344,23 @@
     "change": 35.392,
     "created_at": "2026-08-12T20:10:50.603736",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "COTI",
+    "trending_bonus": "PROM",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.01254,
+    "tp1": 0.015,
+    "tp2": 0.018,
+    "sl": 0.01,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 24h change of 25.27%, COTI is showing strong upward momentum, suggesting a potential long position with a medium risk profile.",
+    "smc_logic_short": "Momentum based long",
+    "change": 25.275,
+    "created_at": "2026-08-12T23:21:49.369906",
+    "status": "ACTIVE"
   }
 ]

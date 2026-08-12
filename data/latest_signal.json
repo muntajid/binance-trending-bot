@@ -1,16 +1,16 @@
 {
-  "coin": "NBISB",
+  "coin": "COTI",
   "trending_bonus": "PROM",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 258.49,
-  "tp1": 300,
-  "tp2": 320,
-  "sl": 220,
+  "entry_price": 0.01254,
+  "tp1": 0.015,
+  "tp2": 0.018,
+  "sl": 0.01,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "Given the 24h change of 35.39%, the coin is showing strong upward momentum, suggesting a long position with a take profit at 300 and 320, and a stop loss at 220 to limit potential losses.",
-  "smc_logic_short": "Bullish trend with high momentum.",
-  "change": 35.392
+  "smc_logic": "Given the 24h change of 25.27%, COTI is showing strong upward momentum, suggesting a potential long position with a medium risk profile.",
+  "smc_logic_short": "Momentum based long",
+  "change": 25.275
 }
