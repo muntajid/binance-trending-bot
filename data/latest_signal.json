@@ -1,16 +1,16 @@
 {
-  "coin": "UTK",
+  "coin": "PROM",
   "trending_bonus": "HOLO",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 0.00795,
-  "tp1": 0.0092,
-  "tp2": 0.0105,
-  "sl": 0.0068,
+  "entry_price": 2.729,
+  "tp1": 3.2,
+  "tp2": 3.8,
+  "sl": 2.3,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "Given the 16.23% increase in the last 24 hours, UTK is showing strong upward momentum. The current price of $0.00795 can be considered a potential entry point for a long position, with take-profit levels at $0.0092 and $0.0105, and a stop-loss at $0.0068 to manage risk.",
-  "smc_logic_short": "Momentum-based long entry",
-  "change": 16.228
+  "smc_logic": "Given the 24h change of 28.36%, PROM is showing strong upward momentum, suggesting a potential long position with a take profit at 3.2 and 3.8, and a stop loss at 2.3 to limit losses.",
+  "smc_logic_short": "Bullish momentum",
+  "change": 28.363
 }
