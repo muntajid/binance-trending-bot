@@ -1,16 +1,16 @@
 {
-  "coin": "AVNT",
-  "trending_bonus": "COTI",
+  "coin": "EDEN",
+  "trending_bonus": "SNXXB",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 0.1128,
-  "tp1": 0.1348,
-  "tp2": 0.1568,
-  "sl": 0.0896,
+  "entry_price": 0.06183,
+  "tp1": 0.075,
+  "tp2": 0.09,
+  "sl": 0.05,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "Given the 24h change of 25.64%, a long position is suggested with a take profit at 19% and 39% above the current price, and a stop loss at 20% below the current price.",
-  "smc_logic_short": "Bullish trend continuation.",
-  "change": 25.641
+  "smc_logic": "Given the 24h change of 37.45%, EDEN is showing strong upward momentum, suggesting a potential long position with a target profit at 21.7% and 45.7% above the current price, and a stop loss at 19.1% below the current price.",
+  "smc_logic_short": "Bullish momentum",
+  "change": 37.453
 }
