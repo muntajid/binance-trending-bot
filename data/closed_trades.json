@@ -422,5 +422,25 @@
     "status": "SL_HIT",
     "closed_price": 0.0095,
     "closed_at": "2026-08-13T21:29:00.894687"
+  },
+  {
+    "coin": "TST",
+    "trending_bonus": "NBISB",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.01706,
+    "tp1": 0.0205,
+    "tp2": 0.024,
+    "sl": 0.014,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 24h change of 19.55%, TST is showing strong upward momentum, suggesting a potential long position with a target profit at 20% and 40% above the current price, and a stop loss at 18% below the current price.",
+    "smc_logic_short": "Bullish momentum",
+    "change": 19.552,
+    "created_at": "2026-08-13T05:50:18.427257",
+    "status": "SL_HIT",
+    "closed_price": 0.01392,
+    "closed_at": "2026-08-13T23:28:10.863444"
   }
 ]
