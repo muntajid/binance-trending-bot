@@ -379,5 +379,23 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "AVNT",
+    "trending_bonus": "COTI",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.1128,
+    "tp1": 0.1348,
+    "tp2": 0.1568,
+    "sl": 0.0896,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 24h change of 25.64%, a long position is suggested with a take profit at 19% and 39% above the current price, and a stop loss at 20% below the current price.",
+    "smc_logic_short": "Bullish trend continuation.",
+    "change": 25.641,
+    "created_at": "2026-08-13T15:32:19.669893",
+    "status": "ACTIVE"
   }
 ]
