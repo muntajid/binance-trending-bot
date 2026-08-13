@@ -146,24 +146,6 @@
     "status": "ACTIVE"
   },
   {
-    "coin": "ACT",
-    "trending_bonus": "TST",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.01169,
-    "tp1": 0.014,
-    "tp2": 0.0165,
-    "sl": 0.0095,
-    "leverage": "3x-5x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "Given the 24h change of 20.14%, the coin is showing strong upward momentum, suggesting a potential long position with a take profit at 20% and 40% above the current price, and a stop loss at 20% below the current price.",
-    "smc_logic_short": "Momentum based long",
-    "change": 20.144,
-    "created_at": "2026-08-10T10:40:46.351713",
-    "status": "ACTIVE"
-  },
-  {
     "coin": "UTK",
     "trending_bonus": "DODO",
     "direction": "LONG",
