@@ -1,16 +1,16 @@
 {
-  "coin": "DOLO",
+  "coin": "ALICE",
   "trending_bonus": "ACE",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 0.02686,
-  "tp1": 0.032,
-  "tp2": 0.038,
-  "sl": 0.022,
+  "entry_price": 0.1439,
+  "tp1": 0.1799,
+  "tp2": 0.2159,
+  "sl": 0.1089,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "Given the 24h change of 22.82%, a long position is considered with a take profit at 18.6% and 41.3% above the current price, and a stop loss at 18.2% below the current price.",
-  "smc_logic_short": "Bullish momentum",
-  "change": 22.823
+  "smc_logic": "Given the 24.31% increase in the last 24 hours, ALICE is showing strong upward momentum, suggesting a long position with a potential first target at a 25% increase from the current price and a second target at a 50% increase. The stop loss is set at a 25% decrease from the current price to limit potential losses.",
+  "smc_logic_short": "Momentum driven long",
+  "change": 24.308
 }
