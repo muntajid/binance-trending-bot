@@ -7,6 +7,7 @@ then retraced before the next GitHub Actions run is therefore still detected.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import tempfile
@@ -103,10 +104,124 @@ def save_active(trades: list[dict[str, Any]]) -> None:
     _atomic_write_json(ACTIVE_FILE, trades)
 
 
+def _trade_id(trade: dict[str, Any]) -> str:
+    """Return a stable ID, migrating legacy records deterministically."""
+
+    existing = str(trade.get("trade_id", "")).strip()
+    if existing:
+        return existing
+
+    identity_fields = {
+        "coin": str(trade.get("coin", "")).upper().strip(),
+        "direction": str(trade.get("direction", "LONG")).upper().strip(),
+        "entry_price": trade.get("entry_price"),
+        "tp1": trade.get("tp1"),
+        "tp2": trade.get("tp2"),
+        "sl": trade.get("sl"),
+        "created_at": trade.get("created_at"),
+    }
+    encoded = json.dumps(
+        identity_fields,
+        sort_keys=True,
+        separators=(",", ":"),
+        ensure_ascii=True,
+    ).encode("ascii")
+    digest = hashlib.sha256(encoded).hexdigest()[:20]
+    coin = identity_fields["coin"].lower() or "trade"
+    generated = f"{coin}-{digest}"
+    trade["trade_id"] = generated
+    return generated
+
+
 def save_closed(trade: dict[str, Any]) -> None:
+    """Append a closed trade once; repeated IDs update instead of duplicating."""
+
     closed = _read_trade_list(CLOSED_FILE)
+    identifier = _trade_id(trade)
+
+    for index, existing in enumerate(closed):
+        if _trade_id(existing) == identifier:
+            closed[index] = trade
+            _atomic_write_json(CLOSED_FILE, closed)
+            return
+
     closed.append(trade)
     _atomic_write_json(CLOSED_FILE, closed)
+
+
+def _created_sort_key(trade: dict[str, Any], fallback_index: int) -> tuple[float, int]:
+    created = _parse_iso_datetime(trade.get("created_at"))
+    timestamp = created.timestamp() if created is not None else float("-inf")
+    return timestamp, fallback_index
+
+
+def _deduplicate_active_trades(
+    trades: list[dict[str, Any]],
+    cleanup_time: datetime,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Keep only the newest active setup for each coin.
+
+    Older overlapping records are archived as SUPERSEDED without publishing a
+    target or stop update. This migrates the historical state that produced two
+    ACE TP2 posts during one monitor run.
+    """
+
+    indexed: list[tuple[int, dict[str, Any]]] = []
+    newest_index_by_coin: dict[str, int] = {}
+
+    for index, trade in enumerate(trades):
+        _trade_id(trade)
+        indexed.append((index, trade))
+
+        coin = str(trade.get("coin", "")).upper().strip()
+        status = str(trade.get("status", "ACTIVE")).upper().strip()
+        if not coin or status != "ACTIVE":
+            continue
+
+        previous_index = newest_index_by_coin.get(coin)
+        if previous_index is None:
+            newest_index_by_coin[coin] = index
+            continue
+
+        previous_trade = trades[previous_index]
+        if _created_sort_key(trade, index) >= _created_sort_key(
+            previous_trade,
+            previous_index,
+        ):
+            newest_index_by_coin[coin] = index
+
+    kept: list[dict[str, Any]] = []
+    superseded: list[dict[str, Any]] = []
+    cleanup_iso = _iso_utc(cleanup_time)
+
+    for index, trade in indexed:
+        coin = str(trade.get("coin", "")).upper().strip()
+        status = str(trade.get("status", "ACTIVE")).upper().strip()
+
+        # A non-active record does not belong in active_trades.json. Archive it
+        # idempotently but do not rewrite a meaningful terminal status.
+        if status != "ACTIVE":
+            trade.setdefault("closed_at", cleanup_iso)
+            superseded.append(trade)
+            continue
+
+        winner_index = newest_index_by_coin.get(coin)
+        if not coin or winner_index == index:
+            kept.append(trade)
+            continue
+
+        winner = trades[winner_index]
+        trade["status"] = "SUPERSEDED"
+        trade["superseded_at"] = cleanup_iso
+        trade["closed_at"] = cleanup_iso
+        trade["superseded_by_trade_id"] = _trade_id(winner)
+        trade["superseded_reason"] = (
+            "Newer active setup exists for the same coin; archived to prevent "
+            "duplicate target posts"
+        )
+        superseded.append(trade)
+
+    return kept, superseded
 
 
 def _direction(trade: dict[str, Any]) -> str:
@@ -416,6 +531,24 @@ def check_trades_and_maybe_post(publish_func: PublishFunction) -> None:
 
     if not trades:
         print("No active trades.")
+        return
+
+    # Migrate legacy records and remove overlapping same-coin setups before any
+    # market scan or publication. The newest signal remains authoritative.
+    cleanup_time = _utc_now()
+    trades, superseded = _deduplicate_active_trades(trades, cleanup_time)
+    for archived_trade in superseded:
+        save_closed(archived_trade)
+        print(
+            f"[Monitor] Archived duplicate/non-active record "
+            f"{archived_trade.get('trade_id')} for "
+            f"{str(archived_trade.get('coin', 'UNKNOWN')).upper()} "
+            f"with status {archived_trade.get('status')}"
+        )
+
+    if not trades:
+        save_active([])
+        print("No active trades remain after state cleanup.")
         return
 
     remaining: list[dict[str, Any]] = []
