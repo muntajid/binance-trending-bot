@@ -1,16 +1,16 @@
 {
-  "coin": "SNXXB",
+  "coin": "ACE",
   "trending_bonus": "EDEN",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 14.77,
-  "tp1": 17.25,
-  "tp2": 20.0,
-  "sl": 12.5,
+  "entry_price": 0.1414,
+  "tp1": 0.175,
+  "tp2": 0.21,
+  "sl": 0.11,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "Given the 24h change of 30.25%, a long position is considered with a take profit at 17% and 35% above the current price, and a stop loss at 15% below the current price.",
-  "smc_logic_short": "Bullish trend continuation.",
-  "change": 30.247
+  "smc_logic": "The ACE coin is showing a strong 24-hour change of 33.08%, indicating a bullish trend. With the current price at $0.1414, a long position could be considered with a potential first target at a 24% increase and a second target at a 48% increase from the current price. A stop-loss at 22% below the current price can help limit potential losses.",
+  "smc_logic_short": "Bullish trend, long position.",
+  "change": 33.082
 }

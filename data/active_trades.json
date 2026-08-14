@@ -381,5 +381,23 @@
     "change": 30.247,
     "created_at": "2026-08-13T23:23:28.099742",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "ACE",
+    "trending_bonus": "EDEN",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.1414,
+    "tp1": 0.175,
+    "tp2": 0.21,
+    "sl": 0.11,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "The ACE coin is showing a strong 24-hour change of 33.08%, indicating a bullish trend. With the current price at $0.1414, a long position could be considered with a potential first target at a 24% increase and a second target at a 48% increase from the current price. A stop-loss at 22% below the current price can help limit potential losses.",
+    "smc_logic_short": "Bullish trend, long position.",
+    "change": 33.082,
+    "created_at": "2026-08-14T05:45:24.303900",
+    "status": "ACTIVE"
   }
 ]
