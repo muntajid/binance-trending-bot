@@ -1,16 +1,16 @@
 {
-  "coin": "SNDKB",
+  "coin": "HEI",
   "trending_bonus": "ACE",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 1593.87,
-  "tp1": 1800,
-  "tp2": 2000,
-  "sl": 1400,
+  "entry_price": 0.1469,
+  "tp1": 0.1699,
+  "tp2": 0.1931,
+  "sl": 0.1241,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "Given the 24h change of 18.83%, the coin is showing strong upward momentum, suggesting a potential long position with a target price of 1800 and 2000, and a stop loss at 1400.",
-  "smc_logic_short": "Bullish momentum",
-  "change": 18.829
+  "smc_logic": "Given the 24h change of 15.35%, a long position is considered with a take profit at 15% and 30% above the current price, and a stop loss at 15% below the current price.",
+  "smc_logic_short": "Bullish trend continuation.",
+  "change": 15.354
 }

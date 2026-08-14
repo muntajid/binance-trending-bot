@@ -323,5 +323,25 @@
     "last_checked_at": "2026-08-14T13:33:24.429066+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65"
+  },
+  {
+    "coin": "HEI",
+    "trending_bonus": "ACE",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.1469,
+    "tp1": 0.1699,
+    "tp2": 0.1931,
+    "sl": 0.1241,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 24h change of 15.35%, a long position is considered with a take profit at 15% and 30% above the current price, and a stop loss at 15% below the current price.",
+    "smc_logic_short": "Bullish trend continuation.",
+    "change": 15.354,
+    "trade_id": "4e605dd54dab4350b158a04a47f08d23",
+    "created_at": "2026-08-14T15:07:26.569040+00:00",
+    "last_checked_at": "2026-08-14T15:07:26.569040+00:00",
+    "status": "ACTIVE"
   }
 ]
