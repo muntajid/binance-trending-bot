@@ -5,23 +5,30 @@ on:
     - cron: "0 */3 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
+concurrency:
+  group: binance-bot-state-writer
+  cancel-in-progress: false
+
 jobs:
   post-signal:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
+    timeout-minutes: 15
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: pip
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -34,28 +41,27 @@ jobs:
           pip install -r requirements.txt
 
       - name: Clean old charts
-        run: |
-          rm -f charts/*.png || true
-      - name: Generate Trending Signal and Charts
+        run: rm -f charts/*.png || true
+
+      - name: Generate trending signal and charts
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-        run: |
-         python -m bot.main_signal
+        run: python -m bot.main_signal
 
       - name: Download official Binance Square posting scripts
         run: |
+          rm -rf /tmp/binance-skills-hub
           git clone --depth 1 \
             https://github.com/binance/binance-skills-hub.git \
             /tmp/binance-skills-hub
 
-      - name: Publish to Binance Square
+      - name: Publish signal to Binance Square
         env:
           BINANCE_SQUARE_OPENAPI_KEY: ${{ secrets.BINANCE_SQUARE_OPENAPI_KEY }}
         run: |
-          set -e
+          set -euo pipefail
 
           TEXT="$(cat data/latest_post.txt)"
-
           IMAGES="$(find charts -maxdepth 1 -type f -iname '*.png' -print | sort | head -4 | paste -sd, -)"
 
           if [ -n "$IMAGES" ]; then
@@ -69,15 +75,18 @@ jobs:
               --text "$TEXT"
           fi
 
-      - name: Auto-commit generated state
+      - name: Commit generated state
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add data/ charts/ || true
+          git add data/ charts/
 
-          git commit \
-            -m "auto: signal ${{ github.run_id }} $(date -u)" \
-            || echo "No changes to commit"
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit."
+            exit 0
+          fi
 
-          git push || echo "Push skipped"
+          git commit -m "auto: signal ${{ github.run_id }} $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          git pull --rebase origin main
+          git push origin main
