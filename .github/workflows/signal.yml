@@ -55,6 +55,11 @@ jobs:
             https://github.com/binance/binance-skills-hub.git \
             /tmp/binance-skills-hub
 
+      - name: Apply UTF-8 emoji safety patch
+        run: |
+          python -m bot.patch_square_utf8
+          node --check /tmp/binance-skills-hub/skills/binance/square-post/scripts/lib.mjs
+
       - name: Publish signal to Binance Square
         env:
           BINANCE_SQUARE_OPENAPI_KEY: ${{ secrets.BINANCE_SQUARE_OPENAPI_KEY }}
