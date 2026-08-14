@@ -659,5 +659,27 @@
     "closed_at": "2026-08-14T13:33:04.190752+00:00",
     "superseded_by_trade_id": "utk-ef750a2c1e548ce3c9af",
     "superseded_reason": "Newer active setup exists for the same coin; archived to prevent duplicate target posts"
+  },
+  {
+    "coin": "HOLO",
+    "trending_bonus": "RAD",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.0826,
+    "tp1": 0.0975,
+    "tp2": 0.1124,
+    "sl": 0.0657,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 17.50% increase in the last 24 hours, a long position could be considered with a target profit at 18% and 36% above the current price, and a stop loss at 20% below the current price.",
+    "smc_logic_short": "Bullish momentum.",
+    "change": 17.496,
+    "created_at": "2026-08-11T20:11:43.442150",
+    "status": "SL_HIT",
+    "last_checked_at": "2026-08-14T18:46:59.999000+00:00",
+    "trade_id": "holo-3254f833d35cdba3c8c5",
+    "closed_price": 0.0657,
+    "closed_at": "2026-08-14T18:46:59.999000+00:00"
   }
 ]
