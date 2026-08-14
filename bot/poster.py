@@ -1,115 +1,138 @@
+"""Text formatting and verified live-price helpers for Binance Square posts."""
+
+from __future__ import annotations
+
 import random
+from typing import Any
+
 from bot.market_data import get_24h_data
 
 
-# ============================================
-# HUMANIZED + ROTATING SIGNAL POST ENGINE
-# ============================================
+def _direction(signal: dict[str, Any]) -> str:
+    value = str(signal.get("direction", "LONG")).upper().strip()
+    if value not in {"LONG", "SHORT"}:
+        raise ValueError(f"Unsupported direction: {value}")
+    return value
 
-def format_signal_post(signal: dict) -> str:
-    coin = signal["coin"]
+
+def _move_percent(entry: float, target: float, direction: str) -> float:
+    if entry <= 0 or target <= 0:
+        raise ValueError("Entry and target prices must be greater than zero")
+
+    if direction == "LONG":
+        return ((target - entry) / entry) * 100.0
+    return ((entry - target) / entry) * 100.0
+
+
+def format_signal_post(signal: dict[str, Any]) -> str:
+    """Create a concise, rotating signal post for LONG or SHORT setups."""
+
+    coin = str(signal["coin"]).upper()
     entry = float(signal["entry_price"])
     tp1 = float(signal["tp1"])
     tp2 = float(signal["tp2"])
     sl = float(signal["sl"])
-    change = float(signal.get("change", 0))
+    change = float(signal.get("change", 0.0))
+    direction = _direction(signal)
 
-    # 🔥 Strong Rotating Hooks (Algorithm Friendly)
+    if direction == "LONG" and not (sl < entry < tp1 < tp2):
+        raise ValueError("Invalid LONG levels: expected SL < Entry < TP1 < TP2")
+    if direction == "SHORT" and not (tp2 < tp1 < entry < sl):
+        raise ValueError("Invalid SHORT levels: expected TP2 < TP1 < Entry < SL")
+
     hooks = [
-        f"${coin} just made a strong structural shift. Momentum building? 🚀",
+        f"${coin} just made a strong structural shift. Momentum building? ðŸš€",
         f"Explosive 24H move on ${coin}. Is continuation next?",
-        f"${coin} is gaining traction fast. Buyers stepping in.",
-        f"Breakout structure forming on ${coin}. Watching closely 👀",
-        f"${coin} showing expansion behavior after liquidity sweep."
+        f"${coin} is gaining traction fast. Watching the next expansion.",
+        f"Breakout structure forming on ${coin}. Watching closely ðŸ‘€",
+        f"${coin} is showing expansion after a liquidity sweep.",
     ]
 
-    hook = random.choice(hooks)
-
-    # 📊 Risk Calculations
-    tp1_pct = ((tp1 - entry) / entry) * 100
-    tp2_pct = ((tp2 - entry) / entry) * 100
-    sl_pct = ((entry - sl) / entry) * 100
-
-    # 🔄 Rotating Closing Engagement Lines
     engagement_lines = [
-        "Bullish continuation or short-term pullback first? 👇",
-        "Would you hold for TP2 or secure profits at TP1? 🤔",
-        "Are you entering on momentum or waiting for retrace?",
-        "Do you see further expansion from here?"
+        "Continuation or a short-term pullback first? ðŸ‘‡",
+        "Would you hold for TP2 or secure profits at TP1? ðŸ¤”",
+        "Are you entering on momentum or waiting for a retrace?",
+        "Do you see further expansion from here?",
     ]
 
-    engagement = random.choice(engagement_lines)
-
-    # 🏷 Rotating Hashtags (Avoid Saturation)
     hashtag_sets = [
         f"${coin} #BinanceSquare #CryptoSignals #Altcoins",
         f"${coin} #SMC #PriceAction #Crypto",
         f"${coin} #TechnicalAnalysis #CryptoTrading",
-        f"${coin} #AltcoinSeason #CryptoMarket"
+        f"${coin} #AltcoinSeason #CryptoMarket",
     ]
 
-    hashtags = random.choice(hashtag_sets)
+    tp1_pct = _move_percent(entry, tp1, direction)
+    tp2_pct = _move_percent(entry, tp2, direction)
+    sl_pct = abs(_move_percent(entry, sl, direction))
 
-    post = f"""{hook}
+    change_label = f"{change:+.1f}%"
 
-Up +{change:.1f}% in 24H and still holding structural strength.
+    return f"""{random.choice(hooks)}
 
-📌 Entry: ${entry}
-🎯 TP1: ${tp1} (+{tp1_pct:.1f}%)
-🎯 TP2: ${tp2} (+{tp2_pct:.1f}%)
-🛑 SL: ${sl} (-{sl_pct:.1f}%)
+24H move: {change_label}. Direction: {direction}.
 
-Risk remains defined below structure.
+ðŸ“Œ Entry: ${entry}
+ðŸŽ¯ TP1: ${tp1} (+{tp1_pct:.1f}%)
+ðŸŽ¯ TP2: ${tp2} (+{tp2_pct:.1f}%)
+ðŸ›‘ SL: ${sl} (-{sl_pct:.1f}%)
 
-{engagement}
+Risk remains defined by the stop level.
 
-{hashtags}
+{random.choice(engagement_lines)}
+
+{random.choice(hashtag_sets)}
 
 Not financial advice. DYOR.
 """
 
-    return post
 
+def format_success_post(
+    signal: dict[str, Any],
+    hit: str,
+    current_price: float,
+) -> str:
+    """Create a TP1/TP2 result post using direction-aware PnL."""
 
-# ============================================
-# SUCCESS POST ENGINE (TP1 / TP2 HIT)
-# ============================================
-
-def format_success_post(signal: dict, hit: str, current_price: float) -> str:
-    coin = signal["coin"]
+    coin = str(signal["coin"]).upper()
     entry = float(signal["entry_price"])
+    current = float(current_price)
+    direction = _direction(signal)
+    hit = str(hit).upper().strip()
 
-    pnl = ((current_price - entry) / entry) * 100
+    if hit not in {"TP1", "TP2"}:
+        raise ValueError(f"Unsupported target label: {hit}")
+    if entry <= 0 or current <= 0:
+        raise ValueError("Entry and current prices must be greater than zero")
+
+    pnl = _move_percent(entry, current, direction)
 
     reactions = [
-        "Momentum delivered exactly as anticipated ✅",
-        "Structure played out perfectly 🔥",
-        "Liquidity → Expansion → Target hit 🚀",
-        "Clean execution on this setup 📈",
-        "Smart money thesis validated ✅"
+        "Momentum delivered as anticipated âœ…",
+        "The planned structure reached its target ðŸ”¥",
+        "Liquidity â†’ Expansion â†’ Target hit ðŸš€",
+        "Clean movement into the planned level ðŸ“ˆ",
+        "The setup reached its defined objective âœ…",
     ]
-
-    reaction = random.choice(reactions)
 
     celebration_lines = [
-        "Discipline always pays.",
-        "Patience > Emotion.",
-        "Structured trading wins.",
-        "Momentum confirmed."
+        "Discipline always matters.",
+        "Patience over emotion.",
+        "Risk management comes first.",
+        "The planned target was respected.",
     ]
 
-    celebration = random.choice(celebration_lines)
+    return f"""ðŸŽ‰ Target Hit!
 
-    return f"""🎉 Target Hit!
+${coin} {hit} âœ…
 
-${coin} {hit} ✅
-
+Direction: {direction}
 Entry: ${entry}
-Current: ${current_price}
-PnL: +{pnl:.2f}%
+Current: ${current}
+Move: {pnl:+.2f}%
 
-{reaction}
-{celebration}
+{random.choice(reactions)}
+{random.choice(celebration_lines)}
 
 ${coin} #TargetHit #Crypto
 
@@ -117,39 +140,16 @@ Not financial advice. DYOR.
 """
 
 
-# ============================================
-# VERIFIED LIVE PRICE FETCH
-# ============================================
-
 def get_current_price(coin: str) -> float:
-    symbol = f"{coin.upper()}USDT"
+    """Return a verified live price from the shared market-data layer."""
 
+    symbol = f"{str(coin).upper()}USDT"
     data = get_24h_data(symbol)
 
     if not data.get("verified"):
         raise RuntimeError(f"Market data not verified for {symbol}")
 
     price = float(data["price"])
-
-    if price <= 0:
-        raise RuntimeError(f"Invalid verified price for {symbol}: {price}")
-
-    return price
-# ============================================
-# VERIFIED LIVE PRICE FETCH (Needed for Monitor)
-# ============================================
-
-def get_current_price(coin: str) -> float:
-    from bot.market_data import get_24h_data
-
-    symbol = f"{coin.upper()}USDT"
-    data = get_24h_data(symbol)
-
-    if not data.get("verified"):
-        raise RuntimeError(f"Market data not verified for {symbol}")
-
-    price = float(data["price"])
-
     if price <= 0:
         raise RuntimeError(f"Invalid verified price for {symbol}: {price}")
 
