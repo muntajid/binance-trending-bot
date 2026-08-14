@@ -6,6 +6,7 @@ import subprocess
 from pathlib import Path
 
 from bot.monitor import check_trades_and_maybe_post
+from bot.poster import assert_clean_post_text
 
 SKILLS_ROOT = Path("/tmp/binance-skills-hub")
 POST_TEXT_SCRIPT = (
@@ -29,9 +30,7 @@ POST_IMAGE_SCRIPT = (
 def publish(post: str, images: list[str]) -> None:
     """Publish a text or image post through Binance's official helper script."""
 
-    text = str(post).strip()
-    if not text:
-        raise ValueError("Cannot publish an empty Binance Square post")
+    text = assert_clean_post_text(str(post).strip())
 
     valid_images = [str(Path(path).resolve()) for path in images if Path(path).is_file()]
 
