@@ -2,25 +2,33 @@ name: Live Monitor - Every 10 Minutes
 
 on:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: "*/10 * * * *"
   workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: binance-bot-state-writer
+  cancel-in-progress: false
 
 jobs:
   monitor:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    timeout-minutes: 10
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: pip
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -28,24 +36,42 @@ jobs:
           node-version: "22"
 
       - name: Install Python dependencies
-        run: pip install -r requirements.txt
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Generate master card assets
+        run: python assets/generate_assets.py
 
       - name: Download official Binance Square posting scripts
         run: |
+          rm -rf /tmp/binance-skills-hub
           git clone --depth 1 \
             https://github.com/binance/binance-skills-hub.git \
             /tmp/binance-skills-hub
 
-      - name: Run monitor
+      - name: Check trades and publish target-hit cards
         env:
           BINANCE_SQUARE_OPENAPI_KEY: ${{ secrets.BINANCE_SQUARE_OPENAPI_KEY }}
-        run: |
-          python -m bot.monitor_runner
+          TARGET_CARD_POSITION_SIZE_USDT: ${{ vars.TARGET_CARD_POSITION_SIZE_USDT || '5000' }}
+          TARGET_CARD_LEVERAGE: ${{ vars.TARGET_CARD_LEVERAGE || '15' }}
+          CARD_TIMEZONE: ${{ vars.CARD_TIMEZONE || 'UTC' }}
+          CARD_USERNAME: ${{ vars.CARD_USERNAME || 'muntajid' }}
+          BINANCE_REFERRAL_CODE: ${{ vars.BINANCE_REFERRAL_CODE || '768056928' }}
+        run: python -m bot.monitor_runner
 
-      - name: Auto-commit closed trades
+      - name: Commit updated trade state
         run: |
-          git config user.name "bot"
-          git config user.email "bot@github.actions"
-          git add data/ || true
-          git commit -m "auto: monitor $(date -u)" || echo "Nothing to commit"
-          git push || echo "Push done"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add data/active_trades.json data/closed_trades.json
+
+          if git diff --cached --quiet; then
+            echo "No trade-state changes to commit."
+            exit 0
+          fi
+
+          git commit -m "auto: monitor $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          git pull --rebase origin main
+          git push origin main
