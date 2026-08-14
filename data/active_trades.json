@@ -16,45 +16,8 @@
     "change": 17.774,
     "created_at": "2026-08-08T08:06:46.578412",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-14T12:01:05.544609+00:00"
-  },
-  {
-    "coin": "UTK",
-    "trending_bonus": "TUT",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.00795,
-    "tp1": 0.0092,
-    "tp2": 0.0105,
-    "sl": 0.0068,
-    "leverage": "3x-5x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "Given the 16.23% increase in the last 24 hours, UTK is showing strong upward momentum, suggesting a potential long position with a medium risk profile.",
-    "smc_logic_short": "Momentum based long",
-    "change": 16.228,
-    "created_at": "2026-08-08T10:16:29.808462",
-    "status": "ACTIVE",
-    "last_checked_at": "2026-08-14T12:01:06.637765+00:00"
-  },
-  {
-    "coin": "DODO",
-    "trending_bonus": "TUT",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.02376,
-    "tp1": 0.028,
-    "tp2": 0.032,
-    "sl": 0.02,
-    "leverage": "3x-5x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "Given the 24h change of 19.18%, DODO is showing strong upward momentum, suggesting a potential long position with a target profit at 0.028 and 0.032, and a stop loss at 0.02 to limit losses.",
-    "smc_logic_short": "Bullish momentum",
-    "change": 19.177,
-    "created_at": "2026-08-08T14:05:47.381445",
-    "status": "ACTIVE",
-    "last_checked_at": "2026-08-14T12:01:07.756943+00:00"
+    "last_checked_at": "2026-08-14T13:33:04.195473+00:00",
+    "trade_id": "syn-28ff2f8768aec3c67c0c"
   },
   {
     "coin": "COOKIE",
@@ -74,7 +37,8 @@
     "created_at": "2026-08-09T10:18:41.432894",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-08-14T12:01:08.843785+00:00"
+    "last_checked_at": "2026-08-14T13:33:05.527677+00:00",
+    "trade_id": "cookie-803c273ce218397f3d39"
   },
   {
     "coin": "MUBARAK",
@@ -94,7 +58,8 @@
     "created_at": "2026-08-09T13:53:49.243606",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-08-14T12:01:09.942019+00:00"
+    "last_checked_at": "2026-08-14T13:33:06.879199+00:00",
+    "trade_id": "mubarak-f94fa4a0d02ca4f64507"
   },
   {
     "coin": "BROCCOLI714",
@@ -113,45 +78,8 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-14T12:01:11.024688+00:00"
-  },
-  {
-    "coin": "UTK",
-    "trending_bonus": "TUT",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.00795,
-    "tp1": 0.0092,
-    "tp2": 0.0105,
-    "sl": 0.0068,
-    "leverage": "3x-5x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "Given the 16.23% increase in the last 24 hours, UTK is showing strong upward momentum, suggesting a potential long position with a medium risk profile.",
-    "smc_logic_short": "Momentum based long",
-    "change": 16.228,
-    "created_at": "2026-08-09T16:03:33.979476",
-    "status": "ACTIVE",
-    "last_checked_at": "2026-08-14T12:01:12.105936+00:00"
-  },
-  {
-    "coin": "UTK",
-    "trending_bonus": "DODO",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.00795,
-    "tp1": 0.0092,
-    "tp2": 0.0105,
-    "sl": 0.0068,
-    "leverage": "3x-5x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "Given the 16.23% increase in the last 24 hours, UTK is showing strong upward momentum, suggesting a potential long position with a medium risk profile.",
-    "smc_logic_short": "Momentum driven long.",
-    "change": 16.228,
-    "created_at": "2026-08-10T23:06:15.286133",
-    "status": "ACTIVE",
-    "last_checked_at": "2026-08-14T12:01:13.185615+00:00"
+    "last_checked_at": "2026-08-14T13:33:08.268263+00:00",
+    "trade_id": "broccoli714-4afb4206a90a75f8adef"
   },
   {
     "coin": "LUNA",
@@ -170,7 +98,8 @@
     "change": 16.429,
     "created_at": "2026-08-11T15:30:36.044910",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-14T12:01:14.270073+00:00"
+    "last_checked_at": "2026-08-14T13:33:09.569386+00:00",
+    "trade_id": "luna-c2dd588ea6c1ea1f0180"
   },
   {
     "coin": "HOLO",
@@ -189,26 +118,8 @@
     "change": 17.496,
     "created_at": "2026-08-11T20:11:43.442150",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-14T12:01:15.352751+00:00"
-  },
-  {
-    "coin": "UTK",
-    "trending_bonus": "HOLO",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.00795,
-    "tp1": 0.0092,
-    "tp2": 0.0105,
-    "sl": 0.0068,
-    "leverage": "3x-5x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "Given the 16.23% increase in the last 24 hours, UTK is showing strong upward momentum. The current price of $0.00795 can be considered a potential entry point for a long position, with take-profit levels at $0.0092 and $0.0105, and a stop-loss at $0.0068 to manage risk.",
-    "smc_logic_short": "Momentum-based long entry",
-    "change": 16.228,
-    "created_at": "2026-08-11T23:22:47.496146",
-    "status": "ACTIVE",
-    "last_checked_at": "2026-08-14T12:01:16.448049+00:00"
+    "last_checked_at": "2026-08-14T13:33:11.058328+00:00",
+    "trade_id": "holo-3254f833d35cdba3c8c5"
   },
   {
     "coin": "PROM",
@@ -228,7 +139,8 @@
     "created_at": "2026-08-12T05:20:29.966110",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-08-14T12:01:17.534958+00:00"
+    "last_checked_at": "2026-08-14T13:33:12.392325+00:00",
+    "trade_id": "prom-4d32fc2fe8fdb81a9b80"
   },
   {
     "coin": "KORUB",
@@ -248,7 +160,8 @@
     "created_at": "2026-08-12T09:47:14.857011",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-08-14T12:01:18.629594+00:00"
+    "last_checked_at": "2026-08-14T13:33:13.773213+00:00",
+    "trade_id": "korub-ce19e4a4f974f5f80423"
   },
   {
     "coin": "DODO",
@@ -267,7 +180,8 @@
     "change": 16.228,
     "created_at": "2026-08-12T15:30:32.009083",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-14T12:01:19.764012+00:00"
+    "last_checked_at": "2026-08-14T13:33:15.113470+00:00",
+    "trade_id": "dodo-b8c3ca3d78d58c70a794"
   },
   {
     "coin": "NBISB",
@@ -286,7 +200,8 @@
     "change": 35.392,
     "created_at": "2026-08-12T20:10:50.603736",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-14T12:01:20.852035+00:00"
+    "last_checked_at": "2026-08-14T13:33:16.427934+00:00",
+    "trade_id": "nbisb-f30fb9d6815f1512e45b"
   },
   {
     "coin": "COTI",
@@ -305,7 +220,8 @@
     "change": 25.275,
     "created_at": "2026-08-12T23:21:49.369906",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-14T12:01:21.979634+00:00"
+    "last_checked_at": "2026-08-14T13:33:17.763970+00:00",
+    "trade_id": "coti-38dc17dc4dbedc53fb24"
   },
   {
     "coin": "UTK",
@@ -324,7 +240,8 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-14T12:01:23.084642+00:00"
+    "last_checked_at": "2026-08-14T13:33:19.093675+00:00",
+    "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
     "coin": "AVNT",
@@ -343,7 +260,8 @@
     "change": 25.641,
     "created_at": "2026-08-13T15:32:19.669893",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-14T12:01:24.168964+00:00"
+    "last_checked_at": "2026-08-14T13:33:20.382825+00:00",
+    "trade_id": "avnt-29cd7ad343876c15ce06"
   },
   {
     "coin": "EDEN",
@@ -363,7 +281,8 @@
     "created_at": "2026-08-13T20:03:13.831978",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-08-14T12:01:25.258987+00:00"
+    "last_checked_at": "2026-08-14T13:33:21.683195+00:00",
+    "trade_id": "eden-45922a8dbf1efe6a6293"
   },
   {
     "coin": "SNXXB",
@@ -382,7 +301,8 @@
     "change": 30.247,
     "created_at": "2026-08-13T23:23:28.099742",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-14T12:01:26.349568+00:00"
+    "last_checked_at": "2026-08-14T13:33:22.973914+00:00",
+    "trade_id": "snxxb-3b63701cf6e9a413aebc"
   },
   {
     "coin": "SNDKB",
@@ -400,7 +320,8 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-08-14T12:01:33.830882+00:00",
-    "status": "ACTIVE"
+    "last_checked_at": "2026-08-14T13:33:24.429066+00:00",
+    "status": "ACTIVE",
+    "trade_id": "sndkb-a74b608a6f50eb4d1b65"
   }
 ]

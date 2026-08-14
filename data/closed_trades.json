@@ -17,7 +17,8 @@
     "created_at": "2026-08-07T03:34:16.002340",
     "status": "TP2_HIT",
     "closed_price": 64834.63,
-    "closed_at": "2026-08-07T09:31:28.935306"
+    "closed_at": "2026-08-07T09:31:28.935306",
+    "trade_id": "btc-331dae7a0df0b192aa65"
   },
   {
     "coin": "ETH",
@@ -37,7 +38,8 @@
     "created_at": "2026-08-07T04:26:38.368149",
     "status": "TP2_HIT",
     "closed_price": 1911.28,
-    "closed_at": "2026-08-07T09:31:29.855358"
+    "closed_at": "2026-08-07T09:31:29.855358",
+    "trade_id": "eth-5389cdce4f59837e076b"
   },
   {
     "coin": "SOL",
@@ -57,7 +59,8 @@
     "created_at": "2026-08-07T06:13:09.101300",
     "status": "SL_HIT",
     "closed_price": 73.58,
-    "closed_at": "2026-08-07T09:31:30.705368"
+    "closed_at": "2026-08-07T09:31:30.705368",
+    "trade_id": "sol-b40446f0baf005d59adc"
   },
   {
     "coin": "TUT",
@@ -78,7 +81,8 @@
     "status": "TP2_HIT",
     "tp1_hit": true,
     "closed_price": 0.05711,
-    "closed_at": "2026-08-08T10:32:45.437436"
+    "closed_at": "2026-08-08T10:32:45.437436",
+    "trade_id": "tut-e080c177e3490eb1fd25"
   },
   {
     "coin": "TUT",
@@ -99,7 +103,8 @@
     "status": "TP2_HIT",
     "tp1_hit": true,
     "closed_price": 0.17815,
-    "closed_at": "2026-08-09T06:32:10.768090"
+    "closed_at": "2026-08-09T06:32:10.768090",
+    "trade_id": "tut-e1f579fda091ee70246b"
   },
   {
     "coin": "EPIC",
@@ -119,7 +124,8 @@
     "created_at": "2026-08-07T23:01:10.569115",
     "status": "SL_HIT",
     "closed_price": 0.9783,
-    "closed_at": "2026-08-09T08:26:16.096779"
+    "closed_at": "2026-08-09T08:26:16.096779",
+    "trade_id": "epic-5a6652e4fd6928eb01d7"
   },
   {
     "coin": "1000CAT",
@@ -139,7 +145,8 @@
     "created_at": "2026-08-08T16:00:46.023968",
     "status": "SL_HIT",
     "closed_price": 0.00178,
-    "closed_at": "2026-08-09T10:08:04.098678"
+    "closed_at": "2026-08-09T10:08:04.098678",
+    "trade_id": "1000cat-ffca36d6cafe0012658d"
   },
   {
     "coin": "BMT",
@@ -159,7 +166,8 @@
     "created_at": "2026-08-09T08:09:36.594482",
     "status": "TP2_HIT",
     "closed_price": 0.03504,
-    "closed_at": "2026-08-09T17:18:42.456698"
+    "closed_at": "2026-08-09T17:18:42.456698",
+    "trade_id": "bmt-a1cd9afa7b8f62bac00b"
   },
   {
     "coin": "TST",
@@ -179,7 +187,8 @@
     "created_at": "2026-08-07T15:25:53.503457",
     "status": "TP2_HIT",
     "closed_price": 0.02371,
-    "closed_at": "2026-08-09T19:21:36.483237"
+    "closed_at": "2026-08-09T19:21:36.483237",
+    "trade_id": "tst-3cf72b54948393c87191"
   },
   {
     "coin": "ACE",
@@ -199,7 +208,8 @@
     "created_at": "2026-08-08T19:19:10.588893",
     "status": "SL_HIT",
     "closed_price": 0.1143,
-    "closed_at": "2026-08-10T05:11:44.436875"
+    "closed_at": "2026-08-10T05:11:44.436875",
+    "trade_id": "ace-42782850e23c767b6c19"
   },
   {
     "coin": "TUT",
@@ -219,7 +229,8 @@
     "created_at": "2026-08-09T22:03:15.593310",
     "status": "SL_HIT",
     "closed_price": 0.14609,
-    "closed_at": "2026-08-10T10:03:10.764157"
+    "closed_at": "2026-08-10T10:03:10.764157",
+    "trade_id": "tut-0dc7e092f42d12e056c1"
   },
   {
     "coin": "IOTX",
@@ -239,7 +250,8 @@
     "created_at": "2026-08-09T04:44:09.888404",
     "status": "SL_HIT",
     "closed_price": 0.00246,
-    "closed_at": "2026-08-11T08:14:19.713594"
+    "closed_at": "2026-08-11T08:14:19.713594",
+    "trade_id": "iotx-b31a3ae6fe2d93c90911"
   },
   {
     "coin": "DODO",
@@ -259,7 +271,8 @@
     "created_at": "2026-08-10T20:09:59.195157",
     "status": "SL_HIT",
     "closed_price": 0.02083,
-    "closed_at": "2026-08-11T08:14:23.989837"
+    "closed_at": "2026-08-11T08:14:23.989837",
+    "trade_id": "dodo-89e4c08836da43419764"
   },
   {
     "coin": "BICO",
@@ -279,7 +292,8 @@
     "created_at": "2026-08-11T04:51:30.430155",
     "status": "SL_HIT",
     "closed_price": 0.03881,
-    "closed_at": "2026-08-11T08:14:24.824972"
+    "closed_at": "2026-08-11T08:14:24.824972",
+    "trade_id": "bico-2bd631858b0ec5c4479a"
   },
   {
     "coin": "HOME",
@@ -299,7 +313,8 @@
     "created_at": "2026-08-10T15:32:21.258273",
     "status": "SL_HIT",
     "closed_price": 0.00891,
-    "closed_at": "2026-08-11T11:09:59.223701"
+    "closed_at": "2026-08-11T11:09:59.223701",
+    "trade_id": "home-686d4c94de42e29e6012"
   },
   {
     "coin": "NIL",
@@ -319,7 +334,8 @@
     "created_at": "2026-08-10T05:10:36.488485",
     "status": "SL_HIT",
     "closed_price": 0.03491,
-    "closed_at": "2026-08-11T22:28:01.763779"
+    "closed_at": "2026-08-11T22:28:01.763779",
+    "trade_id": "nil-0172bf0fd15a1bff4f7e"
   },
   {
     "coin": "TST",
@@ -339,7 +355,8 @@
     "created_at": "2026-08-09T19:49:56.961314",
     "status": "SL_HIT",
     "closed_price": 0.0146,
-    "closed_at": "2026-08-12T03:58:43.845882"
+    "closed_at": "2026-08-12T03:58:43.845882",
+    "trade_id": "tst-f9b5b7df7add8aabb106"
   },
   {
     "coin": "BANANAS31",
@@ -359,7 +376,8 @@
     "created_at": "2026-08-11T11:33:03.681115",
     "status": "SL_HIT",
     "closed_price": 0.008368,
-    "closed_at": "2026-08-12T03:58:45.568001"
+    "closed_at": "2026-08-12T03:58:45.568001",
+    "trade_id": "bananas31-52e054b8bf46c82502f5"
   },
   {
     "coin": "BICO",
@@ -380,7 +398,8 @@
     "status": "SL_HIT",
     "tp1_hit": true,
     "closed_price": 0.0334,
-    "closed_at": "2026-08-12T09:42:12.355973"
+    "closed_at": "2026-08-12T09:42:12.355973",
+    "trade_id": "bico-17a5b248ffbaaaf2f730"
   },
   {
     "coin": "MMT",
@@ -401,7 +420,8 @@
     "status": "SL_HIT",
     "tp1_hit": true,
     "closed_price": 0.1674,
-    "closed_at": "2026-08-13T09:43:38.873073"
+    "closed_at": "2026-08-13T09:43:38.873073",
+    "trade_id": "mmt-212a21e640430c48ac69"
   },
   {
     "coin": "ACT",
@@ -421,7 +441,8 @@
     "created_at": "2026-08-10T10:40:46.351713",
     "status": "SL_HIT",
     "closed_price": 0.0095,
-    "closed_at": "2026-08-13T21:29:00.894687"
+    "closed_at": "2026-08-13T21:29:00.894687",
+    "trade_id": "act-eb0326214725c3c443b8"
   },
   {
     "coin": "TST",
@@ -441,7 +462,8 @@
     "created_at": "2026-08-13T05:50:18.427257",
     "status": "SL_HIT",
     "closed_price": 0.01392,
-    "closed_at": "2026-08-13T23:28:10.863444"
+    "closed_at": "2026-08-13T23:28:10.863444",
+    "trade_id": "tst-cd163ebbbf5d18134607"
   },
   {
     "coin": "RAD",
@@ -461,7 +483,8 @@
     "created_at": "2026-08-11T08:40:49.197877",
     "status": "SL_HIT",
     "closed_price": 0.229,
-    "closed_at": "2026-08-14T05:20:51.386970"
+    "closed_at": "2026-08-14T05:20:51.386970",
+    "trade_id": "rad-7c310e61a09b5090dcb0"
   },
   {
     "coin": "ACE",
@@ -487,7 +510,8 @@
     "last_checked_at": "2026-08-14T10:28:59.999000+00:00",
     "tp2_card": "ACE_TP2_target_card.png",
     "closed_price": 0.2,
-    "closed_at": "2026-08-14T10:28:59.999000+00:00"
+    "closed_at": "2026-08-14T10:28:59.999000+00:00",
+    "trade_id": "ace-f054115caa6bb7be7e60"
   },
   {
     "coin": "ACE",
@@ -513,6 +537,127 @@
     "tp1_card": "ACE_TP1_target_card.png",
     "tp2_card": "ACE_TP2_target_card.png",
     "closed_price": 0.21,
-    "closed_at": "2026-08-14T10:32:59.999000+00:00"
+    "closed_at": "2026-08-14T10:32:59.999000+00:00",
+    "trade_id": "ace-3774cf8b0f0a4e433d1a"
+  },
+  {
+    "coin": "UTK",
+    "trending_bonus": "TUT",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.00795,
+    "tp1": 0.0092,
+    "tp2": 0.0105,
+    "sl": 0.0068,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 16.23% increase in the last 24 hours, UTK is showing strong upward momentum, suggesting a potential long position with a medium risk profile.",
+    "smc_logic_short": "Momentum based long",
+    "change": 16.228,
+    "created_at": "2026-08-08T10:16:29.808462",
+    "status": "SUPERSEDED",
+    "last_checked_at": "2026-08-14T12:01:06.637765+00:00",
+    "trade_id": "utk-f33be11a0544dd7d115e",
+    "superseded_at": "2026-08-14T13:33:04.190752+00:00",
+    "closed_at": "2026-08-14T13:33:04.190752+00:00",
+    "superseded_by_trade_id": "utk-ef750a2c1e548ce3c9af",
+    "superseded_reason": "Newer active setup exists for the same coin; archived to prevent duplicate target posts"
+  },
+  {
+    "coin": "DODO",
+    "trending_bonus": "TUT",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.02376,
+    "tp1": 0.028,
+    "tp2": 0.032,
+    "sl": 0.02,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 24h change of 19.18%, DODO is showing strong upward momentum, suggesting a potential long position with a target profit at 0.028 and 0.032, and a stop loss at 0.02 to limit losses.",
+    "smc_logic_short": "Bullish momentum",
+    "change": 19.177,
+    "created_at": "2026-08-08T14:05:47.381445",
+    "status": "SUPERSEDED",
+    "last_checked_at": "2026-08-14T12:01:07.756943+00:00",
+    "trade_id": "dodo-08d3a823dc79f2c338cf",
+    "superseded_at": "2026-08-14T13:33:04.190752+00:00",
+    "closed_at": "2026-08-14T13:33:04.190752+00:00",
+    "superseded_by_trade_id": "dodo-b8c3ca3d78d58c70a794",
+    "superseded_reason": "Newer active setup exists for the same coin; archived to prevent duplicate target posts"
+  },
+  {
+    "coin": "UTK",
+    "trending_bonus": "TUT",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.00795,
+    "tp1": 0.0092,
+    "tp2": 0.0105,
+    "sl": 0.0068,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 16.23% increase in the last 24 hours, UTK is showing strong upward momentum, suggesting a potential long position with a medium risk profile.",
+    "smc_logic_short": "Momentum based long",
+    "change": 16.228,
+    "created_at": "2026-08-09T16:03:33.979476",
+    "status": "SUPERSEDED",
+    "last_checked_at": "2026-08-14T12:01:12.105936+00:00",
+    "trade_id": "utk-1bce3deaa858afddc483",
+    "superseded_at": "2026-08-14T13:33:04.190752+00:00",
+    "closed_at": "2026-08-14T13:33:04.190752+00:00",
+    "superseded_by_trade_id": "utk-ef750a2c1e548ce3c9af",
+    "superseded_reason": "Newer active setup exists for the same coin; archived to prevent duplicate target posts"
+  },
+  {
+    "coin": "UTK",
+    "trending_bonus": "DODO",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.00795,
+    "tp1": 0.0092,
+    "tp2": 0.0105,
+    "sl": 0.0068,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 16.23% increase in the last 24 hours, UTK is showing strong upward momentum, suggesting a potential long position with a medium risk profile.",
+    "smc_logic_short": "Momentum driven long.",
+    "change": 16.228,
+    "created_at": "2026-08-10T23:06:15.286133",
+    "status": "SUPERSEDED",
+    "last_checked_at": "2026-08-14T12:01:13.185615+00:00",
+    "trade_id": "utk-9011c04328b34454e8ae",
+    "superseded_at": "2026-08-14T13:33:04.190752+00:00",
+    "closed_at": "2026-08-14T13:33:04.190752+00:00",
+    "superseded_by_trade_id": "utk-ef750a2c1e548ce3c9af",
+    "superseded_reason": "Newer active setup exists for the same coin; archived to prevent duplicate target posts"
+  },
+  {
+    "coin": "UTK",
+    "trending_bonus": "HOLO",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.00795,
+    "tp1": 0.0092,
+    "tp2": 0.0105,
+    "sl": 0.0068,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 16.23% increase in the last 24 hours, UTK is showing strong upward momentum. The current price of $0.00795 can be considered a potential entry point for a long position, with take-profit levels at $0.0092 and $0.0105, and a stop-loss at $0.0068 to manage risk.",
+    "smc_logic_short": "Momentum-based long entry",
+    "change": 16.228,
+    "created_at": "2026-08-11T23:22:47.496146",
+    "status": "SUPERSEDED",
+    "last_checked_at": "2026-08-14T12:01:16.448049+00:00",
+    "trade_id": "utk-855d601a0a293ec39e04",
+    "superseded_at": "2026-08-14T13:33:04.190752+00:00",
+    "closed_at": "2026-08-14T13:33:04.190752+00:00",
+    "superseded_by_trade_id": "utk-ef750a2c1e548ce3c9af",
+    "superseded_reason": "Newer active setup exists for the same coin; archived to prevent duplicate target posts"
   }
 ]
