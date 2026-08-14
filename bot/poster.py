@@ -17,6 +17,48 @@ from bot.market_data import get_24h_data
 _RNG = random.SystemRandom()
 ROOT_DIR = Path(__file__).resolve().parents[1]
 TEMPLATE_STATE_FILE = ROOT_DIR / "data" / "post_template_state.json"
+MAX_SQUARE_POST_CHARACTERS = 2100
+
+# These escaped markers identify common UTF-8-as-Windows-1252/Latin-1 damage.
+# The source file deliberately stays ASCII-only; emoji are written as Python
+# Unicode escapes and become real Unicode only when a post is generated.
+_MOJIBAKE_MARKERS = (
+    "\u00f0\u0178",  # Common prefix produced from four-byte emoji.
+    "\u00e2\u0153",  # Common prefix produced from check-mark style symbols.
+    "\u00e2\u0161",  # Common prefix produced from lightning style symbols.
+    "\u00ef\u00b8",  # Corrupted variation selector.
+    "\u00c2",        # Stray UTF-8 lead byte rendered as text.
+    "\ufffd",        # Unicode replacement character.
+)
+
+
+def assert_clean_post_text(text: str) -> str:
+    """Reject empty, oversized, or visibly mojibaked Square post text."""
+
+    value = str(text)
+    if not value.strip():
+        raise ValueError("Binance Square post text cannot be empty")
+
+    for marker in _MOJIBAKE_MARKERS:
+        if marker in value:
+            raise ValueError(
+                "Mojibake detected in Binance Square post text; publication blocked"
+            )
+
+    # A strict round trip catches unpaired surrogates and other invalid text.
+    value.encode("utf-8", errors="strict").decode("utf-8", errors="strict")
+
+    if len(value) > MAX_SQUARE_POST_CHARACTERS:
+        raise ValueError(
+            f"Binance Square post is {len(value)} characters; "
+            f"maximum is {MAX_SQUARE_POST_CHARACTERS}"
+        )
+
+    return value
+
+
+def _finalize_post(text: str) -> str:
+    return assert_clean_post_text(text.strip() + "\n")
 
 
 def _direction(signal: dict[str, Any]) -> str:
@@ -101,7 +143,7 @@ def _target_context(
 
 
 def _template_01(c: dict[str, Any]) -> str:
-    return f"""ðŸŽ¯ ${c['coin']} {c['hit']} HIT - {c['move']:+.2f}%
+    return f"""\U0001F3AF ${c['coin']} {c['hit']} HIT - {c['move']:+.2f}%
 
 Entry: ${c['entry']}
 Target: ${c['target']}
@@ -115,7 +157,7 @@ Comment A or B."""
 
 
 def _template_02(c: dict[str, Any]) -> str:
-    return f"""âœ… TARGET CONFIRMED: ${c['coin']} {c['hit']}
+    return f"""\u2705 TARGET CONFIRMED: ${c['coin']} {c['hit']}
 
 The {c['direction']} setup moved {c['move']:+.2f}% from entry.
 Entry: ${c['entry']}
@@ -128,7 +170,7 @@ YES or NO?"""
 
 
 def _template_03(c: dict[str, Any]) -> str:
-    return f"""ðŸ”¥ ${c['coin']} DELIVERED - {c['hit']} REACHED
+    return f"""\U0001F525 ${c['coin']} DELIVERED - {c['hit']} REACHED
 
 Entry: ${c['entry']}
 Target reached: ${c['target']}
@@ -140,7 +182,7 @@ Rate this setup from 1 to 10 in the comments."""
 
 
 def _template_04(c: dict[str, Any]) -> str:
-    return f"""ðŸ“ˆ ${c['coin']} UPDATE: {c['hit']} IS IN
+    return f"""\U0001F4C8 ${c['coin']} UPDATE: {c['hit']} IS IN
 
 {c['direction']} entry: ${c['entry']}
 Target: ${c['target']}
@@ -154,7 +196,7 @@ Drop A or B below."""
 
 
 def _template_05(c: dict[str, Any]) -> str:
-    return f"""ðŸš€ ${c['coin']} JUST REACHED {c['hit']}
+    return f"""\U0001F680 ${c['coin']} JUST REACHED {c['hit']}
 
 The planned level at ${c['target']} has been touched.
 Entry was ${c['entry']}.
@@ -168,7 +210,7 @@ B) Watched only"""
 
 
 def _template_06(c: dict[str, Any]) -> str:
-    return f"""ðŸ† TARGET UPDATE - ${c['coin']} {c['hit']}
+    return f"""\U0001F3C6 TARGET UPDATE - ${c['coin']} {c['hit']}
 
 Entry to target: ${c['entry']} -> ${c['target']}
 Move captured: {c['move']:+.2f}%
@@ -182,7 +224,7 @@ B) Giving the trade more room"""
 
 
 def _template_07(c: dict[str, Any]) -> str:
-    return f"""âš¡ ${c['coin']} MOMENTUM CHECK
+    return f"""\u26A1 ${c['coin']} MOMENTUM CHECK
 
 {c['hit']} reached at ${c['target']}.
 Entry: ${c['entry']}
@@ -196,7 +238,7 @@ B) Keep full"""
 
 
 def _template_08(c: dict[str, Any]) -> str:
-    return f"""ðŸ’š ${c['coin']} TARGET REACHED
+    return f"""\U0001F49A ${c['coin']} TARGET REACHED
 
 Planned {c['direction']} entry: ${c['entry']}
 {c['hit']} level: ${c['target']}
@@ -210,7 +252,7 @@ What is your choice?"""
 
 
 def _template_09(c: dict[str, Any]) -> str:
-    return f"""ðŸ’¥ ${c['coin']} {c['hit']} COMPLETE
+    return f"""\U0001F4A5 ${c['coin']} {c['hit']} COMPLETE
 
 From ${c['entry']} to ${c['target']}.
 Performance: {c['move']:+.2f}%.
@@ -223,7 +265,7 @@ B) Wait"""
 
 
 def _template_10(c: dict[str, Any]) -> str:
-    return f"""ðŸŸ¢ RESULT ALERT: ${c['coin']} {c['hit']}
+    return f"""\U0001F7E2 RESULT ALERT: ${c['coin']} {c['hit']}
 
 Direction: {c['direction']}
 Entry: ${c['entry']}
@@ -238,7 +280,7 @@ B) More risk-management details"""
 
 
 def _template_11(c: dict[str, Any]) -> str:
-    return f"""ðŸ¥‡ ${c['coin']} REACHED THE PLANNED {c['hit']}
+    return f"""\U0001F947 ${c['coin']} REACHED THE PLANNED {c['hit']}
 
 Entry: ${c['entry']}
 Exit level: ${c['target']}
@@ -252,7 +294,7 @@ B) Multiple targets"""
 
 
 def _template_12(c: dict[str, Any]) -> str:
-    return f"""ðŸ”” ${c['coin']} TRADE UPDATE - {c['hit']} HIT
+    return f"""\U0001F514 ${c['coin']} TRADE UPDATE - {c['hit']} HIT
 
 The market touched ${c['target']} after the ${c['entry']} entry.
 Total move: {c['move']:+.2f}%.
@@ -376,12 +418,12 @@ def format_signal_post(signal: dict[str, Any]) -> str:
     rr = _risk_reward(entry, tp1, stop)
 
     hooks = (
-        f"ðŸ” ${coin} moved {change:+.1f}% in 24H. Momentum or exhaustion?",
-        f"âš¡ ${coin} is active. Breakout continuation or pullback first?",
-        f"ðŸ“Š ${coin} setup watch: the next reaction could define direction.",
-        f"ðŸš€ ${coin} has strong attention today. Is momentum sustainable?",
-        f"ðŸ‘€ ${coin} is approaching a decision zone. Watching the reaction.",
-        f"ðŸ”¥ ${coin} volatility is expanding. Here is the risk-defined plan.",
+        f"\U0001F50D ${coin} moved {change:+.1f}% in 24H. Momentum or exhaustion?",
+        f"\u26A1 ${coin} is active. Breakout continuation or pullback first?",
+        f"\U0001F4CA ${coin} setup watch: the next reaction could define direction.",
+        f"\U0001F680 ${coin} has strong attention today. Is momentum sustainable?",
+        f"\U0001F440 ${coin} is approaching a decision zone. Watching the reaction.",
+        f"\U0001F525 ${coin} volatility is expanding. Here is the risk-defined plan.",
     )
 
     questions = (
@@ -393,7 +435,8 @@ def format_signal_post(signal: dict[str, Any]) -> str:
 
     hashtags = _RNG.choice(HASHTAG_SETS)
 
-    return f"""{_RNG.choice(hooks)}
+    return _finalize_post(
+        f"""{_RNG.choice(hooks)}
 
 {direction} MODEL SETUP
 
@@ -411,6 +454,7 @@ Reply A or B.
 ${coin} {hashtags}
 Educational model setup. Not financial advice. DYOR.
 """
+    )
 
 
 def format_success_post(
@@ -430,12 +474,14 @@ def format_success_post(
 
     print(f"[Poster] Selected target template {template_index + 1}/{len(TARGET_TEMPLATES)}")
 
-    return f"""{body}
+    return _finalize_post(
+        f"""{body}
 
 Model position: {notional} USDT notional at {leverage}x, before fees and funding.
 ${context['coin']} {hashtags}
 Educational model result. Not financial advice. DYOR.
 """
+    )
 
 
 def get_current_price(coin: str) -> float:
