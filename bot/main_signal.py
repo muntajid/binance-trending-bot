@@ -85,10 +85,17 @@ def save_active(signal):
         except (json.JSONDecodeError, OSError):
             trades = []
 
+    created_at = datetime.datetime.now(
+        datetime.timezone.utc
+    ).isoformat()
+
     trades.append(
         {
             **signal,
-            "created_at": datetime.datetime.now().isoformat(),
+            "created_at": created_at,
+            # Historical monitor scans begin at signal creation. This ensures
+            # a TP/SL touch is not lost if price retraces before the next run.
+            "last_checked_at": created_at,
             "status": "ACTIVE",
         }
     )
