@@ -15,7 +15,12 @@
     "smc_logic_short": "Momentum based long.",
     "change": 87.009,
     "created_at": "2026-08-07T08:57:49.499128",
-    "status": "ACTIVE"
+    "status": "ACTIVE",
+    "tp1_hit": true,
+    "tp1_hit_price": 0.165,
+    "tp1_hit_at": "2026-08-14T09:28:38.318504+00:00",
+    "tp1_card": "ACE_TP1_target_card.png",
+    "last_checked_at": "2026-08-14T09:28:38.318504+00:00"
   },
   {
     "coin": "SYN",
@@ -33,7 +38,8 @@
     "smc_logic_short": "Momentum based long.",
     "change": 17.774,
     "created_at": "2026-08-08T08:06:46.578412",
-    "status": "ACTIVE"
+    "status": "ACTIVE",
+    "last_checked_at": "2026-08-14T09:28:44.531485+00:00"
   },
   {
     "coin": "UTK",
@@ -51,7 +57,8 @@
     "smc_logic_short": "Momentum based long",
     "change": 16.228,
     "created_at": "2026-08-08T10:16:29.808462",
-    "status": "ACTIVE"
+    "status": "ACTIVE",
+    "last_checked_at": "2026-08-14T09:28:45.202700+00:00"
   },
   {
     "coin": "DODO",
@@ -69,7 +76,8 @@
     "smc_logic_short": "Bullish momentum",
     "change": 19.177,
     "created_at": "2026-08-08T14:05:47.381445",
-    "status": "ACTIVE"
+    "status": "ACTIVE",
+    "last_checked_at": "2026-08-14T09:28:46.064529+00:00"
   },
   {
     "coin": "COOKIE",
@@ -88,7 +96,8 @@
     "change": 35.106,
     "created_at": "2026-08-09T10:18:41.432894",
     "status": "ACTIVE",
-    "tp1_hit": true
+    "tp1_hit": true,
+    "last_checked_at": "2026-08-14T09:28:46.810848+00:00"
   },
   {
     "coin": "MUBARAK",
@@ -107,7 +116,8 @@
     "change": 35.504,
     "created_at": "2026-08-09T13:53:49.243606",
     "status": "ACTIVE",
-    "tp1_hit": true
+    "tp1_hit": true,
+    "last_checked_at": "2026-08-14T09:28:47.438685+00:00"
   },
   {
     "coin": "BROCCOLI714",
@@ -125,7 +135,8 @@
     "smc_logic_short": "Long with 25% and 50% TP.",
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
-    "status": "ACTIVE"
+    "status": "ACTIVE",
+    "last_checked_at": "2026-08-14T09:28:48.074847+00:00"
   },
   {
     "coin": "UTK",
@@ -143,7 +154,8 @@
     "smc_logic_short": "Momentum based long",
     "change": 16.228,
     "created_at": "2026-08-09T16:03:33.979476",
-    "status": "ACTIVE"
+    "status": "ACTIVE",
+    "last_checked_at": "2026-08-14T09:28:48.762284+00:00"
   },
   {
     "coin": "UTK",
@@ -161,7 +173,8 @@
     "smc_logic_short": "Momentum driven long.",
     "change": 16.228,
     "created_at": "2026-08-10T23:06:15.286133",
-    "status": "ACTIVE"
+    "status": "ACTIVE",
+    "last_checked_at": "2026-08-14T09:28:49.392782+00:00"
   },
   {
     "coin": "LUNA",
@@ -179,7 +192,8 @@
     "smc_logic_short": "Momentum based long.",
     "change": 16.429,
     "created_at": "2026-08-11T15:30:36.044910",
-    "status": "ACTIVE"
+    "status": "ACTIVE",
+    "last_checked_at": "2026-08-14T09:28:50.028702+00:00"
   },
   {
     "coin": "HOLO",
@@ -197,7 +211,8 @@
     "smc_logic_short": "Bullish momentum.",
     "change": 17.496,
     "created_at": "2026-08-11T20:11:43.442150",
-    "status": "ACTIVE"
+    "status": "ACTIVE",
+    "last_checked_at": "2026-08-14T09:28:50.719256+00:00"
   },
   {
     "coin": "UTK",
@@ -215,7 +230,8 @@
     "smc_logic_short": "Momentum-based long entry",
     "change": 16.228,
     "created_at": "2026-08-11T23:22:47.496146",
-    "status": "ACTIVE"
+    "status": "ACTIVE",
+    "last_checked_at": "2026-08-14T09:28:51.337391+00:00"
   },
   {
     "coin": "PROM",
@@ -234,7 +250,8 @@
     "change": 28.363,
     "created_at": "2026-08-12T05:20:29.966110",
     "status": "ACTIVE",
-    "tp1_hit": true
+    "tp1_hit": true,
+    "last_checked_at": "2026-08-14T09:28:51.954797+00:00"
   },
   {
     "coin": "KORUB",
@@ -253,7 +270,8 @@
     "change": 13.239,
     "created_at": "2026-08-12T09:47:14.857011",
     "status": "ACTIVE",
-    "tp1_hit": true
+    "tp1_hit": true,
+    "last_checked_at": "2026-08-14T09:28:52.598175+00:00"
   },
   {
     "coin": "DODO",
@@ -271,7 +289,8 @@
     "smc_logic_short": "Momentum based long.",
     "change": 16.228,
     "created_at": "2026-08-12T15:30:32.009083",
-    "status": "ACTIVE"
+    "status": "ACTIVE",
+    "last_checked_at": "2026-08-14T09:28:53.221562+00:00"
   },
   {
     "coin": "NBISB",
@@ -289,7 +308,8 @@
     "smc_logic_short": "Bullish trend with high momentum.",
     "change": 35.392,
     "created_at": "2026-08-12T20:10:50.603736",
-    "status": "ACTIVE"
+    "status": "ACTIVE",
+    "last_checked_at": "2026-08-14T09:28:53.852611+00:00"
   },
   {
     "coin": "COTI",
@@ -307,7 +327,8 @@
     "smc_logic_short": "Momentum based long",
     "change": 25.275,
     "created_at": "2026-08-12T23:21:49.369906",
-    "status": "ACTIVE"
+    "status": "ACTIVE",
+    "last_checked_at": "2026-08-14T09:28:54.521932+00:00"
   },
   {
     "coin": "UTK",
@@ -325,7 +346,8 @@
     "smc_logic_short": "Momentum based long",
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
-    "status": "ACTIVE"
+    "status": "ACTIVE",
+    "last_checked_at": "2026-08-14T09:28:55.171368+00:00"
   },
   {
     "coin": "AVNT",
@@ -343,7 +365,8 @@
     "smc_logic_short": "Bullish trend continuation.",
     "change": 25.641,
     "created_at": "2026-08-13T15:32:19.669893",
-    "status": "ACTIVE"
+    "status": "ACTIVE",
+    "last_checked_at": "2026-08-14T09:28:55.804968+00:00"
   },
   {
     "coin": "EDEN",
@@ -362,7 +385,8 @@
     "change": 37.453,
     "created_at": "2026-08-13T20:03:13.831978",
     "status": "ACTIVE",
-    "tp1_hit": true
+    "tp1_hit": true,
+    "last_checked_at": "2026-08-14T09:28:56.441413+00:00"
   },
   {
     "coin": "SNXXB",
@@ -380,7 +404,8 @@
     "smc_logic_short": "Bullish trend continuation.",
     "change": 30.247,
     "created_at": "2026-08-13T23:23:28.099742",
-    "status": "ACTIVE"
+    "status": "ACTIVE",
+    "last_checked_at": "2026-08-14T09:28:57.063296+00:00"
   },
   {
     "coin": "ACE",
@@ -398,6 +423,7 @@
     "smc_logic_short": "Bullish trend, long position.",
     "change": 33.082,
     "created_at": "2026-08-14T05:45:24.303900",
-    "status": "ACTIVE"
+    "status": "ACTIVE",
+    "last_checked_at": "2026-08-14T09:28:57.685910+00:00"
   }
 ]
