@@ -1,16 +1,16 @@
 {
-  "coin": "NIL",
+  "coin": "ENSO",
   "trending_bonus": "HEMI",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 0.05146,
-  "tp1": 0.0631,
-  "tp2": 0.0749,
-  "sl": 0.0389,
+  "entry_price": 0.856,
+  "tp1": 1.02,
+  "tp2": 1.2,
+  "sl": 0.75,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "Given the 24h change of 23.45%, a long position is considered with a take profit at 23% and 46% above the entry price, and a stop loss at 24% below the entry price.",
-  "smc_logic_short": "Long with 23% and 46% TP",
-  "change": 23.449
+  "smc_logic": "Given the 17.58% increase in the last 24 hours, ENSO is showing strong upward momentum, suggesting a long position could be favorable. The take-profit levels are set based on potential resistance points, and the stop-loss is placed below the current price to limit potential losses.",
+  "smc_logic_short": "Momentum-based long entry",
+  "change": 17.582
 }
