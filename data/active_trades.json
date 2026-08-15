@@ -391,5 +391,25 @@
     "created_at": "2026-08-15T03:03:03.094669+00:00",
     "last_checked_at": "2026-08-15T05:56:54.771992+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "ACE",
+    "trending_bonus": "NIL",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.2863,
+    "tp1": 0.35,
+    "tp2": 0.45,
+    "sl": 0.2,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the significant 24-hour price increase of 96.29%, ACE is demonstrating strong upward momentum, suggesting a potential long position with a target to take profit at levels that represent reasonable extensions of this trend, while also considering a stop loss to mitigate potential downside risk.",
+    "smc_logic_short": "Momentum-based long entry.",
+    "change": 96.289,
+    "trade_id": "dc6e01694e1945689e78d04774330480",
+    "created_at": "2026-08-15T07:19:04.465141+00:00",
+    "last_checked_at": "2026-08-15T07:19:04.465141+00:00",
+    "status": "ACTIVE"
   }
 ]
