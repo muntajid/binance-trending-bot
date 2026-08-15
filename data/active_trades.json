@@ -349,5 +349,25 @@
     "created_at": "2026-08-15T07:19:04.465141+00:00",
     "last_checked_at": "2026-08-15T09:03:37.314188+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "COW",
+    "trending_bonus": "BMT",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.1599,
+    "tp1": 0.25,
+    "tp2": 0.35,
+    "sl": 0.1,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the significant 24-hour price increase of 60.34%, COW is demonstrating strong upward momentum, suggesting a potential long position with a target profit at 0.25 and 0.35, and a stop-loss at 0.10 to mitigate potential losses.",
+    "smc_logic_short": "Momentum-based long entry.",
+    "change": 60.341,
+    "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
+    "created_at": "2026-08-15T09:51:30.238894+00:00",
+    "last_checked_at": "2026-08-15T09:51:30.238894+00:00",
+    "status": "ACTIVE"
   }
 ]
