@@ -793,5 +793,27 @@
     "trade_id": "dodo-b8c3ca3d78d58c70a794",
     "closed_price": 0.021,
     "closed_at": "2026-08-15T10:27:59.999000+00:00"
+  },
+  {
+    "coin": "ROBO",
+    "trending_bonus": "ACE",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.01814,
+    "tp1": 0.022,
+    "tp2": 0.026,
+    "sl": 0.014,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 24h change of 29.29%, ROBO is showing strong upward momentum, suggesting a potential long position with a target profit at 21.5% and 43.5% above the current price, and a stop-loss at 22.7% below the current price.",
+    "smc_logic_short": "Momentum based long.",
+    "change": 29.294,
+    "trade_id": "6aa236d285a34e2b8b6469a25ca76dcd",
+    "created_at": "2026-08-15T03:03:03.094669+00:00",
+    "last_checked_at": "2026-08-15T13:05:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.014,
+    "closed_at": "2026-08-15T13:05:59.999000+00:00"
   }
 ]
