@@ -726,5 +726,28 @@
     "status": "SL_HIT",
     "closed_price": 0.022,
     "closed_at": "2026-08-15T07:27:59.999000+00:00"
+  },
+  {
+    "coin": "EDEN",
+    "trending_bonus": "SNXXB",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.06183,
+    "tp1": 0.075,
+    "tp2": 0.09,
+    "sl": 0.05,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 24h change of 37.45%, EDEN is showing strong upward momentum, suggesting a potential long position with a target profit at 21.7% and 45.7% above the current price, and a stop loss at 19.1% below the current price.",
+    "smc_logic_short": "Bullish momentum",
+    "change": 37.453,
+    "created_at": "2026-08-13T20:03:13.831978",
+    "status": "SL_HIT",
+    "tp1_hit": true,
+    "last_checked_at": "2026-08-15T08:58:59.999000+00:00",
+    "trade_id": "eden-45922a8dbf1efe6a6293",
+    "closed_price": 0.05,
+    "closed_at": "2026-08-15T08:58:59.999000+00:00"
   }
 ]
