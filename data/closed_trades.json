@@ -681,5 +681,28 @@
     "trade_id": "holo-3254f833d35cdba3c8c5",
     "closed_price": 0.0657,
     "closed_at": "2026-08-14T18:46:59.999000+00:00"
+  },
+  {
+    "coin": "PROM",
+    "trending_bonus": "HOLO",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 2.729,
+    "tp1": 3.2,
+    "tp2": 3.8,
+    "sl": 2.3,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 24h change of 28.36%, PROM is showing strong upward momentum, suggesting a potential long position with a take profit at 3.2 and 3.8, and a stop loss at 2.3 to limit losses.",
+    "smc_logic_short": "Bullish momentum",
+    "change": 28.363,
+    "created_at": "2026-08-12T05:20:29.966110",
+    "status": "SL_HIT",
+    "tp1_hit": true,
+    "last_checked_at": "2026-08-15T06:11:59.999000+00:00",
+    "trade_id": "prom-4d32fc2fe8fdb81a9b80",
+    "closed_price": 2.3,
+    "closed_at": "2026-08-15T06:11:59.999000+00:00"
   }
 ]
