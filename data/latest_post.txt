@@ -1,12 +1,12 @@
-🚀 $ALICE has strong attention today. Is momentum sustainable?
+🔍 $ROBO moved +29.3% in 24H. Momentum or exhaustion?
 
 LONG MODEL SETUP
 
-Entry: $0.1439
-TP1: $0.1799 (+25.0%)
-TP2: $0.2159 (+50.0%)
-SL: $0.1089 (-24.3%)
-Risk/Reward to TP1: 1.03R
+Entry: $0.01814
+TP1: $0.022 (+21.3%)
+TP2: $0.026 (+43.3%)
+SL: $0.014 (-22.8%)
+Risk/Reward to TP1: 0.93R
 
 What would you do?
 A) Focus on TP1
@@ -14,5 +14,5 @@ B) Hold for TP2
 
 Reply A or B.
 
-$ALICE #Altcoins #CryptoTrading
+$ROBO #Altcoins #CryptoTrading
 Educational model setup. Not financial advice. DYOR.
