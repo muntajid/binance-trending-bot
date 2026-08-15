@@ -349,5 +349,25 @@
     "created_at": "2026-08-15T15:41:20.127963+00:00",
     "last_checked_at": "2026-08-15T18:01:37.347418+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "NIL",
+    "trending_bonus": "HEMI",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.05146,
+    "tp1": 0.0631,
+    "tp2": 0.0749,
+    "sl": 0.0389,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 24h change of 23.45%, a long position is considered with a take profit at 23% and 46% above the entry price, and a stop loss at 24% below the entry price.",
+    "smc_logic_short": "Long with 23% and 46% TP",
+    "change": 23.449,
+    "trade_id": "949f531c14c04355a82618720cf1c389",
+    "created_at": "2026-08-15T19:01:01.049101+00:00",
+    "last_checked_at": "2026-08-15T19:01:01.049101+00:00",
+    "status": "ACTIVE"
   }
 ]

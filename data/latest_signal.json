@@ -1,16 +1,16 @@
 {
-  "coin": "HEMI",
-  "trending_bonus": "COW",
+  "coin": "NIL",
+  "trending_bonus": "HEMI",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 0.00653,
-  "tp1": 0.009,
-  "tp2": 0.012,
-  "sl": 0.005,
+  "entry_price": 0.05146,
+  "tp1": 0.0631,
+  "tp2": 0.0749,
+  "sl": 0.0389,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "Given the 24h change of 38.64%, HEMI is showing strong upward momentum, suggesting a potential long position with a take profit at 0.009 and 0.012, and a stop loss at 0.005 to limit losses.",
-  "smc_logic_short": "Momentum driven long.",
-  "change": 38.641
+  "smc_logic": "Given the 24h change of 23.45%, a long position is considered with a take profit at 23% and 46% above the entry price, and a stop loss at 24% below the entry price.",
+  "smc_logic_short": "Long with 23% and 46% TP",
+  "change": 23.449
 }
