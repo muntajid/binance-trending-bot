@@ -329,5 +329,25 @@
     "created_at": "2026-08-15T13:20:47.254307+00:00",
     "last_checked_at": "2026-08-15T14:55:05.116671+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "HEMI",
+    "trending_bonus": "COW",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.00653,
+    "tp1": 0.009,
+    "tp2": 0.012,
+    "sl": 0.005,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 24h change of 38.64%, HEMI is showing strong upward momentum, suggesting a potential long position with a take profit at 0.009 and 0.012, and a stop loss at 0.005 to limit losses.",
+    "smc_logic_short": "Momentum driven long.",
+    "change": 38.641,
+    "trade_id": "e2bc7eb8b63447ccbe8fdc9ededd1503",
+    "created_at": "2026-08-15T15:41:20.127963+00:00",
+    "last_checked_at": "2026-08-15T15:41:20.127963+00:00",
+    "status": "ACTIVE"
   }
 ]
