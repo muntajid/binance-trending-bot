@@ -1,16 +1,16 @@
 {
-  "coin": "BICO",
-  "trending_bonus": "DOLO",
+  "coin": "ONG",
+  "trending_bonus": "PORTAL",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 0.02499,
-  "tp1": 0.02899,
-  "tp2": 0.03299,
-  "sl": 0.02199,
+  "entry_price": 0.05261,
+  "tp1": 0.0575,
+  "tp2": 0.065,
+  "sl": 0.048,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "Given the 15.59% increase in the last 24 hours, BICO is showing strong upward momentum, suggesting a potential long position with a medium risk profile.",
-  "smc_logic_short": "Momentum driven long.",
-  "change": 15.587
+  "smc_logic": "The current price of ONG is $0.05261 with a 24-hour change of 9.56%, indicating a bullish trend. Based on this momentum, a long position can be considered with a take-profit target at 9% and 23% above the entry price, and a stop-loss at 9% below the entry price.",
+  "smc_logic_short": "Bullish momentum, long position.",
+  "change": 9.559
 }
