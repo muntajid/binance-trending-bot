@@ -1,11 +1,11 @@
-📊 $BOME setup watch: the next reaction could define direction.
+⚡ $DOLO is active. Breakout continuation or pullback first?
 
 LONG MODEL SETUP
 
-Entry: $0.0008655
-TP1: $0.0009355 (+8.1%)
-TP2: $0.0010055 (+16.2%)
-SL: $0.0007955 (-8.1%)
+Entry: $0.02501
+TP1: $0.0295 (+18.0%)
+TP2: $0.0349 (+39.5%)
+SL: $0.0205 (-18.0%)
 Risk/Reward to TP1: 1.00R
 
 What would you do?
@@ -14,5 +14,5 @@ B) Short-term retrace
 
 Reply A or B.
 
-$BOME #TargetHit #AltcoinTrading
+$DOLO #PriceAction #CryptoMarket
 Educational model setup. Not financial advice. DYOR.
