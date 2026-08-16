@@ -1,16 +1,16 @@
 {
-  "coin": "CHIP",
+  "coin": "BOME",
   "trending_bonus": "HEMI",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 0.02703,
-  "tp1": 0.031,
-  "tp2": 0.035,
-  "sl": 0.023,
+  "entry_price": 0.0008655,
+  "tp1": 0.0009355,
+  "tp2": 0.0010055,
+  "sl": 0.0007955,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "Given the 15.12% increase in the last 24 hours, CHIP is showing strong upward momentum, suggesting a potential long position with a target profit at 0.031 and 0.035, and a stop loss at 0.023 to limit potential losses.",
-  "smc_logic_short": "Bullish momentum",
-  "change": 15.119
+  "smc_logic": "Given the 8.92% increase in the last 24 hours, BOME is showing a bullish trend. The entry price is set at the current market price of $0.0008655. The first take-profit level is set at a 8% increase from the entry price, and the second take-profit level is set at a 16% increase. The stop-loss is set at a 8% decrease from the entry price to limit potential losses.",
+  "smc_logic_short": "Bullish trend, 8% and 16% TP, 8% SL.",
+  "change": 8.923
 }
