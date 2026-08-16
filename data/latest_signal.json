@@ -1,16 +1,16 @@
 {
-  "coin": "ENSO",
+  "coin": "CHIP",
   "trending_bonus": "HEMI",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 0.856,
-  "tp1": 1.02,
-  "tp2": 1.2,
-  "sl": 0.75,
+  "entry_price": 0.02703,
+  "tp1": 0.031,
+  "tp2": 0.035,
+  "sl": 0.023,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "Given the 17.58% increase in the last 24 hours, ENSO is showing strong upward momentum, suggesting a long position could be favorable. The take-profit levels are set based on potential resistance points, and the stop-loss is placed below the current price to limit potential losses.",
-  "smc_logic_short": "Momentum-based long entry",
-  "change": 17.582
+  "smc_logic": "Given the 15.12% increase in the last 24 hours, CHIP is showing strong upward momentum, suggesting a potential long position with a target profit at 0.031 and 0.035, and a stop loss at 0.023 to limit potential losses.",
+  "smc_logic_short": "Bullish momentum",
+  "change": 15.119
 }
