@@ -1,16 +1,16 @@
 {
-  "coin": "PORTAL",
+  "coin": "BICO",
   "trending_bonus": "DOLO",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 0.01529,
-  "tp1": 0.02,
-  "tp2": 0.025,
-  "sl": 0.01,
+  "entry_price": 0.02499,
+  "tp1": 0.02899,
+  "tp2": 0.03299,
+  "sl": 0.02199,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "Given the 24h change of 37.13%, a long position is suggested with a take profit at 30% and 60% above the current price, and a stop loss at 35% below the current price.",
-  "smc_logic_short": "Bullish trend",
-  "change": 37.13
+  "smc_logic": "Given the 15.59% increase in the last 24 hours, BICO is showing strong upward momentum, suggesting a potential long position with a medium risk profile.",
+  "smc_logic_short": "Momentum driven long.",
+  "change": 15.587
 }

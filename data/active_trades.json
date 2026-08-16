@@ -433,5 +433,25 @@
     "created_at": "2026-08-16T13:42:36.805965+00:00",
     "last_checked_at": "2026-08-16T14:57:13.474764+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "BICO",
+    "trending_bonus": "DOLO",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.02499,
+    "tp1": 0.02899,
+    "tp2": 0.03299,
+    "sl": 0.02199,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 15.59% increase in the last 24 hours, BICO is showing strong upward momentum, suggesting a potential long position with a medium risk profile.",
+    "smc_logic_short": "Momentum driven long.",
+    "change": 15.587,
+    "trade_id": "eb37b5a16afd449393018e22837ca546",
+    "created_at": "2026-08-16T15:45:07.827220+00:00",
+    "last_checked_at": "2026-08-16T15:45:07.827220+00:00",
+    "status": "ACTIVE"
   }
 ]
