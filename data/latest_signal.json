@@ -1,16 +1,16 @@
 {
-  "coin": "ONG",
+  "coin": "GPS",
   "trending_bonus": "PORTAL",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 0.05261,
-  "tp1": 0.0575,
-  "tp2": 0.065,
-  "sl": 0.048,
+  "entry_price": 0.01509,
+  "tp1": 0.0205,
+  "tp2": 0.025,
+  "sl": 0.01,
   "leverage": "3x-5x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "The current price of ONG is $0.05261 with a 24-hour change of 9.56%, indicating a bullish trend. Based on this momentum, a long position can be considered with a take-profit target at 9% and 23% above the entry price, and a stop-loss at 9% below the entry price.",
-  "smc_logic_short": "Bullish momentum, long position.",
-  "change": 9.559
+  "smc_logic": "Given the 24h change of 35.22%, a long position is considered with a take profit at 35% and 65% above the current price, and a stop loss at 33% below the current price.",
+  "smc_logic_short": "Bullish momentum",
+  "change": 35.215
 }
