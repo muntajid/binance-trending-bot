@@ -863,5 +863,27 @@
     "trade_id": "coti-38dc17dc4dbedc53fb24",
     "closed_price": 0.01,
     "closed_at": "2026-08-16T06:08:59.999000+00:00"
+  },
+  {
+    "coin": "BOME",
+    "trending_bonus": "HEMI",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.0008655,
+    "tp1": 0.0009355,
+    "tp2": 0.0010055,
+    "sl": 0.0007955,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 8.92% increase in the last 24 hours, BOME is showing a bullish trend. The entry price is set at the current market price of $0.0008655. The first take-profit level is set at a 8% increase from the entry price, and the second take-profit level is set at a 16% increase. The stop-loss is set at a 8% decrease from the entry price to limit potential losses.",
+    "smc_logic_short": "Bullish trend, 8% and 16% TP, 8% SL.",
+    "change": 8.923,
+    "trade_id": "8f1cff1eeaab4c2499b9c607fdc51d3c",
+    "created_at": "2026-08-16T07:21:32.115314+00:00",
+    "last_checked_at": "2026-08-17T08:45:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.0007955,
+    "closed_at": "2026-08-17T08:45:59.999000+00:00"
   }
 ]
