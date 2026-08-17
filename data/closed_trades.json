@@ -929,5 +929,29 @@
     "status": "SL_HIT",
     "closed_price": 0.02199,
     "closed_at": "2026-08-17T13:01:59.999000+00:00"
+  },
+  {
+    "coin": "KORUB",
+    "trending_bonus": "PROM",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 19.15,
+    "tp1": 21.75,
+    "tp2": 24.35,
+    "sl": 17.55,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 24h change of 13.24%, a long position is suggested with a take profit at 21.75 and 24.35, considering the current momentum. The stop loss is set at 17.55 to limit potential losses.",
+    "smc_logic_short": "Long KORUB with caution.",
+    "change": 13.239,
+    "created_at": "2026-08-12T09:47:14.857011",
+    "status": "TP2_HIT",
+    "tp1_hit": true,
+    "last_checked_at": "2026-08-17T14:32:59.999000+00:00",
+    "trade_id": "korub-ce19e4a4f974f5f80423",
+    "tp2_card": "KORUB_TP2_target_card.png",
+    "closed_price": 24.35,
+    "closed_at": "2026-08-17T14:32:59.999000+00:00"
   }
 ]

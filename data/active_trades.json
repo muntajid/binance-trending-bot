@@ -16,7 +16,7 @@
     "change": 17.774,
     "created_at": "2026-08-08T08:06:46.578412",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-17T13:57:30.713392+00:00",
+    "last_checked_at": "2026-08-17T14:58:27.358904+00:00",
     "trade_id": "syn-28ff2f8768aec3c67c0c"
   },
   {
@@ -37,7 +37,7 @@
     "created_at": "2026-08-09T10:18:41.432894",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-08-17T13:57:32.031983+00:00",
+    "last_checked_at": "2026-08-17T14:58:28.914310+00:00",
     "trade_id": "cookie-803c273ce218397f3d39"
   },
   {
@@ -58,7 +58,7 @@
     "created_at": "2026-08-09T13:53:49.243606",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-08-17T13:57:33.456580+00:00",
+    "last_checked_at": "2026-08-17T14:58:30.282744+00:00",
     "trade_id": "mubarak-f94fa4a0d02ca4f64507"
   },
   {
@@ -78,7 +78,7 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-17T13:57:34.767873+00:00",
+    "last_checked_at": "2026-08-17T14:58:31.596966+00:00",
     "trade_id": "broccoli714-4afb4206a90a75f8adef"
   },
   {
@@ -98,29 +98,8 @@
     "change": 16.429,
     "created_at": "2026-08-11T15:30:36.044910",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-17T13:57:36.083748+00:00",
+    "last_checked_at": "2026-08-17T14:58:33.125111+00:00",
     "trade_id": "luna-c2dd588ea6c1ea1f0180"
-  },
-  {
-    "coin": "KORUB",
-    "trending_bonus": "PROM",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 19.15,
-    "tp1": 21.75,
-    "tp2": 24.35,
-    "sl": 17.55,
-    "leverage": "3x-5x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "Given the 24h change of 13.24%, a long position is suggested with a take profit at 21.75 and 24.35, considering the current momentum. The stop loss is set at 17.55 to limit potential losses.",
-    "smc_logic_short": "Long KORUB with caution.",
-    "change": 13.239,
-    "created_at": "2026-08-12T09:47:14.857011",
-    "status": "ACTIVE",
-    "tp1_hit": true,
-    "last_checked_at": "2026-08-17T13:57:37.372116+00:00",
-    "trade_id": "korub-ce19e4a4f974f5f80423"
   },
   {
     "coin": "NBISB",
@@ -139,7 +118,7 @@
     "change": 35.392,
     "created_at": "2026-08-12T20:10:50.603736",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-17T13:57:38.717845+00:00",
+    "last_checked_at": "2026-08-17T14:58:41.290876+00:00",
     "trade_id": "nbisb-f30fb9d6815f1512e45b"
   },
   {
@@ -159,7 +138,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-17T13:57:40.028721+00:00",
+    "last_checked_at": "2026-08-17T14:58:42.802852+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -179,7 +158,7 @@
     "change": 25.641,
     "created_at": "2026-08-13T15:32:19.669893",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-17T13:57:41.292244+00:00",
+    "last_checked_at": "2026-08-17T14:58:44.117981+00:00",
     "trade_id": "avnt-29cd7ad343876c15ce06"
   },
   {
@@ -199,7 +178,7 @@
     "change": 30.247,
     "created_at": "2026-08-13T23:23:28.099742",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-17T13:57:42.604565+00:00",
+    "last_checked_at": "2026-08-17T14:58:45.420096+00:00",
     "trade_id": "snxxb-3b63701cf6e9a413aebc",
     "tp1_hit": true,
     "tp1_hit_price": 17.25,
@@ -222,9 +201,13 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-08-17T13:57:43.958407+00:00",
+    "last_checked_at": "2026-08-17T14:58:46.741345+00:00",
     "status": "ACTIVE",
-    "trade_id": "sndkb-a74b608a6f50eb4d1b65"
+    "trade_id": "sndkb-a74b608a6f50eb4d1b65",
+    "tp1_hit": true,
+    "tp1_hit_price": 1800.0,
+    "tp1_hit_at": "2026-08-17T14:47:59.999000+00:00",
+    "tp1_card": "SNDKB_TP1_target_card.png"
   },
   {
     "coin": "ALICE",
@@ -243,7 +226,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-08-17T13:57:45.247108+00:00",
+    "last_checked_at": "2026-08-17T14:58:53.226424+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -267,7 +250,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-08-17T13:57:46.615711+00:00",
+    "last_checked_at": "2026-08-17T14:58:54.552427+00:00",
     "status": "ACTIVE"
   },
   {
@@ -287,7 +270,7 @@
     "change": 38.641,
     "trade_id": "e2bc7eb8b63447ccbe8fdc9ededd1503",
     "created_at": "2026-08-15T15:41:20.127963+00:00",
-    "last_checked_at": "2026-08-17T13:57:47.937096+00:00",
+    "last_checked_at": "2026-08-17T14:58:55.919388+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.009,
@@ -311,7 +294,7 @@
     "change": 23.449,
     "trade_id": "949f531c14c04355a82618720cf1c389",
     "created_at": "2026-08-15T19:01:01.049101+00:00",
-    "last_checked_at": "2026-08-17T13:57:49.269597+00:00",
+    "last_checked_at": "2026-08-17T14:58:57.218682+00:00",
     "status": "ACTIVE"
   },
   {
@@ -331,7 +314,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-08-17T13:57:50.556286+00:00",
+    "last_checked_at": "2026-08-17T14:58:58.526478+00:00",
     "status": "ACTIVE"
   },
   {
@@ -351,7 +334,7 @@
     "change": 15.119,
     "trade_id": "4167f226aabd4642978f81e2decbe3f0",
     "created_at": "2026-08-16T03:16:45.492613+00:00",
-    "last_checked_at": "2026-08-17T13:57:51.849517+00:00",
+    "last_checked_at": "2026-08-17T14:58:59.820462+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.031,
@@ -375,7 +358,7 @@
     "change": 17.694,
     "trade_id": "faa3d8bd10a24294802c33a276a73d92",
     "created_at": "2026-08-16T09:54:32.439560+00:00",
-    "last_checked_at": "2026-08-17T13:57:53.179586+00:00",
+    "last_checked_at": "2026-08-17T14:59:01.107692+00:00",
     "status": "ACTIVE"
   },
   {
@@ -395,7 +378,7 @@
     "change": 37.13,
     "trade_id": "863a83a463714550824573b917fa8bb3",
     "created_at": "2026-08-16T13:42:36.805965+00:00",
-    "last_checked_at": "2026-08-17T13:57:54.464921+00:00",
+    "last_checked_at": "2026-08-17T14:59:02.399741+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.02,
@@ -419,7 +402,7 @@
     "change": 9.559,
     "trade_id": "48f12ca897124edc9b2fa430c6e17936",
     "created_at": "2026-08-16T19:00:25.941115+00:00",
-    "last_checked_at": "2026-08-17T13:57:57.082406+00:00",
+    "last_checked_at": "2026-08-17T14:59:03.698649+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.0575,
@@ -443,7 +426,7 @@
     "change": 35.215,
     "trade_id": "8dbeaad16dbe4b5d95ba89a9e79f3a2d",
     "created_at": "2026-08-17T08:07:36.583957+00:00",
-    "last_checked_at": "2026-08-17T13:57:58.476316+00:00",
+    "last_checked_at": "2026-08-17T14:59:04.999985+00:00",
     "status": "ACTIVE"
   }
 ]
