@@ -438,7 +438,7 @@ def format_signal_post(signal: dict[str, Any]) -> str:
     return _finalize_post(
         f"""{_RNG.choice(hooks)}
 
-{direction} MODEL SETUP
+{direction} SETUP
 
 Entry: ${_format_price(entry)}
 TP1: ${_format_price(tp1)} (+{tp1_pct:.1f}%)
@@ -449,10 +449,10 @@ Risk/Reward to TP1: {rr:.2f}R
 What would you do?
 {_RNG.choice(questions)}
 
-Reply A or B.
+Reply A or B. Follow for TP updates.
 
 ${coin} {hashtags}
-Educational model setup. Not financial advice. DYOR.
+Simulated setup. Trade responsibly.
 """
     )
 
@@ -477,9 +477,9 @@ def format_success_post(
     return _finalize_post(
         f"""{body}
 
-Model position: {notional} USDT notional at {leverage}x, before fees and funding.
+Follow for the next setup.
 ${context['coin']} {hashtags}
-Educational model result. Not financial advice. DYOR.
+Simulated result: {notional} USDT example at {leverage}x; fees/funding excluded.
 """
     )
 
