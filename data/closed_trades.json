@@ -1070,5 +1070,33 @@
     "tp1_card": "HEI_TP1_target_card.png",
     "closed_price": 0.1382,
     "closed_at": "2026-08-19T13:50:59.999000+00:00"
+  },
+  {
+    "coin": "RE",
+    "trending_bonus": "HEMI",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.43,
+    "tp1": 0.4512,
+    "tp2": 0.4737,
+    "sl": 0.4168,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Price is breaking above recent resistance with a strong 10% 24h gain, suggesting bullish momentum. Target the next resistance levels while protecting downside with a tight stop.",
+    "smc_logic_short": "Bullish breakout, aim higher, protect below entry.",
+    "change": 10.231,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "33623e29b0be49b7aac7e14300312128",
+    "created_at": "2026-08-19T14:06:06.268612+00:00",
+    "last_checked_at": "2026-08-19T16:13:59.999000+00:00",
+    "status": "TP2_HIT",
+    "tp1_hit": true,
+    "tp1_hit_price": 0.4512,
+    "tp1_hit_at": "2026-08-19T15:33:59.999000+00:00",
+    "tp1_card": "RE_TP1_target_card.png",
+    "tp2_card": "RE_TP2_target_card.png",
+    "closed_price": 0.4737,
+    "closed_at": "2026-08-19T16:13:59.999000+00:00"
   }
 ]
