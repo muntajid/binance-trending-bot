@@ -450,5 +450,26 @@
     "created_at": "2026-08-19T03:14:08.251678+00:00",
     "last_checked_at": "2026-08-19T06:03:17.507242+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "PUMP",
+    "trending_bonus": "HEMI",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.002978,
+    "tp1": 0.003127,
+    "tp2": 0.003283,
+    "sl": 0.002889,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Concise market explanation.",
+    "smc_logic_short": "Short chart annotation.",
+    "change": 6.968,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "f40b0c2aadfc46f6a6aaab801e829189",
+    "created_at": "2026-08-19T07:58:14.345653+00:00",
+    "last_checked_at": "2026-08-19T07:58:14.345653+00:00",
+    "status": "ACTIVE"
   }
 ]
