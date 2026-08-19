@@ -455,5 +455,26 @@
     "created_at": "2026-08-19T19:12:11.714451+00:00",
     "last_checked_at": "2026-08-19T21:00:53.471163+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "TRUMP",
+    "trending_bonus": "RE",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 1.701,
+    "tp1": 1.785,
+    "tp2": 1.87425,
+    "sl": 1.649,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Bullish momentum with 21.59% 24h gain, support around 1.65 and resistance near 1.78, fitting SMC bullish structure.",
+    "smc_logic_short": "Bullish breakout, targets 1.78/1.87, SL 1.65.",
+    "change": 21.587,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "1274418406044815a840db8c08a142d0",
+    "created_at": "2026-08-19T21:54:59.494871+00:00",
+    "last_checked_at": "2026-08-19T21:54:59.494871+00:00",
+    "status": "ACTIVE"
   }
 ]
