@@ -471,5 +471,26 @@
     "created_at": "2026-08-19T07:58:14.345653+00:00",
     "last_checked_at": "2026-08-19T11:00:20.411049+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "HEI",
+    "trending_bonus": "HEMI",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.1425,
+    "tp1": 0.1496,
+    "tp2": 0.1568,
+    "sl": 0.1382,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Price shows bullish momentum with 8.78% 24h gain, breaking recent resistance; expect continuation toward higher levels.",
+    "smc_logic_short": "Bullish breakout, target higher.",
+    "change": 8.779,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "8a89f91f217e4fd3be2b5d51a86b119a",
+    "created_at": "2026-08-19T11:52:54.825855+00:00",
+    "last_checked_at": "2026-08-19T11:52:54.825855+00:00",
+    "status": "ACTIVE"
   }
 ]
