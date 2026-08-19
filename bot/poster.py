@@ -479,6 +479,7 @@ def format_success_post(
 
 Follow for the next setup.
 ${context['coin']} {hashtags}
+"""
     )
 
 
