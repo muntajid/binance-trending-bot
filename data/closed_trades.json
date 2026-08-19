@@ -1098,5 +1098,28 @@
     "tp2_card": "RE_TP2_target_card.png",
     "closed_price": 0.4737,
     "closed_at": "2026-08-19T16:13:59.999000+00:00"
+  },
+  {
+    "coin": "TREE",
+    "trending_bonus": "HEMI",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.0435,
+    "tp1": 0.05,
+    "tp2": 0.06,
+    "sl": 0.0392,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Price is breaking above recent resistance with a strong ~30% 24‑hour gain, indicating bullish momentum. A long aligns with SMC structure, targeting the next supply zones.",
+    "smc_logic_short": "Bullish breakout, target higher supply zones.",
+    "change": 29.94,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "fcc064c5fabb4456a56e733c4c7b96a8",
+    "created_at": "2026-08-19T16:02:22.959302+00:00",
+    "last_checked_at": "2026-08-19T21:42:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.0392,
+    "closed_at": "2026-08-19T21:42:59.999000+00:00"
   }
 ]
