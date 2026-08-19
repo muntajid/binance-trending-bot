@@ -471,5 +471,26 @@
     "created_at": "2026-08-19T11:52:54.825855+00:00",
     "last_checked_at": "2026-08-19T11:57:37.921463+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "RE",
+    "trending_bonus": "HEMI",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.43,
+    "tp1": 0.4512,
+    "tp2": 0.4737,
+    "sl": 0.4168,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Price is breaking above recent resistance with a strong 10% 24h gain, suggesting bullish momentum. Target the next resistance levels while protecting downside with a tight stop.",
+    "smc_logic_short": "Bullish breakout, aim higher, protect below entry.",
+    "change": 10.231,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "33623e29b0be49b7aac7e14300312128",
+    "created_at": "2026-08-19T14:06:06.268612+00:00",
+    "last_checked_at": "2026-08-19T14:06:06.268612+00:00",
+    "status": "ACTIVE"
   }
 ]
