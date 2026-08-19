@@ -975,5 +975,28 @@
     "trade_id": "avnt-29cd7ad343876c15ce06",
     "closed_price": 0.0896,
     "closed_at": "2026-08-18T16:45:59.999000+00:00"
+  },
+  {
+    "coin": "ALPINE",
+    "trending_bonus": "ACE",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.356,
+    "tp1": 0.38,
+    "tp2": 0.42,
+    "sl": 0.33,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "ALPINE shows strong bullish momentum with a 15.21% 24‑hour gain, supported by higher‑timeframe demand and a clear uptrend. The price is holding above the current market price (CMP), suggesting further upside potential. A tight stop‑loss below recent swing lows protects against short‑term retracements.",
+    "smc_logic_short": "Bullish uptrend, set TP1 0.38, TP2 0.42, SL 0.33.",
+    "change": 15.21,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "979ac07202c04fceb4814b3a23878579",
+    "created_at": "2026-08-19T03:14:08.251678+00:00",
+    "last_checked_at": "2026-08-19T11:19:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.33,
+    "closed_at": "2026-08-19T11:19:59.999000+00:00"
   }
 ]
