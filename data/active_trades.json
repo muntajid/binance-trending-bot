@@ -16,7 +16,7 @@
     "change": 17.774,
     "created_at": "2026-08-08T08:06:46.578412",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-19T11:57:08.704830+00:00",
+    "last_checked_at": "2026-08-19T14:07:40.084963+00:00",
     "trade_id": "syn-28ff2f8768aec3c67c0c"
   },
   {
@@ -37,7 +37,7 @@
     "created_at": "2026-08-09T10:18:41.432894",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-08-19T11:57:10.010294+00:00",
+    "last_checked_at": "2026-08-19T14:07:41.012979+00:00",
     "trade_id": "cookie-803c273ce218397f3d39"
   },
   {
@@ -58,7 +58,7 @@
     "created_at": "2026-08-09T13:53:49.243606",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-08-19T11:57:11.341165+00:00",
+    "last_checked_at": "2026-08-19T14:07:41.930698+00:00",
     "trade_id": "mubarak-f94fa4a0d02ca4f64507"
   },
   {
@@ -78,7 +78,7 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-19T11:57:12.679808+00:00",
+    "last_checked_at": "2026-08-19T14:07:42.822772+00:00",
     "trade_id": "broccoli714-4afb4206a90a75f8adef"
   },
   {
@@ -98,28 +98,8 @@
     "change": 16.429,
     "created_at": "2026-08-11T15:30:36.044910",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-19T11:57:14.039225+00:00",
+    "last_checked_at": "2026-08-19T14:07:43.738741+00:00",
     "trade_id": "luna-c2dd588ea6c1ea1f0180"
-  },
-  {
-    "coin": "NBISB",
-    "trending_bonus": "PROM",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 258.49,
-    "tp1": 300,
-    "tp2": 320,
-    "sl": 220,
-    "leverage": "3x-5x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "Given the 24h change of 35.39%, the coin is showing strong upward momentum, suggesting a long position with a take profit at 300 and 320, and a stop loss at 220 to limit potential losses.",
-    "smc_logic_short": "Bullish trend with high momentum.",
-    "change": 35.392,
-    "created_at": "2026-08-12T20:10:50.603736",
-    "status": "ACTIVE",
-    "last_checked_at": "2026-08-19T11:57:15.395153+00:00",
-    "trade_id": "nbisb-f30fb9d6815f1512e45b"
   },
   {
     "coin": "UTK",
@@ -138,7 +118,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-19T11:57:16.725721+00:00",
+    "last_checked_at": "2026-08-19T14:07:45.596656+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -158,7 +138,7 @@
     "change": 30.247,
     "created_at": "2026-08-13T23:23:28.099742",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-19T11:57:18.083986+00:00",
+    "last_checked_at": "2026-08-19T14:07:46.486563+00:00",
     "trade_id": "snxxb-3b63701cf6e9a413aebc",
     "tp1_hit": true,
     "tp1_hit_price": 17.25,
@@ -181,7 +161,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-08-19T11:57:19.405870+00:00",
+    "last_checked_at": "2026-08-19T14:07:47.414941+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -206,7 +186,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-08-19T11:57:20.704538+00:00",
+    "last_checked_at": "2026-08-19T14:07:48.313426+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -230,7 +210,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-08-19T11:57:21.997322+00:00",
+    "last_checked_at": "2026-08-19T14:07:49.209701+00:00",
     "status": "ACTIVE"
   },
   {
@@ -250,7 +230,7 @@
     "change": 38.641,
     "trade_id": "e2bc7eb8b63447ccbe8fdc9ededd1503",
     "created_at": "2026-08-15T15:41:20.127963+00:00",
-    "last_checked_at": "2026-08-19T11:57:23.297443+00:00",
+    "last_checked_at": "2026-08-19T14:07:50.101991+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.009,
@@ -274,7 +254,7 @@
     "change": 23.449,
     "trade_id": "949f531c14c04355a82618720cf1c389",
     "created_at": "2026-08-15T19:01:01.049101+00:00",
-    "last_checked_at": "2026-08-19T11:57:24.590265+00:00",
+    "last_checked_at": "2026-08-19T14:07:50.993014+00:00",
     "status": "ACTIVE"
   },
   {
@@ -294,7 +274,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-08-19T11:57:25.884118+00:00",
+    "last_checked_at": "2026-08-19T14:07:51.895284+00:00",
     "status": "ACTIVE"
   },
   {
@@ -314,7 +294,7 @@
     "change": 15.119,
     "trade_id": "4167f226aabd4642978f81e2decbe3f0",
     "created_at": "2026-08-16T03:16:45.492613+00:00",
-    "last_checked_at": "2026-08-19T11:57:27.325867+00:00",
+    "last_checked_at": "2026-08-19T14:07:52.787714+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.031,
@@ -338,7 +318,7 @@
     "change": 17.694,
     "trade_id": "faa3d8bd10a24294802c33a276a73d92",
     "created_at": "2026-08-16T09:54:32.439560+00:00",
-    "last_checked_at": "2026-08-19T11:57:28.626110+00:00",
+    "last_checked_at": "2026-08-19T14:07:53.692912+00:00",
     "status": "ACTIVE"
   },
   {
@@ -358,7 +338,7 @@
     "change": 37.13,
     "trade_id": "863a83a463714550824573b917fa8bb3",
     "created_at": "2026-08-16T13:42:36.805965+00:00",
-    "last_checked_at": "2026-08-19T11:57:29.999917+00:00",
+    "last_checked_at": "2026-08-19T14:07:54.584446+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.02,
@@ -382,7 +362,7 @@
     "change": 9.559,
     "trade_id": "48f12ca897124edc9b2fa430c6e17936",
     "created_at": "2026-08-16T19:00:25.941115+00:00",
-    "last_checked_at": "2026-08-19T11:57:31.430667+00:00",
+    "last_checked_at": "2026-08-19T14:07:55.480115+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.0575,
@@ -406,28 +386,7 @@
     "change": 35.215,
     "trade_id": "8dbeaad16dbe4b5d95ba89a9e79f3a2d",
     "created_at": "2026-08-17T08:07:36.583957+00:00",
-    "last_checked_at": "2026-08-19T11:57:32.730023+00:00",
-    "status": "ACTIVE"
-  },
-  {
-    "coin": "ACE",
-    "trending_bonus": "UTK",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.235,
-    "tp1": 0.282,
-    "tp2": 0.3243,
-    "sl": 0.2115,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "Bullish momentum with 49.33% 24h gain suggests continuation; price above recent resistance, targeting incremental profit levels.",
-    "smc_logic_short": "Uptrend, aim for 0.282 and 0.3243, SL 0.2115.",
-    "change": 49.332,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "d8f9398ba8c24eaa860e76f6b72d9a06",
-    "created_at": "2026-08-19T03:07:08.955218+00:00",
-    "last_checked_at": "2026-08-19T11:57:34.027911+00:00",
+    "last_checked_at": "2026-08-19T14:07:56.376995+00:00",
     "status": "ACTIVE"
   },
   {
@@ -448,28 +407,7 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "f40b0c2aadfc46f6a6aaab801e829189",
     "created_at": "2026-08-19T07:58:14.345653+00:00",
-    "last_checked_at": "2026-08-19T11:57:36.607540+00:00",
-    "status": "ACTIVE"
-  },
-  {
-    "coin": "HEI",
-    "trending_bonus": "HEMI",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.1425,
-    "tp1": 0.1496,
-    "tp2": 0.1568,
-    "sl": 0.1382,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "Price shows bullish momentum with 8.78% 24h gain, breaking recent resistance; expect continuation toward higher levels.",
-    "smc_logic_short": "Bullish breakout, target higher.",
-    "change": 8.779,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "8a89f91f217e4fd3be2b5d51a86b119a",
-    "created_at": "2026-08-19T11:52:54.825855+00:00",
-    "last_checked_at": "2026-08-19T11:57:37.921463+00:00",
+    "last_checked_at": "2026-08-19T14:07:58.164115+00:00",
     "status": "ACTIVE"
   },
   {
@@ -490,7 +428,7 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "33623e29b0be49b7aac7e14300312128",
     "created_at": "2026-08-19T14:06:06.268612+00:00",
-    "last_checked_at": "2026-08-19T14:06:06.268612+00:00",
+    "last_checked_at": "2026-08-19T14:08:04.721905+00:00",
     "status": "ACTIVE"
   }
 ]
