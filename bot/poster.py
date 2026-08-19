@@ -479,8 +479,6 @@ def format_success_post(
 
 Follow for the next setup.
 ${context['coin']} {hashtags}
-Simulated result: {notional} USDT example at {leverage}x; fees/funding excluded.
-"""
     )
 
 
