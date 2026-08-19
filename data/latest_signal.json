@@ -1,16 +1,17 @@
 {
-  "coin": "GPS",
-  "trending_bonus": "PORTAL",
+  "coin": "ACE",
+  "trending_bonus": "UTK",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 0.01509,
-  "tp1": 0.0205,
-  "tp2": 0.025,
-  "sl": 0.01,
-  "leverage": "3x-5x",
+  "entry_price": 0.235,
+  "tp1": 0.282,
+  "tp2": 0.3243,
+  "sl": 0.2115,
+  "leverage": "15x",
   "risk": "Medium Risk",
   "confidence": 80,
-  "smc_logic": "Given the 24h change of 35.22%, a long position is considered with a take profit at 35% and 65% above the current price, and a stop loss at 33% below the current price.",
-  "smc_logic_short": "Bullish momentum",
-  "change": 35.215
+  "smc_logic": "Bullish momentum with 49.33% 24h gain suggests continuation; price above recent resistance, targeting incremental profit levels.",
+  "smc_logic_short": "Uptrend, aim for 0.282 and 0.3243, SL 0.2115.",
+  "change": 49.332,
+  "groq_model": "openai/gpt-oss-120b"
 }
