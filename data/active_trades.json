@@ -434,5 +434,26 @@
     "created_at": "2026-08-19T16:02:22.959302+00:00",
     "last_checked_at": "2026-08-19T17:57:40.492052+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "MSTRB",
+    "trending_bonus": "HEMI",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 104.37,
+    "tp1": 109.59,
+    "tp2": 114.81,
+    "sl": 101.24,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Concise market explanation.",
+    "smc_logic_short": "Short chart annotation.",
+    "change": 12.226,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "7c84a3562ba04c038ce011327ab29e14",
+    "created_at": "2026-08-19T19:12:11.714451+00:00",
+    "last_checked_at": "2026-08-19T19:12:11.714451+00:00",
+    "status": "ACTIVE"
   }
 ]
