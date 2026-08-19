@@ -452,7 +452,7 @@ What would you do?
 Reply A or B. Follow for TP updates.
 
 ${coin} {hashtags}
-Simulated setup. Trade responsibly.
+not financial advise 
 """
     )
 
