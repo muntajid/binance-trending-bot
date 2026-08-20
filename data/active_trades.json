@@ -413,5 +413,26 @@
     "tp1_hit_price": 109.59,
     "tp1_hit_at": "2026-08-19T21:32:59.999000+00:00",
     "tp1_card": "MSTRB_TP1_target_card.png"
+  },
+  {
+    "coin": "BOME",
+    "trending_bonus": "RE",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.0011218,
+    "tp1": 0.0013462,
+    "tp2": 0.00175,
+    "sl": 0.0010096,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Concise market explanation.",
+    "smc_logic_short": "Short chart annotation.",
+    "change": 48.328,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "b8c15e7c39db40baa79df7fa69d808d6",
+    "created_at": "2026-08-20T08:03:36.466700+00:00",
+    "last_checked_at": "2026-08-20T08:03:36.466700+00:00",
+    "status": "ACTIVE"
   }
 ]
