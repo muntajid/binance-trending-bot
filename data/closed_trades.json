@@ -1254,5 +1254,28 @@
     "status": "SL_HIT",
     "closed_price": 0.03091,
     "closed_at": "2026-08-20T12:09:59.999000+00:00"
+  },
+  {
+    "coin": "ACE",
+    "trending_bonus": "BOME",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.269,
+    "tp1": 0.285,
+    "tp2": 0.302,
+    "sl": 0.255,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "The price is breaking above recent resistance with strong buying pressure, supported by a bullish order block and a clear higher low, indicating a continuation of the uptrend.",
+    "smc_logic_short": "Bullish breakout, higher low, target TP1/TP2.",
+    "change": 39.637,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "fa376f4d9c19480d9d39d25a096a6ee9",
+    "created_at": "2026-08-20T16:04:10.993171+00:00",
+    "last_checked_at": "2026-08-20T17:06:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.255,
+    "closed_at": "2026-08-20T17:06:59.999000+00:00"
   }
 ]
