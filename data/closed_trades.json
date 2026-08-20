@@ -1277,5 +1277,29 @@
     "status": "SL_HIT",
     "closed_price": 0.255,
     "closed_at": "2026-08-20T17:06:59.999000+00:00"
+  },
+  {
+    "coin": "ONG",
+    "trending_bonus": "PEOPLE",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.08783,
+    "tp1": 0.095,
+    "tp2": 0.105,
+    "sl": 0.08,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "ONG shows strong bullish momentum with a 46% 24h surge, supported by the PEOPLE trend. The price is holding above the current market price, suggesting further upside potential.",
+    "smc_logic_short": "Bullish breakout, target higher levels.",
+    "change": 46.104,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "7921819e55ef4d369e118ea2b9e2a7d7",
+    "created_at": "2026-08-20T19:44:15.804316+00:00",
+    "last_checked_at": "2026-08-20T20:09:59.999000+00:00",
+    "status": "TP2_HIT",
+    "tp2_card": "ONG_TP2_target_card.png",
+    "closed_price": 0.105,
+    "closed_at": "2026-08-20T20:09:59.999000+00:00"
   }
 ]
