@@ -406,5 +406,26 @@
     "created_at": "2026-08-20T14:09:21.619680+00:00",
     "last_checked_at": "2026-08-20T20:52:28.061577+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "PEOPLE",
+    "trending_bonus": "ONG",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.01117,
+    "tp1": 0.01229,
+    "tp2": 0.01352,
+    "sl": 0.01061,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Price is in a strong uptrend with 36.55% 24h gain, breaking recent resistance. Buying at market price aligns with bullish momentum, targeting incremental profit levels.",
+    "smc_logic_short": "Bullish breakout, aim higher.",
+    "change": 36.553,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "367c0a92251d4606a09fc956448db423",
+    "created_at": "2026-08-20T21:57:31.315845+00:00",
+    "last_checked_at": "2026-08-20T21:57:31.315845+00:00",
+    "status": "ACTIVE"
   }
 ]
