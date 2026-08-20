@@ -430,5 +430,26 @@
     "created_at": "2026-08-20T10:05:25.706793+00:00",
     "last_checked_at": "2026-08-20T12:02:02.254309+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "NEIRO",
+    "trending_bonus": "BOME",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 8.371e-05,
+    "tp1": 9.2257e-05,
+    "tp2": 0.0001014827,
+    "sl": 7.96765e-05,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Concise market explanation.",
+    "smc_logic_short": "Short chart annotation.",
+    "change": 31.951,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "1c12e25c333240daac19715111939888",
+    "created_at": "2026-08-20T14:09:21.619680+00:00",
+    "last_checked_at": "2026-08-20T14:09:21.619680+00:00",
+    "status": "ACTIVE"
   }
 ]

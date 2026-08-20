@@ -1,17 +1,17 @@
 {
-  "coin": "BIO",
+  "coin": "NEIRO",
   "trending_bonus": "BOME",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 0.03253,
-  "tp1": 0.03579,
-  "tp2": 0.03937,
-  "sl": 0.03091,
+  "entry_price": 8.371e-05,
+  "tp1": 9.2257e-05,
+  "tp2": 0.0001014827,
+  "sl": 7.96765e-05,
   "leverage": "15x",
   "risk": "Medium Risk",
   "confidence": 80,
   "smc_logic": "Concise market explanation.",
   "smc_logic_short": "Short chart annotation.",
-  "change": 29.876,
+  "change": 31.951,
   "groq_model": "openai/gpt-oss-120b"
 }
