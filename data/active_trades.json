@@ -386,5 +386,26 @@
     "created_at": "2026-08-21T16:03:39.174999+00:00",
     "last_checked_at": "2026-08-21T20:55:20.512371+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "PROM",
+    "trending_bonus": "GALA",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 2.691,
+    "tp1": 2.826,
+    "tp2": 2.967,
+    "sl": 2.61,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Price is showing strong bullish momentum with a 34.48% 24h surge, breaking recent resistance. Expect continuation if volume holds.",
+    "smc_logic_short": "Bullish breakout, target higher highs.",
+    "change": 34.483,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "483089042c4448fab88c74c470941a92",
+    "created_at": "2026-08-21T21:53:11.581708+00:00",
+    "last_checked_at": "2026-08-21T21:53:11.581708+00:00",
+    "status": "ACTIVE"
   }
 ]
