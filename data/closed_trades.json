@@ -1352,5 +1352,29 @@
     "tp2_card": "NEIRO_TP2_target_card.png",
     "closed_price": 0.0001014827,
     "closed_at": "2026-08-21T05:33:59.999000+00:00"
+  },
+  {
+    "coin": "GALA",
+    "trending_bonus": "ONG",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.001768,
+    "tp1": 0.001803,
+    "tp2": 0.001839,
+    "sl": 0.001742,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Bullish momentum with 24.95% 24h gain, support near entry and upside potential as price approaches key resistance.",
+    "smc_logic_short": "Uptrend, target above entry.",
+    "change": 24.947,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "7751e762679d46ddb22945363dd58532",
+    "created_at": "2026-08-21T08:04:14.998231+00:00",
+    "last_checked_at": "2026-08-21T08:48:59.999000+00:00",
+    "status": "TP2_HIT",
+    "tp2_card": "GALA_TP2_target_card.png",
+    "closed_price": 0.001839,
+    "closed_at": "2026-08-21T08:48:59.999000+00:00"
   }
 ]
