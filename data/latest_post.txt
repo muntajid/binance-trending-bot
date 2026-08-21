@@ -1,18 +1,18 @@
-⚡ $TUT is active. Breakout continuation or pullback first?
+🔍 $BCH moved +31.3% in 24H. Momentum or exhaustion?
 
 LONG SETUP
 
-Entry: $0.0433
-TP1: $0.05194 (+20.0%)
-TP2: $0.0606 (+40.0%)
-SL: $0.03895 (-10.0%)
-Risk/Reward to TP1: 1.99R
+Entry: $290.4
+TP1: $305.92 (+5.3%)
+TP2: $321.22 (+10.6%)
+SL: $275.88 (-5.0%)
+Risk/Reward to TP1: 1.07R
 
 What would you do?
-A) Bullish continuation
-B) Short-term retrace
+A) Take the setup
+B) Wait for confirmation
 
 Reply A or B. Follow for TP updates.
 
-$TUT #TechnicalAnalysis #Trading
+$BCH #TargetHit #AltcoinTrading
 not financial advise

@@ -386,5 +386,26 @@
     "created_at": "2026-08-21T16:03:39.174999+00:00",
     "last_checked_at": "2026-08-21T19:08:50.565884+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "BCH",
+    "trending_bonus": "GALA",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 290.4,
+    "tp1": 305.92,
+    "tp2": 321.22,
+    "sl": 275.88,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "BCH shows strong bullish momentum with a 31.27% 24‑hour gain, breaking recent resistance. The price is holding above the 200‑EMA, suggesting continuation. A long position aligns with the upward trend, targeting incremental profit levels while protecting against a pullback.",
+    "smc_logic_short": "Bullish breakout, target higher highs, protect below 275.88.",
+    "change": 31.27,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "39a1755d429b4990ad3ef3bda3495c8c",
+    "created_at": "2026-08-21T19:16:23.944826+00:00",
+    "last_checked_at": "2026-08-21T19:16:23.944826+00:00",
+    "status": "ACTIVE"
   }
 ]
