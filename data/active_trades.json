@@ -365,5 +365,26 @@
     "tp1_hit_price": 0.0013462,
     "tp1_hit_at": "2026-08-21T07:26:59.999000+00:00",
     "tp1_card": "BOME_TP1_target_card.png"
+  },
+  {
+    "coin": "TUT",
+    "trending_bonus": "ENA",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.0433,
+    "tp1": 0.05194,
+    "tp2": 0.0606,
+    "sl": 0.03895,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "The price is bullish with a strong 39.54% 24h surge, breaking recent resistance and aligning with ENA momentum, suggesting further upside.",
+    "smc_logic_short": "Bullish breakout, target higher levels.",
+    "change": 39.542,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "fa0bdb24d09a4cb0ba2c6dc8e8f3bed2",
+    "created_at": "2026-08-21T16:03:39.174999+00:00",
+    "last_checked_at": "2026-08-21T16:03:39.174999+00:00",
+    "status": "ACTIVE"
   }
 ]
