@@ -406,5 +406,26 @@
     "created_at": "2026-08-20T14:09:21.619680+00:00",
     "last_checked_at": "2026-08-20T23:57:44.910453+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "ENA",
+    "trending_bonus": "ONG",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.1237,
+    "tp1": 0.1361,
+    "tp2": 0.1497,
+    "sl": 0.1175,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 34.35% 24‑hour surge, the price is in a strong uptrend. Momentum suggests a continuation, targeting higher resistance levels while protecting downside with a tight stop.",
+    "smc_logic_short": "Uptrend, target higher resistance, SL below entry.",
+    "change": 34.348,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "da6d200be2294f0e8c9a7433f95f30ce",
+    "created_at": "2026-08-21T03:30:59.903997+00:00",
+    "last_checked_at": "2026-08-21T03:30:59.903997+00:00",
+    "status": "ACTIVE"
   }
 ]
