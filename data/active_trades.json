@@ -414,5 +414,26 @@
     "tp1_hit_price": 0.1361,
     "tp1_hit_at": "2026-08-21T08:26:59.999000+00:00",
     "tp1_card": "ENA_TP1_target_card.png"
+  },
+  {
+    "coin": "BB",
+    "trending_bonus": "PEOPLE",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.01182,
+    "tp1": 0.0135,
+    "tp2": 0.0155,
+    "sl": 0.0105,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Bullish momentum with 30% 24h gain, price breaking above recent resistance, suggesting further upside.",
+    "smc_logic_short": "Uptrend, target higher levels.",
+    "change": 30.71,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "f83d5d1ade15490b89d2faf650a6ce9d",
+    "created_at": "2026-08-21T10:06:26.038146+00:00",
+    "last_checked_at": "2026-08-21T10:06:26.038146+00:00",
+    "status": "ACTIVE"
   }
 ]
