@@ -1,12 +1,12 @@
-📊 $STX setup watch: the next reaction could define direction.
+👀 $TUT is approaching a decision zone. Watching the reaction.
 
 LONG SETUP
 
-Entry: $0.1958
-TP1: $0.2056 (+5.0%)
-TP2: $0.2159 (+10.3%)
-SL: $0.1898 (-3.1%)
-Risk/Reward to TP1: 1.63R
+Entry: $0.06769
+TP1: $0.08123 (+20.0%)
+TP2: $0.09747 (+44.0%)
+SL: $0.06092 (-10.0%)
+Risk/Reward to TP1: 2.00R
 
 What would you do?
 A) Enter on momentum
@@ -14,5 +14,5 @@ B) Wait for a pullback
 
 Reply A or B. Follow for TP updates.
 
-$STX #TechnicalAnalysis #Trading
+$TUT #TechnicalAnalysis #Trading
 not financial advise
