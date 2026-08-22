@@ -1626,5 +1626,28 @@
     "status": "SL_HIT",
     "closed_price": 744.99,
     "closed_at": "2026-08-22T05:10:59.999000+00:00"
+  },
+  {
+    "coin": "TRUMP",
+    "trending_bonus": "ZAMA",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 2.849,
+    "tp1": 3.134,
+    "tp2": 3.447,
+    "sl": 2.707,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Bullish momentum with strong 24h gain; price breaking above recent highs suggests continuation, targeting resistance levels.",
+    "smc_logic_short": "Uptrend, aim for higher resistance.",
+    "change": 65.62,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "fb760675dca640ce82e2cc1fac19f69f",
+    "created_at": "2026-08-22T07:45:40.005722+00:00",
+    "last_checked_at": "2026-08-22T08:27:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 2.707,
+    "closed_at": "2026-08-22T08:27:59.999000+00:00"
   }
 ]
