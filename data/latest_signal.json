@@ -1,17 +1,17 @@
 {
-  "coin": "MOVE",
+  "coin": "POL",
   "trending_bonus": "TRUMP",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 0.0088,
-  "tp1": 0.0097,
-  "tp2": 0.0106,
-  "sl": 0.0075,
+  "entry_price": 0.10701,
+  "tp1": 0.117711,
+  "tp2": 0.12359655,
+  "sl": 0.1016595,
   "leverage": "15x",
   "risk": "Medium Risk",
   "confidence": 80,
   "smc_logic": "Concise market explanation.",
   "smc_logic_short": "Short chart annotation.",
-  "change": 27.536,
+  "change": 21.601,
   "groq_model": "openai/gpt-oss-120b"
 }
