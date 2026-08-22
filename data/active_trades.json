@@ -407,5 +407,26 @@
     "created_at": "2026-08-21T21:53:11.581708+00:00",
     "last_checked_at": "2026-08-21T23:52:44.014070+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "ZEC",
+    "trending_bonus": "TRB",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 827.95,
+    "tp1": 993.35,
+    "tp2": 1158.91,
+    "sl": 744.99,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Concise market explanation.",
+    "smc_logic_short": "Short chart annotation.",
+    "change": 45.428,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "f6172054d5564400bed59271a94372cc",
+    "created_at": "2026-08-22T03:08:14.870328+00:00",
+    "last_checked_at": "2026-08-22T03:08:14.870328+00:00",
+    "status": "ACTIVE"
   }
 ]
