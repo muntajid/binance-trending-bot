@@ -454,5 +454,26 @@
     "tp1_hit_price": 0.02315,
     "tp1_hit_at": "2026-08-23T19:42:59.999000+00:00",
     "tp1_card": "SPK_TP1_target_card.png"
+  },
+  {
+    "coin": "MORPHO",
+    "trending_bonus": "SPK",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 2.783,
+    "tp1": 2.9222,
+    "tp2": 3.0613,
+    "sl": 2.6985,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Price is bullish with a 24.16% 24‑hour gain, breaking recent resistance. The SPK trend adds momentum, supporting a long bias. Target zones are set at modest extensions while keeping a tight stop below the recent swing low.",
+    "smc_logic_short": "Bullish breakout, aim for 5‑10% upside, stop ~3% below entry.",
+    "change": 24.163,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "0a1a4fa0e2df42f29dcedb45e51dd58c",
+    "created_at": "2026-08-23T21:42:58.733021+00:00",
+    "last_checked_at": "2026-08-23T21:42:58.733021+00:00",
+    "status": "ACTIVE"
   }
 ]
