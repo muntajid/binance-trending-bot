@@ -429,5 +429,26 @@
     "created_at": "2026-08-23T15:48:56.932073+00:00",
     "last_checked_at": "2026-08-23T19:01:43.557963+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "SPK",
+    "trending_bonus": "MORPHO",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.022046,
+    "tp1": 0.02315,
+    "tp2": 0.02425,
+    "sl": 0.02139,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "The price is breaking above recent resistance with strong buying volume, aligning with a bullish SMC structure and the positive 24h momentum, suggesting a continuation upward.",
+    "smc_logic_short": "Bullish breakout, higher highs.",
+    "change": 23.329,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "e9f2d4ed79354e9d8585be6f5d602cb1",
+    "created_at": "2026-08-23T19:02:22.271553+00:00",
+    "last_checked_at": "2026-08-23T19:02:22.271553+00:00",
+    "status": "ACTIVE"
   }
 ]
