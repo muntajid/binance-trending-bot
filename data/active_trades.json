@@ -16,7 +16,7 @@
     "change": 17.774,
     "created_at": "2026-08-08T08:06:46.578412",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-23T03:29:21.177856+00:00",
+    "last_checked_at": "2026-08-23T05:05:23.501305+00:00",
     "trade_id": "syn-28ff2f8768aec3c67c0c"
   },
   {
@@ -37,7 +37,7 @@
     "created_at": "2026-08-09T10:18:41.432894",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-08-23T03:29:22.061575+00:00",
+    "last_checked_at": "2026-08-23T05:05:24.378973+00:00",
     "trade_id": "cookie-803c273ce218397f3d39"
   },
   {
@@ -58,7 +58,7 @@
     "created_at": "2026-08-09T13:53:49.243606",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-08-23T03:29:22.928767+00:00",
+    "last_checked_at": "2026-08-23T05:05:25.241853+00:00",
     "trade_id": "mubarak-f94fa4a0d02ca4f64507"
   },
   {
@@ -78,7 +78,7 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-23T03:29:23.818378+00:00",
+    "last_checked_at": "2026-08-23T05:05:26.107842+00:00",
     "trade_id": "broccoli714-4afb4206a90a75f8adef"
   },
   {
@@ -98,7 +98,7 @@
     "change": 16.429,
     "created_at": "2026-08-11T15:30:36.044910",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-23T03:29:24.693624+00:00",
+    "last_checked_at": "2026-08-23T05:05:26.967364+00:00",
     "trade_id": "luna-c2dd588ea6c1ea1f0180"
   },
   {
@@ -118,7 +118,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-23T03:29:25.569030+00:00",
+    "last_checked_at": "2026-08-23T05:05:27.840187+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -138,7 +138,7 @@
     "change": 30.247,
     "created_at": "2026-08-13T23:23:28.099742",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-23T03:29:26.431529+00:00",
+    "last_checked_at": "2026-08-23T05:05:28.708131+00:00",
     "trade_id": "snxxb-3b63701cf6e9a413aebc",
     "tp1_hit": true,
     "tp1_hit_price": 17.25,
@@ -161,7 +161,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-08-23T03:29:27.327609+00:00",
+    "last_checked_at": "2026-08-23T05:05:29.601986+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -186,7 +186,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-08-23T03:29:28.192116+00:00",
+    "last_checked_at": "2026-08-23T05:05:30.466019+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -210,7 +210,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-08-23T03:29:29.232284+00:00",
+    "last_checked_at": "2026-08-23T05:05:31.331843+00:00",
     "status": "ACTIVE"
   },
   {
@@ -230,7 +230,7 @@
     "change": 23.449,
     "trade_id": "949f531c14c04355a82618720cf1c389",
     "created_at": "2026-08-15T19:01:01.049101+00:00",
-    "last_checked_at": "2026-08-23T03:29:30.107135+00:00",
+    "last_checked_at": "2026-08-23T05:05:32.192607+00:00",
     "status": "ACTIVE"
   },
   {
@@ -250,7 +250,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-08-23T03:29:30.973064+00:00",
+    "last_checked_at": "2026-08-23T05:05:33.055708+00:00",
     "status": "ACTIVE"
   },
   {
@@ -270,7 +270,7 @@
     "change": 15.119,
     "trade_id": "4167f226aabd4642978f81e2decbe3f0",
     "created_at": "2026-08-16T03:16:45.492613+00:00",
-    "last_checked_at": "2026-08-23T03:29:32.067365+00:00",
+    "last_checked_at": "2026-08-23T05:05:33.922247+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.031,
@@ -294,7 +294,7 @@
     "change": 17.694,
     "trade_id": "faa3d8bd10a24294802c33a276a73d92",
     "created_at": "2026-08-16T09:54:32.439560+00:00",
-    "last_checked_at": "2026-08-23T03:29:33.299796+00:00",
+    "last_checked_at": "2026-08-23T05:05:34.784818+00:00",
     "status": "ACTIVE"
   },
   {
@@ -314,53 +314,7 @@
     "change": 35.215,
     "trade_id": "8dbeaad16dbe4b5d95ba89a9e79f3a2d",
     "created_at": "2026-08-17T08:07:36.583957+00:00",
-    "last_checked_at": "2026-08-23T03:29:34.163888+00:00",
-    "status": "ACTIVE"
-  },
-  {
-    "coin": "MOVE",
-    "trending_bonus": "TRUMP",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.0088,
-    "tp1": 0.0097,
-    "tp2": 0.0106,
-    "sl": 0.0075,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "Concise market explanation.",
-    "smc_logic_short": "Short chart annotation.",
-    "change": 27.536,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "f9a184f41f7b4967b22d4a71ff034bed",
-    "created_at": "2026-08-22T09:54:21.634965+00:00",
-    "last_checked_at": "2026-08-23T03:29:35.351600+00:00",
-    "status": "ACTIVE",
-    "tp1_hit": true,
-    "tp1_hit_price": 0.0097,
-    "tp1_hit_at": "2026-08-23T01:02:59.999000+00:00",
-    "tp1_card": "MOVE_TP1_target_card.png"
-  },
-  {
-    "coin": "POL",
-    "trending_bonus": "TRUMP",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.10701,
-    "tp1": 0.117711,
-    "tp2": 0.12359655,
-    "sl": 0.1016595,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "Concise market explanation.",
-    "smc_logic_short": "Short chart annotation.",
-    "change": 21.601,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "46abd4a888744870b087366037afe6a5",
-    "created_at": "2026-08-22T13:43:12.903868+00:00",
-    "last_checked_at": "2026-08-23T03:29:40.942312+00:00",
+    "last_checked_at": "2026-08-23T05:05:35.649256+00:00",
     "status": "ACTIVE"
   },
   {
@@ -381,7 +335,7 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "93f670aee5f04eb49c0d2bd9646862b9",
     "created_at": "2026-08-23T03:30:34.708076+00:00",
-    "last_checked_at": "2026-08-23T03:30:34.708076+00:00",
+    "last_checked_at": "2026-08-23T05:05:38.241272+00:00",
     "status": "ACTIVE"
   }
 ]
