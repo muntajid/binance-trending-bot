@@ -383,5 +383,26 @@
     "tp1_hit_price": 0.000724,
     "tp1_hit_at": "2026-08-23T10:43:59.999000+00:00",
     "tp1_card": "SC_TP1_target_card.png"
+  },
+  {
+    "coin": "PENDLE",
+    "trending_bonus": "TUT",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 1.92,
+    "tp1": 2.11,
+    "tp2": 2.22,
+    "sl": 1.8,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Price shows strong bullish momentum with 15.73% 24h gain, breaking recent resistance; expect continuation toward higher levels.",
+    "smc_logic_short": "Bullish breakout, target 2.11-2.22, SL 1.80.",
+    "change": 15.732,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "e6c118046e3440e497c4e10b828c1da9",
+    "created_at": "2026-08-23T13:45:24.709701+00:00",
+    "last_checked_at": "2026-08-23T13:45:24.709701+00:00",
+    "status": "ACTIVE"
   }
 ]

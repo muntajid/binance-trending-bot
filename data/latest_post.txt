@@ -1,12 +1,12 @@
-📊 $SC setup watch: the next reaction could define direction.
+🔥 $PENDLE volatility is expanding. Here is the risk-defined plan.
 
 LONG SETUP
 
-Entry: $0.000658
-TP1: $0.000724 (+10.0%)
-TP2: $0.000796 (+21.0%)
-SL: $0.000625 (-5.0%)
-Risk/Reward to TP1: 2.00R
+Entry: $1.92
+TP1: $2.11 (+9.9%)
+TP2: $2.22 (+15.6%)
+SL: $1.8 (-6.2%)
+Risk/Reward to TP1: 1.58R
 
 What would you do?
 A) Take the setup
@@ -14,5 +14,5 @@ B) Wait for confirmation
 
 Reply A or B. Follow for TP updates.
 
-$SC #Altcoins #CryptoTrading
+$PENDLE #TargetHit #AltcoinTrading
 not financial advise
