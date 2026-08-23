@@ -1,17 +1,17 @@
 {
-  "coin": "ZRO",
+  "coin": "SC",
   "trending_bonus": "TUT",
   "direction": "LONG",
   "entry": "CMP",
-  "entry_price": 1.231,
-  "tp1": 1.3,
-  "tp2": 1.38,
-  "sl": 1.15,
+  "entry_price": 0.000658,
+  "tp1": 0.000724,
+  "tp2": 0.000796,
+  "sl": 0.000625,
   "leverage": "15x",
   "risk": "Medium Risk",
   "confidence": 80,
   "smc_logic": "Concise market explanation.",
   "smc_logic_short": "Short chart annotation.",
-  "change": 23.223,
+  "change": 16.254,
   "groq_model": "openai/gpt-oss-120b"
 }
