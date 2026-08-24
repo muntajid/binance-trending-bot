@@ -1974,5 +1974,28 @@
     "tp2_card": "AMP_TP2_target_card.png",
     "closed_price": 0.000504,
     "closed_at": "2026-08-24T19:52:59.999000+00:00"
+  },
+  {
+    "coin": "ONG",
+    "trending_bonus": "PROM",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.0827,
+    "tp1": 0.0868,
+    "tp2": 0.0912,
+    "sl": 0.0802,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Concise market explanation.",
+    "smc_logic_short": "Short chart annotation.",
+    "change": 15.168,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "9eab670f83e24906beb866e065c899b3",
+    "created_at": "2026-08-24T21:57:38.780806+00:00",
+    "last_checked_at": "2026-08-24T23:01:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.0802,
+    "closed_at": "2026-08-24T23:01:59.999000+00:00"
   }
 ]
