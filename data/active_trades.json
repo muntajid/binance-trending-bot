@@ -401,5 +401,26 @@
     "created_at": "2026-08-24T14:25:34.193245+00:00",
     "last_checked_at": "2026-08-24T16:07:33.877522+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "STORJ",
+    "trending_bonus": "PROM",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.0511,
+    "tp1": 0.0537,
+    "tp2": 0.0563,
+    "sl": 0.0485,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "STORJ shows strong bullish momentum with a 24.33% 24‑hour gain, breaking recent resistance. A long position aligns with the upward trend, targeting incremental profit levels while protecting downside with a tight stop.",
+    "smc_logic_short": "Bullish breakout, aim higher, protect below entry.",
+    "change": 24.331,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "d59e0c911511455b933d4992d3c6620a",
+    "created_at": "2026-08-24T16:20:08.963807+00:00",
+    "last_checked_at": "2026-08-24T16:20:08.963807+00:00",
+    "status": "ACTIVE"
   }
 ]
