@@ -1878,5 +1878,31 @@
     "tp2_card": "PORTAL_TP2_target_card.png",
     "closed_price": 0.016,
     "closed_at": "2026-08-24T04:01:59.999000+00:00"
+  },
+  {
+    "coin": "SNXXB",
+    "trending_bonus": "EDEN",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 14.77,
+    "tp1": 17.25,
+    "tp2": 20.0,
+    "sl": 12.5,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 24h change of 30.25%, a long position is considered with a take profit at 17% and 35% above the current price, and a stop loss at 15% below the current price.",
+    "smc_logic_short": "Bullish trend continuation.",
+    "change": 30.247,
+    "created_at": "2026-08-13T23:23:28.099742",
+    "status": "SL_HIT",
+    "last_checked_at": "2026-08-24T13:31:59.999000+00:00",
+    "trade_id": "snxxb-3b63701cf6e9a413aebc",
+    "tp1_hit": true,
+    "tp1_hit_price": 17.25,
+    "tp1_hit_at": "2026-08-17T02:21:59.999000+00:00",
+    "tp1_card": "SNXXB_TP1_target_card.png",
+    "closed_price": 12.5,
+    "closed_at": "2026-08-24T13:31:59.999000+00:00"
   }
 ]
