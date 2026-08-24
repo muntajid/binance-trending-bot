@@ -1950,5 +1950,29 @@
     "status": "SL_HIT",
     "closed_price": 0.0485,
     "closed_at": "2026-08-24T16:20:59.999000+00:00"
+  },
+  {
+    "coin": "AMP",
+    "trending_bonus": "PROM",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.000484,
+    "tp1": 0.000494,
+    "tp2": 0.000504,
+    "sl": 0.0004767,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "AMP shows bullish momentum with a 14.46% 24‑hour rise, aligning with the PROM trend, suggesting a long entry near the current price.",
+    "smc_logic_short": "Bullish on AMP, entry at 0.000484.",
+    "change": 14.455,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "3483a3115485478abe4a8d60e3987ec0",
+    "created_at": "2026-08-24T19:19:07.907554+00:00",
+    "last_checked_at": "2026-08-24T19:52:59.999000+00:00",
+    "status": "TP2_HIT",
+    "tp2_card": "AMP_TP2_target_card.png",
+    "closed_price": 0.000504,
+    "closed_at": "2026-08-24T19:52:59.999000+00:00"
   }
 ]
