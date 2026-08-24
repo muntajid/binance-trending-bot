@@ -16,7 +16,7 @@
     "change": 17.774,
     "created_at": "2026-08-08T08:06:46.578412",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-24T16:07:16.174624+00:00",
+    "last_checked_at": "2026-08-24T17:51:42.608193+00:00",
     "trade_id": "syn-28ff2f8768aec3c67c0c"
   },
   {
@@ -37,7 +37,7 @@
     "created_at": "2026-08-09T10:18:41.432894",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-08-24T16:07:17.174494+00:00",
+    "last_checked_at": "2026-08-24T17:51:43.909095+00:00",
     "trade_id": "cookie-803c273ce218397f3d39"
   },
   {
@@ -58,7 +58,7 @@
     "created_at": "2026-08-09T13:53:49.243606",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-08-24T16:07:18.151672+00:00",
+    "last_checked_at": "2026-08-24T17:51:45.269138+00:00",
     "trade_id": "mubarak-f94fa4a0d02ca4f64507"
   },
   {
@@ -78,7 +78,7 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-24T16:07:19.125729+00:00",
+    "last_checked_at": "2026-08-24T17:51:46.567679+00:00",
     "trade_id": "broccoli714-4afb4206a90a75f8adef"
   },
   {
@@ -98,7 +98,7 @@
     "change": 16.429,
     "created_at": "2026-08-11T15:30:36.044910",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-24T16:07:20.121688+00:00",
+    "last_checked_at": "2026-08-24T17:51:47.872047+00:00",
     "trade_id": "luna-c2dd588ea6c1ea1f0180"
   },
   {
@@ -118,7 +118,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-24T16:07:21.143885+00:00",
+    "last_checked_at": "2026-08-24T17:51:49.509535+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -137,7 +137,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-08-24T16:07:22.119026+00:00",
+    "last_checked_at": "2026-08-24T17:51:50.874130+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -162,7 +162,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-08-24T16:07:23.110199+00:00",
+    "last_checked_at": "2026-08-24T17:51:52.421426+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -186,7 +186,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-08-24T16:07:24.085378+00:00",
+    "last_checked_at": "2026-08-24T17:51:53.751000+00:00",
     "status": "ACTIVE"
   },
   {
@@ -206,7 +206,7 @@
     "change": 23.449,
     "trade_id": "949f531c14c04355a82618720cf1c389",
     "created_at": "2026-08-15T19:01:01.049101+00:00",
-    "last_checked_at": "2026-08-24T16:07:25.087744+00:00",
+    "last_checked_at": "2026-08-24T17:51:55.287681+00:00",
     "status": "ACTIVE"
   },
   {
@@ -226,7 +226,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-08-24T16:07:26.066509+00:00",
+    "last_checked_at": "2026-08-24T17:51:56.589433+00:00",
     "status": "ACTIVE"
   },
   {
@@ -246,7 +246,7 @@
     "change": 15.119,
     "trade_id": "4167f226aabd4642978f81e2decbe3f0",
     "created_at": "2026-08-16T03:16:45.492613+00:00",
-    "last_checked_at": "2026-08-24T16:07:27.043678+00:00",
+    "last_checked_at": "2026-08-24T17:51:58.048149+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.031,
@@ -270,7 +270,7 @@
     "change": 17.694,
     "trade_id": "faa3d8bd10a24294802c33a276a73d92",
     "created_at": "2026-08-16T09:54:32.439560+00:00",
-    "last_checked_at": "2026-08-24T16:07:28.014189+00:00",
+    "last_checked_at": "2026-08-24T17:51:59.373164+00:00",
     "status": "ACTIVE"
   },
   {
@@ -290,7 +290,7 @@
     "change": 35.215,
     "trade_id": "8dbeaad16dbe4b5d95ba89a9e79f3a2d",
     "created_at": "2026-08-17T08:07:36.583957+00:00",
-    "last_checked_at": "2026-08-24T16:07:28.992368+00:00",
+    "last_checked_at": "2026-08-24T17:52:00.668734+00:00",
     "status": "ACTIVE"
   },
   {
@@ -311,7 +311,7 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "ebe5e07fe0b642ce9217eabb9220c4cc",
     "created_at": "2026-08-23T09:55:04.280772+00:00",
-    "last_checked_at": "2026-08-24T16:07:29.967138+00:00",
+    "last_checked_at": "2026-08-24T17:52:01.973228+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.000724,
@@ -336,7 +336,7 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "6119cb9724cb4d6597a194724371e768",
     "created_at": "2026-08-23T15:48:56.932073+00:00",
-    "last_checked_at": "2026-08-24T16:07:30.949402+00:00",
+    "last_checked_at": "2026-08-24T17:52:03.306401+00:00",
     "status": "ACTIVE"
   },
   {
@@ -357,7 +357,7 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "d784d356b80844ca9d805bd257d00a7c",
     "created_at": "2026-08-24T08:26:20.061562+00:00",
-    "last_checked_at": "2026-08-24T16:07:31.922411+00:00",
+    "last_checked_at": "2026-08-24T17:52:04.780582+00:00",
     "status": "ACTIVE"
   },
   {
@@ -378,49 +378,7 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "dea56cf31b0f4f0fbc4dbcd39cf226cc",
     "created_at": "2026-08-24T10:57:50.772791+00:00",
-    "last_checked_at": "2026-08-24T16:07:32.904067+00:00",
-    "status": "ACTIVE"
-  },
-  {
-    "coin": "SUPER",
-    "trending_bonus": "PORTAL",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.1352,
-    "tp1": 0.1555,
-    "tp2": 0.171,
-    "sl": 0.125,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "Price is rallying with a strong 32.88% 24‑hour gain, indicating bullish momentum. The CMP aligns with a higher‑timeframe uptrend, making a long entry viable. Set SL below recent support and target progressive profit levels as the rally continues.",
-    "smc_logic_short": "Bullish rally, long CMP, SL below support, TP1/TP2 above entry.",
-    "change": 32.875,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "c9cbd993e5e74c8a83fc24a6d1d6a7e2",
-    "created_at": "2026-08-24T14:25:34.193245+00:00",
-    "last_checked_at": "2026-08-24T16:07:33.877522+00:00",
-    "status": "ACTIVE"
-  },
-  {
-    "coin": "STORJ",
-    "trending_bonus": "PROM",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.0511,
-    "tp1": 0.0537,
-    "tp2": 0.0563,
-    "sl": 0.0485,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "STORJ shows strong bullish momentum with a 24.33% 24‑hour gain, breaking recent resistance. A long position aligns with the upward trend, targeting incremental profit levels while protecting downside with a tight stop.",
-    "smc_logic_short": "Bullish breakout, aim higher, protect below entry.",
-    "change": 24.331,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "d59e0c911511455b933d4992d3c6620a",
-    "created_at": "2026-08-24T16:20:08.963807+00:00",
-    "last_checked_at": "2026-08-24T16:20:08.963807+00:00",
+    "last_checked_at": "2026-08-24T17:52:06.079683+00:00",
     "status": "ACTIVE"
   }
 ]
