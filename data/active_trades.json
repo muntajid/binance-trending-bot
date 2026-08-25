@@ -338,5 +338,26 @@
     "created_at": "2026-08-25T08:07:48.682529+00:00",
     "last_checked_at": "2026-08-25T09:21:10.315054+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "PROM",
+    "trending_bonus": "ONG",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 4.115,
+    "tp1": 4.321,
+    "tp2": 4.451,
+    "sl": 3.993,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Price shows bullish momentum with 8.35% 24h gain, breaking recent resistance; expect continuation toward higher highs.",
+    "smc_logic_short": "Bullish breakout, target higher.",
+    "change": 8.346,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "b320ff6930e040a6af7ab35a7a69faee",
+    "created_at": "2026-08-25T10:06:19.657761+00:00",
+    "last_checked_at": "2026-08-25T10:06:19.657761+00:00",
+    "status": "ACTIVE"
   }
 ]
