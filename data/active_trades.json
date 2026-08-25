@@ -338,5 +338,26 @@
     "created_at": "2026-08-25T19:20:27.216863+00:00",
     "last_checked_at": "2026-08-25T20:59:02.053515+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "FF",
+    "trending_bonus": "BMT",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.10102,
+    "tp1": 0.10607,
+    "tp2": 0.11112,
+    "sl": 0.09799,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Price is breaking above recent resistance with strong 10.77% 24h gain, indicating bullish momentum. A short-term pullback to the entry level is expected before continuation toward higher targets.",
+    "smc_logic_short": "Bullish breakout, aim for 5% TP1 and 10% TP2, SL 3% below entry.",
+    "change": 10.768,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "cda0ca40aa2649b4875de88630c13a8b",
+    "created_at": "2026-08-25T21:56:18.222335+00:00",
+    "last_checked_at": "2026-08-25T21:56:18.222335+00:00",
+    "status": "ACTIVE"
   }
 ]
