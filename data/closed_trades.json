@@ -2076,5 +2076,28 @@
     "status": "SL_HIT",
     "closed_price": 0.5443,
     "closed_at": "2026-08-25T07:17:59.999000+00:00"
+  },
+  {
+    "coin": "PORTAL",
+    "trending_bonus": "PROM",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.01731,
+    "tp1": 0.01988,
+    "tp2": 0.02248,
+    "sl": 0.01556,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Portal shows strong bullish momentum with a 28.15% 24h gain, supported by the PROM trend, suggesting a continuation upward. Entry at current market price with a moderate SL and aggressive TP targets aligns with the observed strength.",
+    "smc_logic_short": "Bullish breakout, target higher highs, protect with tight SL.",
+    "change": 28.148,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "dea56cf31b0f4f0fbc4dbcd39cf226cc",
+    "created_at": "2026-08-24T10:57:50.772791+00:00",
+    "last_checked_at": "2026-08-25T09:07:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.01556,
+    "closed_at": "2026-08-25T09:07:59.999000+00:00"
   }
 ]
