@@ -338,5 +338,26 @@
     "created_at": "2026-08-25T10:06:19.657761+00:00",
     "last_checked_at": "2026-08-25T12:04:26.536070+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "SNXXB",
+    "trending_bonus": "ONG",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 13.17,
+    "tp1": 13.83,
+    "tp2": 14.52,
+    "sl": 12.77,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Price is above recent swing high, showing bullish momentum with 10.3% 24h gain, aligning with ONG trend, supporting a long entry at current market price.",
+    "smc_logic_short": "Bullish breakout, long at 13.17.",
+    "change": 10.302,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "e287d62b44d441bca04920e340d28836",
+    "created_at": "2026-08-25T14:27:54.809218+00:00",
+    "last_checked_at": "2026-08-25T14:27:54.809218+00:00",
+    "status": "ACTIVE"
   }
 ]
