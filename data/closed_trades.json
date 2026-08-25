@@ -1997,5 +1997,33 @@
     "status": "SL_HIT",
     "closed_price": 0.0802,
     "closed_at": "2026-08-24T23:01:59.999000+00:00"
+  },
+  {
+    "coin": "PROM",
+    "trending_bonus": "PORTAL",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 3.76,
+    "tp1": 4.2,
+    "tp2": 4.8,
+    "sl": 3.4,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Concise market explanation.",
+    "smc_logic_short": "Short chart annotation.",
+    "change": 32.465,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "d784d356b80844ca9d805bd257d00a7c",
+    "created_at": "2026-08-24T08:26:20.061562+00:00",
+    "last_checked_at": "2026-08-25T04:27:59.999000+00:00",
+    "status": "TP2_HIT",
+    "tp1_hit": true,
+    "tp1_hit_price": 4.2,
+    "tp1_hit_at": "2026-08-25T02:45:59.999000+00:00",
+    "tp1_card": "PROM_TP1_target_card.png",
+    "tp2_card": "PROM_TP2_target_card.png",
+    "closed_price": 4.8,
+    "closed_at": "2026-08-25T04:27:59.999000+00:00"
   }
 ]
