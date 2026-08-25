@@ -380,5 +380,26 @@
     "created_at": "2026-08-24T10:57:50.772791+00:00",
     "last_checked_at": "2026-08-24T23:52:55.295633+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "AERO",
+    "trending_bonus": "PROM",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.561,
+    "tp1": 0.5892,
+    "tp2": 0.6186,
+    "sl": 0.5443,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "The price is bullish with a 19.41% 24‑hour surge, breaking recent resistance and aligning with the PROM trend, suggesting further upside.",
+    "smc_logic_short": "Bullish breakout, target higher levels.",
+    "change": 19.413,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "53b7d82936f946278b7911cd8d7d73cd",
+    "created_at": "2026-08-25T03:15:37.724964+00:00",
+    "last_checked_at": "2026-08-25T03:15:37.724964+00:00",
+    "status": "ACTIVE"
   }
 ]
