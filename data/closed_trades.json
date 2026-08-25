@@ -2099,5 +2099,28 @@
     "status": "SL_HIT",
     "closed_price": 0.01556,
     "closed_at": "2026-08-25T09:07:59.999000+00:00"
+  },
+  {
+    "coin": "STX",
+    "trending_bonus": "ONG",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.2687,
+    "tp1": 0.2821,
+    "tp2": 0.2962,
+    "sl": 0.2606,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Concise market explanation.",
+    "smc_logic_short": "Short chart annotation.",
+    "change": 15.371,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "fdecf9834f2d43b68145dde588dfa765",
+    "created_at": "2026-08-25T08:07:48.682529+00:00",
+    "last_checked_at": "2026-08-25T10:16:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.2606,
+    "closed_at": "2026-08-25T10:16:59.999000+00:00"
   }
 ]
