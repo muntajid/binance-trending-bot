@@ -317,5 +317,26 @@
     "tp1_hit_price": 0.000724,
     "tp1_hit_at": "2026-08-23T10:43:59.999000+00:00",
     "tp1_card": "SC_TP1_target_card.png"
+  },
+  {
+    "coin": "BMT",
+    "trending_bonus": "ONG",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.02074,
+    "tp1": 0.02489,
+    "tp2": 0.02904,
+    "sl": 0.01867,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Concise market explanation.",
+    "smc_logic_short": "Short chart annotation.",
+    "change": 41.201,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "046517263e124067ba73c302466ef057",
+    "created_at": "2026-08-25T19:20:27.216863+00:00",
+    "last_checked_at": "2026-08-25T19:20:27.216863+00:00",
+    "status": "ACTIVE"
   }
 ]
