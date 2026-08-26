@@ -2,7 +2,57 @@
   "schedule": {
     "posts_per_day": 8,
     "interval_hours": 3,
-    "timezone": "UTC"
+    "timezone": "UTC",
+    "slots": [
+      {
+        "slot": 0,
+        "hour_utc": 0,
+        "type": "market_overview",
+        "name": "Macro & Bitcoin Outlook (00:00 UTC)"
+      },
+      {
+        "slot": 1,
+        "hour_utc": 3,
+        "type": "rapid_alert",
+        "name": "Rapid Signal Alert #1 (03:00 UTC)"
+      },
+      {
+        "slot": 2,
+        "hour_utc": 6,
+        "type": "explained_setup",
+        "name": "Explained Master Setup #1 (06:00 UTC)"
+      },
+      {
+        "slot": 3,
+        "hour_utc": 9,
+        "type": "rapid_alert",
+        "name": "Rapid Signal Alert #2 (09:00 UTC)"
+      },
+      {
+        "slot": 4,
+        "hour_utc": 12,
+        "type": "meme_community",
+        "name": "Trader Psychology & Community Meme (12:00 UTC)"
+      },
+      {
+        "slot": 5,
+        "hour_utc": 15,
+        "type": "explained_setup",
+        "name": "Explained Master Setup #2 (15:00 UTC)"
+      },
+      {
+        "slot": 6,
+        "hour_utc": 18,
+        "type": "rapid_alert",
+        "name": "Rapid Signal Alert #3 (18:00 UTC)"
+      },
+      {
+        "slot": 7,
+        "hour_utc": 21,
+        "type": "explained_setup",
+        "name": "Explained Master Setup #3 (21:00 UTC)"
+      }
+    ]
   },
   "duplicate_filter_hours": 24,
   "trending": {
@@ -14,6 +64,6 @@
     "leverage": "3x-5x",
     "risk": "Medium Risk",
     "entry_type": "CMP",
-    "timeframes": ["1H", "4H"]
+    "timeframe": "1H"
   }
 }
