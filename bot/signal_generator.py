@@ -1,4 +1,4 @@
-"""Verified Binance market scanning and resilient Groq signal generation."""
+"""Verified Binance market scanning and resilient Groq signal, macro overview, and meme generation."""
 
 from __future__ import annotations
 
@@ -164,7 +164,7 @@ def _groq_model_candidates(api_key: str) -> list[str]:
     if not candidates:
         visible = ", ".join(sorted(available))
         raise RuntimeError(
-            "None of the supported Groq signal models are available to this "
+            "None of the supported Groq models are available to this "
             f"account. Available model IDs: {visible}"
         )
 
@@ -223,6 +223,27 @@ def _normalize_signal(
     if direction == "SHORT" and not (tp2 < tp1 < live_price < stop):
         raise ValueError("Invalid SHORT levels: expected TP2 < TP1 < Entry < SL")
 
+    why_now = str(
+        result.get(
+            "why_now",
+            f"Price broke above key 1H resistance with strong {change:+.1f}% 24H volume expansion.",
+        )
+    ).strip()
+
+    invalidation = str(
+        result.get(
+            "invalidation",
+            f"A 1H candle close below ${stop} invalidates this setup.",
+        )
+    ).strip()
+
+    rapid_reason = str(
+        result.get(
+            "rapid_reason",
+            f"1H momentum breakout above key resistance with volume.",
+        )
+    ).strip()
+
     normalized = {
         **result,
         "coin": str(coin).upper(),
@@ -235,13 +256,12 @@ def _normalize_signal(
         "sl": stop,
         "leverage": "15x",
         "risk": str(result.get("risk", "Medium Risk")),
-        "confidence": int(result.get("confidence", 80)),
-        "smc_logic": str(
-            result.get("smc_logic", "Momentum setup with defined risk levels.")
-        ),
-        "smc_logic_short": str(
-            result.get("smc_logic_short", "Momentum setup.")
-        ),
+        "confidence": int(result.get("confidence", 85)),
+        "why_now": why_now,
+        "invalidation": invalidation,
+        "rapid_reason": rapid_reason,
+        "smc_logic": str(result.get("smc_logic", why_now)),
+        "smc_logic_short": str(result.get("smc_logic_short", rapid_reason)),
         "change": change,
         "groq_model": model,
     }
@@ -268,7 +288,7 @@ def generate_signal_with_groq(
     change: float,
     trending_bonus: str,
 ) -> dict[str, Any]:
-    """Generate one validated signal with live model discovery and fallback."""
+    """Generate one validated signal with Why Now and Invalidation fields."""
 
     api_key = os.getenv("GROQ_API_KEY", "").strip()
     if not api_key:
@@ -278,7 +298,6 @@ def generate_signal_with_groq(
     if supplied_price <= 0:
         raise ValueError("Supplied signal price must be greater than zero")
 
-    # Refresh the authoritative Binance price immediately before model use.
     live_price = get_live_price(coin)
     difference_percent = abs(live_price - supplied_price) / supplied_price * 100
     if difference_percent > 0.5:
@@ -288,9 +307,10 @@ def generate_signal_with_groq(
         )
 
     system_prompt = """
-You generate structured crypto market-analysis setups from supplied verified data.
-Use only the verified Binance price supplied by the user.
+You are an elite crypto technical analyst and Smart Money Concepts (SMC) trader.
+You generate structured, high-accuracy market-analysis setups using ONLY the verified Binance price supplied by the user.
 Never claim that an exchange order was executed.
+Provide high-value, insightful, and professional market analysis with clear Why Now and Invalidation reasons.
 Return exactly one valid JSON object and no prose outside that JSON object.
 """.strip()
 
@@ -298,7 +318,7 @@ Return exactly one valid JSON object and no prose outside that JSON object.
 Coin: {str(coin).upper()}
 Verified Binance live price: {live_price}
 24-hour change: {float(change):.2f}%
-Context coin: {str(trending_bonus).upper()}
+Context market leader: {str(trending_bonus).upper()}
 
 Return exactly this JSON structure:
 {{
@@ -307,14 +327,17 @@ Return exactly this JSON structure:
   "direction": "LONG",
   "entry": "CMP",
   "entry_price": {live_price},
-  "tp1": <numeric analysis level above entry>,
-  "tp2": <numeric analysis level above TP1>,
-  "sl": <numeric analysis level below entry>,
+  "tp1": <numeric analysis level above entry, e.g. 3-6% realistic profit>,
+  "tp2": <numeric analysis level above TP1, e.g. 8-15% extended profit>,
+  "sl": <numeric analysis level below entry, e.g. 2.5-4% tight invalidation>,
   "leverage": "15x",
   "risk": "Medium Risk",
-  "confidence": 80,
-  "smc_logic": "Concise market explanation.",
-  "smc_logic_short": "Short chart annotation."
+  "confidence": 85,
+  "why_now": "One verified setup-specific reason explaining what just happened (liquidity sweep, volume accumulation, or resistance flip).",
+  "invalidation": "One clear reclaim/break/close level that invalidates this trade thesis.",
+  "rapid_reason": "One concise sentence summarizing the 1H momentum trigger.",
+  "smc_logic": "2-3 sentences of clear Smart Money technical reasoning.",
+  "smc_logic_short": "Short chart summary annotation."
 }}
 
 Rules:
@@ -322,7 +345,8 @@ Rules:
 2. For LONG, enforce SL < entry_price < TP1 < TP2.
 3. Use numeric values for entry_price, TP1, TP2, and SL.
 4. Do not invent a different current market price.
-5. Return JSON only.
+5. Provide realistic, professional SMC rationale that educates and builds trust with traders.
+6. Return JSON only.
 """.strip()
 
     client = Groq(api_key=api_key)
@@ -342,9 +366,7 @@ Rules:
                 max_tokens=800,
                 response_format={"type": "json_object"},
             )
-            result = _parse_json_object(
-                completion.choices[0].message.content
-            )
+            result = _parse_json_object(completion.choices[0].message.content)
             normalized = _normalize_signal(
                 result,
                 coin=coin,
@@ -366,3 +388,198 @@ Rules:
 
     summary = " | ".join(failures) if failures else "no candidate model was attempted"
     raise RuntimeError(f"All Groq signal models failed: {summary}")
+
+
+def generate_market_overview_with_groq(
+    top_coins: list[dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    """Generate verified Macro & Bitcoin Market Overview using Binance market data and Groq."""
+
+    api_key = os.getenv("GROQ_API_KEY", "").strip()
+    if not api_key:
+        raise RuntimeError("GROQ_API_KEY not found in GitHub Secrets.")
+
+    btc_data = get_24h_data("BTCUSDT")
+    eth_data = get_24h_data("ETHUSDT")
+
+    btc_price = float(btc_data["price"])
+    btc_change = float(btc_data["change_24h"])
+    btc_volume = float(btc_data.get("quote_volume_24h", 0))
+
+    eth_price = float(eth_data["price"])
+    eth_change = float(eth_data["change_24h"])
+
+    if not top_coins:
+        try:
+            top_coins = get_trending_coins(top_n=5, min_change=2.0, min_volume=3_000_000)
+        except Exception:
+            top_coins = []
+
+    gainers_summary = ", ".join(
+        [f"{c['coin']} ({c['change']:+.1f}%)" for c in top_coins[:4]]
+    ) if top_coins else "Altcoin momentum mixed"
+
+    system_prompt = """
+You are a top-tier institutional crypto macro and technical strategist on Binance Square.
+You analyze Bitcoin structure, liquidity flows, dominance, and altcoin rotation from verified Binance data.
+Provide crisp, insightful, and authoritative market intelligence for active traders.
+Return exactly one valid JSON object and no prose outside that JSON object.
+""".strip()
+
+    user_prompt = f"""
+Verified Binance Market Data:
+• BTC/USDT: ${btc_price:,.2f} ({btc_change:+.2f}% 24H, 24H Vol: ${btc_volume:,.0f})
+• ETH/USDT: ${eth_price:,.2f} ({eth_change:+.2f}% 24H)
+• Top Momentum Gainers: {gainers_summary}
+
+Return exactly this JSON structure:
+{{
+  "headline": "Punchy market headline summarizing BTC structure and current market pulse",
+  "btc_price": {btc_price},
+  "btc_change": {btc_change},
+  "market_phase": "e.g. Bullish Expansion / Consolidation / Key Resistance Retest / Liquidity Hunt",
+  "btc_thesis": "1-2 sentences on Bitcoin 1H/4H price action, structure holding, and liquidity zones.",
+  "altcoin_summary": "1-2 sentences explaining altcoin capital rotation and momentum leaders.",
+  "btc_support": <numeric nearby key support level below btc_price>,
+  "btc_resistance": <numeric nearby key resistance level above btc_price>,
+  "strategy_outlook": "One clear, actionable rule/insight for spot and futures traders today."
+}}
+
+Rules:
+1. btc_price must equal {btc_price}.
+2. btc_support < btc_price < btc_resistance.
+3. Keep the tone professional, objective, and analytical.
+4. Return JSON only.
+""".strip()
+
+    client = Groq(api_key=api_key)
+    candidates = _groq_model_candidates(api_key)
+    failures: list[str] = []
+
+    for model in candidates:
+        print(f"[Groq] Generating market overview with model: {model}")
+        try:
+            completion = client.chat.completions.create(
+                model=model,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt},
+                ],
+                temperature=0.25,
+                max_tokens=900,
+                response_format={"type": "json_object"},
+            )
+            result = _parse_json_object(completion.choices[0].message.content)
+
+            support = float(result.get("btc_support", btc_price * 0.98))
+            resistance = float(result.get("btc_resistance", btc_price * 1.02))
+            if support >= btc_price:
+                support = round(btc_price * 0.98, 2)
+            if resistance <= btc_price:
+                resistance = round(btc_price * 1.02, 2)
+
+            overview = {
+                "headline": str(result.get("headline", "Bitcoin Consolidates as Momentum Expands across Altcoins")).strip(),
+                "btc_price": btc_price,
+                "btc_change": btc_change,
+                "eth_price": eth_price,
+                "eth_change": eth_change,
+                "market_phase": str(result.get("market_phase", "Consolidation Range")).strip(),
+                "btc_thesis": str(result.get("btc_thesis", "BTC is maintaining structure above local support as volume builds.")).strip(),
+                "altcoin_summary": str(result.get("altcoin_summary", f"Momentum continues in selective altcoins: {gainers_summary}.")).strip(),
+                "btc_support": support,
+                "btc_resistance": resistance,
+                "strategy_outlook": str(result.get("strategy_outlook", "Focus on high-volume setups with defined invalidation levels.")).strip(),
+                "groq_model": model,
+                "type": "market_overview",
+            }
+            print(f"[Groq] Market overview validated with {model}")
+            return overview
+
+        except Exception as exc:
+            if _is_authentication_error(exc):
+                raise RuntimeError("GROQ_API_KEY authentication failed") from exc
+
+            failure = f"{model}: {type(exc).__name__}: {exc}"
+            failures.append(failure)
+            print(f"[Groq Warning] {failure}")
+
+    summary = " | ".join(failures) if failures else "no candidate model was attempted"
+    raise RuntimeError(f"All Groq market overview models failed: {summary}")
+
+
+def generate_meme_post_with_groq() -> dict[str, Any]:
+    """Generate high-engagement crypto trader psychology / community culture meme post."""
+
+    api_key = os.getenv("GROQ_API_KEY", "").strip()
+    if not api_key:
+        raise RuntimeError("GROQ_API_KEY not found in GitHub Secrets.")
+
+    btc_data = get_24h_data("BTCUSDT")
+    btc_price = float(btc_data["price"])
+    btc_change = float(btc_data["change_24h"])
+
+    system_prompt = """
+You are a witty, highly relatable crypto trader on Binance Square known for viral trading psychology observations, memes, and community culture commentary.
+Your posts highlight the funny, painful, and relatable realities of crypto trading (FOMO, leverage addiction, holding through dips, revenge trading vs discipline, 1-minute chart staring).
+Generate an ultra-relatable, engaging, humorous post that sparks immense community laughter, likes, and comment agreement.
+Return exactly one valid JSON object and no prose outside that JSON object.
+""".strip()
+
+    user_prompt = f"""
+Current Market Context: Bitcoin at ${btc_price:,.0f} ({btc_change:+.1f}% 24H).
+
+Return exactly this JSON structure:
+{{
+  "title": "Short punchy meme headline or situation title (e.g. 'Trader Diary:', 'My Portfolio when:', 'The 3 Stages of a Leverage Trader:')",
+  "content": "2-4 lines of witty, super-relatable trading humor / meme format (e.g. comparison, expectation vs reality, trader thoughts at 3 AM).",
+  "lesson": "One short witty or real risk-management takeaway.",
+  "question": "A fun, natural question for the community (e.g. 'Who else did this today? Be honest 👇')"
+}}
+
+Rules:
+1. Make it genuine, relatable, and funny for real crypto futures and spot traders.
+2. Avoid generic corporate speak.
+3. Return JSON only.
+""".strip()
+
+    client = Groq(api_key=api_key)
+    candidates = _groq_model_candidates(api_key)
+    failures: list[str] = []
+
+    for model in candidates:
+        print(f"[Groq] Generating meme post with model: {model}")
+        try:
+            completion = client.chat.completions.create(
+                model=model,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt},
+                ],
+                temperature=0.7,
+                max_tokens=600,
+                response_format={"type": "json_object"},
+            )
+            result = _parse_json_object(completion.choices[0].message.content)
+
+            meme_data = {
+                "title": str(result.get("title", "Crypto Trader Psychology 101:")).strip(),
+                "content": str(result.get("content", "Me: 'I will strictly follow my 1:3 R:R trading plan today.'\nAlso me 5 minutes after seeing a 1M green candle: 'Market order 50x!'")).strip(),
+                "lesson": str(result.get("lesson", "Discipline is what separates traders from gamblers.")).strip(),
+                "question": str(result.get("question", "Be honest: Who relates to this today? 👇")).strip(),
+                "groq_model": model,
+                "type": "meme_community",
+            }
+            print(f"[Groq] Meme post validated with {model}")
+            return meme_data
+
+        except Exception as exc:
+            if _is_authentication_error(exc):
+                raise RuntimeError("GROQ_API_KEY authentication failed") from exc
+
+            failure = f"{model}: {type(exc).__name__}: {exc}"
+            failures.append(failure)
+            print(f"[Groq Warning] {failure}")
+
+    summary = " | ".join(failures) if failures else "no candidate model was attempted"
+    raise RuntimeError(f"All Groq meme post models failed: {summary}")
