@@ -2268,5 +2268,27 @@
     "tp1_card": "ONG_TP1_target_card.png",
     "closed_price": 0.0947,
     "closed_at": "2026-08-26T11:29:59.999000+00:00"
+  },
+  {
+    "coin": "GPS",
+    "trending_bonus": "PORTAL",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.01509,
+    "tp1": 0.0205,
+    "tp2": 0.025,
+    "sl": 0.01,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 24h change of 35.22%, a long position is considered with a take profit at 35% and 65% above the current price, and a stop loss at 33% below the current price.",
+    "smc_logic_short": "Bullish momentum",
+    "change": 35.215,
+    "trade_id": "8dbeaad16dbe4b5d95ba89a9e79f3a2d",
+    "created_at": "2026-08-17T08:07:36.583957+00:00",
+    "last_checked_at": "2026-08-26T13:07:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.01,
+    "closed_at": "2026-08-26T13:07:59.999000+00:00"
   }
 ]
