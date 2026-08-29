@@ -16,7 +16,7 @@
     "change": 17.774,
     "created_at": "2026-08-08T08:06:46.578412",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-29T04:47:47.419241+00:00",
+    "last_checked_at": "2026-08-29T04:57:54.842959+00:00",
     "trade_id": "syn-28ff2f8768aec3c67c0c"
   },
   {
@@ -37,7 +37,7 @@
     "created_at": "2026-08-09T10:18:41.432894",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-08-29T04:47:48.514538+00:00",
+    "last_checked_at": "2026-08-29T04:57:56.171691+00:00",
     "trade_id": "cookie-803c273ce218397f3d39"
   },
   {
@@ -58,7 +58,7 @@
     "created_at": "2026-08-09T13:53:49.243606",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-08-29T04:47:49.701259+00:00",
+    "last_checked_at": "2026-08-29T04:57:57.720571+00:00",
     "trade_id": "mubarak-f94fa4a0d02ca4f64507"
   },
   {
@@ -78,7 +78,7 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-29T04:47:50.742820+00:00",
+    "last_checked_at": "2026-08-29T04:57:59.045267+00:00",
     "trade_id": "broccoli714-4afb4206a90a75f8adef"
   },
   {
@@ -98,7 +98,7 @@
     "change": 16.429,
     "created_at": "2026-08-11T15:30:36.044910",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-29T04:47:52.131546+00:00",
+    "last_checked_at": "2026-08-29T04:58:00.398717+00:00",
     "trade_id": "luna-c2dd588ea6c1ea1f0180"
   },
   {
@@ -118,7 +118,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-29T04:47:52.995295+00:00",
+    "last_checked_at": "2026-08-29T04:58:01.705490+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -137,7 +137,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-08-29T04:47:53.853923+00:00",
+    "last_checked_at": "2026-08-29T04:58:03.013825+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -162,7 +162,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-08-29T04:47:54.818642+00:00",
+    "last_checked_at": "2026-08-29T04:58:04.348873+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -186,7 +186,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-08-29T04:47:55.675304+00:00",
+    "last_checked_at": "2026-08-29T04:58:05.643922+00:00",
     "status": "ACTIVE"
   },
   {
@@ -206,7 +206,7 @@
     "change": 23.449,
     "trade_id": "949f531c14c04355a82618720cf1c389",
     "created_at": "2026-08-15T19:01:01.049101+00:00",
-    "last_checked_at": "2026-08-29T04:47:57.325597+00:00",
+    "last_checked_at": "2026-08-29T04:58:06.993770+00:00",
     "status": "ACTIVE"
   },
   {
@@ -226,7 +226,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-08-29T04:47:58.203184+00:00",
+    "last_checked_at": "2026-08-29T04:58:08.301214+00:00",
     "status": "ACTIVE"
   },
   {
@@ -246,36 +246,8 @@
     "change": 17.694,
     "trade_id": "faa3d8bd10a24294802c33a276a73d92",
     "created_at": "2026-08-16T09:54:32.439560+00:00",
-    "last_checked_at": "2026-08-29T04:47:59.068622+00:00",
+    "last_checked_at": "2026-08-29T04:58:09.585433+00:00",
     "status": "ACTIVE"
-  },
-  {
-    "coin": "DEXE",
-    "trending_bonus": "HEMI",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 2.443,
-    "tp1": 2.541,
-    "tp2": 2.736,
-    "sl": 2.37,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A liquidity sweep of the 2.40‑2.45 zone triggered a bullish order block at 2.44, confirming smart‑money accumulation.",
-    "invalidation": "If price closes below 2.36, the bullish order block is invalidated.",
-    "rapid_reason": "1H momentum surged as price broke above the recent swing high, indicating strong buying pressure.",
-    "smc_logic": "The price performed a liquidity grab below the 2.40 support, then retested the order block at 2.44, forming a bullish engulfing on the 1H chart. This suggests smart money is accumulating and pushing the market higher, targeting the next resistance around 2.54. A break above that level could extend the move toward 2.74.",
-    "smc_logic_short": "Liquidity grab → order‑block retest → bullish push to 2.54",
-    "change": 27.682,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "29ed948c61ed4574beee9a39b7c0a4e4",
-    "created_at": "2026-08-28T21:55:42.937235+00:00",
-    "last_checked_at": "2026-08-29T04:47:59.927588+00:00",
-    "status": "ACTIVE",
-    "tp1_hit": true,
-    "tp1_hit_price": 2.541,
-    "tp1_hit_at": "2026-08-29T01:15:59.999000+00:00",
-    "tp1_card": "DEXE_TP1_target_card.png"
   },
   {
     "coin": "HEMI",
@@ -298,7 +270,7 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "b105fec4bb7f46a29a5600306f36a599",
     "created_at": "2026-08-29T03:02:53.198996+00:00",
-    "last_checked_at": "2026-08-29T04:48:00.784401+00:00",
+    "last_checked_at": "2026-08-29T04:58:12.191884+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.01221,
