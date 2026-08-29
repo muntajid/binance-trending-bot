@@ -16,7 +16,7 @@
     "change": 17.774,
     "created_at": "2026-08-08T08:06:46.578412",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-29T15:40:00.392616+00:00",
+    "last_checked_at": "2026-08-29T15:50:12.651142+00:00",
     "trade_id": "syn-28ff2f8768aec3c67c0c"
   },
   {
@@ -37,7 +37,7 @@
     "created_at": "2026-08-09T10:18:41.432894",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-08-29T15:40:01.961801+00:00",
+    "last_checked_at": "2026-08-29T15:50:13.589314+00:00",
     "trade_id": "cookie-803c273ce218397f3d39"
   },
   {
@@ -58,7 +58,7 @@
     "created_at": "2026-08-09T13:53:49.243606",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-08-29T15:40:03.097405+00:00",
+    "last_checked_at": "2026-08-29T15:50:14.704428+00:00",
     "trade_id": "mubarak-f94fa4a0d02ca4f64507"
   },
   {
@@ -78,7 +78,7 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-29T15:40:04.184492+00:00",
+    "last_checked_at": "2026-08-29T15:50:15.602974+00:00",
     "trade_id": "broccoli714-4afb4206a90a75f8adef"
   },
   {
@@ -98,7 +98,7 @@
     "change": 16.429,
     "created_at": "2026-08-11T15:30:36.044910",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-29T15:40:05.284135+00:00",
+    "last_checked_at": "2026-08-29T15:50:16.744816+00:00",
     "trade_id": "luna-c2dd588ea6c1ea1f0180"
   },
   {
@@ -118,7 +118,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-29T15:40:06.422131+00:00",
+    "last_checked_at": "2026-08-29T15:50:17.671620+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -137,7 +137,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-08-29T15:40:07.518701+00:00",
+    "last_checked_at": "2026-08-29T15:50:18.600637+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -162,7 +162,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-08-29T15:40:08.694614+00:00",
+    "last_checked_at": "2026-08-29T15:50:19.517830+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -186,7 +186,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-08-29T15:40:09.843593+00:00",
+    "last_checked_at": "2026-08-29T15:50:20.422409+00:00",
     "status": "ACTIVE"
   },
   {
@@ -206,7 +206,7 @@
     "change": 23.449,
     "trade_id": "949f531c14c04355a82618720cf1c389",
     "created_at": "2026-08-15T19:01:01.049101+00:00",
-    "last_checked_at": "2026-08-29T15:40:10.946217+00:00",
+    "last_checked_at": "2026-08-29T15:50:21.311902+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.0631,
@@ -230,7 +230,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-08-29T15:40:12.072156+00:00",
+    "last_checked_at": "2026-08-29T15:50:22.204429+00:00",
     "status": "ACTIVE"
   },
   {
@@ -250,7 +250,7 @@
     "change": 17.694,
     "trade_id": "faa3d8bd10a24294802c33a276a73d92",
     "created_at": "2026-08-16T09:54:32.439560+00:00",
-    "last_checked_at": "2026-08-29T15:40:13.154912+00:00",
+    "last_checked_at": "2026-08-29T15:50:23.109733+00:00",
     "status": "ACTIVE"
   },
   {
@@ -274,7 +274,11 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "c1b850d1df1c4de0964ca65cd67b4de4",
     "created_at": "2026-08-29T15:03:04.464306+00:00",
-    "last_checked_at": "2026-08-29T15:40:14.253478+00:00",
-    "status": "ACTIVE"
+    "last_checked_at": "2026-08-29T15:50:24.020188+00:00",
+    "status": "ACTIVE",
+    "tp1_hit": true,
+    "tp1_hit_price": 44.48,
+    "tp1_hit_at": "2026-08-29T15:43:59.999000+00:00",
+    "tp1_card": "GIGGLE_TP1_target_card.png"
   }
 ]
