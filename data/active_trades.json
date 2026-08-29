@@ -16,7 +16,7 @@
     "change": 17.774,
     "created_at": "2026-08-08T08:06:46.578412",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-29T16:50:06.275839+00:00",
+    "last_checked_at": "2026-08-29T16:59:51.125414+00:00",
     "trade_id": "syn-28ff2f8768aec3c67c0c"
   },
   {
@@ -37,7 +37,7 @@
     "created_at": "2026-08-09T10:18:41.432894",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-08-29T16:50:07.561529+00:00",
+    "last_checked_at": "2026-08-29T16:59:52.352816+00:00",
     "trade_id": "cookie-803c273ce218397f3d39"
   },
   {
@@ -58,7 +58,7 @@
     "created_at": "2026-08-09T13:53:49.243606",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-08-29T16:50:08.864121+00:00",
+    "last_checked_at": "2026-08-29T16:59:53.572572+00:00",
     "trade_id": "mubarak-f94fa4a0d02ca4f64507"
   },
   {
@@ -78,7 +78,7 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-29T16:50:10.164234+00:00",
+    "last_checked_at": "2026-08-29T16:59:54.750280+00:00",
     "trade_id": "broccoli714-4afb4206a90a75f8adef"
   },
   {
@@ -98,7 +98,7 @@
     "change": 16.429,
     "created_at": "2026-08-11T15:30:36.044910",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-29T16:50:11.468480+00:00",
+    "last_checked_at": "2026-08-29T16:59:55.922286+00:00",
     "trade_id": "luna-c2dd588ea6c1ea1f0180"
   },
   {
@@ -118,7 +118,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-29T16:50:12.759756+00:00",
+    "last_checked_at": "2026-08-29T16:59:57.105610+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -137,7 +137,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-08-29T16:50:14.043218+00:00",
+    "last_checked_at": "2026-08-29T16:59:58.341703+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -162,7 +162,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-08-29T16:50:15.330171+00:00",
+    "last_checked_at": "2026-08-29T16:59:59.518302+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -186,7 +186,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-08-29T16:50:16.608747+00:00",
+    "last_checked_at": "2026-08-29T17:00:00.912127+00:00",
     "status": "ACTIVE"
   },
   {
@@ -206,7 +206,7 @@
     "change": 23.449,
     "trade_id": "949f531c14c04355a82618720cf1c389",
     "created_at": "2026-08-15T19:01:01.049101+00:00",
-    "last_checked_at": "2026-08-29T16:50:17.899731+00:00",
+    "last_checked_at": "2026-08-29T17:00:02.773869+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.0631,
@@ -230,7 +230,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-08-29T16:50:19.166566+00:00",
+    "last_checked_at": "2026-08-29T17:00:05.104793+00:00",
     "status": "ACTIVE"
   },
   {
@@ -250,35 +250,7 @@
     "change": 17.694,
     "trade_id": "faa3d8bd10a24294802c33a276a73d92",
     "created_at": "2026-08-16T09:54:32.439560+00:00",
-    "last_checked_at": "2026-08-29T16:50:20.480176+00:00",
+    "last_checked_at": "2026-08-29T17:00:06.392028+00:00",
     "status": "ACTIVE"
-  },
-  {
-    "coin": "GIGGLE",
-    "trending_bonus": "NIL",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 42.69,
-    "tp1": 44.48,
-    "tp2": 47.9,
-    "sl": 41.49,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "Liquidity sweep on the 1H chart broke a bullish order block, confirming strong buying pressure.",
-    "invalidation": "Close below 41.45 (or break of the recent swing low at 41.30) invalidates the trade.",
-    "rapid_reason": "A sharp 1H bullish candle engulfed the prior high, indicating aggressive buying.",
-    "smc_logic": "The price ruptured a clear bullish order block around 41.80 and surged to the current level, showing smart‑money accumulation. The 1H structure now displays a higher low and a retest of the former resistance, which has turned into support, confirming the liquidity sweep scenario.",
-    "smc_logic_short": "Bullish order block break, higher low, retest of former resistance as support.",
-    "change": 14.45,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "c1b850d1df1c4de0964ca65cd67b4de4",
-    "created_at": "2026-08-29T15:03:04.464306+00:00",
-    "last_checked_at": "2026-08-29T16:50:21.930777+00:00",
-    "status": "ACTIVE",
-    "tp1_hit": true,
-    "tp1_hit_price": 44.48,
-    "tp1_hit_at": "2026-08-29T15:43:59.999000+00:00",
-    "tp1_card": "GIGGLE_TP1_target_card.png"
   }
 ]
