@@ -16,7 +16,7 @@
     "change": 17.774,
     "created_at": "2026-08-08T08:06:46.578412",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-30T12:07:04.011882+00:00",
+    "last_checked_at": "2026-08-30T12:17:10.869714+00:00",
     "trade_id": "syn-28ff2f8768aec3c67c0c"
   },
   {
@@ -37,7 +37,7 @@
     "created_at": "2026-08-09T10:18:41.432894",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-08-30T12:07:05.321363+00:00",
+    "last_checked_at": "2026-08-30T12:17:12.076725+00:00",
     "trade_id": "cookie-803c273ce218397f3d39"
   },
   {
@@ -58,7 +58,7 @@
     "created_at": "2026-08-09T13:53:49.243606",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-08-30T12:07:06.837350+00:00",
+    "last_checked_at": "2026-08-30T12:17:13.257557+00:00",
     "trade_id": "mubarak-f94fa4a0d02ca4f64507"
   },
   {
@@ -78,7 +78,7 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-30T12:07:08.032895+00:00",
+    "last_checked_at": "2026-08-30T12:17:14.459016+00:00",
     "trade_id": "broccoli714-4afb4206a90a75f8adef"
   },
   {
@@ -98,7 +98,7 @@
     "change": 16.429,
     "created_at": "2026-08-11T15:30:36.044910",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-30T12:07:08.899668+00:00",
+    "last_checked_at": "2026-08-30T12:17:15.674894+00:00",
     "trade_id": "luna-c2dd588ea6c1ea1f0180"
   },
   {
@@ -118,7 +118,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-30T12:07:10.481566+00:00",
+    "last_checked_at": "2026-08-30T12:17:16.863989+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -137,7 +137,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-08-30T12:07:11.535278+00:00",
+    "last_checked_at": "2026-08-30T12:17:18.060087+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -162,7 +162,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-08-30T12:07:12.721484+00:00",
+    "last_checked_at": "2026-08-30T12:17:19.253309+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -186,7 +186,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-08-30T12:07:13.833268+00:00",
+    "last_checked_at": "2026-08-30T12:17:20.436493+00:00",
     "status": "ACTIVE"
   },
   {
@@ -206,7 +206,7 @@
     "change": 23.449,
     "trade_id": "949f531c14c04355a82618720cf1c389",
     "created_at": "2026-08-15T19:01:01.049101+00:00",
-    "last_checked_at": "2026-08-30T12:07:14.696497+00:00",
+    "last_checked_at": "2026-08-30T12:17:21.620055+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.0631,
@@ -230,7 +230,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-08-30T12:07:15.559642+00:00",
+    "last_checked_at": "2026-08-30T12:17:22.801074+00:00",
     "status": "ACTIVE"
   },
   {
@@ -250,7 +250,7 @@
     "change": 17.694,
     "trade_id": "faa3d8bd10a24294802c33a276a73d92",
     "created_at": "2026-08-16T09:54:32.439560+00:00",
-    "last_checked_at": "2026-08-30T12:07:16.634167+00:00",
+    "last_checked_at": "2026-08-30T12:17:23.997404+00:00",
     "status": "ACTIVE"
   },
   {
@@ -274,7 +274,11 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "376f9500094346a1a8a0d3d0c1aa581d",
     "created_at": "2026-08-30T06:03:09.836777+00:00",
-    "last_checked_at": "2026-08-30T12:07:17.499419+00:00",
-    "status": "ACTIVE"
+    "last_checked_at": "2026-08-30T12:17:25.178497+00:00",
+    "status": "ACTIVE",
+    "tp1_hit": true,
+    "tp1_hit_price": 5.2,
+    "tp1_hit_at": "2026-08-30T12:16:59.999000+00:00",
+    "tp1_card": "UNI_TP1_target_card.png"
   }
 ]
