@@ -1,8 +1,20 @@
 {
-  "title": "Trader Diary: The 1‑Minute Chart Stare",
-  "content": "📈 Spot price up 0.8% → I open a 10x futures position.\n🚀 5 seconds later: \"I’m a genius!\" \n⏳ 1 minute later: \"Why is my margin screaming?\" \n💤 3 AM: \"Just one more candle...\"",
-  "lesson": "Never let a single candle dictate a 10x move – set stop‑losses before the hype hits.",
-  "question": "Who’s still glued to the 1‑minute chart at 3 AM? Drop your latest panic‑buy story 👇",
-  "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "coin": "AUCTION",
+  "trending_bonus": "ZKC",
+  "direction": "LONG",
+  "entry": "CMP",
+  "entry_price": 3.81,
+  "tp1": 4.0,
+  "tp2": 4.3,
+  "sl": 3.65,
+  "leverage": "15x",
+  "risk": "Medium Risk",
+  "confidence": 85,
+  "why_now": "A liquidity sweep of the 3.80‑3.85 zone broke a bearish order block, indicating smart money accumulation and a flip to bullish bias.",
+  "invalidation": "Close below 3.65 invalidates the long thesis.",
+  "rapid_reason": "1H bullish engulfing candle with a 2.5× volume surge.",
+  "smc_logic": "The price broke a well‑defined bearish order block at 3.78, triggering a liquidity grab that forced sellers to absorb. The subsequent retest held above the block, forming a bullish demand zone, and the 1H candle confirmed the flip. This aligns with Smart Money concepts of accumulation before a breakout.",
+  "smc_logic_short": "Break of bearish order block → demand zone formation → bullish 1H candle.",
+  "change": 20.806,
+  "groq_model": "openai/gpt-oss-120b"
 }
