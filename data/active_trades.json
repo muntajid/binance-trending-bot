@@ -276,5 +276,29 @@
     "created_at": "2026-08-30T06:03:09.836777+00:00",
     "last_checked_at": "2026-08-30T08:59:27.823369+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "ZKC",
+    "trending_bonus": "PROM",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.0558,
+    "tp1": 0.0583,
+    "tp2": 0.0625,
+    "sl": 0.0541,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep below the 0.0545‑0.0550 zone forced stop‑losses, then price retested and held the broken order block, breaking the prior swing high and confirming bullish pressure.",
+    "invalidation": "Close below 0.0540 invalidates the bullish order block and the trade thesis.",
+    "rapid_reason": "1H bullish engulfing candle with a sharp volume spike.",
+    "smc_logic": "The market performed a liquidity grab beneath the recent swing low, then retested the broken order block at 0.0545‑0.0550, which now acts as a strong demand zone. A bullish order block formed and held, and the 1H candle closed above the previous high, indicating smart‑money accumulation. This confluence supports a long bias with a tight stop just below the liquidity pool.",
+    "smc_logic_short": "Liquidity grab, order block hold, 1H bullish break.",
+    "change": 42.711,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "59c14ed599d646088c8f28bfe238d934",
+    "created_at": "2026-08-30T09:03:02.827290+00:00",
+    "last_checked_at": "2026-08-30T09:03:02.827290+00:00",
+    "status": "ACTIVE"
   }
 ]
