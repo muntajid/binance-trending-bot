@@ -1,25 +1,5 @@
 [
   {
-    "coin": "SYN",
-    "trending_bonus": "TUT",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.11821,
-    "tp1": 0.1385,
-    "tp2": 0.161,
-    "sl": 0.095,
-    "leverage": "3x-5x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "Given the 17.77% increase in the last 24 hours, SYN is showing strong upward momentum, suggesting a potential long position with a target profit at 17.5% and 36% above the current price, and a stop loss at 19.5% below the current price.",
-    "smc_logic_short": "Momentum based long.",
-    "change": 17.774,
-    "created_at": "2026-08-08T08:06:46.578412",
-    "status": "ACTIVE",
-    "last_checked_at": "2026-08-30T23:39:38.835826+00:00",
-    "trade_id": "syn-28ff2f8768aec3c67c0c"
-  },
-  {
     "coin": "COOKIE",
     "trending_bonus": "TUT",
     "direction": "LONG",
@@ -37,7 +17,7 @@
     "created_at": "2026-08-09T10:18:41.432894",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-08-30T23:39:39.769909+00:00",
+    "last_checked_at": "2026-08-30T23:49:39.297988+00:00",
     "trade_id": "cookie-803c273ce218397f3d39"
   },
   {
@@ -58,7 +38,7 @@
     "created_at": "2026-08-09T13:53:49.243606",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-08-30T23:39:40.814345+00:00",
+    "last_checked_at": "2026-08-30T23:49:40.345851+00:00",
     "trade_id": "mubarak-f94fa4a0d02ca4f64507"
   },
   {
@@ -78,7 +58,7 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-30T23:39:41.735639+00:00",
+    "last_checked_at": "2026-08-30T23:49:41.296009+00:00",
     "trade_id": "broccoli714-4afb4206a90a75f8adef"
   },
   {
@@ -98,7 +78,7 @@
     "change": 16.429,
     "created_at": "2026-08-11T15:30:36.044910",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-30T23:39:42.630661+00:00",
+    "last_checked_at": "2026-08-30T23:49:42.655226+00:00",
     "trade_id": "luna-c2dd588ea6c1ea1f0180"
   },
   {
@@ -118,7 +98,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-08-30T23:39:43.535065+00:00",
+    "last_checked_at": "2026-08-30T23:49:44.193451+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -137,7 +117,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-08-30T23:39:44.604453+00:00",
+    "last_checked_at": "2026-08-30T23:49:45.395015+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -162,7 +142,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-08-30T23:39:45.495308+00:00",
+    "last_checked_at": "2026-08-30T23:49:46.256347+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -186,7 +166,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-08-30T23:39:46.414507+00:00",
+    "last_checked_at": "2026-08-30T23:49:47.485794+00:00",
     "status": "ACTIVE"
   },
   {
@@ -206,7 +186,7 @@
     "change": 23.449,
     "trade_id": "949f531c14c04355a82618720cf1c389",
     "created_at": "2026-08-15T19:01:01.049101+00:00",
-    "last_checked_at": "2026-08-30T23:39:47.310583+00:00",
+    "last_checked_at": "2026-08-30T23:49:48.344513+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.0631,
@@ -230,7 +210,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-08-30T23:39:48.198247+00:00",
+    "last_checked_at": "2026-08-30T23:49:49.213107+00:00",
     "status": "ACTIVE"
   },
   {
@@ -250,7 +230,7 @@
     "change": 17.694,
     "trade_id": "faa3d8bd10a24294802c33a276a73d92",
     "created_at": "2026-08-16T09:54:32.439560+00:00",
-    "last_checked_at": "2026-08-30T23:39:49.331891+00:00",
+    "last_checked_at": "2026-08-30T23:49:50.076634+00:00",
     "status": "ACTIVE"
   },
   {
@@ -274,35 +254,11 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "376f9500094346a1a8a0d3d0c1aa581d",
     "created_at": "2026-08-30T06:03:09.836777+00:00",
-    "last_checked_at": "2026-08-30T23:39:50.276369+00:00",
+    "last_checked_at": "2026-08-30T23:49:51.172374+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 5.2,
     "tp1_hit_at": "2026-08-30T12:16:59.999000+00:00",
     "tp1_card": "UNI_TP1_target_card.png"
-  },
-  {
-    "coin": "AUCTION",
-    "trending_bonus": "ZKC",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 3.81,
-    "tp1": 4.0,
-    "tp2": 4.3,
-    "sl": 3.65,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A liquidity sweep of the 3.80‑3.85 zone broke a bearish order block, indicating smart money accumulation and a flip to bullish bias.",
-    "invalidation": "Close below 3.65 invalidates the long thesis.",
-    "rapid_reason": "1H bullish engulfing candle with a 2.5× volume surge.",
-    "smc_logic": "The price broke a well‑defined bearish order block at 3.78, triggering a liquidity grab that forced sellers to absorb. The subsequent retest held above the block, forming a bullish demand zone, and the 1H candle confirmed the flip. This aligns with Smart Money concepts of accumulation before a breakout.",
-    "smc_logic_short": "Break of bearish order block → demand zone formation → bullish 1H candle.",
-    "change": 20.806,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "505ac67b1d7c4a03af1412eb200388bf",
-    "created_at": "2026-08-30T21:03:07.652616+00:00",
-    "last_checked_at": "2026-08-30T23:39:51.165248+00:00",
-    "status": "ACTIVE"
   }
 ]
