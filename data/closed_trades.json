@@ -2595,5 +2595,31 @@
     "status": "SL_HIT",
     "closed_price": 0.01345,
     "closed_at": "2026-08-30T00:19:59.999000+00:00"
+  },
+  {
+    "coin": "ZKP",
+    "trending_bonus": "PROM",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.0592,
+    "tp1": 0.0616,
+    "tp2": 0.0663,
+    "sl": 0.0574,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.0580‑0.0585 zone created a bullish order block, and price retested it with strong volume, confirming buying pressure.",
+    "invalidation": "Close below 0.0570 invalidates the bullish structure and triggers the stop.",
+    "rapid_reason": "1H chart displayed a bullish engulfing candle breaking the prior swing high.",
+    "smc_logic": "The price broke the previous swing high, forming a bullish order block at 0.0582‑0.0585. A rapid liquidity sweep forced price back into this block, where smart money accumulated, leading to a clean retest and a higher close, confirming the long bias.",
+    "smc_logic_short": "Break of structure + order block retest = long entry.",
+    "change": 36.406,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "97d15ba2a4424097b73f3b05eaf28b0a",
+    "created_at": "2026-08-30T03:03:01.454665+00:00",
+    "last_checked_at": "2026-08-30T03:16:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.0574,
+    "closed_at": "2026-08-30T03:16:59.999000+00:00"
   }
 ]
