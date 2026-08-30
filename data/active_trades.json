@@ -252,5 +252,29 @@
     "created_at": "2026-08-16T09:54:32.439560+00:00",
     "last_checked_at": "2026-08-30T05:56:48.896863+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "UNI",
+    "trending_bonus": "PROM",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 4.879,
+    "tp1": 5.2,
+    "tp2": 5.8,
+    "sl": 4.68,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 4.80‑4.85 zone broke a bullish order block, confirming strong buying pressure.",
+    "invalidation": "Close below 4.66 invalidates the setup",
+    "rapid_reason": "1H bullish engulfing candle on a volume spike",
+    "smc_logic": "The price broke a recent order block at 4.84, retesting the broken resistance now acting as support. A clear liquidity grab below 4.80 forced sellers to capitulate, allowing the market to move into the next bullish imbalance zone. The next target aligns with the prior swing high at 5.2, with an extended target near the 5.8 resistance cluster.",
+    "smc_logic_short": "Order block break → liquidity grab → bullish imbalance to 5.2/5.8",
+    "change": 10.26,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "376f9500094346a1a8a0d3d0c1aa581d",
+    "created_at": "2026-08-30T06:03:09.836777+00:00",
+    "last_checked_at": "2026-08-30T06:03:09.836777+00:00",
+    "status": "ACTIVE"
   }
 ]
