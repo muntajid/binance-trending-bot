@@ -1,20 +1,8 @@
 {
-  "coin": "ZKC",
-  "trending_bonus": "PROM",
-  "direction": "LONG",
-  "entry": "CMP",
-  "entry_price": 0.0558,
-  "tp1": 0.0583,
-  "tp2": 0.0625,
-  "sl": 0.0541,
-  "leverage": "15x",
-  "risk": "Medium Risk",
-  "confidence": 85,
-  "why_now": "A liquidity sweep below the 0.0545‑0.0550 zone forced stop‑losses, then price retested and held the broken order block, breaking the prior swing high and confirming bullish pressure.",
-  "invalidation": "Close below 0.0540 invalidates the bullish order block and the trade thesis.",
-  "rapid_reason": "1H bullish engulfing candle with a sharp volume spike.",
-  "smc_logic": "The market performed a liquidity grab beneath the recent swing low, then retested the broken order block at 0.0545‑0.0550, which now acts as a strong demand zone. A bullish order block formed and held, and the 1H candle closed above the previous high, indicating smart‑money accumulation. This confluence supports a long bias with a tight stop just below the liquidity pool.",
-  "smc_logic_short": "Liquidity grab, order block hold, 1H bullish break.",
-  "change": 42.711,
-  "groq_model": "openai/gpt-oss-120b"
+  "title": "Trader Diary: The 1‑Minute Chart Stare",
+  "content": "📈 Spot price up 0.8% → I open a 10x futures position.\n🚀 5 seconds later: \"I’m a genius!\" \n⏳ 1 minute later: \"Why is my margin screaming?\" \n💤 3 AM: \"Just one more candle...\"",
+  "lesson": "Never let a single candle dictate a 10x move – set stop‑losses before the hype hits.",
+  "question": "Who’s still glued to the 1‑minute chart at 3 AM? Drop your latest panic‑buy story 👇",
+  "groq_model": "openai/gpt-oss-120b",
+  "type": "meme_community"
 }
