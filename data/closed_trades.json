@@ -2726,5 +2726,31 @@
     "status": "SL_HIT",
     "closed_price": 0.01519,
     "closed_at": "2026-08-31T03:37:59.999000+00:00"
+  },
+  {
+    "coin": "0G",
+    "trending_bonus": "HEMI",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.208,
+    "tp1": 0.216,
+    "tp2": 0.236,
+    "sl": 0.202,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "Liquidity sweep at 0.208 after a sharp 25% rally, indicating institutional accumulation.",
+    "invalidation": "Break below 0.202 invalidates the trade.",
+    "rapid_reason": "1H momentum spike with volume surge.",
+    "smc_logic": "The 0.208 level sits just above a recent swing low, forming a bullish reversal zone. Smart Money has been accumulating through a series of small buy orders, creating a tight support that is likely to hold. The price is now poised to break the 0.216 target as volume confirms the move.",
+    "smc_logic_short": "Support at 0.208, target 0.216, extended 0.236.",
+    "change": 25.483,
+    "groq_model": "openai/gpt-oss-20b",
+    "trade_id": "397ecc16db704415829b45be140ea062",
+    "created_at": "2026-08-31T15:03:11.716627+00:00",
+    "last_checked_at": "2026-08-31T15:10:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.202,
+    "closed_at": "2026-08-31T15:10:59.999000+00:00"
   }
 ]
