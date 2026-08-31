@@ -1,8 +1,20 @@
 {
-  "title": "Trader Diary: 78k BTC & My 10x Leverage Dream",
-  "content": "BTC at $78,493, I whisper \"just one more candle\"\nCheck the chart, see green, place 10x, heart rate hits 180\n30 seconds later: \"Why is my margin call louder than my alarm?\"",
-  "lesson": "Never let FOMO dictate leverage—set your max risk before the hype.",
-  "question": "Who else just turned a 2% dip into a 200% panic trade? 🙋‍♂️👇",
-  "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "coin": "0G",
+  "trending_bonus": "HEMI",
+  "direction": "LONG",
+  "entry": "CMP",
+  "entry_price": 0.208,
+  "tp1": 0.216,
+  "tp2": 0.236,
+  "sl": 0.202,
+  "leverage": "15x",
+  "risk": "Medium Risk",
+  "confidence": 85,
+  "why_now": "Liquidity sweep at 0.208 after a sharp 25% rally, indicating institutional accumulation.",
+  "invalidation": "Break below 0.202 invalidates the trade.",
+  "rapid_reason": "1H momentum spike with volume surge.",
+  "smc_logic": "The 0.208 level sits just above a recent swing low, forming a bullish reversal zone. Smart Money has been accumulating through a series of small buy orders, creating a tight support that is likely to hold. The price is now poised to break the 0.216 target as volume confirms the move.",
+  "smc_logic_short": "Support at 0.208, target 0.216, extended 0.236.",
+  "change": 25.483,
+  "groq_model": "openai/gpt-oss-20b"
 }
