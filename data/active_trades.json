@@ -260,5 +260,29 @@
     "tp1_hit_price": 5.2,
     "tp1_hit_at": "2026-08-30T12:16:59.999000+00:00",
     "tp1_card": "UNI_TP1_target_card.png"
+  },
+  {
+    "coin": "HEMI",
+    "trending_bonus": "ZKC",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.01566,
+    "tp1": 0.01629,
+    "tp2": 0.01754,
+    "sl": 0.01519,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.0155 support zone created a bullish order block that was immediately retested and held, indicating smart money accumulation.",
+    "invalidation": "Close below 0.01520 invalidates the bullish order block and the trade premise.",
+    "rapid_reason": "1H candle broke above the recent swing high, confirming upward momentum.",
+    "smc_logic": "The price performed a liquidity grab below the 0.0155 support, forming a clear bullish order block. After the grab, price retested the block and held, showing smart money absorption. A break of structure on the 1H chart confirms the shift to bullish bias, making a long entry at the current market price viable.",
+    "smc_logic_short": "Liquidity grab → bullish order block retest → 1H BOS confirms long bias.",
+    "change": 37.885,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "9c34d1f75ae6411eb92fa25b36e0be91",
+    "created_at": "2026-08-31T03:03:14.326473+00:00",
+    "last_checked_at": "2026-08-31T03:03:14.326473+00:00",
+    "status": "ACTIVE"
   }
 ]
