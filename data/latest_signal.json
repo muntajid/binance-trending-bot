@@ -1,20 +1,8 @@
 {
-  "coin": "HEMI",
-  "trending_bonus": "ZKC",
-  "direction": "LONG",
-  "entry": "CMP",
-  "entry_price": 0.01566,
-  "tp1": 0.01629,
-  "tp2": 0.01754,
-  "sl": 0.01519,
-  "leverage": "15x",
-  "risk": "Medium Risk",
-  "confidence": 85,
-  "why_now": "A liquidity sweep of the 0.0155 support zone created a bullish order block that was immediately retested and held, indicating smart money accumulation.",
-  "invalidation": "Close below 0.01520 invalidates the bullish order block and the trade premise.",
-  "rapid_reason": "1H candle broke above the recent swing high, confirming upward momentum.",
-  "smc_logic": "The price performed a liquidity grab below the 0.0155 support, forming a clear bullish order block. After the grab, price retested the block and held, showing smart money absorption. A break of structure on the 1H chart confirms the shift to bullish bias, making a long entry at the current market price viable.",
-  "smc_logic_short": "Liquidity grab → bullish order block retest → 1H BOS confirms long bias.",
-  "change": 37.885,
-  "groq_model": "openai/gpt-oss-120b"
+  "title": "Trader Diary: 78k BTC & My 10x Leverage Dream",
+  "content": "BTC at $78,493, I whisper \"just one more candle\"\nCheck the chart, see green, place 10x, heart rate hits 180\n30 seconds later: \"Why is my margin call louder than my alarm?\"",
+  "lesson": "Never let FOMO dictate leverage—set your max risk before the hype.",
+  "question": "Who else just turned a 2% dip into a 200% panic trade? 🙋‍♂️👇",
+  "groq_model": "openai/gpt-oss-120b",
+  "type": "meme_community"
 }
