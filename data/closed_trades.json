@@ -2752,5 +2752,31 @@
     "status": "SL_HIT",
     "closed_price": 0.202,
     "closed_at": "2026-08-31T15:10:59.999000+00:00"
+  },
+  {
+    "coin": "DOGS",
+    "trending_bonus": "0G",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 4.418e-05,
+    "tp1": 4.6389e-05,
+    "tp2": 4.947e-05,
+    "sl": 4.287e-05,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "Recent liquidity sweep at the 4.4e-05 support level triggered a sharp volume spike, indicating institutional accumulation.",
+    "invalidation": "Price falling below the 4.287e-05 stop‑loss level would invalidate the thesis.",
+    "rapid_reason": "1‑hour candle shows a bullish engulfing pattern after a sudden volume surge.",
+    "smc_logic": "The 1‑hour chart reveals a clear support zone at 4.4e-05 where liquidity was absorbed, followed by a sharp reversal and sustained buying pressure. Smart Money likely placed large orders just below this level, creating a protected entry. The subsequent volume spike confirms that the move is not a random fluctuation but a deliberate accumulation.",
+    "smc_logic_short": "Bullish reversal at 4.4e-05 support with high volume.",
+    "change": 12.855,
+    "groq_model": "openai/gpt-oss-20b",
+    "trade_id": "55282da3e9d74683b0d3b1a1c646bc1d",
+    "created_at": "2026-08-31T21:02:50.734322+00:00",
+    "last_checked_at": "2026-08-31T22:00:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 4.287e-05,
+    "closed_at": "2026-08-31T22:00:59.999000+00:00"
   }
 ]
