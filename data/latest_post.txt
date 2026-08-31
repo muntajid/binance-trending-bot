@@ -1,17 +1,17 @@
-🚨 $0G Volume Expansion (+25.5% 24H) — Key Resistance Flipped! 📈
+🚨 $DOGS Volume Expansion (+12.9% 24H) — Key Resistance Flipped! 📈
 
-$0G — LONG SETUP
-• Entry Zone (CMP): $0.208
-• Target 1: $0.216 (+3.8%) 🎯
-• Target 2: $0.236 (+13.5%) 🚀
-• Invalidation (SL): $0.202 (-2.9%) 🛡️
-• Risk/Reward: 1:1.33R | Confidence: 85%
+$DOGS — LONG SETUP
+• Entry Zone (CMP): $0.000044
+• Target 1: $0.000046 (+5.0%) 🎯
+• Target 2: $0.000049 (+12.0%) 🚀
+• Invalidation (SL): $0.000043 (-3.0%) 🛡️
+• Risk/Reward: 1:1.69R | Confidence: 85%
 • Suggested Leverage: 3x - 5x (Max 15x)
 
-Why now: Liquidity sweep at 0.208 after a sharp 25% rally, indicating institutional accumulation.
-What changes the view: Break below 0.202 invalidates the trade.
+Why now: Recent liquidity sweep at the 4.4e-05 support level triggered a sharp volume spike, indicating institutional accumulation.
+What changes the view: Price falling below the 4.287e-05 stop‑loss level would invalidate the thesis.
 
 💡 Strategy: Wait for 1H candle confirmation. Never over-leverage on momentum expansions.
 
-$0G $BTC #CryptoTrading
+$DOGS $BTC #Write2Earn
 ⚠️ Educational market analysis. Always manage your risk & DYOR.
