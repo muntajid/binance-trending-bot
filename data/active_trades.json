@@ -256,5 +256,29 @@
     "created_at": "2026-09-01T06:06:13.258255+00:00",
     "last_checked_at": "2026-09-01T09:00:13.583078+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "TWT",
+    "trending_bonus": "ARB",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.5296,
+    "tp1": 0.5561,
+    "tp2": 0.5932,
+    "sl": 0.5137,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep around 0.5250 created a bullish order block that was immediately retested and held, signaling smart‑money accumulation.",
+    "invalidation": "Close below 0.5120 invalidates the bullish order block and the trade premise.",
+    "rapid_reason": "1H bullish engulfing candle with a sharp volume spike after the sweep.",
+    "smc_logic": "The price broke the previous swing low, triggering a liquidity grab at the 0.5250 level. A bullish order block formed at the sweep zone, and the market retested it, holding above, which is a classic smart‑money accumulation pattern. The next resistance aligns with the 0.5560 level, offering a risk‑reward target.",
+    "smc_logic_short": "Liquidity sweep → bullish order block → retest hold → target at 0.5560.",
+    "change": 14.434,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "ca97e936bcae4369b5b8be5df976bb6c",
+    "created_at": "2026-09-01T09:04:32.121694+00:00",
+    "last_checked_at": "2026-09-01T09:04:32.121694+00:00",
+    "status": "ACTIVE"
   }
 ]
