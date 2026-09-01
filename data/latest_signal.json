@@ -1,20 +1,8 @@
 {
-  "coin": "TWT",
-  "trending_bonus": "ARB",
-  "direction": "LONG",
-  "entry": "CMP",
-  "entry_price": 0.5296,
-  "tp1": 0.5561,
-  "tp2": 0.5932,
-  "sl": 0.5137,
-  "leverage": "15x",
-  "risk": "Medium Risk",
-  "confidence": 85,
-  "why_now": "A liquidity sweep around 0.5250 created a bullish order block that was immediately retested and held, signaling smart‑money accumulation.",
-  "invalidation": "Close below 0.5120 invalidates the bullish order block and the trade premise.",
-  "rapid_reason": "1H bullish engulfing candle with a sharp volume spike after the sweep.",
-  "smc_logic": "The price broke the previous swing low, triggering a liquidity grab at the 0.5250 level. A bullish order block formed at the sweep zone, and the market retested it, holding above, which is a classic smart‑money accumulation pattern. The next resistance aligns with the 0.5560 level, offering a risk‑reward target.",
-  "smc_logic_short": "Liquidity sweep → bullish order block → retest hold → target at 0.5560.",
-  "change": 14.434,
-  "groq_model": "openai/gpt-oss-120b"
+  "title": "Trader Diary: 78K BTC Dip",
+  "content": "📉 78,020 and my brain: ‘Buy the dip!’\n🧠 5 mins later: ‘Sell the dip, it’s a trap!’\n🚀 1 hour later: ‘Why is my leverage screaming louder than my mom?’",
+  "lesson": "Never let FOMO dictate position size—set your stop before the coffee gets cold.",
+  "question": "Who else just rode the 0.6% rollercoaster and ended up buying at the bottom? Be honest 👇",
+  "groq_model": "openai/gpt-oss-120b",
+  "type": "meme_community"
 }
