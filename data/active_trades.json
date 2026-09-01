@@ -17,7 +17,7 @@
     "created_at": "2026-08-09T10:18:41.432894",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-09-01T11:44:04.423840+00:00",
+    "last_checked_at": "2026-09-01T11:56:26.711340+00:00",
     "trade_id": "cookie-803c273ce218397f3d39"
   },
   {
@@ -38,7 +38,7 @@
     "created_at": "2026-08-09T13:53:49.243606",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-09-01T11:44:05.749525+00:00",
+    "last_checked_at": "2026-09-01T11:56:27.585596+00:00",
     "trade_id": "mubarak-f94fa4a0d02ca4f64507"
   },
   {
@@ -58,7 +58,7 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-01T11:44:07.175285+00:00",
+    "last_checked_at": "2026-09-01T11:56:28.446607+00:00",
     "trade_id": "broccoli714-4afb4206a90a75f8adef"
   },
   {
@@ -78,7 +78,7 @@
     "change": 16.429,
     "created_at": "2026-08-11T15:30:36.044910",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-01T11:44:08.491463+00:00",
+    "last_checked_at": "2026-09-01T11:56:29.307799+00:00",
     "trade_id": "luna-c2dd588ea6c1ea1f0180"
   },
   {
@@ -98,7 +98,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-01T11:44:09.870032+00:00",
+    "last_checked_at": "2026-09-01T11:56:30.173614+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -117,7 +117,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-09-01T11:44:11.159260+00:00",
+    "last_checked_at": "2026-09-01T11:56:31.041471+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -142,7 +142,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-09-01T11:44:12.452067+00:00",
+    "last_checked_at": "2026-09-01T11:56:31.913775+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -166,7 +166,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-09-01T11:44:13.782732+00:00",
+    "last_checked_at": "2026-09-01T11:56:32.774342+00:00",
     "status": "ACTIVE"
   },
   {
@@ -186,7 +186,7 @@
     "change": 23.449,
     "trade_id": "949f531c14c04355a82618720cf1c389",
     "created_at": "2026-08-15T19:01:01.049101+00:00",
-    "last_checked_at": "2026-09-01T11:44:15.101403+00:00",
+    "last_checked_at": "2026-09-01T11:56:33.636959+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.0631,
@@ -210,7 +210,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-09-01T11:44:16.480787+00:00",
+    "last_checked_at": "2026-09-01T11:56:34.499727+00:00",
     "status": "ACTIVE"
   },
   {
@@ -230,7 +230,7 @@
     "change": 17.694,
     "trade_id": "faa3d8bd10a24294802c33a276a73d92",
     "created_at": "2026-08-16T09:54:32.439560+00:00",
-    "last_checked_at": "2026-09-01T11:44:17.819109+00:00",
+    "last_checked_at": "2026-09-01T11:56:35.370048+00:00",
     "status": "ACTIVE"
   },
   {
@@ -254,7 +254,7 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "b88b27d6539b4eaab0178ef03ad15a70",
     "created_at": "2026-09-01T06:06:13.258255+00:00",
-    "last_checked_at": "2026-09-01T11:44:19.110011+00:00",
+    "last_checked_at": "2026-09-01T11:56:36.230292+00:00",
     "status": "ACTIVE"
   },
   {
@@ -278,7 +278,7 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "ca97e936bcae4369b5b8be5df976bb6c",
     "created_at": "2026-09-01T09:04:32.121694+00:00",
-    "last_checked_at": "2026-09-01T11:44:20.418973+00:00",
+    "last_checked_at": "2026-09-01T11:56:37.102004+00:00",
     "status": "ACTIVE"
   }
 ]
