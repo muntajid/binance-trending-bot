@@ -17,7 +17,7 @@
     "created_at": "2026-08-09T10:18:41.432894",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-09-01T06:13:49.492628+00:00",
+    "last_checked_at": "2026-09-01T06:37:06.460237+00:00",
     "trade_id": "cookie-803c273ce218397f3d39"
   },
   {
@@ -38,7 +38,7 @@
     "created_at": "2026-08-09T13:53:49.243606",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-09-01T06:13:51.032209+00:00",
+    "last_checked_at": "2026-09-01T06:37:07.474420+00:00",
     "trade_id": "mubarak-f94fa4a0d02ca4f64507"
   },
   {
@@ -58,7 +58,7 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-01T06:13:51.896278+00:00",
+    "last_checked_at": "2026-09-01T06:37:08.449977+00:00",
     "trade_id": "broccoli714-4afb4206a90a75f8adef"
   },
   {
@@ -78,7 +78,7 @@
     "change": 16.429,
     "created_at": "2026-08-11T15:30:36.044910",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-01T06:13:52.747273+00:00",
+    "last_checked_at": "2026-09-01T06:37:09.442653+00:00",
     "trade_id": "luna-c2dd588ea6c1ea1f0180"
   },
   {
@@ -98,7 +98,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-01T06:13:53.612317+00:00",
+    "last_checked_at": "2026-09-01T06:37:10.419491+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -117,7 +117,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-09-01T06:13:54.455537+00:00",
+    "last_checked_at": "2026-09-01T06:37:11.406253+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -142,7 +142,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-09-01T06:13:55.265969+00:00",
+    "last_checked_at": "2026-09-01T06:37:12.416952+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -166,7 +166,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-09-01T06:13:56.097342+00:00",
+    "last_checked_at": "2026-09-01T06:37:13.406186+00:00",
     "status": "ACTIVE"
   },
   {
@@ -186,7 +186,7 @@
     "change": 23.449,
     "trade_id": "949f531c14c04355a82618720cf1c389",
     "created_at": "2026-08-15T19:01:01.049101+00:00",
-    "last_checked_at": "2026-09-01T06:13:56.953693+00:00",
+    "last_checked_at": "2026-09-01T06:37:14.384624+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.0631,
@@ -210,7 +210,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-09-01T06:13:57.791093+00:00",
+    "last_checked_at": "2026-09-01T06:37:15.375102+00:00",
     "status": "ACTIVE"
   },
   {
@@ -230,36 +230,8 @@
     "change": 17.694,
     "trade_id": "faa3d8bd10a24294802c33a276a73d92",
     "created_at": "2026-08-16T09:54:32.439560+00:00",
-    "last_checked_at": "2026-09-01T06:13:58.596793+00:00",
+    "last_checked_at": "2026-09-01T06:37:16.357292+00:00",
     "status": "ACTIVE"
-  },
-  {
-    "coin": "UNI",
-    "trending_bonus": "PROM",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 4.879,
-    "tp1": 5.2,
-    "tp2": 5.8,
-    "sl": 4.68,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A liquidity sweep of the 4.80‑4.85 zone broke a bullish order block, confirming strong buying pressure.",
-    "invalidation": "Close below 4.66 invalidates the setup",
-    "rapid_reason": "1H bullish engulfing candle on a volume spike",
-    "smc_logic": "The price broke a recent order block at 4.84, retesting the broken resistance now acting as support. A clear liquidity grab below 4.80 forced sellers to capitulate, allowing the market to move into the next bullish imbalance zone. The next target aligns with the prior swing high at 5.2, with an extended target near the 5.8 resistance cluster.",
-    "smc_logic_short": "Order block break → liquidity grab → bullish imbalance to 5.2/5.8",
-    "change": 10.26,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "376f9500094346a1a8a0d3d0c1aa581d",
-    "created_at": "2026-08-30T06:03:09.836777+00:00",
-    "last_checked_at": "2026-09-01T06:13:59.405019+00:00",
-    "status": "ACTIVE",
-    "tp1_hit": true,
-    "tp1_hit_price": 5.2,
-    "tp1_hit_at": "2026-08-30T12:16:59.999000+00:00",
-    "tp1_card": "UNI_TP1_target_card.png"
   },
   {
     "coin": "CRV",
@@ -282,7 +254,7 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "b88b27d6539b4eaab0178ef03ad15a70",
     "created_at": "2026-09-01T06:06:13.258255+00:00",
-    "last_checked_at": "2026-09-01T06:14:00.272339+00:00",
+    "last_checked_at": "2026-09-01T06:37:23.566458+00:00",
     "status": "ACTIVE"
   }
 ]
