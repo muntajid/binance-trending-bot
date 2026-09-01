@@ -17,7 +17,7 @@
     "created_at": "2026-08-09T10:18:41.432894",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-09-01T03:58:36.021472+00:00",
+    "last_checked_at": "2026-09-01T04:16:08.095972+00:00",
     "trade_id": "cookie-803c273ce218397f3d39"
   },
   {
@@ -38,7 +38,7 @@
     "created_at": "2026-08-09T13:53:49.243606",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-09-01T03:58:37.401153+00:00",
+    "last_checked_at": "2026-09-01T04:16:09.316612+00:00",
     "trade_id": "mubarak-f94fa4a0d02ca4f64507"
   },
   {
@@ -58,7 +58,7 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-01T03:58:39.268562+00:00",
+    "last_checked_at": "2026-09-01T04:16:10.330726+00:00",
     "trade_id": "broccoli714-4afb4206a90a75f8adef"
   },
   {
@@ -78,7 +78,7 @@
     "change": 16.429,
     "created_at": "2026-08-11T15:30:36.044910",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-01T03:58:40.408842+00:00",
+    "last_checked_at": "2026-09-01T04:16:11.369251+00:00",
     "trade_id": "luna-c2dd588ea6c1ea1f0180"
   },
   {
@@ -98,7 +98,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-01T03:58:41.548243+00:00",
+    "last_checked_at": "2026-09-01T04:16:12.359376+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -117,7 +117,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-09-01T03:58:42.690535+00:00",
+    "last_checked_at": "2026-09-01T04:16:13.338953+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -142,7 +142,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-09-01T03:58:43.823733+00:00",
+    "last_checked_at": "2026-09-01T04:16:14.367469+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -166,7 +166,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-09-01T03:58:44.964121+00:00",
+    "last_checked_at": "2026-09-01T04:16:15.408853+00:00",
     "status": "ACTIVE"
   },
   {
@@ -186,7 +186,7 @@
     "change": 23.449,
     "trade_id": "949f531c14c04355a82618720cf1c389",
     "created_at": "2026-08-15T19:01:01.049101+00:00",
-    "last_checked_at": "2026-09-01T03:58:46.297928+00:00",
+    "last_checked_at": "2026-09-01T04:16:16.383890+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.0631,
@@ -210,7 +210,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-09-01T03:58:47.428675+00:00",
+    "last_checked_at": "2026-09-01T04:16:17.399312+00:00",
     "status": "ACTIVE"
   },
   {
@@ -230,7 +230,7 @@
     "change": 17.694,
     "trade_id": "faa3d8bd10a24294802c33a276a73d92",
     "created_at": "2026-08-16T09:54:32.439560+00:00",
-    "last_checked_at": "2026-09-01T03:58:48.533020+00:00",
+    "last_checked_at": "2026-09-01T04:16:18.687472+00:00",
     "status": "ACTIVE"
   },
   {
@@ -254,35 +254,11 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "376f9500094346a1a8a0d3d0c1aa581d",
     "created_at": "2026-08-30T06:03:09.836777+00:00",
-    "last_checked_at": "2026-09-01T03:58:49.629808+00:00",
+    "last_checked_at": "2026-09-01T04:16:19.674624+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 5.2,
     "tp1_hit_at": "2026-08-30T12:16:59.999000+00:00",
     "tp1_card": "UNI_TP1_target_card.png"
-  },
-  {
-    "coin": "ARB",
-    "trending_bonus": "0G",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.1132,
-    "tp1": 0.1189,
-    "tp2": 0.1268,
-    "sl": 0.1098,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A liquidity sweep of the 0.1125‑0.1130 zone created a bullish order block, confirming strong buying pressure.",
-    "invalidation": "Close below 0.1095 invalidates the long thesis.",
-    "rapid_reason": "1H bullish engulfing candle after a sharp volume spike.",
-    "smc_logic": "The price broke above a recent swing high, retesting the broken resistance as a demand zone. A clear order block formed at 0.1125‑0.1130, and the subsequent liquidity grab pulled price back to the CMP, providing a clean entry. With the market still in an uptrend, the setup aligns with Smart Money accumulation patterns.",
-    "smc_logic_short": "Break of swing high, order block at 0.1125‑0.1130, liquidity sweep confirms entry.",
-    "change": 33.648,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "bc5bb22aef4142cf891ca52ad3181cf0",
-    "created_at": "2026-09-01T03:05:11.135016+00:00",
-    "last_checked_at": "2026-09-01T03:58:50.759191+00:00",
-    "status": "ACTIVE"
   }
 ]
