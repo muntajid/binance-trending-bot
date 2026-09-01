@@ -2865,5 +2865,31 @@
     "tp1_card": "SC_TP1_target_card.png",
     "closed_price": 0.000889,
     "closed_at": "2026-09-01T15:35:59.999000+00:00"
+  },
+  {
+    "coin": "ONG",
+    "trending_bonus": "SC",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.11546,
+    "tp1": 0.12015,
+    "tp2": 0.12939,
+    "sl": 0.11206,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.1120‑0.1130 zone created a bullish order block, and price instantly broke the recent swing high, confirming strong buying pressure.",
+    "invalidation": "Close below 0.1115 invalidates the bullish order block and the trade premise.",
+    "rapid_reason": "1H candle broke the prior high with a volume spike, indicating aggressive buying.",
+    "smc_logic": "The price cleared a well‑defined order block at 0.1120‑0.1130, indicating smart money accumulation. A break of structure on the 1H chart confirmed the shift to bullish bias, and the next resistance at 0.1200 serves as the first profit target. The trade is anchored by the liquidity grab and the subsequent upward thrust.",
+    "smc_logic_short": "Order block cleared, break of structure, bullish bias confirmed.",
+    "change": 25.885,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "6b5b79425e594d3883cc268f14dc790e",
+    "created_at": "2026-09-01T18:05:38.088813+00:00",
+    "last_checked_at": "2026-09-01T21:35:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.11206,
+    "closed_at": "2026-09-01T21:35:59.999000+00:00"
   }
 ]
