@@ -1,8 +1,20 @@
 {
-  "title": "Trader Diary: 78K BTC Dip",
-  "content": "📉 78,020 and my brain: ‘Buy the dip!’\n🧠 5 mins later: ‘Sell the dip, it’s a trap!’\n🚀 1 hour later: ‘Why is my leverage screaming louder than my mom?’",
-  "lesson": "Never let FOMO dictate position size—set your stop before the coffee gets cold.",
-  "question": "Who else just rode the 0.6% rollercoaster and ended up buying at the bottom? Be honest 👇",
-  "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "coin": "SC",
+  "trending_bonus": "ARB",
+  "direction": "LONG",
+  "entry": "CMP",
+  "entry_price": 0.000914,
+  "tp1": 0.000954,
+  "tp2": 0.001027,
+  "sl": 0.000889,
+  "leverage": "15x",
+  "risk": "Medium Risk",
+  "confidence": 85,
+  "why_now": "A liquidity sweep of the 0.00090 support zone created a bullish order block, confirming strong accumulation as price surged 51% in 24h.",
+  "invalidation": "Close below 0.000885 invalidates the bullish thesis.",
+  "rapid_reason": "1H candle broke above the recent swing high, signaling fresh buying momentum.",
+  "smc_logic": "The price retested the 0.00090 liquidity pool and formed a clear bullish order block. A subsequent break of the prior swing high confirms market structure shift to higher highs, suggesting smart money is loading long positions. The setup aligns with the ARB rally, providing a strong directional bias.",
+  "smc_logic_short": "Bullish order block at 0.00090, higher high break, aligns with ARB momentum.",
+  "change": 51.074,
+  "groq_model": "openai/gpt-oss-120b"
 }
