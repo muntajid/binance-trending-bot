@@ -2921,5 +2921,31 @@
     "tp1_card": "ACE_TP1_target_card.png",
     "closed_price": 0.2033,
     "closed_at": "2026-09-02T02:28:59.999000+00:00"
+  },
+  {
+    "coin": "HEMI",
+    "trending_bonus": "ACE",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.01879,
+    "tp1": 0.0196,
+    "tp2": 0.02111,
+    "sl": 0.01828,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.0190 resistance turned into a bullish order‑block break, confirming strong buying pressure.",
+    "invalidation": "Close below 0.01830 (the recent swing low) invalidates the bullish thesis.",
+    "rapid_reason": "1H chart shows a bullish engulfing candle after a sharp volume spike.",
+    "smc_logic": "The price broke a higher high and retested the bullish order block at 0.0190, trapping stop‑loss liquidity. A subsequent pull‑back respected the order‑block support, indicating smart‑money accumulation. The next target aligns with the next supply zone.",
+    "smc_logic_short": "Bullish order‑block break at 0.0190, pull‑back to support, targeting higher supply zones.",
+    "change": 23.183,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "3cb2d909ded6435d966c857046b129a9",
+    "created_at": "2026-09-02T03:04:18.882865+00:00",
+    "last_checked_at": "2026-09-02T03:05:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.01828,
+    "closed_at": "2026-09-02T03:05:59.999000+00:00"
   }
 ]
