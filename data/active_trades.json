@@ -17,7 +17,7 @@
     "created_at": "2026-08-09T10:18:41.432894",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-09-02T08:15:51.902690+00:00",
+    "last_checked_at": "2026-09-02T08:32:06.793642+00:00",
     "trade_id": "cookie-803c273ce218397f3d39"
   },
   {
@@ -38,7 +38,7 @@
     "created_at": "2026-08-09T13:53:49.243606",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-09-02T08:15:52.919830+00:00",
+    "last_checked_at": "2026-09-02T08:32:08.156247+00:00",
     "trade_id": "mubarak-f94fa4a0d02ca4f64507"
   },
   {
@@ -58,7 +58,7 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-02T08:15:53.890245+00:00",
+    "last_checked_at": "2026-09-02T08:32:09.574479+00:00",
     "trade_id": "broccoli714-4afb4206a90a75f8adef"
   },
   {
@@ -78,7 +78,7 @@
     "change": 16.429,
     "created_at": "2026-08-11T15:30:36.044910",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-02T08:15:54.907089+00:00",
+    "last_checked_at": "2026-09-02T08:32:10.930633+00:00",
     "trade_id": "luna-c2dd588ea6c1ea1f0180"
   },
   {
@@ -98,7 +98,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-02T08:15:55.900747+00:00",
+    "last_checked_at": "2026-09-02T08:32:12.246867+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -117,7 +117,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-09-02T08:15:56.925934+00:00",
+    "last_checked_at": "2026-09-02T08:32:13.594230+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -142,7 +142,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-09-02T08:15:57.925134+00:00",
+    "last_checked_at": "2026-09-02T08:32:14.886715+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -166,7 +166,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-09-02T08:15:58.902399+00:00",
+    "last_checked_at": "2026-09-02T08:32:16.261054+00:00",
     "status": "ACTIVE"
   },
   {
@@ -186,7 +186,7 @@
     "change": 23.449,
     "trade_id": "949f531c14c04355a82618720cf1c389",
     "created_at": "2026-08-15T19:01:01.049101+00:00",
-    "last_checked_at": "2026-09-02T08:15:59.895340+00:00",
+    "last_checked_at": "2026-09-02T08:32:17.572371+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.0631,
@@ -210,7 +210,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-09-02T08:16:00.888549+00:00",
+    "last_checked_at": "2026-09-02T08:32:18.930011+00:00",
     "status": "ACTIVE"
   },
   {
@@ -230,7 +230,7 @@
     "change": 17.694,
     "trade_id": "faa3d8bd10a24294802c33a276a73d92",
     "created_at": "2026-08-16T09:54:32.439560+00:00",
-    "last_checked_at": "2026-09-02T08:16:01.882844+00:00",
+    "last_checked_at": "2026-09-02T08:32:20.213158+00:00",
     "status": "ACTIVE"
   },
   {
@@ -254,7 +254,7 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "b88b27d6539b4eaab0178ef03ad15a70",
     "created_at": "2026-09-01T06:06:13.258255+00:00",
-    "last_checked_at": "2026-09-02T08:16:02.866120+00:00",
+    "last_checked_at": "2026-09-02T08:32:21.498365+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.3666,
@@ -282,7 +282,7 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "ca97e936bcae4369b5b8be5df976bb6c",
     "created_at": "2026-09-01T09:04:32.121694+00:00",
-    "last_checked_at": "2026-09-02T08:16:03.839846+00:00",
+    "last_checked_at": "2026-09-02T08:32:22.776736+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.5561,
