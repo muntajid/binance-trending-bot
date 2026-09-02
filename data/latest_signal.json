@@ -1,20 +1,8 @@
 {
-  "coin": "FF",
-  "trending_bonus": "ACE",
-  "direction": "LONG",
-  "entry": "CMP",
-  "entry_price": 0.10012,
-  "tp1": 0.10408,
-  "tp2": 0.11209,
-  "sl": 0.09708,
-  "leverage": "15x",
-  "risk": "Medium Risk",
-  "confidence": 85,
-  "why_now": "A liquidity sweep below the 0.0980‑0.0990 zone broke a bearish order block, confirming bullish accumulation.",
-  "invalidation": "If price closes below 0.0970 the bullish structure is invalidated.",
-  "rapid_reason": "1H bullish engulfing candle after breaking the prior swing high.",
-  "smc_logic": "The price broke a bearish order block at ~0.0990 and immediately swept liquidity below the recent low, forming a higher low. This bullish order block flip signals a move toward the next supply zone around 0.1040, with extended upside near 0.1120. The setup aligns with Smart Money concepts of liquidity absorption and order block retest.",
-  "smc_logic_short": "Bullish order block break, higher low, targeting 0.1040/0.1120.",
-  "change": 20.713,
-  "groq_model": "openai/gpt-oss-120b"
+  "title": "Trader Diary: The 1% Dip that Feels Like a 100% Crash",
+  "content": "- 8:00 AM: “Just a tiny dip, I’ll buy the dip.”\n- 8:15 AM: BTC slides to $76.7k, my stop‑loss hits.\n- 8:20 AM: “I’m fine, I’m fine…” (still checking the 1‑minute chart).\n- 8:30 AM: Realize I’ve been holding a 0.5% loss for 45 minutes.",
+  "lesson": "Set a clear stop‑loss before the coffee, then actually stick to it.",
+  "question": "Who else watched the 1‑minute chart until their eyes went pixelated? Drop your 1‑minute horror stories 👇",
+  "groq_model": "openai/gpt-oss-120b",
+  "type": "meme_community"
 }
