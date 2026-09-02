@@ -1,18 +1,14 @@
-🚨 $ACE Volume Expansion (+26.1% 24H) — Key Resistance Flipped! 📈
+🌐 MACRO & BITCOIN OUTLOOK: BTC stalls below $78k as liquidity hunt tests key support 📊
 
-$ACE — LONG SETUP
-• Entry Zone (CMP): $0.2096
-• Target 1: $0.218 (+4.0%) 🎯
-• Target 2: $0.2348 (+12.0%) 🚀
-• Invalidation (SL): $0.2033 (-3.0%) 🛡️
-• Risk/Reward: 1:1.33R | Confidence: 85%
-• Suggested Leverage: 3x - 5x (Max 15x)
+$BTC 24H: $77410.01 (-1.55%)
+Market Phase: Consolidation with Liquidity Hunt
 
-Why now: A liquidity sweep was detected around 0.2075 with a sharp volume surge, pushing price above the recent swing low to 0.2096 and confirming smart‑money accumulation.
-What changes the view: Close below 0.2025 (next structural support) invalidates the bullish thesis.
+📊 Key Market Dynamics:
+• Bitcoin Structure: On the 1H chart BTC is forming a descending channel, holding the 77,000 support while probing the 78,200 resistance; the 4H shows a higher‑time swing low at 76,500 acting as a liquidity buffer.
+• Altcoin Flows: Altcoins are rotating into high‑beta assets, with ACE, SC, ONG and FF leading gains as capital seeks upside after Bitcoin's pullback.
+• Crucial Levels: Support $77000 | Resistance $78200
 
-💡 Risk Rule: Lock in 50% at TP1 and trail Stop Loss to entry for a risk-free run to TP2.
-Where do you see $ACE by end of week?
+💡 Trader Takeaway: Enter spot BTC near 77,000 with a tight stop below 76,800; on futures, consider short‑biased scalps targeting the 78,200 ceiling while respecting the same stop.
 
-$ACE $BTC #CryptoTrading
-⚠️ Educational market analysis. Always manage your risk & DYOR.
+$BTC $ETH #BinanceSquare #CryptoMarket
+⚠️ Educational market analysis only. Not financial advice. Always DYOR.
