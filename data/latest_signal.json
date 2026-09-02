@@ -1,8 +1,20 @@
 {
-  "title": "Trader Diary: The 1% Dip that Feels Like a 100% Crash",
-  "content": "- 8:00 AM: “Just a tiny dip, I’ll buy the dip.”\n- 8:15 AM: BTC slides to $76.7k, my stop‑loss hits.\n- 8:20 AM: “I’m fine, I’m fine…” (still checking the 1‑minute chart).\n- 8:30 AM: Realize I’ve been holding a 0.5% loss for 45 minutes.",
-  "lesson": "Set a clear stop‑loss before the coffee, then actually stick to it.",
-  "question": "Who else watched the 1‑minute chart until their eyes went pixelated? Drop your 1‑minute horror stories 👇",
-  "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "coin": "T",
+  "trending_bonus": "LA",
+  "direction": "LONG",
+  "entry": "CMP",
+  "entry_price": 0.00537,
+  "tp1": 0.00561,
+  "tp2": 0.00628,
+  "sl": 0.00521,
+  "leverage": "15x",
+  "risk": "Medium Risk",
+  "confidence": 85,
+  "why_now": "A liquidity sweep of the 0.0053 support zone created a bullish order block, confirming strong buying pressure as price surged 47% in 24h.",
+  "invalidation": "Close below 0.00520 invalidates the bullish structure and triggers the stop loss.",
+  "rapid_reason": "1H chart shows a bullish engulfing candle breaking the prior swing high, igniting upward momentum.",
+  "smc_logic": "The price retested the recent order block at 0.0053 and swept liquidity below, indicating smart money accumulation. After the sweep, the market formed a higher low, confirming a bullish bias. The next resistance at 0.0056 aligns with the projected TP1, offering a risk‑reward edge.",
+  "smc_logic_short": "Liquidity sweep → bullish order block → higher low confirms LONG bias.",
+  "change": 47.527,
+  "groq_model": "openai/gpt-oss-120b"
 }
