@@ -267,5 +267,29 @@
     "tp1_hit_price": 0.05622,
     "tp1_hit_at": "2026-09-03T15:53:59.999000+00:00",
     "tp1_card": "CHIP_TP1_target_card.png"
+  },
+  {
+    "coin": "MUBARAK",
+    "trending_bonus": "CHIP",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.03319,
+    "tp1": 0.03435,
+    "tp2": 0.03717,
+    "sl": 0.03219,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A bullish liquidity sweep through the 0.0325‑0.0330 zone pulled price above the prior swing high, confirming strong buying pressure.",
+    "invalidation": "Close below 0.03210 invalidates the bullish thesis.",
+    "rapid_reason": "1H chart shows a sharp bullish candle breaking the previous swing high with a volume spike.",
+    "smc_logic": "The price broke a bearish order block at 0.0325, absorbing liquidity and then retested the broken resistance, now acting as a support zone. A clear liquidity pool was taken out, allowing the market to swing higher with institutional buying. The setup aligns with Smart Money concepts of accumulation followed by a breakout.",
+    "smc_logic_short": "Broken bearish order block, liquidity sweep, new support formed.",
+    "change": 25.672,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "9afc049c036f46468c944d467870a2dc",
+    "created_at": "2026-09-03T18:05:48.099504+00:00",
+    "last_checked_at": "2026-09-03T18:05:48.099504+00:00",
+    "status": "ACTIVE"
   }
 ]
