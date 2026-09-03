@@ -267,5 +267,29 @@
     "tp1_hit_price": 0.05622,
     "tp1_hit_at": "2026-09-03T15:53:59.999000+00:00",
     "tp1_card": "CHIP_TP1_target_card.png"
+  },
+  {
+    "coin": "AR",
+    "trending_bonus": "CHIP",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 2.73,
+    "tp1": 2.9,
+    "tp2": 3.15,
+    "sl": 2.6,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 2.70‑2.75 zone broke the previous bearish order block, indicating smart money accumulation and a shift to bullish pressure.",
+    "invalidation": "Close below 2.60 invalidates the setup as the broken order block is retested.",
+    "rapid_reason": "1H bullish engulfing candle with a 2.3× volume spike.",
+    "smc_logic": "The price broke a well‑defined bearish order block at 2.70, triggering a liquidity grab that forced sellers to absorb. After the sweep, the market re‑tested the broken block and held above it, confirming smart‑money intent to push higher. The next resistance at 2.90 aligns with the prior swing high, providing a logical TP1.",
+    "smc_logic_short": "Broken order block at 2.70 held, bullish engulfing on 1H confirms upward bias.",
+    "change": 19.676,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "4db7f5ff9bf047b7b1aec0e35dfdc7d0",
+    "created_at": "2026-09-03T21:04:49.454795+00:00",
+    "last_checked_at": "2026-09-03T21:04:49.454795+00:00",
+    "status": "ACTIVE"
   }
 ]
