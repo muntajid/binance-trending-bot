@@ -1,20 +1,8 @@
 {
-  "coin": "HEMI",
-  "trending_bonus": "EGLD",
-  "direction": "LONG",
-  "entry": "CMP",
-  "entry_price": 0.02013,
-  "tp1": 0.02094,
-  "tp2": 0.02255,
-  "sl": 0.01953,
-  "leverage": "15x",
-  "risk": "Medium Risk",
-  "confidence": 85,
-  "why_now": "A liquidity sweep of the 0.0200 support zone created a bullish order block, confirming strong buying pressure.",
-  "invalidation": "Close below 0.0195 invalidates the trade.",
-  "rapid_reason": "1H chart shows a bullish engulfing candle breaking the previous swing high.",
-  "smc_logic": "The price broke a clear down‑trend structure and retested the 0.0200 order block, which now acts as a bullish supply‑demand zone. A swift liquidity grab pushed price back above the block, indicating smart money accumulation. The next target aligns with the next resistance level, providing a favorable risk‑reward.",
-  "smc_logic_short": "Break of structure, bullish order block at 0.0200, liquidity sweep confirms accumulation.",
-  "change": 33.267,
-  "groq_model": "openai/gpt-oss-120b"
+  "title": "Trader Diary: BTC at $77,926 and My 10x Leverage Day",
+  "content": "👀 3 AM: “Buy the dip!”\n💥 5 AM: “Hold, HODL, never sell!”\n📉 6 AM: “Why is my margin screaming louder than my coffee?”",
+  "lesson": "Never let FOMO set your stop‑loss – set it first, then chase the hype.",
+  "question": "Who else watched the 1‑minute chart like a Netflix binge? Drop your war stories 👇",
+  "groq_model": "openai/gpt-oss-120b",
+  "type": "meme_community"
 }
