@@ -295,5 +295,29 @@
     "tp1_hit_price": 1002.6,
     "tp1_hit_at": "2026-09-04T08:53:59.999000+00:00",
     "tp1_card": "ZEC_TP1_target_card.png"
+  },
+  {
+    "coin": "ZEN",
+    "trending_bonus": "DASH",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 6.43,
+    "tp1": 6.75,
+    "tp2": 7.2,
+    "sl": 6.24,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A sharp liquidity sweep around the 6.30 level triggered a rapid 1H volume surge, flipping the prior resistance into support and confirming bullish pressure.",
+    "invalidation": "If price closes below 6.20, the bullish structure is considered broken.",
+    "rapid_reason": "1H bullish candle formed after the liquidity sweep.",
+    "smc_logic": "Smart Money cleared accumulated sell orders near 6.30, then retested the level as support, creating a higher low. The price now respects this new support while the previous resistance at 6.55 turned into a bullish order block, indicating institutional accumulation.",
+    "smc_logic_short": "Liquidity sweep cleared sell wall, support formed, resistance flipped to order block.",
+    "change": 17.89,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "421b72ad84154b9285ac4b460c6c2c87",
+    "created_at": "2026-09-04T09:04:38.851649+00:00",
+    "last_checked_at": "2026-09-04T09:04:38.851649+00:00",
+    "status": "ACTIVE"
   }
 ]
