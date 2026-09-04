@@ -17,7 +17,7 @@
     "created_at": "2026-08-09T10:18:41.432894",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-09-04T09:58:32.879483+00:00",
+    "last_checked_at": "2026-09-04T10:17:23.248645+00:00",
     "trade_id": "cookie-803c273ce218397f3d39"
   },
   {
@@ -37,7 +37,7 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-04T09:58:34.231693+00:00",
+    "last_checked_at": "2026-09-04T10:17:24.560460+00:00",
     "trade_id": "broccoli714-4afb4206a90a75f8adef"
   },
   {
@@ -57,7 +57,7 @@
     "change": 16.429,
     "created_at": "2026-08-11T15:30:36.044910",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-04T09:58:35.532209+00:00",
+    "last_checked_at": "2026-09-04T10:17:26.027862+00:00",
     "trade_id": "luna-c2dd588ea6c1ea1f0180"
   },
   {
@@ -77,7 +77,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-04T09:58:36.822256+00:00",
+    "last_checked_at": "2026-09-04T10:17:27.436808+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -96,7 +96,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-09-04T09:58:38.114549+00:00",
+    "last_checked_at": "2026-09-04T10:17:28.721991+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -121,7 +121,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-09-04T09:58:39.397449+00:00",
+    "last_checked_at": "2026-09-04T10:17:30.296048+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -145,7 +145,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-09-04T09:58:40.683981+00:00",
+    "last_checked_at": "2026-09-04T10:17:31.849534+00:00",
     "status": "ACTIVE"
   },
   {
@@ -165,7 +165,7 @@
     "change": 23.449,
     "trade_id": "949f531c14c04355a82618720cf1c389",
     "created_at": "2026-08-15T19:01:01.049101+00:00",
-    "last_checked_at": "2026-09-04T09:58:41.966404+00:00",
+    "last_checked_at": "2026-09-04T10:17:33.128006+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.0631,
@@ -189,7 +189,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-09-04T09:58:43.265591+00:00",
+    "last_checked_at": "2026-09-04T10:17:34.593082+00:00",
     "status": "ACTIVE"
   },
   {
@@ -209,7 +209,7 @@
     "change": 17.694,
     "trade_id": "faa3d8bd10a24294802c33a276a73d92",
     "created_at": "2026-08-16T09:54:32.439560+00:00",
-    "last_checked_at": "2026-09-04T09:58:44.557165+00:00",
+    "last_checked_at": "2026-09-04T10:17:36.156980+00:00",
     "status": "ACTIVE"
   },
   {
@@ -233,7 +233,7 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "b88b27d6539b4eaab0178ef03ad15a70",
     "created_at": "2026-09-01T06:06:13.258255+00:00",
-    "last_checked_at": "2026-09-04T09:58:45.845472+00:00",
+    "last_checked_at": "2026-09-04T10:17:37.437281+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.3666,
@@ -261,7 +261,7 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "3f8be06b97294d90b8484ffa4a442b46",
     "created_at": "2026-09-04T03:04:45.878469+00:00",
-    "last_checked_at": "2026-09-04T09:58:47.124731+00:00",
+    "last_checked_at": "2026-09-04T10:17:38.717794+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 52.02,
@@ -289,35 +289,11 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "43c29962c424435a82cbb6b355a098ff",
     "created_at": "2026-09-04T06:05:32.864723+00:00",
-    "last_checked_at": "2026-09-04T09:58:48.414289+00:00",
+    "last_checked_at": "2026-09-04T10:17:40.034655+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1002.6,
     "tp1_hit_at": "2026-09-04T08:53:59.999000+00:00",
     "tp1_card": "ZEC_TP1_target_card.png"
-  },
-  {
-    "coin": "ZEN",
-    "trending_bonus": "DASH",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 6.43,
-    "tp1": 6.75,
-    "tp2": 7.2,
-    "sl": 6.24,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A sharp liquidity sweep around the 6.30 level triggered a rapid 1H volume surge, flipping the prior resistance into support and confirming bullish pressure.",
-    "invalidation": "If price closes below 6.20, the bullish structure is considered broken.",
-    "rapid_reason": "1H bullish candle formed after the liquidity sweep.",
-    "smc_logic": "Smart Money cleared accumulated sell orders near 6.30, then retested the level as support, creating a higher low. The price now respects this new support while the previous resistance at 6.55 turned into a bullish order block, indicating institutional accumulation.",
-    "smc_logic_short": "Liquidity sweep cleared sell wall, support formed, resistance flipped to order block.",
-    "change": 17.89,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "421b72ad84154b9285ac4b460c6c2c87",
-    "created_at": "2026-09-04T09:04:38.851649+00:00",
-    "last_checked_at": "2026-09-04T09:58:49.699584+00:00",
-    "status": "ACTIVE"
   }
 ]
