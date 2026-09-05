@@ -267,5 +267,29 @@
     "tp1_hit_price": 1002.6,
     "tp1_hit_at": "2026-09-04T08:53:59.999000+00:00",
     "tp1_card": "ZEC_TP1_target_card.png"
+  },
+  {
+    "coin": "1000CAT",
+    "trending_bonus": "MARSCOIN",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.002732,
+    "tp1": 0.002842,
+    "tp2": 0.00306,
+    "sl": 0.00265,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A 1H liquidity sweep created a bullish order block right at the current price, confirming strong buying pressure.",
+    "invalidation": "Close below 0.00265 (the stop‑loss) or a break of the recent swing low at 0.00260 invalidates the setup.",
+    "rapid_reason": "1H volume spike formed a bullish order block at the current price.",
+    "smc_logic": "The price broke a minor down‑trend line and retested the bullish order block, indicating smart money accumulation. A clear liquidity grab pushed the market into the block, and the next resistance level aligns with the TP1 target. Holding above the block suggests continuation toward TP2.",
+    "smc_logic_short": "Bullish order block after liquidity sweep; hold above for upside.",
+    "change": 40.607,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "45d5de3021c84f3a928ee6baca81e4c0",
+    "created_at": "2026-09-05T18:05:02.358877+00:00",
+    "last_checked_at": "2026-09-05T18:05:02.358877+00:00",
+    "status": "ACTIVE"
   }
 ]
