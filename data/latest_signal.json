@@ -1,8 +1,15 @@
 {
-  "title": "Trader Diary: BTC rockets to $81k 🚀",
-  "content": "Price hits $81,208 (+4.2%).\nI slap a 10x long, hear the margin alarm scream.\n3 AM me: “Just one more candle…”\nResult: My wallet does a disappearing act.",
-  "lesson": "If you’re using 10x, treat it like a hot potato—don’t hold it too long.",
-  "question": "Who else turned a coffee break into a cardio session today? Be real 👇",
+  "headline": "Bitcoin slides below $80k, testing $79.2k support amid liquidity hunt",
+  "btc_price": 79623.59,
+  "btc_change": -1.837,
+  "eth_price": 2454.23,
+  "eth_change": -2.001,
+  "market_phase": "Liquidity Hunt / Consolidation",
+  "btc_thesis": "On the 1H chart BTC formed a descending channel, retesting the 79.2k support zone while the 4H structure holds above the 78.8k swing low, indicating a short‑term liquidity grab.",
+  "altcoin_summary": "Capital is rotating into high‑beta alts, with MARSCOIN, DASH and SNXXB leading gains, reflecting risk‑on sentiment after BTC’s pullback.",
+  "btc_support": 79200.0,
+  "btc_resistance": 80000.0,
+  "strategy_outlook": "Spot traders may consider buying near 79.2k with a tight stop below 78.8k; futures shorts can target 80k with a trailing stop to capture the downside.",
   "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "type": "market_overview"
 }
