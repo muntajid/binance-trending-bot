@@ -267,5 +267,29 @@
     "tp1_hit_price": 1002.6,
     "tp1_hit_at": "2026-09-04T08:53:59.999000+00:00",
     "tp1_card": "ZEC_TP1_target_card.png"
+  },
+  {
+    "coin": "SUSHI",
+    "trending_bonus": "ARB",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.2585,
+    "tp1": 0.2688,
+    "tp2": 0.2895,
+    "sl": 0.2507,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.2550‑0.2600 zone created a bullish order block, confirming strong buying pressure.",
+    "invalidation": "Close below 0.2510 invalidates the bullish structure.",
+    "rapid_reason": "1H chart shows a bullish engulfing candle breaking the prior swing high.",
+    "smc_logic": "The price retested the bullish order block at 0.2555 and held, indicating smart money accumulation. A break above the 0.2600 resistance turned it into a new supply zone, providing a clear entry point. The stop is placed just below the order block to protect against a false breakout.",
+    "smc_logic_short": "Bullish order block held, resistance flipped, entry at CMP with tight SL.",
+    "change": 36.234,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "882eca0cb6b14737b29751b91b478ebf",
+    "created_at": "2026-09-05T22:30:08.737787+00:00",
+    "last_checked_at": "2026-09-05T22:30:08.737787+00:00",
+    "status": "ACTIVE"
   }
 ]
