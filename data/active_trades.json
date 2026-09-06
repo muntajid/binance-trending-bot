@@ -239,5 +239,29 @@
     "tp1_hit_price": 0.3666,
     "tp1_hit_at": "2026-09-01T11:57:59.999000+00:00",
     "tp1_card": "CRV_TP1_target_card.png"
+  },
+  {
+    "coin": "ZEC",
+    "trending_bonus": "RAY",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 1218.5,
+    "tp1": 1267.2,
+    "tp2": 1365.8,
+    "sl": 1181.0,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 1200‑1220 zone created a bullish order block, confirming strong buying pressure as price retested the block.",
+    "invalidation": "Close below 1180.5 invalidates the trade thesis.",
+    "rapid_reason": "1H price broke above the recent swing high with a surge in volume.",
+    "smc_logic": "The price formed a clear bullish order block at the 1210‑1220 range, followed by a liquidity grab that forced sellers to capitulate. After the grab, the market showed a higher low and a break of structure, indicating smart money accumulation. The setup aligns with a potential continuation toward the next resistance cluster.",
+    "smc_logic_short": "Bullish order block + liquidity grab + higher low confirms upward bias.",
+    "change": 20.228,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "525f1f64aee545f6996e7767a2a71c20",
+    "created_at": "2026-09-06T19:47:50.217568+00:00",
+    "last_checked_at": "2026-09-06T19:47:50.217568+00:00",
+    "status": "ACTIVE"
   }
 ]
