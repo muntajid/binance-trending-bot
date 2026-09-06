@@ -17,7 +17,7 @@
     "created_at": "2026-08-09T10:18:41.432894",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-09-06T21:40:59.687743+00:00",
+    "last_checked_at": "2026-09-06T23:14:36.397906+00:00",
     "trade_id": "cookie-803c273ce218397f3d39"
   },
   {
@@ -37,7 +37,7 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-06T21:41:00.706456+00:00",
+    "last_checked_at": "2026-09-06T23:14:37.271950+00:00",
     "trade_id": "broccoli714-4afb4206a90a75f8adef"
   },
   {
@@ -57,7 +57,7 @@
     "change": 16.429,
     "created_at": "2026-08-11T15:30:36.044910",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-06T21:41:01.703419+00:00",
+    "last_checked_at": "2026-09-06T23:14:38.695455+00:00",
     "trade_id": "luna-c2dd588ea6c1ea1f0180"
   },
   {
@@ -77,7 +77,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-06T21:41:02.684745+00:00",
+    "last_checked_at": "2026-09-06T23:14:39.763608+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -96,7 +96,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-09-06T21:41:03.657880+00:00",
+    "last_checked_at": "2026-09-06T23:14:41.115145+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -121,7 +121,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-09-06T21:41:04.635536+00:00",
+    "last_checked_at": "2026-09-06T23:14:42.375877+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -145,7 +145,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-09-06T21:41:05.640566+00:00",
+    "last_checked_at": "2026-09-06T23:14:43.217250+00:00",
     "status": "ACTIVE"
   },
   {
@@ -165,7 +165,7 @@
     "change": 23.449,
     "trade_id": "949f531c14c04355a82618720cf1c389",
     "created_at": "2026-08-15T19:01:01.049101+00:00",
-    "last_checked_at": "2026-09-06T21:41:06.618814+00:00",
+    "last_checked_at": "2026-09-06T23:14:44.067960+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.0631,
@@ -189,7 +189,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-09-06T21:41:07.589227+00:00",
+    "last_checked_at": "2026-09-06T23:14:44.874404+00:00",
     "status": "ACTIVE"
   },
   {
@@ -209,7 +209,7 @@
     "change": 17.694,
     "trade_id": "faa3d8bd10a24294802c33a276a73d92",
     "created_at": "2026-08-16T09:54:32.439560+00:00",
-    "last_checked_at": "2026-09-06T21:41:08.564560+00:00",
+    "last_checked_at": "2026-09-06T23:14:45.736773+00:00",
     "status": "ACTIVE"
   },
   {
@@ -233,7 +233,7 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "b88b27d6539b4eaab0178ef03ad15a70",
     "created_at": "2026-09-01T06:06:13.258255+00:00",
-    "last_checked_at": "2026-09-06T21:41:09.543960+00:00",
+    "last_checked_at": "2026-09-06T23:14:46.548695+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.3666,
@@ -261,7 +261,7 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "525f1f64aee545f6996e7767a2a71c20",
     "created_at": "2026-09-06T19:47:50.217568+00:00",
-    "last_checked_at": "2026-09-06T21:41:10.524725+00:00",
+    "last_checked_at": "2026-09-06T23:14:47.380930+00:00",
     "status": "ACTIVE"
   },
   {
@@ -285,7 +285,11 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "ec23bd1da252485eb5ce388f8e6aea18",
     "created_at": "2026-09-06T22:34:40.094856+00:00",
-    "last_checked_at": "2026-09-06T22:34:40.094856+00:00",
-    "status": "ACTIVE"
+    "last_checked_at": "2026-09-06T23:14:48.220102+00:00",
+    "status": "ACTIVE",
+    "tp1_hit": true,
+    "tp1_hit_price": 0.02316,
+    "tp1_hit_at": "2026-09-06T22:49:59.999000+00:00",
+    "tp1_card": "FIDA_TP1_target_card.png"
   }
 ]
