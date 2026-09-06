@@ -3342,5 +3342,31 @@
     "tp1_card": "ARB_TP1_target_card.png",
     "closed_price": 0.1875,
     "closed_at": "2026-09-06T14:22:59.999000+00:00"
+  },
+  {
+    "coin": "RAY",
+    "trending_bonus": "ARB",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 1.394,
+    "tp1": 1.45,
+    "tp2": 1.561,
+    "sl": 1.352,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 1.38‑1.40 zone forced sellers out and price broke above the recent swing high, confirming strong buying pressure.",
+    "invalidation": "Close below 1.352 (the stop level) or a retest of the 1.38 support that fails invalidates the trade.",
+    "rapid_reason": "1H candle closed bullish with a 2% gap up, breaking the prior resistance.",
+    "smc_logic": "The 1.38‑1.40 area acted as a bullish order block; after a clear break of structure, price captured liquidity at the previous swing low and now retests the block as support. A strong volume surge confirms smart money accumulation, setting up a higher‑high target. The stop is placed just below the order block to protect against a false breakout.",
+    "smc_logic_short": "Bullish order block at 1.38‑1.40, break of structure, volume‑driven accumulation, target higher highs.",
+    "change": 61.375,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "f566d5eac41d47009127866d3ef26647",
+    "created_at": "2026-09-06T17:25:55.146752+00:00",
+    "last_checked_at": "2026-09-06T18:12:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 1.352,
+    "closed_at": "2026-09-06T18:12:59.999000+00:00"
   }
 ]
