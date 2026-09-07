@@ -1,20 +1,8 @@
 {
-  "coin": "CATI",
-  "trending_bonus": "CFG",
-  "direction": "LONG",
-  "entry": "CMP",
-  "entry_price": 0.05959,
-  "tp1": 0.06195,
-  "tp2": 0.06672,
-  "sl": 0.05779,
-  "leverage": "15x",
-  "risk": "Medium Risk",
-  "confidence": 85,
-  "why_now": "A liquidity sweep on the 1H chart broke the recent swing high with a sharp volume spike, indicating smart money absorption.",
-  "invalidation": "Close below the 0.0575 swing low invalidates the bullish thesis.",
-  "rapid_reason": "1H bullish momentum triggered by a strong volume surge after the sweep.",
-  "smc_logic": "Price executed a liquidity grab below the 0.0580 support, retested and held, showing smart money accumulation. The subsequent break of the 0.0590 resistance zone with confirming volume creates a bullish order block aligned with CFG's rally. This setup suggests a continuation move toward higher resistance levels.",
-  "smc_logic_short": "Liquidity grab, retest, and bullish order block formation.",
-  "change": 21.77,
-  "groq_model": "openai/gpt-oss-120b"
+  "title": "Trader Diary: 79K Dip Drama",
+  "content": "Check the chart at 3 AM → BTC slides 0.7% → My 5x long screams ‘HOLD!’ while my coffee screams ‘SELL!’",
+  "lesson": "Never risk more than you can afford to lose on a single dip.",
+  "question": "Who else just refreshed the chart for the 7th time? 👀",
+  "groq_model": "openai/gpt-oss-120b",
+  "type": "meme_community"
 }
