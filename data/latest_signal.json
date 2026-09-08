@@ -1,8 +1,20 @@
 {
-  "title": "Trader Diary: BTC dip at 78k",
-  "content": "78,514 → -1.4% and my leverage is sweating.\n3 AM: “Just one more 10x, I’ll be rich tomorrow.”",
-  "lesson": "Never add to a losing position without a clear plan.",
-  "question": "Who else refreshed the chart every 5 seconds today? Be honest 👇",
-  "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "coin": "DOGS",
+  "trending_bonus": "SOPH",
+  "direction": "LONG",
+  "entry": "CMP",
+  "entry_price": 5.626e-05,
+  "tp1": 5.85e-05,
+  "tp2": 6.3e-05,
+  "sl": 5.45e-05,
+  "leverage": "15x",
+  "risk": "Medium Risk",
+  "confidence": 85,
+  "why_now": "A liquidity sweep at the 5.60‑5.65 e‑05 zone forced sellers to absorb buying, flipping the recent resistance into a bullish order block.",
+  "invalidation": "Close below 5.45e-05 (the stop‑loss level) invalidates the long thesis.",
+  "rapid_reason": "1H candle broke the prior swing high with a surge in volume.",
+  "smc_logic": "The price retested the newly formed order block after a sharp liquidity grab, confirming smart money accumulation. A bullish break of the 5‑hour high aligns with the classic SMC structure of liquidity pool absorption and continuation.",
+  "smc_logic_short": "Liquidity sweep → order block retest → bullish 5‑hour break.",
+  "change": 20.894,
+  "groq_model": "openai/gpt-oss-120b"
 }
