@@ -1,6 +1,17 @@
-⚡ $DOGS — LONG at $0.000056
-Targets: $0.000058 | $0.000063
-Invalidation: $0.000055
-1H candle broke the prior swing high with a surge in volume.
+📊 $QKC High-Probability LONG Structure: Volatility Expanding (+28.2%)!
 
-$DOGS #BinanceSquareFamily
+$QKC — LONG SETUP
+• Entry Zone (CMP): $0.002851
+• Target 1: $0.002965 (+4.0%) 🎯
+• Target 2: $0.003193 (+12.0%) 🚀
+• Invalidation (SL): $0.002765 (-3.0%) 🛡️
+• Risk/Reward: 1:1.33R | Confidence: 85%
+• Suggested Leverage: 3x - 5x (Max 15x)
+
+Why now: A liquidity sweep below the 0.0028 support zone created a bullish order block at the current market price, indicating smart‑money accumulation.
+What changes the view: Close below 0.00275 invalidates the trade thesis.
+
+💡 Risk Rule: Lock in 50% at TP1 and trail Stop Loss to entry for a risk-free run to TP2.
+
+$QKC $BTC #BinanceSquareFamily
+⚠️ Educational market analysis. Always manage your risk & DYOR.
