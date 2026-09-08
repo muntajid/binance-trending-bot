@@ -1,20 +1,8 @@
 {
-  "coin": "FORM",
-  "trending_bonus": "SOPH",
-  "direction": "LONG",
-  "entry": "CMP",
-  "entry_price": 0.3816,
-  "tp1": 0.3967,
-  "tp2": 0.426,
-  "sl": 0.3698,
-  "leverage": "15x",
-  "risk": "Medium Risk",
-  "confidence": 85,
-  "why_now": "A liquidity sweep of the 0.38 support zone broke a bullish order block, confirming strong buying pressure.",
-  "invalidation": "Close below 0.3695 invalidates the trade thesis.",
-  "rapid_reason": "1H chart shows a bullish engulfing candle after a sharp volume spike.",
-  "smc_logic": "The price cleared a well‑defined order block at 0.38, indicating smart money absorption. A subsequent liquidity grab pushed price back into the block, creating a classic bullish reversal pattern. The next resistance at ~0.397 aligns with the previous swing high, providing a logical TP1 target.",
-  "smc_logic_short": "Order block break at 0.38, liquidity grab, bullish reversal toward 0.397.",
-  "change": 43.286,
-  "groq_model": "openai/gpt-oss-120b"
+  "title": "Trader Diary: BTC dip at 78k",
+  "content": "78,514 → -1.4% and my leverage is sweating.\n3 AM: “Just one more 10x, I’ll be rich tomorrow.”",
+  "lesson": "Never add to a losing position without a clear plan.",
+  "question": "Who else refreshed the chart every 5 seconds today? Be honest 👇",
+  "groq_model": "openai/gpt-oss-120b",
+  "type": "meme_community"
 }
