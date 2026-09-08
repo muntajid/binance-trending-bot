@@ -17,7 +17,7 @@
     "created_at": "2026-08-09T10:18:41.432894",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-09-08T06:16:04.848477+00:00",
+    "last_checked_at": "2026-09-08T11:27:23.237464+00:00",
     "trade_id": "cookie-803c273ce218397f3d39"
   },
   {
@@ -37,7 +37,7 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-08T06:16:05.742282+00:00",
+    "last_checked_at": "2026-09-08T11:27:24.393610+00:00",
     "trade_id": "broccoli714-4afb4206a90a75f8adef"
   },
   {
@@ -57,7 +57,7 @@
     "change": 16.429,
     "created_at": "2026-08-11T15:30:36.044910",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-08T06:16:06.648888+00:00",
+    "last_checked_at": "2026-09-08T11:27:25.686984+00:00",
     "trade_id": "luna-c2dd588ea6c1ea1f0180"
   },
   {
@@ -77,7 +77,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-08T06:16:07.553135+00:00",
+    "last_checked_at": "2026-09-08T11:27:26.787421+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -96,7 +96,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-09-08T06:16:08.445320+00:00",
+    "last_checked_at": "2026-09-08T11:27:28.161651+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -121,7 +121,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-09-08T06:16:09.358506+00:00",
+    "last_checked_at": "2026-09-08T11:27:29.271348+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -145,7 +145,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-09-08T06:16:10.248163+00:00",
+    "last_checked_at": "2026-09-08T11:27:30.751041+00:00",
     "status": "ACTIVE"
   },
   {
@@ -165,7 +165,7 @@
     "change": 23.449,
     "trade_id": "949f531c14c04355a82618720cf1c389",
     "created_at": "2026-08-15T19:01:01.049101+00:00",
-    "last_checked_at": "2026-09-08T06:16:11.151791+00:00",
+    "last_checked_at": "2026-09-08T11:27:31.915452+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.0631,
@@ -189,7 +189,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-09-08T06:16:12.047540+00:00",
+    "last_checked_at": "2026-09-08T11:27:33.028744+00:00",
     "status": "ACTIVE"
   },
   {
@@ -209,7 +209,7 @@
     "change": 17.694,
     "trade_id": "faa3d8bd10a24294802c33a276a73d92",
     "created_at": "2026-08-16T09:54:32.439560+00:00",
-    "last_checked_at": "2026-09-08T06:16:12.952907+00:00",
+    "last_checked_at": "2026-09-08T11:27:34.152888+00:00",
     "status": "ACTIVE"
   },
   {
@@ -233,35 +233,11 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "1e77006bae274ea3887313338941d79d",
     "created_at": "2026-09-07T07:42:48.593655+00:00",
-    "last_checked_at": "2026-09-08T06:16:13.853740+00:00",
+    "last_checked_at": "2026-09-08T11:27:35.272907+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.06195,
     "tp1_hit_at": "2026-09-07T08:00:59.999000+00:00",
     "tp1_card": "CATI_TP1_target_card.png"
-  },
-  {
-    "coin": "FORM",
-    "trending_bonus": "SOPH",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.3816,
-    "tp1": 0.3967,
-    "tp2": 0.426,
-    "sl": 0.3698,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A liquidity sweep of the 0.38 support zone broke a bullish order block, confirming strong buying pressure.",
-    "invalidation": "Close below 0.3695 invalidates the trade thesis.",
-    "rapid_reason": "1H chart shows a bullish engulfing candle after a sharp volume spike.",
-    "smc_logic": "The price cleared a well‑defined order block at 0.38, indicating smart money absorption. A subsequent liquidity grab pushed price back into the block, creating a classic bullish reversal pattern. The next resistance at ~0.397 aligns with the previous swing high, providing a logical TP1 target.",
-    "smc_logic_short": "Order block break at 0.38, liquidity grab, bullish reversal toward 0.397.",
-    "change": 43.286,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "c6e6978cc5f347f7a376c3186e84d195",
-    "created_at": "2026-09-08T07:35:33.422961+00:00",
-    "last_checked_at": "2026-09-08T07:35:33.422961+00:00",
-    "status": "ACTIVE"
   }
 ]

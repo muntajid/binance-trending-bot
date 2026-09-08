@@ -3482,5 +3482,31 @@
     "tp2_card": "SOPH_TP2_target_card.png",
     "closed_price": 0.00563,
     "closed_at": "2026-09-07T20:44:59.999000+00:00"
+  },
+  {
+    "coin": "FORM",
+    "trending_bonus": "SOPH",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.3816,
+    "tp1": 0.3967,
+    "tp2": 0.426,
+    "sl": 0.3698,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.38 support zone broke a bullish order block, confirming strong buying pressure.",
+    "invalidation": "Close below 0.3695 invalidates the trade thesis.",
+    "rapid_reason": "1H chart shows a bullish engulfing candle after a sharp volume spike.",
+    "smc_logic": "The price cleared a well‑defined order block at 0.38, indicating smart money absorption. A subsequent liquidity grab pushed price back into the block, creating a classic bullish reversal pattern. The next resistance at ~0.397 aligns with the previous swing high, providing a logical TP1 target.",
+    "smc_logic_short": "Order block break at 0.38, liquidity grab, bullish reversal toward 0.397.",
+    "change": 43.286,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "c6e6978cc5f347f7a376c3186e84d195",
+    "created_at": "2026-09-08T07:35:33.422961+00:00",
+    "last_checked_at": "2026-09-08T07:35:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.3698,
+    "closed_at": "2026-09-08T07:35:59.999000+00:00"
   }
 ]
