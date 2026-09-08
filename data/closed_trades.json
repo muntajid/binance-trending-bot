@@ -3568,5 +3568,31 @@
     "tp1_card": "DOGS_TP1_target_card.png",
     "closed_price": 5.45e-05,
     "closed_at": "2026-09-08T19:31:59.999000+00:00"
+  },
+  {
+    "coin": "QKC",
+    "trending_bonus": "FF",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.002851,
+    "tp1": 0.002965,
+    "tp2": 0.003193,
+    "sl": 0.002765,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep below the 0.0028 support zone created a bullish order block at the current market price, indicating smart‑money accumulation.",
+    "invalidation": "Close below 0.00275 invalidates the trade thesis.",
+    "rapid_reason": "1H price broke above the recent swing high, showing fresh buying pressure.",
+    "smc_logic": "The price performed a liquidity grab under the 0.0028 support, then formed a bullish order block at the CMP. The prior resistance around 0.0029 flipped to support, confirming smart‑money accumulation. The next target aligns with the next supply zone near 0.0030.",
+    "smc_logic_short": "Liquidity grab → bullish order block at CMP → resistance flip to support.",
+    "change": 28.167,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "1c6206da17314b529f1aca91710a579d",
+    "created_at": "2026-09-08T23:04:32.295766+00:00",
+    "last_checked_at": "2026-09-08T23:16:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.002765,
+    "closed_at": "2026-09-08T23:16:59.999000+00:00"
   }
 ]
