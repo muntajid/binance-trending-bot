@@ -3620,5 +3620,32 @@
     "status": "SL_HIT",
     "closed_price": 1.3019,
     "closed_at": "2026-09-09T08:09:59.999000+00:00"
+  },
+  {
+    "coin": "IOST",
+    "trending_bonus": "SC",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.001899,
+    "tp1": 0.001972,
+    "tp2": 0.002123,
+    "sl": 0.001839,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.00185‑0.00190 zone created a bullish order block, confirming strong buying pressure after the 108% 24‑hour surge.",
+    "invalidation": "Close below 0.00184 invalidates the bullish order block and nullifies the setup.",
+    "rapid_reason": "1H chart formed a bullish engulfing candle that broke the recent swing high.",
+    "smc_logic": "The price retested the bullish order block at 0.00190, showing smart money accumulation. A break of structure above the 1H swing high confirmed the shift to bullish bias, and the liquidity pool below the block provides a tight stop. The next resistance levels align with TP1 and TP2, offering a favorable risk‑reward.",
+    "smc_logic_short": "Bullish order block retest, BOS above 1H high, tight SL at liquidity pool.",
+    "change": 107.768,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "dbdf7d83b47d476ab933a2e73b5499c6",
+    "created_at": "2026-09-09T18:12:12.006194+00:00",
+    "last_checked_at": "2026-09-09T18:34:59.999000+00:00",
+    "status": "TP2_HIT",
+    "tp2_card": "IOST_TP2_target_card.png",
+    "closed_price": 0.002123,
+    "closed_at": "2026-09-09T18:34:59.999000+00:00"
   }
 ]
