@@ -1,20 +1,8 @@
 {
-  "coin": "RAY",
-  "trending_bonus": "FF",
-  "direction": "LONG",
-  "entry": "CMP",
-  "entry_price": 1.3418,
-  "tp1": 1.3959,
-  "tp2": 1.5028,
-  "sl": 1.3019,
-  "leverage": "15x",
-  "risk": "Medium Risk",
-  "confidence": 85,
-  "why_now": "A liquidity sweep of the 1.30‑1.32 zone created a bullish order block, and price retested it with strong volume, confirming buying pressure.",
-  "invalidation": "Close below 1.30 (the broken liquidity zone) invalidates the long thesis.",
-  "rapid_reason": "1H bullish engulfing candle after breaking the 1.30 liquidity pool.",
-  "smc_logic": "The price broke the previous swing low at 1.30, exposing hidden liquidity. A bullish order block formed at the retest, and the market showed a clear higher‑high/higher‑low structure, indicating smart money accumulation. The next target aligns with the next resistance cluster around 1.40‑1.50.",
-  "smc_logic_short": "Liquidity sweep → order block at 1.34 → higher‑high structure.",
-  "change": 23.725,
-  "groq_model": "openai/gpt-oss-120b"
+  "title": "Trader Diary: BTC at $79,485 and my leverage dreams",
+  "content": "💭 8 AM: “Just a tiny 2x long, easy profit.”\n🚀 9 AM: “Why is my margin screaming louder than my coffee?”\n📉 10 AM: “Okay, maybe I should’ve set a stop…\"",
+  "lesson": "Set your stop‑loss before you set your coffee; leverage loves to surprise.",
+  "question": "Who else turned a 2x into a 2‑minute heart attack? Share your panic emojis 👇",
+  "groq_model": "openai/gpt-oss-120b",
+  "type": "meme_community"
 }
