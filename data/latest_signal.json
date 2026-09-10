@@ -1,20 +1,8 @@
 {
-  "coin": "VTHO",
-  "trending_bonus": "REZ",
-  "direction": "LONG",
-  "entry": "CMP",
-  "entry_price": 0.000665,
-  "tp1": 0.000692,
-  "tp2": 0.000745,
-  "sl": 0.000645,
-  "leverage": "15x",
-  "risk": "Medium Risk",
-  "confidence": 85,
-  "why_now": "A liquidity sweep of the 0.00066 level created a bullish order block, confirming strong buying pressure as price retested the level and held.",
-  "invalidation": "Close below 0.000645 (the stop‑loss) or a break of the recent swing low at 0.000640 invalidates the setup.",
-  "rapid_reason": "1H bullish engulfing candle with a 2.3× volume spike triggered the move.",
-  "smc_logic": "The price broke a minor swing high and retested the 0.00066 order block, indicating smart money accumulation. A clear bullish structure flip occurred, and the market is now targeting the next resistance cluster around 0.00070. The stop is placed just below the order block to protect against a liquidity grab.",
-  "smc_logic_short": "Bullish order block at 0.00066, structure flip, target 0.00070‑0.00075.",
-  "change": 48.107,
-  "groq_model": "openai/gpt-oss-120b"
+  "title": "Trader Diary: BTC’s 3‑AM Mood Swing",
+  "content": "📉 76.8k: I set a $80k target, now I’m watching my stop‑loss like a Netflix cliffhanger.\n🚀 3 AM: “Just one more 10×” and the coffee’s gone cold.\n🤦‍♂️ Realization: My portfolio just became a rollercoaster for the squirrels.",
+  "lesson": "Set a stop‑loss before you open the position – the market won’t wait for your coffee.",
+  "question": "Who else’s heart rate spiked at the 3% dip? Drop your panic emojis 👇",
+  "groq_model": "openai/gpt-oss-120b",
+  "type": "meme_community"
 }
