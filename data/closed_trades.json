@@ -3647,5 +3647,31 @@
     "tp2_card": "IOST_TP2_target_card.png",
     "closed_price": 0.002123,
     "closed_at": "2026-09-09T18:34:59.999000+00:00"
+  },
+  {
+    "coin": "VTHO",
+    "trending_bonus": "REZ",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.000665,
+    "tp1": 0.000692,
+    "tp2": 0.000745,
+    "sl": 0.000645,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.00066 level created a bullish order block, confirming strong buying pressure as price retested the level and held.",
+    "invalidation": "Close below 0.000645 (the stop‑loss) or a break of the recent swing low at 0.000640 invalidates the setup.",
+    "rapid_reason": "1H bullish engulfing candle with a 2.3× volume spike triggered the move.",
+    "smc_logic": "The price broke a minor swing high and retested the 0.00066 order block, indicating smart money accumulation. A clear bullish structure flip occurred, and the market is now targeting the next resistance cluster around 0.00070. The stop is placed just below the order block to protect against a liquidity grab.",
+    "smc_logic_short": "Bullish order block at 0.00066, structure flip, target 0.00070‑0.00075.",
+    "change": 48.107,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "ed1a1d7683af446598cd0d276d14a456",
+    "created_at": "2026-09-10T07:39:56.652908+00:00",
+    "last_checked_at": "2026-09-10T08:13:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.000645,
+    "closed_at": "2026-09-10T08:13:59.999000+00:00"
   }
 ]
