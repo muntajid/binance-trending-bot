@@ -1,15 +1,8 @@
 {
-  "headline": "Bitcoin tests key 78k resistance amid 1‑day pullback, liquidity hunt intensifies",
-  "btc_price": 76917.2,
-  "btc_change": -1.432,
-  "eth_price": 2452.43,
-  "eth_change": -0.382,
-  "market_phase": "Liquidity Hunt / Consolidation",
-  "btc_thesis": "On the 1H chart BTC is forming a descending channel, holding above the 75.8k swing low while eyeing the 78.2k ceiling; 4H shows a retest of the 77.5k demand zone with sellers stepping in.",
-  "altcoin_summary": "Capital is rotating into high‑beta alts as Bitcoin weakens, with top gainers RAY, SAGA and FF leading the short‑term rally.",
-  "btc_support": 75800.0,
-  "btc_resistance": 78200.0,
-  "strategy_outlook": "Spot traders should consider buying near 75.8k support with tight stops; futures short‑bias above 78k with profit targets at 75.8k.",
+  "title": "Trader Diary: 77k BTC & My 10x Leverage",
+  "content": "🚀 77,848 → I see green, open 10x, heart rate 180bpm.\n📉 Price dips 0.5% → My stop loss is a myth, my coffee is cold.\n🤦‍♂️ 1‑minute chart later: “I’m a genius”… until liquidation hits.",
+  "lesson": "Always set a stop loss BEFORE you fire the order – the market won’t wait for your panic button.",
+  "question": "Who else’s 10x turned into a 0x today? Drop your war stories 👇",
   "groq_model": "openai/gpt-oss-120b",
-  "type": "market_overview"
+  "type": "meme_community"
 }
