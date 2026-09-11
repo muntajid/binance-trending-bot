@@ -1,8 +1,20 @@
 {
-  "title": "Trader Diary: 77k BTC & My 10x Leverage",
-  "content": "🚀 77,848 → I see green, open 10x, heart rate 180bpm.\n📉 Price dips 0.5% → My stop loss is a myth, my coffee is cold.\n🤦‍♂️ 1‑minute chart later: “I’m a genius”… until liquidation hits.",
-  "lesson": "Always set a stop loss BEFORE you fire the order – the market won’t wait for your panic button.",
-  "question": "Who else’s 10x turned into a 0x today? Drop your war stories 👇",
-  "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "coin": "TFUEL",
+  "trending_bonus": "RAY",
+  "direction": "LONG",
+  "entry": "CMP",
+  "entry_price": 0.01093,
+  "tp1": 0.01148,
+  "tp2": 0.01286,
+  "sl": 0.0106,
+  "leverage": "15x",
+  "risk": "Medium Risk",
+  "confidence": 85,
+  "why_now": "A liquidity sweep of the 0.0110 resistance turned that level into support, confirming a bullish order block formation.",
+  "invalidation": "Price closing below 0.01055 invalidates the bullish order block and the trade premise.",
+  "rapid_reason": "1H chart displayed a bullish engulfing candle breaking the 0.0110 resistance.",
+  "smc_logic": "The 1H bullish engulfing candle broke a prior swing high, creating a bullish order block at 0.0110. Subsequent price action showed a liquidity grab below the block, after which price retested and held the former resistance as support, indicating smart money accumulation. A break above the block signals continuation toward the next supply zone.",
+  "smc_logic_short": "Bullish order block at 0.0110 now acting as support; break upward targets TP1/TP2.",
+  "change": 21.444,
+  "groq_model": "openai/gpt-oss-120b"
 }
