@@ -3673,5 +3673,31 @@
     "status": "SL_HIT",
     "closed_price": 0.000645,
     "closed_at": "2026-09-10T08:13:59.999000+00:00"
+  },
+  {
+    "coin": "TFUEL",
+    "trending_bonus": "RAY",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.01093,
+    "tp1": 0.01148,
+    "tp2": 0.01286,
+    "sl": 0.0106,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.0110 resistance turned that level into support, confirming a bullish order block formation.",
+    "invalidation": "Price closing below 0.01055 invalidates the bullish order block and the trade premise.",
+    "rapid_reason": "1H chart displayed a bullish engulfing candle breaking the 0.0110 resistance.",
+    "smc_logic": "The 1H bullish engulfing candle broke a prior swing high, creating a bullish order block at 0.0110. Subsequent price action showed a liquidity grab below the block, after which price retested and held the former resistance as support, indicating smart money accumulation. A break above the block signals continuation toward the next supply zone.",
+    "smc_logic_short": "Bullish order block at 0.0110 now acting as support; break upward targets TP1/TP2.",
+    "change": 21.444,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "87c2d4ae51664d52ababa5db85a1406d",
+    "created_at": "2026-09-11T22:54:21.078156+00:00",
+    "last_checked_at": "2026-09-12T00:02:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.0106,
+    "closed_at": "2026-09-12T00:02:59.999000+00:00"
   }
 ]
