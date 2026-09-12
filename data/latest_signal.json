@@ -1,8 +1,20 @@
 {
-  "title": "Trader Diary: 77k Rollercoaster",
-  "content": "🚀 Spot price jumps 1.4% and my brain screams 'FOMO!'\n📈 5‑minute chart later I'm whispering to my 10x futures: 'Just one more candle, bro...'",
-  "lesson": "A 1.4% move isn’t a signal to max‑out leverage—keep the stop loss tighter than your coffee budget.",
-  "question": "Who else cranked up a 10x position at $77,328? Be honest 👇",
-  "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "coin": "REZ",
+  "trending_bonus": "LSK",
+  "direction": "LONG",
+  "entry": "CMP",
+  "entry_price": 0.004034,
+  "tp1": 0.004194,
+  "tp2": 0.004517,
+  "sl": 0.003912,
+  "leverage": "15x",
+  "risk": "Medium Risk",
+  "confidence": 85,
+  "why_now": "A 1H liquidity sweep broke the recent swing low, then price retested that level as fresh demand, confirming a bullish order block formation.",
+  "invalidation": "Close below 0.00390 on the 1H chart invalidates the trade.",
+  "rapid_reason": "1H bullish momentum triggered by a sharp liquidity grab and immediate support retest.",
+  "smc_logic": "The price broke the prior structure, creating a bearish order block that was quickly absorbed, indicating smart money accumulation. The retest of the broken low formed a new bullish order block, providing a high-probability entry. With the market leader LSK also rallying, the confluence strengthens the upside bias.",
+  "smc_logic_short": "Break of structure → liquidity sweep → bullish order block retest.",
+  "change": 25.575,
+  "groq_model": "openai/gpt-oss-120b"
 }
