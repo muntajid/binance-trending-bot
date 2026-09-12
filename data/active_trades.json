@@ -211,5 +211,29 @@
     "created_at": "2026-08-16T09:54:32.439560+00:00",
     "last_checked_at": "2026-09-12T22:40:01.685710+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "VTHO",
+    "trending_bonus": "LSK",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.000666,
+    "tp1": 0.000699,
+    "tp2": 0.000783,
+    "sl": 0.000645,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "Recent volume spike and price breaking above the 50‑day moving average signals institutional accumulation and a bullish momentum shift.",
+    "invalidation": "A break below 0.000645 would invalidate the support and the trade thesis.",
+    "rapid_reason": "1H candle shows a bullish engulfing pattern with high volume.",
+    "smc_logic": "The price has just broken a key 50‑day moving average, a classic Smart Money signal of accumulation. Volume is above average, confirming that large players are stepping in. The 0.000645 level is a strong support that, if breached, indicates a reversal.",
+    "smc_logic_short": "50‑MA breakout, high volume, support at 0.000645.",
+    "change": 13.846,
+    "groq_model": "openai/gpt-oss-20b",
+    "trade_id": "dd9e13fe7698424eacb6d271a17e95ad",
+    "created_at": "2026-09-12T22:43:46.355191+00:00",
+    "last_checked_at": "2026-09-12T22:43:46.355191+00:00",
+    "status": "ACTIVE"
   }
 ]
