@@ -3699,5 +3699,31 @@
     "status": "SL_HIT",
     "closed_price": 0.0106,
     "closed_at": "2026-09-12T00:02:59.999000+00:00"
+  },
+  {
+    "coin": "LSK",
+    "trending_bonus": "VTHO",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.2159,
+    "tp1": 0.2245,
+    "tp2": 0.242,
+    "sl": 0.209,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.20‑0.21 zone created a bullish order block, and price immediately retested and held above it, confirming strong buying pressure.",
+    "invalidation": "Close below 0.2085 invalidates the bullish thesis",
+    "rapid_reason": "1H candle broke the recent swing high with a 2.3× volume spike",
+    "smc_logic": "The price formed a clear bullish order block at 0.20‑0.21 after a liquidity void, then executed a higher‑timeframe break of structure. The retest held, indicating smart money accumulation, and the market now seeks the next resistance zone. A tight stop below the order block protects against a false breakout.",
+    "smc_logic_short": "Bullish order block retested; higher‑timeframe BOS confirmed; target next resistance.",
+    "change": 55.836,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "c1766bdf6dee4344a0e8a2bbb97b6c76",
+    "created_at": "2026-09-12T07:28:28.640090+00:00",
+    "last_checked_at": "2026-09-12T07:33:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.209,
+    "closed_at": "2026-09-12T07:33:59.999000+00:00"
   }
 ]
