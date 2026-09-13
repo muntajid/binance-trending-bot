@@ -211,5 +211,29 @@
     "created_at": "2026-08-16T09:54:32.439560+00:00",
     "last_checked_at": "2026-09-13T19:46:59.433168+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "LSK",
+    "trending_bonus": "CVC",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.9837,
+    "tp1": 1.023,
+    "tp2": 1.102,
+    "sl": 0.9542,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "Liquidity sweep of the 0.95 support turned into buying pressure, pushing price above the 0.98 level and capturing the order block at 0.9837.",
+    "invalidation": "Close below 0.9500 invalidates the bullish thesis.",
+    "rapid_reason": "1H chart shows a bullish engulfing candle after a sharp volume spike.",
+    "smc_logic": "The price performed a liquidity grab below the recent swing low, then retested the broken order block at 0.9837, confirming smart money accumulation. A bullish order block aligns with the 0.98‑1.00 range, and the break of the 1H resistance at 1.00 suggests further upside.",
+    "smc_logic_short": "Liquidity grab → order block retest → bullish breakout.",
+    "change": 283.808,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "914978ea6c3444cf8b98749e0bb0e1f4",
+    "created_at": "2026-09-13T20:01:40.571731+00:00",
+    "last_checked_at": "2026-09-13T20:01:40.571731+00:00",
+    "status": "ACTIVE"
   }
 ]

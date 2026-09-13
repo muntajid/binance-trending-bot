@@ -1,8 +1,20 @@
 {
-  "title": "Trader Diary: 3‑AM BTC Dip",
-  "content": "👀 See BTC slip 0.8% at 76.6k → I open 10× long, whisper “this is it”.\n💥 5 minutes later: liquidation notice.\n🤦‍♂️ My coffee’s colder than my margin.",
-  "lesson": "Never let a 1% dip dictate a 10× entry – respect the stop.",
-  "question": "Who else turned a coffee break into a margin call today? Drop your war stories 👇",
-  "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "coin": "LSK",
+  "trending_bonus": "CVC",
+  "direction": "LONG",
+  "entry": "CMP",
+  "entry_price": 0.9837,
+  "tp1": 1.023,
+  "tp2": 1.102,
+  "sl": 0.9542,
+  "leverage": "15x",
+  "risk": "Medium Risk",
+  "confidence": 85,
+  "why_now": "Liquidity sweep of the 0.95 support turned into buying pressure, pushing price above the 0.98 level and capturing the order block at 0.9837.",
+  "invalidation": "Close below 0.9500 invalidates the bullish thesis.",
+  "rapid_reason": "1H chart shows a bullish engulfing candle after a sharp volume spike.",
+  "smc_logic": "The price performed a liquidity grab below the recent swing low, then retested the broken order block at 0.9837, confirming smart money accumulation. A bullish order block aligns with the 0.98‑1.00 range, and the break of the 1H resistance at 1.00 suggests further upside.",
+  "smc_logic_short": "Liquidity grab → order block retest → bullish breakout.",
+  "change": 283.808,
+  "groq_model": "openai/gpt-oss-120b"
 }
