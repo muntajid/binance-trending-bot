@@ -211,5 +211,29 @@
     "created_at": "2026-08-16T09:54:32.439560+00:00",
     "last_checked_at": "2026-09-13T21:47:34.488457+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "CVC",
+    "trending_bonus": "LSK",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.03402,
+    "tp1": 0.03542,
+    "tp2": 0.03815,
+    "sl": 0.03304,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.0335‑0.0340 zone broke a bullish order block, confirming strong buying pressure.",
+    "invalidation": "Close below 0.0330 invalidates the long thesis.",
+    "rapid_reason": "1H bullish engulfing candle paired with a volume spike triggered the move.",
+    "smc_logic": "The price broke above a recent swing high, confirming the bullish order block formed at 0.0332‑0.0335. Liquidity was taken from the down‑side pool, and the market is now targeting the next supply zone around 0.0354. A tight stop below the broken order block protects against a false breakout.",
+    "smc_logic_short": "Break of bullish order block, liquidity sweep, targeting next supply zone.",
+    "change": 53.01,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "47ba04cbbc0545c7a378e4b740bd4a55",
+    "created_at": "2026-09-13T22:44:07.531535+00:00",
+    "last_checked_at": "2026-09-13T22:44:07.531535+00:00",
+    "status": "ACTIVE"
   }
 ]
