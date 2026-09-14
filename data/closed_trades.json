@@ -3830,5 +3830,31 @@
     "status": "SL_HIT",
     "closed_price": 0.03304,
     "closed_at": "2026-09-13T23:01:59.999000+00:00"
+  },
+  {
+    "coin": "T",
+    "trending_bonus": "MTL",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.00508,
+    "tp1": 0.00529,
+    "tp2": 0.0057,
+    "sl": 0.00494,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A bullish liquidity sweep on the 1H chart broke a strong order block, accompanied by a sharp volume spike, indicating smart money accumulation.",
+    "invalidation": "Close below the SL at 0.00494 or a break of the recent swing low around 0.00490 invalidates the setup.",
+    "rapid_reason": "1H bullish order block break with surge in volume.",
+    "smc_logic": "The price retested a bullish order block on the 4H timeframe, then executed a liquidity sweep that pushed it above the block, confirming smart money intent. The breakout is supported by a rising volume profile and a higher‑high formation, suggesting continuation. A tight stop just below the swept liquidity zone protects against false breakouts.",
+    "smc_logic_short": "Bullish order block break with volume‑driven liquidity sweep on 1H.",
+    "change": 15.682,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "dcc57de60391459ab1e0cc477180f265",
+    "created_at": "2026-09-14T15:28:28.108454+00:00",
+    "last_checked_at": "2026-09-14T17:38:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.00494,
+    "closed_at": "2026-09-14T17:38:59.999000+00:00"
   }
 ]
