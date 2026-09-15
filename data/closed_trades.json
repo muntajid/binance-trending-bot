@@ -3912,5 +3912,31 @@
     "tp1_card": "ASTR_TP1_target_card.png",
     "closed_price": 0.00694,
     "closed_at": "2026-09-15T09:48:59.999000+00:00"
+  },
+  {
+    "coin": "SAGA",
+    "trending_bonus": "ASTR",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.02405,
+    "tp1": 0.02504,
+    "tp2": 0.02697,
+    "sl": 0.02336,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A 1H liquidity sweep broke the bullish order block, confirming strong buying pressure after the 32% 24‑hour rally.",
+    "invalidation": "Close below 0.02330 invalidates the bullish structure.",
+    "rapid_reason": "1H bullish order block break with a volume spike.",
+    "smc_logic": "The price cleared a well‑defined bullish order block on the 1H chart, absorbing liquidity from the previous swing low. A subsequent upward thrust retested the broken block, now acting as support, indicating Smart Money accumulation. The next resistance aligns with the prior swing high, providing a clear TP zone.",
+    "smc_logic_short": "Bullish order block break, retest as support, target prior swing high.",
+    "change": 32.762,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "a90a468e616c49c4be59cddfc2f1f890",
+    "created_at": "2026-09-15T18:36:09.520332+00:00",
+    "last_checked_at": "2026-09-15T18:37:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.02336,
+    "closed_at": "2026-09-15T18:37:59.999000+00:00"
   }
 ]

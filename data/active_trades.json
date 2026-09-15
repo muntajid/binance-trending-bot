@@ -17,7 +17,7 @@
     "created_at": "2026-08-09T10:18:41.432894",
     "status": "ACTIVE",
     "tp1_hit": true,
-    "last_checked_at": "2026-09-15T15:32:59.575192+00:00",
+    "last_checked_at": "2026-09-15T19:10:36.440139+00:00",
     "trade_id": "cookie-803c273ce218397f3d39"
   },
   {
@@ -37,7 +37,7 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-15T15:33:01.095639+00:00",
+    "last_checked_at": "2026-09-15T19:10:38.191093+00:00",
     "trade_id": "broccoli714-4afb4206a90a75f8adef"
   },
   {
@@ -57,7 +57,7 @@
     "change": 16.429,
     "created_at": "2026-08-11T15:30:36.044910",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-15T15:33:02.378547+00:00",
+    "last_checked_at": "2026-09-15T19:10:39.540793+00:00",
     "trade_id": "luna-c2dd588ea6c1ea1f0180"
   },
   {
@@ -77,7 +77,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-15T15:33:03.682268+00:00",
+    "last_checked_at": "2026-09-15T19:10:40.676216+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -96,7 +96,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-09-15T15:33:05.187305+00:00",
+    "last_checked_at": "2026-09-15T19:10:42.089153+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -121,7 +121,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-09-15T15:33:06.639066+00:00",
+    "last_checked_at": "2026-09-15T19:10:43.190642+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -145,7 +145,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-09-15T15:33:07.958806+00:00",
+    "last_checked_at": "2026-09-15T19:10:44.599282+00:00",
     "status": "ACTIVE"
   },
   {
@@ -165,7 +165,7 @@
     "change": 23.449,
     "trade_id": "949f531c14c04355a82618720cf1c389",
     "created_at": "2026-08-15T19:01:01.049101+00:00",
-    "last_checked_at": "2026-09-15T15:33:09.204051+00:00",
+    "last_checked_at": "2026-09-15T19:10:46.354660+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.0631,
@@ -189,7 +189,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-09-15T15:33:10.470850+00:00",
+    "last_checked_at": "2026-09-15T19:10:47.511557+00:00",
     "status": "ACTIVE"
   },
   {
@@ -209,31 +209,7 @@
     "change": 17.694,
     "trade_id": "faa3d8bd10a24294802c33a276a73d92",
     "created_at": "2026-08-16T09:54:32.439560+00:00",
-    "last_checked_at": "2026-09-15T15:33:11.719226+00:00",
-    "status": "ACTIVE"
-  },
-  {
-    "coin": "SAGA",
-    "trending_bonus": "ASTR",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.02405,
-    "tp1": 0.02504,
-    "tp2": 0.02697,
-    "sl": 0.02336,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A 1H liquidity sweep broke the bullish order block, confirming strong buying pressure after the 32% 24‑hour rally.",
-    "invalidation": "Close below 0.02330 invalidates the bullish structure.",
-    "rapid_reason": "1H bullish order block break with a volume spike.",
-    "smc_logic": "The price cleared a well‑defined bullish order block on the 1H chart, absorbing liquidity from the previous swing low. A subsequent upward thrust retested the broken block, now acting as support, indicating Smart Money accumulation. The next resistance aligns with the prior swing high, providing a clear TP zone.",
-    "smc_logic_short": "Bullish order block break, retest as support, target prior swing high.",
-    "change": 32.762,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "a90a468e616c49c4be59cddfc2f1f890",
-    "created_at": "2026-09-15T18:36:09.520332+00:00",
-    "last_checked_at": "2026-09-15T18:36:09.520332+00:00",
+    "last_checked_at": "2026-09-15T19:10:48.617023+00:00",
     "status": "ACTIVE"
   }
 ]
