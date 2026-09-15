@@ -3856,5 +3856,31 @@
     "status": "SL_HIT",
     "closed_price": 0.00494,
     "closed_at": "2026-09-14T17:38:59.999000+00:00"
+  },
+  {
+    "coin": "ARK",
+    "trending_bonus": "MTL",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.1746,
+    "tp1": 0.1833,
+    "tp2": 0.1955,
+    "sl": 0.1694,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "Liquidity sweep of the 0.1700 zone created a bullish order block at current market price, signaling smart‑money accumulation.",
+    "invalidation": "Close below 0.1680 invalidates the bullish order block and the trade thesis.",
+    "rapid_reason": "1H price broke above the 0.1725 resistance with strong volume.",
+    "smc_logic": "The price swept liquidity below the recent swing low, then retested the cleared level forming a bullish order block at 0.1746. The prior resistance at 0.1725 now acts as support, confirming smart‑money buying. Targets align with the next supply zone around 0.1955.",
+    "smc_logic_short": "Liquidity sweep → bullish order block at 0.1746 → 0.1725 support flip.",
+    "change": 23.305,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "e70886a804df4cd2a0d9f75adbc912e8",
+    "created_at": "2026-09-14T21:12:31.001792+00:00",
+    "last_checked_at": "2026-09-14T23:02:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.1694,
+    "closed_at": "2026-09-14T23:02:59.999000+00:00"
   }
 ]
