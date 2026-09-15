@@ -211,5 +211,29 @@
     "created_at": "2026-08-16T09:54:32.439560+00:00",
     "last_checked_at": "2026-09-15T05:50:49.659083+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "ASTR",
+    "trending_bonus": "BTC",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.007154,
+    "tp1": 0.00744,
+    "tp2": 0.00801,
+    "sl": 0.00694,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "Liquidity sweep on the 1H chart broke a bullish order block and price retested the broken resistance as new support.",
+    "invalidation": "Close below the stop‑loss at 0.00694 invalidates the trade.",
+    "rapid_reason": "1H bullish order block break with a volume spike.",
+    "smc_logic": "The 1H chart shows a clear order block around 0.0069‑0.0070 that was broken with a sharp upward move, indicating smart‑money absorption. After the break, price retested the former resistance at 0.00715, now acting as support, confirming the bullish bias. A liquidity pool above the current price provides upside fuel, targeting the next resistance zones around 0.00744 and 0.00801.",
+    "smc_logic_short": "Bullish order block break, retest of broken resistance as support.",
+    "change": 14.813,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "ce12f59e024143a085b783fba76aa4ee",
+    "created_at": "2026-09-15T08:12:30.519735+00:00",
+    "last_checked_at": "2026-09-15T08:12:30.519735+00:00",
+    "status": "ACTIVE"
   }
 ]
