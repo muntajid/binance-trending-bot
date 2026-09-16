@@ -166,5 +166,29 @@
     "created_at": "2026-08-16T09:54:32.439560+00:00",
     "last_checked_at": "2026-09-16T18:26:12.623757+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "SYN",
+    "trending_bonus": "LSK",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.17869,
+    "tp1": 0.18633,
+    "tp2": 0.20066,
+    "sl": 0.17379,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep on the 1H chart broke the recent swing high at 0.176 with a sharp volume spike, indicating smart‑money accumulation.",
+    "invalidation": "If price closes below 0.1735, the bullish thesis is invalidated.",
+    "rapid_reason": "1H bullish momentum triggered by a strong volume surge and break of the 0.176 resistance.",
+    "smc_logic": "The price pierced a bullish order block formed on the 4H timeframe, filling the liquidity void left by the prior down move. After the break, the market showed a clear higher‑high structure, confirming smart‑money intent to push higher. A tight stop below the recent swing low protects against a false breakout.",
+    "smc_logic_short": "Bullish order block break, higher‑high structure, tight stop below swing low.",
+    "change": 118.768,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "17aaa83304884bd39fa6f8feb75b37ad",
+    "created_at": "2026-09-16T18:34:14.465217+00:00",
+    "last_checked_at": "2026-09-16T18:34:14.465217+00:00",
+    "status": "ACTIVE"
   }
 ]
