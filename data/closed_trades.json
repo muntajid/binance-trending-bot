@@ -3938,5 +3938,31 @@
     "status": "SL_HIT",
     "closed_price": 0.02336,
     "closed_at": "2026-09-15T18:37:59.999000+00:00"
+  },
+  {
+    "coin": "VTHO",
+    "trending_bonus": "SAGA",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.000756,
+    "tp1": 0.000786,
+    "tp2": 0.000847,
+    "sl": 0.000733,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A 1H liquidity sweep broke the recent swing high with a 2.5x volume spike, indicating smart money absorption and a bullish bias.",
+    "invalidation": "If price closes below 0.000735 on the 1H chart, the bullish structure is invalidated and the trade should be exited.",
+    "rapid_reason": "Bullish 1H engulfing candle paired with a 150% volume surge triggered the setup.",
+    "smc_logic": "The price broke a clear order block on the 1H timeframe, capturing liquidity left below the block. After the break, the market retested the block as support, confirming smart money’s intent to push higher. A higher high confirms the bullish structure, justifying a long entry at market price.",
+    "smc_logic_short": "Order block break, liquidity capture, retest as support, higher high confirms long bias.",
+    "change": 17.574,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "4f44fe80ca5a4d83b14076c156b44af0",
+    "created_at": "2026-09-15T23:19:56.173503+00:00",
+    "last_checked_at": "2026-09-16T00:01:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.000733,
+    "closed_at": "2026-09-16T00:01:59.999000+00:00"
   }
 ]
