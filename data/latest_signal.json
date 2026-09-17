@@ -1,8 +1,20 @@
 {
-  "title": "Trader Diary: BTC hits $76.6k and my brain does a backflip",
-  "content": "📈 1% up and I'm already drafting a 10x long plan. 5 min later I'm checking the 1‑minute chart like it's a Netflix series. By 3 am I'm convinced the dip is just a “sale” and I need to buy the dip… again.",
-  "lesson": "Set a stop‑loss before the hype hits; otherwise your FOMO will fund the next pizza.",
-  "question": "Who else is re‑watching the 1‑minute candles at 2 am? Drop your meme faces 👇",
-  "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "coin": "AVA",
+  "trending_bonus": "ONE",
+  "direction": "LONG",
+  "entry": "CMP",
+  "entry_price": 0.2904,
+  "tp1": 0.3022,
+  "tp2": 0.3324,
+  "sl": 0.2843,
+  "leverage": "15x",
+  "risk": "Medium Risk",
+  "confidence": 85,
+  "why_now": "The 24‑hour 88.94% jump shows a liquidity sweep around 0.29, with volume spiking and the price breaking the 0.28 support level, signaling a strong bullish bias.",
+  "invalidation": "A break below the 0.2843 stop‑loss would invalidate the trade thesis.",
+  "rapid_reason": "1‑hour bullish engulfing after a consolidation triggered momentum.",
+  "smc_logic": "Smart Money has been accumulating AVA at the 0.28 support zone, evidenced by the recent volume spike and the price’s breakout. The 0.29 entry sits at the top of a short‑term consolidation, offering a clear entry point with a tight stop below the support. The 4% TP1 captures the immediate retracement, while the 10% TP2 targets the next resistance at 0.33, aligning with the asset’s recent upward swing.",
+  "smc_logic_short": "Liquidity sweep at 0.29, 0.28 support, 0.33 resistance.",
+  "change": 88.939,
+  "groq_model": "openai/gpt-oss-20b"
 }
