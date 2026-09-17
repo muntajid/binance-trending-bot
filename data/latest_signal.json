@@ -1,20 +1,8 @@
 {
-  "coin": "ONE",
-  "trending_bonus": "AVA",
-  "direction": "LONG",
-  "entry": "CMP",
-  "entry_price": 0.001302,
-  "tp1": 0.001356,
-  "tp2": 0.00146,
-  "sl": 0.001265,
-  "leverage": "15x",
-  "risk": "Medium Risk",
-  "confidence": 85,
-  "why_now": "A bullish liquidity sweep at the 0.00130 level broke the previous order block, confirming strong buying pressure and accumulation.",
-  "invalidation": "Close below 0.001260 invalidates the setup.",
-  "rapid_reason": "1H price surged above the recent swing high with a spike in volume.",
-  "smc_logic": "The price broke a bearish structure and retested the broken order block at 0.00130, acting as a liquidity pool. A swift upward move consumed the pool, establishing a new bullish order block, and the 1H candle closed above the prior high, indicating smart money accumulation. The next targets align with the next resistance zones.",
-  "smc_logic_short": "Broken order block at 0.00130, liquidity sweep, new bullish order block formed.",
-  "change": 94.918,
-  "groq_model": "openai/gpt-oss-120b"
+  "title": "Trader Diary: BTC hits $76.6k and my brain does a backflip",
+  "content": "📈 1% up and I'm already drafting a 10x long plan. 5 min later I'm checking the 1‑minute chart like it's a Netflix series. By 3 am I'm convinced the dip is just a “sale” and I need to buy the dip… again.",
+  "lesson": "Set a stop‑loss before the hype hits; otherwise your FOMO will fund the next pizza.",
+  "question": "Who else is re‑watching the 1‑minute candles at 2 am? Drop your meme faces 👇",
+  "groq_model": "openai/gpt-oss-120b",
+  "type": "meme_community"
 }
