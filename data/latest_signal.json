@@ -1,8 +1,20 @@
 {
-  "title": "Trader Diary: BTC at $78K & My 5x Leverage Fantasies",
-  "content": "👀 3 AM: Spot the green candle, heart races.\n💥 3:01 AM: Open 5x long, “to the moon!”\n📉 3:05 AM: Spot the dip, panic‑sell, “I’m a genius, I timed it!”",
-  "lesson": "Set a stop‑loss before the coffee kicks in – leverage loves your regret.",
-  "question": "Who else opened a 5x position at 78K and instantly regretted it? Drop your war stories 👇",
-  "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "coin": "G",
+  "trending_bonus": "F",
+  "direction": "LONG",
+  "entry": "CMP",
+  "entry_price": 0.00829,
+  "tp1": 0.00866,
+  "tp2": 0.00928,
+  "sl": 0.00804,
+  "leverage": "15x",
+  "risk": "Medium Risk",
+  "confidence": 85,
+  "why_now": "A liquidity sweep below the 0.0080 support level was absorbed, flipping that zone into a bullish order block and triggering a sharp upward move.",
+  "invalidation": "Close below 0.00800 invalidates the bullish thesis.",
+  "rapid_reason": "1H volume surged and broke the previous swing high, confirming strong buying momentum.",
+  "smc_logic": "The price broke a well‑defined bearish order block on the 1H chart, indicating smart money absorption of liquidity. The breakout was confirmed by a volume spike and a retest of the broken resistance, now acting as support. This creates a clear upward bias with a tight stop below the reclaimed liquidity zone.",
+  "smc_logic_short": "Bullish order block break with volume confirmation, retest of new support.",
+  "change": 85.874,
+  "groq_model": "openai/gpt-oss-120b"
 }

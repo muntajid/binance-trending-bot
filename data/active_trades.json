@@ -170,5 +170,29 @@
     "created_at": "2026-08-16T09:54:32.439560+00:00",
     "last_checked_at": "2026-09-18T17:52:58.013313+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "G",
+    "trending_bonus": "F",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.00829,
+    "tp1": 0.00866,
+    "tp2": 0.00928,
+    "sl": 0.00804,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep below the 0.0080 support level was absorbed, flipping that zone into a bullish order block and triggering a sharp upward move.",
+    "invalidation": "Close below 0.00800 invalidates the bullish thesis.",
+    "rapid_reason": "1H volume surged and broke the previous swing high, confirming strong buying momentum.",
+    "smc_logic": "The price broke a well‑defined bearish order block on the 1H chart, indicating smart money absorption of liquidity. The breakout was confirmed by a volume spike and a retest of the broken resistance, now acting as support. This creates a clear upward bias with a tight stop below the reclaimed liquidity zone.",
+    "smc_logic_short": "Bullish order block break with volume confirmation, retest of new support.",
+    "change": 85.874,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "9bb4b68d714343c787280978b8e09f6d",
+    "created_at": "2026-09-18T17:58:41.994152+00:00",
+    "last_checked_at": "2026-09-18T17:58:41.994152+00:00",
+    "status": "ACTIVE"
   }
 ]
