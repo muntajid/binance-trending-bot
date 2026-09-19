@@ -1,8 +1,20 @@
 {
-  "title": "Trader Diary: BTC at $81,280 (+4%) and my brain on caffeine",
-  "content": "📈 8:00 am: “Buy the dip!”\n💸 12:00 pm: “Leverage x5, moon!”\n🚀 3:00 pm: “Hold, it’s just a pull‑back.”\n😅 11:00 pm: “Why is my margin screaming?”",
-  "lesson": "Set a stop‑loss before the hype hits your DMs.",
-  "question": "Who else rode the 4% wave with a 5x lever and regretted it at 2 am? Drop your war stories 👇",
-  "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "coin": "ONE",
+  "trending_bonus": "ZAMA",
+  "direction": "LONG",
+  "entry": "CMP",
+  "entry_price": 0.003294,
+  "tp1": 0.00343,
+  "tp2": 0.00369,
+  "sl": 0.0032,
+  "leverage": "15x",
+  "risk": "Medium Risk",
+  "confidence": 85,
+  "why_now": "A liquidity sweep of the 0.00325‑0.00330 zone triggered a bullish order block and 1H volume spiked 150%, confirming strong buying pressure.",
+  "invalidation": "Close below 0.00318 (the broken swing low) invalidates the long thesis.",
+  "rapid_reason": "1H candle broke the recent swing high with heavy volume.",
+  "smc_logic": "The price cleared a bullish order block at 0.00325, forcing liquidity to the downside and then retested the block as support. A break of structure on the 1H chart confirmed the shift to bullish bias, and the market is now targeting the next resistance cluster. The trade is anchored at the current market price with a tight stop below the last swing low.",
+  "smc_logic_short": "Bullish order block cleared, 1H BOS, targeting next resistance.",
+  "change": 82.09,
+  "groq_model": "openai/gpt-oss-120b"
 }

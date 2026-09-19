@@ -170,5 +170,29 @@
     "created_at": "2026-08-16T09:54:32.439560+00:00",
     "last_checked_at": "2026-09-19T16:39:52.919943+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "ONE",
+    "trending_bonus": "ZAMA",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.003294,
+    "tp1": 0.00343,
+    "tp2": 0.00369,
+    "sl": 0.0032,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.00325‑0.00330 zone triggered a bullish order block and 1H volume spiked 150%, confirming strong buying pressure.",
+    "invalidation": "Close below 0.00318 (the broken swing low) invalidates the long thesis.",
+    "rapid_reason": "1H candle broke the recent swing high with heavy volume.",
+    "smc_logic": "The price cleared a bullish order block at 0.00325, forcing liquidity to the downside and then retested the block as support. A break of structure on the 1H chart confirmed the shift to bullish bias, and the market is now targeting the next resistance cluster. The trade is anchored at the current market price with a tight stop below the last swing low.",
+    "smc_logic_short": "Bullish order block cleared, 1H BOS, targeting next resistance.",
+    "change": 82.09,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "d71fc4e2b32b4b9f8862384a73415d03",
+    "created_at": "2026-09-19T17:36:31.320517+00:00",
+    "last_checked_at": "2026-09-19T17:36:31.320517+00:00",
+    "status": "ACTIVE"
   }
 ]
