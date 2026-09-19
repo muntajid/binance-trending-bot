@@ -1,20 +1,8 @@
 {
-  "coin": "AR",
-  "trending_bonus": "XTZ",
-  "direction": "LONG",
-  "entry": "CMP",
-  "entry_price": 3.96,
-  "tp1": 4.2,
-  "tp2": 4.55,
-  "sl": 3.8,
-  "leverage": "15x",
-  "risk": "Medium Risk",
-  "confidence": 85,
-  "why_now": "A liquidity sweep of the 4.00 level forced sellers to absorb excess supply, after which price broke the prior swing high, indicating smart‑money accumulation.",
-  "invalidation": "Close below 3.80 invalidates the bullish thesis and triggers the stop‑loss.",
-  "rapid_reason": "1H chart shows a bullish engulfing candle above 4.00 with a volume spike.",
-  "smc_logic": "The 4.00 resistance acted as a liquidity pool; its sweep created an order‑block bullish imbalance. Price then retested the block as support, confirming smart‑money buying. A break of structure above the previous high signals the next leg up.",
-  "smc_logic_short": "Liquidity sweep at 4.00 → bullish order block → break of structure confirms long.",
-  "change": 38.188,
-  "groq_model": "openai/gpt-oss-120b"
+  "title": "Trader Diary: BTC at $81,280 (+4%) and my brain on caffeine",
+  "content": "📈 8:00 am: “Buy the dip!”\n💸 12:00 pm: “Leverage x5, moon!”\n🚀 3:00 pm: “Hold, it’s just a pull‑back.”\n😅 11:00 pm: “Why is my margin screaming?”",
+  "lesson": "Set a stop‑loss before the hype hits your DMs.",
+  "question": "Who else rode the 4% wave with a 5x lever and regretted it at 2 am? Drop your war stories 👇",
+  "groq_model": "openai/gpt-oss-120b",
+  "type": "meme_community"
 }
