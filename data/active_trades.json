@@ -170,5 +170,29 @@
     "created_at": "2026-08-16T09:54:32.439560+00:00",
     "last_checked_at": "2026-09-19T05:10:39.551010+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "AR",
+    "trending_bonus": "XTZ",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 3.96,
+    "tp1": 4.2,
+    "tp2": 4.55,
+    "sl": 3.8,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 4.00 level forced sellers to absorb excess supply, after which price broke the prior swing high, indicating smart‑money accumulation.",
+    "invalidation": "Close below 3.80 invalidates the bullish thesis and triggers the stop‑loss.",
+    "rapid_reason": "1H chart shows a bullish engulfing candle above 4.00 with a volume spike.",
+    "smc_logic": "The 4.00 resistance acted as a liquidity pool; its sweep created an order‑block bullish imbalance. Price then retested the block as support, confirming smart‑money buying. A break of structure above the previous high signals the next leg up.",
+    "smc_logic_short": "Liquidity sweep at 4.00 → bullish order block → break of structure confirms long.",
+    "change": 38.188,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "03b22b3df052429aa7cbbcd0610b03a4",
+    "created_at": "2026-09-19T07:40:20.670011+00:00",
+    "last_checked_at": "2026-09-19T07:40:20.670011+00:00",
+    "status": "ACTIVE"
   }
 ]
