@@ -16,7 +16,7 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-19T18:55:26.223854+00:00",
+    "last_checked_at": "2026-09-19T21:18:42.804023+00:00",
     "trade_id": "broccoli714-4afb4206a90a75f8adef"
   },
   {
@@ -36,7 +36,7 @@
     "change": 16.429,
     "created_at": "2026-08-11T15:30:36.044910",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-19T18:55:27.501710+00:00",
+    "last_checked_at": "2026-09-19T21:18:43.681187+00:00",
     "trade_id": "luna-c2dd588ea6c1ea1f0180"
   },
   {
@@ -56,7 +56,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-19T18:55:28.782916+00:00",
+    "last_checked_at": "2026-09-19T21:18:44.559507+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -75,7 +75,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-09-19T18:55:30.083492+00:00",
+    "last_checked_at": "2026-09-19T21:18:45.438830+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -100,7 +100,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-09-19T18:55:31.541063+00:00",
+    "last_checked_at": "2026-09-19T21:18:46.313722+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -124,7 +124,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-09-19T18:55:32.889870+00:00",
+    "last_checked_at": "2026-09-19T21:18:47.189763+00:00",
     "status": "ACTIVE"
   },
   {
@@ -144,7 +144,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-09-19T18:55:34.192856+00:00",
+    "last_checked_at": "2026-09-19T21:18:48.080876+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
@@ -168,31 +168,7 @@
     "change": 17.694,
     "trade_id": "faa3d8bd10a24294802c33a276a73d92",
     "created_at": "2026-08-16T09:54:32.439560+00:00",
-    "last_checked_at": "2026-09-19T18:55:35.469827+00:00",
-    "status": "ACTIVE"
-  },
-  {
-    "coin": "ZAMA",
-    "trending_bonus": "ONE",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.09034,
-    "tp1": 0.09451,
-    "tp2": 0.10118,
-    "sl": 0.08763,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A liquidity sweep of the 0.0890‑0.0900 zone forced sellers to capitulate, triggering a bullish imbalance and a clean break above the recent swing high.",
-    "invalidation": "Close below 0.0875 invalidates the bullish thesis.",
-    "rapid_reason": "1H bullish engulfing candle with a sharp volume spike.",
-    "smc_logic": "The price broke a bearish order block at 0.0890, exposing hidden liquidity and allowing smart money to accumulate. A subsequent bullish imbalance pushed the market into the next supply zone, confirming the long bias. The trade aligns with the market leader ONE’s upward momentum, reinforcing the setup.",
-    "smc_logic_short": "Break of bearish order block, liquidity sweep, and bullish imbalance confirm long entry.",
-    "change": 50.516,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "be7940aa57c44020900e3cfb93d5e5a4",
-    "created_at": "2026-09-19T19:47:44.713174+00:00",
-    "last_checked_at": "2026-09-19T19:47:44.713174+00:00",
+    "last_checked_at": "2026-09-19T21:18:48.953978+00:00",
     "status": "ACTIVE"
   }
 ]
