@@ -170,5 +170,29 @@
     "created_at": "2026-08-16T09:54:32.439560+00:00",
     "last_checked_at": "2026-09-19T21:18:48.953978+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "CELR",
+    "trending_bonus": "ONE",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.003523,
+    "tp1": 0.003664,
+    "tp2": 0.003948,
+    "sl": 0.003416,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A rapid liquidity sweep of the 0.0035‑0.00355 zone on the 1H chart triggered a bullish imbalance, with volume spiking 2.3× the 24‑hour average and pushing price above the recent swing high.",
+    "invalidation": "Close below 0.00340 invalidates the bullish thesis and signals a return to market makers’ supply.",
+    "rapid_reason": "1H price broke above the 0.00355 resistance line on strong buying volume.",
+    "smc_logic": "The price cleared a clear liquidity void below 0.00345 and retested the bullish order block at 0.0035, confirming smart money accumulation. A subsequent break of the 0.00355 resistance turned the block into a demand zone, providing a clean entry at market. The stop is placed just below the previous void to protect against a false breakout.",
+    "smc_logic_short": "Liquidity void cleared, order block retested, resistance flip – bullish entry.",
+    "change": 55.292,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "ba506ecb6641487e811ceb7e2afefef3",
+    "created_at": "2026-09-19T22:35:31.643383+00:00",
+    "last_checked_at": "2026-09-19T22:35:31.643383+00:00",
+    "status": "ACTIVE"
   }
 ]
