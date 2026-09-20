@@ -1,17 +1,14 @@
-👀 $CELR Tested Critical Decision Level (+55.3% 24H) — Setup Overview! 🚀
+🌐 MACRO & BITCOIN OUTLOOK: Bitcoin steadies near $81k amid consolidation and liquidity hunt 📊
 
-$CELR — LONG SETUP
-• Entry Zone (CMP): $0.003523
-• Target 1: $0.003664 (+4.0%) 🎯
-• Target 2: $0.003948 (+12.1%) 🚀
-• Invalidation (SL): $0.003416 (-3.0%) 🛡️
-• Risk/Reward: 1:1.32R | Confidence: 85%
-• Suggested Leverage: 3x - 5x (Max 15x)
+$BTC 24H: $80984.49 (-0.47%)
+Market Phase: Consolidation with liquidity hunt
 
-Why now: A rapid liquidity sweep of the 0.0035‑0.00355 zone on the 1H chart triggered a bullish imbalance, with volume spiking 2.3× the 24‑hour average and pushing price above the recent swing high.
-What changes the view: Close below 0.00340 invalidates the bullish thesis and signals a return to market makers’ supply.
+📊 Key Market Dynamics:
+• Bitcoin Structure: On the 1H chart BTC is holding the 80.5k–81k range, respecting the 80.2k support and testing the 81.2k resistance; the 4H structure shows a descending channel intact, suggesting limited upside until a breakout.
+• Altcoin Flows: Capital is rotating into high‑momentum altcoins, with CELR, G, ONE and BANK leading gains as traders seek risk‑on exposure away from BTC.
+• Crucial Levels: Support $80200 | Resistance $81500
 
-💡 Risk Rule: Lock in 50% at TP1 and trail Stop Loss to entry for a risk-free run to TP2.
+💡 Trader Takeaway: Spot: add to positions on dips near $80,200 with tight stops; Futures: stay flat or short‑biased, targeting a retest of $81,500 if price breaks above resistance.
 
-$CELR $BTC #BinanceSquare
-⚠️ Educational market analysis. Always manage your risk & DYOR.
+$BTC $ETH #BinanceSquare #CryptoMarket
+⚠️ Educational market analysis only. Not financial advice. Always DYOR.
