@@ -16,7 +16,7 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-20T20:37:17.100561+00:00",
+    "last_checked_at": "2026-09-20T22:41:51.387773+00:00",
     "trade_id": "broccoli714-4afb4206a90a75f8adef"
   },
   {
@@ -36,7 +36,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-20T20:37:18.349236+00:00",
+    "last_checked_at": "2026-09-20T22:41:52.282420+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -55,7 +55,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-09-20T20:37:19.369698+00:00",
+    "last_checked_at": "2026-09-20T22:41:53.172581+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -80,7 +80,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-09-20T20:37:20.359770+00:00",
+    "last_checked_at": "2026-09-20T22:41:54.047177+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -104,7 +104,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-09-20T20:37:21.331528+00:00",
+    "last_checked_at": "2026-09-20T22:41:54.909078+00:00",
     "status": "ACTIVE"
   },
   {
@@ -124,7 +124,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-09-20T20:37:22.307641+00:00",
+    "last_checked_at": "2026-09-20T22:41:56.094667+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
@@ -148,31 +148,7 @@
     "change": 17.694,
     "trade_id": "faa3d8bd10a24294802c33a276a73d92",
     "created_at": "2026-08-16T09:54:32.439560+00:00",
-    "last_checked_at": "2026-09-20T20:37:23.281006+00:00",
-    "status": "ACTIVE"
-  },
-  {
-    "coin": "S",
-    "trending_bonus": "SAGA",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.04049,
-    "tp1": 0.04211,
-    "tp2": 0.04535,
-    "sl": 0.03928,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A liquidity sweep of the 0.0395‑0.0400 zone forced price below the recent order block, and the breakout above the 0.0405 resistance confirmed bullish intent.",
-    "invalidation": "Close below 0.0392 invalidates the long thesis.",
-    "rapid_reason": "1H candle pierced the prior swing high with a surge in volume.",
-    "smc_logic": "The price cleared a bearish order block at 0.0398, indicating smart money absorption. After the sweep, it retested the broken resistance at 0.0405, now acting as a demand zone, providing a clean entry at market price. The next liquidity pools lie at the calculated TP levels.",
-    "smc_logic_short": "Order block break → demand zone retest → long entry.",
-    "change": 24.63,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "b76dcd12d98d495f9f5caba82e8d6ada",
-    "created_at": "2026-09-20T20:01:20.675629+00:00",
-    "last_checked_at": "2026-09-20T20:37:24.254775+00:00",
+    "last_checked_at": "2026-09-20T22:41:57.251279+00:00",
     "status": "ACTIVE"
   }
 ]
