@@ -4343,5 +4343,31 @@
     "status": "SL_HIT",
     "closed_price": 0.003416,
     "closed_at": "2026-09-19T22:40:59.999000+00:00"
+  },
+  {
+    "coin": "ZIL",
+    "trending_bonus": "CELR",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.004294,
+    "tp1": 0.004509,
+    "tp2": 0.004809,
+    "sl": 0.004166,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A 1H liquidity sweep broke the recent swing high at 0.00430 with a sharp volume spike, indicating smart money absorption and a bullish bias.",
+    "invalidation": "If price closes below 0.00418 (just above the stop) or breaks the prior swing low at 0.00415, the setup is invalidated.",
+    "rapid_reason": "1H bullish momentum triggered by a strong volume surge and break of the 0.00430 resistance.",
+    "smc_logic": "The price performed a liquidity grab below the 0.00420 order block, then retested and broke the 0.00430 resistance, confirming the bullish order block. The subsequent pull‑back respected the 0.00425 demand zone, providing a clean entry at market. With the next supply zone around 0.00455, TP1 targets the first resistance and TP2 aims for the next liquidity pool near 0.00480.",
+    "smc_logic_short": "Liquidity grab → resistance break → demand zone hold, setting up a clean long entry.",
+    "change": 37.168,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "54a70e99f196474589567d0888fb4260",
+    "created_at": "2026-09-20T08:06:16.780425+00:00",
+    "last_checked_at": "2026-09-20T08:13:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.004166,
+    "closed_at": "2026-09-20T08:13:59.999000+00:00"
   }
 ]
