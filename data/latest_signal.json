@@ -1,8 +1,20 @@
 {
-  "title": "Trader Diary: 1% Dip Panic",
-  "content": "📉 Bitcoin slides 1% → My heart does a double‑take.\n💭 3 AM: “Just a tiny bit of extra leverage, no biggie.”\n🚀 5 AM: “Why is my margin call louder than my alarm?”",
-  "lesson": "Never let a 1% dip be the excuse to crank up leverage – respect your stop‑loss.",
-  "question": "Who else added leverage at a 1% dip and instantly regretted it? Share your war stories 👇",
-  "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "coin": "SAGA",
+  "trending_bonus": "CELR",
+  "direction": "LONG",
+  "entry": "CMP",
+  "entry_price": 0.03524,
+  "tp1": 0.03667,
+  "tp2": 0.03949,
+  "sl": 0.0342,
+  "leverage": "15x",
+  "risk": "Medium Risk",
+  "confidence": 85,
+  "why_now": "A liquidity sweep of the 0.0345‑0.0350 zone created a bullish order block, and price broke above the prior swing high, confirming strong buying pressure.",
+  "invalidation": "Close below 0.03420 (the stop‑loss level) or a retest of the broken order block invalidates the trade.",
+  "rapid_reason": "1H bullish engulfing candle with a sharp volume spike after a 38% 24‑hour rally.",
+  "smc_logic": "The price cleared a well‑defined order block at 0.0348, indicating smart money absorption of liquidity. A subsequent break of the recent swing high creates a new bullish market structure, and the 1H candle confirms the continuation. The stop is placed just below the order block to protect against a false breakout.",
+  "smc_logic_short": "Order block cleared, swing high broken, 1H bullish confirmation.",
+  "change": 38.38,
+  "groq_model": "openai/gpt-oss-120b"
 }
