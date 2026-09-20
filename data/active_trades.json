@@ -150,5 +150,29 @@
     "created_at": "2026-08-16T09:54:32.439560+00:00",
     "last_checked_at": "2026-09-20T22:41:57.251279+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "FF",
+    "trending_bonus": "SAGA",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.17551,
+    "tp1": 0.18235,
+    "tp2": 0.19637,
+    "sl": 0.17007,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep on the 1H chart broke the recent bearish order block, triggering a bullish reversal and confirming smart money accumulation.",
+    "invalidation": "If price closes below 0.1700, the trade thesis is invalidated.",
+    "rapid_reason": "1H bullish engulfing candle after a sharp volume spike.",
+    "smc_logic": "The price broke the prior resistance at ~0.1720, converting it into support and forming a bullish order block on the 4H timeframe. A liquidity grab below this block was quickly absorbed, indicating smart money is loading long positions. The next targets align with the previous swing high (TP1) and the next resistance level (TP2).",
+    "smc_logic_short": "Bullish order block at 0.1720 now support; liquidity sweep confirms upward bias.",
+    "change": 38.4,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "3e62976b814749aa9df0fe3d8dc1ab8d",
+    "created_at": "2026-09-20T22:48:35.489341+00:00",
+    "last_checked_at": "2026-09-20T22:48:35.489341+00:00",
+    "status": "ACTIVE"
   }
 ]
