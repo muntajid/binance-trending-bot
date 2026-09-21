@@ -16,7 +16,7 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-21T16:57:20.664517+00:00",
+    "last_checked_at": "2026-09-21T20:52:57.684271+00:00",
     "trade_id": "broccoli714-4afb4206a90a75f8adef"
   },
   {
@@ -36,7 +36,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-21T16:57:21.797491+00:00",
+    "last_checked_at": "2026-09-21T20:52:58.928409+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -55,7 +55,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-09-21T16:57:22.881267+00:00",
+    "last_checked_at": "2026-09-21T20:53:00.149879+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -80,7 +80,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-09-21T16:57:24.102465+00:00",
+    "last_checked_at": "2026-09-21T20:53:01.487532+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -104,7 +104,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-09-21T16:57:25.208462+00:00",
+    "last_checked_at": "2026-09-21T20:53:02.715610+00:00",
     "status": "ACTIVE"
   },
   {
@@ -124,7 +124,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-09-21T16:57:26.300738+00:00",
+    "last_checked_at": "2026-09-21T20:53:03.904612+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
@@ -148,35 +148,7 @@
     "change": 17.694,
     "trade_id": "faa3d8bd10a24294802c33a276a73d92",
     "created_at": "2026-08-16T09:54:32.439560+00:00",
-    "last_checked_at": "2026-09-21T16:57:27.389204+00:00",
+    "last_checked_at": "2026-09-21T20:53:05.113469+00:00",
     "status": "ACTIVE"
-  },
-  {
-    "coin": "MUBARAK",
-    "trending_bonus": "FTT",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.04441,
-    "tp1": 0.04636,
-    "tp2": 0.04968,
-    "sl": 0.04303,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A liquidity sweep of the 0.0450 order block created a bullish imbalance, pulling price back to the current market price.",
-    "invalidation": "If price closes below 0.0430, the bullish structure is invalidated and the trade should be exited.",
-    "rapid_reason": "1H bullish candle broke the previous swing high with a surge in volume.",
-    "smc_logic": "The price respected a strong bullish order block at 0.0450, then performed a liquidity grab below it, confirming smart money accumulation. A break of structure to the upside followed, indicating a shift to higher time‑frame bullish bias. The current price sits at the CMP, offering an optimal entry before the next resistance zone.",
-    "smc_logic_short": "Bullish order block at 0.0450, liquidity sweep, BOS to the upside, entry at CMP.",
-    "change": 39.635,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "828540dda3984f9999d7d003db87d788",
-    "created_at": "2026-09-21T15:30:20.622008+00:00",
-    "last_checked_at": "2026-09-21T16:57:28.478768+00:00",
-    "status": "ACTIVE",
-    "tp1_hit": true,
-    "tp1_hit_price": 0.04636,
-    "tp1_hit_at": "2026-09-21T16:19:59.999000+00:00",
-    "tp1_card": "MUBARAK_TP1_target_card.png"
   }
 ]
