@@ -16,7 +16,7 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-21T05:25:59.956519+00:00",
+    "last_checked_at": "2026-09-21T10:58:35.583413+00:00",
     "trade_id": "broccoli714-4afb4206a90a75f8adef"
   },
   {
@@ -36,7 +36,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-21T05:26:01.560676+00:00",
+    "last_checked_at": "2026-09-21T10:58:36.488632+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -55,7 +55,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-09-21T05:26:03.622148+00:00",
+    "last_checked_at": "2026-09-21T10:58:37.394102+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -80,7 +80,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-09-21T05:26:04.784530+00:00",
+    "last_checked_at": "2026-09-21T10:58:38.437837+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -104,7 +104,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-09-21T05:26:05.946879+00:00",
+    "last_checked_at": "2026-09-21T10:58:39.387486+00:00",
     "status": "ACTIVE"
   },
   {
@@ -124,7 +124,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-09-21T05:26:07.106340+00:00",
+    "last_checked_at": "2026-09-21T10:58:40.284570+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
@@ -148,31 +148,7 @@
     "change": 17.694,
     "trade_id": "faa3d8bd10a24294802c33a276a73d92",
     "created_at": "2026-08-16T09:54:32.439560+00:00",
-    "last_checked_at": "2026-09-21T05:26:08.274383+00:00",
-    "status": "ACTIVE"
-  },
-  {
-    "coin": "FTT",
-    "trending_bonus": "SAGA",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.2891,
-    "tp1": 0.3007,
-    "tp2": 0.324,
-    "sl": 0.2806,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A 1H liquidity sweep broke the bullish order block, confirming strong buying pressure after the 37.8% 24‑hour rally.",
-    "invalidation": "Close below 0.2780 invalidates the trade thesis",
-    "rapid_reason": "1H bullish order block break with a volume spike",
-    "smc_logic": "The price cleared a well‑defined bullish order block on the 1H chart, swallowing prior liquidity and retesting the broken structure as support. A subsequent pull‑back held above the order block, indicating smart money accumulation and a higher‑timeframe bias. The setup aligns with the market leader SAGA’s upward momentum, reinforcing the long bias.",
-    "smc_logic_short": "Bullish order block break, liquidity sweep, retest as support.",
-    "change": 37.798,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "02d087edea504584a7d123cee1d54838",
-    "created_at": "2026-09-21T08:23:11.321901+00:00",
-    "last_checked_at": "2026-09-21T08:23:11.321901+00:00",
+    "last_checked_at": "2026-09-21T10:58:41.180542+00:00",
     "status": "ACTIVE"
   }
 ]
