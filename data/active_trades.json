@@ -150,5 +150,29 @@
     "created_at": "2026-08-16T09:54:32.439560+00:00",
     "last_checked_at": "2026-09-21T20:53:05.113469+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "FORM",
+    "trending_bonus": "PHA",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.3528,
+    "tp1": 0.3669,
+    "tp2": 0.3951,
+    "sl": 0.3422,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.34‑0.35 support zone forced sellers out, and the ensuing volume surge pushed price above the recent swing high, confirming bullish order‑block absorption.",
+    "invalidation": "Close below 0.3420 invalidates the bullish thesis",
+    "rapid_reason": "1H candle broke the 0.36 resistance with a 2× volume spike",
+    "smc_logic": "The price performed a classic liquidity grab below the 0.34 level, then retested the same zone as a bullish order block. Upon retest, strong buying pressure flipped the previous resistance at ~0.36 into support, indicating smart money accumulation. The next target aligns with the next supply zone around 0.395, while a break below the order‑block low invalidates the trade.",
+    "smc_logic_short": "Liquidity grab → bullish order block at 0.34‑0.35 → resistance flip at 0.36, target 0.395",
+    "change": 37.529,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "6ccbaebd753e49dbba39d7ef4d2d092f",
+    "created_at": "2026-09-21T21:27:08.894452+00:00",
+    "last_checked_at": "2026-09-21T21:27:08.894452+00:00",
+    "status": "ACTIVE"
   }
 ]
