@@ -4582,5 +4582,28 @@
     "status": "SL_HIT",
     "closed_price": 0.0647,
     "closed_at": "2026-09-22T08:18:59.999000+00:00"
+  },
+  {
+    "coin": "DOLO",
+    "trending_bonus": "HEMI",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.02501,
+    "tp1": 0.0295,
+    "tp2": 0.0349,
+    "sl": 0.0205,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 17.69% increase in the last 24 hours, a long position could be considered with a target profit at 17.69% and 39.38% above the current price, and a stop loss at 18% below the current price.",
+    "smc_logic_short": "Riding the momentum.",
+    "change": 17.694,
+    "trade_id": "faa3d8bd10a24294802c33a276a73d92",
+    "created_at": "2026-08-16T09:54:32.439560+00:00",
+    "last_checked_at": "2026-09-22T16:12:59.999000+00:00",
+    "status": "TP2_HIT",
+    "tp2_card": "DOLO_TP2_target_card.png",
+    "closed_price": 0.0349,
+    "closed_at": "2026-09-22T16:12:59.999000+00:00"
   }
 ]

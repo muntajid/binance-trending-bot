@@ -16,8 +16,12 @@
     "change": 27.384,
     "created_at": "2026-08-09T14:06:37.513663",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-22T12:45:50.054974+00:00",
-    "trade_id": "broccoli714-4afb4206a90a75f8adef"
+    "last_checked_at": "2026-09-22T17:20:35.169203+00:00",
+    "trade_id": "broccoli714-4afb4206a90a75f8adef",
+    "tp1_hit": true,
+    "tp1_hit_price": 0.025,
+    "tp1_hit_at": "2026-09-22T13:52:59.999000+00:00",
+    "tp1_card": "BROCCOLI714_TP1_target_card.png"
   },
   {
     "coin": "UTK",
@@ -36,7 +40,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-22T12:45:50.972959+00:00",
+    "last_checked_at": "2026-09-22T17:20:41.143799+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -55,7 +59,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-09-22T12:45:52.029797+00:00",
+    "last_checked_at": "2026-09-22T17:20:42.010950+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -80,7 +84,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-09-22T12:45:52.924486+00:00",
+    "last_checked_at": "2026-09-22T17:20:42.881126+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -104,7 +108,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-09-22T12:45:53.835856+00:00",
+    "last_checked_at": "2026-09-22T17:20:43.764421+00:00",
     "status": "ACTIVE"
   },
   {
@@ -124,31 +128,11 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-09-22T12:45:54.742095+00:00",
+    "last_checked_at": "2026-09-22T17:20:44.637993+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
-  },
-  {
-    "coin": "DOLO",
-    "trending_bonus": "HEMI",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.02501,
-    "tp1": 0.0295,
-    "tp2": 0.0349,
-    "sl": 0.0205,
-    "leverage": "3x-5x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "Given the 17.69% increase in the last 24 hours, a long position could be considered with a target profit at 17.69% and 39.38% above the current price, and a stop loss at 18% below the current price.",
-    "smc_logic_short": "Riding the momentum.",
-    "change": 17.694,
-    "trade_id": "faa3d8bd10a24294802c33a276a73d92",
-    "created_at": "2026-08-16T09:54:32.439560+00:00",
-    "last_checked_at": "2026-09-22T12:45:55.634426+00:00",
-    "status": "ACTIVE"
   }
 ]
