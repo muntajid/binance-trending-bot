@@ -1,20 +1,8 @@
 {
-  "coin": "KERNEL",
-  "trending_bonus": "MUBARAK",
-  "direction": "LONG",
-  "entry": "CMP",
-  "entry_price": 0.0667,
-  "tp1": 0.0694,
-  "tp2": 0.0747,
-  "sl": 0.0647,
-  "leverage": "15x",
-  "risk": "Medium Risk",
-  "confidence": 85,
-  "why_now": "A liquidity sweep on the 1H chart broke the recent swing low, triggering a bullish order block and volume surge.",
-  "invalidation": "Close below 0.0645 invalidates the bullish order block.",
-  "rapid_reason": "1H bullish order block formed after a sharp liquidity grab.",
-  "smc_logic": "The price performed a liquidity sweep below the previous swing low, then retested the area forming a bullish order block. Buying pressure resumed, pushing price above the block, indicating smart money accumulation. The next resistance aligns with the prior swing high, providing a logical TP zone.",
-  "smc_logic_short": "Liquidity sweep → bullish order block → breakout.",
-  "change": 41.949,
-  "groq_model": "openai/gpt-oss-120b"
+  "title": "Trader Diary: BTC at $86,026 & My 5x Leverage Day",
+  "content": "🚀 86k on the chart → I whisper “just one more contract”.\n💸 Leverage hits 5x, heart rate hits 120.\n📉 Price dips 0.5% → I’m suddenly a financial therapist for my own panic.",
+  "lesson": "If the trade feels like a roller‑coaster, tighten the stop before the loop‑de‑loop.",
+  "question": "Who else turned a 5‑minute “quick scalpe” into a 2‑hour therapy session? Drop your war stories 👇",
+  "groq_model": "openai/gpt-oss-120b",
+  "type": "meme_community"
 }
