@@ -1,14 +1,18 @@
-🌐 MACRO & BITCOIN OUTLOOK: Bitcoin surges past $85.5k, targeting key resistance as bullish expansion fuels liquidity hunt 📊
+🚨 $KERNEL Volume Expansion (+41.9% 24H) — Key Resistance Flipped! 📈
 
-$BTC 24H: $85680.01 (+5.44%)
-Market Phase: Bullish Expansion
+$KERNEL — LONG SETUP
+• Entry Zone (CMP): $0.0667
+• Target 1: $0.0694 (+4.0%) 🎯
+• Target 2: $0.0747 (+12.0%) 🚀
+• Invalidation (SL): $0.0647 (-3.0%) 🛡️
+• Risk/Reward: 1:1.35R | Confidence: 85%
+• Suggested Leverage: 3x - 5x (Max 15x)
 
-📊 Key Market Dynamics:
-• Bitcoin Structure: On the 1H chart BTC holds a higher‑high/higher‑low structure, bouncing off the 84,950 $ support zone; the 4H shows a clean uptrend with the next liquidity pool forming near 86,200 $ resistance.
-• Altcoin Flows: Alt‑coin capital is rotating into high‑momentum assets, with KERNEL, ONE and FORM leading the rally, indicating a short‑term risk‑on bias beyond Bitcoin.
-• Crucial Levels: Support $84950 | Resistance $86200
+Why now: A liquidity sweep on the 1H chart broke the recent swing low, triggering a bullish order block and volume surge.
+What changes the view: Close below 0.0645 invalidates the bullish order block.
 
-💡 Trader Takeaway: Spot: add on pull‑backs to ~84,950 $ with stops at 84,400 $; Futures: go long on a clean break above 86,200 $ with a 2:1 reward‑to‑risk target around 88,500 $.
+💡 Risk Rule: Lock in 50% at TP1 and trail Stop Loss to entry for a risk-free run to TP2.
+What is your target for $KERNEL on this structure?
 
-$BTC $ETH #BinanceSquare #CryptoMarket
-⚠️ Educational market analysis only. Not financial advice. Always DYOR.
+$KERNEL $BTC #Write2Earn
+⚠️ Educational market analysis. Always manage your risk & DYOR.
