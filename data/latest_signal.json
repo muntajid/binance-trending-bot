@@ -1,8 +1,20 @@
 {
-  "title": "Trader Diary: 3‑AM BTC Dip",
-  "content": "BTC at $85,782 and I'm still scrolling the 1‑minute chart like it's a Netflix series. \nLeverage: 10x, heart rate: 120bpm. \nWhen the price dips 0.6% I suddenly become a mathematician calculating my next revenge trade.",
-  "lesson": "If the dip feels like a personal attack, it’s probably time to step away and set a stop‑loss.",
-  "question": "Who else was up at 3 AM double‑checking the dip? Be honest 👇",
-  "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "coin": "SAGA",
+  "trending_bonus": "NIL",
+  "direction": "LONG",
+  "entry": "CMP",
+  "entry_price": 0.05116,
+  "tp1": 0.05321,
+  "tp2": 0.0573,
+  "sl": 0.04963,
+  "leverage": "15x",
+  "risk": "Medium Risk",
+  "confidence": 85,
+  "why_now": "A liquidity sweep of the 0.0500 support zone created a bullish order block, and price immediately retested and broke the 0.0505 resistance, confirming buying pressure.",
+  "invalidation": "Close below 0.0495 invalidates the bullish thesis.",
+  "rapid_reason": "1H momentum turned bullish as price broke the 0.0505 resistance with a spike in volume.",
+  "smc_logic": "The price formed a clear bullish order block at 0.0500-0.0505 after sweeping liquidity. A break of structure above the previous swing high confirms smart money accumulation, and the retest of the order block provides a low‑risk entry. The next liquidity pool lies near 0.0573, offering an extended target.",
+  "smc_logic_short": "Bullish order block at 0.0500‑0.0505, break of structure, retest entry, targets liquidity pools.",
+  "change": 37.232,
+  "groq_model": "openai/gpt-oss-120b"
 }
