@@ -4661,5 +4661,31 @@
     "status": "SL_HIT",
     "closed_price": 0.1351,
     "closed_at": "2026-09-23T00:22:59.999000+00:00"
+  },
+  {
+    "coin": "NIL",
+    "trending_bonus": "MET",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.10219,
+    "tp1": 0.10628,
+    "tp2": 0.11445,
+    "sl": 0.09912,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.0980‑0.0990 zone created a bullish order block, and price broke above the recent swing high, confirming strong buying pressure.",
+    "invalidation": "Close below 0.0990 (the SL zone) invalidates the trade thesis.",
+    "rapid_reason": "1H price surged past the previous high, indicating aggressive buying momentum.",
+    "smc_logic": "The price formed a clear bullish order block at the 0.0985 level, then executed a liquidity grab that pushed it into the 0.102 range, breaking structure and confirming a higher low. The breakout of the 0.102 swing high signals institutional accumulation, justifying a long entry near the current market price.",
+    "smc_logic_short": "Bullish order block + liquidity sweep → break of 0.102 high confirms institutional buying.",
+    "change": 36.585,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "0f2664ab66c94add983607d960bac157",
+    "created_at": "2026-09-23T08:07:36.862318+00:00",
+    "last_checked_at": "2026-09-23T08:46:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.09912,
+    "closed_at": "2026-09-23T08:46:59.999000+00:00"
   }
 ]
