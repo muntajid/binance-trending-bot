@@ -110,5 +110,29 @@
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
+  },
+  {
+    "coin": "XAI",
+    "trending_bonus": "BROCCOLI714",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.01195,
+    "tp1": 0.01244,
+    "tp2": 0.01393,
+    "sl": 0.01159,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A 1H liquidity sweep created a bullish order block right at the current price, confirming strong buying pressure.",
+    "invalidation": "Close below 0.01155 invalidates the bullish order block and the trade premise.",
+    "rapid_reason": "1H bullish order block formed after a sharp volume spike.",
+    "smc_logic": "The price broke a recent swing low, revealing a hidden bullish order block at 0.0119. A rapid liquidity sweep forced sellers to capitulate, allowing smart money to accumulate positions. The next resistance at 0.01244 offers a realistic profit target before the next supply zone.",
+    "smc_logic_short": "Bullish order block at 0.0119 after liquidity sweep; target next resistance.",
+    "change": 52.618,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "bafee50c1bae4683bca49c9492e2f40c",
+    "created_at": "2026-09-24T18:45:39.653974+00:00",
+    "last_checked_at": "2026-09-24T18:45:39.653974+00:00",
+    "status": "ACTIVE"
   }
 ]
