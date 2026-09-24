@@ -1,15 +1,8 @@
 {
-  "headline": "BTC consolidates below 84.8k as altcoins rally on fresh capital inflows",
-  "btc_price": 84182.0,
-  "btc_change": -2.768,
-  "eth_price": 2681.39,
-  "eth_change": -2.801,
-  "market_phase": "Consolidation / Liquidity Hunt",
-  "btc_thesis": "On the 1H chart BTC is forming lower lows but the 4H timeframe still holds above the 83.5k support zone, eyeing the 84.8k resistance as a liquidity pool for potential short squeezes.",
-  "altcoin_summary": "After BTC’s dip, capital is rotating into altcoins, with top gainers NIL, NOM, SAGA and LSK leading a short‑term rally.",
-  "btc_support": 83500.0,
-  "btc_resistance": 84800.0,
-  "strategy_outlook": "Spot: add to positions on dips near 83.5k with stops just below 83k; Futures: stay short or hedge until BTC retests the 84.8k resistance level.",
+  "title": "Trader Diary: 84k Dip Drama",
+  "content": "Saw BTC slide 2% at 3 AM -> opened a 20x long because 'this is my entry'. 5 min later I'm Googling 'how to survive a margin call'.",
+  "lesson": "Never let FOMO dictate position size—set your stop‑loss before you click confirm.",
+  "question": "Who else turned a 2% dip into a heart‑rate test? Share your worst FOMO story 👇",
   "groq_model": "openai/gpt-oss-120b",
-  "type": "market_overview"
+  "type": "meme_community"
 }
