@@ -110,5 +110,29 @@
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
+  },
+  {
+    "coin": "SAGA",
+    "trending_bonus": "XAI",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.07179,
+    "tp1": 0.07468,
+    "tp2": 0.08043,
+    "sl": 0.06966,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.07 support zone created a bullish order block, confirming strong accumulation as price broke above the recent swing high.",
+    "invalidation": "Close below 0.0695 invalidates the bullish thesis",
+    "rapid_reason": "1H chart displayed a bullish engulfing candle after breaking the 0.07 resistance, signaling immediate upward momentum.",
+    "smc_logic": "The price broke a clear down‑trend line and formed a bullish order block at the 0.07 level, indicating smart money is absorbing liquidity. A subsequent upward thrust swept stop orders, pushing price into the next supply zone, which now acts as the first profit target. Maintaining the trade requires price to respect the order block and stay above the stop level.",
+    "smc_logic_short": "Bullish order block at 0.07, liquidity sweep, upward thrust to next supply zone.",
+    "change": 48.932,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "e951463fe1864f73ba84b8bbf5ec03ba",
+    "created_at": "2026-09-24T23:41:44.324379+00:00",
+    "last_checked_at": "2026-09-24T23:41:44.324379+00:00",
+    "status": "ACTIVE"
   }
 ]
