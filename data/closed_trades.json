@@ -4713,5 +4713,32 @@
     "status": "SL_HIT",
     "closed_price": 0.04963,
     "closed_at": "2026-09-23T19:39:59.999000+00:00"
+  },
+  {
+    "coin": "NOM",
+    "trending_bonus": "NIL",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.001996,
+    "tp1": 0.002076,
+    "tp2": 0.002236,
+    "sl": 0.001936,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.00195‑0.00197 zone created a bullish order block, and price immediately retested and held above the previous swing high.",
+    "invalidation": "Close below 0.00194 invalidates the bullish order block and the trade premise.",
+    "rapid_reason": "1H candle broke above the 0.00198 resistance with a surge in volume.",
+    "smc_logic": "The price performed a classic liquidity grab below the recent swing low, forming a bullish order block at 0.00196‑0.00198. After the grab, the market showed a clear break of structure, retesting the block as support and confirming buying pressure. This confluence suggests a short‑term upside bias.",
+    "smc_logic_short": "Liquidity grab → bullish order block → break of structure, now acting as support.",
+    "change": 14.057,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "87553887f6834f6b8aa5639bd1471e50",
+    "created_at": "2026-09-23T23:21:43.968844+00:00",
+    "last_checked_at": "2026-09-24T00:42:59.999000+00:00",
+    "status": "TP2_HIT",
+    "tp2_card": "NOM_TP2_target_card.png",
+    "closed_price": 0.002236,
+    "closed_at": "2026-09-24T00:42:59.999000+00:00"
   }
 ]
