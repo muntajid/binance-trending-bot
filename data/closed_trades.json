@@ -4740,5 +4740,32 @@
     "tp2_card": "NOM_TP2_target_card.png",
     "closed_price": 0.002236,
     "closed_at": "2026-09-24T00:42:59.999000+00:00"
+  },
+  {
+    "coin": "BROCCOLI714",
+    "trending_bonus": "TUT",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.01977,
+    "tp1": 0.025,
+    "tp2": 0.03,
+    "sl": 0.015,
+    "leverage": "3x-5x",
+    "risk": "Medium Risk",
+    "confidence": 80,
+    "smc_logic": "Given the 24h change of 27.38%, a long position is considered with a take profit at 25% and 50% above the entry price, and a stop loss at 24% below the entry price.",
+    "smc_logic_short": "Long with 25% and 50% TP.",
+    "change": 27.384,
+    "created_at": "2026-08-09T14:06:37.513663",
+    "status": "TP2_HIT",
+    "last_checked_at": "2026-09-24T12:26:59.999000+00:00",
+    "trade_id": "broccoli714-4afb4206a90a75f8adef",
+    "tp1_hit": true,
+    "tp1_hit_price": 0.025,
+    "tp1_hit_at": "2026-09-22T13:52:59.999000+00:00",
+    "tp1_card": "BROCCOLI714_TP1_target_card.png",
+    "tp2_card": "BROCCOLI714_TP2_target_card.png",
+    "closed_price": 0.03,
+    "closed_at": "2026-09-24T12:26:59.999000+00:00"
   }
 ]
