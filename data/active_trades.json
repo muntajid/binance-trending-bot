@@ -110,5 +110,29 @@
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
+  },
+  {
+    "coin": "PHA",
+    "trending_bonus": "QI",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.0843,
+    "tp1": 0.0878,
+    "tp2": 0.0945,
+    "sl": 0.0819,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep was spotted just below 0.0838, followed by aggressive buying that lifted price to the current 0.0844, signaling smart‑money accumulation.",
+    "invalidation": "Close below 0.0820 invalidates the bullish thesis",
+    "rapid_reason": "1H bullish engulfing candle broke the prior swing high",
+    "smc_logic": "The price broke a bearish order block on the 4H chart, creating a bullish imbalance. A subsequent liquidity void was filled as price surged, confirming smart‑money entry. The structure now shows higher highs and higher lows, supporting a long bias.",
+    "smc_logic_short": "Bullish order block break, liquidity void fill, higher highs/lows.",
+    "change": 70.994,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "d8cda7fe148545289a044029472450e2",
+    "created_at": "2026-09-25T19:03:03.232680+00:00",
+    "last_checked_at": "2026-09-25T19:03:03.232680+00:00",
+    "status": "ACTIVE"
   }
 ]

@@ -1,8 +1,20 @@
 {
-  "title": "Trader Diary: 83k BTC & My 10x Leverage Dreams",
-  "content": "Check the chart at 2 AM: BTC dips to $83,590, my heart does a double‑take.\nI whisper “just one more long” while my margin‑call alarm screams.\nCoffee’s gone cold, but my position is hotter than a summer meme.",
-  "lesson": "Never risk more than you can afford to lose – especially when the price is flirting with your liquidation.",
-  "question": "Who’s still holding the 10x after the dip? Drop your battle scars 👇",
-  "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "coin": "PHA",
+  "trending_bonus": "QI",
+  "direction": "LONG",
+  "entry": "CMP",
+  "entry_price": 0.0843,
+  "tp1": 0.0878,
+  "tp2": 0.0945,
+  "sl": 0.0819,
+  "leverage": "15x",
+  "risk": "Medium Risk",
+  "confidence": 85,
+  "why_now": "A liquidity sweep was spotted just below 0.0838, followed by aggressive buying that lifted price to the current 0.0844, signaling smart‑money accumulation.",
+  "invalidation": "Close below 0.0820 invalidates the bullish thesis",
+  "rapid_reason": "1H bullish engulfing candle broke the prior swing high",
+  "smc_logic": "The price broke a bearish order block on the 4H chart, creating a bullish imbalance. A subsequent liquidity void was filled as price surged, confirming smart‑money entry. The structure now shows higher highs and higher lows, supporting a long bias.",
+  "smc_logic_short": "Bullish order block break, liquidity void fill, higher highs/lows.",
+  "change": 70.994,
+  "groq_model": "openai/gpt-oss-120b"
 }
