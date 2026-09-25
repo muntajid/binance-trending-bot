@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-25T06:26:13.834494+00:00",
+    "last_checked_at": "2026-09-25T12:04:54.378038+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -35,7 +35,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-09-25T06:26:15.044596+00:00",
+    "last_checked_at": "2026-09-25T12:04:55.503971+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -60,7 +60,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-09-25T06:26:16.381101+00:00",
+    "last_checked_at": "2026-09-25T12:04:56.684336+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -84,7 +84,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-09-25T06:26:17.503312+00:00",
+    "last_checked_at": "2026-09-25T12:04:57.784768+00:00",
     "status": "ACTIVE"
   },
   {
@@ -104,35 +104,11 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-09-25T06:26:18.713912+00:00",
+    "last_checked_at": "2026-09-25T12:04:58.933456+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
-  },
-  {
-    "coin": "QI",
-    "trending_bonus": "QNT",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.003052,
-    "tp1": 0.003174,
-    "tp2": 0.003418,
-    "sl": 0.002959,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A liquidity sweep of the 0.0030 support zone created a bullish order block, and price immediately broke above the recent swing high.",
-    "invalidation": "Close below 0.00295 invalidates the trade thesis.",
-    "rapid_reason": "1H chart shows a strong bullish engulfing candle with a volume spike, confirming upward momentum.",
-    "smc_logic": "The price retested the bullish order block at 0.0030, confirming institutional buying. A break of structure above the prior high signals a shift to higher time‑frame bias, while the nearby liquidity pool below 0.00295 provides a tight stop. The setup aligns with Smart Money concepts of accumulation and liquidity targeting.",
-    "smc_logic_short": "Order block retest, BOS above prior high, tight SL at liquidity pool.",
-    "change": 104.97,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "1f69a63258364e67ab5fb268aa72a07f",
-    "created_at": "2026-09-25T08:22:00.556485+00:00",
-    "last_checked_at": "2026-09-25T08:22:00.556485+00:00",
-    "status": "ACTIVE"
   }
 ]
