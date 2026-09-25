@@ -110,5 +110,29 @@
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
+  },
+  {
+    "coin": "QI",
+    "trending_bonus": "QNT",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.003052,
+    "tp1": 0.003174,
+    "tp2": 0.003418,
+    "sl": 0.002959,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.0030 support zone created a bullish order block, and price immediately broke above the recent swing high.",
+    "invalidation": "Close below 0.00295 invalidates the trade thesis.",
+    "rapid_reason": "1H chart shows a strong bullish engulfing candle with a volume spike, confirming upward momentum.",
+    "smc_logic": "The price retested the bullish order block at 0.0030, confirming institutional buying. A break of structure above the prior high signals a shift to higher time‑frame bias, while the nearby liquidity pool below 0.00295 provides a tight stop. The setup aligns with Smart Money concepts of accumulation and liquidity targeting.",
+    "smc_logic_short": "Order block retest, BOS above prior high, tight SL at liquidity pool.",
+    "change": 104.97,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "1f69a63258364e67ab5fb268aa72a07f",
+    "created_at": "2026-09-25T08:22:00.556485+00:00",
+    "last_checked_at": "2026-09-25T08:22:00.556485+00:00",
+    "status": "ACTIVE"
   }
 ]
