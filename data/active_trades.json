@@ -110,5 +110,29 @@
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
+  },
+  {
+    "coin": "ARK",
+    "trending_bonus": "QI",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.2564,
+    "tp1": 0.2667,
+    "tp2": 0.2872,
+    "sl": 0.2487,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A 1H liquidity sweep broke the bullish order block, confirming strong buying pressure as price retested the block.",
+    "invalidation": "Close below 0.2485 invalidates the bullish order block and nullifies the setup.",
+    "rapid_reason": "1H bullish order block break with a volume spike.",
+    "smc_logic": "The price retested a clear bullish order block on the 1H chart, then executed a liquidity sweep to the downside before snapping back above the block, indicating smart money accumulation. A break of structure to the upside confirms the shift in market bias, and the next resistance aligns with the projected TP1 level.",
+    "smc_logic_short": "Bullish order block retest → liquidity sweep → break of structure confirms LONG bias.",
+    "change": 31.928,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "8df79201b6ff4461a5912179ae74e805",
+    "created_at": "2026-09-25T23:42:35.139105+00:00",
+    "last_checked_at": "2026-09-25T23:42:35.139105+00:00",
+    "status": "ACTIVE"
   }
 ]
