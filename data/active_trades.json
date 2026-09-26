@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-25T23:25:14.653937+00:00",
+    "last_checked_at": "2026-09-26T01:48:23.680263+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -35,7 +35,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-09-25T23:25:15.560701+00:00",
+    "last_checked_at": "2026-09-26T01:48:24.586808+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -60,7 +60,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-09-25T23:25:16.470742+00:00",
+    "last_checked_at": "2026-09-26T01:48:25.475973+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -84,7 +84,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-09-25T23:25:17.367665+00:00",
+    "last_checked_at": "2026-09-26T01:48:26.367587+00:00",
     "status": "ACTIVE"
   },
   {
@@ -104,35 +104,11 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-09-25T23:25:18.291149+00:00",
+    "last_checked_at": "2026-09-26T01:48:27.285862+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
-  },
-  {
-    "coin": "ARK",
-    "trending_bonus": "QI",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.2564,
-    "tp1": 0.2667,
-    "tp2": 0.2872,
-    "sl": 0.2487,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A 1H liquidity sweep broke the bullish order block, confirming strong buying pressure as price retested the block.",
-    "invalidation": "Close below 0.2485 invalidates the bullish order block and nullifies the setup.",
-    "rapid_reason": "1H bullish order block break with a volume spike.",
-    "smc_logic": "The price retested a clear bullish order block on the 1H chart, then executed a liquidity sweep to the downside before snapping back above the block, indicating smart money accumulation. A break of structure to the upside confirms the shift in market bias, and the next resistance aligns with the projected TP1 level.",
-    "smc_logic_short": "Bullish order block retest → liquidity sweep → break of structure confirms LONG bias.",
-    "change": 31.928,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "8df79201b6ff4461a5912179ae74e805",
-    "created_at": "2026-09-25T23:42:35.139105+00:00",
-    "last_checked_at": "2026-09-25T23:42:35.139105+00:00",
-    "status": "ACTIVE"
   }
 ]
