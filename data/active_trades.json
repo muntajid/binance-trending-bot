@@ -110,5 +110,29 @@
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
+  },
+  {
+    "coin": "AMP",
+    "trending_bonus": "RARE",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.000711,
+    "tp1": 0.000738,
+    "tp2": 0.000795,
+    "sl": 0.000689,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A 1‑hour liquidity sweep broke the recent swing high with a sharp volume spike, indicating smart money absorption.",
+    "invalidation": "Close below 0.00068 invalidates the bullish thesis.",
+    "rapid_reason": "1H price surged past the prior high on heavy buying pressure.",
+    "smc_logic": "The price performed a liquidity grab on the 1H chart, then retested the broken resistance, which now acts as a new support. Order blocks from the previous down move align with the entry zone, providing a clear accumulation area for institutional players.",
+    "smc_logic_short": "Liquidity sweep → resistance flip → order block support.",
+    "change": 41.071,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "96eab3441c314b558a77422ad9e6c179",
+    "created_at": "2026-09-26T18:10:48.123209+00:00",
+    "last_checked_at": "2026-09-26T18:10:48.123209+00:00",
+    "status": "ACTIVE"
   }
 ]
