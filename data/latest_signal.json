@@ -1,20 +1,8 @@
 {
-  "coin": "RARE",
-  "trending_bonus": "PHA",
-  "direction": "LONG",
-  "entry": "CMP",
-  "entry_price": 0.02195,
-  "tp1": 0.02283,
-  "tp2": 0.02458,
-  "sl": 0.02129,
-  "leverage": "15x",
-  "risk": "Medium Risk",
-  "confidence": 85,
-  "why_now": "A liquidity sweep of the 0.0220 resistance turned that level into support, triggering a bullish order flow imbalance.",
-  "invalidation": "Close below 0.02130 invalidates the trade thesis.",
-  "rapid_reason": "1H price broke above the 0.0220 resistance with a volume surge.",
-  "smc_logic": "The 0.0210‑0.0220 zone acted as a bullish order block; after a rapid liquidity grab, price retested the zone and held, confirming smart money accumulation. The break above the block with strong volume indicates a likely continuation toward the next supply cluster.",
-  "smc_logic_short": "Bullish order block at 0.0210‑0.0220 held after liquidity sweep; price now targeting higher supply zones.",
-  "change": 67.991,
-  "groq_model": "openai/gpt-oss-120b"
+  "title": "Trader Diary: BTC at $83,932 & My 1‑minute Panic Button",
+  "content": "- 8:00 PM: “Just a tiny 0.2% dip, I’ll buy the dip… again.”\n- 8:01 PM: Leverage 5x, heart rate 180 BPM.\n- 8:05 PM: “Why is the chart screaming louder than my mom’s group chat?”",
+  "lesson": "If the price moves more than your coffee temperature, step back and lower the leverage.",
+  "question": "Who else hit the ‘add more leverage’ button at 0.2%? Be honest 👇",
+  "groq_model": "openai/gpt-oss-120b",
+  "type": "meme_community"
 }
