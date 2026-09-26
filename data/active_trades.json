@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-26T21:37:04.762219+00:00",
+    "last_checked_at": "2026-09-26T23:53:02.964708+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -35,7 +35,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-09-26T21:37:06.004068+00:00",
+    "last_checked_at": "2026-09-26T23:53:04.255937+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -60,7 +60,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-09-26T21:37:07.308059+00:00",
+    "last_checked_at": "2026-09-26T23:53:05.544492+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -84,7 +84,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-09-26T21:37:08.609697+00:00",
+    "last_checked_at": "2026-09-26T23:53:06.823709+00:00",
     "status": "ACTIVE"
   },
   {
@@ -104,35 +104,11 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-09-26T21:37:09.928531+00:00",
+    "last_checked_at": "2026-09-26T23:53:08.098070+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
-  },
-  {
-    "coin": "QNT",
-    "trending_bonus": "AMP",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 148.38,
-    "tp1": 154.32,
-    "tp2": 166.19,
-    "sl": 144.02,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A liquidity sweep of the 150‑152 zone created a bullish order block, confirming strong buying interest.",
-    "invalidation": "Price closing below 144.00 invalidates the bullish setup.",
-    "rapid_reason": "1H candle broke above the 150 resistance with a surge in volume.",
-    "smc_logic": "The 1H chart shows a clear break of market structure at 150, forming a bullish order block. Liquidity was swept below the block, and the price retested the block as support, indicating smart money accumulation. A retest of the block with bullish candles confirms the long bias.",
-    "smc_logic_short": "Break of structure @150, bullish order block, liquidity sweep, retest as support.",
-    "change": 49.587,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "6222a1a4319d4601bacecfbf07f96f5a",
-    "created_at": "2026-09-26T23:15:47.919574+00:00",
-    "last_checked_at": "2026-09-26T23:15:47.919574+00:00",
-    "status": "ACTIVE"
   }
 ]
