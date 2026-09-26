@@ -110,5 +110,29 @@
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
+  },
+  {
+    "coin": "QNT",
+    "trending_bonus": "AMP",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 148.38,
+    "tp1": 154.32,
+    "tp2": 166.19,
+    "sl": 144.02,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 150‑152 zone created a bullish order block, confirming strong buying interest.",
+    "invalidation": "Price closing below 144.00 invalidates the bullish setup.",
+    "rapid_reason": "1H candle broke above the 150 resistance with a surge in volume.",
+    "smc_logic": "The 1H chart shows a clear break of market structure at 150, forming a bullish order block. Liquidity was swept below the block, and the price retested the block as support, indicating smart money accumulation. A retest of the block with bullish candles confirms the long bias.",
+    "smc_logic_short": "Break of structure @150, bullish order block, liquidity sweep, retest as support.",
+    "change": 49.587,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "6222a1a4319d4601bacecfbf07f96f5a",
+    "created_at": "2026-09-26T23:15:47.919574+00:00",
+    "last_checked_at": "2026-09-26T23:15:47.919574+00:00",
+    "status": "ACTIVE"
   }
 ]
