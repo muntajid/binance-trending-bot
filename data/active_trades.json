@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-27T21:39:55.057582+00:00",
+    "last_checked_at": "2026-09-27T23:59:11.937807+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -35,7 +35,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-09-27T21:39:56.624101+00:00",
+    "last_checked_at": "2026-09-27T23:59:13.231455+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -60,7 +60,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-09-27T21:39:57.935727+00:00",
+    "last_checked_at": "2026-09-27T23:59:14.562127+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -84,7 +84,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-09-27T21:39:59.491865+00:00",
+    "last_checked_at": "2026-09-27T23:59:15.824583+00:00",
     "status": "ACTIVE"
   },
   {
@@ -104,35 +104,11 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-09-27T21:40:01.013016+00:00",
+    "last_checked_at": "2026-09-27T23:59:17.111503+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
-  },
-  {
-    "coin": "QNT",
-    "trending_bonus": "GRT",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 282.95,
-    "tp1": 297.11,
-    "tp2": 317.18,
-    "sl": 274.73,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A recent liquidity sweep around the 280 level has pushed QNT into a strong accumulation zone, supported by a surge in institutional volume and a bullish reversal pattern on the 1‑hour chart.",
-    "invalidation": "A break below 274.5 would invalidate the trade thesis by exposing the support level.",
-    "rapid_reason": "1‑hour bullish engulfing with volume spike triggered momentum.",
-    "smc_logic": "The 1‑hour chart shows a clear bullish engulfing candle at 283.25, indicating institutional buying. The price is above the 50‑EMA and the 200‑EMA, suggesting a sustained uptrend. The recent 90%+ 24‑hour rally confirms strong demand and a likely continuation to the next resistance.",
-    "smc_logic_short": "Bullish engulfing at 283.25, above 50/200 EMA, strong volume.",
-    "change": 90.305,
-    "groq_model": "openai/gpt-oss-20b",
-    "trade_id": "d5087ed0bc3d4dbea9835fe6fca464a8",
-    "created_at": "2026-09-27T23:30:50.454820+00:00",
-    "last_checked_at": "2026-09-27T23:30:50.454820+00:00",
-    "status": "ACTIVE"
   }
 ]

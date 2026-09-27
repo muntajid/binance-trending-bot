@@ -5012,5 +5012,31 @@
     "status": "SL_HIT",
     "closed_price": 0.01812,
     "closed_at": "2026-09-27T20:23:59.999000+00:00"
+  },
+  {
+    "coin": "QNT",
+    "trending_bonus": "GRT",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 282.95,
+    "tp1": 297.11,
+    "tp2": 317.18,
+    "sl": 274.73,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A recent liquidity sweep around the 280 level has pushed QNT into a strong accumulation zone, supported by a surge in institutional volume and a bullish reversal pattern on the 1‑hour chart.",
+    "invalidation": "A break below 274.5 would invalidate the trade thesis by exposing the support level.",
+    "rapid_reason": "1‑hour bullish engulfing with volume spike triggered momentum.",
+    "smc_logic": "The 1‑hour chart shows a clear bullish engulfing candle at 283.25, indicating institutional buying. The price is above the 50‑EMA and the 200‑EMA, suggesting a sustained uptrend. The recent 90%+ 24‑hour rally confirms strong demand and a likely continuation to the next resistance.",
+    "smc_logic_short": "Bullish engulfing at 283.25, above 50/200 EMA, strong volume.",
+    "change": 90.305,
+    "groq_model": "openai/gpt-oss-20b",
+    "trade_id": "d5087ed0bc3d4dbea9835fe6fca464a8",
+    "created_at": "2026-09-27T23:30:50.454820+00:00",
+    "last_checked_at": "2026-09-27T23:32:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 274.73,
+    "closed_at": "2026-09-27T23:32:59.999000+00:00"
   }
 ]
