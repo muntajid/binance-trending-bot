@@ -1,15 +1,8 @@
 {
-  "headline": "BTC holds above key 84.5k, eyes 84.8k resistance as liquidity hunt wanes",
-  "btc_price": 84479.85,
-  "btc_change": 0.541,
-  "eth_price": 2700.86,
-  "eth_change": 0.304,
-  "market_phase": "Bullish Expansion",
-  "btc_thesis": "On the 1‑hour chart Bitcoin is forming higher lows, holding the 84.3k liquidity basin and testing the 84.8k ceiling; the 4‑hour structure remains in an up‑trend with the 84.0k support intact.",
-  "altcoin_summary": "Capital is rotating into high‑beta assets, with QNT, AMP and RARE leading the rally, indicating risk‑on sentiment beyond Bitcoin.",
-  "btc_support": 83900.0,
-  "btc_resistance": 84800.0,
-  "strategy_outlook": "Enter spot BTC near 84.0k with a tight stop at 83.8k; for futures, consider buying 1‑hour breakouts above 84.8k with a 2% trailing stop.",
+  "title": "Trader Diary: 1% Up & My Leverage Dreams",
+  "content": "💹 See BTC +1% and instantly open 10x long. 5 minutes later: “Why is my margin screaming louder than my alarm at 3 AM?”\n💀 Close position at -0.3% and pretend I was “testing my stop‑loss strategy.”",
+  "lesson": "Never let a 1% move dictate a 10x position – respect your risk, not the hype.",
+  "question": "Who else turned a 1% rally into a heart‑rate monitor? Drop your worst FOMO story 👇",
   "groq_model": "openai/gpt-oss-120b",
-  "type": "market_overview"
+  "type": "meme_community"
 }
