@@ -110,5 +110,29 @@
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
+  },
+  {
+    "coin": "AUDIO",
+    "trending_bonus": "QNT",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.01869,
+    "tp1": 0.01955,
+    "tp2": 0.02093,
+    "sl": 0.01812,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.0185‑0.0186 zone broke a bullish order block, confirming strong buying pressure.",
+    "invalidation": "Close below 0.0180 invalidates the long thesis.",
+    "rapid_reason": "1H bullish engulfing candle with a volume spike triggered the setup.",
+    "smc_logic": "The price cleared a previous order block, indicating smart money accumulation. A clear break of the minor resistance at 0.0186 turned it into support, and the market is now targeting the next supply zone near 0.0195. A tight stop below the broken block protects against a false breakout.",
+    "smc_logic_short": "Order block break → new support at 0.0186 → target 0.0195, stop 0.0181.",
+    "change": 29.882,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "0ef2546efe0144f1a96a20f9f6b8314a",
+    "created_at": "2026-09-27T18:46:52.876448+00:00",
+    "last_checked_at": "2026-09-27T18:46:52.876448+00:00",
+    "status": "ACTIVE"
   }
 ]

@@ -1,8 +1,20 @@
 {
-  "title": "Trader Diary: 1% Up & My Leverage Dreams",
-  "content": "💹 See BTC +1% and instantly open 10x long. 5 minutes later: “Why is my margin screaming louder than my alarm at 3 AM?”\n💀 Close position at -0.3% and pretend I was “testing my stop‑loss strategy.”",
-  "lesson": "Never let a 1% move dictate a 10x position – respect your risk, not the hype.",
-  "question": "Who else turned a 1% rally into a heart‑rate monitor? Drop your worst FOMO story 👇",
-  "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "coin": "AUDIO",
+  "trending_bonus": "QNT",
+  "direction": "LONG",
+  "entry": "CMP",
+  "entry_price": 0.01869,
+  "tp1": 0.01955,
+  "tp2": 0.02093,
+  "sl": 0.01812,
+  "leverage": "15x",
+  "risk": "Medium Risk",
+  "confidence": 85,
+  "why_now": "A liquidity sweep of the 0.0185‑0.0186 zone broke a bullish order block, confirming strong buying pressure.",
+  "invalidation": "Close below 0.0180 invalidates the long thesis.",
+  "rapid_reason": "1H bullish engulfing candle with a volume spike triggered the setup.",
+  "smc_logic": "The price cleared a previous order block, indicating smart money accumulation. A clear break of the minor resistance at 0.0186 turned it into support, and the market is now targeting the next supply zone near 0.0195. A tight stop below the broken block protects against a false breakout.",
+  "smc_logic_short": "Order block break → new support at 0.0186 → target 0.0195, stop 0.0181.",
+  "change": 29.882,
+  "groq_model": "openai/gpt-oss-120b"
 }
