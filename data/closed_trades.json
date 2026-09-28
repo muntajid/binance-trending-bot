@@ -5064,5 +5064,31 @@
     "status": "SL_HIT",
     "closed_price": 0.002491,
     "closed_at": "2026-09-28T09:21:59.999000+00:00"
+  },
+  {
+    "coin": "HBAR",
+    "trending_bonus": "QNT",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.12756,
+    "tp1": 0.13266,
+    "tp2": 0.14287,
+    "sl": 0.12373,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.1250‑0.1260 zone created a bullish order block, and price immediately retested and held above it, confirming strong buying pressure.",
+    "invalidation": "Close below 0.1240 invalidates the bullish order block and the trade premise.",
+    "rapid_reason": "1H bullish engulfing candle after a sharp volume spike.",
+    "smc_logic": "The price broke a recent down‑trend line and formed a clear bullish order block at 0.1250‑0.1260, indicating smart money accumulation. A rapid liquidity sweep forced the market lower, only to be absorbed by buy orders, confirming the block. The retest held, providing a clean entry at the current market price with upside bias.",
+    "smc_logic_short": "Bullish order block confirmed after liquidity sweep; retest held, entry at CMP.",
+    "change": 34.185,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "a5378847478249bfa40c0d5cf523d1a6",
+    "created_at": "2026-09-28T18:59:34.783907+00:00",
+    "last_checked_at": "2026-09-28T19:51:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.12373,
+    "closed_at": "2026-09-28T19:51:59.999000+00:00"
   }
 ]
