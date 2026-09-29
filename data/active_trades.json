@@ -110,5 +110,29 @@
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
+  },
+  {
+    "coin": "0G",
+    "trending_bonus": "NIGHT",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.3318,
+    "tp1": 0.3451,
+    "tp2": 0.3716,
+    "sl": 0.3218,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A sharp liquidity sweep at the 0.33 level produced a volume‑spike candle that broke the prior swing low, confirming a bullish order block formation.",
+    "invalidation": "Close below 0.3220 invalidates the bullish order block and the trade premise.",
+    "rapid_reason": "1H bullish engulfing after a liquidity grab signals immediate upward momentum.",
+    "smc_logic": "The price broke a recent swing low, exposing a hidden bullish order block at 0.33. Smart money likely absorbed liquidity at that level, then pushed price above the block, establishing a higher low and bullish bias. The next resistance aligns with the 0.3451 target, while the 0.3716 level marks the next supply zone.",
+    "smc_logic_short": "Liquidity sweep → bullish order block at 0.33 → higher low confirms LONG.",
+    "change": 30.22,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "d48b8e568ad84c89ba8847411541d418",
+    "created_at": "2026-09-29T17:19:24.710408+00:00",
+    "last_checked_at": "2026-09-29T17:19:24.710408+00:00",
+    "status": "ACTIVE"
   }
 ]
