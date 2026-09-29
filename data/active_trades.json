@@ -134,5 +134,29 @@
     "created_at": "2026-09-29T17:19:24.710408+00:00",
     "last_checked_at": "2026-09-29T20:15:32.420292+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "MOVR",
+    "trending_bonus": "0G",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 1.197,
+    "tp1": 1.255,
+    "tp2": 1.38,
+    "sl": 1.165,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 1.18‑1.20 zone forced sellers out, then price reclaimed the 1.20 resistance and formed a bullish engulfing candle, signaling smart‑money accumulation.",
+    "invalidation": "Close below 1.165 (the defined stop) or a retest of the 1.18 support invalidates the bullish thesis.",
+    "rapid_reason": "1H bullish engulfing candle with a volume spike after breaking the 1.20 resistance.",
+    "smc_logic": "The price broke a clear bearish structure at 1.20, revealing an order block that acted as liquidity. A rapid upward move swept the lower liquidity pool, and the market now respects the reclaimed 1.20 level as a new demand zone, providing a clean entry at market price. The stop is placed just below the previous swing low to protect against a false breakout.",
+    "smc_logic_short": "Break of structure at 1.20, liquidity sweep, reclaimed demand zone, entry at market.",
+    "change": 23.785,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "0ed23c0b9c4946ad876097ff2d7cc5df",
+    "created_at": "2026-09-29T21:40:49.746594+00:00",
+    "last_checked_at": "2026-09-29T21:40:49.746594+00:00",
+    "status": "ACTIVE"
   }
 ]
