@@ -110,5 +110,29 @@
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
+  },
+  {
+    "coin": "NMR",
+    "trending_bonus": "CRV",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 12.63,
+    "tp1": 13.2,
+    "tp2": 14.02,
+    "sl": 12.23,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "The 26.96% 24‑hour surge has pushed NMR into a strong bullish swing, with recent volume spikes indicating institutional accumulation and a breakout from a key resistance zone near 12.50.",
+    "invalidation": "A break below the 12.23 support level would invalidate the trade thesis.",
+    "rapid_reason": "1‑hour candle closed above the 12.63 entry, confirming short‑term momentum.",
+    "smc_logic": "Smart Money appears to be building a position after a sharp rally, as evidenced by the high volume and the price breaking a well‑defined resistance. The current 12.63 level sits near a swing low that has held, suggesting a potential reversal. The 15x leverage amplifies gains while the tight stop protects against a quick pullback.",
+    "smc_logic_short": "Bullish swing low at 12.63, volume spike, resistance break.",
+    "change": 26.962,
+    "groq_model": "openai/gpt-oss-20b",
+    "trade_id": "50ef2ce2fb08401786f322d58718c7f3",
+    "created_at": "2026-09-29T09:19:09.248904+00:00",
+    "last_checked_at": "2026-09-29T09:19:09.248904+00:00",
+    "status": "ACTIVE"
   }
 ]
