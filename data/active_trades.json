@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-30T02:27:29.372419+00:00",
+    "last_checked_at": "2026-09-30T08:54:55.791474+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -35,7 +35,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-09-30T02:27:30.675207+00:00",
+    "last_checked_at": "2026-09-30T08:54:57.131595+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -60,7 +60,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-09-30T02:27:31.991086+00:00",
+    "last_checked_at": "2026-09-30T08:54:58.754979+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -84,7 +84,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-09-30T02:27:33.274731+00:00",
+    "last_checked_at": "2026-09-30T08:55:00.354524+00:00",
     "status": "ACTIVE"
   },
   {
@@ -104,7 +104,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-09-30T02:27:34.580152+00:00",
+    "last_checked_at": "2026-09-30T08:55:02.152477+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
@@ -132,7 +132,11 @@
     "groq_model": "openai/gpt-oss-20b",
     "trade_id": "93b7ce4a922148bdb35712dbde0c5025",
     "created_at": "2026-09-30T03:07:56.071004+00:00",
-    "last_checked_at": "2026-09-30T03:07:56.071004+00:00",
-    "status": "ACTIVE"
+    "last_checked_at": "2026-09-30T08:55:03.436179+00:00",
+    "status": "ACTIVE",
+    "tp1_hit": true,
+    "tp1_hit_price": 294.33,
+    "tp1_hit_at": "2026-09-30T03:16:59.999000+00:00",
+    "tp1_card": "QNT_TP1_target_card.png"
   }
 ]
