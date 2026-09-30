@@ -1,6 +1,17 @@
-⚡ $ARK — LONG at $0.3735
-Targets: $0.3885 | $0.4185
-Invalidation: $0.3623
-1H price broke above the 0.38 resistance with a surge in volume.
+📊 $MOVR High-Probability LONG Structure: Volatility Expanding (+82.2%)!
 
-$ARK #Write2Earn
+$MOVR — LONG SETUP
+• Entry Zone (CMP): $2.181
+• Target 1: $2.245 (+2.9%) 🎯
+• Target 2: $2.47 (+13.3%) 🚀
+• Invalidation (SL): $2.116 (-3.0%) 🛡️
+• Risk/Reward: 1:0.98R | Confidence: 85%
+• Suggested Leverage: 3x - 5x (Max 15x)
+
+Why now: Recent volume spike at the 2.18 level indicates a liquidity sweep, with buyers absorbing the sell wall and pushing price higher.
+What changes the view: A break below the 2.116 support would invalidate the bullish bias.
+
+💡 Risk Rule: Lock in 50% at TP1 and trail Stop Loss to entry for a risk-free run to TP2.
+
+$MOVR $BTC #Altcoins
+⚠️ Educational market analysis. Always manage your risk & DYOR.
