@@ -110,5 +110,29 @@
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
+  },
+  {
+    "coin": "QNT",
+    "trending_bonus": "MOVR",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 280.35,
+    "tp1": 294.33,
+    "tp2": 313.95,
+    "sl": 271.9,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "Liquidity sweep at 280.31 after a sharp 24‑hour rally indicates institutional accumulation and a potential reversal of the recent downtrend.",
+    "invalidation": "Break below 271.9 invalidates the trade thesis.",
+    "rapid_reason": "1H candle closed above 280.31 on high volume, confirming bullish momentum.",
+    "smc_logic": "The 280.31 level sits just above a recent swing low, acting as a support that Smart Money has likely tested and confirmed. Volume spikes around this price suggest accumulation, while the 24‑hour surge indicates a broader market shift. The 5‑6% TP1 targets a short‑term profit while the 12% TP2 captures extended upside if the trend continues.",
+    "smc_logic_short": "Support at 280.31, volume spike, 24h rally, target 294.33/313.95, stop 271.9.",
+    "change": 24.626,
+    "groq_model": "openai/gpt-oss-20b",
+    "trade_id": "93b7ce4a922148bdb35712dbde0c5025",
+    "created_at": "2026-09-30T03:07:56.071004+00:00",
+    "last_checked_at": "2026-09-30T03:07:56.071004+00:00",
+    "status": "ACTIVE"
   }
 ]
