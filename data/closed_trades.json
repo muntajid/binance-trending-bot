@@ -5238,5 +5238,31 @@
     "tp2_card": "ARK_TP2_target_card.png",
     "closed_price": 0.4185,
     "closed_at": "2026-09-30T13:53:59.999000+00:00"
+  },
+  {
+    "coin": "MOVR",
+    "trending_bonus": "GLMR",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 2.181,
+    "tp1": 2.245,
+    "tp2": 2.47,
+    "sl": 2.116,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "Recent volume spike at the 2.18 level indicates a liquidity sweep, with buyers absorbing the sell wall and pushing price higher.",
+    "invalidation": "A break below the 2.116 support would invalidate the bullish bias.",
+    "rapid_reason": "1H candle closed above the 2.18 resistance, confirming short-term momentum.",
+    "smc_logic": "Smart Money has placed a large buy block at 2.18, and the subsequent 82% rally suggests institutional accumulation. The price is now testing the next key resistance at 2.245, where a pullback could offer a re-entry.",
+    "smc_logic_short": "Buy block at 2.18, target 2.245, stop 2.116.",
+    "change": 82.206,
+    "groq_model": "openai/gpt-oss-20b",
+    "trade_id": "74d407fb57d34eb4a700cce3659748fc",
+    "created_at": "2026-09-30T21:41:30.829871+00:00",
+    "last_checked_at": "2026-09-30T21:51:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 2.116,
+    "closed_at": "2026-09-30T21:51:59.999000+00:00"
   }
 ]

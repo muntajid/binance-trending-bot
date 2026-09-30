@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-09-30T20:18:10.075896+00:00",
+    "last_checked_at": "2026-09-30T23:58:09.484997+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -35,7 +35,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-09-30T20:18:11.588249+00:00",
+    "last_checked_at": "2026-09-30T23:58:10.480589+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -60,7 +60,7 @@
     "change": 24.308,
     "trade_id": "07272671b0c548e3a4aba18e709c9339",
     "created_at": "2026-08-14T21:52:47.599803+00:00",
-    "last_checked_at": "2026-09-30T20:18:13.069403+00:00",
+    "last_checked_at": "2026-09-30T23:58:11.675251+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.1799,
@@ -84,7 +84,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-09-30T20:18:14.446682+00:00",
+    "last_checked_at": "2026-09-30T23:58:12.670047+00:00",
     "status": "ACTIVE"
   },
   {
@@ -104,35 +104,11 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-09-30T20:18:15.858912+00:00",
+    "last_checked_at": "2026-09-30T23:58:13.644471+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
-  },
-  {
-    "coin": "MOVR",
-    "trending_bonus": "GLMR",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 2.181,
-    "tp1": 2.245,
-    "tp2": 2.47,
-    "sl": 2.116,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "Recent volume spike at the 2.18 level indicates a liquidity sweep, with buyers absorbing the sell wall and pushing price higher.",
-    "invalidation": "A break below the 2.116 support would invalidate the bullish bias.",
-    "rapid_reason": "1H candle closed above the 2.18 resistance, confirming short-term momentum.",
-    "smc_logic": "Smart Money has placed a large buy block at 2.18, and the subsequent 82% rally suggests institutional accumulation. The price is now testing the next key resistance at 2.245, where a pullback could offer a re-entry.",
-    "smc_logic_short": "Buy block at 2.18, target 2.245, stop 2.116.",
-    "change": 82.206,
-    "groq_model": "openai/gpt-oss-20b",
-    "trade_id": "74d407fb57d34eb4a700cce3659748fc",
-    "created_at": "2026-09-30T21:41:30.829871+00:00",
-    "last_checked_at": "2026-09-30T21:41:30.829871+00:00",
-    "status": "ACTIVE"
   }
 ]
