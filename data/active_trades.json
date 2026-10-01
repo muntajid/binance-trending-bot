@@ -86,5 +86,29 @@
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
+  },
+  {
+    "coin": "ALICE",
+    "trending_bonus": "MOVR",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.2212,
+    "tp1": 0.23,
+    "tp2": 0.2477,
+    "sl": 0.2146,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.22 support zone triggered a bullish order‑block break, confirming strong buying pressure.",
+    "invalidation": "Close below 0.2145 invalidates the bullish structure.",
+    "rapid_reason": "1H chart shows a sharp bullish candle breaking the prior swing high, signaling immediate upward momentum.",
+    "smc_logic": "The price broke a bearish structure and retested the 0.22 order block, which now acts as a bullish demand zone. A rapid liquidity grab forced sellers to capitulate, allowing smart money to accumulate. The next target aligns with the next resistance cluster, providing a clear profit corridor.",
+    "smc_logic_short": "Bullish order block at 0.22, liquidity sweep, break of structure, targets ahead.",
+    "change": 35.872,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "bb25eca4c23f48f9b9bbcce8347863ef",
+    "created_at": "2026-10-01T19:58:52.516901+00:00",
+    "last_checked_at": "2026-10-01T19:58:52.516901+00:00",
+    "status": "ACTIVE"
   }
 ]

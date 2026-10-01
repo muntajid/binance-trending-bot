@@ -1,8 +1,20 @@
 {
-  "title": "Trader Diary: 3 AM Leverage Roulette",
-  "content": "🚀 Spot: “Buy the dip, HODL forever.”\n📈 Futures: “Double‑down, the dip is just a coffee break.”\n💤 4 AM: Watching the 1‑minute chart like it’s a Netflix thriller.",
-  "lesson": "If your stop‑loss is farther than your coffee, you’re over‑leveraged.",
-  "question": "Who else was up at 3 AM staring at a 0.02% candle? Drop your war stories 👇",
-  "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "coin": "ALICE",
+  "trending_bonus": "MOVR",
+  "direction": "LONG",
+  "entry": "CMP",
+  "entry_price": 0.2212,
+  "tp1": 0.23,
+  "tp2": 0.2477,
+  "sl": 0.2146,
+  "leverage": "15x",
+  "risk": "Medium Risk",
+  "confidence": 85,
+  "why_now": "A liquidity sweep of the 0.22 support zone triggered a bullish order‑block break, confirming strong buying pressure.",
+  "invalidation": "Close below 0.2145 invalidates the bullish structure.",
+  "rapid_reason": "1H chart shows a sharp bullish candle breaking the prior swing high, signaling immediate upward momentum.",
+  "smc_logic": "The price broke a bearish structure and retested the 0.22 order block, which now acts as a bullish demand zone. A rapid liquidity grab forced sellers to capitulate, allowing smart money to accumulate. The next target aligns with the next resistance cluster, providing a clear profit corridor.",
+  "smc_logic_short": "Bullish order block at 0.22, liquidity sweep, break of structure, targets ahead.",
+  "change": 35.872,
+  "groq_model": "openai/gpt-oss-120b"
 }
