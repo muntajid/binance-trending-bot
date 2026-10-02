@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-10-02T07:28:27.508858+00:00",
+    "last_checked_at": "2026-10-02T14:03:06.540546+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -35,7 +35,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-10-02T07:28:28.837029+00:00",
+    "last_checked_at": "2026-10-02T14:03:07.567500+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -60,7 +60,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-10-02T07:28:29.957211+00:00",
+    "last_checked_at": "2026-10-02T14:03:08.605340+00:00",
     "status": "ACTIVE"
   },
   {
@@ -80,35 +80,11 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-10-02T07:28:31.105356+00:00",
+    "last_checked_at": "2026-10-02T14:03:09.520229+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
-  },
-  {
-    "coin": "SAND",
-    "trending_bonus": "GTC",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.06413,
-    "tp1": 0.06671,
-    "tp2": 0.07338,
-    "sl": 0.06271,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "Recent 46% jump and high volume indicate strong accumulation; price has just broken the 0.0635 support and is consolidating near 0.064, signaling a bullish continuation.",
-    "invalidation": "A break below 0.0627 support would invalidate the long bias.",
-    "rapid_reason": "1H candle shows a rapid 5% rally from 0.062 to 0.064, indicating short‑term momentum.",
-    "smc_logic": "Smart Money has been building a long bias by accumulating at the 0.063 level, creating a shallow support zone. The recent 46% surge and volume spike confirm institutional buyers stepping in, pushing the price toward the 0.066–0.073 range. The 0.0627 SL aligns with the first support level, ensuring tight risk control.",
-    "smc_logic_short": "SMC: Accumulation at 0.063, breakout to 0.064, target 0.066–0.073, SL 0.0627.",
-    "change": 46.446,
-    "groq_model": "openai/gpt-oss-20b",
-    "trade_id": "9790b97141aa45ce9df20974cced49cb",
-    "created_at": "2026-10-02T09:11:16.694115+00:00",
-    "last_checked_at": "2026-10-02T09:11:16.694115+00:00",
-    "status": "ACTIVE"
   }
 ]

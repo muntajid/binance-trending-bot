@@ -5351,5 +5351,31 @@
     "tp1_card": "ALICE_TP1_target_card.png",
     "closed_price": 0.2146,
     "closed_at": "2026-10-01T22:01:59.999000+00:00"
+  },
+  {
+    "coin": "SAND",
+    "trending_bonus": "GTC",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.06413,
+    "tp1": 0.06671,
+    "tp2": 0.07338,
+    "sl": 0.06271,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "Recent 46% jump and high volume indicate strong accumulation; price has just broken the 0.0635 support and is consolidating near 0.064, signaling a bullish continuation.",
+    "invalidation": "A break below 0.0627 support would invalidate the long bias.",
+    "rapid_reason": "1H candle shows a rapid 5% rally from 0.062 to 0.064, indicating short‑term momentum.",
+    "smc_logic": "Smart Money has been building a long bias by accumulating at the 0.063 level, creating a shallow support zone. The recent 46% surge and volume spike confirm institutional buyers stepping in, pushing the price toward the 0.066–0.073 range. The 0.0627 SL aligns with the first support level, ensuring tight risk control.",
+    "smc_logic_short": "SMC: Accumulation at 0.063, breakout to 0.064, target 0.066–0.073, SL 0.0627.",
+    "change": 46.446,
+    "groq_model": "openai/gpt-oss-20b",
+    "trade_id": "9790b97141aa45ce9df20974cced49cb",
+    "created_at": "2026-10-02T09:11:16.694115+00:00",
+    "last_checked_at": "2026-10-02T09:42:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.06271,
+    "closed_at": "2026-10-02T09:42:59.999000+00:00"
   }
 ]
