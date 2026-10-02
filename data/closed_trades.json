@@ -5377,5 +5377,31 @@
     "status": "SL_HIT",
     "closed_price": 0.06271,
     "closed_at": "2026-10-02T09:42:59.999000+00:00"
+  },
+  {
+    "coin": "GTC",
+    "trending_bonus": "SAND",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.14884,
+    "tp1": 0.15479,
+    "tp2": 0.1667,
+    "sl": 0.14437,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.1450‑0.1470 zone created a bullish order block, and price broke above the recent swing high, confirming strong buying pressure.",
+    "invalidation": "If price closes below 0.1440, the bullish thesis is invalidated.",
+    "rapid_reason": "1H bullish engulfing candle after a sharp volume spike.",
+    "smc_logic": "Smart Money cleared the 0.1450‑0.1470 liquidity pool, forming a clear order block at the breakout level. The price then retested this block as support, indicating institutional accumulation before pushing toward the next resistance. A break of the prior swing high confirms the continuation bias.",
+    "smc_logic_short": "Liquidity sweep → order block support → breakout of swing high.",
+    "change": 42.417,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "f76bb26de2da47daa4219a8a0fc28ff1",
+    "created_at": "2026-10-02T17:05:18.640197+00:00",
+    "last_checked_at": "2026-10-02T17:14:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.14437,
+    "closed_at": "2026-10-02T17:14:59.999000+00:00"
   }
 ]
