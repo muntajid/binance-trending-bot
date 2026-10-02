@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-10-01T21:58:13.443307+00:00",
+    "last_checked_at": "2026-10-02T01:29:57.816774+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -35,7 +35,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-10-01T21:58:15.154177+00:00",
+    "last_checked_at": "2026-10-02T01:29:59.316123+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -60,7 +60,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-10-01T21:58:16.436451+00:00",
+    "last_checked_at": "2026-10-02T01:30:01.317156+00:00",
     "status": "ACTIVE"
   },
   {
@@ -80,39 +80,11 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-10-01T21:58:18.345776+00:00",
+    "last_checked_at": "2026-10-02T01:30:03.095638+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
-  },
-  {
-    "coin": "ALICE",
-    "trending_bonus": "MOVR",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.2212,
-    "tp1": 0.23,
-    "tp2": 0.2477,
-    "sl": 0.2146,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A liquidity sweep of the 0.22 support zone triggered a bullish order‑block break, confirming strong buying pressure.",
-    "invalidation": "Close below 0.2145 invalidates the bullish structure.",
-    "rapid_reason": "1H chart shows a sharp bullish candle breaking the prior swing high, signaling immediate upward momentum.",
-    "smc_logic": "The price broke a bearish structure and retested the 0.22 order block, which now acts as a bullish demand zone. A rapid liquidity grab forced sellers to capitulate, allowing smart money to accumulate. The next target aligns with the next resistance cluster, providing a clear profit corridor.",
-    "smc_logic_short": "Bullish order block at 0.22, liquidity sweep, break of structure, targets ahead.",
-    "change": 35.872,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "bb25eca4c23f48f9b9bbcce8347863ef",
-    "created_at": "2026-10-01T19:58:52.516901+00:00",
-    "last_checked_at": "2026-10-01T21:58:19.906530+00:00",
-    "status": "ACTIVE",
-    "tp1_hit": true,
-    "tp1_hit_price": 0.23,
-    "tp1_hit_at": "2026-10-01T20:10:59.999000+00:00",
-    "tp1_card": "ALICE_TP1_target_card.png"
   }
 ]
