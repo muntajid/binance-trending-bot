@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-10-03T01:53:55.969451+00:00",
+    "last_checked_at": "2026-10-03T07:36:54.996894+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -35,7 +35,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-10-03T01:53:57.025709+00:00",
+    "last_checked_at": "2026-10-03T07:36:56.340072+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -60,7 +60,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-10-03T01:53:58.261116+00:00",
+    "last_checked_at": "2026-10-03T07:36:57.621572+00:00",
     "status": "ACTIVE"
   },
   {
@@ -80,35 +80,11 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-10-03T01:53:59.123423+00:00",
+    "last_checked_at": "2026-10-03T07:36:58.899990+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
-  },
-  {
-    "coin": "ENJ",
-    "trending_bonus": "SAND",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.03769,
-    "tp1": 0.03919,
-    "tp2": 0.0422,
-    "sl": 0.03655,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A 1H liquidity sweep broke the recent bullish order block at ~0.0365, pulling price above the block and creating immediate buying pressure.",
-    "invalidation": "Close below 0.0365 on the 1H chart invalidates the bullish thesis.",
-    "rapid_reason": "1H bullish engulfing candle after a sharp volume spike.",
-    "smc_logic": "The price broke a validated order block, indicating smart money absorption of liquidity. The subsequent bullish engulfing confirms a change of market structure, and the next resistance at 0.0392 serves as the first profit target. A higher resistance around 0.0422 offers an extended target while the broken order block acts as a tight stop.",
-    "smc_logic_short": "Order block break → bullish engulfing → TP1 at 0.0392, TP2 at 0.0422, SL at 0.0365.",
-    "change": 22.834,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "f4a69cf1369e4c369d02c2050a975ea2",
-    "created_at": "2026-10-03T03:01:28.999313+00:00",
-    "last_checked_at": "2026-10-03T03:01:28.999313+00:00",
-    "status": "ACTIVE"
   }
 ]
