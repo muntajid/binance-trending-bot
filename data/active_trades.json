@@ -114,5 +114,29 @@
     "tp1_hit_price": 0.05235,
     "tp1_hit_at": "2026-10-03T21:35:59.999000+00:00",
     "tp1_card": "STRK_TP1_target_card.png"
+  },
+  {
+    "coin": "ZAMA",
+    "trending_bonus": "GLMR",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.08823,
+    "tp1": 0.09175,
+    "tp2": 0.09882,
+    "sl": 0.08558,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A 1H liquidity sweep broke the recent swing high at 0.0890 with a sharp volume spike, indicating Smart Money absorption.",
+    "invalidation": "Close below 0.0855 invalidates the bullish thesis.",
+    "rapid_reason": "1H bullish momentum triggered after price pierced the 0.0890 resistance on high volume.",
+    "smc_logic": "The price cleared a bullish order block on the 4H chart, confirming a break of structure. Subsequent liquidity grab pulled the market back to the CMP, setting up a classic liquidity sweep entry. With the next supply zone above 0.0915, the trade targets the next imbalance zone.",
+    "smc_logic_short": "Bullish order block broken, liquidity sweep at CMP, target next imbalance.",
+    "change": 18.065,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "b9cdbe111f3c4d5bbe2763ba75b70264",
+    "created_at": "2026-10-03T23:26:47.110172+00:00",
+    "last_checked_at": "2026-10-03T23:26:47.110172+00:00",
+    "status": "ACTIVE"
   }
 ]
