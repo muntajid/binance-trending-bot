@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-10-02T23:02:17.319556+00:00",
+    "last_checked_at": "2026-10-03T01:53:55.969451+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -35,7 +35,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-10-02T23:02:18.697633+00:00",
+    "last_checked_at": "2026-10-03T01:53:57.025709+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -60,7 +60,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-10-02T23:02:20.225005+00:00",
+    "last_checked_at": "2026-10-03T01:53:58.261116+00:00",
     "status": "ACTIVE"
   },
   {
@@ -80,39 +80,11 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-10-02T23:02:21.666205+00:00",
+    "last_checked_at": "2026-10-03T01:53:59.123423+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
-  },
-  {
-    "coin": "NIGHT",
-    "trending_bonus": "SAND",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.04656,
-    "tp1": 0.04842,
-    "tp2": 0.05215,
-    "sl": 0.04516,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A liquidity sweep of the 0.0450‑0.0455 zone forced sellers to absorb, allowing price to break the 0.0460 resistance and retest the previous swing high, confirming bullish intent.",
-    "invalidation": "Close below 0.0450 invalidates the bullish thesis",
-    "rapid_reason": "1H price burst above 0.0460 resistance on strong volume, indicating immediate upward bias.",
-    "smc_logic": "The price cleared a clear order block at 0.0450‑0.0455, creating a liquidity void that smart money exploited to push the market higher. The breakout above the 0.0460 resistance aligns with a bullish imbalance, and the next target lies at the prior swing high (0.0484) before extending to the next supply zone around 0.0521. Maintaining the stop just below the swept liquidity zone protects against a false breakout.",
-    "smc_logic_short": "Liquidity sweep → order block breakout → target prior swing high, then next supply zone.",
-    "change": 20.031,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "077784628135441dae29b334f484e75b",
-    "created_at": "2026-10-02T21:36:51.834623+00:00",
-    "last_checked_at": "2026-10-02T23:02:23.053146+00:00",
-    "status": "ACTIVE",
-    "tp1_hit": true,
-    "tp1_hit_price": 0.04842,
-    "tp1_hit_at": "2026-10-02T22:09:59.999000+00:00",
-    "tp1_card": "NIGHT_TP1_target_card.png"
   }
 ]
