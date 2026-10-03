@@ -86,5 +86,29 @@
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
+  },
+  {
+    "coin": "GLMR",
+    "trending_bonus": "SAND",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.011701,
+    "tp1": 0.012285,
+    "tp2": 0.013104,
+    "sl": 0.0115,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A recent liquidity sweep at 0.0115, coupled with a surge in institutional volume, has pushed GLMR into a strong bullish zone, aligning with the broader SAND-led market rally.",
+    "invalidation": "A break below 0.0115 would invalidate the trade thesis.",
+    "rapid_reason": "The 1H candle shows a bullish engulfing pattern with volume 1.8× the 4H average, signaling immediate upward momentum.",
+    "smc_logic": "Smart Money has been accumulating GLMR at the 0.0115 support level, evidenced by a tight volume spike and a subsequent price consolidation. The recent breakout above this level, coupled with a sustained 1H bullish candle, indicates that institutional traders are now pushing the price higher. The 0.0123 TP1 targets the next resistance at the 0.0125 swing high, while TP2 at 0.0131 aims for the 0.0135 level, offering a 12% upside.",
+    "smc_logic_short": "Liquidity sweep at 0.0115 → bullish engulfing → target 0.0123, 0.0131",
+    "change": 33.132,
+    "groq_model": "openai/gpt-oss-20b",
+    "trade_id": "365ab87f3cf34982af9943f71886b0bc",
+    "created_at": "2026-10-03T15:27:09.406557+00:00",
+    "last_checked_at": "2026-10-03T15:27:09.406557+00:00",
+    "status": "ACTIVE"
   }
 ]
