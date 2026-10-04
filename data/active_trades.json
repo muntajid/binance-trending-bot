@@ -114,5 +114,29 @@
     "tp1_hit_price": 0.002843,
     "tp1_hit_at": "2026-10-04T12:24:59.999000+00:00",
     "tp1_card": "BEAMX_TP1_target_card.png"
+  },
+  {
+    "coin": "MUBARAK",
+    "trending_bonus": "BEAMX",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.07876,
+    "tp1": 0.08191,
+    "tp2": 0.08821,
+    "sl": 0.0764,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep was detected on the 1H chart as price pierced the recent swing high, confirming a bullish order block formation.",
+    "invalidation": "Price closing below 0.07640 (the stop level) nullifies the bullish thesis.",
+    "rapid_reason": "1H bullish momentum triggered by a sharp volume spike and break of prior resistance.",
+    "smc_logic": "The price broke a higher low, indicating a bullish market structure. A clear order block formed at the breakout level, attracting smart money accumulation. Subsequent liquidity grabs below the block provide a tight stop, while the next resistance zones set realistic profit targets.",
+    "smc_logic_short": "Higher low → order block breakout → liquidity grab, target next resistances.",
+    "change": 27.702,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "2ebe2de956ab44b89dfa25258d51e37c",
+    "created_at": "2026-10-04T16:11:49.501259+00:00",
+    "last_checked_at": "2026-10-04T16:11:49.501259+00:00",
+    "status": "ACTIVE"
   }
 ]
