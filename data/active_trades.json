@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-10-04T01:48:45.211806+00:00",
+    "last_checked_at": "2026-10-04T07:28:00.994542+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -35,7 +35,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-10-04T01:48:46.122067+00:00",
+    "last_checked_at": "2026-10-04T07:28:02.209470+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -60,7 +60,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-10-04T01:48:48.465017+00:00",
+    "last_checked_at": "2026-10-04T07:28:04.257818+00:00",
     "status": "ACTIVE"
   },
   {
@@ -80,7 +80,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-10-04T01:48:49.374483+00:00",
+    "last_checked_at": "2026-10-04T07:28:05.368483+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
@@ -108,7 +108,7 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "b9cdbe111f3c4d5bbe2763ba75b70264",
     "created_at": "2026-10-03T23:26:47.110172+00:00",
-    "last_checked_at": "2026-10-04T01:48:55.865225+00:00",
+    "last_checked_at": "2026-10-04T07:28:06.280430+00:00",
     "status": "ACTIVE"
   },
   {
@@ -132,7 +132,7 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "234247b5ab62474a969e32048a9569c1",
     "created_at": "2026-10-04T03:30:26.450745+00:00",
-    "last_checked_at": "2026-10-04T03:30:26.450745+00:00",
+    "last_checked_at": "2026-10-04T07:28:07.203896+00:00",
     "status": "ACTIVE"
   }
 ]
