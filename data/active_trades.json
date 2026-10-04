@@ -86,5 +86,29 @@
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
+  },
+  {
+    "coin": "AXS",
+    "trending_bonus": "GTC",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 1.36,
+    "tp1": 1.414,
+    "tp2": 1.523,
+    "sl": 1.319,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A bullish liquidity sweep cleared the 1.30‑1.32 zone, exposing a strong order block at 1.34 that now retests at 1.36, indicating smart money accumulation.",
+    "invalidation": "Close below 1.31 breaks the liquidity pool and invalidates the long thesis.",
+    "rapid_reason": "1H bullish engulfing candle with a 2.3× volume spike pushed price above 1.35.",
+    "smc_logic": "The price broke the previous swing low, confirming a higher low and establishing a bullish order block at 1.34. A rapid liquidity sweep forced sellers to capitulate, allowing smart money to accumulate near the current market price. The retest of the block at 1.36 provides a low‑risk entry with upside toward the next resistance.",
+    "smc_logic_short": "Higher low + order block retest after liquidity sweep signals bullish continuation.",
+    "change": 13.617,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "21dd5d382a1845c19f6ac397ad6cc594",
+    "created_at": "2026-10-04T23:43:34.071435+00:00",
+    "last_checked_at": "2026-10-04T23:43:34.071435+00:00",
+    "status": "ACTIVE"
   }
 ]
