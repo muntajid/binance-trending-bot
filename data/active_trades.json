@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-10-04T20:29:17.554110+00:00",
+    "last_checked_at": "2026-10-04T23:31:49.738954+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -35,7 +35,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-10-04T20:29:18.653921+00:00",
+    "last_checked_at": "2026-10-04T23:31:50.927908+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -60,7 +60,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-10-04T20:29:19.789519+00:00",
+    "last_checked_at": "2026-10-04T23:31:52.126590+00:00",
     "status": "ACTIVE"
   },
   {
@@ -80,35 +80,11 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-10-04T20:29:20.896033+00:00",
+    "last_checked_at": "2026-10-04T23:31:53.301947+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
-  },
-  {
-    "coin": "GTC",
-    "trending_bonus": "BEAMX",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.16332,
-    "tp1": 0.16985,
-    "tp2": 0.18292,
-    "sl": 0.15842,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A liquidity sweep of the 0.1650 resistance turned it into support, and a bullish order block on the 1H chart was retested, confirming buying pressure.",
-    "invalidation": "Close below 0.1580 invalidates the bullish structure and triggers the stop.",
-    "rapid_reason": "1H volume spiked as price broke the 0.1625 level, flipping it into support and igniting upward momentum.",
-    "smc_logic": "The price broke a higher low, indicating a bullish imbalance. A clear order block formed at 0.1650, which was swept and now acts as support, providing a strong entry zone. The market is now seeking the next liquidity pool near the 0.1700‑0.1830 range.",
-    "smc_logic_short": "Higher low break, order block at 0.1650 now support, target liquidity pools at ~0.1700 and ~0.1830.",
-    "change": 44.505,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "fa39c3889f8e461785def883c21f2319",
-    "created_at": "2026-10-04T20:40:32.129922+00:00",
-    "last_checked_at": "2026-10-04T20:40:32.129922+00:00",
-    "status": "ACTIVE"
   }
 ]
