@@ -1,8 +1,20 @@
 {
-  "title": "Trader Diary: 86k BTC & My 10x Leverage",
-  "content": "Seen BTC at $86,094 and thought I’m a wizard.\nOpened a 10x long, coffee in hand.\nPrice dips 0.5% → heart rate: 180 BPM.\nPrice rebounds → ego back to the moon.",
-  "lesson": "Never let a 0.5% dip feel like a personal attack—set stop‑loss before the coffee wears off.",
-  "question": "Who else turned a 10x coffee break into a cardio session today? 👀👇",
-  "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "coin": "RLC",
+  "trending_bonus": "NIL",
+  "direction": "LONG",
+  "entry": "CMP",
+  "entry_price": 0.6928,
+  "tp1": 0.7205,
+  "tp2": 0.7759,
+  "sl": 0.671,
+  "leverage": "15x",
+  "risk": "Medium Risk",
+  "confidence": 85,
+  "why_now": "A liquidity sweep of the 0.68‑0.69 zone created a bullish order block, and price immediately broke the prior swing high, confirming buying pressure.",
+  "invalidation": "If price closes below 0.6650, the bullish order block is invalidated and the trade should be exited.",
+  "rapid_reason": "1H volume surged as price broke the 0.70 resistance, flipping it into support.",
+  "smc_logic": "The price formed a clear bullish order block at 0.68‑0.69 after a sharp liquidity grab. A break of structure above the previous high at 0.70 confirmed smart money accumulation, and the market now seeks the next supply zone near 0.72. The stop is placed just below the order block to protect against a false breakout.",
+  "smc_logic_short": "Bullish order block at 0.68‑0.69, break of 0.70 high, targeting 0.72‑0.78 with SL below 0.671.",
+  "change": 91.374,
+  "groq_model": "openai/gpt-oss-120b"
 }
