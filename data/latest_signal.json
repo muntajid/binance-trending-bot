@@ -1,20 +1,8 @@
 {
-  "coin": "NIL",
-  "trending_bonus": "GTC",
-  "direction": "LONG",
-  "entry": "CMP",
-  "entry_price": 0.10068,
-  "tp1": 0.10471,
-  "tp2": 0.11276,
-  "sl": 0.09766,
-  "leverage": "15x",
-  "risk": "Medium Risk",
-  "confidence": 85,
-  "why_now": "A liquidity sweep of the 0.0980‑0.0990 zone forced sellers out, and the price immediately retested and broke the 0.1000 resistance, confirming strong buying absorption.",
-  "invalidation": "Close below 0.0985 invalidates the bullish thesis",
-  "rapid_reason": "1H price broke the 0.1000 resistance on high volume, igniting bullish momentum.",
-  "smc_logic": "The 0.0980‑0.0990 area acted as a liquidity void that smart money cleared, creating an order block at 0.1000. After the sweep, price retested the block, held, and now moves into the next bullish imbalance. The setup aligns with a classic liquidity‑grab followed by a continuation rally.",
-  "smc_logic_short": "Liquidity void cleared, order block held, bullish continuation.",
-  "change": 22.015,
-  "groq_model": "openai/gpt-oss-120b"
+  "title": "Trader Diary: 86k BTC & My 10x Leverage",
+  "content": "Seen BTC at $86,094 and thought I’m a wizard.\nOpened a 10x long, coffee in hand.\nPrice dips 0.5% → heart rate: 180 BPM.\nPrice rebounds → ego back to the moon.",
+  "lesson": "Never let a 0.5% dip feel like a personal attack—set stop‑loss before the coffee wears off.",
+  "question": "Who else turned a 10x coffee break into a cardio session today? 👀👇",
+  "groq_model": "openai/gpt-oss-120b",
+  "type": "meme_community"
 }
