@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-10-05T18:45:49.331779+00:00",
+    "last_checked_at": "2026-10-06T00:23:04.182265+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -35,7 +35,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-10-05T18:45:50.558862+00:00",
+    "last_checked_at": "2026-10-06T00:23:05.604497+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -60,7 +60,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-10-05T18:45:51.659686+00:00",
+    "last_checked_at": "2026-10-06T00:23:06.909567+00:00",
     "status": "ACTIVE"
   },
   {
@@ -80,35 +80,11 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-10-05T18:45:52.669292+00:00",
+    "last_checked_at": "2026-10-06T00:23:08.199784+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
-  },
-  {
-    "coin": "RLC",
-    "trending_bonus": "NIL",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.6928,
-    "tp1": 0.7205,
-    "tp2": 0.7759,
-    "sl": 0.671,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A liquidity sweep of the 0.68‑0.69 zone created a bullish order block, and price immediately broke the prior swing high, confirming buying pressure.",
-    "invalidation": "If price closes below 0.6650, the bullish order block is invalidated and the trade should be exited.",
-    "rapid_reason": "1H volume surged as price broke the 0.70 resistance, flipping it into support.",
-    "smc_logic": "The price formed a clear bullish order block at 0.68‑0.69 after a sharp liquidity grab. A break of structure above the previous high at 0.70 confirmed smart money accumulation, and the market now seeks the next supply zone near 0.72. The stop is placed just below the order block to protect against a false breakout.",
-    "smc_logic_short": "Bullish order block at 0.68‑0.69, break of 0.70 high, targeting 0.72‑0.78 with SL below 0.671.",
-    "change": 91.374,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "0ced712a922342e1926cfc25ace60c9f",
-    "created_at": "2026-10-05T21:44:18.220274+00:00",
-    "last_checked_at": "2026-10-05T21:44:18.220274+00:00",
-    "status": "ACTIVE"
   }
 ]

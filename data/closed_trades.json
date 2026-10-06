@@ -5741,5 +5741,32 @@
     "tp1_card": "NIL_TP1_target_card.png",
     "closed_price": 0.09766,
     "closed_at": "2026-10-05T07:19:59.999000+00:00"
+  },
+  {
+    "coin": "RLC",
+    "trending_bonus": "NIL",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.6928,
+    "tp1": 0.7205,
+    "tp2": 0.7759,
+    "sl": 0.671,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.68‑0.69 zone created a bullish order block, and price immediately broke the prior swing high, confirming buying pressure.",
+    "invalidation": "If price closes below 0.6650, the bullish order block is invalidated and the trade should be exited.",
+    "rapid_reason": "1H volume surged as price broke the 0.70 resistance, flipping it into support.",
+    "smc_logic": "The price formed a clear bullish order block at 0.68‑0.69 after a sharp liquidity grab. A break of structure above the previous high at 0.70 confirmed smart money accumulation, and the market now seeks the next supply zone near 0.72. The stop is placed just below the order block to protect against a false breakout.",
+    "smc_logic_short": "Bullish order block at 0.68‑0.69, break of 0.70 high, targeting 0.72‑0.78 with SL below 0.671.",
+    "change": 91.374,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "0ced712a922342e1926cfc25ace60c9f",
+    "created_at": "2026-10-05T21:44:18.220274+00:00",
+    "last_checked_at": "2026-10-05T22:18:59.999000+00:00",
+    "status": "TP2_HIT",
+    "tp2_card": "RLC_TP2_target_card.png",
+    "closed_price": 0.7759,
+    "closed_at": "2026-10-05T22:18:59.999000+00:00"
   }
 ]
