@@ -86,5 +86,29 @@
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
+  },
+  {
+    "coin": "NMR",
+    "trending_bonus": "ORCA",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 16.47,
+    "tp1": 17.29,
+    "tp2": 18.45,
+    "sl": 16.0,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "Recent 1‑hour candle shows a sharp liquidity sweep at the 16.00 support level, followed by a sustained volume‑heavy breakout above 16.50, indicating institutional accumulation.",
+    "invalidation": "A close below the 16.00 support level would invalidate the trade thesis.",
+    "rapid_reason": "The 1‑hour candle closed 3.5% above the 16.50 swing high, triggering a bullish momentum spike.",
+    "smc_logic": "Smart Money has likely placed large buy orders just above the 16.00 support, creating a protected zone. The recent volume surge and rapid price climb suggest that these orders are being filled, pushing the price toward the 17.30 resistance. If the price can hold above the 16.00 level, it signals a strong continuation bias.",
+    "smc_logic_short": "Liquidity sweep at 16.00, volume‑heavy breakout, target 17.30, protect 16.00.",
+    "change": 36.877,
+    "groq_model": "openai/gpt-oss-20b",
+    "trade_id": "bca391b5a60847b097a65a1bd450c728",
+    "created_at": "2026-10-06T19:54:59.508893+00:00",
+    "last_checked_at": "2026-10-06T19:54:59.508893+00:00",
+    "status": "ACTIVE"
   }
 ]
