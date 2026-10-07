@@ -5820,5 +5820,31 @@
     "status": "SL_HIT",
     "closed_price": 16.0,
     "closed_at": "2026-10-06T20:16:59.999000+00:00"
+  },
+  {
+    "coin": "GTC",
+    "trending_bonus": "NMR",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.19631,
+    "tp1": 0.20416,
+    "tp2": 0.21987,
+    "sl": 0.19042,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A 1H liquidity sweep broke the bullish order block, confirming strong buying pressure and flipping the recent resistance into support.",
+    "invalidation": "Close below the SL at 0.19042 or a retest of the swing low around 0.1885 invalidates the trade.",
+    "rapid_reason": "1H bullish order block break with a volume spike.",
+    "smc_logic": "The price cleared a well‑defined order block on the 1H chart, indicating smart money accumulation. After the sweep, the former resistance at 0.1963 held as support, providing a clean entry at the current market price. The next liquidity pools lie at the calculated TP levels, aligning with typical SMC profit targets.",
+    "smc_logic_short": "Order block break → support flip → target liquidity pools.",
+    "change": 13.368,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "50bc566674d544bbb9b869936affdac5",
+    "created_at": "2026-10-07T09:33:42.202604+00:00",
+    "last_checked_at": "2026-10-07T09:37:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.19042,
+    "closed_at": "2026-10-07T09:37:59.999000+00:00"
   }
 ]
