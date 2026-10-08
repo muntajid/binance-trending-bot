@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-10-08T13:59:13.798712+00:00",
+    "last_checked_at": "2026-10-08T19:48:16.131287+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -35,7 +35,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-10-08T13:59:14.993558+00:00",
+    "last_checked_at": "2026-10-08T19:48:16.994314+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -60,7 +60,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-10-08T13:59:16.476282+00:00",
+    "last_checked_at": "2026-10-08T19:48:17.938448+00:00",
     "status": "ACTIVE"
   },
   {
@@ -80,36 +80,11 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-10-08T13:59:17.574641+00:00",
+    "last_checked_at": "2026-10-08T19:48:18.798670+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
-  },
-  {
-    "coin": "OGN",
-    "trending_bonus": "RLC",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.04661,
-    "tp1": 0.04894,
-    "tp2": 0.0522,
-    "sl": 0.0452,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A bullish 1‑hour engulfing candle broke the recent resistance at 0.0455, indicating a liquidity sweep and renewed buying pressure.",
-    "invalidation": "If price closes below 0.0450, the bullish premise is invalidated.",
-    "rapid_reason": "1‑hour price surged >3% and broke the 0.0455 level.",
-    "smc_style": "The price broke a downtrend line and captured the previous bearish order block, confirming smart money buying. A break of structure followed by a retest of the broken level now acts as a new demand zone, providing a clean entry with upside potential.",
-    "smc_logic_short": "Bullish break of 4h downtrend, retest of broken order block as fresh demand.",
-    "smc_logic": "A bullish 1‑hour engulfing candle broke the recent resistance at 0.0455, indicating a liquidity sweep and renewed buying pressure.",
-    "change": 109.303,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "6aa2c391dc2349a0b8e5da7c5ab6075d",
-    "created_at": "2026-10-08T18:12:37.488457+00:00",
-    "last_checked_at": "2026-10-08T18:12:37.488457+00:00",
-    "status": "ACTIVE"
   }
 ]
