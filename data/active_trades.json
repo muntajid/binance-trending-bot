@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-10-08T06:32:40.723460+00:00",
+    "last_checked_at": "2026-10-08T13:59:13.798712+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -35,7 +35,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-10-08T06:32:41.921385+00:00",
+    "last_checked_at": "2026-10-08T13:59:14.993558+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -60,7 +60,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-10-08T06:32:43.301036+00:00",
+    "last_checked_at": "2026-10-08T13:59:16.476282+00:00",
     "status": "ACTIVE"
   },
   {
@@ -80,35 +80,11 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-10-08T06:32:44.375714+00:00",
+    "last_checked_at": "2026-10-08T13:59:17.574641+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
-  },
-  {
-    "coin": "MET",
-    "trending_bonus": "OGN",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.5111,
-    "tp1": 0.5315,
-    "tp2": 0.5724,
-    "sl": 0.4958,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A liquidity sweep of the 0.50‑0.505 support zone turned into immediate buying pressure, pushing price above the 0.52 resistance on strong 1H volume.",
-    "invalidation": "Close below 0.4950 invalidates the bullish thesis.",
-    "rapid_reason": "1H bullish engulfing candle with a volume spike broke the recent swing high.",
-    "smc_logic": "The price broke a clear bearish structure and retested the previous order block around 0.505, which now acts as a demand zone. A liquidity grab below the block forced sellers to cover, creating a rapid upward move that validates a smart‑money accumulation phase.",
-    "smc_logic_short": "Break of structure, order‑block demand at 0.505, liquidity sweep fuels 1H rally.",
-    "change": 64.394,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "5aacab6a39914f0cacf51b5eaa9b1c8d",
-    "created_at": "2026-10-08T09:44:34.757452+00:00",
-    "last_checked_at": "2026-10-08T09:44:34.757452+00:00",
-    "status": "ACTIVE"
   }
 ]
