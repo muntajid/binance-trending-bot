@@ -5900,5 +5900,32 @@
     "tp2_card": "OGN_TP2_target_card.png",
     "closed_price": 0.0522,
     "closed_at": "2026-10-08T18:34:59.999000+00:00"
+  },
+  {
+    "coin": "KAIA",
+    "trending_bonus": "OGN",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.0603,
+    "tp1": 0.0625,
+    "tp2": 0.0673,
+    "sl": 0.0583,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep below 0.0590 triggered a bullish order block at 0.0600, and price immediately broke the recent swing high, confirming strong buying pressure.",
+    "invalidation": "Close below 0.0580 invalidates the trade thesis",
+    "rapid_reason": "1H bullish engulfing candle after a sharp volume spike",
+    "smc_logic": "The market grabbed liquidity under the 0.0585 support zone, then retested the order block around 0.0600, flipping the prior resistance into support. A break above the 0.0615 high confirms the bullish bias and sets the next target near the 0.0625 level, with a secondary target at the next supply zone around 0.0673.",
+    "smc_logic_short": "Liquidity grab → order block retest → resistance flip bullish",
+    "change": 53.69,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "53f9a53be95b4daf8a7fdbde7eb465f0",
+    "created_at": "2026-10-09T09:49:54.995211+00:00",
+    "last_checked_at": "2026-10-09T10:17:59.999000+00:00",
+    "status": "TP2_HIT",
+    "tp2_card": "KAIA_TP2_target_card.png",
+    "closed_price": 0.0673,
+    "closed_at": "2026-10-09T10:17:59.999000+00:00"
   }
 ]
