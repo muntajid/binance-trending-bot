@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-10-09T18:30:27.965283+00:00",
+    "last_checked_at": "2026-10-09T22:52:45.265331+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -35,7 +35,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-10-09T18:30:29.529682+00:00",
+    "last_checked_at": "2026-10-09T22:52:46.392623+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -60,7 +60,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-10-09T18:30:31.007665+00:00",
+    "last_checked_at": "2026-10-09T22:52:47.527705+00:00",
     "status": "ACTIVE"
   },
   {
@@ -80,41 +80,12 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-10-09T18:30:32.314258+00:00",
+    "last_checked_at": "2026-10-09T22:52:48.668667+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
-  },
-  {
-    "coin": "MAGIC",
-    "trending_bonus": "KAIA",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.1103,
-    "tp1": 0.1146,
-    "tp2": 0.1234,
-    "sl": 0.1069,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A 1‑hour liquidity sweep broke the recent swing high with a 2.3× volume spike, suggesting smart money is accumulating and pushing price higher.",
-    "invalidation": "Close below 0.1065 invalidates the bullish structure and triggers the stop loss.",
-    "rapid_reason": "Bullish engulfing candle on the 1H chart accompanied by a sharp volume surge.",
-    "smc_logic": "The price broke a clear order block on the 4H timeframe, retesting the broken liquidity zone as a pull‑back. This retest held, confirming the bullish imbalance and allowing a higher low to form, which is a classic smart‑money continuation pattern. The next target aligns with the prior swing high, while the stop is placed below the broken liquidity pool.",
-    "smc_signature": "Liquidity sweep → order block retest → higher low confirms bullish bias.",
-    "smc_logic_short": "Bullish engulfing candle on the 1H chart accompanied by a sharp volume surge.",
-    "change": 77.331,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "2999452025cc437fb8860043f139155b",
-    "created_at": "2026-10-09T17:45:35.362333+00:00",
-    "last_checked_at": "2026-10-09T18:30:33.825228+00:00",
-    "status": "ACTIVE",
-    "tp1_hit": true,
-    "tp1_hit_price": 0.1146,
-    "tp1_hit_at": "2026-10-09T18:07:59.999000+00:00",
-    "tp1_card": "MAGIC_TP1_target_card.png"
   },
   {
     "coin": "BAT",
@@ -137,7 +108,7 @@
     "groq_model": "openai/gpt-oss-20b",
     "trade_id": "b7be6bd8863f4692a21081e1c998a82d",
     "created_at": "2026-10-09T22:02:20.520869+00:00",
-    "last_checked_at": "2026-10-09T22:02:20.520869+00:00",
+    "last_checked_at": "2026-10-09T22:52:56.732021+00:00",
     "status": "ACTIVE"
   }
 ]
