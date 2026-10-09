@@ -115,5 +115,29 @@
     "tp1_hit_price": 0.1146,
     "tp1_hit_at": "2026-10-09T18:07:59.999000+00:00",
     "tp1_card": "MAGIC_TP1_target_card.png"
+  },
+  {
+    "coin": "BAT",
+    "trending_bonus": "MAGIC",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.1339,
+    "tp1": 0.1406,
+    "tp2": 0.15,
+    "sl": 0.13,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "Liquidity sweep at 0.1339 after a sharp 33% rally, indicating institutional accumulation ahead of MAGIC's bullish trend.",
+    "invalidation": "Price breaking below 0.1300 invalidates the current accumulation phase.",
+    "rapid_reason": "1H candle closed above 0.1339 with high volume, confirming upward momentum.",
+    "smc_logic": "Smart Money likely placed a large buy order at 0.1339, creating a support zone. The recent 33% surge suggests a new accumulation phase. The price is now consolidating near the entry level, ready to break higher. A break above 0.1406 would confirm the bullish bias.",
+    "smc_logic_short": "Consolidation at 0.1339, break above 0.1406 signals bullish continuation.",
+    "change": 33.234,
+    "groq_model": "openai/gpt-oss-20b",
+    "trade_id": "b7be6bd8863f4692a21081e1c998a82d",
+    "created_at": "2026-10-09T22:02:20.520869+00:00",
+    "last_checked_at": "2026-10-09T22:02:20.520869+00:00",
+    "status": "ACTIVE"
   }
 ]
