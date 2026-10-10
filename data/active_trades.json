@@ -114,5 +114,29 @@
     "tp1_hit_price": 0.1406,
     "tp1_hit_at": "2026-10-10T00:09:59.999000+00:00",
     "tp1_card": "BAT_TP1_target_card.png"
+  },
+  {
+    "coin": "LUMIA",
+    "trending_bonus": "MAGIC",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.1112,
+    "tp1": 0.1156,
+    "tp2": 0.1272,
+    "sl": 0.108,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "Recent volume spike at 0.1105 indicates institutional accumulation, breaking the 0.109 support and confirming a bullish reversal.",
+    "invalidation": "Break below 0.108 invalidates the trade thesis.",
+    "rapid_reason": "1H candle closed above 0.112, confirming bullish momentum.",
+    "smc_logic": "The price has just broken the 0.109 support level, a key institutional accumulation zone, and the 1H volume has surged, indicating smart money is stepping in. The 0.1112 entry sits above the recent swing low, and the 0.1156 TP1 aligns with the next resistance at the 0.116 level, while TP2 targets the 0.127 area, a significant high from the last swing.",
+    "smc_logic_short": "Break of 0.109 support, volume spike, target 0.1156/0.1272, SL 0.108.",
+    "change": 36.946,
+    "groq_model": "openai/gpt-oss-20b",
+    "trade_id": "b8c6da4cdb9c40e28db1e34c606eb908",
+    "created_at": "2026-10-10T11:37:31.081911+00:00",
+    "last_checked_at": "2026-10-10T11:37:31.081911+00:00",
+    "status": "ACTIVE"
   }
 ]
