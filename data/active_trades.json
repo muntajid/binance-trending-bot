@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-10-10T08:26:11.893510+00:00",
+    "last_checked_at": "2026-10-10T14:36:30.457433+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -35,7 +35,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-10-10T08:26:12.803938+00:00",
+    "last_checked_at": "2026-10-10T14:36:31.328381+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -60,7 +60,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-10-10T08:26:13.699769+00:00",
+    "last_checked_at": "2026-10-10T14:36:32.194136+00:00",
     "status": "ACTIVE"
   },
   {
@@ -80,40 +80,12 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-10-10T08:26:14.635084+00:00",
+    "last_checked_at": "2026-10-10T14:36:33.060071+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
-  },
-  {
-    "coin": "BAT",
-    "trending_bonus": "MAGIC",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.1339,
-    "tp1": 0.1406,
-    "tp2": 0.15,
-    "sl": 0.13,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "Liquidity sweep at 0.1339 after a sharp 33% rally, indicating institutional accumulation ahead of MAGIC's bullish trend.",
-    "invalidation": "Price breaking below 0.1300 invalidates the current accumulation phase.",
-    "rapid_reason": "1H candle closed above 0.1339 with high volume, confirming upward momentum.",
-    "smc_logic": "Smart Money likely placed a large buy order at 0.1339, creating a support zone. The recent 33% surge suggests a new accumulation phase. The price is now consolidating near the entry level, ready to break higher. A break above 0.1406 would confirm the bullish bias.",
-    "smc_logic_short": "Consolidation at 0.1339, break above 0.1406 signals bullish continuation.",
-    "change": 33.234,
-    "groq_model": "openai/gpt-oss-20b",
-    "trade_id": "b7be6bd8863f4692a21081e1c998a82d",
-    "created_at": "2026-10-09T22:02:20.520869+00:00",
-    "last_checked_at": "2026-10-10T08:26:15.606408+00:00",
-    "status": "ACTIVE",
-    "tp1_hit": true,
-    "tp1_hit_price": 0.1406,
-    "tp1_hit_at": "2026-10-10T00:09:59.999000+00:00",
-    "tp1_card": "BAT_TP1_target_card.png"
   },
   {
     "coin": "LUMIA",
@@ -136,7 +108,11 @@
     "groq_model": "openai/gpt-oss-20b",
     "trade_id": "b8c6da4cdb9c40e28db1e34c606eb908",
     "created_at": "2026-10-10T11:37:31.081911+00:00",
-    "last_checked_at": "2026-10-10T11:37:31.081911+00:00",
-    "status": "ACTIVE"
+    "last_checked_at": "2026-10-10T14:36:34.918324+00:00",
+    "status": "ACTIVE",
+    "tp1_hit": true,
+    "tp1_hit_price": 0.1156,
+    "tp1_hit_at": "2026-10-10T12:26:59.999000+00:00",
+    "tp1_card": "LUMIA_TP1_target_card.png"
   }
 ]
