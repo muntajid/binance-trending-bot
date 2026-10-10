@@ -114,5 +114,29 @@
     "tp1_hit_price": 0.1406,
     "tp1_hit_at": "2026-10-10T00:09:59.999000+00:00",
     "tp1_card": "BAT_TP1_target_card.png"
+  },
+  {
+    "coin": "PIXEL",
+    "trending_bonus": "MAGIC",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.00829,
+    "tp1": 0.00866,
+    "tp2": 0.00928,
+    "sl": 0.00804,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A 1H liquidity sweep cleared bearish orders and the price broke a bullish order block, confirming smart‑money accumulation.",
+    "invalidation": "Close below 0.00800 invalidates the bullish thesis.",
+    "rapid_reason": "1H bullish order block break with volume surge.",
+    "smc_logic": "The price pierced a well‑defined bullish order block on the 1H chart, indicating smart‑money absorption. A liquidity pool beneath the recent swing low was swept, providing upward thrust. The next resistance at 0.00866 aligns with the prior swing high, offering a logical TP1.",
+    "smc_logic_short": "Bullish order block break, liquidity sweep, target at prior swing high.",
+    "change": 43.029,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "08a8a6594d944eaeb684403c8de1b89d",
+    "created_at": "2026-10-10T03:29:23.432192+00:00",
+    "last_checked_at": "2026-10-10T03:29:23.432192+00:00",
+    "status": "ACTIVE"
   }
 ]
