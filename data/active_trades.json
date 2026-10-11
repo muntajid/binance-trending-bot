@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-10-11T06:54:49.561176+00:00",
+    "last_checked_at": "2026-10-11T13:46:27.971153+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -35,7 +35,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-10-11T06:54:51.118820+00:00",
+    "last_checked_at": "2026-10-11T13:46:29.229609+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -60,7 +60,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-10-11T06:54:52.793946+00:00",
+    "last_checked_at": "2026-10-11T13:46:30.292005+00:00",
     "status": "ACTIVE"
   },
   {
@@ -80,35 +80,11 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-10-11T06:54:54.071903+00:00",
+    "last_checked_at": "2026-10-11T13:46:31.370172+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
-  },
-  {
-    "coin": "TIA",
-    "trending_bonus": "LUMIA",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.6063,
-    "tp1": 0.6365,
-    "tp2": 0.7,
-    "sl": 0.582,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "Liquidity sweep at the 0.6050 support level triggered a rapid rebound, accompanied by a sharp volume spike and a 1‑hour candle closing above 0.61, indicating institutional accumulation.",
-    "invalidation": "A break below the 0.5800 support level would invalidate the trade thesis.",
-    "rapid_reason": "1‑hour candle closed above 0.61 on high volume.",
-    "smc_logic": "The recent 25.6% rally has pushed TIA into a key 0.6050 support zone where institutional buyers have been accumulating. The 1‑hour volume spike and the breakout above 0.61 suggest a liquidity sweep and a shift in market sentiment toward a bullish bias. The price is now poised to test the next resistance near 0.6365, with a higher target at 0.7000 if the trend continues.",
-    "smc_logic_short": "Liquidity sweep at 0.6050 → 1‑hour volume spike → breakout above 0.61 → target 0.6365, 0.7000",
-    "change": 25.601,
-    "groq_model": "openai/gpt-oss-20b",
-    "trade_id": "7fd4022421d64fc3960430662edf0404",
-    "created_at": "2026-10-11T04:54:09.762709+00:00",
-    "last_checked_at": "2026-10-11T06:54:56.781210+00:00",
-    "status": "ACTIVE"
   }
 ]
