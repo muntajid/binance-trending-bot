@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-10-11T22:22:46.883520+00:00",
+    "last_checked_at": "2026-10-12T01:32:56.133572+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -35,7 +35,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-10-11T22:22:47.776289+00:00",
+    "last_checked_at": "2026-10-12T01:32:57.336812+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -60,7 +60,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-10-11T22:22:48.666887+00:00",
+    "last_checked_at": "2026-10-12T01:32:58.542359+00:00",
     "status": "ACTIVE"
   },
   {
@@ -80,35 +80,11 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-10-11T22:22:49.565071+00:00",
+    "last_checked_at": "2026-10-12T01:32:59.738647+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
-  },
-  {
-    "coin": "CKB",
-    "trending_bonus": "MAGIC",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.00205,
-    "tp1": 0.00213,
-    "tp2": 0.0023,
-    "sl": 0.00199,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A liquidity sweep of the 0.0020 support zone created a bullish order block, confirming strong buying pressure.",
-    "invalidation": "If price closes below 0.00199, the bullish order block is invalidated.",
-    "rapid_reason": "1H chart shows a sharp bullish candle breaking the recent swing high, indicating a momentum shift.",
-    "smc_logic": "The price broke a higher low, triggering a bullish order block at the 0.0020 level. Liquidity was swept below this block, and the market re‑captured it, suggesting smart money accumulation. A retest of the block with volume confirms the long bias.",
-    "smc_logic_short": "Higher low break → bullish order block @0.0020 → liquidity sweep → retest confirms long.",
-    "change": 43.408,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "2bdf0320029845918ddaf1dde064528e",
-    "created_at": "2026-10-11T21:16:25.543610+00:00",
-    "last_checked_at": "2026-10-11T22:22:50.456270+00:00",
-    "status": "ACTIVE"
   }
 ]
