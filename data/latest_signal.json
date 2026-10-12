@@ -1,20 +1,8 @@
 {
-  "coin": "W",
-  "trending_bonus": "MAGIC",
-  "direction": "LONG",
-  "entry": "CMP",
-  "entry_price": 0.02935,
-  "tp1": 0.0305,
-  "tp2": 0.0329,
-  "sl": 0.02846,
-  "leverage": "15x",
-  "risk": "Medium Risk",
-  "confidence": 85,
-  "why_now": "Liquidity sweep of the 0.0280‑0.0285 zone triggered a bullish order block and price broke above the previous swing high, confirming strong buying pressure.",
-  "invalidation": "Close below 0.0284 invalidates the bullish order block and trade thesis.",
-  "rapid_reason": "1H momentum surged as price broke the 0.0290 resistance with high volume.",
-  "smc_logic": "A bullish order block formed at the 0.0285 level after a clear liquidity sweep, and the price now respects this block as support. The break above the prior swing high confirms potential institutional accumulation, aligning with the market leader MAGIC's rally.",
-  "smc_logic_short": "Bullish order block at 0.0285, break of swing high, aligns with MAGIC rally.",
-  "change": 70.319,
-  "groq_model": "openai/gpt-oss-120b"
+  "title": "Trader Diary: The $83k Bitcoin Rollercoaster",
+  "content": "Seen BTC slip 0.1% at 3 AM → I open a 10x long, stare at the 1‑minute chart like it’s a Netflix series.\nFive minutes later I’m Googling ‘how to survive a dip that’s basically a sneeze.’",
+  "lesson": "Risk ≤1% per trade, even if the dip looks like a typo.",
+  "question": "Who else jumped on that 10x at 3 AM and was out before coffee? Share your war stories 👇",
+  "groq_model": "openai/gpt-oss-120b",
+  "type": "meme_community"
 }
