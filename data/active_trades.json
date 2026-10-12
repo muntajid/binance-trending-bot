@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-10-12T01:32:56.133572+00:00",
+    "last_checked_at": "2026-10-12T07:57:03.794803+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -35,7 +35,7 @@
     "smc_logic_short": "Bullish momentum",
     "change": 18.829,
     "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-10-12T01:32:57.336812+00:00",
+    "last_checked_at": "2026-10-12T07:57:04.988607+00:00",
     "status": "ACTIVE",
     "trade_id": "sndkb-a74b608a6f50eb4d1b65",
     "tp1_hit": true,
@@ -60,7 +60,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-10-12T01:32:58.542359+00:00",
+    "last_checked_at": "2026-10-12T07:57:06.292601+00:00",
     "status": "ACTIVE"
   },
   {
@@ -80,35 +80,11 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-10-12T01:32:59.738647+00:00",
+    "last_checked_at": "2026-10-12T07:57:07.431903+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
-  },
-  {
-    "coin": "W",
-    "trending_bonus": "MAGIC",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.02935,
-    "tp1": 0.0305,
-    "tp2": 0.0329,
-    "sl": 0.02846,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "Liquidity sweep of the 0.0280‑0.0285 zone triggered a bullish order block and price broke above the previous swing high, confirming strong buying pressure.",
-    "invalidation": "Close below 0.0284 invalidates the bullish order block and trade thesis.",
-    "rapid_reason": "1H momentum surged as price broke the 0.0290 resistance with high volume.",
-    "smc_logic": "A bullish order block formed at the 0.0285 level after a clear liquidity sweep, and the price now respects this block as support. The break above the prior swing high confirms potential institutional accumulation, aligning with the market leader MAGIC's rally.",
-    "smc_logic_short": "Bullish order block at 0.0285, break of swing high, aligns with MAGIC rally.",
-    "change": 70.319,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "89e9baea3d4e4977a2629b6762a92e6d",
-    "created_at": "2026-10-12T03:25:44.647028+00:00",
-    "last_checked_at": "2026-10-12T03:25:44.647028+00:00",
-    "status": "ACTIVE"
   }
 ]
