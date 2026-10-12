@@ -86,5 +86,29 @@
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
+  },
+  {
+    "coin": "GTC",
+    "trending_bonus": "OSMO",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.27549,
+    "tp1": 0.2869,
+    "tp2": 0.309,
+    "sl": 0.2676,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.28 resistance zone turned that level into support, confirmed by a sharp volume spike, indicating smart money accumulation.",
+    "invalidation": "Trade is invalidated if price closes below 0.2670, breaching the defined stop‑loss zone.",
+    "rapid_reason": "1H chart displayed a bullish engulfing candle with a 2.5× volume surge breaking the 0.27 resistance.",
+    "smc_logic": "The price broke a higher high and retested the former resistance at 0.28, now acting as a demand zone (order block). A clear liquidity grab below the block forced sellers to cover, pushing price back above the block, which aligns with Smart Money concepts of accumulation before a move higher. The next target aligns with the next resistance cluster around 0.31.",
+    "smc_logic_short": "Break of higher high, retest of 0.28 order block as support, bullish engulfing on 1H confirms accumulation.",
+    "change": 53.314,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "7227ad93523c4dde9b18560949df21e8",
+    "created_at": "2026-10-12T22:19:41.861156+00:00",
+    "last_checked_at": "2026-10-12T22:19:41.861156+00:00",
+    "status": "ACTIVE"
   }
 ]

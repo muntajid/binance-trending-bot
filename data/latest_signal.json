@@ -1,8 +1,20 @@
 {
-  "title": "Trader Diary: The $83k Bitcoin Rollercoaster",
-  "content": "Seen BTC slip 0.1% at 3 AM → I open a 10x long, stare at the 1‑minute chart like it’s a Netflix series.\nFive minutes later I’m Googling ‘how to survive a dip that’s basically a sneeze.’",
-  "lesson": "Risk ≤1% per trade, even if the dip looks like a typo.",
-  "question": "Who else jumped on that 10x at 3 AM and was out before coffee? Share your war stories 👇",
-  "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "coin": "GTC",
+  "trending_bonus": "OSMO",
+  "direction": "LONG",
+  "entry": "CMP",
+  "entry_price": 0.27549,
+  "tp1": 0.2869,
+  "tp2": 0.309,
+  "sl": 0.2676,
+  "leverage": "15x",
+  "risk": "Medium Risk",
+  "confidence": 85,
+  "why_now": "A liquidity sweep of the 0.28 resistance zone turned that level into support, confirmed by a sharp volume spike, indicating smart money accumulation.",
+  "invalidation": "Trade is invalidated if price closes below 0.2670, breaching the defined stop‑loss zone.",
+  "rapid_reason": "1H chart displayed a bullish engulfing candle with a 2.5× volume surge breaking the 0.27 resistance.",
+  "smc_logic": "The price broke a higher high and retested the former resistance at 0.28, now acting as a demand zone (order block). A clear liquidity grab below the block forced sellers to cover, pushing price back above the block, which aligns with Smart Money concepts of accumulation before a move higher. The next target aligns with the next resistance cluster around 0.31.",
+  "smc_logic_short": "Break of higher high, retest of 0.28 order block as support, bullish engulfing on 1H confirms accumulation.",
+  "change": 53.314,
+  "groq_model": "openai/gpt-oss-120b"
 }
