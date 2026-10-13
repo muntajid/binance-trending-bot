@@ -1,8 +1,20 @@
 {
-  "title": "Trader Diary: BTC at $83,226 & My 10x Leverage Dreams",
-  "content": "👀 8:00 PM: Spot $83k, I’m already on the 10x chart.\n💥 8:15 PM: Price dips 0.3% → My equity hits margin call.\n🤦‍♂️ 8:20 PM: “It’s just a dip, I’ll HODL” while the liquidation bot screams.",
-  "lesson": "Never risk more than you can afford to lose; leverage is a double‑edged sword.",
-  "question": "Who’s still glued to the 1‑minute chart at 2 AM? Drop your latest “almost liquidated” story 👇",
-  "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "coin": "GNS",
+  "trending_bonus": "BAT",
+  "direction": "LONG",
+  "entry": "CMP",
+  "entry_price": 0.811,
+  "tp1": 0.843,
+  "tp2": 0.907,
+  "sl": 0.787,
+  "leverage": "15x",
+  "risk": "Medium Risk",
+  "confidence": 85,
+  "why_now": "A liquidity sweep of the 0.80‑0.82 zone broke a bullish order block, confirming strong buying pressure.",
+  "invalidation": "Close below 0.785 invalidates the long thesis.",
+  "rapid_reason": "1H volume spike and break of the recent swing high.",
+  "smc_logic": "The price cleared a well‑defined bullish order block at 0.795‑0.805, absorbing sell‑side liquidity. Subsequent higher‑timeframe bullish structure and a 1H volume surge indicate smart money accumulation, setting the stage for a move toward the next resistance.",
+  "smc_logic_short": "Bullish order block break with liquidity sweep, 1H volume surge.",
+  "change": 118.598,
+  "groq_model": "openai/gpt-oss-120b"
 }
