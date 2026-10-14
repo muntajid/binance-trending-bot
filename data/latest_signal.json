@@ -1,15 +1,8 @@
 {
-  "headline": "Bitcoin holds above $83k, testing key resistance as liquidity hunt eases",
-  "btc_price": 83218.01,
-  "btc_change": 1.561,
-  "eth_price": 2499.72,
-  "eth_change": 2.058,
-  "market_phase": "Bullish Expansion",
-  "btc_thesis": "On the 1H chart BTC is forming higher highs, holding the 83,200–83,300 demand zone; 4H shows a clean uptrend with the 82,800 support intact, targeting the 83,800 resistance.",
-  "altcoin_summary": "Altcoins are rotating into high‑beta assets; GNS, BAT, OP and AMP lead with strong upside, indicating capital shifting from BTC to risk‑on tokens.",
-  "btc_support": 82800.0,
-  "btc_resistance": 83800.0,
-  "strategy_outlook": "Enter spot BTC longs near 82,800 with a tight stop at 82,500; on futures, consider buying 1‑2 % of account size on 10‑x leverage with a target at 83,800 and a stop at 82,800.",
+  "title": "Trader Diary: 2% Dip Drama",
+  "content": "👀 8:00 PM: Spot BTC at $82,053, I’m ready to HODL.\n🧠 8:01 PM: Leverage 20x, “just a little safety net”.\n📉 8:05 PM: BTC slides 2%, equity screaming “MOM!”",
+  "lesson": "Never let a 2% wobble dictate your position size – protect your margin before the coffee hits.",
+  "question": "Who’s still on that 20x ride after the dip? Drop your panic emojis 👇",
   "groq_model": "openai/gpt-oss-120b",
-  "type": "market_overview"
+  "type": "meme_community"
 }
