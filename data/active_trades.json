@@ -16,32 +16,8 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-10-14T17:47:32.730368+00:00",
+    "last_checked_at": "2026-10-14T20:59:43.868814+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
-  },
-  {
-    "coin": "SNDKB",
-    "trending_bonus": "ACE",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 1593.87,
-    "tp1": 1800,
-    "tp2": 2000,
-    "sl": 1400,
-    "leverage": "3x-5x",
-    "risk": "Medium Risk",
-    "confidence": 80,
-    "smc_logic": "Given the 24h change of 18.83%, the coin is showing strong upward momentum, suggesting a potential long position with a target price of 1800 and 2000, and a stop loss at 1400.",
-    "smc_logic_short": "Bullish momentum",
-    "change": 18.829,
-    "created_at": "2026-08-14T09:40:15.770641+00:00",
-    "last_checked_at": "2026-10-14T17:47:33.777880+00:00",
-    "status": "ACTIVE",
-    "trade_id": "sndkb-a74b608a6f50eb4d1b65",
-    "tp1_hit": true,
-    "tp1_hit_price": 1800.0,
-    "tp1_hit_at": "2026-08-17T14:47:59.999000+00:00",
-    "tp1_card": "SNDKB_TP1_target_card.png"
   },
   {
     "coin": "COW",
@@ -60,7 +36,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-10-14T17:47:34.670991+00:00",
+    "last_checked_at": "2026-10-14T20:59:45.732286+00:00",
     "status": "ACTIVE"
   },
   {
@@ -80,7 +56,7 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-10-14T17:47:35.611450+00:00",
+    "last_checked_at": "2026-10-14T20:59:46.666732+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
@@ -108,7 +84,7 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "62a72e150c074dc1a26ea50cc60ec3e3",
     "created_at": "2026-10-14T19:05:47.243387+00:00",
-    "last_checked_at": "2026-10-14T19:05:47.243387+00:00",
+    "last_checked_at": "2026-10-14T20:59:47.583779+00:00",
     "status": "ACTIVE"
   }
 ]
