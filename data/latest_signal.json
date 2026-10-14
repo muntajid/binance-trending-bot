@@ -1,8 +1,20 @@
 {
-  "title": "Trader Diary: 2% Dip Drama",
-  "content": "👀 8:00 PM: Spot BTC at $82,053, I’m ready to HODL.\n🧠 8:01 PM: Leverage 20x, “just a little safety net”.\n📉 8:05 PM: BTC slides 2%, equity screaming “MOM!”",
-  "lesson": "Never let a 2% wobble dictate your position size – protect your margin before the coffee hits.",
-  "question": "Who’s still on that 20x ride after the dip? Drop your panic emojis 👇",
-  "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "coin": "WAL",
+  "trending_bonus": "AVA",
+  "direction": "LONG",
+  "entry": "CMP",
+  "entry_price": 0.06014,
+  "tp1": 0.06255,
+  "tp2": 0.06736,
+  "sl": 0.05834,
+  "leverage": "15x",
+  "risk": "Medium Risk",
+  "confidence": 85,
+  "why_now": "A liquidity sweep of the 0.0580‑0.0590 zone forced sellers to absorb excess supply, and the price broke above the prior resistance at 0.0600, confirming a bullish imbalance.",
+  "invalidation": "Close below 0.0585 invalidates the bullish structure",
+  "rapid_reason": "1H bullish engulfing candle after a sharp volume spike",
+  "smc_logic": "The 0.0580‑0.0590 area acted as a bearish order block that was swept, creating liquidity. The break of structure at 0.0600 turned that level into a bullish order block, and the price now respects it as support while targeting the next imbalance zone. A tight stop just below the swept block protects against a false breakout.",
+  "smc_logic_short": "Swept bearish block → bullish OB at 0.0600 → target next imbalance",
+  "change": 57.05,
+  "groq_model": "openai/gpt-oss-120b"
 }

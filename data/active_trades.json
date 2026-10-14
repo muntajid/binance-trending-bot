@@ -86,5 +86,29 @@
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
+  },
+  {
+    "coin": "WAL",
+    "trending_bonus": "AVA",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.06014,
+    "tp1": 0.06255,
+    "tp2": 0.06736,
+    "sl": 0.05834,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.0580‑0.0590 zone forced sellers to absorb excess supply, and the price broke above the prior resistance at 0.0600, confirming a bullish imbalance.",
+    "invalidation": "Close below 0.0585 invalidates the bullish structure",
+    "rapid_reason": "1H bullish engulfing candle after a sharp volume spike",
+    "smc_logic": "The 0.0580‑0.0590 area acted as a bearish order block that was swept, creating liquidity. The break of structure at 0.0600 turned that level into a bullish order block, and the price now respects it as support while targeting the next imbalance zone. A tight stop just below the swept block protects against a false breakout.",
+    "smc_logic_short": "Swept bearish block → bullish OB at 0.0600 → target next imbalance",
+    "change": 57.05,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "62a72e150c074dc1a26ea50cc60ec3e3",
+    "created_at": "2026-10-14T19:05:47.243387+00:00",
+    "last_checked_at": "2026-10-14T19:05:47.243387+00:00",
+    "status": "ACTIVE"
   }
 ]
