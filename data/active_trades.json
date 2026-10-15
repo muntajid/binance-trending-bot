@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-10-14T23:51:25.126896+00:00",
+    "last_checked_at": "2026-10-15T03:19:29.210751+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -36,7 +36,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-10-14T23:51:26.423705+00:00",
+    "last_checked_at": "2026-10-15T03:19:30.459852+00:00",
     "status": "ACTIVE"
   },
   {
@@ -56,35 +56,11 @@
     "change": 17.582,
     "trade_id": "7d52606e0ce048b3bfe7d86adc1ef7d4",
     "created_at": "2026-08-15T21:42:06.197091+00:00",
-    "last_checked_at": "2026-10-14T23:51:27.700248+00:00",
+    "last_checked_at": "2026-10-15T03:19:31.387935+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 1.02,
     "tp1_hit_at": "2026-09-18T10:44:59.999000+00:00",
     "tp1_card": "ENSO_TP1_target_card.png"
-  },
-  {
-    "coin": "NIL",
-    "trending_bonus": "WAL",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.08974,
-    "tp1": 0.0939,
-    "tp2": 0.1005,
-    "sl": 0.087,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A 1‑hour liquidity sweep broke the bullish order block, confirming strong buying pressure and a shift from accumulation to execution.",
-    "invalidation": "Close below 0.0870 invalidates the trade thesis.",
-    "rapid_reason": "1H bullish order block break with a volume spike.",
-    "smc_logic": "The price broke a well‑defined bullish order block on the 1H chart, indicating smart money absorption of liquidity. After the break, the market retested the block as support, providing a clean entry at the current market price. The next resistance levels align with the projected TP zones, while the stop is placed just below the broken liquidity pool.",
-    "smc_logic_short": "Bullish order block break, retest as support, target next resistance levels.",
-    "change": 15.229,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "bc5c7ca8b6a24c8d807ba63befa1cc5d",
-    "created_at": "2026-10-14T23:33:18.962527+00:00",
-    "last_checked_at": "2026-10-14T23:51:35.723093+00:00",
-    "status": "ACTIVE"
   }
 ]

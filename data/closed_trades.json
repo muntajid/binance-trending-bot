@@ -6292,5 +6292,31 @@
     "tp2_card": "WAL_TP2_target_card.png",
     "closed_price": 0.06736,
     "closed_at": "2026-10-14T21:30:59.999000+00:00"
+  },
+  {
+    "coin": "NIL",
+    "trending_bonus": "WAL",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.08974,
+    "tp1": 0.0939,
+    "tp2": 0.1005,
+    "sl": 0.087,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A 1‑hour liquidity sweep broke the bullish order block, confirming strong buying pressure and a shift from accumulation to execution.",
+    "invalidation": "Close below 0.0870 invalidates the trade thesis.",
+    "rapid_reason": "1H bullish order block break with a volume spike.",
+    "smc_logic": "The price broke a well‑defined bullish order block on the 1H chart, indicating smart money absorption of liquidity. After the break, the market retested the block as support, providing a clean entry at the current market price. The next resistance levels align with the projected TP zones, while the stop is placed just below the broken liquidity pool.",
+    "smc_logic_short": "Bullish order block break, retest as support, target next resistance levels.",
+    "change": 15.229,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "bc5c7ca8b6a24c8d807ba63befa1cc5d",
+    "created_at": "2026-10-14T23:33:18.962527+00:00",
+    "last_checked_at": "2026-10-15T00:51:59.999000+00:00",
+    "status": "SL_HIT",
+    "closed_price": 0.087,
+    "closed_at": "2026-10-15T00:51:59.999000+00:00"
   }
 ]
