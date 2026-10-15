@@ -38,5 +38,29 @@
     "created_at": "2026-08-15T09:51:30.238894+00:00",
     "last_checked_at": "2026-10-15T20:57:45.540213+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "BAT",
+    "trending_bonus": "ANIME",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.219,
+    "tp1": 0.228,
+    "tp2": 0.245,
+    "sl": 0.212,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.215‑0.218 zone broke a bullish order block, confirming strong buying pressure.",
+    "invalidation": "Close below 0.212 invalidates the trade.",
+    "rapid_reason": "1H bullish engulfing candle with a volume spike after holding the 0.215 support.",
+    "smc_logic": "The price broke a well‑defined bullish order block at 0.215, absorbing sell‑side liquidity and retesting the broken resistance now acting as support. A subsequent 1H bullish engulfing confirms Smart Money accumulation, setting up a clear upside swing.",
+    "smc_logic_short": "Bullish order block break at 0.215, 1H engulfing confirms accumulation.",
+    "change": 28.521,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "73cb2bfd1b934dcf8dd55561a20aec11",
+    "created_at": "2026-10-15T23:27:16.978501+00:00",
+    "last_checked_at": "2026-10-15T23:27:16.978501+00:00",
+    "status": "ACTIVE"
   }
 ]

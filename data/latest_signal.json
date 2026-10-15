@@ -1,8 +1,20 @@
 {
-  "title": "Trader Diary: The $80k Dip",
-  "content": "Saw BTC slide to $80,506 and my brain went from \"HODL\" to \"SHORT NOW!\" in 3 seconds.\nNow I'm glued to 1‑minute candles like it's the season finale of my favorite drama.",
-  "lesson": "Set your stop‑loss before the FOMO hits – a 3% dip isn’t a signal to double‑down.",
-  "question": "Who else turned their coffee into a stress test today? Show us your 1‑min chart screenshots 👇",
-  "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "coin": "BAT",
+  "trending_bonus": "ANIME",
+  "direction": "LONG",
+  "entry": "CMP",
+  "entry_price": 0.219,
+  "tp1": 0.228,
+  "tp2": 0.245,
+  "sl": 0.212,
+  "leverage": "15x",
+  "risk": "Medium Risk",
+  "confidence": 85,
+  "why_now": "A liquidity sweep of the 0.215‑0.218 zone broke a bullish order block, confirming strong buying pressure.",
+  "invalidation": "Close below 0.212 invalidates the trade.",
+  "rapid_reason": "1H bullish engulfing candle with a volume spike after holding the 0.215 support.",
+  "smc_logic": "The price broke a well‑defined bullish order block at 0.215, absorbing sell‑side liquidity and retesting the broken resistance now acting as support. A subsequent 1H bullish engulfing confirms Smart Money accumulation, setting up a clear upside swing.",
+  "smc_logic_short": "Bullish order block break at 0.215, 1H engulfing confirms accumulation.",
+  "change": 28.521,
+  "groq_model": "openai/gpt-oss-120b"
 }
