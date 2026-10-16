@@ -38,5 +38,29 @@
     "created_at": "2026-08-15T09:51:30.238894+00:00",
     "last_checked_at": "2026-10-16T22:00:13.947987+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "TIA",
+    "trending_bonus": "RAD",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.6699,
+    "tp1": 0.7034,
+    "tp2": 0.7737,
+    "sl": 0.6494,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "The 13% 24‑hour surge, coupled with a sharp volume spike at the 0.67 level, signals a liquidity sweep and strong accumulation; the price is now trading above the 0.618 Fibonacci key, indicating a potential resistance flip.",
+    "invalidation": "A break below the 0.6494 stop‑loss level would invalidate the thesis.",
+    "rapid_reason": "1‑hour candle closed above 0.68 on high volume, confirming upward momentum.",
+    "smc_logic": "Smart Money has been building a long bias by accumulating near the 0.618 Fibonacci level, creating a tight support zone around 0.65. The recent volume surge and price breakout above 0.68 suggest institutional participation, while the 0.7034 target aligns with the next Fibonacci extension (1.618). The 0.7737 target captures the extended move toward the 2.618 level, offering a balanced risk‑reward profile.",
+    "smc_logic_short": "Long bias: accumulation at 0.618, breakout above 0.68, TP1 at 1.618 extension, TP2 at 2.618 extension, SL at 0.65.",
+    "change": 13.061,
+    "groq_model": "openai/gpt-oss-20b",
+    "trade_id": "9bf0da9eadbe459994cde7680ef5cff8",
+    "created_at": "2026-10-16T23:09:17.425040+00:00",
+    "last_checked_at": "2026-10-16T23:09:17.425040+00:00",
+    "status": "ACTIVE"
   }
 ]
