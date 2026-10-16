@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-10-16T11:45:25.258807+00:00",
+    "last_checked_at": "2026-10-16T15:35:40.390534+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -36,31 +36,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-10-16T11:45:26.268338+00:00",
-    "status": "ACTIVE"
-  },
-  {
-    "coin": "INJ",
-    "trending_bonus": "TIA",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 9.31,
-    "tp1": 9.68,
-    "tp2": 10.43,
-    "sl": 9.03,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "Liquidity sweep of the 9.20‑9.25 zone created a bullish order block that was retested at the current market price with strong buying volume.",
-    "invalidation": "Close below 9.00, the broken swing low, invalidates the long thesis.",
-    "rapid_reason": "1H bullish engulfing candle with a volume spike.",
-    "smc_logic": "The price broke the prior swing high around 9.20, sweeping liquidity and forming a bullish order block at the CMP. A retest on the 1H chart produced a strong bullish candle and volume accumulation, indicating smart money is entering long positions. The next resistance at 9.68 matches the previous swing high, providing a logical TP1 target.",
-    "smc_logic_short": "Liquidity sweep → bullish order block retest → 1H bullish engulfing.",
-    "change": 28.787,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "241a387d696144aa9535864a1ecbc661",
-    "created_at": "2026-10-16T07:42:51.781918+00:00",
-    "last_checked_at": "2026-10-16T11:45:27.284340+00:00",
+    "last_checked_at": "2026-10-16T15:35:45.472178+00:00",
     "status": "ACTIVE"
   }
 ]
