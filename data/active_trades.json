@@ -38,5 +38,29 @@
     "created_at": "2026-08-15T09:51:30.238894+00:00",
     "last_checked_at": "2026-10-16T15:35:45.472178+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "AMP",
+    "trending_bonus": "TIA",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.000794,
+    "tp1": 0.000826,
+    "tp2": 0.000889,
+    "sl": 0.00077,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.00078‑0.00080 zone created a bullish order block, confirming strong buying pressure as price broke above the recent swing high.",
+    "invalidation": "Close below 0.000770 (the stop‑loss level) or a retest of the 0.000765 swing low invalidates the setup.",
+    "rapid_reason": "1H volume surged and price broke the 0.00079 resistance, flipping it into support.",
+    "smc_logic": "The price cleared a tight liquidity pool around 0.00078, forming a bullish order block that now acts as support. A higher high on the 1H chart confirms an uptrend, and the market is now seeking the next supply zone near 0.000825. The stop is placed just below the recent swing low to protect against a false breakout.",
+    "smc_logic_short": "Liquidity sweep → bullish order block at 0.00078, higher high confirms uptrend, target next supply zone.",
+    "change": 20.669,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "76b903ffd94c4e7c84a0153654a537e1",
+    "created_at": "2026-10-16T18:32:29.213161+00:00",
+    "last_checked_at": "2026-10-16T18:32:29.213161+00:00",
+    "status": "ACTIVE"
   }
 ]
