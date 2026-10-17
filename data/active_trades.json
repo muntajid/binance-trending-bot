@@ -66,5 +66,29 @@
     "tp1_hit_price": 0.4054,
     "tp1_hit_at": "2026-10-17T18:17:59.999000+00:00",
     "tp1_card": "AVA_TP1_target_card.png"
+  },
+  {
+    "coin": "ALT",
+    "trending_bonus": "AVA",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.00957,
+    "tp1": 0.00995,
+    "tp2": 0.01072,
+    "sl": 0.00928,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep at the 0.0095 support level forced sellers to absorb hidden buy orders, flipping the recent resistance into support and sparking a volume‑driven rally.",
+    "invalidation": "Close below 0.00925 invalidates the bullish thesis.",
+    "rapid_reason": "1H price broke the prior swing low with a 2x volume spike.",
+    "smc_logic": "The 0.0095 zone acted as a liquidity pool where smart money placed sell orders. Once those were cleared, price broke the bearish structure and formed a bullish order block at the current price, indicating accumulation. A retest of this block now provides a high‑probability entry with upside bias.",
+    "smc_logic_short": "Liquidity pool cleared, bullish order block formed, retest confirms entry.",
+    "change": 15.879,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "53c37ae3020344f7bc746735fb8e74cc",
+    "created_at": "2026-10-17T19:52:45.396965+00:00",
+    "last_checked_at": "2026-10-17T19:52:45.396965+00:00",
+    "status": "ACTIVE"
   }
 ]
