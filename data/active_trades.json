@@ -66,5 +66,29 @@
     "tp1_hit_price": 0.7034,
     "tp1_hit_at": "2026-10-17T02:01:59.999000+00:00",
     "tp1_card": "TIA_TP1_target_card.png"
+  },
+  {
+    "coin": "AVA",
+    "trending_bonus": "EPIC",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 0.3898,
+    "tp1": 0.4054,
+    "tp2": 0.4366,
+    "sl": 0.3781,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 0.38‑0.39 zone broke a bullish order block, confirming strong buying accumulation.",
+    "invalidation": "Close below 0.3760 invalidates the bullish thesis.",
+    "rapid_reason": "1H price surged past the previous swing high, igniting bullish momentum.",
+    "smc_logic": "The price retested a clear bullish order block at 0.38‑0.39, then executed a liquidity grab that pushed it above the prior swing high, establishing a higher low. This structure break signals smart money accumulation and a likely continuation to the next resistance zone.",
+    "smc_logic_short": "Bullish order block break with liquidity sweep, higher low confirmed.",
+    "change": 38.197,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "0e2103693c674bc7b2027ac4be2f48ac",
+    "created_at": "2026-10-17T17:38:52.736795+00:00",
+    "last_checked_at": "2026-10-17T17:38:52.736795+00:00",
+    "status": "ACTIVE"
   }
 ]

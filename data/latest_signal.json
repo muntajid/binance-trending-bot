@@ -1,8 +1,20 @@
 {
-  "title": "Trader Diary: 1% Dip & My Leverage Dreams",
-  "content": "81.5k: ‘Time to stack the deck.’\n81.4k: ‘Whoa, pull the lever!’\n81.3k: ‘My stop loss just ghosted me.’",
-  "lesson": "If a 1% swing can make you sweat, your position size is too big – cut the leverage, keep the sleep.",
-  "question": "Who else turned a tiny dip into a full‑blown panic session? Be honest 👇",
-  "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "coin": "AVA",
+  "trending_bonus": "EPIC",
+  "direction": "LONG",
+  "entry": "CMP",
+  "entry_price": 0.3898,
+  "tp1": 0.4054,
+  "tp2": 0.4366,
+  "sl": 0.3781,
+  "leverage": "15x",
+  "risk": "Medium Risk",
+  "confidence": 85,
+  "why_now": "A liquidity sweep of the 0.38‑0.39 zone broke a bullish order block, confirming strong buying accumulation.",
+  "invalidation": "Close below 0.3760 invalidates the bullish thesis.",
+  "rapid_reason": "1H price surged past the previous swing high, igniting bullish momentum.",
+  "smc_logic": "The price retested a clear bullish order block at 0.38‑0.39, then executed a liquidity grab that pushed it above the prior swing high, establishing a higher low. This structure break signals smart money accumulation and a likely continuation to the next resistance zone.",
+  "smc_logic_short": "Bullish order block break with liquidity sweep, higher low confirmed.",
+  "change": 38.197,
+  "groq_model": "openai/gpt-oss-120b"
 }
