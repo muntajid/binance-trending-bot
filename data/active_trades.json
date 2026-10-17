@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-10-16T22:00:12.954485+00:00",
+    "last_checked_at": "2026-10-17T00:18:16.303372+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -36,7 +36,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-10-16T22:00:13.947987+00:00",
+    "last_checked_at": "2026-10-17T00:18:17.582189+00:00",
     "status": "ACTIVE"
   },
   {
@@ -60,7 +60,7 @@
     "groq_model": "openai/gpt-oss-20b",
     "trade_id": "9bf0da9eadbe459994cde7680ef5cff8",
     "created_at": "2026-10-16T23:09:17.425040+00:00",
-    "last_checked_at": "2026-10-16T23:09:17.425040+00:00",
+    "last_checked_at": "2026-10-17T00:18:18.878746+00:00",
     "status": "ACTIVE"
   }
 ]
