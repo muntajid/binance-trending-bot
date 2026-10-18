@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-10-18T04:57:07.906611+00:00",
+    "last_checked_at": "2026-10-18T09:23:20.842573+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -36,31 +36,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-10-18T04:57:09.054542+00:00",
-    "status": "ACTIVE"
-  },
-  {
-    "coin": "ERA",
-    "trending_bonus": "AVA",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.0744,
-    "tp1": 0.0774,
-    "tp2": 0.0833,
-    "sl": 0.0722,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "A liquidity sweep just below the 0.0750 level forced a bearish stop run, after which price retested the broken order block at the current price, confirming smart‑money buying pressure.",
-    "invalidation": "Close below 0.0720 invalidates the bullish thesis.",
-    "rapid_reason": "1H candle broke above the recent swing high with a surge in volume.",
-    "smc_logic": "The market executed a liquidity grab beneath the 0.0750 resistance, then retested the newly formed order block at 0.0744, indicating accumulation by smart money. A bullish engulfing on the 1H chart flipped the prior resistance into support, aligning with the AVA rally and setting up a higher‑timeframe bias. This confluence suggests a controlled upward move toward the next supply zones.",
-    "smc_logic_short": "Liquidity grab → order block retest → bullish flip.",
-    "change": 24.247,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "fa3c1164ee4b4d91a2f563ca9f6cda1d",
-    "created_at": "2026-10-18T07:34:59.342040+00:00",
-    "last_checked_at": "2026-10-18T07:34:59.342040+00:00",
+    "last_checked_at": "2026-10-18T09:23:22.119415+00:00",
     "status": "ACTIVE"
   }
 ]
