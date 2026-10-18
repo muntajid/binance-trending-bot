@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-10-18T21:23:50.491457+00:00",
+    "last_checked_at": "2026-10-18T23:29:35.006260+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -36,36 +36,8 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-10-18T21:23:51.374076+00:00",
+    "last_checked_at": "2026-10-18T23:29:36.109908+00:00",
     "status": "ACTIVE"
-  },
-  {
-    "coin": "GTC",
-    "trending_bonus": "BTC",
-    "direction": "LONG",
-    "entry": "CMP",
-    "entry_price": 0.26832,
-    "tp1": 0.2788,
-    "tp2": 0.3002,
-    "sl": 0.26,
-    "leverage": "15x",
-    "risk": "Medium Risk",
-    "confidence": 85,
-    "why_now": "Liquidity sweep of the 0.2650‑0.2670 zone triggered a bullish order block and price broke above the recent swing high, confirming buying pressure.",
-    "invalidation": "Close below 0.2600 invalidates the bullish order block and the trade thesis.",
-    "rapid_reason": "1H price broke the 0.2675 resistance with strong volume.",
-    "smc_logic": "The price performed a liquidity grab below the recent swing low, then retested the bullish order block at ~0.2670, flipping it into a demand zone. A break above the 0.2675 resistance on the 1H chart confirms smart‑money accumulation, setting up a higher‑high target. The next resistance aligns with the TP1 level around 0.279.",
-    "smc_logic_short": "Liquidity sweep → order block flip → 1H break confirms bullish bias.",
-    "change": 16.534,
-    "groq_model": "openai/gpt-oss-120b",
-    "trade_id": "870976c8d1e04caeb10efd6a6919ecb3",
-    "created_at": "2026-10-18T19:53:21.753196+00:00",
-    "last_checked_at": "2026-10-18T21:23:52.253731+00:00",
-    "status": "ACTIVE",
-    "tp1_hit": true,
-    "tp1_hit_price": 0.2788,
-    "tp1_hit_at": "2026-10-18T20:49:59.999000+00:00",
-    "tp1_card": "GTC_TP1_target_card.png"
   },
   {
     "coin": "AMP",
@@ -88,7 +60,7 @@
     "groq_model": "openai/gpt-oss-120b",
     "trade_id": "422b841df90d4f9cbfd64b0f98f53755",
     "created_at": "2026-10-18T22:41:05.219695+00:00",
-    "last_checked_at": "2026-10-18T22:41:05.219695+00:00",
+    "last_checked_at": "2026-10-18T23:29:38.341053+00:00",
     "status": "ACTIVE"
   }
 ]
