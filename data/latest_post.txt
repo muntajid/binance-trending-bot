@@ -1,14 +1,17 @@
-🌐 MACRO & BITCOIN OUTLOOK: BTC holds near $81.7k as liquidity hunt wanes, market eyes next swing 📊
+👀 $ERA Tested Critical Decision Level (+24.2% 24H) — Setup Overview! 🚀
 
-$BTC 24H: $81673.09 (+0.05%)
-Market Phase: Consolidation with key resistance retest
+$ERA — LONG SETUP
+• Entry Zone (CMP): $0.0744
+• Target 1: $0.0774 (+4.0%) 🎯
+• Target 2: $0.0833 (+12.0%) 🚀
+• Invalidation (SL): $0.0722 (-3.0%) 🛡️
+• Risk/Reward: 1:1.36R | Confidence: 85%
+• Suggested Leverage: 3x - 5x (Max 15x)
 
-📊 Key Market Dynamics:
-• Bitcoin Structure: On the 1H chart BTC is forming a tight range between 81,200 and 81,800, holding the bullish higher‑low from the previous day; the 4H structure shows a flat channel, suggesting limited upside until the 82,200 resistance is broken and fresh liquidity is absorbed.
-• Altcoin Flows: Capital is rotating into high‑beta altcoins, with GTC, AVA and EPIC leading the rally, indicating a short‑term risk‑on bias away from Bitcoin.
-• Crucial Levels: Support $81200 | Resistance $82200
+Why now: A liquidity sweep just below the 0.0750 level forced a bearish stop run, after which price retested the broken order block at the current price, confirming smart‑money buying pressure.
+What changes the view: Close below 0.0720 invalidates the bullish thesis.
 
-💡 Trader Takeaway: Enter spot BTC long only on a break above 82,200 with a 1% stop below 81,200; for futures, consider a short‑bias using a 0.5% profit target if price retests 81,200 and stalls.
+💡 Execution: Maintain strict capital discipline. Protect profit systematically at target levels.
 
-$BTC $ETH #BinanceSquare #CryptoMarket
-⚠️ Educational market analysis only. Not financial advice. Always DYOR.
+$ERA $BTC #CryptoTrading
+⚠️ Educational market analysis. Always manage your risk & DYOR.
