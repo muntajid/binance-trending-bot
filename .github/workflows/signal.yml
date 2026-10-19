@@ -1,14 +1,42 @@
-name: Signal Poster - Every 2 Hours (12x Day)
+name: Signal Poster - 12-Slot Daily Rotation
 
+# The day's plan is a queue in data/schedule_state.json, not a clock lookup:
+# every run (cron or manual) publishes the next pending slot from the list in
+# bot/config.json. Cron fires 12 times a day so a quiet day walks all twelve
+# slots in order; a manual "Run workflow" click advances the same queue, so
+# running it five times yields five different posts instead of five memes.
 on:
   schedule:
     - cron: "0 */2 * * *"
   workflow_dispatch:
+    inputs:
+      slot:
+        description: "Which post to publish"
+        required: false
+        default: auto
+        type: choice
+        options:
+          - auto
+          - market_overview
+          - rapid_alert
+          - explained_setup
+          - meme_community
+      reset:
+        description: "Rebuild today's queue from bot/config.json before posting"
+        required: false
+        default: false
+        type: boolean
+      preview:
+        description: "Generate and show the post, but publish nothing"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
 
 concurrency:
+  # Serialised with the monitor so the two never race on data/*.json or a push.
   group: binance-bot-state-writer
   cancel-in-progress: false
 
@@ -16,6 +44,11 @@ jobs:
   post-signal:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+
+    env:
+      SLOT: ${{ inputs.slot || 'auto' }}
+      SLOT_RESET: ${{ inputs.reset == true && '1' || '0' }}
+      PREVIEW_ONLY: ${{ inputs.preview == true && '1' || '0' }}
 
     steps:
       - name: Checkout repository
@@ -40,16 +73,22 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Show today's posting queue
+        run: |
+          python -m bot.schedule --status
+          python -m bot.schedule --summary >> "$GITHUB_STEP_SUMMARY"
+
       - name: Clean old charts
         run: rm -f charts/*.png || true
 
-      - name: Generate trending signal and charts
+      - name: Generate the next queued post
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GROQ_MODEL: ${{ vars.GROQ_MODEL || 'openai/gpt-oss-120b' }}
         run: python -m bot.main_signal
 
       - name: Download official Binance Square posting scripts
+        if: ${{ inputs.preview != true }}
         run: |
           rm -rf /tmp/binance-skills-hub
           git clone --depth 1 \
@@ -57,12 +96,14 @@ jobs:
             /tmp/binance-skills-hub
 
       - name: Apply Square safety patches
+        if: ${{ inputs.preview != true }}
         run: |
           python -m bot.patch_square_utf8
           python -m bot.patch_square_upload
           node --check /tmp/binance-skills-hub/skills/binance/square-post/scripts/lib.mjs
 
       - name: Publish signal to Binance Square
+        if: ${{ inputs.preview != true }}
         env:
           BINANCE_SQUARE_OPENAPI_KEY: ${{ secrets.BINANCE_SQUARE_OPENAPI_KEY }}
           # Binance processes Square images asynchronously. The official helper
@@ -83,14 +124,16 @@ jobs:
             --images "$IMAGES"
 
       - name: Commit generated state
-        # Keep persisting signals/charts even when Square degrades, so a failed
-        # publish cannot strand the generated slot state.
+        # Runs even when Square degrades: a failed publish must still record
+        # that the slot went back to the queue, otherwise the state and the
+        # post log drift apart.
         if: always() && !cancelled()
         run: |
+          set -uo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add data/ charts/
+          git add -A data/ charts/
 
           if git diff --cached --quiet; then
             echo "No generated changes to commit."
@@ -98,5 +141,24 @@ jobs:
           fi
 
           git commit -m "auto: signal ${{ github.run_id }} $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
-          git pull --rebase origin main
-          git push origin main
+
+          # Both workflows push to main from independent runners, so rebase and
+          # retry instead of losing a slot's state to a rejected push.
+          pushed=0
+          for attempt in 1 2 3; do
+            if git push origin "HEAD:${{ github.ref_name }}"; then
+              pushed=1
+              break
+            fi
+            echo "Push attempt ${attempt} rejected; rebasing onto the latest main"
+            git pull --rebase origin "${{ github.ref_name }}" || {
+              git rebase --abort || true
+              git pull --rebase origin "${{ github.ref_name }}"
+            }
+            sleep $((attempt * 3))
+          done
+
+          if [ "${pushed}" != "1" ]; then
+            echo "::warning::State commit exists locally but could not be pushed; the next run will retry the push."
+            exit 1
+          fi

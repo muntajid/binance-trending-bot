@@ -1,0 +1,55 @@
+name: Tests
+
+# Runs the offline suites on every push and PR. The live-data scripts
+# (test_binance_data.py, test_price_consistency.py, test_chart_data_consistency.py,
+# test_indicators.py against real candles) stay manual-only in
+# "Price Consistency Test" / "Binance Public Data Test", because they need
+# network access to Binance and would make CI flaky.
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Validate the posting plan in bot/config.json
+        run: python -m bot.schedule --peek
+
+      - name: Run unit tests
+        env:
+          # Guard against a test quietly publishing through the real account.
+          BINANCE_SQUARE_OPENAPI_KEY: ""
+          GROQ_API_KEY: ""
+        run: >
+          python -m unittest -v
+          test_schedule_rotation
+          test_trade_state
+          test_slot_cadence
+          test_signal_quality_pipeline
+          test_square_publish_resilience
+
+      - name: Compile every module
+        run: python -m compileall -q bot assets

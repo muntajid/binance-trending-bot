@@ -1,5 +1,19 @@
 {
   "last_slot": 6,
   "last_type": "meme_community",
-  "last_run_utc": "2026-10-19T12:32:01.939805+00:00"
+  "last_run_utc": "2026-10-19T12:34:35+00:00",
+  "day_utc": "2026-10-19",
+  "pending_slots": [
+    0,
+    1,
+    2,
+    3,
+    5,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "in_flight": null
 }

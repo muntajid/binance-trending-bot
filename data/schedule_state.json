@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "day_utc": "2026-10-19",
+  "pending": [
+    0,
+    1,
+    2,
+    3,
+    5,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "in_flight": null,
+  "published": [
+    {
+      "slot": 4,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #2 (08:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-10-19T08:18:32+00:00",
+      "run_id": "39221733785",
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "KORUB",
+      "note": "published by the clock-based scheduler before this queue existed"
+    },
+    {
+      "slot": 6,
+      "type": "meme_community",
+      "name": "Trader Psychology & Community Meme (12:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-10-19T12:34:35+00:00",
+      "run_id": "39252738405",
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": null,
+      "note": "published by the clock-based scheduler before this queue existed"
+    }
+  ],
+  "rotations": 0,
+  "reset_reason": "manual reset",
+  "updated_utc": "2026-10-19T13:03:44.021182+00:00",
+  "previous_day": null
+}

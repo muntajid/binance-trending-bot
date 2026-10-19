@@ -3,6 +3,8 @@
     "posts_per_day": 12,
     "interval_hours": 2,
     "timezone": "UTC",
+    "in_flight_timeout_minutes": 45,
+    "comment": "slots[] is the single source of truth for the daily rotation. bot/schedule.py serves them in order: every run (cron or manual) publishes the next pending slot of the UTC day, so repeated runs never repeat a post type. hour_utc is documentation only - it is no longer used to pick a type.",
     "slots": [
       {
         "slot": 0,
@@ -79,15 +81,20 @@
     ]
   },
   "duplicate_filter_hours": 24,
+  "caption_similarity_max": 0.82,
+  "caption_regeneration_attempts": 3,
   "trending": {
     "top_n": 30,
     "min_change_percent": 5,
-    "min_volume_usdt": 5000000
+    "min_volume_usdt": 5000000,
+    "min_change_fallbacks": [3, 1.5, 0.5],
+    "comment": "If the strict momentum filter yields no postable coin, the change threshold is relaxed through min_change_fallbacks before the run gives up. A softer verified setup is still a better post than a missed slot."
   },
   "trading": {
     "leverage": "3x-5x",
     "risk": "Medium Risk",
     "entry_type": "CMP",
-    "timeframe": "1H"
+    "timeframe": "1H",
+    "active_trade_ttl_hours": 72
   }
 }

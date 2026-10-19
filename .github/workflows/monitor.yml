@@ -71,17 +71,23 @@ jobs:
           CARD_TIMEZONE: ${{ vars.CARD_TIMEZONE || 'UTC' }}
           CARD_USERNAME: ${{ vars.CARD_USERNAME || 'muntajid' }}
           BINANCE_REFERRAL_CODE: ${{ vars.BINANCE_REFERRAL_CODE || '768056928' }}
+          # Open setups nobody can resolve any more (delisted symbol, a scan
+          # that keeps erroring) are archived as EXPIRED so they stop blocking
+          # the coin. Empty value keeps the bot/config.json default.
+          ACTIVE_TRADE_TTL_HOURS: ${{ vars.ACTIVE_TRADE_TTL_HOURS || '' }}
         run: python -m bot.monitor_runner
 
       - name: Commit updated trade state
+        # Also runs when publishing failed: a closed or expired trade must be
+        # persisted even if its card never reached Square, otherwise every later
+        # run re-detects the same touch and the state files drift.
+        if: always() && !cancelled()
         run: |
+          set -uo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add data/active_trades.json data/closed_trades.json
-          if [ -f data/post_template_state.json ]; then
-            git add data/post_template_state.json
-          fi
+          git add -A data/
 
           if git diff --cached --quiet; then
             echo "No trade-state changes to commit."
@@ -89,5 +95,24 @@ jobs:
           fi
 
           git commit -m "auto: monitor $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
-          git pull --rebase origin main
-          git push origin main
+
+          # Both workflows push to the same branch from independent runners, so
+          # rebase and retry instead of losing state to a rejected push.
+          pushed=0
+          for attempt in 1 2 3; do
+            if git push origin "HEAD:${{ github.ref_name }}"; then
+              pushed=1
+              break
+            fi
+            echo "Push attempt ${attempt} rejected; rebasing onto the latest ${{ github.ref_name }}"
+            git pull --rebase origin "${{ github.ref_name }}" || {
+              git rebase --abort || true
+              git pull --rebase origin "${{ github.ref_name }}"
+            }
+            sleep $((attempt * 3))
+          done
+
+          if [ "${pushed}" != "1" ]; then
+            echo "::warning::State commit exists locally but could not be pushed; the next run will retry the push."
+            exit 1
+          fi
