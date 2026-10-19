@@ -1,20 +1,8 @@
 {
-  "coin": "KORUB",
-  "trending_bonus": "AMP",
-  "direction": "LONG",
-  "entry": "CMP",
-  "entry_price": 12.23,
-  "tp1": 12.72,
-  "tp2": 13.7,
-  "sl": 11.86,
-  "leverage": "15x",
-  "risk": "Medium Risk",
-  "confidence": 85,
-  "why_now": "A liquidity sweep of the 12.00‑12.10 zone broke a bullish order block, confirming strong buying pressure as price retested and held above the block.",
-  "invalidation": "Close below 11.80 invalidates the bullish thesis and signals a return to downtrend.",
-  "rapid_reason": "1H chart displayed a bullish engulfing candle with a sharp volume spike, pushing price above the recent swing high.",
-  "smc_logic": "The price broke a higher low structure and captured the order block at 12.00‑12.10, indicating smart money accumulation. A subsequent liquidity sweep forced weak stop orders, allowing the market to move higher with minimal resistance. The next resistance at ~12.70 aligns with the first profit target, while the extended target follows the next supply zone.",
-  "smc_logic_short": "Higher low + order block capture → liquidity sweep → bullish continuation.",
-  "change": 16.144,
-  "groq_model": "openai/gpt-oss-120b"
+  "title": "Trader Diary: Watching BTC at $82.5k like a Netflix cliffhanger",
+  "content": "- 9 PM: “Just a 0.5% pullback, I’ll add more leverage.”\n- 9:05 PM: Chart flips to a red ocean, heart rate spikes to 180 BPM.\n- 9:07 PM: “I’m fine, I’m fine,” while the phone vibrates with liquidation alerts.",
+  "lesson": "Set a stop‑loss before you get that “I’m fine” vibe—your future self will thank you.",
+  "question": "Who else just turned their living room into a trading pit at 9 PM? Drop your worst FOMO story 👇",
+  "groq_model": "openai/gpt-oss-120b",
+  "type": "meme_community"
 }
