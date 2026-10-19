@@ -50,14 +50,19 @@ jobs:
             https://github.com/binance/binance-skills-hub.git \
             /tmp/binance-skills-hub
 
-      - name: Apply UTF-8 emoji safety patch
+      - name: Apply Square safety patches
         run: |
           python -m bot.patch_square_utf8
+          python -m bot.patch_square_upload
           node --check /tmp/binance-skills-hub/skills/binance/square-post/scripts/lib.mjs
 
       - name: Check trades and publish target-hit cards
         env:
           BINANCE_SQUARE_OPENAPI_KEY: ${{ secrets.BINANCE_SQUARE_OPENAPI_KEY }}
+          SQUARE_POLL_INTERVAL_MS: ${{ vars.SQUARE_POLL_INTERVAL_MS || '4000' }}
+          SQUARE_POLL_MAX_RETRIES: ${{ vars.SQUARE_POLL_MAX_RETRIES || '15' }}
+          SQUARE_PUBLISH_ATTEMPTS: ${{ vars.SQUARE_PUBLISH_ATTEMPTS || '3' }}
+          SQUARE_PUBLISH_DEADLINE_SECONDS: ${{ vars.SQUARE_PUBLISH_DEADLINE_SECONDS || '240' }}
           TARGET_CARD_POSITION_SIZE_USDT: ${{ vars.TARGET_CARD_POSITION_SIZE_USDT || '5000' }}
           TARGET_CARD_LEVERAGE: ${{ vars.TARGET_CARD_LEVERAGE || '15' }}
           MONITOR_CANDLE_INTERVAL: ${{ vars.MONITOR_CANDLE_INTERVAL || '1m' }}

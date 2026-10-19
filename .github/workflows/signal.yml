@@ -56,32 +56,36 @@ jobs:
             https://github.com/binance/binance-skills-hub.git \
             /tmp/binance-skills-hub
 
-      - name: Apply UTF-8 emoji safety patch
+      - name: Apply Square safety patches
         run: |
           python -m bot.patch_square_utf8
+          python -m bot.patch_square_upload
           node --check /tmp/binance-skills-hub/skills/binance/square-post/scripts/lib.mjs
 
       - name: Publish signal to Binance Square
         env:
           BINANCE_SQUARE_OPENAPI_KEY: ${{ secrets.BINANCE_SQUARE_OPENAPI_KEY }}
+          # Binance processes Square images asynchronously. The official helper
+          # only waits ~30s, which is why uploads used to die with
+          # "Poll timed out after 10 retries". Widen the window and let the
+          # publisher retry the media stage before falling back to a text post.
+          SQUARE_POLL_INTERVAL_MS: ${{ vars.SQUARE_POLL_INTERVAL_MS || '4000' }}
+          SQUARE_POLL_MAX_RETRIES: ${{ vars.SQUARE_POLL_MAX_RETRIES || '20' }}
+          SQUARE_PUBLISH_ATTEMPTS: ${{ vars.SQUARE_PUBLISH_ATTEMPTS || '3' }}
+          SQUARE_PUBLISH_DEADLINE_SECONDS: ${{ vars.SQUARE_PUBLISH_DEADLINE_SECONDS || '420' }}
         run: |
           set -euo pipefail
 
-          TEXT="$(cat data/latest_post.txt)"
           IMAGES="$(find charts -maxdepth 1 -type f -iname '*.png' -print | sort | head -4 | paste -sd, -)"
 
-          if [ -n "$IMAGES" ]; then
-            echo "Publishing image post to Binance Square..."
-            node /tmp/binance-skills-hub/skills/binance/square-post/scripts/post-image.mjs \
-              --text "$TEXT" \
-              --images "$IMAGES"
-          else
-            echo "No chart images found. Publishing text post..."
-            node /tmp/binance-skills-hub/skills/binance/square-post/scripts/post-text.mjs \
-              --text "$TEXT"
-          fi
+          python -m bot.square_publisher \
+            --text-file data/latest_post.txt \
+            --images "$IMAGES"
 
       - name: Commit generated state
+        # Keep persisting signals/charts even when Square degrades, so a failed
+        # publish cannot strand the generated slot state.
+        if: always() && !cancelled()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
