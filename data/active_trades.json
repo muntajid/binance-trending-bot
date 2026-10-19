@@ -38,5 +38,29 @@
     "created_at": "2026-08-15T09:51:30.238894+00:00",
     "last_checked_at": "2026-10-19T06:46:13.815722+00:00",
     "status": "ACTIVE"
+  },
+  {
+    "coin": "KORUB",
+    "trending_bonus": "AMP",
+    "direction": "LONG",
+    "entry": "CMP",
+    "entry_price": 12.23,
+    "tp1": 12.72,
+    "tp2": 13.7,
+    "sl": 11.86,
+    "leverage": "15x",
+    "risk": "Medium Risk",
+    "confidence": 85,
+    "why_now": "A liquidity sweep of the 12.00‑12.10 zone broke a bullish order block, confirming strong buying pressure as price retested and held above the block.",
+    "invalidation": "Close below 11.80 invalidates the bullish thesis and signals a return to downtrend.",
+    "rapid_reason": "1H chart displayed a bullish engulfing candle with a sharp volume spike, pushing price above the recent swing high.",
+    "smc_logic": "The price broke a higher low structure and captured the order block at 12.00‑12.10, indicating smart money accumulation. A subsequent liquidity sweep forced weak stop orders, allowing the market to move higher with minimal resistance. The next resistance at ~12.70 aligns with the first profit target, while the extended target follows the next supply zone.",
+    "smc_logic_short": "Higher low + order block capture → liquidity sweep → bullish continuation.",
+    "change": 16.144,
+    "groq_model": "openai/gpt-oss-120b",
+    "trade_id": "d01a3bcb0d67423ebff2aaaade7e15b0",
+    "created_at": "2026-10-19T08:18:04.122946+00:00",
+    "last_checked_at": "2026-10-19T08:18:04.122946+00:00",
+    "status": "ACTIVE"
   }
 ]
