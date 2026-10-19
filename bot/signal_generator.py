@@ -642,21 +642,21 @@ def generate_signal_with_groq(
     )
 
     system_prompt = """
-You are an institutional crypto market analyst. Base the trade thesis on the verified Binance price and supplied spot, OHLCV, order-book, futures, and macro-context evidence. The 15 numbered observations are measurements, not guarantees; distinguish measured data from estimated proxies and explicitly say when a feed is unavailable. Never invent on-chain flows, token events, macro releases, order execution, or a current price. Never claim that an exchange order was executed. Select LONG or SHORT only when the evidence supports a defined-risk setup; otherwise use conservative confidence and clearly state the risk. Return exactly one valid JSON object and no prose outside that JSON object.
+You are an institutional crypto analyst using only verified Binance data. Distinguish measured data from estimated proxies and state when a feed is unavailable. Never invent prices, flows, token events, macro releases, or execution. Return exactly one valid JSON object, no prose outside JSON.
 """.strip()
 
     user_prompt = f"""
 Coin: {str(coin).upper()}
 Verified Binance live price (Entry CMP): {live_price}
-24-hour change: {float(change):.2f}%
-Context market leader: {str(trending_bonus).upper()}
+24h change: {float(change):.2f}%
+Context: {str(trending_bonus).upper()}
 
-Fifteen-category institutional research snapshot (JSON):
+Research snapshot (JSON):
 {research_json}
 
-Use only the verified live price above as Entry CMP. Analyze EMA20/50/200, RSI, MACD, VWAP, Bollinger Bands, Stoch RSI, volume-spike/breakout confirmation, futures open interest/funding/long-short ratio, order-book imbalance, liquidation heatmap zones, and 5m/15m/1H/4H/1D/1W trend alignment. Include BTC dominance/trend, ETH/BTC, altcoin-vs-BTC return breadth, fear/greed, estimated social/on-chain proxies, ATR volatility, and supplied macro context for Fed/CPI/DXY. If a feed is absent, say unavailable; never infer its direction. Mark every estimate/proxy as estimated. Do not treat a volume/dominance proxy as market capitalization, or a proxy as actual on-chain activity. Macro feeds not present in the snapshot (including live Fed, CPI, or DXY data) must be labelled unavailable, not guessed.
+Use only verified entry price. Assess EMA/RSI/MACD/VWAP/Bollinger/Stoch RSI, volume spike/breakout, futures OI/funding/long-short, order-book, liquidation heatmap zones, MTF 5m/15m/1H/4H/1D/1W, BTC dominance/trend, ETH/BTC, fear/greed, ATR, and Fed/CPI/DXY macros. Mark missing as unavailable; mark estimates as estimated. Keep all prose fields to 1-2 short sentences.
 
-Return one valid JSON object with every required key below. Keep prose fields concise, put numeric/structured evidence in the matching objects, and use null/"unavailable" where the snapshot has no evidence:
+Return one valid JSON object with every required key below. Use null/"unavailable" where no evidence; keep prose concise:
 {{
   "coin": "{str(coin).upper()}",
   "trending_bonus": "{str(trending_bonus).upper()}",
@@ -667,13 +667,13 @@ Return one valid JSON object with every required key below. Keep prose fields co
   "tp2": null,
   "sl": null,
   "confidence": null,
-  "rapid_reason": "Concise verified 1H trigger and main risk.",
-  "why_now": "Evidence-based setup-specific trigger.",
-  "invalidation": "One clear price/close level that invalidates the thesis.",
-  "smc_logic": "2-3 concise evidence-based sentences.",
-  "smc_logic_short": "Short factual chart annotation.",
-  "technical_analysis": "Structure, trend, confluence, and opposing evidence.",
-  "indicators_summary": "EMA, RSI, MACD, VWAP, BB, and Stoch RSI readout.",
+  "rapid_reason": "1H trigger.",
+  "why_now": "Trigger.",
+  "invalidation": "Invalidation level.",
+  "smc_logic": "2-3 sentences.",
+  "smc_logic_short": "Chart annotation.",
+  "technical_analysis": "Structure & confluence.",
+  "indicators_summary": "EMA/RSI/MACD/VWAP/BB/Stoch readout.",
   "volume_analysis": {{"buying_volume": null, "selling_volume": null, "volume_spike": false, "breakout_volume_confirmed": false, "volume_divergence": "unavailable", "estimated": null}},
   "futures_data": {{"open_interest": null, "funding_rate": null, "long_short_ratio": null, "futures_vs_spot_volume": null, "estimated": null}},
   "liquidity_analysis": {{"orderbook_imbalance": "unavailable", "bid_depth_usdt": null, "ask_depth_usdt": null, "estimated": null}},
@@ -685,19 +685,17 @@ Return one valid JSON object with every required key below. Keep prose fields co
   "risk_management": {{"risk_reward": "...", "position_sizing": "...", "invalidation_plan": "..."}},
   "validation_score": null,
   "macro_factors": {{"fed_rate_context": "unavailable", "cpi_context": "unavailable", "dxy_proxy": "unavailable", "treasury_context": "unavailable"}},
-  "fundamental_note": "Review possible token unlock/listing/vesting/delisting risk; label remembered or unverified events as unconfirmed and give no unsupported dates.",
-  "analysis_summary": "One concise institutional readout.",
-  "risk_factors": ["Evidence-based risk", "Evidence-based risk"]
+  "fundamental_note": "Token unlock/listing risk unverified if not in snapshot.",
+  "analysis_summary": "Concise readout.",
+  "risk_factors": ["Risk 1", "Risk 2"]
 }}
 
 Rules:
-1. entry_price must equal {live_price} exactly; never use a chart close as CMP.
-2. For LONG, enforce SL < entry_price < TP1 < TP2. For SHORT, enforce TP2 < TP1 < entry_price < SL.
-3. Use numeric entry_price, TP1, TP2, and SL. Do not reverse or relax these inequalities.
-4. Use supplied support/resistance and ATR when available; lower confidence if feeds are missing or timeframes conflict.
-5. Do not invent a current price, macro release, confirmed token event, exchange flow, or whale transaction. Any remembered token-event concern must be labelled unverified and have no unsupported date.
-6. Mark estimates as estimated and state which source/proxy supports them.
-7. Return JSON only.
+1. entry_price must equal {live_price} exactly.
+2. LONG: SL < entry_price < TP1 < TP2; SHORT: TP2 < TP1 < entry_price < SL (numeric, do not relax).
+3. Use supplied SR/ATR if available; lower confidence if missing/conflicting.
+4. Never invent price, macro, token event, or flow; label remembered events unverified without dates; mark estimates as estimated.
+5. Return JSON only.
 """.strip()
 
     client = Groq(api_key=api_key)
@@ -714,7 +712,7 @@ Rules:
                     {"role": "user", "content": user_prompt},
                 ],
                 temperature=0.2,
-                max_tokens=1500,
+                max_tokens=3500,
                 response_format={"type": "json_object"},
             )
             result = _parse_json_object(completion.choices[0].message.content)
