@@ -1,7 +1,7 @@
 {
   "schedule": {
-    "posts_per_day": 8,
-    "interval_hours": 3,
+    "posts_per_day": 12,
+    "interval_hours": 2,
     "timezone": "UTC",
     "slots": [
       {
@@ -12,45 +12,69 @@
       },
       {
         "slot": 1,
-        "hour_utc": 3,
+        "hour_utc": 2,
         "type": "rapid_alert",
-        "name": "Rapid Signal Alert #1 (03:00 UTC)"
+        "name": "Rapid Signal Alert #1 (02:00 UTC)"
       },
       {
         "slot": 2,
-        "hour_utc": 6,
+        "hour_utc": 4,
         "type": "explained_setup",
-        "name": "Explained Master Setup #1 (06:00 UTC)"
+        "name": "Explained Master Setup #1 (04:00 UTC)"
       },
       {
         "slot": 3,
-        "hour_utc": 9,
+        "hour_utc": 6,
         "type": "rapid_alert",
-        "name": "Rapid Signal Alert #2 (09:00 UTC)"
+        "name": "Rapid Signal Alert #2 (06:00 UTC)"
       },
       {
         "slot": 4,
+        "hour_utc": 8,
+        "type": "explained_setup",
+        "name": "Explained Master Setup #2 (08:00 UTC)"
+      },
+      {
+        "slot": 5,
+        "hour_utc": 10,
+        "type": "rapid_alert",
+        "name": "Rapid Signal Alert #3 (10:00 UTC)"
+      },
+      {
+        "slot": 6,
         "hour_utc": 12,
         "type": "meme_community",
         "name": "Trader Psychology & Community Meme (12:00 UTC)"
       },
       {
-        "slot": 5,
-        "hour_utc": 15,
-        "type": "explained_setup",
-        "name": "Explained Master Setup #2 (15:00 UTC)"
-      },
-      {
-        "slot": 6,
-        "hour_utc": 18,
-        "type": "rapid_alert",
-        "name": "Rapid Signal Alert #3 (18:00 UTC)"
-      },
-      {
         "slot": 7,
-        "hour_utc": 21,
+        "hour_utc": 14,
         "type": "explained_setup",
-        "name": "Explained Master Setup #3 (21:00 UTC)"
+        "name": "Explained Master Setup #3 (14:00 UTC)"
+      },
+      {
+        "slot": 8,
+        "hour_utc": 16,
+        "type": "rapid_alert",
+        "name": "Rapid Signal Alert #4 (16:00 UTC)"
+      },
+      {
+        "slot": 9,
+        "hour_utc": 18,
+        "type": "explained_setup",
+        "name": "Explained Master Setup #4 (18:00 UTC)"
+      },
+      {
+        "slot": 10,
+        "hour_utc": 20,
+        "type": "rapid_alert",
+        "name": "Rapid Signal Alert #5 (20:00 UTC)"
+      },
+      {
+        "slot": 11,
+        "hour_utc": 22,
+        "type": "explained_setup",
+        "name": "Explained Master Setup #5 (22:00 UTC)"
       }
     ]
   },

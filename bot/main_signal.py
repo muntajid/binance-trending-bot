@@ -1,8 +1,8 @@
 """Master multi-mode signal, macro overview, and community content engine.
 
-Executes an 8-slot daily portfolio schedule based on top 100 creator benchmark data:
-- 3x Rapid Alerts (120-180 chars, high-views fast alerts)
-- 3x Explained Master Setups (Why Now + Invalidation + structured SMC)
+Executes a 12-slot daily portfolio schedule based on top 100 creator benchmark data:
+- 5x Rapid Alerts (verified trade levels plus a concise institutional read)
+- 5x Explained Master Setups (15-point evidence, Why Now + Invalidation)
 - 1x Macro & Bitcoin Market Overview (BTC structure, flows & market phases)
 - 1x Viral Trader Psychology & Community Meme (+49% paired uplift)
 """
@@ -171,19 +171,24 @@ def validate_chart(path: str) -> bool:
 
 
 def _determine_current_slot() -> dict[str, Any]:
-    """Determine the current schedule slot based on UTC hour."""
-    hour = _utc_now().hour
-    slot_index = (hour // 3) % 8
+    """Determine the current two-hour schedule slot based on UTC hour."""
+    now = _utc_now()
+    hour = now.hour
+    slot_index = (hour // 2) % 12
 
     slots = [
-        {"slot": 0, "type": "market_overview", "name": "Macro & Bitcoin Outlook (00:00 UTC)"},
-        {"slot": 1, "type": "rapid_alert", "name": "Rapid Signal Alert #1 (03:00 UTC)"},
-        {"slot": 2, "type": "explained_setup", "name": "Explained Master Setup #1 (06:00 UTC)"},
-        {"slot": 3, "type": "rapid_alert", "name": "Rapid Signal Alert #2 (09:00 UTC)"},
-        {"slot": 4, "type": "meme_community", "name": "Trader Psychology & Community Meme (12:00 UTC)"},
-        {"slot": 5, "type": "explained_setup", "name": "Explained Master Setup #2 (15:00 UTC)"},
-        {"slot": 6, "type": "rapid_alert", "name": "Rapid Signal Alert #3 (18:00 UTC)"},
-        {"slot": 7, "type": "explained_setup", "name": "Explained Master Setup #3 (21:00 UTC)"},
+        {"slot": 0, "hour_utc": 0, "type": "market_overview", "name": "Macro & Bitcoin Outlook (00:00 UTC)"},
+        {"slot": 1, "hour_utc": 2, "type": "rapid_alert", "name": "Rapid Signal Alert #1 (02:00 UTC)"},
+        {"slot": 2, "hour_utc": 4, "type": "explained_setup", "name": "Explained Master Setup #1 (04:00 UTC)"},
+        {"slot": 3, "hour_utc": 6, "type": "rapid_alert", "name": "Rapid Signal Alert #2 (06:00 UTC)"},
+        {"slot": 4, "hour_utc": 8, "type": "explained_setup", "name": "Explained Master Setup #2 (08:00 UTC)"},
+        {"slot": 5, "hour_utc": 10, "type": "rapid_alert", "name": "Rapid Signal Alert #3 (10:00 UTC)"},
+        {"slot": 6, "hour_utc": 12, "type": "meme_community", "name": "Trader Psychology & Community Meme (12:00 UTC)"},
+        {"slot": 7, "hour_utc": 14, "type": "explained_setup", "name": "Explained Master Setup #3 (14:00 UTC)"},
+        {"slot": 8, "hour_utc": 16, "type": "rapid_alert", "name": "Rapid Signal Alert #4 (16:00 UTC)"},
+        {"slot": 9, "hour_utc": 18, "type": "explained_setup", "name": "Explained Master Setup #4 (18:00 UTC)"},
+        {"slot": 10, "hour_utc": 20, "type": "rapid_alert", "name": "Rapid Signal Alert #5 (20:00 UTC)"},
+        {"slot": 11, "hour_utc": 22, "type": "explained_setup", "name": "Explained Master Setup #5 (22:00 UTC)"},
     ]
 
     selected = slots[slot_index]
@@ -191,7 +196,7 @@ def _determine_current_slot() -> dict[str, Any]:
     state = {
         "last_slot": slot_index,
         "last_type": selected["type"],
-        "last_run_utc": _utc_now().isoformat(),
+        "last_run_utc": now.isoformat(),
     }
     _atomic_write_json(SLOT_STATE_FILE, state)
 
@@ -238,7 +243,7 @@ def run() -> None:
         return
 
     # -----------------------------------------------------------------------
-    # PATH B: Viral Trader Meme / Community Culture Post (Slot 4)
+    # PATH B: Viral Trader Meme / Community Culture Post (Slot 6)
     # -----------------------------------------------------------------------
     if mode == "meme_community":
         print("[Engine] Generating Viral Trader Psychology / Community Meme...")
@@ -264,7 +269,7 @@ def run() -> None:
         return
 
     # -----------------------------------------------------------------------
-    # PATH C: Single-Coin Signals (Rapid Alert 3x / Explained Setup 3x)
+    # PATH C: Single-Coin Signals (Rapid Alert 5x / Explained Setup 5x)
     # -----------------------------------------------------------------------
     trending = get_trending_coins(top_n=30, min_change=5.0, min_volume=5_000_000)
     if not trending:

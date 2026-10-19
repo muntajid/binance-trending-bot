@@ -1,8 +1,8 @@
-name: Signal Poster - Every 3 Hours (8x Day)
+name: Signal Poster - Every 2 Hours (12x Day)
 
 on:
   schedule:
-    - cron: "0 */3 * * *"
+    - cron: "0 */2 * * *"
   workflow_dispatch:
 
 permissions:
