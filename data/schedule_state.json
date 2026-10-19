@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-10-19",
   "pending": [
-    1,
     2,
     3,
     5,
@@ -51,11 +50,23 @@
       "attempts": 1,
       "degraded": false,
       "coin": null
+    },
+    {
+      "slot": 1,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #1 (02:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-10-19T18:32:00.606818+00:00",
+      "run_id": "39303161069",
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "OSMO"
     }
   ],
   "rotations": 0,
   "reset_reason": "manual reset",
-  "updated_utc": "2026-10-19T13:15:06.186566+00:00",
+  "updated_utc": "2026-10-19T18:32:00.606833+00:00",
   "previous_day": null,
   "last_error": null
 }
