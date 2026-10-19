@@ -14,7 +14,6 @@ from __future__ import annotations
 import difflib
 import json
 import math
-import os
 import random
 import re
 from pathlib import Path
@@ -24,7 +23,6 @@ from bot.market_data import get_24h_data
 
 _RNG = random.SystemRandom()
 ROOT_DIR = Path(__file__).resolve().parents[1]
-TEMPLATE_STATE_FILE = ROOT_DIR / "data" / "post_template_state.json"
 CAPTIONS_HISTORY_FILE = ROOT_DIR / "data" / "posted_captions.json"
 MAX_SQUARE_POST_CHARACTERS = 2100
 
@@ -191,7 +189,7 @@ def _get_cta_prompt(coin: str) -> str:
 
     if roll < 0.95:
         # 10% Value-based follow prompt
-        return f"\nFollow for real-time TP updates & verified setups."
+        return "\nFollow for real-time TP updates & verified setups."
 
     # 5% Explicit comment prompt
     return f"\nDrop your price prediction for ${coin} below."
@@ -764,7 +762,6 @@ def format_success_post(
     direction = _direction(signal)
     hit = str(hit).upper().strip()
     move = _move_percent(entry, target, direction)
-    hashtag = _get_dynamic_hashtag()
 
     entry_s = _format_price(entry)
     target_s = _format_price(target)

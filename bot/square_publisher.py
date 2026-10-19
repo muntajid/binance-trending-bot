@@ -19,7 +19,12 @@ and adds the operational safety net around them:
   so a fallback is visible without failing the schedule.
 
 ``bot.monitor_runner`` and ``.github/workflows/signal.yml`` both publish through
-:func:`publish_to_square`.
+:func:`publish_to_square`. Only the CLI (``python -m bot.square_publisher``, i.e.
+the signal workflow) reports the verdict to :mod:`bot.schedule`: success marks
+the day's slot published, a retryable failure hands it back to the queue, and a
+failure whose request may already have landed consumes it without a retry. The
+monitor publishes event-driven proof cards rather than slots, so it owns no
+queue state.
 """
 
 from __future__ import annotations
@@ -32,6 +37,8 @@ import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable, Iterable, Sequence
+
+from bot import schedule as schedule_state
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 SKILLS_DIR = Path(os.getenv("BINANCE_SKILLS_DIR", "/tmp/binance-skills-hub"))
@@ -52,11 +59,17 @@ Runner = Callable[..., tuple[int, str]]
 
 
 class PublishError(RuntimeError):
-    """Raised when no post could be created and no fallback survived."""
+    """Raised when no post could be created and no fallback survived.
 
-    def __init__(self, message: str, *, output: str = "") -> None:
+    ``duplicate_risk`` marks the case where the create-post request had already
+    been issued, so the slot must not be re-queued and retried - a retry could
+    publish the same content twice.
+    """
+
+    def __init__(self, message: str, *, output: str = "", duplicate_risk: bool = False) -> None:
         super().__init__(message)
         self.output = output
+        self.duplicate_risk = duplicate_risk
 
 
 @dataclass
@@ -229,6 +242,7 @@ def publish_to_square(
                     "Not retrying to avoid a duplicate post - check the Square profile "
                     "before re-running this workflow.",
                     output=output,
+                    duplicate_risk=True,
                 )
 
             remaining = deadline_seconds - (clock() - started)
@@ -284,6 +298,7 @@ def publish_to_square(
     raise PublishError(
         "Binance Square publishing failed after every attempt",
         output=last_output,
+        duplicate_risk=classify_attempt(returncode, output) == "unknown",
     )
 
 
@@ -324,7 +339,45 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Fail instead of publishing a text-only post when images never become ready",
     )
+    parser.add_argument(
+        "--no-state",
+        action="store_true",
+        help="Do not touch the daily posting queue (used for standalone or test publishes)",
+    )
     args = parser.parse_args(argv)
+
+    def update_schedule(outcome: PublishOutcome | None, error: PublishError | None) -> None:
+        """Hand the queue the verdict so a failed slot is retried, not lost.
+
+        Without this the run that could not publish still consumed a slot, which
+        is how a Square outage silently turns "12 posts a day" into nine.
+        """
+
+        if args.no_state or schedule_state.state_disabled():
+            return
+        try:
+            if outcome is not None:
+                record = schedule_state.publish_succeeded(
+                    mode=outcome.mode,
+                    attempts=outcome.attempts,
+                    degraded=outcome.degraded,
+                )
+                if record:
+                    print(
+                        f"[Schedule] Slot {record['slot']} ({record['type']}) marked published"
+                    )
+                next_slot = (schedule_state.status() or {}).get("next_slot") or {}
+                if next_slot:
+                    print(
+                        f"[Schedule] Next queued slot: {next_slot['slot']} ({next_slot['type']})"
+                    )
+            elif error is not None and error.duplicate_risk:
+                schedule_state.publish_uncertain(str(error)[:300])
+                print("[Schedule] Slot consumed without retry (possible duplicate post risk)")
+            elif error is not None:
+                schedule_state.abort_run(str(error)[:300])
+        except Exception as state_exc:  # noqa: BLE001 - never mask the publish result
+            print(f"[Schedule] Warning: queue state not updated ({state_exc})", file=sys.stderr)
 
     text = _read_text(args.text, args.text_file)
     backoff = tuple(
@@ -351,6 +404,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             "### ❌ Binance Square publish\n"
             f"- {exc}\n\n```\n{exc.output[-1500:]}\n```"
         )
+        update_schedule(None, exc)
         return 1
 
     print(
@@ -361,6 +415,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "### ✅ Binance Square publish\n"
         f"- Mode: {outcome.mode}\n- Attempts: {outcome.attempts}\n- {outcome.detail}"
     )
+    update_schedule(outcome, None)
     return 0
 
 

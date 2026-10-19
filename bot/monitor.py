@@ -16,6 +16,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Callable
 
+from bot import trade_state
 from bot.card_generator import generate_position_card, normalize_leverage
 from bot.market_data import INTERVAL_TO_MS, get_klines_range
 from bot.poster import format_success_post, get_current_price
@@ -549,6 +550,30 @@ def check_trades_and_maybe_post(publish_func: PublishFunction) -> None:
     if not trades:
         save_active([])
         print("No active trades remain after state cleanup.")
+        return
+
+    # Expire records the monitor can no longer resolve. A trade whose symbol
+    # stopped responding, was delisted, or simply predates the scan window keeps
+    # an old ``last_checked_at`` forever; leaving it ACTIVE blocked that coin
+    # from ever being signalled again and made every state file drift.
+    ttl_hours = trade_state.active_trade_ttl_hours()
+    trades, expired = trade_state.split_expired(trades, ttl_hours=ttl_hours, now=cleanup_time)
+    for stale_trade in expired:
+        stale_trade["status"] = "EXPIRED"
+        stale_trade["closed_at"] = _iso_utc(cleanup_time)
+        stale_trade["expiry_reason"] = (
+            f"No terminal event recorded for more than {ttl_hours:.0f}h"
+        )
+        save_closed(stale_trade)
+        print(
+            f"[Monitor] Expired stale ACTIVE record {stale_trade.get('trade_id')} for "
+            f"{str(stale_trade.get('coin', 'UNKNOWN')).upper()}; "
+            f"{stale_trade['expiry_reason']}"
+        )
+
+    if expired and not trades:
+        save_active([])
+        print("No active trades remain after expiry.")
         return
 
     remaining: list[dict[str, Any]] = []
