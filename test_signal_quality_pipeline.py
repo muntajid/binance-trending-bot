@@ -103,29 +103,84 @@ class SignalNormalizationTests(unittest.TestCase):
         self.assertIn("risk_reward_tp1", result["risk_management"])
         self.assertEqual(result["validation_score"], 85)
 
-    def test_strict_long_and_short_tp_sl_order_is_retained(self):
-        with self.assertRaisesRegex(ValueError, "SL < Entry < TP1 < TP2"):
-            signal_generator._normalize_signal(
-                {"direction": "LONG", "tp1": 99, "tp2": 110, "sl": 95},
-                coin="ETH",
-                live_price=100,
-                change=1,
-                trending_bonus="BTC",
-                model="offline-test",
-            )
-        with self.assertRaisesRegex(ValueError, "TP2 < TP1 < Entry < SL"):
-            signal_generator._normalize_signal(
-                {"direction": "SHORT", "tp1": 101, "tp2": 90, "sl": 105},
-                coin="ETH",
-                live_price=100,
-                change=-1,
-                trending_bonus="BTC",
-                model="offline-test",
-            )
+    def test_unusable_model_levels_are_repaired_from_research(self):
+        # Unordered LONG levels are replaced by deterministic ATR/SR levels.
+        repaired = signal_generator._normalize_signal(
+            {"direction": "LONG", "tp1": 99, "tp2": 110, "sl": 95},
+            coin="ETH",
+            live_price=100,
+            change=1,
+            trending_bonus="BTC",
+            model="offline-test",
+            research=self._research(),
+        )
+        self.assertTrue(repaired["sl"] < 100 < repaired["tp1"] < repaired["tp2"])
 
-    def test_prompt_requires_full_schema_and_retries_invalid_model_levels(self):
+        # Unordered SHORT levels are repaired too.
+        repaired_short = signal_generator._normalize_signal(
+            {"direction": "SHORT", "tp1": 101, "tp2": 90, "sl": 105},
+            coin="ETH",
+            live_price=100,
+            change=-1,
+            trending_bonus="BTC",
+            model="offline-test",
+            research=self._research(),
+        )
+        self.assertTrue(
+            repaired_short["tp2"] < repaired_short["tp1"] < 100 < repaired_short["sl"]
+        )
+
+        # Null levels (the CI failure mode) no longer raise; they are derived.
+        derived = signal_generator._normalize_signal(
+            {"direction": "LONG", "tp1": None, "tp2": None, "sl": None},
+            coin="ETH",
+            live_price=100,
+            change=1,
+            trending_bonus="BTC",
+            model="offline-test",
+            research=self._research(),
+        )
+        self.assertTrue(derived["sl"] < 100 < derived["tp1"] < derived["tp2"])
+
+        # String levels with currency noise are coerced, not rejected.
+        coerced = signal_generator._normalize_signal(
+            {"direction": "LONG", "tp1": "$110.0", "tp2": "115", "sl": "95"},
+            coin="ETH",
+            live_price=100,
+            change=1,
+            trending_bonus="BTC",
+            model="offline-test",
+        )
+        self.assertEqual((coerced["tp1"], coerced["tp2"], coerced["sl"]), (110.0, 115.0, 95.0))
+
+        # Valid model levels are retained untouched.
+        retained = signal_generator._normalize_signal(
+            {"direction": "LONG", "tp1": 110, "tp2": 115, "sl": 95},
+            coin="ETH",
+            live_price=100,
+            change=1,
+            trending_bonus="BTC",
+            model="offline-test",
+        )
+        self.assertEqual((retained["tp1"], retained["tp2"], retained["sl"]), (110, 115, 95))
+
+    def test_derived_levels_stay_ordered_without_research(self):
+        for direction, live_price in (("LONG", 0.0589), ("SHORT", 0.0589), ("LONG", 118_000.0)):
+            tp1, tp2, sl = signal_generator._derive_levels(direction, live_price, None)
+            if direction == "LONG":
+                self.assertTrue(sl < live_price < tp1 < tp2)
+            else:
+                self.assertTrue(tp2 < tp1 < live_price < sl)
+
+    def test_groq_chat_kwargs_give_reasoning_models_headroom(self):
+        kwargs = signal_generator._groq_chat_kwargs("openai/gpt-oss-20b", 16384)
+        self.assertEqual(kwargs["max_tokens"], 16384)
+        self.assertEqual(kwargs["extra_body"], {"reasoning_effort": "low"})
+        plain = signal_generator._groq_chat_kwargs("qwen/qwen3.6-27b", 4096)
+        self.assertNotIn("extra_body", plain)
+
+    def test_prompt_requires_full_schema_and_repairs_invalid_model_levels(self):
         invalid = {"direction": "LONG", "tp1": 99, "tp2": 115, "sl": 95}
-        valid = {"direction": "LONG", "tp1": 110, "tp2": 115, "sl": 95}
 
         def response(payload):
             return SimpleNamespace(
@@ -133,7 +188,7 @@ class SignalNormalizationTests(unittest.TestCase):
             )
 
         client = Mock()
-        client.chat.completions.create.side_effect = [response(invalid), response(valid)]
+        client.chat.completions.create.side_effect = [response(invalid)]
         with patch.dict(os.environ, {"GROQ_API_KEY": "offline-test"}), patch.object(
             signal_generator, "Groq", return_value=client
         ), patch.object(
@@ -143,14 +198,16 @@ class SignalNormalizationTests(unittest.TestCase):
         ), patch.object(
             signal_generator,
             "_groq_model_candidates",
-            return_value=["test/model-a", "test/model-b"],
+            return_value=["test/model-a"],
         ):
             result = signal_generator.generate_signal_with_groq(
                 "ETH", 100.0, 3.2, "BTC"
             )
 
-        self.assertEqual(client.chat.completions.create.call_count, 2)
+        # One completion is enough: unusable levels are repaired, not retried.
+        self.assertEqual(client.chat.completions.create.call_count, 1)
         self.assertEqual(result["entry_price"], 100.0)
+        self.assertTrue(result["sl"] < 100.0 < result["tp1"] < result["tp2"])
         self.assertTrue(all(field in result for field in REQUIRED_SIGNAL_FIELDS))
         messages = client.chat.completions.create.call_args_list[0].kwargs["messages"]
         user_prompt = next(message["content"] for message in messages if message["role"] == "user")
@@ -158,6 +215,9 @@ class SignalNormalizationTests(unittest.TestCase):
         for field in REQUIRED_SIGNAL_FIELDS:
             self.assertIn(f'"{field}"', user_prompt)
         self.assertIn("CPI", user_prompt)
+        # Nested research blocks are auto-attached, so the prompt must not ask
+        # the model to emit them (keeps the JSON document small).
+        self.assertIn("Do NOT output these keys", user_prompt)
         self.assertIn("liquidation heatmap", user_prompt.lower())
 
 
