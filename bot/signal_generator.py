@@ -187,6 +187,111 @@ def _groq_model_candidates(api_key: str) -> list[str]:
     return candidates
 
 
+def _groq_chat_kwargs(model: str, completion_budget: int) -> dict[str, Any]:
+    """Chat-completion kwargs with a reasoning-aware token budget.
+
+    gpt-oss models spend part of the completion budget on hidden reasoning
+    tokens, so a small ``max_tokens`` truncates the visible JSON document and
+    Groq rejects it with ``json_validate_failed`` ("max completion tokens
+    reached before generating a valid document").  A generous budget plus low
+    reasoning effort keeps the JSON document complete.
+    """
+
+    kwargs: dict[str, Any] = {
+        "max_tokens": completion_budget,
+        "response_format": {"type": "json_object"},
+    }
+    if "gpt-oss" in str(model).lower():
+        kwargs["extra_body"] = {"reasoning_effort": "low"}
+    return kwargs
+
+
+def _coerce_level(value: Any) -> float | None:
+    """Parse a model-supplied price level leniently; None when unusable."""
+
+    if value is None or isinstance(value, bool):
+        return None
+    if isinstance(value, (int, float)):
+        number = float(value)
+    else:
+        text = str(value).strip().replace("$", "").replace(",", "")
+        text = text.replace(" ", "").replace("usdt", "").replace("USDT", "")
+        if not text:
+            return None
+        try:
+            number = float(text)
+        except ValueError:
+            return None
+    if not math.isfinite(number) or number <= 0:
+        return None
+    return number
+
+
+def _round_level(price: float) -> float:
+    """Round a level to a market-sane precision for its price magnitude."""
+
+    if price >= 1000:
+        decimals = 2
+    elif price >= 100:
+        decimals = 3
+    elif price >= 1:
+        decimals = 4
+    elif price >= 0.01:
+        decimals = 6
+    else:
+        decimals = 8
+    return round(price, decimals)
+
+
+def _derive_levels(
+    direction: str, live_price: float, research: dict[str, Any] | None
+) -> tuple[float, float, float]:
+    """Derive deterministic, strictly ordered (tp1, tp2, sl) from ATR and S/R.
+
+    Used as a repair path when a model returns null/non-numeric/unordered
+    levels so one bad completion can no longer fail an entire signal run.
+    """
+
+    research = research if isinstance(research, dict) else {}
+    indicators_1h = research.get("indicators_1h", {})
+    indicators_1h = indicators_1h if isinstance(indicators_1h, dict) else {}
+    sr_levels = indicators_1h.get("support_resistance", {})
+    sr_levels = sr_levels if isinstance(sr_levels, dict) else {}
+
+    atr = _research_float(indicators_1h.get("atr"), 0.0)
+    if not math.isfinite(atr) or atr <= 0:
+        atr = live_price * 0.01
+    # Floor/cap keep every derived level positive and strictly separated.
+    atr = min(atr, live_price * 0.10)
+    atr = max(atr, live_price * 0.002)
+
+    support = _coerce_level(sr_levels.get("support"))
+    resistance = _coerce_level(sr_levels.get("resistance"))
+
+    if direction == "SHORT":
+        stop = live_price + 1.5 * atr
+        if resistance is not None and resistance > live_price + 0.2 * atr:
+            stop = min(resistance + 0.25 * atr, live_price + 3.0 * atr)
+        tp1 = live_price - 1.5 * atr
+        if support is not None and support < live_price - 0.5 * atr:
+            tp1 = max(support + 0.25 * atr, live_price - 3.0 * atr)
+        tp2 = min(live_price - 3.0 * atr, tp1 - 1.5 * atr)
+        if support is not None and 0 < support < tp1 - 0.5 * atr:
+            tp2 = min(tp2, support - 0.25 * atr)
+        if tp2 <= 0:
+            tp2 = tp1 / 2.0
+    else:
+        stop = live_price - 1.5 * atr
+        if support is not None and support < live_price - 0.2 * atr:
+            stop = max(support - 0.25 * atr, live_price - 3.0 * atr)
+        tp1 = live_price + 1.5 * atr
+        if resistance is not None and resistance > live_price + 0.5 * atr:
+            tp1 = min(resistance - 0.25 * atr, live_price + 3.0 * atr)
+        tp2 = max(live_price + 3.0 * atr, tp1 + 1.5 * atr)
+
+    return _round_level(tp1), _round_level(tp2), _round_level(stop)
+
+
 def _parse_json_object(raw_content: Any) -> dict[str, Any]:
     """Parse a model response defensively while still requiring one JSON object."""
 
@@ -221,20 +326,30 @@ def _normalize_signal(
     if direction not in {"LONG", "SHORT"}:
         raise ValueError(f"Unsupported signal direction: {direction}")
 
-    try:
-        tp1 = float(result["tp1"])
-        tp2 = float(result["tp2"])
-        stop = float(result["sl"])
-    except (KeyError, TypeError, ValueError) as exc:
-        raise ValueError("Groq signal is missing numeric TP1, TP2, or SL") from exc
+    tp1 = _coerce_level(result.get("tp1"))
+    tp2 = _coerce_level(result.get("tp2"))
+    stop = _coerce_level(result.get("sl"))
 
-    if min(live_price, tp1, tp2, stop) <= 0:
-        raise ValueError("Signal prices must all be greater than zero")
+    def _levels_ordered(stop_level: float, tp1_level: float, tp2_level: float) -> bool:
+        if direction == "LONG":
+            return stop_level < live_price < tp1_level < tp2_level
+        return tp2_level < tp1_level < live_price < stop_level
 
-    if direction == "LONG" and not (stop < live_price < tp1 < tp2):
-        raise ValueError("Invalid LONG levels: expected SL < Entry < TP1 < TP2")
-    if direction == "SHORT" and not (tp2 < tp1 < live_price < stop):
-        raise ValueError("Invalid SHORT levels: expected TP2 < TP1 < Entry < SL")
+    missing = [
+        name for name, value in (("tp1", tp1), ("tp2", tp2), ("sl", stop)) if value is None
+    ]
+    if missing or not _levels_ordered(stop, tp1, tp2):
+        derived_tp1, derived_tp2, derived_stop = _derive_levels(
+            direction, live_price, research
+        )
+        reason = f"missing {', '.join(missing)}" if missing else "unordered levels"
+        print(
+            f"[Groq] Model levels unusable ({reason}); derived deterministic "
+            f"TP1={derived_tp1} TP2={derived_tp2} SL={derived_stop} from ATR/SR"
+        )
+        tp1, tp2, stop = derived_tp1, derived_tp2, derived_stop
+    else:
+        tp1, tp2, stop = _round_level(tp1), _round_level(tp2), _round_level(stop)
 
     def safe_text(field: str, fallback: str) -> str:
         value = result.get(field)
@@ -656,17 +771,14 @@ Research snapshot (JSON):
 
 Use only verified entry price. Assess EMA/RSI/MACD/VWAP/Bollinger/Stoch RSI, volume spike/breakout, futures OI/funding/long-short, order-book, liquidation heatmap zones, MTF 5m/15m/1H/4H/1D/1W, BTC dominance/trend, ETH/BTC, fear/greed, ATR, and Fed/CPI/DXY macros. Mark missing as unavailable; mark estimates as estimated. Keep all prose fields to 1-2 short sentences.
 
-Return one valid JSON object with every required key below. Use null/"unavailable" where no evidence; keep prose concise:
+Return one valid JSON object with every required key below. Keep prose concise:
 {{
-  "coin": "{str(coin).upper()}",
-  "trending_bonus": "{str(trending_bonus).upper()}",
   "direction": "LONG or SHORT",
-  "entry": "CMP",
   "entry_price": {live_price},
-  "tp1": null,
-  "tp2": null,
-  "sl": null,
-  "confidence": null,
+  "tp1": 0,
+  "tp2": 0,
+  "sl": 0,
+  "confidence": 0,
   "rapid_reason": "1H trigger.",
   "why_now": "Trigger.",
   "invalidation": "Invalidation level.",
@@ -674,28 +786,25 @@ Return one valid JSON object with every required key below. Use null/"unavailabl
   "smc_logic_short": "Chart annotation.",
   "technical_analysis": "Structure & confluence.",
   "indicators_summary": "EMA/RSI/MACD/VWAP/BB/Stoch readout.",
-  "volume_analysis": {{"buying_volume": null, "selling_volume": null, "volume_spike": false, "breakout_volume_confirmed": false, "volume_divergence": "unavailable", "estimated": null}},
-  "futures_data": {{"open_interest": null, "funding_rate": null, "long_short_ratio": null, "futures_vs_spot_volume": null, "estimated": null}},
-  "liquidity_analysis": {{"orderbook_imbalance": "unavailable", "bid_depth_usdt": null, "ask_depth_usdt": null, "estimated": null}},
-  "liquidation_heatmap": {{"long_liquidation_zone": null, "short_liquidation_zone": null, "magnet_price": null, "clusters": [], "estimated": true}},
-  "mtf_analysis": {{"5m": "unavailable", "15m": "unavailable", "1h": "unavailable", "4h": "unavailable", "1d": "unavailable", "1w": "unavailable"}},
-  "market_context": {{"btc_dominance": "unavailable", "bitcoin_trend": "unavailable", "eth_btc_ratio": null, "altcoin_btc_correlation": "unavailable"}},
-  "sentiment_onchain": {{"fear_greed": "unavailable", "social_sentiment": "estimated/unavailable", "on_chain_proxy": "estimated/unavailable"}},
-  "volatility_assessment": {{"atr": null, "atr_percent": null, "bollinger_bandwidth": null, "estimated": false}},
   "risk_management": {{"risk_reward": "...", "position_sizing": "...", "invalidation_plan": "..."}},
-  "validation_score": null,
-  "macro_factors": {{"fed_rate_context": "unavailable", "cpi_context": "unavailable", "dxy_proxy": "unavailable", "treasury_context": "unavailable"}},
-  "fundamental_note": "Token unlock/listing risk unverified if not in snapshot.",
+  "validation_score": 0,
   "analysis_summary": "Concise readout.",
-  "risk_factors": ["Risk 1", "Risk 2"]
+  "risk_factors": ["Risk 1", "Risk 2"],
+  "fundamental_note": "Token unlock/listing risk unverified if not in snapshot."
 }}
+
+Do NOT output these keys; they are auto-attached from the verified research
+snapshot above: "volume_analysis", "futures_data", "liquidity_analysis",
+"liquidation_heatmap", "mtf_analysis", "market_context", "sentiment_onchain",
+"volatility_assessment", "macro_factors".
 
 Rules:
 1. entry_price must equal {live_price} exactly.
-2. LONG: SL < entry_price < TP1 < TP2; SHORT: TP2 < TP1 < entry_price < SL (numeric, do not relax).
+2. tp1, tp2, sl must be positive numbers, never null. LONG: SL < entry_price < TP1 < TP2; SHORT: TP2 < TP1 < entry_price < SL.
 3. Use supplied SR/ATR if available; lower confidence if missing/conflicting.
 4. Never invent price, macro, token event, or flow; label remembered events unverified without dates; mark estimates as estimated.
-5. Return JSON only.
+5. Keep every prose field to 1-2 short sentences.
+6. Return JSON only.
 """.strip()
 
     client = Groq(api_key=api_key)
@@ -712,8 +821,7 @@ Rules:
                     {"role": "user", "content": user_prompt},
                 ],
                 temperature=0.2,
-                max_tokens=3500,
-                response_format={"type": "json_object"},
+                **_groq_chat_kwargs(model, 16384),
             )
             result = _parse_json_object(completion.choices[0].message.content)
             normalized = _normalize_signal(
@@ -877,8 +985,7 @@ Rules:
                     {"role": "user", "content": user_prompt},
                 ],
                 temperature=0.25,
-                max_tokens=900,
-                response_format={"type": "json_object"},
+                **_groq_chat_kwargs(model, 8192),
             )
             result = _parse_json_object(completion.choices[0].message.content)
 
@@ -974,8 +1081,7 @@ Rules:
                     {"role": "user", "content": user_prompt},
                 ],
                 temperature=0.7,
-                max_tokens=600,
-                response_format={"type": "json_object"},
+                **_groq_chat_kwargs(model, 4096),
             )
             result = _parse_json_object(completion.choices[0].message.content)
 
