@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-10-19",
   "pending": [
-    2,
     3,
     5,
     7,
@@ -62,11 +61,23 @@
       "attempts": 1,
       "degraded": false,
       "coin": "OSMO"
+    },
+    {
+      "slot": 2,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #1 (04:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-10-19T23:27:50.968805+00:00",
+      "run_id": "39341628665",
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "AVA"
     }
   ],
   "rotations": 0,
   "reset_reason": "manual reset",
-  "updated_utc": "2026-10-19T18:32:00.606833+00:00",
+  "updated_utc": "2026-10-19T23:27:50.968822+00:00",
   "previous_day": null,
   "last_error": null
 }
