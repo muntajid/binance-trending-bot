@@ -1,10 +1,10 @@
 """Evidence-based Binance Square post templates built from top 100 creator benchmark data.
 
 Supports 4 core publication modes:
-1. Rapid Alert Mode (120-180 characters, +12.7% within-creator reach)
-2. Explained Master Setup Mode (650-950 characters, Why Now + Invalidation, +9.0% reach)
-3. Macro & Bitcoin Market Overview Mode (500-800 characters)
-4. Viral Meme & Community Culture Mode (200-450 characters, +49.0% paired uplift)
+1. Rapid Alert Mode (verified levels plus a concise 15-point evidence summary)
+2. Explained Master Setup Mode (15 numbered findings, Why Now, and Invalidation)
+3. Macro & Bitcoin Market Overview Mode (BTC structure, flows, and market phases)
+4. Viral Meme & Community Culture Mode (trader psychology and community culture)
 
 Plus event-driven verifiable Target Hit updates with 0% forced A/B bait.
 """
@@ -196,13 +196,90 @@ def _get_cta_prompt(coin: str) -> str:
     return f"\nDrop your price prediction for ${coin} below."
 
 
+def _clip(text: Any, limit: int) -> str:
+    value = " ".join(str(text or "").split())
+    if len(value) <= limit:
+        return value
+    return value[: max(0, limit - 1)].rstrip() + "…"
+
+
+def _institutional_scan_block(
+    signal: dict[str, Any],
+    *,
+    max_chars: int = 950,
+    include_macro: bool = True,
+) -> str:
+    """Render the measured 15-point scan without implying certainty."""
+    analysis = signal.get("institutional_analysis")
+    if not isinstance(analysis, dict):
+        summary = str(signal.get("analysis_summary", "")).strip()
+        return _clip(summary or "Institutional market-data scan unavailable.", max_chars)
+
+    points = analysis.get("analysis_points", [])
+    if not isinstance(points, list):
+        points = []
+    points = [point for point in points if isinstance(point, dict)][:15]
+    header = "🏛️ 15-POINT INSTITUTIONAL SCAN"
+    if not points:
+        return _clip(
+            str(signal.get("analysis_summary", "Institutional scan data unavailable.")),
+            max_chars,
+        )
+
+    context_line = ""
+    if include_macro:
+        context = analysis.get("market_context", {})
+        context = context if isinstance(context, dict) else {}
+        dominance = context.get("btc_dominance", analysis.get("btc_dominance", {}))
+        dominance = dominance if isinstance(dominance, dict) else {}
+        fear_greed = context.get("fear_greed", {})
+        fear_greed = fear_greed if isinstance(fear_greed, dict) else {}
+        correlation = context.get("altcoin_btc_correlation", {})
+        correlation = correlation if isinstance(correlation, dict) else {}
+        dom_value = dominance.get("btc_dominance_percent")
+        dom_text = f"{float(dom_value):.1f}%" if isinstance(dom_value, (int, float)) else "n/a"
+        fg_value = fear_greed.get("value", "n/a")
+        fg_label = str(fear_greed.get("classification", "unknown"))
+        context_line = _clip(
+            f"Macro proxy: BTC {context.get('bitcoin_trend', 'n/a')}; dominance {dom_text}; "
+            f"F&G {fg_value} {fg_label}; {correlation.get('breadth', 'alt breadth n/a')}.",
+            130,
+        )
+
+    fixed_chars = len(header) + 1 + (len(context_line) + 1 if context_line else 0)
+    line_budget = max(24, (max_chars - fixed_chars - max(0, len(points) - 1)) // max(len(points), 1))
+    lines: list[str] = []
+    for index, point in enumerate(points, start=1):
+        number = point.get("number", index)
+        try:
+            number = int(number)
+        except (TypeError, ValueError, OverflowError):
+            number = index
+        name = _clip(point.get("name", "Evidence"), 15)
+        observation = _clip(point.get("observation", "unavailable"), max(8, line_budget - len(f"{number}. {name}: ")))
+        lines.append(f"{number}. {name}: {observation}")
+
+    block = "\n".join([header, *lines, *([context_line] if context_line else [])])
+    if len(block) > max_chars:
+        # Preserve every numbered finding; trim only their observations to fit.
+        compact: list[str] = []
+        target = max(8, (max_chars - len(header) - 2 - (len(context_line) + 1 if context_line else 0) - len(lines)) // max(len(lines), 1))
+        for line in lines:
+            prefix, _, observation = line.partition(": ")
+            compact.append(f"{prefix}: {_clip(observation, target)}")
+        block = "\n".join([header, *compact, *([context_line] if context_line else [])])
+    if len(block) > max_chars:
+        return block[: max(0, max_chars - 1)].rstrip() + "…"
+    return block
+
+
 # ---------------------------------------------------------------------------
-# MODE 1: Rapid Alert Post (120 - 180 characters)
+# MODE 1: Rapid Alert Post (institutional scan summary)
 # ---------------------------------------------------------------------------
 
 def format_rapid_alert_post(signal: dict[str, Any]) -> str:
     """
-    Format an ultra-compact, high-speed 120-180 character trade alert.
+    Format a compact trade alert with live levels and the strongest evidence.
     Research benchmark: Rapid alerts had 1,221.5 median views (+12.7% uplift).
     """
 
@@ -212,7 +289,10 @@ def format_rapid_alert_post(signal: dict[str, Any]) -> str:
     tp2 = float(signal["tp2"])
     stop = float(signal["sl"])
     direction = _direction(signal)
-    rapid_reason = str(signal.get("rapid_reason", "Momentum breakout above 1H resistance.")).strip()
+    rapid_reason = _clip(
+        signal.get("rapid_reason", "1H trigger unavailable; wait for price confirmation."),
+        180,
+    )
     hashtag = _get_dynamic_hashtag()
 
     entry_s = _format_price(entry)
@@ -220,23 +300,41 @@ def format_rapid_alert_post(signal: dict[str, Any]) -> str:
     tp2_s = _format_price(tp2)
     sl_s = _format_price(stop)
 
-    templates = (
-        f"⚡ ${coin} — {direction} at ${entry_s}\nTargets: ${tp1_s} | ${tp2_s}\nInvalidation: ${sl_s}\n{rapid_reason}\n\n${coin} {hashtag}",
-        f"🚨 ${coin} MOMENTUM ALERT ({direction})\nEntry: ${entry_s}\nTP1: ${tp1_s} | TP2: ${tp2_s}\nSL: ${sl_s}\n{rapid_reason}\n\n${coin} {hashtag}",
-        f"🎯 ${coin} {direction} SETUP\nEntry: ${entry_s} (CMP)\nTP: ${tp1_s} / ${tp2_s} | SL: ${sl_s}\n{rapid_reason}\n\n${coin} {hashtag}",
+    analysis = signal.get("institutional_analysis", {})
+    points = analysis.get("analysis_points", []) if isinstance(analysis, dict) else []
+    highlights = []
+    if isinstance(points, list):
+        for point in points:
+            if isinstance(point, dict) and point.get("number") in {1, 3, 9, 13, 14, 15}:
+                highlights.append(
+                    f"{point.get('number')}. {_clip(point.get('observation', ''), 55)}"
+                )
+    evidence = _clip(" | ".join(highlights[:4]), 240)
+    summary = _clip(
+        signal.get("analysis_summary", "15-point spot, liquidity, and derivatives scan attached."),
+        180,
     )
+    risk = _clip(signal.get("invalidation", f"Thesis invalid below ${sl_s}."), 150)
 
-    selected = _RNG.choice(templates)
-    return _finalize_post(selected)
+    body = f"""⚡ ${coin} — PRICE-VERIFIED {direction} SETUP
+Entry CMP: ${entry_s} | TP1: ${tp1_s} | TP2: ${tp2_s} | SL: ${sl_s}
+
+15-point read: {summary}
+Evidence: {evidence or rapid_reason}
+Risk / invalidation: {risk}
+
+${coin} $BTC {hashtag}
+⚠️ Educational analysis, not financial advice. Manage risk."""
+    return _finalize_post(body)
 
 
 # ---------------------------------------------------------------------------
-# MODE 2: Explained Master Setup Post (650 - 950 characters)
+# MODE 2: Explained Master Setup Post (up to the Square character limit)
 # ---------------------------------------------------------------------------
 
 def format_explained_post(signal: dict[str, Any]) -> str:
     """
-    Format an in-depth, explained setup with Why Now, Invalidation, and Risk Rules.
+    Format a structured setup with institutional evidence, invalidation, and risk rules.
     Research benchmark: Explained setups had 1,183.5 median views (+9.0% paired uplift).
     """
 
@@ -269,10 +367,10 @@ def format_explained_post(signal: dict[str, Any]) -> str:
     rr = _risk_reward(entry, tp1, stop)
 
     hooks = (
-        f"🚨 ${coin} Volume Expansion ({change:+.1f}% 24H) — Key Resistance Flipped! 📈",
-        f"⚡ ${coin} Smart Money Accumulation Detected ({change:+.1f}%) — Setup in Play! 🎯",
-        f"📊 ${coin} High-Probability {direction} Structure: Volatility Expanding ({change:+.1f}%)!",
-        f"👀 ${coin} Tested Critical Decision Level ({change:+.1f}% 24H) — Setup Overview! 🚀",
+        f"📊 ${coin} 15-Point Institutional Scan ({change:+.1f}% 24H) — {direction} Thesis",
+        f"⚖️ ${coin} Evidence-Weighted {direction} Setup — Defined Risk, Clear Invalidation",
+        f"🔍 ${coin} Multi-Timeframe Read ({change:+.1f}% 24H) — Levels & Liquidity in Focus",
+        f"👀 ${coin} Market Structure Check ({change:+.1f}% 24H) — Setup Overview",
     )
 
     management_tips = (
@@ -286,24 +384,68 @@ def format_explained_post(signal: dict[str, Any]) -> str:
     cta = _get_cta_prompt(coin)
     hashtag = _get_dynamic_hashtag()
 
-    body = f"""{selected_hook}
+    smc_logic = _clip(signal.get("smc_logic", why_now), 260)
+    analysis_summary = _clip(
+        signal.get("analysis_summary", "Evidence-weighted 15-point analysis attached below."),
+        200,
+    )
+    risk_factors = signal.get("risk_factors", [])
+    if isinstance(risk_factors, list):
+        risk_summary = "; ".join(str(item).strip() for item in risk_factors if str(item).strip())
+    else:
+        risk_summary = str(risk_factors).strip()
+    risk_summary = _clip(risk_summary or "Use the stated invalidation; market conditions can change.", 150)
+    fundamental_risk = _clip(
+        signal.get(
+            "fundamental_risk",
+            "Token unlocks/listings were not verified; treat event risk as unknown.",
+        ),
+        140,
+    )
+
+    scan_token = "__INSTITUTIONAL_SCAN__"
+    template = f"""{selected_hook}
 
 ${coin} — {direction} SETUP
 • Entry Zone (CMP): ${_format_price(entry)}
-• Target 1: ${_format_price(tp1)} (+{tp1_pct:.1f}%) 🎯
-• Target 2: ${_format_price(tp2)} (+{tp2_pct:.1f}%) 🚀
+• Target 1: ${_format_price(tp1)} ({tp1_pct:+.1f}%) 🎯
+• Target 2: ${_format_price(tp2)} ({tp2_pct:+.1f}%) 🚀
 • Invalidation (SL): ${_format_price(stop)} (-{stop_pct:.1f}%) 🛡️
 • Risk/Reward: 1:{rr:.2f}R | Confidence: {confidence}%
 • Suggested Leverage: 3x - 5x (Max 15x)
 
+Institutional read: {analysis_summary}
 Why now: {why_now}
+Technical rationale: {smc_logic}
 What changes the view: {invalidation}
+Risk factors: {risk_summary}
+Fundamental/event risk: {fundamental_risk}
+
+{scan_token}
 
 {selected_tip}{cta}
 
 ${coin} $BTC {hashtag}
 ⚠️ Educational market analysis. Always manage your risk & DYOR."""
+    available_scan_chars = max(
+        0,
+        MAX_SQUARE_POST_CHARACTERS - 1 - (len(template) - len(scan_token)),
+    )
+    scan_block = _institutional_scan_block(
+        signal,
+        max_chars=min(1000, available_scan_chars),
+        include_macro=True,
+    )
+    body = template.replace(scan_token, scan_block)
 
+    if len(body) + 1 > MAX_SQUARE_POST_CHARACTERS:
+        # Retain the price plan and disclaimer while bounding optional context.
+        fixed_length = len(template) - len(scan_token)
+        scan_block = _clip(
+            scan_block,
+            max(0, MAX_SQUARE_POST_CHARACTERS - 1 - fixed_length),
+        )
+        body = template.replace(scan_token, scan_block)
     return _finalize_post(body)
 
 

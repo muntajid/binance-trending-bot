@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 from datetime import datetime, timezone
 from typing import Any
 
@@ -23,6 +24,7 @@ INTERVAL_TO_MS = {
     "8h": 8 * 60 * 60_000,
     "12h": 12 * 60 * 60_000,
     "1d": 24 * 60 * 60_000,
+    "1w": 7 * 24 * 60 * 60_000,
 }
 
 
@@ -72,6 +74,15 @@ def _parse_kline_row(row: list[Any] | tuple[Any, ...]) -> dict[str, float | int]
             "volume": float(row[5]),
             "close_time": int(row[6]),
         }
+        # Binance kline field 9 is taker-buy base volume. Keep it optional so
+        # older fixtures and nonstandard feeds remain backward compatible.
+        if len(row) > 9:
+            try:
+                taker_buy_volume = float(row[9])
+                if math.isfinite(taker_buy_volume) and 0 <= taker_buy_volume <= float(candle["volume"]):
+                    candle["taker_buy_volume"] = taker_buy_volume
+            except (TypeError, ValueError, OverflowError):
+                pass
     except (TypeError, ValueError) as exc:
         raise MarketDataError(f"Invalid numeric value in Binance kline: {exc}") from exc
 
@@ -260,3 +271,282 @@ def get_klines_range(
         )
 
     return [candles_by_open_time[key] for key in sorted(candles_by_open_time)]
+
+
+def get_ticker_24h_all() -> list[dict[str, Any]]:
+    """Return all Binance Vision 24-hour ticker rows in one request."""
+    data = _request_json("/api/v3/ticker/24hr", {})
+    if not isinstance(data, list):
+        raise MarketDataError("Unexpected Binance 24-hour ticker list")
+    return [item for item in data if isinstance(item, dict)]
+
+
+def get_orderbook(symbol: str, limit: int = 20) -> dict[str, Any]:
+    """Return spot order-book depth and bid/ask notional imbalance."""
+    empty: dict[str, Any] = {
+        "bids": [],
+        "asks": [],
+        "bid_depth_usdt": 0.0,
+        "ask_depth_usdt": 0.0,
+        "imbalance_ratio": 1.0,
+        "imbalance": "balanced",
+        "available": False,
+    }
+    normalized = str(symbol or "").upper().strip()
+    if not normalized:
+        return empty
+    try:
+        depth_limit = max(5, min(int(limit), 5000))
+        payload = _request_json(
+            "/api/v3/depth",
+            {"symbol": normalized, "limit": depth_limit},
+        )
+        if not isinstance(payload, dict):
+            raise MarketDataError("Unexpected Binance order-book response")
+
+        parsed_sides: dict[str, list[dict[str, float]]] = {"bids": [], "asks": []}
+        for side in ("bids", "asks"):
+            rows = payload.get(side, [])
+            if not isinstance(rows, list):
+                continue
+            for row in rows:
+                try:
+                    price, quantity = float(row[0]), float(row[1])
+                    if price <= 0 or quantity < 0 or not all(
+                        math.isfinite(value) for value in (price, quantity)
+                    ):
+                        continue
+                    parsed_sides[side].append(
+                        {
+                            "price": price,
+                            "quantity": quantity,
+                            "notional_usdt": price * quantity,
+                        }
+                    )
+                except (TypeError, ValueError, IndexError, OverflowError):
+                    continue
+
+        bid_depth = sum(level["notional_usdt"] for level in parsed_sides["bids"])
+        ask_depth = sum(level["notional_usdt"] for level in parsed_sides["asks"])
+        ratio = bid_depth / ask_depth if ask_depth > 0 else (1.0 if bid_depth <= 0 else 1_000_000.0)
+        if ratio >= 1.10:
+            imbalance = "bid_heavy"
+        elif ratio <= (1.0 / 1.10):
+            imbalance = "ask_heavy"
+        else:
+            imbalance = "balanced"
+        return {
+            "bids": parsed_sides["bids"],
+            "asks": parsed_sides["asks"],
+            "bid_depth_usdt": bid_depth,
+            "ask_depth_usdt": ask_depth,
+            "imbalance_ratio": ratio,
+            "imbalance": imbalance,
+            "available": bool(parsed_sides["bids"] or parsed_sides["asks"]),
+        }
+    except Exception as exc:
+        print(f"[Market Data Warning] Order book unavailable for {normalized}: {exc}")
+        return {**empty, "error": str(exc)}
+
+
+def get_klines_multi_timeframe(symbol: str) -> dict[str, list[dict[str, float | int]]]:
+    """Fetch 100 candles for each analysis timeframe, isolating per-frame errors."""
+    frames: dict[str, list[dict[str, float | int]]] = {}
+    for interval in ("5m", "15m", "1h", "4h", "1d", "1w"):
+        try:
+            frames[interval] = get_klines(symbol, interval=interval, limit=100)
+        except Exception as exc:
+            print(
+                f"[Market Data Warning] {symbol} {interval} klines unavailable: {exc}"
+            )
+            frames[interval] = []
+    return frames
+
+
+def get_btc_dominance_context() -> dict[str, Any]:
+    """Fetch BTC dominance, or estimate a clearly-labelled Binance volume proxy."""
+    try:
+        response = requests.get(
+            "https://api.coingecko.com/api/v3/global",
+            timeout=10,
+            headers={"accept": "application/json"},
+        )
+        response.raise_for_status()
+        payload = response.json()
+        data = payload.get("data", {}) if isinstance(payload, dict) else {}
+        market_caps = data.get("market_cap_percentage", {})
+        total_caps = data.get("total_market_cap", {})
+        dominance = float(market_caps.get("btc"))
+        total_mcap = float(total_caps.get("usd"))
+        if dominance > 0 and total_mcap > 0:
+            return {
+                "btc_dominance_percent": dominance,
+                "total_mcap_proxy": total_mcap,
+                "source": "CoinGecko global market data",
+                "estimated": False,
+            }
+    except Exception as exc:
+        print(f"[Market Data Warning] CoinGecko dominance unavailable: {exc}")
+
+    try:
+        tickers = get_ticker_24h_all()
+        usdt_tickers: list[tuple[str, float]] = []
+        btc_volume = 0.0
+        for item in tickers:
+            symbol = str(item.get("symbol", "")).upper()
+            if not symbol.endswith("USDT"):
+                continue
+            try:
+                volume = float(item.get("quoteVolume", 0.0))
+            except (TypeError, ValueError, OverflowError):
+                continue
+            if volume < 0:
+                continue
+            usdt_tickers.append((symbol, volume))
+            if symbol == "BTCUSDT":
+                btc_volume = volume
+        top_twenty = sorted(usdt_tickers, key=lambda row: row[1], reverse=True)[:20]
+        total_volume = sum(volume for _, volume in top_twenty)
+        estimate = (btc_volume / total_volume * 100.0) if total_volume > 0 else None
+        return {
+            "btc_dominance_percent": estimate,
+            "total_mcap_proxy": total_volume if total_volume > 0 else None,
+            "btc_quote_volume_24h": btc_volume,
+            "top20_quote_volume": total_volume,
+            "source": "Binance top-20 USDT quote-volume proxy",
+            "estimated": True,
+        }
+    except Exception as exc:
+        print(f"[Market Data Warning] Binance BTC-dominance proxy unavailable: {exc}")
+        return {
+            "btc_dominance_percent": None,
+            "total_mcap_proxy": None,
+            "source": "unavailable",
+            "estimated": True,
+            "error": str(exc),
+        }
+
+
+def calculate_volume_analysis(
+    klines_1h: list[dict[str, Any]], ticker_24h: dict[str, Any] | None
+) -> dict[str, Any]:
+    """Summarize directional volume, abnormal participation, and divergence."""
+    neutral: dict[str, Any] = {
+        "buying_volume": 0.0,
+        "selling_volume": 0.0,
+        "volume_spike": False,
+        "breakout_volume_confirmed": False,
+        "volume_divergence": "none",
+        "average_volume": 0.0,
+        "latest_volume": 0.0,
+        "quote_volume_24h": None,
+        "buy_sell_volume_source": "unavailable",
+        "estimated": True,
+    }
+    try:
+        candles: list[dict[str, float]] = []
+        for row in klines_1h or []:
+            try:
+                taker_buy_volume = None
+                if isinstance(row, dict):
+                    candle = {
+                        key: float(row[key])
+                        for key in ("open", "high", "low", "close", "volume")
+                    }
+                    if row.get("taker_buy_volume") is not None:
+                        taker_buy_volume = float(row["taker_buy_volume"])
+                else:
+                    candle = {
+                        "open": float(row[1]),
+                        "high": float(row[2]),
+                        "low": float(row[3]),
+                        "close": float(row[4]),
+                        "volume": float(row[5]),
+                    }
+                    if len(row) > 9:
+                        taker_buy_volume = float(row[9])
+                if not all(math.isfinite(value) for value in candle.values()):
+                    continue
+                if min(candle["open"], candle["high"], candle["low"], candle["close"]) <= 0 or candle["volume"] < 0:
+                    continue
+                if (
+                    taker_buy_volume is not None
+                    and math.isfinite(taker_buy_volume)
+                    and 0 <= taker_buy_volume <= candle["volume"]
+                ):
+                    candle["taker_buy_volume"] = taker_buy_volume
+                candles.append(candle)
+            except (TypeError, ValueError, KeyError, IndexError, OverflowError):
+                continue
+
+        if not candles:
+            return neutral
+        buying = 0.0
+        selling = 0.0
+        taker_volume_candles = 0
+        for row in candles:
+            taker_buy = row.get("taker_buy_volume")
+            if taker_buy is not None:
+                buying += taker_buy
+                selling += max(0.0, row["volume"] - taker_buy)
+                taker_volume_candles += 1
+            elif row["close"] >= row["open"]:
+                buying += row["volume"]
+            else:
+                selling += row["volume"]
+        latest_volume = candles[-1]["volume"]
+        baseline = [row["volume"] for row in candles[-21:-1]]
+        average_volume = sum(baseline) / len(baseline) if baseline else 0.0
+        volume_spike = average_volume > 0 and latest_volume >= average_volume * 1.5
+
+        prior = candles[-21:-1]
+        breakout_up = bool(prior) and candles[-1]["close"] > max(row["high"] for row in prior)
+        breakout_down = bool(prior) and candles[-1]["close"] < min(row["low"] for row in prior)
+        breakout_confirmed = bool(volume_spike and (breakout_up or breakout_down))
+
+        divergence = "none"
+        if len(candles) >= 10:
+            recent = candles[-5:]
+            earlier = candles[-10:-5]
+            recent_volume = sum(row["volume"] for row in recent) / len(recent)
+            earlier_volume = sum(row["volume"] for row in earlier) / len(earlier)
+            price_change = candles[-1]["close"] - candles[-6]["close"]
+            if earlier_volume > 0 and recent_volume < earlier_volume * 0.8:
+                if price_change > 0:
+                    divergence = "bearish"
+                elif price_change < 0:
+                    divergence = "bullish"
+
+        quote_volume = None
+        if isinstance(ticker_24h, dict):
+            raw_volume = ticker_24h.get(
+                "quote_volume_24h", ticker_24h.get("quoteVolume")
+            )
+            try:
+                parsed_volume = float(raw_volume)
+                if parsed_volume >= 0 and math.isfinite(parsed_volume):
+                    quote_volume = parsed_volume
+            except (TypeError, ValueError, OverflowError):
+                pass
+
+        return {
+            "buying_volume": buying,
+            "selling_volume": selling,
+            "volume_spike": bool(volume_spike),
+            "breakout_volume_confirmed": breakout_confirmed,
+            "volume_divergence": divergence,
+            "average_volume": average_volume,
+            "latest_volume": latest_volume,
+            "quote_volume_24h": quote_volume,
+            "buy_sell_volume_source": (
+                "Binance taker-buy base-volume field"
+                if taker_volume_candles == len(candles)
+                else "mixed taker-buy/candle-direction estimate"
+                if taker_volume_candles
+                else "candle-direction estimate"
+            ),
+            "estimated": taker_volume_candles < len(candles),
+        }
+    except Exception as exc:
+        print(f"[Market Data Warning] Volume analysis unavailable: {exc}")
+        return neutral
