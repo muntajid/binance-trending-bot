@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-10-19",
   "pending": [
-    0,
     1,
     2,
     3,
@@ -40,10 +39,23 @@
       "degraded": false,
       "coin": null,
       "note": "published by the clock-based scheduler before this queue existed"
+    },
+    {
+      "slot": 0,
+      "type": "market_overview",
+      "name": "Macro & Bitcoin Outlook (00:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-10-19T13:15:06.186550+00:00",
+      "run_id": "39258426979",
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": null
     }
   ],
   "rotations": 0,
   "reset_reason": "manual reset",
-  "updated_utc": "2026-10-19T13:03:44.021182+00:00",
-  "previous_day": null
+  "updated_utc": "2026-10-19T13:15:06.186566+00:00",
+  "previous_day": null,
+  "last_error": null
 }
