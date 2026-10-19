@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import difflib
 import json
+import math
 import os
 import random
 import re
@@ -198,9 +199,122 @@ def _get_cta_prompt(coin: str) -> str:
 
 def _clip(text: Any, limit: int) -> str:
     value = " ".join(str(text or "").split())
+    if limit <= 0:
+        return ""
     if len(value) <= limit:
         return value
     return value[: max(0, limit - 1)].rstrip() + "…"
+
+
+def _as_mapping(value: Any) -> dict[str, Any]:
+    return value if isinstance(value, dict) else {}
+
+
+def _as_number(value: Any) -> float | None:
+    if isinstance(value, bool) or value is None:
+        return None
+    try:
+        number = float(value)
+        return number if math.isfinite(number) else None
+    except (TypeError, ValueError, OverflowError):
+        return None
+
+
+def _first_value(*values: Any) -> Any:
+    for value in values:
+        if value is None or value == "":
+            continue
+        if isinstance(value, (dict, list, tuple)) and not value:
+            continue
+        return value
+    return None
+
+
+def _nested_value(value: Any, *keys: str) -> Any:
+    current = value
+    for key in keys:
+        if not isinstance(current, dict):
+            return None
+        current = current.get(key)
+    return current
+
+
+def _boolish(value: Any) -> bool | None:
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, (int, float)):
+        return value != 0
+    if isinstance(value, str):
+        text = value.strip().lower()
+        if text in {"true", "yes", "confirmed", "spike", "bullish"}:
+            return True
+        if text in {"false", "no", "normal", "none", "unavailable", "unknown"}:
+            return False
+    return None
+
+
+def _compact_number(value: Any, digits: int = 2) -> str:
+    number = _as_number(value)
+    if number is None:
+        return "n/a"
+    text = f"{number:,.{digits}f}"
+    if "." in text:
+        text = text.rstrip("0").rstrip(".")
+    return text or "0"
+
+
+def _compact_money(value: Any) -> str:
+    number = _as_number(value)
+    if number is None:
+        return "n/a"
+    absolute = abs(number)
+    if absolute >= 1_000_000_000:
+        return f"${number / 1_000_000_000:.1f}B"
+    if absolute >= 1_000_000:
+        return f"${number / 1_000_000:.1f}M"
+    if absolute >= 1_000:
+        return f"${number / 1_000:.1f}K"
+    return f"${number:.0f}"
+
+
+def _describe_data(value: Any, limit: int = 180) -> str:
+    """Render nested signal evidence as compact readable prose, not raw JSON."""
+    if isinstance(value, dict):
+        parts: list[str] = []
+        for key, item in list(value.items())[:12]:
+            label = str(key).replace("_", " ")
+            if isinstance(item, bool):
+                rendered = "yes" if item else "no"
+            elif isinstance(item, (dict, list, tuple)):
+                rendered = _describe_data(item, 65)
+            elif isinstance(item, float):
+                rendered = _compact_number(item, 3)
+            elif item is None:
+                rendered = "unavailable"
+            else:
+                rendered = str(item)
+            parts.append(f"{label}: {rendered}")
+        text = "; ".join(parts) if parts else "unavailable"
+    elif isinstance(value, (list, tuple)):
+        text = ", ".join(_describe_data(item, 35) for item in list(value)[:5])
+    elif value is None:
+        text = "unavailable"
+    else:
+        text = str(value)
+    return _clip(text, limit)
+
+
+def _trend_short(value: Any) -> str:
+    if isinstance(value, dict):
+        value = value.get("trend", value.get("bias", "unavailable"))
+    text = str(value or "unavailable").strip().lower()
+    if any(word in text for word in ("bull", "up", "positive", "higher")):
+        return "up"
+    if any(word in text for word in ("bear", "down", "negative", "lower")):
+        return "down"
+    if any(word in text for word in ("sideways", "range", "neutral")):
+        return "flat"
+    return "n/a"
 
 
 def _institutional_scan_block(
@@ -278,53 +392,118 @@ def _institutional_scan_block(
 # ---------------------------------------------------------------------------
 
 def format_rapid_alert_post(signal: dict[str, Any]) -> str:
-    """
-    Format a compact trade alert with live levels and the strongest evidence.
-    Research benchmark: Rapid alerts had 1,221.5 median views (+12.7% uplift).
-    """
+    """Render a 120-300 character alert with price, risk, and live research cues."""
 
-    coin = str(signal["coin"]).upper().strip()
+    coin = _clip(signal["coin"], 12).upper().strip()
     entry = float(signal["entry_price"])
     tp1 = float(signal["tp1"])
     tp2 = float(signal["tp2"])
     stop = float(signal["sl"])
     direction = _direction(signal)
-    rapid_reason = _clip(
-        signal.get("rapid_reason", "1H trigger unavailable; wait for price confirmation."),
-        180,
-    )
     hashtag = _get_dynamic_hashtag()
+    cta = _get_cta_prompt(coin).strip()
 
     entry_s = _format_price(entry)
     tp1_s = _format_price(tp1)
     tp2_s = _format_price(tp2)
     sl_s = _format_price(stop)
+    tp1_pct = _move_percent(entry, tp1, direction)
+    tp2_pct = _move_percent(entry, tp2, direction)
+    stop_pct = abs(_move_percent(entry, stop, direction))
+    rr = _risk_reward(entry, tp1, stop)
 
-    analysis = signal.get("institutional_analysis", {})
-    points = analysis.get("analysis_points", []) if isinstance(analysis, dict) else []
-    highlights = []
-    if isinstance(points, list):
-        for point in points:
-            if isinstance(point, dict) and point.get("number") in {1, 3, 9, 13, 14, 15}:
-                highlights.append(
-                    f"{point.get('number')}. {_clip(point.get('observation', ''), 55)}"
-                )
-    evidence = _clip(" | ".join(highlights[:4]), 240)
-    summary = _clip(
-        signal.get("analysis_summary", "15-point spot, liquidity, and derivatives scan attached."),
-        180,
+    research = _as_mapping(signal.get("institutional_analysis"))
+    indicators = _as_mapping(research.get("indicators_1h"))
+    volume = _as_mapping(research.get("volume_analysis")) or _as_mapping(signal.get("volume_analysis"))
+    futures = _as_mapping(research.get("futures")) or _as_mapping(signal.get("futures_data"))
+    heatmap = _as_mapping(_nested_value(research, "futures", "liquidation_levels")) or _as_mapping(
+        signal.get("liquidation_heatmap")
     )
-    risk = _clip(signal.get("invalidation", f"Thesis invalid below ${sl_s}."), 150)
+    mtf = _as_mapping(research.get("timeframe_trends")) or _as_mapping(
+        signal.get("mtf_analysis")
+    )
 
-    body = f"""⚡ ${coin} — PRICE-VERIFIED {direction} SETUP
-Entry CMP: ${entry_s} | TP1: ${tp1_s} | TP2: ${tp2_s} | SL: ${sl_s}
+    rsi = _first_value(indicators.get("rsi"), _nested_value(research, "indicators_1h", "rsi"))
+    rsi_text = _compact_number(rsi, 1)
+    spike = _boolish(volume.get("volume_spike"))
+    latest_volume = _as_number(volume.get("latest_volume"))
+    average_volume = _as_number(volume.get("average_volume"))
+    if spike is True and average_volume and average_volume > 0 and latest_volume is not None:
+        volume_text = f"spike {latest_volume / average_volume:.1f}x"
+    elif spike is True:
+        volume_text = "spike"
+    elif spike is False and latest_volume is not None:
+        volume_text = "normal"
+    else:
+        volume_text = "n/a"
+    if _boolish(volume.get("estimated")) is True:
+        volume_text = f"est {volume_text}"
 
-15-point read: {summary}
-Evidence: {evidence or rapid_reason}
-Risk / invalidation: {risk}
+    oi = _first_value(
+        _nested_value(futures, "open_interest", "open_interest_usdt"),
+        _nested_value(futures, "open_interest", "notional_usdt"),
+        _nested_value(futures, "open_interest", "value"),
+        futures.get("open_interest_usdt"),
+        futures.get("open_interest"),
+        _nested_value(research, "futures", "open_interest", "open_interest_usdt"),
+    )
+    oi_estimated = _boolish(
+        _first_value(
+            _nested_value(futures, "open_interest", "estimated"),
+            futures.get("estimated"),
+        )
+    )
+    if isinstance(oi, dict):
+        oi = _first_value(oi.get("open_interest_usdt"), oi.get("notional_usdt"), oi.get("value"))
+    oi_text = _compact_money(oi)
+    if oi_estimated is True:
+        oi_text = f"est {oi_text}"
 
-${coin} $BTC {hashtag}
-⚠️ Educational analysis, not financial advice. Manage risk."""
+    def zone_text(value: Any) -> str:
+        if isinstance(value, dict):
+            value = _first_value(value.get("mid"), value.get("lower"), value.get("upper"))
+        number = _as_number(value)
+        return _format_price(number) if number and number > 0 else "n/a"
+
+    long_zone = zone_text(heatmap.get("long_liquidation_zone"))
+    short_zone = zone_text(heatmap.get("short_liquidation_zone"))
+    if long_zone == "n/a" and short_zone == "n/a":
+        magnet = zone_text(heatmap.get("magnet_price"))
+        zones_text = f"magnet {magnet}" if magnet != "n/a" else "zones n/a"
+    else:
+        zones_text = f"L {long_zone}/S {short_zone}"
+
+    trend_1h = _trend_short(mtf.get("1h", mtf.get("1H", "unavailable")))
+    trend_4h = _trend_short(mtf.get("4h", mtf.get("4H", "unavailable")))
+    bonus = _clip(signal.get("trending_bonus", "BTC"), 12).upper() or "BTC"
+
+    headline = (
+        f"⚡ ${coin} {direction} | Entry CMP ${entry_s} | "
+        f"TP1 ${tp1_s} (+{tp1_pct:.1f}%) / TP2 ${tp2_s} (+{tp2_pct:.1f}%) | "
+        f"SL ${sl_s} (-{stop_pct:.1f}%) | RR 1:{rr:.1f}"
+    )
+    detail = (
+        f"📊 RSI{rsi_text} | VOL {volume_text} | OI {oi_text} | "
+        f"MTF {trend_1h}/{trend_4h} | Est Liq {zones_text}"
+    )
+    tag_line = f"💎 Bonus ${bonus} {hashtag}"
+    cta_line = f"CTA: {_clip(cta, 36)}" if cta else "CTA: Verify levels before entry."
+    disclaimer = "⚠️ Not financial advice; manage risk."
+
+    max_body = 299  # _finalize_post appends one trailing newline.
+    fixed = len(headline) + len(tag_line) + len(cta_line) + len(disclaimer) + 3
+    detail = _clip(detail, max(20, max_body - fixed))
+    body = f"{headline}\n{detail}\n{tag_line}\n{cta_line}\n{disclaimer}"
+    if len(body) < 120:
+        reason = _clip(signal.get("rapid_reason", "Use the stated invalidation and recheck live conditions."), 90)
+        body = f"{headline}\n{detail}\n{reason}\n{tag_line}\n{cta_line}\n{disclaimer}"
+    if len(body) > max_body:
+        # Keep the entry/target/stop line at the very top; trim optional detail first.
+        detail_budget = max(0, max_body - len(headline) - len(tag_line) - len(cta_line) - len(disclaimer) - 4)
+        detail = _clip(detail, detail_budget)
+        body = f"{headline}\n{detail}\n{tag_line}\n{cta_line}\n{disclaimer}"
+        if len(body) > max_body:
+            body = body[: max_body - 1].rstrip()
     return _finalize_post(body)
 
 
@@ -333,38 +512,109 @@ ${coin} $BTC {hashtag}
 # ---------------------------------------------------------------------------
 
 def format_explained_post(signal: dict[str, Any]) -> str:
-    """
-    Format a structured setup with institutional evidence, invalidation, and risk rules.
-    Research benchmark: Explained setups had 1,183.5 median views (+9.0% paired uplift).
-    """
+    """Format a concise but complete 15-point setup explanation (900-1900 chars)."""
 
-    coin = str(signal["coin"]).upper().strip()
+    coin = _clip(signal["coin"], 12).upper().strip()
     entry = float(signal["entry_price"])
     tp1 = float(signal["tp1"])
     tp2 = float(signal["tp2"])
     stop = float(signal["sl"])
     change = float(signal.get("change", 0.0))
     direction = _direction(signal)
-    confidence = int(signal.get("confidence", 85))
-
-    why_now = str(
-        signal.get(
-            "why_now",
-            f"${coin} reclaimed key support with strong 24H volume surge ({change:+.1f}%) and confirmed a market structure shift.",
-        )
-    ).strip()
-
-    invalidation = str(
-        signal.get(
-            "invalidation",
-            f"A 1H candle close below ${_format_price(stop)} invalidates this continuation thesis.",
-        )
-    ).strip()
+    confidence_value = _as_number(signal.get("confidence", 85))
+    confidence = max(0, min(100, int(round(confidence_value or 85))))
 
     tp1_pct = _move_percent(entry, tp1, direction)
     tp2_pct = _move_percent(entry, tp2, direction)
     stop_pct = abs(_move_percent(entry, stop, direction))
     rr = _risk_reward(entry, tp1, stop)
+
+    analysis = _as_mapping(signal.get("institutional_analysis"))
+    volume = _first_value(analysis.get("volume_analysis"), signal.get("volume_analysis"))
+    futures = _first_value(analysis.get("futures"), signal.get("futures_data"))
+    liquidity = _first_value(analysis.get("orderbook"), signal.get("liquidity_analysis"))
+    heatmap = _first_value(
+        _nested_value(analysis, "futures", "liquidation_levels"), signal.get("liquidation_heatmap")
+    )
+    mtf = _first_value(analysis.get("timeframe_trends"), signal.get("mtf_analysis"))
+    market_context = _first_value(analysis.get("market_context"), signal.get("market_context"))
+    sentiment = _first_value(
+        {
+            "fear_greed": _nested_value(market_context, "fear_greed"),
+            "social_sentiment": _nested_value(market_context, "social_sentiment"),
+            "on_chain_proxy": _nested_value(market_context, "on_chain_proxy"),
+        },
+        signal.get("sentiment_onchain"),
+    )
+    macro = _first_value(_nested_value(market_context, "macro_factors"), signal.get("macro_factors"))
+    volatility = signal.get("volatility_assessment")
+    validation_value = _as_number(signal.get("validation_score", confidence))
+    validation = max(0, min(100, int(round(validation_value if validation_value is not None else confidence))))
+
+    why_now = _clip(
+        signal.get(
+            "why_now",
+            f"{coin} has a {change:+.1f}% 24-hour move; wait for the measured trigger and volume confirmation.",
+        ),
+        110,
+    )
+    invalidation = _clip(
+        signal.get(
+            "invalidation",
+            f"A decisive move beyond the stated ${_format_price(stop)} stop invalidates this thesis.",
+        ),
+        90,
+    )
+    technical = _clip(
+        _describe_data(
+            _first_value(signal.get("technical_analysis"), signal.get("smc_logic")), 110
+        ),
+        110,
+    )
+    indicators = _clip(
+        _describe_data(
+            _first_value(signal.get("indicators_summary"), _nested_value(analysis, "indicators_1h")),
+            95,
+        ),
+        95,
+    )
+    volume_futures = _clip(
+        f"Volume: {_describe_data(volume, 68)} | Futures: {_describe_data(futures, 68)}",
+        145,
+    )
+    liquidity_heatmap = _clip(
+        f"Order book: {_describe_data(liquidity, 58)} | Estimated liquidation zones: {_describe_data(heatmap, 58)}",
+        125,
+    )
+    mtf_summary = _clip(_describe_data(mtf, 85), 85)
+    market_sentiment = _clip(
+        f"Market: {_describe_data(market_context, 62)} | Sentiment/on-chain: {_describe_data(sentiment, 62)}",
+        130,
+    )
+    fundamental = _first_value(
+        signal.get("fundamental_note"),
+        signal.get("fundamental_risk"),
+        _nested_value(market_context, "fundamental_notes"),
+        "Token/event risk unavailable; do not assume a catalyst.",
+    )
+    macro_fundamental = _clip(
+        f"Macro (Fed/CPI/DXY): {_describe_data(macro, 70)} | Fundamental: {_describe_data(fundamental, 55)}",
+        135,
+    )
+    volatility_validation = _clip(
+        f"ATR/volatility: {_describe_data(volatility, 73)} | Validation score: {validation}/100",
+        95,
+    )
+    risk_management = _clip(
+        _describe_data(
+            _first_value(
+                signal.get("risk_management"),
+                {"risk": signal.get("risk", "Medium Risk"), "confidence": confidence},
+            ),
+            100,
+        ),
+        105,
+    )
 
     hooks = (
         f"📊 ${coin} 15-Point Institutional Scan ({change:+.1f}% 24H) — {direction} Thesis",
@@ -372,80 +622,51 @@ def format_explained_post(signal: dict[str, Any]) -> str:
         f"🔍 ${coin} Multi-Timeframe Read ({change:+.1f}% 24H) — Levels & Liquidity in Focus",
         f"👀 ${coin} Market Structure Check ({change:+.1f}% 24H) — Setup Overview",
     )
-
-    management_tips = (
-        "💡 Risk Rule: Lock in 50% at TP1 and trail Stop Loss to entry for a risk-free run to TP2.",
-        "💡 Strategy: Wait for 1H candle confirmation. Never over-leverage on momentum expansions.",
-        "💡 Execution: Maintain strict capital discipline. Protect profit systematically at target levels.",
-    )
-
     selected_hook = _RNG.choice(hooks)
-    selected_tip = _RNG.choice(management_tips)
-    cta = _get_cta_prompt(coin)
+    cta = _get_cta_prompt(coin).strip()
     hashtag = _get_dynamic_hashtag()
+    cta_text = _clip(cta, 54) if cta else "Verify the setup against your own chart."
 
-    smc_logic = _clip(signal.get("smc_logic", why_now), 260)
-    analysis_summary = _clip(
-        signal.get("analysis_summary", "Evidence-weighted 15-point analysis attached below."),
-        200,
+    header = (
+        f"👀 ${coin} {direction} | ENTRY CMP ${_format_price(entry)} | "
+        f"TP1 ${_format_price(tp1)} ({tp1_pct:+.1f}%) | "
+        f"TP2 ${_format_price(tp2)} ({tp2_pct:+.1f}%) | "
+        f"SL ${_format_price(stop)} (-{stop_pct:.1f}%) | RR 1:{rr:.2f} | Conf {confidence}%"
     )
-    risk_factors = signal.get("risk_factors", [])
-    if isinstance(risk_factors, list):
-        risk_summary = "; ".join(str(item).strip() for item in risk_factors if str(item).strip())
-    else:
-        risk_summary = str(risk_factors).strip()
-    risk_summary = _clip(risk_summary or "Use the stated invalidation; market conditions can change.", 150)
-    fundamental_risk = _clip(
-        signal.get(
-            "fundamental_risk",
-            "Token unlocks/listings were not verified; treat event risk as unknown.",
-        ),
-        140,
+    sections = (
+        f"TECHNICAL ANALYSIS: {technical}",
+        f"INDICATORS (EMA/RSI/MACD/VWAP/BB/Stoch RSI): {indicators}",
+        f"VOLUME & FUTURES: {volume_futures}",
+        f"LIQUIDITY & LIQUIDATION HEATMAP: {liquidity_heatmap}",
+        f"MULTI-TIMEFRAME (5m-1W): {mtf_summary}",
+        f"MARKET / SENTIMENT / ON-CHAIN: {market_sentiment}",
+        f"MACRO & FUNDAMENTAL: {macro_fundamental}",
+        f"VOLATILITY & VALIDATION: {volatility_validation}",
+        f"RISK MANAGEMENT: {risk_management}",
+    )
+    footer = (
+        f"CTA: {cta_text}\n"
+        f"Tags: ${coin} $BTC {hashtag}\n"
+        "⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk."
+    )
+    body = "\n".join(
+        [header, selected_hook, f"Why now: {why_now}", f"Invalidation: {invalidation}", *sections, footer]
     )
 
-    scan_token = "__INSTITUTIONAL_SCAN__"
-    template = f"""{selected_hook}
-
-${coin} — {direction} SETUP
-• Entry Zone (CMP): ${_format_price(entry)}
-• Target 1: ${_format_price(tp1)} ({tp1_pct:+.1f}%) 🎯
-• Target 2: ${_format_price(tp2)} ({tp2_pct:+.1f}%) 🚀
-• Invalidation (SL): ${_format_price(stop)} (-{stop_pct:.1f}%) 🛡️
-• Risk/Reward: 1:{rr:.2f}R | Confidence: {confidence}%
-• Suggested Leverage: 3x - 5x (Max 15x)
-
-Institutional read: {analysis_summary}
-Why now: {why_now}
-Technical rationale: {smc_logic}
-What changes the view: {invalidation}
-Risk factors: {risk_summary}
-Fundamental/event risk: {fundamental_risk}
-
-{scan_token}
-
-{selected_tip}{cta}
-
-${coin} $BTC {hashtag}
-⚠️ Educational market analysis. Always manage your risk & DYOR."""
-    available_scan_chars = max(
-        0,
-        MAX_SQUARE_POST_CHARACTERS - 1 - (len(template) - len(scan_token)),
-    )
-    scan_block = _institutional_scan_block(
-        signal,
-        max_chars=min(1000, available_scan_chars),
-        include_macro=True,
-    )
-    body = template.replace(scan_token, scan_block)
-
-    if len(body) + 1 > MAX_SQUARE_POST_CHARACTERS:
-        # Retain the price plan and disclaimer while bounding optional context.
-        fixed_length = len(template) - len(scan_token)
-        scan_block = _clip(
-            scan_block,
-            max(0, MAX_SQUARE_POST_CHARACTERS - 1 - fixed_length),
+    # Short inputs still get useful execution/data-quality context, not generic filler.
+    if len(body) < 900:
+        body += (
+            "\nData discipline: Entry CMP comes from the verified live-price path; candles and volume are observations, "
+            "while futures, order-book and liquidation levels are snapshots or estimates where marked. Unavailable "
+            "sentiment, on-chain, Fed, CPI or DXY feeds are unknown rather than directional. Reconfirm the trigger "
+            "before acting; use the stated invalidation and size positions to a predefined account-risk limit."
         )
-        body = template.replace(scan_token, scan_block)
+    if len(body) < 900:
+        body += " Higher-timeframe conflict or a changing volatility regime is a reason to reassess, not to widen the stop."
+
+    # Keep the target under 1,900 chars (well below the 2,100 hard cap) and preserve Entry at the top.
+    if len(body) + 1 > 1900:
+        body = body[:1899].rstrip()
     return _finalize_post(body)
 
 

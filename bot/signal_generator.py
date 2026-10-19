@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import math
 import os
 from typing import Any
 
@@ -212,6 +213,7 @@ def _normalize_signal(
     change: float,
     trending_bonus: str,
     model: str,
+    research: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Apply authoritative values and reject impossible TP/SL ordering."""
 
@@ -234,26 +236,89 @@ def _normalize_signal(
     if direction == "SHORT" and not (tp2 < tp1 < live_price < stop):
         raise ValueError("Invalid SHORT levels: expected TP2 < TP1 < Entry < SL")
 
-    why_now = str(
-        result.get(
-            "why_now",
-            f"Price broke above key 1H resistance with strong {change:+.1f}% 24H volume expansion.",
-        )
-    ).strip()
+    def safe_text(field: str, fallback: str) -> str:
+        value = result.get(field)
+        text = str(value).strip() if value is not None else ""
+        return text or fallback
 
-    invalidation = str(
-        result.get(
-            "invalidation",
-            f"A 1H candle close below ${stop} invalidates this setup.",
-        )
-    ).strip()
+    why_now = safe_text(
+        "why_now",
+        f"Price broke above key 1H resistance with {change:+.1f}% 24H change; confirm with live volume.",
+    )
+    invalidation = safe_text(
+        "invalidation", f"A 1H candle close beyond ${stop} invalidates this setup."
+    )
+    rapid_reason = safe_text(
+        "rapid_reason", "1H trigger unavailable; wait for price confirmation."
+    )
 
-    rapid_reason = str(
-        result.get(
-            "rapid_reason",
-            f"1H momentum breakout above key resistance with volume.",
-        )
-    ).strip()
+    research = research if isinstance(research, dict) else {}
+    market_context_default = research.get("market_context", {})
+    market_context_default = market_context_default if isinstance(market_context_default, dict) else {}
+    indicators_1h = research.get("indicators_1h", {})
+    indicators_1h = indicators_1h if isinstance(indicators_1h, dict) else {}
+    indicators_4h = research.get("indicators_4h", {})
+    indicators_4h = indicators_4h if isinstance(indicators_4h, dict) else {}
+    futures_default = research.get("futures", {})
+    futures_default = futures_default if isinstance(futures_default, dict) else {}
+    volume_default = research.get("volume_analysis", {})
+    volume_default = volume_default if isinstance(volume_default, dict) else {}
+
+    def safe_field(field: str, fallback: Any) -> Any:
+        value = result.get(field)
+        if (
+            value is None
+            or (isinstance(value, str) and not value.strip())
+            or (isinstance(value, (dict, list, tuple)) and not value)
+        ):
+            return fallback
+        return value
+
+    def safe_score(value: Any, fallback: int) -> int:
+        try:
+            score = float(value)
+            if not math.isfinite(score):
+                return fallback
+            return max(0, min(100, int(round(score))))
+        except (TypeError, ValueError, OverflowError):
+            return fallback
+
+    try:
+        confidence = safe_score(result.get("confidence", 85), 85)
+    except Exception:
+        confidence = 85
+    trendlines_4h = indicators_4h.get("trendlines", {})
+    trendlines_4h = trendlines_4h if isinstance(trendlines_4h, dict) else {}
+    indicators_summary_default = (
+        f"1H RSI {indicators_1h.get('rsi', 'n/a')}; EMA20/50/200 "
+        f"{indicators_1h.get('ema_20', 'n/a')}/{indicators_1h.get('ema_50', 'n/a')}/"
+        f"{indicators_1h.get('ema_200', 'n/a')}; 4H trend "
+        f"{trendlines_4h.get('trend', 'unavailable')}"
+    )
+    liquidity_default = research.get("orderbook", {})
+    liquidity_default = liquidity_default if isinstance(liquidity_default, dict) else {}
+    heatmap_default = futures_default.get("liquidation_levels", {})
+    heatmap_default = heatmap_default if isinstance(heatmap_default, dict) else {}
+    sentiment_default = {
+        "social_sentiment": market_context_default.get("social_sentiment", "unavailable"),
+        "on_chain_proxy": market_context_default.get("on_chain_proxy", {}),
+    }
+    atr_1h = _research_float(indicators_1h.get("atr"), float("nan"))
+    volatility_default = {
+        "atr_1h": atr_1h if math.isfinite(atr_1h) and atr_1h > 0 else None,
+        "atr_percent": (
+            atr_1h / live_price * 100.0
+            if live_price > 0 and math.isfinite(atr_1h) and atr_1h > 0
+            else None
+        ),
+        "bollinger_bands": indicators_1h.get("bollinger_bands", {}),
+        "estimated": False,
+    }
+    macro_default = market_context_default.get("macro_factors", {})
+    macro_default = macro_default if isinstance(macro_default, dict) else {}
+    mtf_default = research.get("timeframe_trends", {})
+    mtf_default = mtf_default if isinstance(mtf_default, dict) else {}
+    fundamental_default = market_context_default.get("fundamental_notes", "Event risk unverified.")
 
     normalized = {
         **result,
@@ -267,15 +332,53 @@ def _normalize_signal(
         "sl": stop,
         "leverage": "15x",
         "risk": str(result.get("risk", "Medium Risk")),
-        "confidence": int(result.get("confidence", 85)),
+        "confidence": confidence,
         "why_now": why_now,
         "invalidation": invalidation,
         "rapid_reason": rapid_reason,
-        "smc_logic": str(result.get("smc_logic", why_now)),
-        "smc_logic_short": str(result.get("smc_logic_short", rapid_reason)),
+        "smc_logic": safe_text("smc_logic", why_now),
+        "smc_logic_short": safe_text("smc_logic_short", rapid_reason),
         "change": change,
         "groq_model": model,
+        "technical_analysis": safe_field(
+            "technical_analysis", result.get("smc_logic") or why_now
+        ),
+        "indicators_summary": safe_field(
+            "indicators_summary", indicators_summary_default
+        ),
+        "volume_analysis": safe_field("volume_analysis", volume_default),
+        "futures_data": safe_field("futures_data", futures_default),
+        "liquidity_analysis": safe_field("liquidity_analysis", liquidity_default),
+        "liquidation_heatmap": safe_field("liquidation_heatmap", heatmap_default),
+        "mtf_analysis": safe_field("mtf_analysis", mtf_default),
+        "market_context": safe_field("market_context", market_context_default),
+        "sentiment_onchain": safe_field("sentiment_onchain", sentiment_default),
+        "volatility_assessment": safe_field(
+            "volatility_assessment", volatility_default
+        ),
+        "risk_management": safe_field(
+            "risk_management",
+            {
+                "entry": live_price,
+                "tp1": tp1,
+                "tp2": tp2,
+                "stop_loss": stop,
+                "risk_reward_tp1": abs(tp1 - live_price) / abs(live_price - stop),
+                "guidance": "Position size must be based on a predefined account-risk limit.",
+            },
+        ),
+        "validation_score": safe_score(
+            result.get("validation_score", confidence), confidence
+        ),
+        "macro_factors": safe_field("macro_factors", macro_default),
+        "fundamental_note": safe_text(
+            "fundamental_note",
+            safe_text("fundamental_risk", str(fundamental_default)),
+        ),
     }
+    normalized["fundamental_risk"] = safe_text(
+        "fundamental_risk", str(normalized["fundamental_note"])
+    )
     return normalized
 
 
@@ -544,45 +647,56 @@ You are an institutional crypto market analyst. Base the trade thesis on the ver
 
     user_prompt = f"""
 Coin: {str(coin).upper()}
-Verified Binance live price: {live_price}
+Verified Binance live price (Entry CMP): {live_price}
 24-hour change: {float(change):.2f}%
 Context market leader: {str(trending_bonus).upper()}
 
-Institutional research snapshot (JSON):
+Fifteen-category institutional research snapshot (JSON):
 {research_json}
 
-Interpret all 15 numbered observations, multi-timeframe alignment, BTC dominance, BTC/ETH trend, fear/greed, risk appetite, sentiment proxy, derivatives positioning, and event-risk limitations. Give greater weight to verified OHLCV and price levels than to estimated proxies. A missing feed is unknown, not bullish or bearish. Do not describe a volume/dominance proxy as market capitalization or actual on-chain activity.
+Use only the verified live price above as Entry CMP. Analyze EMA20/50/200, RSI, MACD, VWAP, Bollinger Bands, Stoch RSI, volume-spike/breakout confirmation, futures open interest/funding/long-short ratio, order-book imbalance, liquidation heatmap zones, and 5m/15m/1H/4H/1D/1W trend alignment. Include BTC dominance/trend, ETH/BTC, altcoin-vs-BTC return breadth, fear/greed, estimated social/on-chain proxies, ATR volatility, and supplied macro context for Fed/CPI/DXY. If a feed is absent, say unavailable; never infer its direction. Mark every estimate/proxy as estimated. Do not treat a volume/dominance proxy as market capitalization, or a proxy as actual on-chain activity. Macro feeds not present in the snapshot (including live Fed, CPI, or DXY data) must be labelled unavailable, not guessed.
 
-Return exactly this JSON structure:
+Return one valid JSON object with every required key below. Keep prose fields concise, put numeric/structured evidence in the matching objects, and use null/"unavailable" where the snapshot has no evidence:
 {{
   "coin": "{str(coin).upper()}",
   "trending_bonus": "{str(trending_bonus).upper()}",
-  "direction": "LONG or SHORT, based on the evidence",
+  "direction": "LONG or SHORT",
   "entry": "CMP",
   "entry_price": {live_price},
-  "tp1": <numeric first target consistent with nearby structure and ATR>,
-  "tp2": <numeric extended target beyond TP1 for LONG, below TP1 for SHORT>,
-  "sl": <numeric invalidation level consistent with nearby structure and ATR>,
-  "leverage": "3x-5x",
-  "risk": "Low Risk, Medium Risk, or High Risk with a short rationale",
-  "confidence": <integer from 0 to 100 calibrated to feed completeness and confluence>,
-  "why_now": "Evidence-based trigger citing the strongest measured technical confluence.",
-  "invalidation": "One clear price/close level that invalidates this thesis.",
-  "rapid_reason": "One concise sentence summarizing the verified 1H trigger and its main risk.",
-  "smc_logic": "2-3 concise sentences connecting structure, liquidity, volume, and risk.",
-  "smc_logic_short": "Short, factual chart annotation.",
-  "analysis_summary": "One concise institutional readout of the 15-point evidence.",
-  "fundamental_risk": "Review possible token unlock/listing/vesting/delisting risk for this coin; mark remembered or unverified events as unconfirmed and give no unsupported dates.",
-  "risk_factors": ["Specific evidence-based risk", "Specific evidence-based risk"]
+  "tp1": null,
+  "tp2": null,
+  "sl": null,
+  "confidence": null,
+  "rapid_reason": "Concise verified 1H trigger and main risk.",
+  "why_now": "Evidence-based setup-specific trigger.",
+  "invalidation": "One clear price/close level that invalidates the thesis.",
+  "smc_logic": "2-3 concise evidence-based sentences.",
+  "smc_logic_short": "Short factual chart annotation.",
+  "technical_analysis": "Structure, trend, confluence, and opposing evidence.",
+  "indicators_summary": "EMA, RSI, MACD, VWAP, BB, and Stoch RSI readout.",
+  "volume_analysis": {{"buying_volume": null, "selling_volume": null, "volume_spike": false, "breakout_volume_confirmed": false, "volume_divergence": "unavailable", "estimated": null}},
+  "futures_data": {{"open_interest": null, "funding_rate": null, "long_short_ratio": null, "futures_vs_spot_volume": null, "estimated": null}},
+  "liquidity_analysis": {{"orderbook_imbalance": "unavailable", "bid_depth_usdt": null, "ask_depth_usdt": null, "estimated": null}},
+  "liquidation_heatmap": {{"long_liquidation_zone": null, "short_liquidation_zone": null, "magnet_price": null, "clusters": [], "estimated": true}},
+  "mtf_analysis": {{"5m": "unavailable", "15m": "unavailable", "1h": "unavailable", "4h": "unavailable", "1d": "unavailable", "1w": "unavailable"}},
+  "market_context": {{"btc_dominance": "unavailable", "bitcoin_trend": "unavailable", "eth_btc_ratio": null, "altcoin_btc_correlation": "unavailable"}},
+  "sentiment_onchain": {{"fear_greed": "unavailable", "social_sentiment": "estimated/unavailable", "on_chain_proxy": "estimated/unavailable"}},
+  "volatility_assessment": {{"atr": null, "atr_percent": null, "bollinger_bandwidth": null, "estimated": false}},
+  "risk_management": {{"risk_reward": "...", "position_sizing": "...", "invalidation_plan": "..."}},
+  "validation_score": null,
+  "macro_factors": {{"fed_rate_context": "unavailable", "cpi_context": "unavailable", "dxy_proxy": "unavailable", "treasury_context": "unavailable"}},
+  "fundamental_note": "Review possible token unlock/listing/vesting/delisting risk; label remembered or unverified events as unconfirmed and give no unsupported dates.",
+  "analysis_summary": "One concise institutional readout.",
+  "risk_factors": ["Evidence-based risk", "Evidence-based risk"]
 }}
 
 Rules:
-1. entry_price must equal {live_price} exactly; never replace it with a chart close.
+1. entry_price must equal {live_price} exactly; never use a chart close as CMP.
 2. For LONG, enforce SL < entry_price < TP1 < TP2. For SHORT, enforce TP2 < TP1 < entry_price < SL.
-3. Use numeric values for entry_price, TP1, TP2, and SL.
-4. Use the supplied support/resistance and ATR when available; if those feeds are missing, use conservative levels and lower confidence.
-5. Do not invent a current market price, macro event, confirmed token unlock/listing, exchange flow, or whale transaction; any remembered token-event concern must be labelled unverified and have no unsupported date.
-6. Clearly distinguish observed Binance data from estimated proxies in all analysis text.
+3. Use numeric entry_price, TP1, TP2, and SL. Do not reverse or relax these inequalities.
+4. Use supplied support/resistance and ATR when available; lower confidence if feeds are missing or timeframes conflict.
+5. Do not invent a current price, macro release, confirmed token event, exchange flow, or whale transaction. Any remembered token-event concern must be labelled unverified and have no unsupported date.
+6. Mark estimates as estimated and state which source/proxy supports them.
 7. Return JSON only.
 """.strip()
 
@@ -600,7 +714,7 @@ Rules:
                     {"role": "user", "content": user_prompt},
                 ],
                 temperature=0.2,
-                max_tokens=800,
+                max_tokens=1500,
                 response_format={"type": "json_object"},
             )
             result = _parse_json_object(completion.choices[0].message.content)
@@ -611,6 +725,7 @@ Rules:
                 change=float(change),
                 trending_bonus=trending_bonus,
                 model=model,
+                research=institutional_research,
             )
             normalized["institutional_analysis"] = institutional_research
             normalized["analysis_summary"] = str(
@@ -668,6 +783,46 @@ def generate_market_overview_with_groq(
         except Exception:
             top_coins = []
 
+    try:
+        btc_klines_mtf = get_klines_multi_timeframe("BTCUSDT")
+    except Exception as exc:
+        print(f"[Market Overview Warning] BTC multi-timeframe data unavailable: {exc}")
+        btc_klines_mtf = {frame: [] for frame in ("5m", "15m", "1h", "4h", "1d", "1w")}
+    try:
+        eth_klines_mtf = get_klines_multi_timeframe("ETHUSDT")
+    except Exception as exc:
+        print(f"[Market Overview Warning] ETH multi-timeframe data unavailable: {exc}")
+        eth_klines_mtf = {frame: [] for frame in ("5m", "15m", "1h", "4h", "1d", "1w")}
+    btc_indicators_1h = calculate_all_indicators(btc_klines_mtf.get("1h", []))
+    btc_indicators_4h = calculate_all_indicators(btc_klines_mtf.get("4h", []))
+    eth_indicators_1h = calculate_all_indicators(eth_klines_mtf.get("1h", []))
+    eth_indicators_4h = calculate_all_indicators(eth_klines_mtf.get("4h", []))
+    try:
+        overview_market_context = get_market_context(
+            {**btc_data, "klines_mtf": btc_klines_mtf},
+            {**eth_data, "klines_mtf": eth_klines_mtf},
+            top_coins or [],
+        )
+    except Exception as exc:
+        print(f"[Market Overview Warning] Optional macro context unavailable: {exc}")
+        overview_market_context = {
+            "btc_dominance": {"estimated": True, "source": "unavailable"},
+            "fear_greed": {"estimated": True, "source": "unavailable"},
+            "macro_factors": {"fed_rate_context": "unavailable", "cpi_context": "unavailable", "dxy_proxy": "unavailable"},
+        }
+    overview_research = {
+        "btc_indicators_1h": btc_indicators_1h,
+        "btc_indicators_4h": btc_indicators_4h,
+        "eth_indicators_1h": eth_indicators_1h,
+        "eth_indicators_4h": eth_indicators_4h,
+        "btc_dominance": overview_market_context.get("btc_dominance", {}),
+        "fear_greed": overview_market_context.get("fear_greed", {}),
+        "market_context": overview_market_context,
+    }
+    overview_research_json = json.dumps(
+        overview_research, ensure_ascii=False, separators=(",", ":"), default=str
+    )
+
     gainers_summary = ", ".join(
         [f"{c['coin']} ({c['change']:+.1f}%)" for c in top_coins[:4]]
     ) if top_coins else "Altcoin momentum mixed"
@@ -684,6 +839,11 @@ Verified Binance Market Data:
 • BTC/USDT: ${btc_price:,.2f} ({btc_change:+.2f}% 24H, 24H Vol: ${btc_volume:,.0f})
 • ETH/USDT: ${eth_price:,.2f} ({eth_change:+.2f}% 24H)
 • Top Momentum Gainers: {gainers_summary}
+
+Verified BTC/ETH technical and macro context (JSON; unavailable values are intentionally marked):
+{overview_research_json}
+
+Use the supplied BTC and ETH 1H/4H RSI and EMA20/50/200 readings in the thesis whenever present. Explicitly incorporate BTC dominance and Fear & Greed in the market pulse; if either is estimated, label it estimated. Do not invent technical readings or macro data. Keep the existing overview output structure.
 
 Return exactly this JSON structure:
 {{
@@ -743,6 +903,12 @@ Rules:
                 "btc_support": support,
                 "btc_resistance": resistance,
                 "strategy_outlook": str(result.get("strategy_outlook", "Focus on high-volume setups with defined invalidation levels.")).strip(),
+                "btc_indicators_1h": btc_indicators_1h,
+                "btc_indicators_4h": btc_indicators_4h,
+                "eth_indicators_1h": eth_indicators_1h,
+                "eth_indicators_4h": eth_indicators_4h,
+                "btc_dominance": overview_market_context.get("btc_dominance", {}),
+                "fear_greed": overview_market_context.get("fear_greed", {}),
                 "groq_model": model,
                 "type": "market_overview",
             }

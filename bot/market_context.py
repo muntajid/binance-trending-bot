@@ -235,6 +235,7 @@ def get_market_context(
     )
     macro_factors = {
         "fed_rate_context": f"No live Fed-rate feed. Interpret policy risk conditionally alongside {risk_context}.",
+        "cpi_context": f"No live CPI/release feed; do not assert an inflation catalyst ({risk_context}).",
         "dxy_proxy": f"DXY was not fetched; use BTC/ETH relative momentum only as a risk-appetite proxy ({risk_context}).",
         "treasury_context": f"Treasury yields were not fetched; avoid asserting a yield catalyst ({risk_context}).",
     }
