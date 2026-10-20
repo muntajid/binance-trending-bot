@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-10-20T07:12:06.436215+00:00",
+    "last_checked_at": "2026-10-20T12:46:57.301409+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -36,7 +36,7 @@
     "change": 60.341,
     "trade_id": "3b82a13182464abdbb70ef87cc9615d1",
     "created_at": "2026-08-15T09:51:30.238894+00:00",
-    "last_checked_at": "2026-10-20T07:12:07.620734+00:00",
+    "last_checked_at": "2026-10-20T12:46:58.176424+00:00",
     "status": "ACTIVE"
   },
   {
@@ -710,7 +710,7 @@
     "slot_mode": "rapid_alert",
     "trade_id": "21f072eb310d4886a3ee9474d0d85232",
     "created_at": "2026-10-20T11:09:39.618146+00:00",
-    "last_checked_at": "2026-10-20T11:09:39.618146+00:00",
+    "last_checked_at": "2026-10-20T12:46:59.042712+00:00",
     "status": "ACTIVE"
   }
 ]
