@@ -1,9 +1,13 @@
 {
   "version": 1,
-  "day_utc": "2026-10-19",
+  "day_utc": "2026-10-20",
   "pending": [
+    1,
+    2,
     3,
+    4,
     5,
+    6,
     7,
     8,
     9,
@@ -13,71 +17,39 @@
   "in_flight": null,
   "published": [
     {
-      "slot": 4,
-      "type": "explained_setup",
-      "name": "Explained Master Setup #2 (08:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-19T08:18:32+00:00",
-      "run_id": "39221733785",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "KORUB",
-      "note": "published by the clock-based scheduler before this queue existed"
-    },
-    {
-      "slot": 6,
-      "type": "meme_community",
-      "name": "Trader Psychology & Community Meme (12:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-19T12:34:35+00:00",
-      "run_id": "39252738405",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": null,
-      "note": "published by the clock-based scheduler before this queue existed"
-    },
-    {
       "slot": 0,
       "type": "market_overview",
       "name": "Macro & Bitcoin Outlook (00:00 UTC)",
       "forced": false,
-      "published_utc": "2026-10-19T13:15:06.186550+00:00",
-      "run_id": "39258426979",
+      "published_utc": "2026-10-20T04:05:37.374004+00:00",
+      "run_id": "39367656386",
       "mode": "image",
       "attempts": 1,
       "degraded": false,
       "coin": null
-    },
-    {
-      "slot": 1,
-      "type": "rapid_alert",
-      "name": "Rapid Signal Alert #1 (02:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-19T18:32:00.606818+00:00",
-      "run_id": "39303161069",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "OSMO"
-    },
-    {
-      "slot": 2,
-      "type": "explained_setup",
-      "name": "Explained Master Setup #1 (04:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-19T23:27:50.968805+00:00",
-      "run_id": "39341628665",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "AVA"
     }
   ],
   "rotations": 0,
-  "reset_reason": "manual reset",
-  "updated_utc": "2026-10-19T23:27:50.968822+00:00",
-  "previous_day": null,
+  "reset_reason": "new UTC day",
+  "updated_utc": "2026-10-20T04:05:37.374019+00:00",
+  "previous_day": {
+    "day_utc": "2026-10-19",
+    "published": 5,
+    "by_type": {
+      "explained_setup": 2,
+      "meme_community": 1,
+      "market_overview": 1,
+      "rapid_alert": 1
+    },
+    "unpublished": [
+      3,
+      5,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
   "last_error": null
 }
