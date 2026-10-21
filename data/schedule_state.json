@@ -1,7 +1,10 @@
 {
   "version": 1,
-  "day_utc": "2026-10-20",
+  "day_utc": "2026-10-21",
   "pending": [
+    1,
+    2,
+    3,
     4,
     5,
     6,
@@ -18,65 +21,29 @@
       "type": "market_overview",
       "name": "Macro & Bitcoin Outlook (00:00 UTC)",
       "forced": false,
-      "published_utc": "2026-10-20T04:05:37.374004+00:00",
-      "run_id": "39367656386",
+      "published_utc": "2026-10-21T00:27:18.185025+00:00",
+      "run_id": "39521337347",
       "mode": "image",
       "attempts": 1,
       "degraded": false,
       "coin": null
-    },
-    {
-      "slot": 1,
-      "type": "rapid_alert",
-      "name": "Rapid Signal Alert #1 (02:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-20T11:09:46.908174+00:00",
-      "run_id": "39412857799",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "ALT"
-    },
-    {
-      "slot": 2,
-      "type": "explained_setup",
-      "name": "Explained Master Setup #1 (04:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-20T16:34:57.014285+00:00",
-      "run_id": "39458567149",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "BMT"
-    },
-    {
-      "slot": 3,
-      "type": "rapid_alert",
-      "name": "Rapid Signal Alert #2 (06:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-20T21:24:20.043565+00:00",
-      "run_id": "39499955307",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "IOST"
     }
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-10-20T21:24:20.043580+00:00",
+  "updated_utc": "2026-10-21T00:27:18.185048+00:00",
   "previous_day": {
-    "day_utc": "2026-10-19",
-    "published": 5,
+    "day_utc": "2026-10-20",
+    "published": 4,
     "by_type": {
-      "explained_setup": 2,
-      "meme_community": 1,
       "market_overview": 1,
-      "rapid_alert": 1
+      "rapid_alert": 2,
+      "explained_setup": 1
     },
     "unpublished": [
-      3,
+      4,
       5,
+      6,
       7,
       8,
       9,
