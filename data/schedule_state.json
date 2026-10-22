@@ -1,7 +1,11 @@
 {
   "version": 1,
-  "day_utc": "2026-10-21",
+  "day_utc": "2026-10-22",
   "pending": [
+    1,
+    2,
+    3,
+    4,
     5,
     6,
     7,
@@ -17,75 +21,26 @@
       "type": "market_overview",
       "name": "Macro & Bitcoin Outlook (00:00 UTC)",
       "forced": false,
-      "published_utc": "2026-10-21T00:27:18.185025+00:00",
-      "run_id": "39521337347",
+      "published_utc": "2026-10-22T03:54:44.330077+00:00",
+      "run_id": "39719360652",
       "mode": "image",
       "attempts": 1,
       "degraded": false,
       "coin": null
-    },
-    {
-      "slot": 1,
-      "type": "rapid_alert",
-      "name": "Rapid Signal Alert #1 (02:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-21T07:17:29.460681+00:00",
-      "run_id": "39560854081",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "COMP"
-    },
-    {
-      "slot": 2,
-      "type": "explained_setup",
-      "name": "Explained Master Setup #1 (04:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-21T13:35:56.250683+00:00",
-      "run_id": "39609254666",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "PARTI"
-    },
-    {
-      "slot": 3,
-      "type": "rapid_alert",
-      "name": "Rapid Signal Alert #2 (06:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-21T18:30:14.904031+00:00",
-      "run_id": "39653170007",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "ALT"
-    },
-    {
-      "slot": 4,
-      "type": "explained_setup",
-      "name": "Explained Master Setup #2 (08:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-21T23:05:31.233379+00:00",
-      "run_id": "39690980890",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "IOST"
     }
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-10-21T23:05:31.233394+00:00",
+  "updated_utc": "2026-10-22T03:54:44.330092+00:00",
   "previous_day": {
-    "day_utc": "2026-10-20",
-    "published": 4,
+    "day_utc": "2026-10-21",
+    "published": 5,
     "by_type": {
       "market_overview": 1,
       "rapid_alert": 2,
-      "explained_setup": 1
+      "explained_setup": 2
     },
     "unpublished": [
-      4,
       5,
       6,
       7,
