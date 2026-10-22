@@ -1,14 +1,5 @@
-🌐 MACRO & BITCOIN OUTLOOK: Bitcoin stalls near $82.8k in sideways consolidation as dominance stays strong and greed fuels altcoin rally 📊
-
-$BTC 24H: $82826.98 (+0.06%)
-Market Phase: Consolidation with bullish bias
-
-📊 Key Market Dynamics:
-• Bitcoin Structure: On the 1‑hour chart BTC sits below the 20‑EMA (83750) and 50‑EMA (83262) with RSI at 37, indicating short‑term weakness, while the 4‑hour frame shows a bullish HH‑HL structure, EMA‑20 above price and RSI at 57, suggesting the market is holding the recent bullish continuation zone and may test the nearby resistance.
-• Altcoin Flows: Altcoins are outperforming BTC, with top gainers like ALT (+19.3%) and PHA (+16.1%) leading a broad rotation driven by a Greed‑rated Fear & Greed index (68) and BTC dominance steady at ~59.5%.
-• Crucial Levels: Support $82507.49 | Resistance $83179.27
-
-💡 Trader Takeaway: Spot traders may consider buying on dips near $82,500 with a target around $83,200, while futures positions should stay short‑biased above $83,200 and watch for a break above $83,500 to confirm a bullish breakout.
-
-$BTC $ETH #BinanceSquare #CryptoMarket
-⚠️ Educational market analysis only. Not financial advice. Always DYOR.
+⚡ $PROM LONG | Entry CMP $5.877 | TP1 $5.9855 (+1.8%) / TP2 $6.019 (+2.4%) | SL $5.8 (-1.3%) | RR 1:1.4
+📊 RSI57.9 | VOL normal | OI n/a | MTF up/up | Est Liq L 5.6824/S 6.0716
+💎 Bonus $PHA #CryptoTrading
+CTA: Verify levels before entry.
+⚠️ Not financial advice; manage risk.
