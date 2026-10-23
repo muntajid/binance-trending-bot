@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-10-23",
   "pending": [
-    3,
     4,
     5,
     6,
@@ -49,11 +48,23 @@
       "attempts": 1,
       "degraded": false,
       "coin": "ARK"
+    },
+    {
+      "slot": 3,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #2 (06:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-10-23T19:52:14.241594+00:00",
+      "run_id": "40014693918",
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "INIT"
     }
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-10-23T14:45:40.542633+00:00",
+  "updated_utc": "2026-10-23T19:52:14.241608+00:00",
   "previous_day": {
     "day_utc": "2026-10-22",
     "published": 5,
