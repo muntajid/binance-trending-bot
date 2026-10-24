@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-10-24",
   "pending": [
-    1,
     2,
     3,
     4,
@@ -27,11 +26,23 @@
       "attempts": 1,
       "degraded": false,
       "coin": null
+    },
+    {
+      "slot": 1,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #1 (02:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-10-24T08:46:13.842293+00:00",
+      "run_id": "40079278711",
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "BMT"
     }
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-10-24T03:52:54.015200+00:00",
+  "updated_utc": "2026-10-24T08:46:13.842307+00:00",
   "previous_day": {
     "day_utc": "2026-10-23",
     "published": 5,

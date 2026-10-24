@@ -1,14 +1,5 @@
-🌐 MACRO & BITCOIN OUTLOOK: Bitcoin in bearish continuation, testing lower‑mid 80k support amid neutral sentiment 📊
-
-$BTC 24H: $80848.73 (-1.42%)
-Market Phase: Liquidity Hunt
-
-📊 Key Market Dynamics:
-• Bitcoin Structure: On 1H BTC sits below EMA‑20/50/200 with RSI at 30 and a bearish engulfing candle, confirming a LL‑LH continuation. The 4H frame shows deeper oversold RSI (12.7) and a mixed HH/LL structure, keeping price anchored near the $80,513 support zone.
-• Altcoin Flows: Altcoins are outperforming BTC (average +16.6% vs BTC -1.4%); top gainers BMT, ERA and TREE lead rotation, supported by a neutral Fear & Greed index (51) and BTC dominance at 59.46%.
-• Crucial Levels: Support $80513 | Resistance $80890.56
-
-💡 Trader Takeaway: Spot traders should consider buying near $80,500 with a tight stop below $80,300; futures players can look for short‑term scalps on pull‑backs to $80,500 and target the next resistance at $81,300, avoiding long positions until a clear bullish breakout above $81,000 occurs.
-
-$BTC $ETH #BinanceSquare #CryptoMarket
-⚠️ Educational market analysis only. Not financial advice. Always DYOR.
+⚡ $BMT LONG | Entry CMP $0.04067 | TP1 $0.04606 (+13.3%) / TP2 $0.05144 (+26.5%) | SL $0.03567 (-12.3%) | RR 1:1.1
+📊 RSI77.7 | VOL normal | OI n/a | MTF up/up | Est Liq L 0.033221/S 0.048219
+💎 Bonus $ERA #Write2Earn
+CTA: Verify levels before entry.
+⚠️ Not financial advice; manage risk.
