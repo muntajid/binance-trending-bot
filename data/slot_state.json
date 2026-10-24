@@ -1,10 +1,9 @@
 {
-  "last_slot": 1,
-  "last_type": "rapid_alert",
-  "last_run_utc": "2026-10-24T08:46:13.842293+00:00",
+  "last_slot": 2,
+  "last_type": "explained_setup",
+  "last_run_utc": "2026-10-24T13:54:08.334253+00:00",
   "day_utc": "2026-10-24",
   "pending_slots": [
-    2,
     3,
     4,
     5,

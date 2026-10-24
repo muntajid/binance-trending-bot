@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-10-24",
   "pending": [
-    2,
     3,
     4,
     5,
@@ -38,11 +37,23 @@
       "attempts": 1,
       "degraded": false,
       "coin": "BMT"
+    },
+    {
+      "slot": 2,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #1 (04:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-10-24T13:54:08.334253+00:00",
+      "run_id": "40100058082",
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "TREE"
     }
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-10-24T08:46:13.842307+00:00",
+  "updated_utc": "2026-10-24T13:54:08.334267+00:00",
   "previous_day": {
     "day_utc": "2026-10-23",
     "published": 5,
