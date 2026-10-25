@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-10-25",
   "pending": [
-    4,
     5,
     6,
     7,
@@ -60,11 +59,23 @@
       "attempts": 1,
       "degraded": false,
       "coin": "ENA"
+    },
+    {
+      "slot": 4,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #2 (08:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-10-25T20:35:36.593994+00:00",
+      "run_id": "40231419299",
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "QNT"
     }
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-10-25T17:30:27.267969+00:00",
+  "updated_utc": "2026-10-25T20:35:36.594009+00:00",
   "previous_day": {
     "day_utc": "2026-10-24",
     "published": 5,
