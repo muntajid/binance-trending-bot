@@ -1,14 +1,5 @@
-🌐 MACRO & BITCOIN OUTLOOK: Bitcoin stalls near $80.8k amid mixed 1H/4H bearish bias and neutral sentiment 📊
-
-$BTC 24H: $80798.02 (-0.40%)
-Market Phase: Consolidation with bearish bias
-
-📊 Key Market Dynamics:
-• Bitcoin Structure: On the 1‑hour chart BTC trades just above the 20‑EMA (80,652) but below the 50‑EMA (81,085) and the 200‑EMA (82,180), with RSI at 52.5 and a mixed LH/HL structure, while the 4‑hour frame shows a bearish tilt (RSI 41.5, price below 20‑EMA 81,308) and a HH/LL pattern, confining price between key liquidity zones.
-• Altcoin Flows: Altcoins are outperforming BTC, driven by strong momentum in BMT (+61.5%), EPIC (+23.3%) and ANIME (+20.4%), reflecting a breadth shift toward risk‑on assets despite BTC's sideways stance.
-• Crucial Levels: Support $80613.26 | Resistance $81261.11
-
-💡 Trader Takeaway: Spot traders may consider buying on dips near the 80,600–80,700 support zone with tight stops; futures participants should keep short bias above 81,200, targeting the 80,600 support if price breaks lower.
-
-$BTC $ETH #BinanceSquare #CryptoMarket
-⚠️ Educational market analysis only. Not financial advice. Always DYOR.
+⚡ $T LONG | Entry CMP $0.00643 | TP1 $0.00717 (+11.5%) / TP2 $0.0079 (+22.9%) | SL $0.0059 (-8.2%) | RR 1:1.4
+📊 RSI66.1 | VOL normal | OI n/a | MTF up/up | Est Liq L 0.005427/S 0.007433
+💎 Bonus $BTC #BinanceSquareFamily
+CTA: Verify levels before entry.
+⚠️ Not financial advice; manage risk.
