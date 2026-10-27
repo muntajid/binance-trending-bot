@@ -1,7 +1,10 @@
 {
   "version": 1,
-  "day_utc": "2026-10-26",
+  "day_utc": "2026-10-27",
   "pending": [
+    1,
+    2,
+    3,
     4,
     5,
     6,
@@ -18,62 +21,28 @@
       "type": "market_overview",
       "name": "Macro & Bitcoin Outlook (00:00 UTC)",
       "forced": false,
-      "published_utc": "2026-10-26T04:25:37.575482+00:00",
-      "run_id": "40268952691",
+      "published_utc": "2026-10-27T04:17:30.967542+00:00",
+      "run_id": "40448842288",
       "mode": "image",
       "attempts": 1,
       "degraded": false,
       "coin": null
-    },
-    {
-      "slot": 1,
-      "type": "rapid_alert",
-      "name": "Rapid Signal Alert #1 (02:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-26T12:31:23.725628+00:00",
-      "run_id": "40323056021",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "KAT"
-    },
-    {
-      "slot": 2,
-      "type": "explained_setup",
-      "name": "Explained Master Setup #1 (04:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-26T19:48:17.218468+00:00",
-      "run_id": "40389847210",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "CHIP"
-    },
-    {
-      "slot": 3,
-      "type": "rapid_alert",
-      "name": "Rapid Signal Alert #2 (06:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-26T23:39:29.699681+00:00",
-      "run_id": "40421140480",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "BEAMX"
     }
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-10-26T23:39:29.699696+00:00",
+  "updated_utc": "2026-10-27T04:17:30.967557+00:00",
   "previous_day": {
-    "day_utc": "2026-10-25",
-    "published": 6,
+    "day_utc": "2026-10-26",
+    "published": 4,
     "by_type": {
       "market_overview": 1,
-      "rapid_alert": 3,
-      "explained_setup": 2
+      "rapid_alert": 2,
+      "explained_setup": 1
     },
     "unpublished": [
+      4,
+      5,
       6,
       7,
       8,
