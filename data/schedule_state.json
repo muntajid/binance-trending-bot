@@ -1,7 +1,10 @@
 {
   "version": 1,
-  "day_utc": "2026-10-27",
+  "day_utc": "2026-10-28",
   "pending": [
+    1,
+    2,
+    3,
     4,
     5,
     6,
@@ -18,55 +21,19 @@
       "type": "market_overview",
       "name": "Macro & Bitcoin Outlook (00:00 UTC)",
       "forced": false,
-      "published_utc": "2026-10-27T04:17:30.967542+00:00",
-      "run_id": "40448842288",
+      "published_utc": "2026-10-28T01:08:57.187975+00:00",
+      "run_id": "40613174852",
       "mode": "image",
       "attempts": 1,
       "degraded": false,
       "coin": null
-    },
-    {
-      "slot": 1,
-      "type": "rapid_alert",
-      "name": "Rapid Signal Alert #1 (02:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-27T11:49:47.380061+00:00",
-      "run_id": "40498944524",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "HUMA"
-    },
-    {
-      "slot": 2,
-      "type": "explained_setup",
-      "name": "Explained Master Setup #1 (04:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-27T17:43:56.343631+00:00",
-      "run_id": "40553210518",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "HAEDAL"
-    },
-    {
-      "slot": 3,
-      "type": "rapid_alert",
-      "name": "Rapid Signal Alert #2 (06:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-27T21:57:31.211968+00:00",
-      "run_id": "40590903991",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "BANK"
     }
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-10-27T21:57:31.211981+00:00",
+  "updated_utc": "2026-10-28T01:08:57.187989+00:00",
   "previous_day": {
-    "day_utc": "2026-10-26",
+    "day_utc": "2026-10-27",
     "published": 4,
     "by_type": {
       "market_overview": 1,
