@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-10-28",
   "pending": [
-    1,
     2,
     3,
     4,
@@ -27,11 +26,23 @@
       "attempts": 1,
       "degraded": false,
       "coin": null
+    },
+    {
+      "slot": 1,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #1 (02:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-10-28T08:03:11.922440+00:00",
+      "run_id": "40653965028",
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "SOXLB"
     }
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-10-28T01:08:57.187989+00:00",
+  "updated_utc": "2026-10-28T08:03:11.922455+00:00",
   "previous_day": {
     "day_utc": "2026-10-27",
     "published": 4,
