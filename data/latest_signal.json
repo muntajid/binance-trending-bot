@@ -1,45 +1,45 @@
 {
-  "direction": "SHORT",
-  "entry_price": 0.0557,
-  "tp1": 0.05,
-  "tp2": 0.045,
-  "sl": 0.058,
-  "confidence": 1,
-  "rapid_reason": "1H bearish engulfing candle triggered a short bias.",
-  "why_now": "Price sits above VWAP with RSI overbought and MACD still positive, indicating potential reversal.",
-  "invalidation": "Break above 0.0580 invalidates the short.",
-  "smc_logic": "The 1H downtrend aligns with lower lows and lower highs, while the 4H uptrend provides a higher timeframe bias. A bearish engulfing candle at the entry price suggests a short entry near the upper Bollinger band, with support at 0.0404 acting as TP zones.",
-  "smc_logic_short": "1H LL/LL structure, bearish engulfing, entry above VWAP.",
-  "technical_analysis": "Multi‑timeframe shows downtrend on 1H, bullish on 4H; EMA20/50/200 all below price; RSI 72 (overbought); MACD positive; VWAP 0.0456 below entry; price at upper Bollinger edge.",
-  "indicators_summary": "EMA20 0.0430, EMA50 0.0403, EMA200 0.0368; RSI 72.7; MACD 0.0034/0.0011; VWAP 0.0456; BB upper 0.0554, position ~1.0; Stoch RSI K 92.7/D 97.6.",
+  "direction": "LONG",
+  "entry_price": 0.1903,
+  "tp1": 0.207,
+  "tp2": 0.2225,
+  "sl": 0.1825,
+  "confidence": 70,
+  "rapid_reason": "1H EMA crossover and RSI above 60 triggered entry.",
+  "why_now": "Price above VWAP and bullish 1H EMA regime with upward trend on higher timeframes.",
+  "invalidation": "Break below 0.1830 support level.",
+  "smc_logic": "Higher highs and higher lows on 1H chart confirm bullish structure. VWAP sits just below entry, providing immediate support. Liquidity on the ask side suggests upward pressure, while the liquidation heatmap shows a long zone near 0.183, reinforcing the stop level.",
+  "smc_logic_short": "HH‑HL structure, VWAP support, ask‑heavy order book.",
+  "technical_analysis": "Multi‑timeframe uptrend on 1H/4H, bullish EMA alignment, RSI 62, MACD near zero but positive, price within upper Bollinger band, Stoch RSI oversold, strong buy volume divergence.",
+  "indicators_summary": "EMA20 0.1874 < EMA50 0.1776 < EMA200 0.1673; RSI 62; MACD 0.0074 vs 0.0075; VWAP 0.1905 ≈ entry; BB position 0.59; Stoch %K 0 %D 8.",
   "risk_management": {
-    "risk_reward": "RR ≈ 1:2.5 (SL 0.0580, TP1 0.0500)",
-    "position_sizing": "Risk 1% of account per trade using ATR 0.0046 (~8.3% of entry).",
-    "invalidation_plan": "Close if price closes above 0.0580 or if 1H RSI drops below 50."
+    "risk_reward": "~1:4 (0.0078 RR per 1 % risk)",
+    "position_sizing": "Risk 1 % of capital at $0.0078 per unit (~$127 per $10k)",
+    "invalidation_plan": "Exit if price closes below 0.1830 support or if MACD turns negative."
   },
-  "validation_score": 1,
-  "analysis_summary": "Short bias supported by bearish candle, overbought RSI, and price above VWAP; TP targets near support levels, SL above recent highs.",
+  "validation_score": 8,
+  "analysis_summary": "Long bias supported by EMA, RSI, VWAP, and bullish structure; TP targets at 0.2070 and 0.2225 with SL at 0.1825.",
   "risk_factors": [
-    "Potential reversal if 4H uptrend reasserts.",
-    "Liquidity imbalance could cause slippage on rapid moves."
+    "Potential reversal on 4H sideways trend",
+    "Ask‑heavy order book may cap upside"
   ],
-  "fundamental_note": "Token unlock/listing risk unverified; no confirmed macro events.",
-  "coin": "PARTI",
-  "trending_bonus": "LSK",
+  "fundamental_note": "Token unlocks, vesting or listing events are unverified and not factored into this analysis.",
+  "coin": "LSK",
+  "trending_bonus": "PARTI",
   "entry": "CMP",
   "leverage": "15x",
   "risk": "Medium Risk",
-  "change": 43.077,
+  "change": 14.226,
   "groq_model": "openai/gpt-oss-120b",
   "volume_analysis": {
-    "buying_volume": 316149963.0,
-    "selling_volume": 439223278.09999996,
+    "buying_volume": 46241117.199999996,
+    "selling_volume": 42144215.79999999,
     "volume_spike": false,
     "breakout_volume_confirmed": false,
-    "volume_divergence": "none",
-    "average_volume": 29374341.139999997,
-    "latest_volume": 40796369.8,
-    "quote_volume_24h": 29541737.39413,
+    "volume_divergence": "bullish",
+    "average_volume": 3260923.3400000003,
+    "latest_volume": 1170003.3,
+    "quote_volume_24h": 13396545.42261,
     "buy_sell_volume_source": "Binance taker-buy base-volume field",
     "estimated": false
   },
@@ -48,175 +48,175 @@
     "funding_rate": null,
     "long_short_ratio": null,
     "liquidation_estimate": {
-      "long_liquidations_24h_usdt": 2215951.4320185,
-      "short_liquidations_24h_usdt": 2215951.4320185,
+      "long_liquidations_24h_usdt": 831558.3166059861,
+      "short_liquidations_24h_usdt": 831558.3166059861,
       "estimated": true,
       "source": "OI/24h volume x ATR-volatility proxy",
-      "atr_percent": 8.339768339768339
+      "atr_percent": 6.20725933719095
     },
     "futures_vs_spot_volume": null,
     "liquidation_levels": {
       "long_liquidation_zone": {
-        "lower": 0.04624285714285714,
-        "upper": 0.050871428571428574,
-        "mid": 0.04855714285714286
+        "lower": 0.1665,
+        "upper": 0.1783,
+        "mid": 0.1724
       },
       "short_liquidation_zone": {
-        "lower": 0.06012857142857143,
-        "upper": 0.06475714285714286,
-        "mid": 0.06244285714285714
+        "lower": 0.2019,
+        "upper": 0.21369999999999997,
+        "mid": 0.20779999999999998
       },
-      "magnet_price": 0.0659,
+      "magnet_price": 0.183,
       "clusters": [
         {
           "side": "long_liquidations",
-          "price": 0.0387,
+          "price": 0.183,
           "estimated_notional_usdt": 0.0,
           "estimated": true
         },
         {
           "side": "short_liquidations",
-          "price": 0.0659,
+          "price": 0.1994,
           "estimated_notional_usdt": 0.0,
           "estimated": true
         }
       ],
       "estimated": true,
-      "atr": 0.004628571428571428
+      "atr": 0.011799999999999996
     }
   },
   "liquidity_analysis": {
-    "imbalance": "bid_heavy",
-    "imbalance_ratio": 1.5828252338339581,
-    "bid_depth_usdt": 21448.863239999995,
-    "ask_depth_usdt": 13550.99905,
+    "imbalance": "ask_heavy",
+    "imbalance_ratio": 0.8535820819442566,
+    "bid_depth_usdt": 41259.178429999985,
+    "ask_depth_usdt": 48336.50952000001,
     "top_bids": [
       {
-        "price": 0.0553,
-        "quantity": 14608.4,
-        "notional_usdt": 807.84452
+        "price": 0.1901,
+        "quantity": 16129.8,
+        "notional_usdt": 3066.2749799999997
       },
       {
-        "price": 0.0552,
-        "quantity": 8742.5,
-        "notional_usdt": 482.586
+        "price": 0.19,
+        "quantity": 6215.5,
+        "notional_usdt": 1180.945
       },
       {
-        "price": 0.0551,
-        "quantity": 40069.4,
-        "notional_usdt": 2207.82394
+        "price": 0.1899,
+        "quantity": 6155.2,
+        "notional_usdt": 1168.87248
       },
       {
-        "price": 0.055,
-        "quantity": 39922.5,
-        "notional_usdt": 2195.7375
+        "price": 0.1898,
+        "quantity": 19890.4,
+        "notional_usdt": 3775.19792
       },
       {
-        "price": 0.0549,
-        "quantity": 43830.6,
-        "notional_usdt": 2406.29994
+        "price": 0.1897,
+        "quantity": 10430.7,
+        "notional_usdt": 1978.7037900000003
       }
     ],
     "top_asks": [
       {
-        "price": 0.0554,
-        "quantity": 5486.0,
-        "notional_usdt": 303.9244
+        "price": 0.1903,
+        "quantity": 14088.4,
+        "notional_usdt": 2681.02252
       },
       {
-        "price": 0.0555,
-        "quantity": 16268.6,
-        "notional_usdt": 902.9073000000001
+        "price": 0.1904,
+        "quantity": 165.1,
+        "notional_usdt": 31.43504
       },
       {
-        "price": 0.0556,
-        "quantity": 11140.0,
-        "notional_usdt": 619.384
+        "price": 0.1905,
+        "quantity": 493.3,
+        "notional_usdt": 93.97365
       },
       {
-        "price": 0.0557,
-        "quantity": 19091.1,
-        "notional_usdt": 1063.3742699999998
+        "price": 0.1906,
+        "quantity": 16332.5,
+        "notional_usdt": 3112.9745
       },
       {
-        "price": 0.0558,
-        "quantity": 14394.5,
-        "notional_usdt": 803.2131
+        "price": 0.1907,
+        "quantity": 65041.9,
+        "notional_usdt": 12403.49033
       }
     ],
     "available": true
   },
   "liquidation_heatmap": {
     "long_liquidation_zone": {
-      "lower": 0.04624285714285714,
-      "upper": 0.050871428571428574,
-      "mid": 0.04855714285714286
+      "lower": 0.1665,
+      "upper": 0.1783,
+      "mid": 0.1724
     },
     "short_liquidation_zone": {
-      "lower": 0.06012857142857143,
-      "upper": 0.06475714285714286,
-      "mid": 0.06244285714285714
+      "lower": 0.2019,
+      "upper": 0.21369999999999997,
+      "mid": 0.20779999999999998
     },
-    "magnet_price": 0.0659,
+    "magnet_price": 0.183,
     "clusters": [
       {
         "side": "long_liquidations",
-        "price": 0.0387,
+        "price": 0.183,
         "estimated_notional_usdt": 0.0,
         "estimated": true
       },
       {
         "side": "short_liquidations",
-        "price": 0.0659,
+        "price": 0.1994,
         "estimated_notional_usdt": 0.0,
         "estimated": true
       }
     ],
     "estimated": true,
-    "atr": 0.004628571428571428
+    "atr": 0.011799999999999996
   },
   "mtf_analysis": {
-    "5m": "uptrend",
-    "15m": "sideways",
-    "1h": "downtrend",
-    "4h": "uptrend",
-    "1d": "uptrend",
-    "1w": "downtrend"
+    "5m": "downtrend",
+    "15m": "uptrend",
+    "1h": "uptrend",
+    "4h": "sideways",
+    "1d": "downtrend",
+    "1w": "sideways"
   },
   "market_context": {
-    "btc_price": 80852.55,
-    "btc_change_24h": -0.383,
-    "eth_price": 2330.67,
-    "eth_change_24h": -1.118,
-    "bitcoin_trend": "mixed 1H/4H alignment (bullish, mixed)",
+    "btc_price": 78012.16,
+    "btc_change_24h": -4.026,
+    "eth_price": 2252.39,
+    "eth_change_24h": -4.463,
+    "bitcoin_trend": "bearish alignment on 1H and 4H",
     "bitcoin_trend_detail": {
       "1h": {
-        "trend": "bullish",
-        "close": 80846.0,
-        "ema_20": 80704.74639107751,
-        "ema_50": 80656.75723154591,
-        "market_structure": "HH-HL bullish continuation"
+        "trend": "bearish",
+        "close": 77934.77,
+        "ema_20": 80034.17877726718,
+        "ema_50": 80361.10405441638,
+        "market_structure": "mixed structure (HH/LL)"
       },
       "4h": {
-        "trend": "mixed",
-        "close": 80846.0,
-        "ema_20": 80721.43074687883,
-        "ema_50": 81012.30958740984,
+        "trend": "bearish",
+        "close": 77934.77,
+        "ema_20": 80456.23896711595,
+        "ema_50": 80882.36912660876,
         "market_structure": "LL-LH bearish continuation"
       }
     },
     "btc_dominance": {
-      "btc_dominance_percent": 59.51905134810937,
-      "total_mcap_proxy": 2719166084419.172,
+      "btc_dominance_percent": 59.35949376806124,
+      "total_mcap_proxy": 2620916345760.7944,
       "source": "CoinGecko global market data",
       "estimated": false
     },
-    "total_mcap_proxy": 2719166084419.172,
-    "eth_btc_ratio": 0.02882617802406974,
+    "total_mcap_proxy": 2620916345760.7944,
+    "eth_btc_ratio": 0.028872293755229952,
     "altcoin_btc_correlation": {
-      "average_alt_change_pct": 17.077699999999997,
-      "btc_change_pct": -0.383,
-      "relative_performance_pct": 17.460699999999996,
+      "average_alt_change_pct": 17.10885,
+      "btc_change_pct": -4.026,
+      "relative_performance_pct": 21.13485,
       "breadth": "altcoins outperforming BTC",
       "estimated": true,
       "method": "cross-sectional 24h return comparison; not a statistical correlation"
@@ -227,95 +227,95 @@
       "estimated": false,
       "source": "alternative.me Fear & Greed Index"
     },
-    "social_sentiment": "estimated mixed tone from BTC/ETH 24h price action; social feeds not queried",
+    "social_sentiment": "estimated cautious tone from BTC/ETH 24h price action; social feeds not queried",
     "macro_factors": {
-      "fed_rate_context": "No live Fed-rate feed. Interpret policy risk conditionally alongside BTC $80,852.55 (-0.38%) and ETH $2,330.67 (-1.12%) over 24h; macro releases and rates were not fetched.",
-      "cpi_context": "No live CPI/release feed; do not assert an inflation catalyst (BTC $80,852.55 (-0.38%) and ETH $2,330.67 (-1.12%) over 24h; macro releases and rates were not fetched).",
-      "dxy_proxy": "DXY was not fetched; use BTC/ETH relative momentum only as a risk-appetite proxy (BTC $80,852.55 (-0.38%) and ETH $2,330.67 (-1.12%) over 24h; macro releases and rates were not fetched).",
-      "treasury_context": "Treasury yields were not fetched; avoid asserting a yield catalyst (BTC $80,852.55 (-0.38%) and ETH $2,330.67 (-1.12%) over 24h; macro releases and rates were not fetched)."
+      "fed_rate_context": "No live Fed-rate feed. Interpret policy risk conditionally alongside BTC $78,012.16 (-4.03%) and ETH $2,252.39 (-4.46%) over 24h; macro releases and rates were not fetched.",
+      "cpi_context": "No live CPI/release feed; do not assert an inflation catalyst (BTC $78,012.16 (-4.03%) and ETH $2,252.39 (-4.46%) over 24h; macro releases and rates were not fetched).",
+      "dxy_proxy": "DXY was not fetched; use BTC/ETH relative momentum only as a risk-appetite proxy (BTC $78,012.16 (-4.03%) and ETH $2,252.39 (-4.46%) over 24h; macro releases and rates were not fetched).",
+      "treasury_context": "Treasury yields were not fetched; avoid asserting a yield catalyst (BTC $78,012.16 (-4.03%) and ETH $2,252.39 (-4.46%) over 24h; macro releases and rates were not fetched)."
     },
     "on_chain_proxy": {
       "exchange_flow_bias": "negative-price/turnover distribution-risk proxy; not actual wallet flows",
-      "whale_activity": "large-order-book proxy is ask_heavy (bid depth $26,801, ask depth $936,117); not verified whale flow",
-      "active_addresses_proxy": "not available on-chain; Binance BTC 24h quote turnover $1,224,778,537 and OI notional $0 are activity proxies",
+      "whale_activity": "large-order-book proxy is ask_heavy (bid depth $73,442, ask depth $181,056); not verified whale flow",
+      "active_addresses_proxy": "not available on-chain; Binance BTC 24h quote turnover $1,886,713,496 and OI notional $0 are activity proxies",
       "estimated": true
     },
-    "fundamental_notes": "For PARTI, token unlocks, vesting, listings, and delistings are not verified by this data feed; Groq must explicitly flag event risk as unverified rather than claim a confirmed event."
+    "fundamental_notes": "For LSK, token unlocks, vesting, listings, and delistings are not verified by this data feed; Groq must explicitly flag event risk as unverified rather than claim a confirmed event."
   },
   "sentiment_onchain": {
-    "social_sentiment": "estimated mixed tone from BTC/ETH 24h price action; social feeds not queried",
+    "social_sentiment": "estimated cautious tone from BTC/ETH 24h price action; social feeds not queried",
     "on_chain_proxy": {
       "exchange_flow_bias": "negative-price/turnover distribution-risk proxy; not actual wallet flows",
-      "whale_activity": "large-order-book proxy is ask_heavy (bid depth $26,801, ask depth $936,117); not verified whale flow",
-      "active_addresses_proxy": "not available on-chain; Binance BTC 24h quote turnover $1,224,778,537 and OI notional $0 are activity proxies",
+      "whale_activity": "large-order-book proxy is ask_heavy (bid depth $73,442, ask depth $181,056); not verified whale flow",
+      "active_addresses_proxy": "not available on-chain; Binance BTC 24h quote turnover $1,886,713,496 and OI notional $0 are activity proxies",
       "estimated": true
     }
   },
   "volatility_assessment": {
-    "atr_1h": 0.004628571428571428,
-    "atr_percent": 8.30982303154655,
+    "atr_1h": 0.011799999999999996,
+    "atr_percent": 6.200735680504465,
     "bollinger_bands": {
-      "upper": 0.055445687809631924,
-      "middle": 0.041069999999999995,
-      "lower": 0.026694312190368066,
-      "bandwidth": 70.00578431766219,
-      "position": 1.001889029279409
+      "upper": 0.2152878180213541,
+      "middle": 0.184875,
+      "lower": 0.15446218197864592,
+      "bandwidth": 32.90095255859807,
+      "position": 0.58590128011701
     },
     "estimated": false
   },
   "macro_factors": {
-    "fed_rate_context": "No live Fed-rate feed. Interpret policy risk conditionally alongside BTC $80,852.55 (-0.38%) and ETH $2,330.67 (-1.12%) over 24h; macro releases and rates were not fetched.",
-    "cpi_context": "No live CPI/release feed; do not assert an inflation catalyst (BTC $80,852.55 (-0.38%) and ETH $2,330.67 (-1.12%) over 24h; macro releases and rates were not fetched).",
-    "dxy_proxy": "DXY was not fetched; use BTC/ETH relative momentum only as a risk-appetite proxy (BTC $80,852.55 (-0.38%) and ETH $2,330.67 (-1.12%) over 24h; macro releases and rates were not fetched).",
-    "treasury_context": "Treasury yields were not fetched; avoid asserting a yield catalyst (BTC $80,852.55 (-0.38%) and ETH $2,330.67 (-1.12%) over 24h; macro releases and rates were not fetched)."
+    "fed_rate_context": "No live Fed-rate feed. Interpret policy risk conditionally alongside BTC $78,012.16 (-4.03%) and ETH $2,252.39 (-4.46%) over 24h; macro releases and rates were not fetched.",
+    "cpi_context": "No live CPI/release feed; do not assert an inflation catalyst (BTC $78,012.16 (-4.03%) and ETH $2,252.39 (-4.46%) over 24h; macro releases and rates were not fetched).",
+    "dxy_proxy": "DXY was not fetched; use BTC/ETH relative momentum only as a risk-appetite proxy (BTC $78,012.16 (-4.03%) and ETH $2,252.39 (-4.46%) over 24h; macro releases and rates were not fetched).",
+    "treasury_context": "Treasury yields were not fetched; avoid asserting a yield catalyst (BTC $78,012.16 (-4.03%) and ETH $2,252.39 (-4.46%) over 24h; macro releases and rates were not fetched)."
   },
-  "fundamental_risk": "For PARTI, token unlocks, vesting, listings, and delistings are not verified by this data feed; Groq must explicitly flag event risk as unverified rather than claim a confirmed event.",
+  "fundamental_risk": "For LSK, token unlocks, vesting, listings, and delistings are not verified by this data feed; Groq must explicitly flag event risk as unverified rather than claim a confirmed event.",
   "institutional_analysis": {
     "analysis_points": [
       {
         "number": 1,
         "name": "Multi-timeframe trend",
-        "observation": "5m uptrend; 15m sideways; 1h downtrend; 4h uptrend; 1d uptrend; 1w downtrend."
+        "observation": "5m downtrend; 15m uptrend; 1h uptrend; 4h sideways; 1d downtrend; 1w sideways."
       },
       {
         "number": 2,
         "name": "EMA regime",
-        "observation": "1H close 0.0555; EMA20 0.0430; EMA50 0.0403; EMA200 0.0368."
+        "observation": "1H close 0.1901; EMA20 0.1874; EMA50 0.1776; EMA200 0.1673."
       },
       {
         "number": 3,
         "name": "RSI momentum",
-        "observation": "1H RSI(14) 72.68."
+        "observation": "1H RSI(14) 62.50."
       },
       {
         "number": 4,
         "name": "MACD momentum",
-        "observation": "MACD 0.0034; signal 0.0011; histogram 0.0023."
+        "observation": "MACD 0.0074; signal 0.0075; histogram -0.0000."
       },
       {
         "number": 5,
         "name": "Bollinger volatility/position",
-        "observation": "Position 1.00; bandwidth 70.01%; bands 0.0267–0.0554."
+        "observation": "Position 0.59; bandwidth 32.90%; bands 0.1545–0.2153."
       },
       {
         "number": 6,
         "name": "Stochastic RSI",
-        "observation": "%K 92.66; %D 97.55."
+        "observation": "%K 0.00; %D 8.02."
       },
       {
         "number": 7,
         "name": "VWAP location",
-        "observation": "VWAP 0.0456 versus verified entry 0.0557."
+        "observation": "VWAP 0.1905 versus verified entry 0.1903."
       },
       {
         "number": 8,
         "name": "Candlestick trigger",
-        "observation": "bearish_engulfing"
+        "observation": "no listed reversal pattern detected."
       },
       {
         "number": 9,
         "name": "Market structure",
-        "observation": "LL-LH bearish continuation; 4H HH-HL bullish continuation."
+        "observation": "HH-HL bullish continuation; 4H mixed structure (LH/HL)."
       },
       {
         "number": 10,
@@ -325,22 +325,22 @@
       {
         "number": 11,
         "name": "Support and resistance",
-        "observation": "Support 0.0404; resistance 0.0659."
+        "observation": "Support 0.1830; resistance 0.2236."
       },
       {
         "number": 12,
         "name": "ATR risk regime",
-        "observation": "1H ATR(14) 0.0046 (8.31% of entry)."
+        "observation": "1H ATR(14) 0.0118 (6.20% of entry)."
       },
       {
         "number": 13,
         "name": "Volume participation",
-        "observation": "buy 316149963.00 / sell 439223278.10; spike=False; breakout confirmation=False; divergence=none."
+        "observation": "buy 46241117.20 / sell 42144215.80; spike=False; breakout confirmation=False; divergence=bullish."
       },
       {
         "number": 14,
         "name": "Order-book liquidity",
-        "observation": "bid_heavy; bid/ask notional ratio 1.583."
+        "observation": "ask_heavy; bid/ask notional ratio 0.854."
       },
       {
         "number": 15,
@@ -349,106 +349,40 @@
       }
     ],
     "indicators_1h": {
-      "close": 0.0555,
-      "ema_20": 0.04303279262161162,
-      "ema_50": 0.040273122116473596,
-      "ema_200": 0.036778486949275394,
-      "rsi": 72.6775956284153,
+      "close": 0.1901,
+      "ema_20": 0.18738179114554077,
+      "ema_50": 0.17763354972766968,
+      "ema_200": 0.1672917653554339,
+      "rsi": 62.499999999999986,
       "macd": {
-        "macd": 0.003362722405333869,
-        "signal": 0.0011059942513644565,
-        "histogram": 0.0022567281539694127
+        "macd": 0.007409617341241931,
+        "signal": 0.007451292737396069,
+        "histogram": -4.167539615413784e-05
       },
       "bollinger_bands": {
-        "upper": 0.055445687809631924,
-        "middle": 0.041069999999999995,
-        "lower": 0.026694312190368066,
-        "bandwidth": 70.00578431766219,
-        "position": 1.001889029279409
+        "upper": 0.2152878180213541,
+        "middle": 0.184875,
+        "lower": 0.15446218197864592,
+        "bandwidth": 32.90095255859807,
+        "position": 0.58590128011701
       },
       "stoch_rsi": {
-        "k": 92.65573770491802,
-        "d": 97.55191256830601
+        "k": 0.0,
+        "d": 8.016812364107293
       },
-      "vwap": 0.04556603863926575,
-      "candlestick_patterns": [
-        "bearish_engulfing"
-      ],
+      "vwap": 0.19046022160388684,
+      "candlestick_patterns": [],
       "support_resistance": {
-        "support": 0.0404,
-        "resistance": 0.0659,
+        "support": 0.183,
+        "resistance": 0.2236,
         "levels": [
-          0.0313,
-          0.038,
-          0.038274999999999997,
-          0.03856,
-          0.03905555555555556,
-          0.0394,
-          0.0397,
-          0.04,
-          0.0404
-        ]
-      },
-      "trendlines": {
-        "trend": "downtrend",
-        "higher_highs": false,
-        "higher_lows": false,
-        "lower_highs": true,
-        "lower_lows": true,
-        "structure": "LH/LL"
-      },
-      "breakout_breakdown": {
-        "type": "none",
-        "level": null,
-        "confirmed": false
-      },
-      "market_structure": "LL-LH bearish continuation",
-      "atr": 0.004628571428571428
-    },
-    "indicators_4h": {
-      "close": 0.0555,
-      "ema_20": 0.039242461858458436,
-      "ema_50": 0.03662794459417801,
-      "ema_200": 0.03440467550626347,
-      "rsi": 80.70175438596492,
-      "macd": {
-        "macd": 0.0021214239689375386,
-        "signal": 0.001371068259723578,
-        "histogram": 0.0007503557092139606
-      },
-      "bollinger_bands": {
-        "upper": 0.04691908094699686,
-        "middle": 0.039235000000000006,
-        "lower": 0.031550919053003154,
-        "bandwidth": 39.16952184017765,
-        "position": 1.558356888233771
-      },
-      "stoch_rsi": {
-        "k": 98.62532585644719,
-        "d": 39.85122368875511
-      },
-      "vwap": 0.03930633030070621,
-      "candlestick_patterns": [
-        "bullish_engulfing"
-      ],
-      "support_resistance": {
-        "support": 0.0403,
-        "resistance": 0.0659,
-        "levels": [
-          0.0311,
-          0.0316,
-          0.0324,
-          0.0336,
-          0.0338,
-          0.0342,
-          0.0347,
-          0.036,
-          0.0363,
-          0.038,
-          0.039,
-          0.0392,
-          0.0397,
-          0.0403
+          0.1632,
+          0.16575,
+          0.1668,
+          0.16870000000000002,
+          0.1699,
+          0.183,
+          0.2236
         ]
       },
       "trendlines": {
@@ -465,15 +399,69 @@
         "confirmed": false
       },
       "market_structure": "HH-HL bullish continuation",
-      "atr": 0.0039499999999999995
+      "atr": 0.011799999999999996
+    },
+    "indicators_4h": {
+      "close": 0.1901,
+      "ema_20": 0.1752915189133556,
+      "ema_50": 0.1762731748851401,
+      "ema_200": 0.19153536464706217,
+      "rsi": 66.29370629370626,
+      "macd": {
+        "macd": 0.004914464607444657,
+        "signal": 0.0009712698712485842,
+        "histogram": 0.003943194736196073
+      },
+      "bollinger_bands": {
+        "upper": 0.19536571742533954,
+        "middle": 0.17099000000000003,
+        "lower": 0.14661428257466053,
+        "bandwidth": 28.51127835000819,
+        "position": 0.8919884626684746
+      },
+      "stoch_rsi": {
+        "k": 29.700769969199698,
+        "d": 59.513723636310566
+      },
+      "vwap": 0.19368639623719164,
+      "candlestick_patterns": [],
+      "support_resistance": {
+        "support": 0.18856666666666666,
+        "resistance": 0.2236,
+        "levels": [
+          0.1558,
+          0.1609,
+          0.163,
+          0.1658,
+          0.1737,
+          0.1792,
+          0.1873,
+          0.18856666666666666
+        ]
+      },
+      "trendlines": {
+        "trend": "sideways",
+        "higher_highs": false,
+        "higher_lows": true,
+        "lower_highs": true,
+        "lower_lows": false,
+        "structure": "LH/HL"
+      },
+      "breakout_breakdown": {
+        "type": "none",
+        "level": null,
+        "confirmed": false
+      },
+      "market_structure": "mixed structure (LH/HL)",
+      "atr": 0.010271428571428574
     },
     "timeframe_trends": {
-      "5m": "uptrend",
-      "15m": "sideways",
-      "1h": "downtrend",
-      "4h": "uptrend",
-      "1d": "uptrend",
-      "1w": "downtrend"
+      "5m": "downtrend",
+      "15m": "uptrend",
+      "1h": "uptrend",
+      "4h": "sideways",
+      "1d": "downtrend",
+      "1w": "sideways"
     },
     "klines_available": {
       "5m": 100,
@@ -481,83 +469,83 @@
       "1h": 100,
       "4h": 100,
       "1d": 100,
-      "1w": 84
+      "1w": 100
     },
     "ticker": {
-      "price": 0.0555,
-      "change_24h": 42.308,
-      "quote_volume_24h": 29541737.39413,
+      "price": 0.1901,
+      "change_24h": 14.174,
+      "quote_volume_24h": 13396545.42261,
       "verified": true
     },
     "volume_analysis": {
-      "buying_volume": 316149963.0,
-      "selling_volume": 439223278.09999996,
+      "buying_volume": 46241117.199999996,
+      "selling_volume": 42144215.79999999,
       "volume_spike": false,
       "breakout_volume_confirmed": false,
-      "volume_divergence": "none",
-      "average_volume": 29374341.139999997,
-      "latest_volume": 40796369.8,
-      "quote_volume_24h": 29541737.39413,
+      "volume_divergence": "bullish",
+      "average_volume": 3260923.3400000003,
+      "latest_volume": 1170003.3,
+      "quote_volume_24h": 13396545.42261,
       "buy_sell_volume_source": "Binance taker-buy base-volume field",
       "estimated": false
     },
     "orderbook": {
-      "imbalance": "bid_heavy",
-      "imbalance_ratio": 1.5828252338339581,
-      "bid_depth_usdt": 21448.863239999995,
-      "ask_depth_usdt": 13550.99905,
+      "imbalance": "ask_heavy",
+      "imbalance_ratio": 0.8535820819442566,
+      "bid_depth_usdt": 41259.178429999985,
+      "ask_depth_usdt": 48336.50952000001,
       "top_bids": [
         {
-          "price": 0.0553,
-          "quantity": 14608.4,
-          "notional_usdt": 807.84452
+          "price": 0.1901,
+          "quantity": 16129.8,
+          "notional_usdt": 3066.2749799999997
         },
         {
-          "price": 0.0552,
-          "quantity": 8742.5,
-          "notional_usdt": 482.586
+          "price": 0.19,
+          "quantity": 6215.5,
+          "notional_usdt": 1180.945
         },
         {
-          "price": 0.0551,
-          "quantity": 40069.4,
-          "notional_usdt": 2207.82394
+          "price": 0.1899,
+          "quantity": 6155.2,
+          "notional_usdt": 1168.87248
         },
         {
-          "price": 0.055,
-          "quantity": 39922.5,
-          "notional_usdt": 2195.7375
+          "price": 0.1898,
+          "quantity": 19890.4,
+          "notional_usdt": 3775.19792
         },
         {
-          "price": 0.0549,
-          "quantity": 43830.6,
-          "notional_usdt": 2406.29994
+          "price": 0.1897,
+          "quantity": 10430.7,
+          "notional_usdt": 1978.7037900000003
         }
       ],
       "top_asks": [
         {
-          "price": 0.0554,
-          "quantity": 5486.0,
-          "notional_usdt": 303.9244
+          "price": 0.1903,
+          "quantity": 14088.4,
+          "notional_usdt": 2681.02252
         },
         {
-          "price": 0.0555,
-          "quantity": 16268.6,
-          "notional_usdt": 902.9073000000001
+          "price": 0.1904,
+          "quantity": 165.1,
+          "notional_usdt": 31.43504
         },
         {
-          "price": 0.0556,
-          "quantity": 11140.0,
-          "notional_usdt": 619.384
+          "price": 0.1905,
+          "quantity": 493.3,
+          "notional_usdt": 93.97365
         },
         {
-          "price": 0.0557,
-          "quantity": 19091.1,
-          "notional_usdt": 1063.3742699999998
+          "price": 0.1906,
+          "quantity": 16332.5,
+          "notional_usdt": 3112.9745
         },
         {
-          "price": 0.0558,
-          "quantity": 14394.5,
-          "notional_usdt": 803.2131
+          "price": 0.1907,
+          "quantity": 65041.9,
+          "notional_usdt": 12403.49033
         }
       ],
       "available": true
@@ -567,77 +555,77 @@
       "funding_rate": null,
       "long_short_ratio": null,
       "liquidation_estimate": {
-        "long_liquidations_24h_usdt": 2215951.4320185,
-        "short_liquidations_24h_usdt": 2215951.4320185,
+        "long_liquidations_24h_usdt": 831558.3166059861,
+        "short_liquidations_24h_usdt": 831558.3166059861,
         "estimated": true,
         "source": "OI/24h volume x ATR-volatility proxy",
-        "atr_percent": 8.339768339768339
+        "atr_percent": 6.20725933719095
       },
       "futures_vs_spot_volume": null,
       "liquidation_levels": {
         "long_liquidation_zone": {
-          "lower": 0.04624285714285714,
-          "upper": 0.050871428571428574,
-          "mid": 0.04855714285714286
+          "lower": 0.1665,
+          "upper": 0.1783,
+          "mid": 0.1724
         },
         "short_liquidation_zone": {
-          "lower": 0.06012857142857143,
-          "upper": 0.06475714285714286,
-          "mid": 0.06244285714285714
+          "lower": 0.2019,
+          "upper": 0.21369999999999997,
+          "mid": 0.20779999999999998
         },
-        "magnet_price": 0.0659,
+        "magnet_price": 0.183,
         "clusters": [
           {
             "side": "long_liquidations",
-            "price": 0.0387,
+            "price": 0.183,
             "estimated_notional_usdt": 0.0,
             "estimated": true
           },
           {
             "side": "short_liquidations",
-            "price": 0.0659,
+            "price": 0.1994,
             "estimated_notional_usdt": 0.0,
             "estimated": true
           }
         ],
         "estimated": true,
-        "atr": 0.004628571428571428
+        "atr": 0.011799999999999996
       }
     },
     "market_context": {
-      "btc_price": 80852.55,
-      "btc_change_24h": -0.383,
-      "eth_price": 2330.67,
-      "eth_change_24h": -1.118,
-      "bitcoin_trend": "mixed 1H/4H alignment (bullish, mixed)",
+      "btc_price": 78012.16,
+      "btc_change_24h": -4.026,
+      "eth_price": 2252.39,
+      "eth_change_24h": -4.463,
+      "bitcoin_trend": "bearish alignment on 1H and 4H",
       "bitcoin_trend_detail": {
         "1h": {
-          "trend": "bullish",
-          "close": 80846.0,
-          "ema_20": 80704.74639107751,
-          "ema_50": 80656.75723154591,
-          "market_structure": "HH-HL bullish continuation"
+          "trend": "bearish",
+          "close": 77934.77,
+          "ema_20": 80034.17877726718,
+          "ema_50": 80361.10405441638,
+          "market_structure": "mixed structure (HH/LL)"
         },
         "4h": {
-          "trend": "mixed",
-          "close": 80846.0,
-          "ema_20": 80721.43074687883,
-          "ema_50": 81012.30958740984,
+          "trend": "bearish",
+          "close": 77934.77,
+          "ema_20": 80456.23896711595,
+          "ema_50": 80882.36912660876,
           "market_structure": "LL-LH bearish continuation"
         }
       },
       "btc_dominance": {
-        "btc_dominance_percent": 59.51905134810937,
-        "total_mcap_proxy": 2719166084419.172,
+        "btc_dominance_percent": 59.35949376806124,
+        "total_mcap_proxy": 2620916345760.7944,
         "source": "CoinGecko global market data",
         "estimated": false
       },
-      "total_mcap_proxy": 2719166084419.172,
-      "eth_btc_ratio": 0.02882617802406974,
+      "total_mcap_proxy": 2620916345760.7944,
+      "eth_btc_ratio": 0.028872293755229952,
       "altcoin_btc_correlation": {
-        "average_alt_change_pct": 17.077699999999997,
-        "btc_change_pct": -0.383,
-        "relative_performance_pct": 17.460699999999996,
+        "average_alt_change_pct": 17.10885,
+        "btc_change_pct": -4.026,
+        "relative_performance_pct": 21.13485,
         "breadth": "altcoins outperforming BTC",
         "estimated": true,
         "method": "cross-sectional 24h return comparison; not a statistical correlation"
@@ -648,27 +636,27 @@
         "estimated": false,
         "source": "alternative.me Fear & Greed Index"
       },
-      "social_sentiment": "estimated mixed tone from BTC/ETH 24h price action; social feeds not queried",
+      "social_sentiment": "estimated cautious tone from BTC/ETH 24h price action; social feeds not queried",
       "macro_factors": {
-        "fed_rate_context": "No live Fed-rate feed. Interpret policy risk conditionally alongside BTC $80,852.55 (-0.38%) and ETH $2,330.67 (-1.12%) over 24h; macro releases and rates were not fetched.",
-        "cpi_context": "No live CPI/release feed; do not assert an inflation catalyst (BTC $80,852.55 (-0.38%) and ETH $2,330.67 (-1.12%) over 24h; macro releases and rates were not fetched).",
-        "dxy_proxy": "DXY was not fetched; use BTC/ETH relative momentum only as a risk-appetite proxy (BTC $80,852.55 (-0.38%) and ETH $2,330.67 (-1.12%) over 24h; macro releases and rates were not fetched).",
-        "treasury_context": "Treasury yields were not fetched; avoid asserting a yield catalyst (BTC $80,852.55 (-0.38%) and ETH $2,330.67 (-1.12%) over 24h; macro releases and rates were not fetched)."
+        "fed_rate_context": "No live Fed-rate feed. Interpret policy risk conditionally alongside BTC $78,012.16 (-4.03%) and ETH $2,252.39 (-4.46%) over 24h; macro releases and rates were not fetched.",
+        "cpi_context": "No live CPI/release feed; do not assert an inflation catalyst (BTC $78,012.16 (-4.03%) and ETH $2,252.39 (-4.46%) over 24h; macro releases and rates were not fetched).",
+        "dxy_proxy": "DXY was not fetched; use BTC/ETH relative momentum only as a risk-appetite proxy (BTC $78,012.16 (-4.03%) and ETH $2,252.39 (-4.46%) over 24h; macro releases and rates were not fetched).",
+        "treasury_context": "Treasury yields were not fetched; avoid asserting a yield catalyst (BTC $78,012.16 (-4.03%) and ETH $2,252.39 (-4.46%) over 24h; macro releases and rates were not fetched)."
       },
       "on_chain_proxy": {
         "exchange_flow_bias": "negative-price/turnover distribution-risk proxy; not actual wallet flows",
-        "whale_activity": "large-order-book proxy is ask_heavy (bid depth $26,801, ask depth $936,117); not verified whale flow",
-        "active_addresses_proxy": "not available on-chain; Binance BTC 24h quote turnover $1,224,778,537 and OI notional $0 are activity proxies",
+        "whale_activity": "large-order-book proxy is ask_heavy (bid depth $73,442, ask depth $181,056); not verified whale flow",
+        "active_addresses_proxy": "not available on-chain; Binance BTC 24h quote turnover $1,886,713,496 and OI notional $0 are activity proxies",
         "estimated": true
       },
-      "fundamental_notes": "For PARTI, token unlocks, vesting, listings, and delistings are not verified by this data feed; Groq must explicitly flag event risk as unverified rather than claim a confirmed event."
+      "fundamental_notes": "For LSK, token unlocks, vesting, listings, and delistings are not verified by this data feed; Groq must explicitly flag event risk as unverified rather than claim a confirmed event."
     },
     "btc_dominance": {
-      "btc_dominance_percent": 59.51905134810937,
-      "total_mcap_proxy": 2719166084419.172,
+      "btc_dominance_percent": 59.35949376806124,
+      "total_mcap_proxy": 2620916345760.7944,
       "source": "CoinGecko global market data",
       "estimated": false
     }
   },
-  "slot_mode": "explained_setup"
+  "slot_mode": "rapid_alert"
 }

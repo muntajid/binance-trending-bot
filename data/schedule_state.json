@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-10-29",
   "pending": [
-    3,
     4,
     5,
     6,
@@ -49,11 +48,23 @@
       "attempts": 1,
       "degraded": false,
       "coin": "PARTI"
+    },
+    {
+      "slot": 3,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #2 (06:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-10-29T23:51:24.136701+00:00",
+      "run_id": "40975824586",
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "LSK"
     }
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-10-29T19:28:03.916889+00:00",
+  "updated_utc": "2026-10-29T23:51:24.136712+00:00",
   "previous_day": {
     "day_utc": "2026-10-28",
     "published": 4,
