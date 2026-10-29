@@ -1,7 +1,10 @@
 {
   "version": 1,
-  "day_utc": "2026-10-28",
+  "day_utc": "2026-10-29",
   "pending": [
+    1,
+    2,
+    3,
     4,
     5,
     6,
@@ -18,55 +21,19 @@
       "type": "market_overview",
       "name": "Macro & Bitcoin Outlook (00:00 UTC)",
       "forced": false,
-      "published_utc": "2026-10-28T01:08:57.187975+00:00",
-      "run_id": "40613174852",
+      "published_utc": "2026-10-29T04:58:20.638549+00:00",
+      "run_id": "40820619057",
       "mode": "image",
       "attempts": 1,
       "degraded": false,
       "coin": null
-    },
-    {
-      "slot": 1,
-      "type": "rapid_alert",
-      "name": "Rapid Signal Alert #1 (02:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-28T08:03:11.922440+00:00",
-      "run_id": "40653965028",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "SOXLB"
-    },
-    {
-      "slot": 2,
-      "type": "explained_setup",
-      "name": "Explained Master Setup #1 (04:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-28T16:30:45.953349+00:00",
-      "run_id": "40726495956",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "INIT"
-    },
-    {
-      "slot": 3,
-      "type": "rapid_alert",
-      "name": "Rapid Signal Alert #2 (06:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-28T22:22:00.620975+00:00",
-      "run_id": "40779292965",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "BLUR"
     }
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-10-28T22:22:00.620991+00:00",
+  "updated_utc": "2026-10-29T04:58:20.638566+00:00",
   "previous_day": {
-    "day_utc": "2026-10-27",
+    "day_utc": "2026-10-28",
     "published": 4,
     "by_type": {
       "market_overview": 1,
