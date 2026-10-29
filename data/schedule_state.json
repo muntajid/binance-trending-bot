@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-10-29",
   "pending": [
-    2,
     3,
     4,
     5,
@@ -38,11 +37,23 @@
       "attempts": 1,
       "degraded": false,
       "coin": "HYPE"
+    },
+    {
+      "slot": 2,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #1 (04:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-10-29T19:28:03.916874+00:00",
+      "run_id": "40940204268",
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "PARTI"
     }
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-10-29T12:33:41.990266+00:00",
+  "updated_utc": "2026-10-29T19:28:03.916889+00:00",
   "previous_day": {
     "day_utc": "2026-10-28",
     "published": 4,
