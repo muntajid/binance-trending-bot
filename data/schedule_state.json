@@ -1,7 +1,10 @@
 {
   "version": 1,
-  "day_utc": "2026-10-29",
+  "day_utc": "2026-10-30",
   "pending": [
+    1,
+    2,
+    3,
     4,
     5,
     6,
@@ -18,55 +21,19 @@
       "type": "market_overview",
       "name": "Macro & Bitcoin Outlook (00:00 UTC)",
       "forced": false,
-      "published_utc": "2026-10-29T04:58:20.638549+00:00",
-      "run_id": "40820619057",
+      "published_utc": "2026-10-30T04:58:36.092432+00:00",
+      "run_id": "41005772084",
       "mode": "image",
       "attempts": 1,
       "degraded": false,
       "coin": null
-    },
-    {
-      "slot": 1,
-      "type": "rapid_alert",
-      "name": "Rapid Signal Alert #1 (02:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-29T12:33:41.990249+00:00",
-      "run_id": "40874157699",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "HYPE"
-    },
-    {
-      "slot": 2,
-      "type": "explained_setup",
-      "name": "Explained Master Setup #1 (04:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-29T19:28:03.916874+00:00",
-      "run_id": "40940204268",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "PARTI"
-    },
-    {
-      "slot": 3,
-      "type": "rapid_alert",
-      "name": "Rapid Signal Alert #2 (06:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-29T23:51:24.136701+00:00",
-      "run_id": "40975824586",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "LSK"
     }
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-10-29T23:51:24.136712+00:00",
+  "updated_utc": "2026-10-30T04:58:36.092446+00:00",
   "previous_day": {
-    "day_utc": "2026-10-28",
+    "day_utc": "2026-10-29",
     "published": 4,
     "by_type": {
       "market_overview": 1,

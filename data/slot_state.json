@@ -1,9 +1,12 @@
 {
-  "last_slot": 3,
-  "last_type": "rapid_alert",
-  "last_run_utc": "2026-10-29T23:51:24.136701+00:00",
-  "day_utc": "2026-10-29",
+  "last_slot": 0,
+  "last_type": "market_overview",
+  "last_run_utc": "2026-10-30T04:58:36.092432+00:00",
+  "day_utc": "2026-10-30",
   "pending_slots": [
+    1,
+    2,
+    3,
     4,
     5,
     6,
