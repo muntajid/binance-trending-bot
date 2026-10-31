@@ -1,5 +1,14 @@
-⚡ $OP SHORT | Entry CMP $0.1196 | TP1 $0.117 (+2.2%) / TP2 $0.115 (+3.8%) | SL $0.122 (-2.0%) | RR 1:1.1
-📊 RSI93 | VOL normal | OI n/a | MTF flat/down | Est Liq L 0.115311/S 0.123689
-💎 Bonus $SOPH #CryptoTrading
-CTA: Are you trading this $OP setup or w…
-⚠️ Not financial advice; manage risk.
+🌐 MACRO & BITCOIN OUTLOOK: Bitcoin in bearish continuation, testing lower‑mid 77k with dominance steady and fear sentiment 📊
+
+$BTC 24H: $77164 (-1.49%)
+Market Phase: Liquidity Hunt / Consolidation
+
+📊 Key Market Dynamics:
+• Bitcoin Structure: On 1H BTC shows a LL‑LH bearish continuation (RSI 48.6, price below EMA‑20/50, near the lower Bollinger band) while 4H remains oversold (RSI 28.8, price under EMA‑20/50/200), suggesting sellers are probing the 76.5k resistance and defending the 76.5k‑77.2k liquidity pocket.
+• Altcoin Flows: Altcoins are outperforming BTC (average +18.9% 24h) with SOPH, BEAMX and LSK leading gains, indicating capital rotation into high‑momentum midsize tokens amid a risk‑averse market.
+• Crucial Levels: Support $76486.03 | Resistance $77654.44
+
+💡 Trader Takeaway: Spot: consider adding to short positions or tightening stops near 77.2k resistance; Futures: look for short‑entry on break below 76.5k with a target around 76.0k and a tight stop above 77.2k.
+
+$BTC $ETH #BinanceSquare #CryptoMarket
+⚠️ Educational market analysis only. Not financial advice. Always DYOR.
