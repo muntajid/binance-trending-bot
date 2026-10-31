@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-10-31",
   "pending": [
-    2,
     3,
     4,
     5,
@@ -38,11 +37,23 @@
       "attempts": 1,
       "degraded": false,
       "coin": "LSK"
+    },
+    {
+      "slot": 2,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #1 (04:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-10-31T17:01:07.313179+00:00",
+      "run_id": "41222362457",
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "STX"
     }
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-10-31T11:54:50.984865+00:00",
+  "updated_utc": "2026-10-31T17:01:07.313195+00:00",
   "previous_day": {
     "day_utc": "2026-10-30",
     "published": 4,
