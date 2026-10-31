@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-10-31",
   "pending": [
-    1,
     2,
     3,
     4,
@@ -27,11 +26,23 @@
       "attempts": 1,
       "degraded": false,
       "coin": null
+    },
+    {
+      "slot": 1,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #1 (02:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-10-31T11:54:50.984851+00:00",
+      "run_id": "41198747824",
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "LSK"
     }
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-10-31T04:45:09.139877+00:00",
+  "updated_utc": "2026-10-31T11:54:50.984865+00:00",
   "previous_day": {
     "day_utc": "2026-10-30",
     "published": 4,
