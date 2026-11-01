@@ -1,7 +1,10 @@
 {
   "version": 1,
-  "day_utc": "2026-10-31",
+  "day_utc": "2026-11-01",
   "pending": [
+    1,
+    2,
+    3,
     4,
     5,
     6,
@@ -18,55 +21,19 @@
       "type": "market_overview",
       "name": "Macro & Bitcoin Outlook (00:00 UTC)",
       "forced": false,
-      "published_utc": "2026-10-31T04:45:09.139862+00:00",
-      "run_id": "41169785847",
+      "published_utc": "2026-11-01T00:49:27.097928+00:00",
+      "run_id": "41258374700",
       "mode": "image",
       "attempts": 1,
       "degraded": false,
       "coin": null
-    },
-    {
-      "slot": 1,
-      "type": "rapid_alert",
-      "name": "Rapid Signal Alert #1 (02:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-31T11:54:50.984851+00:00",
-      "run_id": "41198747824",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "LSK"
-    },
-    {
-      "slot": 2,
-      "type": "explained_setup",
-      "name": "Explained Master Setup #1 (04:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-31T17:01:07.313179+00:00",
-      "run_id": "41222362457",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "STX"
-    },
-    {
-      "slot": 3,
-      "type": "rapid_alert",
-      "name": "Rapid Signal Alert #2 (06:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-10-31T21:13:07.398149+00:00",
-      "run_id": "41242487226",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "BEAMX"
     }
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-10-31T21:13:07.398163+00:00",
+  "updated_utc": "2026-11-01T00:49:27.097943+00:00",
   "previous_day": {
-    "day_utc": "2026-10-30",
+    "day_utc": "2026-10-31",
     "published": 4,
     "by_type": {
       "market_overview": 1,
