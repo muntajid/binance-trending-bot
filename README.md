@@ -13,7 +13,7 @@ GitHub Actions cron ──> bot.monitor_runner  (1m candle scan → TP1/TP2 proo
                                   └──> data/*.json committed back to this repo (that IS the database)
 ```
 
-## The 12-post daily plan
+## The 12-post rotation
 
 `bot/config.json` → `schedule.slots` is the single source of truth (top-100-creator benchmark mix):
 
@@ -24,17 +24,22 @@ GitHub Actions cron ──> bot.monitor_runner  (1m candle scan → TP1/TP2 proo
 | 1 | `market_overview` | Macro & Bitcoin structure, flows, key levels |
 | 1 | `meme_community` | Trader-psychology meme (highest median views, +49% paired uplift) |
 
-**The type is chosen by a queue, not by the clock.** Each run takes the next pending slot of the
-current UTC day, so:
+**The type is chosen by a continuous queue, not by the clock or calendar date.** Each automatic run
+takes the next pending slot, so:
 
-- the 12 scheduled runs (`0 */2 * * *`) walk the whole plan in order;
-- **manual runs keep that property** — click *Run workflow* five times and you get five different
-  posts, never five memes (the old code computed `slot = (utc_hour // 2) % 12`, so three runs inside
-  12:00–13:59 UTC all resolved to the meme slot);
-- a slot whose run failed goes back to the **front** of the queue and is retried by the next run,
-  instead of being lost (a failed slot used to silently turn "12 posts a day" into nine);
-- once all 12 are published, the rotation wraps (guarded by the 24 h coin cooldown and the caption
-  similarity check, so a wrap cannot become duplicate content).
+- cron (`0 */2 * * *`) targets 12 runs per day and walks the plan in order;
+- **midnight does not restart an unfinished rotation.** GitHub can delay or omit cron events; if the
+  runs arrive late, the 12-post mix simply spans multiple UTC days. This prevents a delayed BTC
+  outlook from being followed immediately by the next day's outlook;
+- **manual runs with `slot: auto` advance the same queue**, rather than repeating the current hour's
+  post type;
+- a retryable failure returns its slot to the **front** of the queue for the next run;
+- only after all 12 queued slots are resolved does the next rotation begin. An uncertain publish
+  consumes its slot without a retry because the post may already have reached Square.
+
+Explicit type/slot requests and `reset` are overrides, not part of the automatic mix. They can add
+extras or repeat content; leave `slot: auto` and `reset: false` for normal posting. The coin cooldown
+and caption similarity guard still apply, but they check wording/coins, not the daily content mix.
 
 ## Running it by hand
 
@@ -42,16 +47,16 @@ current UTC day, so:
 
 | Input | Effect |
 | --- | --- |
-| `slot: auto` (default) | Next pending slot of today's queue |
+| `slot: auto` (default) | Next pending slot of the continuous rotation |
 | `slot: market_overview` / `rapid_alert` / `explained_setup` / `meme_community` | Publish that type now (takes its pending slot if it still has one; otherwise a forced extra run that leaves the queue untouched) |
-| `reset` | Rebuild today's queue from `bot/config.json` first |
+| `reset` | Deliberately start a new rotation from `bot/config.json`; may repeat content. Never enabled automatically at midnight. |
 | `preview` | Generate the post and chart, publish nothing, and roll the slot + its side effects back |
 
-The workflow prints today's queue (`python -m bot.schedule --status`) and a summary card with the
-next queued slot, so a run explains itself in the GitHub UI. Locally:
+The workflow prints the current rotation (`python -m bot.schedule --status`) and a summary card with
+the next queued slot, so a run explains itself in the GitHub UI. Locally:
 
 ```bash
-python -m bot.schedule --status          # today's queue as JSON
+python -m bot.schedule --status          # current rotation and daily publish count as JSON
 python -m bot.schedule --peek --slot 7   # what "slot 7" / a type would resolve to
 SLOT=rapid_alert PREVIEW_ONLY=1 python -m bot.main_signal   # generate without publishing
 ```
@@ -60,7 +65,7 @@ SLOT=rapid_alert PREVIEW_ONLY=1 python -m bot.main_signal   # generate without p
 
 | File | Purpose |
 | --- | --- |
-| `data/schedule_state.json` | The day's plan: `pending`, `in_flight`, `published`, wrap count, last error |
+| `data/schedule_state.json` | Continuous queue: `pending`, `in_flight`, rotation-tagged publish ledger, completed rotation count, last error. Older untagged state migrates without discarding pending slots. |
 | `data/pending_run.json` | What the current run mutated (slot, coin, `trade_id`) so a failed publish can undo exactly that |
 | `data/publish_receipt.json` | Last publish outcome (mode, attempts, degraded flag) |
 | `data/active_trades.json` | Open setups the monitor watches |
