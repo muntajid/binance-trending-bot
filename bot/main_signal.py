@@ -1,6 +1,6 @@
 """Master multi-mode signal, macro overview, and community content engine.
 
-Executes the 12-slot daily portfolio schedule defined in ``bot/config.json``
+Executes the 12-slot portfolio rotation defined in ``bot/config.json``
 (benchmarked against top 100 creator data):
 
 - 5x Rapid Alerts (verified trade levels plus a concise institutional read)
@@ -456,7 +456,7 @@ def run() -> None:
     if slot.get("forced"):
         print(
             f"[Slot Engine] Slot #{slot['slot']} was requested explicitly and is not "
-            "pending today; the queue is left untouched"
+            "pending in this rotation; the automatic queue is left untouched"
         )
     if slot.get("wrapped"):
         print("[Slot Engine] Every queued slot was resolved, so the next rotation started")

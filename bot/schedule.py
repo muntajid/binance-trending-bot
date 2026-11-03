@@ -536,8 +536,8 @@ def select_slot(request: str | None = None, *, reset: bool = False) -> dict[str,
     elif kind == "type":
         match = next((slot for slot in state["pending"] if by_slot[slot]["type"] == value), None)
         if match is None:
-            # Every slot of this type is already published today: honour the
-            # manual request anyway without consuming another slot's turn.
+            # Every slot of this type is already resolved in this rotation:
+            # honour the manual request without consuming another slot's turn.
             match = next(slot for slot in sorted(by_slot) if by_slot[slot]["type"] == value)
             forced = True
         chosen_slot = match
@@ -861,7 +861,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.reset:
         load_state(reset=True)
-        print("[Schedule] Queue rebuilt from bot/config.json")
+        print("[Schedule] New rotation started from bot/config.json; earlier history retained")
 
     if args.peek:
         try:

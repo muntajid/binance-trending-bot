@@ -91,8 +91,8 @@ never race on the same file or the same push.
 - **Stale trade TTL.** An `ACTIVE` setup nobody can resolve any more is archived as `EXPIRED` after
   `trading.active_trade_ttl_hours` (72 h) so it stops blocking its coin.
 - **Quiet-market degradation.** If nothing clears the +5% momentum filter, the threshold relaxes
-  through `trending.min_change_fallbacks` before the run gives up — a softer verified setup still
-  keeps the day's cadence intact.
+  through `trending.min_change_fallbacks` before the run gives up — a softer verified setup can still
+  use the run's assigned slot when conditions are quiet.
 
 ## Required secrets and variables
 
