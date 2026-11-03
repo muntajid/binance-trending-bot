@@ -1,8 +1,9 @@
 {
   "version": 1,
-  "day_utc": "2026-11-02",
+  "day_utc": "2026-11-03",
   "pending": [
     1,
+    2,
     3,
     4,
     5,
@@ -16,24 +17,12 @@
   "in_flight": null,
   "published": [
     {
-      "slot": 2,
-      "type": "explained_setup",
-      "name": "Explained Master Setup #1 (04:00 UTC)",
-      "forced": false,
-      "published_utc": "2026-11-02T13:00:29.748359+00:00",
-      "run_id": "41449121687",
-      "mode": "image",
-      "attempts": 1,
-      "degraded": false,
-      "coin": "SOPH"
-    },
-    {
       "slot": 0,
       "type": "market_overview",
       "name": "Macro & Bitcoin Outlook (00:00 UTC)",
       "forced": false,
-      "published_utc": "2026-11-02T20:04:55.630006+00:00",
-      "run_id": "41515783317",
+      "published_utc": "2026-11-03T03:23:07.996141+00:00",
+      "run_id": "41571777989",
       "mode": "image",
       "attempts": 1,
       "degraded": false,
@@ -42,16 +31,16 @@
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-11-02T20:04:55.630019+00:00",
+  "updated_utc": "2026-11-03T03:23:07.996156+00:00",
   "previous_day": {
-    "day_utc": "2026-11-01",
-    "published": 1,
+    "day_utc": "2026-11-02",
+    "published": 2,
     "by_type": {
+      "explained_setup": 1,
       "market_overview": 1
     },
     "unpublished": [
       1,
-      2,
       3,
       4,
       5,

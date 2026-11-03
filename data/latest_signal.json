@@ -1,87 +1,88 @@
 {
-  "headline": "Bitcoin stalls below $78k amid bearish 1H signals and mixed 4H structure",
-  "btc_price": 77114.5,
-  "btc_change": -0.863,
-  "eth_price": 2257.0,
-  "eth_change": -0.075,
-  "market_phase": "Consolidation",
-  "btc_thesis": "On the 1H chart BTC sits at $77,114 with RSI at 18.9, EMA20/50/200 all above price and a mixed LH/HL structure, indicating short‑term bearish pressure; the 4H shows a bullish HH‑HL continuation but price remains trapped between the 1H support at $76,705 and resistance at $77,718.",
-  "altcoin_summary": "Altcoins are outperforming BTC, with a breadth of +9.5% versus BTC's -0.86%; top gainers include HOT (+18.6%) and HAEDAL (+12.2%), reflecting capital rotation into risk‑on assets.",
-  "btc_support": 76705.0,
-  "btc_resistance": 77718.52,
-  "strategy_outlook": "Spot traders should consider buying on dips near $76,700 with a tight stop below $76,500, while futures players may look to sell short on rallies toward $77,700, targeting the $76,700 support zone.",
+  "headline": "BTC tests lower support amid bearish 1H/4H alignment, altcoins rally on low fear",
+  "btc_price": 76920.11,
+  "btc_change": -2.085,
+  "eth_price": 2254.01,
+  "eth_change": -1.886,
+  "market_phase": "Liquidity Hunt",
+  "btc_thesis": "On 1H BTC sits below EMA20/50/200 with RSI ~29, confirming oversold momentum; 4H shows a bearish EMA crossover but still above VWAP, holding the LL-LH structure near the 76,684 support zone.",
+  "altcoin_summary": "Altcoins are outperforming BTC (average +6.5% vs -2.1% BTC) with HOT, HAEDAL and RUNE leading gains, supported by a Fear index at 26 (Fear) and BTC dominance at 59.3% indicating capital rotation into risk assets.",
+  "btc_support": 76684.45,
+  "btc_resistance": 77646.522,
+  "strategy_outlook": "Spot traders: consider buying near the 76,684 support with tight stops; Futures traders: look for short entries on break of 77,650 resistance with a target back to 76,700.",
   "btc_indicators_1h": {
-    "close": 77042.01,
-    "ema_20": 77664.27691379588,
-    "ema_50": 77860.96101736302,
-    "ema_200": 78951.56248294865,
-    "rsi": 18.93964470925701,
+    "close": 76920.11,
+    "ema_20": 77278.04305014544,
+    "ema_50": 77563.29925895235,
+    "ema_200": 77504.57748111188,
+    "rsi": 29.789266736674094,
     "macd": {
-      "macd": -243.7353618236957,
-      "signal": -119.95479154540435,
-      "histogram": -123.78057027829136
+      "macd": -297.1028132478823,
+      "signal": -262.2901774977144,
+      "histogram": -34.812635750167885
     },
     "bollinger_bands": {
-      "upper": 78877.44880818577,
-      "middle": 77886.8205,
-      "lower": 76896.19219181423,
-      "bandwidth": 2.543763635044697,
-      "position": 0.07359864793931245
+      "upper": 78353.88659075761,
+      "middle": 77367.37000000001,
+      "lower": 76380.85340924241,
+      "bandwidth": 2.5502135868327978,
+      "position": 0.2733134930571551
     },
     "stoch_rsi": {
-      "k": 12.5138330013295,
-      "d": 7.670380417828835
+      "k": 56.37189412874567,
+      "d": 51.876155290001016
     },
-    "vwap": 78007.06065648615,
+    "vwap": 77594.41170018195,
     "candlestick_patterns": [],
     "support_resistance": {
-      "support": 76705.0,
-      "resistance": 77718.52,
+      "support": 76684.45,
+      "resistance": 77646.52200000001,
       "levels": [
-        77718.52,
+        76684.45,
+        77646.52200000001,
         78237.29,
         78878.01
       ]
     },
     "trendlines": {
-      "trend": "sideways",
+      "trend": "downtrend",
       "higher_highs": false,
-      "higher_lows": true,
+      "higher_lows": false,
       "lower_highs": true,
-      "lower_lows": false,
-      "structure": "LH/HL"
+      "lower_lows": true,
+      "structure": "LH/LL"
     },
     "breakout_breakdown": {
       "type": "none",
       "level": null,
       "confirmed": false
     },
-    "market_structure": "mixed structure (LH/HL)",
-    "atr": 416.74857142857115
+    "market_structure": "LL-LH bearish continuation",
+    "atr": 442.67857142857036
   },
   "btc_indicators_4h": {
-    "close": 77043.99,
-    "ema_20": 77954.13625295782,
-    "ema_50": 78907.39860559162,
-    "ema_200": 80593.5966077127,
-    "rsi": 40.72734856262847,
+    "close": 76920.11,
+    "ema_20": 77836.00220952583,
+    "ema_50": 78816.82757656492,
+    "ema_200": 80473.45001474892,
+    "rsi": 40.21114142845431,
     "macd": {
-      "macd": -442.972580199872,
-      "signal": -462.6076299021382,
-      "histogram": 19.6350497022662
+      "macd": -487.4245542240533,
+      "signal": -470.3532898059584,
+      "histogram": -17.07126441809487
     },
     "bollinger_bands": {
-      "upper": 78532.57076056428,
-      "middle": 77672.43350000001,
-      "lower": 76812.29623943575,
-      "bandwidth": 2.214781285471809,
-      "position": 0.13468417843697628
+      "upper": 78561.89451450345,
+      "middle": 77659.91100000001,
+      "lower": 76757.92748549656,
+      "bandwidth": 2.322906382170448,
+      "position": 0.08990325870463496
     },
     "stoch_rsi": {
-      "k": 33.51347640791103,
-      "d": 40.32202893275088
+      "k": 32.69185078293975,
+      "d": 32.16631070096384
     },
-    "vwap": 80567.03709073873,
+    "vwap": 80496.71238741686,
     "candlestick_patterns": [],
     "support_resistance": {
       "support": 76413.045,
@@ -91,7 +92,7 @@
         77620.0,
         78285.0,
         78878.01,
-        79509.005,
+        79555.78333333334,
         80397.14,
         80844.7,
         81300.0,
@@ -112,121 +113,126 @@
       "confirmed": false
     },
     "market_structure": "HH-HL bullish continuation",
-    "atr": 552.6842857142838
+    "atr": 615.422142857141
   },
   "eth_indicators_1h": {
-    "close": 2255.59,
-    "ema_20": 2273.2141742432586,
-    "ema_50": 2272.36067426636,
-    "ema_200": 2291.98133097835,
-    "rsi": 28.929672177080235,
+    "close": 2254.01,
+    "ema_20": 2263.947645760564,
+    "ema_50": 2266.1117764657083,
+    "ema_200": 2246.940484269754,
+    "rsi": 28.23790269988271,
     "macd": {
-      "macd": -4.187670314528532,
-      "signal": 0.6981045166186124,
-      "histogram": -4.8857748311471445
+      "macd": -6.414805305676509,
+      "signal": -4.685190557447606,
+      "histogram": -1.7296147482289035
     },
     "bollinger_bands": {
-      "upper": 2312.9515606048953,
-      "middle": 2282.1310000000003,
-      "lower": 2251.3104393951053,
-      "bandwidth": 2.701033429272468,
-      "position": 0.06942704027608071
+      "upper": 2301.356709697909,
+      "middle": 2268.7770000000005,
+      "lower": 2236.197290302092,
+      "bandwidth": 2.872006345084473,
+      "position": 0.27337121575168255
     },
     "stoch_rsi": {
-      "k": 16.216186117899735,
-      "d": 10.282444300609171
+      "k": 17.071049382618163,
+      "d": 17.37027857002989
     },
-    "vwap": 2257.6809434864617,
-    "candlestick_patterns": [],
+    "vwap": 2250.4438803056387,
+    "candlestick_patterns": [
+      "hammer"
+    ],
     "support_resistance": {
-      "support": 2251.5033333333336,
-      "resistance": 2273.2816666666663,
+      "support": 2242.61,
+      "resistance": 2260.105,
       "levels": [
-        2251.5033333333336,
-        2273.2816666666663,
+        2242.61,
+        2260.105,
+        2276.5733333333333,
         2304.575,
         2317.84
       ]
     },
     "trendlines": {
-      "trend": "uptrend",
+      "trend": "sideways",
       "higher_highs": true,
-      "higher_lows": true,
+      "higher_lows": false,
       "lower_highs": false,
-      "lower_lows": false,
-      "structure": "HH/HL"
+      "lower_lows": true,
+      "structure": "HH/LL"
     },
     "breakout_breakdown": {
       "type": "none",
       "level": null,
       "confirmed": false
     },
-    "market_structure": "HH-HL bullish continuation",
-    "atr": 17.1235714285714
+    "market_structure": "mixed structure (HH/LL)",
+    "atr": 15.824285714285711
   },
   "eth_indicators_4h": {
-    "close": 2255.59,
-    "ema_20": 2272.1802484006466,
-    "ema_50": 2297.829320128848,
-    "ema_200": 2371.048235179554,
-    "rsi": 51.67151678614523,
+    "close": 2254.01,
+    "ema_20": 2270.250498727761,
+    "ema_50": 2295.5916887133885,
+    "ema_200": 2361.1680990180207,
+    "rsi": 49.75599096802403,
     "macd": {
-      "macd": -6.82888854238854,
-      "signal": -9.229085580780168,
-      "histogram": 2.400197038391628
+      "macd": -7.685420132658692,
+      "signal": -8.93606440517394,
+      "histogram": 1.250644272515249
     },
     "bollinger_bands": {
-      "upper": 2297.068557233952,
-      "middle": 2262.7030000000004,
-      "lower": 2228.3374427660488,
-      "bandwidth": 3.0375667715958894,
-      "position": 0.3965097531872268
+      "upper": 2296.4720493192303,
+      "middle": 2263.2725,
+      "lower": 2230.0729506807697,
+      "bandwidth": 2.9337650962692563,
+      "position": 0.3605026244342018
     },
     "stoch_rsi": {
-      "k": 50.69893807439417,
-      "d": 55.90343370229761
+      "k": 47.757066035904685,
+      "d": 49.446973473527464
     },
-    "vwap": 2350.025272427788,
-    "candlestick_patterns": [],
+    "vwap": 2348.8753915388993,
+    "candlestick_patterns": [
+      "doji"
+    ],
     "support_resistance": {
-      "support": 2250.23,
+      "support": 2245.9466666666667,
       "resistance": 2262.49,
       "levels": [
         2174.08,
         2208.4,
-        2250.23,
+        2245.9466666666667,
         2262.49,
         2278.0,
-        2294.9625,
+        2295.5866666666666,
         2320.52,
         2344.72,
         2386.2000000000003
       ]
     },
     "trendlines": {
-      "trend": "uptrend",
+      "trend": "sideways",
       "higher_highs": true,
-      "higher_lows": true,
+      "higher_lows": false,
       "lower_highs": false,
-      "lower_lows": false,
-      "structure": "HH/HL"
+      "lower_lows": true,
+      "structure": "HH/LL"
     },
     "breakout_breakdown": {
       "type": "none",
       "level": null,
       "confirmed": false
     },
-    "market_structure": "HH-HL bullish continuation",
-    "atr": 23.60071428571421
+    "market_structure": "mixed structure (HH/LL)",
+    "atr": 24.697142857142808
   },
   "btc_dominance": {
-    "btc_dominance_percent": 59.314914940685995,
-    "total_mcap_proxy": 2600260192865.9116,
+    "btc_dominance_percent": 59.31591661227562,
+    "total_mcap_proxy": 2600118459799.662,
     "source": "CoinGecko global market data",
     "estimated": false
   },
   "fear_greed": {
-    "value": 37,
+    "value": 26,
     "classification": "Fear",
     "estimated": false,
     "source": "alternative.me Fear & Greed Index"

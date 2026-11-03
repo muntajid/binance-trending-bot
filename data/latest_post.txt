@@ -1,14 +1,14 @@
-🌐 MACRO & BITCOIN OUTLOOK: Bitcoin stalls below $78k amid bearish 1H signals and mixed 4H structure 📊
+🌐 MACRO & BITCOIN OUTLOOK: BTC tests lower support amid bearish 1H/4H alignment, altcoins rally on low fear 📊
 
-$BTC 24H: $77114.5 (-0.86%)
-Market Phase: Consolidation
+$BTC 24H: $76920.11 (-2.08%)
+Market Phase: Liquidity Hunt
 
 📊 Key Market Dynamics:
-• Bitcoin Structure: On the 1H chart BTC sits at $77,114 with RSI at 18.9, EMA20/50/200 all above price and a mixed LH/HL structure, indicating short‑term bearish pressure; the 4H shows a bullish HH‑HL continuation but price remains trapped between the 1H support at $76,705 and resistance at $77,718.
-• Altcoin Flows: Altcoins are outperforming BTC, with a breadth of +9.5% versus BTC's -0.86%; top gainers include HOT (+18.6%) and HAEDAL (+12.2%), reflecting capital rotation into risk‑on assets.
-• Crucial Levels: Support $76705 | Resistance $77718.52
+• Bitcoin Structure: On 1H BTC sits below EMA20/50/200 with RSI ~29, confirming oversold momentum; 4H shows a bearish EMA crossover but still above VWAP, holding the LL-LH structure near the 76,684 support zone.
+• Altcoin Flows: Altcoins are outperforming BTC (average +6.5% vs -2.1% BTC) with HOT, HAEDAL and RUNE leading gains, supported by a Fear index at 26 (Fear) and BTC dominance at 59.3% indicating capital rotation into risk assets.
+• Crucial Levels: Support $76684.45 | Resistance $77646.52
 
-💡 Trader Takeaway: Spot traders should consider buying on dips near $76,700 with a tight stop below $76,500, while futures players may look to sell short on rallies toward $77,700, targeting the $76,700 support zone.
+💡 Trader Takeaway: Spot traders: consider buying near the 76,684 support with tight stops; Futures traders: look for short entries on break of 77,650 resistance with a target back to 76,700.
 
 $BTC $ETH #BinanceSquare #CryptoMarket
 ⚠️ Educational market analysis only. Not financial advice. Always DYOR.
