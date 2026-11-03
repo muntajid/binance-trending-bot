@@ -1,10 +1,10 @@
 name: Signal Poster - 12-Slot Daily Rotation
 
-# The day's plan is a queue in data/schedule_state.json, not a clock lookup:
-# every run (cron or manual) publishes the next pending slot from the list in
-# bot/config.json. Cron fires 12 times a day so a quiet day walks all twelve
-# slots in order; a manual "Run workflow" click advances the same queue, so
-# running it five times yields five different posts instead of five memes.
+# The plan is a continuous queue in data/schedule_state.json, not a clock
+# lookup or a queue that resets at midnight. Every automatic run takes the next
+# pending slot from bot/config.json. Cron targets 12 runs/day; if GitHub delays
+# events, the rotation spans calendar days instead of repeating its BTC outlook.
+# Manual "Run workflow" with slot=auto advances this same queue.
 on:
   schedule:
     - cron: "0 */2 * * *"
@@ -22,7 +22,7 @@ on:
           - explained_setup
           - meme_community
       reset:
-        description: "Rebuild today's queue from bot/config.json before posting"
+        description: "Start a new rotation (overrides the queue; may repeat content)"
         required: false
         default: false
         type: boolean
@@ -73,7 +73,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Show today's posting queue
+      - name: Show the current posting rotation
         run: |
           python -m bot.schedule --status
           python -m bot.schedule --summary >> "$GITHUB_STEP_SUMMARY"

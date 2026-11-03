@@ -1,9 +1,8 @@
-"""Tests for the day-scoped posting queue in :mod:`bot.schedule`.
+"""Tests for the continuous posting queue in :mod:`bot.schedule`.
 
-These lock in the behaviour that the clock-based slot lookup got wrong: manual
-runs must advance the day's plan instead of republishing whichever slot the
-current UTC hour mapped to, and a run that never reached Square must hand its
-slot back instead of losing that post for the day.
+Manual runs advance the same plan as cron, delayed runs preserve the mix across
+midnight, and a run that never reached Square hands its slot back. Explicit
+overrides remain auditable without consuming another queued slot.
 """
 
 from __future__ import annotations
@@ -84,7 +83,7 @@ class QueueTestCase(unittest.TestCase):
         types = [schedule.load_plan()[slot]["type"] for slot in slots]
         self.assertEqual(len(set(types)), 3, types)
 
-    def test_a_full_day_yields_the_benchmark_mix(self) -> None:
+    def test_a_full_rotation_yields_the_benchmark_mix(self) -> None:
         self.assertEqual(schedule.status()["published_today"], 0)
 
         self.publish_all(12)
@@ -95,7 +94,100 @@ class QueueTestCase(unittest.TestCase):
 
         self.assertEqual(len(published), 12)
         self.assertEqual(counts, EXPECTED_COUNTS)
-        self.assertEqual(self.read_state()["pending"], [], "a full day drains the queue")
+        self.assertEqual(self.read_state()["pending"], [], "a full rotation drains the queue")
+
+    def test_delayed_outlook_does_not_repeat_after_midnight(self) -> None:
+        """Reproduce runs 41515783317 / 41571777989 from 2026-11-02/03.
+
+        GitHub delivered the 20:00 cron more than four hours late on Nov 2,
+        then the 02:00 cron late on Nov 3. The old midnight reset put slot 0
+        back at the head, producing two consecutive BTC outlooks.
+        """
+        legacy_state = {
+            "version": 1,
+            "day_utc": "2026-11-02",
+            "pending": [0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+            "in_flight": None,
+            "published": [{
+                "slot": 2,
+                "type": "explained_setup",
+                "forced": False,
+                "published_utc": "2026-11-02T13:00:29+00:00",
+                "run_id": "41449121687",
+                "mode": "image",
+            }],
+            "rotations": 0,
+            "reset_reason": "new UTC day",
+            "updated_utc": "2026-11-02T13:00:29+00:00",
+            "last_error": None,
+        }
+        schedule.STATE_FILE.write_text(json.dumps(legacy_state), encoding="utf-8")
+
+        with mock.patch.object(
+            schedule, "_utc_now",
+            return_value=datetime.datetime(2026, 11, 2, 20, 4, 55, tzinfo=datetime.timezone.utc),
+        ):
+            first = self.publish()
+        with mock.patch.object(
+            schedule, "_utc_now",
+            return_value=datetime.datetime(2026, 11, 3, 3, 23, 7, tzinfo=datetime.timezone.utc),
+        ):
+            second = self.publish()
+
+        self.assertEqual((first["slot"], first["type"]), (0, "market_overview"))
+        self.assertEqual((second["slot"], second["type"]), (1, "rapid_alert"))
+        state = self.read_state()
+        self.assertEqual(state["day_utc"], "2026-11-03")
+        self.assertEqual(state["rotations"], 0, "midnight is not a new rotation")
+        self.assertEqual(len(state["published"]), 3, "the earlier setup plus both delayed runs remain auditable")
+        self.assertNotIn(0, state["pending"])
+        self.assertEqual(state["previous_day"]["by_type"], {"explained_setup": 1, "market_overview": 1})
+
+    def test_twelve_delayed_runs_keep_the_mix_across_calendar_days(self) -> None:
+        now = datetime.datetime(2026, 11, 2, 20, 4, tzinfo=datetime.timezone.utc)
+        with mock.patch.object(schedule, "_utc_now", side_effect=lambda: now):
+            for _ in range(12):
+                self.publish()
+                now += datetime.timedelta(hours=7)
+
+        state = self.read_state()
+        self.assertEqual(state["pending"], [])
+        self.assertEqual(state["rotations"], 0)
+        counts: dict[str, int] = {}
+        for entry in state["published"]:
+            counts[entry["type"]] = counts.get(entry["type"], 0) + 1
+        self.assertEqual(counts, EXPECTED_COUNTS)
+        self.assertGreater(state["day_utc"], "2026-11-02")
+
+        with mock.patch.object(schedule, "_utc_now", return_value=now):
+            next_slot = schedule.select_slot()
+        self.assertEqual(next_slot["slot"], 0)
+        self.assertEqual(next_slot["rotation"], 2)
+        self.assertEqual(next_slot["published_before"], 0)
+
+    def test_in_flight_slot_survives_midnight_until_publish_or_timeout(self) -> None:
+        with mock.patch.object(
+            schedule, "_utc_now",
+            return_value=datetime.datetime(2026, 11, 2, 23, 59, tzinfo=datetime.timezone.utc),
+        ):
+            slot = schedule.select_slot()
+            schedule.begin_run(slot)
+        with mock.patch.object(
+            schedule, "_utc_now",
+            return_value=datetime.datetime(2026, 11, 3, 0, 1, tzinfo=datetime.timezone.utc),
+        ):
+            state = schedule.load_state()
+            self.assertEqual(state["in_flight"]["slot"], slot["slot"])
+            self.assertNotIn(slot["slot"], state["pending"])
+            self.assertEqual(state["day_utc"], "2026-11-03")
+
+            record = schedule.publish_succeeded(mode="image", attempts=1)
+            following = schedule.select_slot()
+
+        self.assertEqual(record["day_utc"], "2026-11-03")
+        self.assertEqual(record["rotation"], 1)
+        self.assertEqual(following["slot"], 1)
+        self.assertEqual(following["rotation"], 1)
 
     # -- explicit requests ----------------------------------------------
     def test_forced_type_consumes_its_own_pending_slot(self) -> None:
@@ -121,6 +213,8 @@ class QueueTestCase(unittest.TestCase):
         self.assertEqual(state_after["pending"], state_before["pending"])
         self.assertIn(0, state_after["pending"], "a forced run must not steal the auto queue's turn")
         self.assertEqual(len(state_after["published"]), 2, "both meme runs are on the record")
+        self.assertEqual(schedule.status()["published_this_rotation"], 1, "an explicit extra does not consume a queued slot")
+        self.assertEqual(schedule.status()["published_today"], 2)
 
     def test_unknown_request_is_rejected_with_a_helpful_message(self) -> None:
         with self.assertRaises(schedule.ScheduleError) as ctx:
@@ -148,7 +242,7 @@ class QueueTestCase(unittest.TestCase):
         self.assertIn("market data unavailable", state["last_error"]["reason"])
         self.assertIsNone(state["in_flight"])
 
-        # The retried slot wins over the rest of the day's plan.
+        # The retried slot wins over the rest of the rotation's plan.
         retried = schedule.select_slot()
         self.assertEqual(retried["slot"], slot["slot"])
         self.assertNotEqual(retried["slot"], first["slot"])
@@ -231,22 +325,42 @@ class QueueTestCase(unittest.TestCase):
         self.assertNotIn(slot["slot"], state["pending"])
 
     # -- rotation bookkeeping --------------------------------------------
-    def test_day_rollover_rebuilds_the_queue_and_keeps_a_summary(self) -> None:
+    def test_legacy_state_migration_persists_without_losing_pending_slots(self) -> None:
+        self.publish_all(2)
+        state = self.read_state()
+        state.pop("rotation_started_utc")
+        for entry in state["published"]:
+            entry.pop("rotation")
+        schedule.STATE_FILE.write_text(json.dumps(state), encoding="utf-8")
+
+        migrated = schedule.load_state()
+        persisted = self.read_state()
+        self.assertEqual(migrated["pending"], list(range(2, 12)))
+        self.assertEqual(persisted["pending"], list(range(2, 12)))
+        self.assertTrue(persisted["rotation_started_utc"])
+        self.assertEqual([entry["rotation"] for entry in persisted["published"]], [1, 1])
+
+    def test_day_rollover_preserves_the_queue_and_archives_the_day(self) -> None:
         self.publish_all(3)
         state = self.read_state()
         yesterday = (datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=1)).strftime(
             "%Y-%m-%d"
         )
         state["day_utc"] = yesterday
+        for entry in state["published"]:
+            entry["published_utc"] = f"{yesterday}T12:00:00+00:00"
+            entry["day_utc"] = yesterday
         schedule.STATE_FILE.write_text(json.dumps(state), encoding="utf-8")
 
         fresh = schedule.load_state()
-        self.assertEqual(len(fresh["pending"]), 12)
-        self.assertEqual(fresh["published"], [])
+        self.assertEqual(fresh["pending"], list(range(3, 12)))
+        self.assertEqual(len(fresh["published"]), 3)
         self.assertEqual(fresh["previous_day"]["published"], 3)
-        self.assertEqual(fresh["reset_reason"], "new UTC day")
+        self.assertEqual(fresh["rotations"], 0)
+        self.assertEqual(schedule.status()["published_this_rotation"], 3)
+        self.assertEqual(schedule.status()["published_today"], 0)
 
-    def test_queue_wraps_after_the_day_is_published(self) -> None:
+    def test_queue_wraps_only_after_all_slots_are_resolved(self) -> None:
         self.publish_all(12)
         slot = schedule.select_slot()
 
@@ -254,13 +368,24 @@ class QueueTestCase(unittest.TestCase):
         self.assertFalse(slot["forced"], slot)
         self.assertEqual(slot["slot"], 0, "a wrap restarts the rotation from slot 0")
         self.assertEqual(slot["rotation"], 2)
+        self.assertEqual(slot["published_before"], 0)
         self.assertEqual(self.read_state()["rotations"], 1)
 
-    def test_reset_flag_refills_a_partially_published_day(self) -> None:
+        self.publish()
+        status = schedule.status()
+        self.assertEqual(status["published_this_rotation"], 1)
+        self.assertEqual(status["published_today"], 13, "daily reporting still includes both rotations")
+        self.assertEqual(len(self.read_state()["published"]), 13, "a wrap keeps the audit trail")
+        self.assertEqual(status["previous_rotation"]["by_type"], EXPECTED_COUNTS)
+
+    def test_reset_starts_a_new_rotation_without_erasing_history(self) -> None:
         self.publish_all(4)
         slot = schedule.select_slot(reset=True)
         self.assertEqual(slot["slot"], 0)
         self.assertEqual(slot["published_before"], 0)
+        self.assertEqual(slot["rotation"], 2)
+        self.assertEqual(len(self.read_state()["published"]), 4)
+        self.assertEqual(schedule.status()["previous_rotation"]["published"], 4)
 
     def test_receipt_records_the_last_publish(self) -> None:
         slot = self.publish()

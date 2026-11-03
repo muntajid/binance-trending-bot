@@ -1,6 +1,6 @@
 """Master multi-mode signal, macro overview, and community content engine.
 
-Executes the 12-slot daily portfolio schedule defined in ``bot/config.json``
+Executes the 12-slot portfolio rotation defined in ``bot/config.json``
 (benchmarked against top 100 creator data):
 
 - 5x Rapid Alerts (verified trade levels plus a concise institutional read)
@@ -9,10 +9,11 @@ Executes the 12-slot daily portfolio schedule defined in ``bot/config.json``
 - 1x Viral Trader Psychology & Community Meme (+49% paired uplift)
 
 Which of those four shapes a run takes is decided by :mod:`bot.schedule`: the
-next *pending* slot of the current UTC day. It is deliberately not derived from
-the clock any more - a manual "Run workflow" click must advance the rotation
-instead of republishing whichever slot the hour happened to map to, and a slot
-whose run failed goes back to the front of the queue rather than being lost.
+next *pending* slot of the continuous rotation. It is neither derived from the
+clock nor reset at midnight. Delayed GitHub cron runs therefore finish the
+current mix before another BTC outlook can appear. A manual "Run workflow"
+click advances the same queue, and a retryable failure returns its slot to the
+front rather than losing it.
 """
 
 from __future__ import annotations
@@ -449,16 +450,16 @@ def run() -> None:
     mode = str(slot["type"])
     print(
         f"[Slot Engine] Slot #{slot['slot']}: {slot['name']} (Mode: {mode}) - "
-        f"rotation {slot['rotation']} of day {slot['day_utc']}, "
-        f"{slot['published_before']}/{slot['total_slots']} already published"
+        f"rotation #{slot['rotation']} (UTC date {slot['day_utc']}), "
+        f"{slot['published_before']}/{slot['total_slots']} queued slots already resolved"
     )
     if slot.get("forced"):
         print(
             f"[Slot Engine] Slot #{slot['slot']} was requested explicitly and is not "
-            "pending today; the queue is left untouched"
+            "pending in this rotation; the automatic queue is left untouched"
         )
     if slot.get("wrapped"):
-        print("[Slot Engine] The day's queue was complete, so the rotation wrapped around")
+        print("[Slot Engine] Every queued slot was resolved, so the next rotation started")
 
     try:
         if mode == "market_overview":

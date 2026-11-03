@@ -1,4 +1,4 @@
-"""Clock-independent queue for the 12-slot daily posting plan.
+"""Clock-independent, continuous queue for the 12-slot posting plan.
 
 Why this module exists
 ----------------------
@@ -6,32 +6,35 @@ The post type used to be derived from the wall clock inside ``main_signal``::
 
     slot_index = (utc_hour // 2) % 12
 
-That tied *what* gets posted to *when* the runner happened to start. Three
-manual ``workflow_dispatch`` runs at 12:27, 12:29 and 12:31 UTC therefore all
-resolved to slot 6 and pushed three identical meme posts, while the slots no
-run landed on (and every slot whose run crashed) were silently skipped. The
-schedule could both repeat and lose posts, and there was no way to ask for a
-specific type by hand.
+That tied *what* gets posted to *when* the runner happened to start. Repeated
+manual runs could therefore publish the same type while other slots were lost.
+Replacing the lookup with a queue that reset at midnight fixed only half of the
+problem: GitHub delivered a late slot 0 at 20:04 UTC on 2026-11-02, then the
+midnight reset put slot 0 at the head again for the next run at 03:23 UTC on
+2026-11-03. Two BTC outlooks appeared consecutively.
 
-This module makes the plan durable state instead of a clock lookup:
+This module makes the rotation durable, including across calendar days:
 
-* one rotation per UTC day, loaded from ``bot/config.json`` (single source of
-  truth - the workflow and the engine can no longer drift apart);
-* every run takes the **next pending slot** in plan order, so clicking
-  "Run workflow" five times yields five *different* posts;
-* a slot counts as published only once Binance Square accepted the post. A
-  generation or publish failure hands the slot back to the front of the queue
-  and rolls back the coin cooldown / open trade that the run created, so the
-  retry is not poisoned by state nobody saw;
-* a run killed between generation and publish (cancelled job, workflow
-  timeout) is healed on the next load once its in-flight entry goes stale;
-* when the day's queue is exhausted the rotation wraps, so a manual run is
-  never a silent no-op - the 24h coin cooldown and the caption similarity
-  guard are what keep a wrap from becoming duplicate content.
+* the plan comes only from ``bot/config.json``: normally 5 rapid alerts,
+  5 explained setups, 1 BTC outlook and 1 meme per complete rotation;
+* every automatic run takes the **next pending slot**, never a clock lookup;
+* midnight changes the reporting date, not the queue. Twelve delayed runs can
+  span several UTC days without restarting or skipping the remaining content;
+* a retryable generation/publish failure returns its slot and rolls back the
+  coin cooldown / open trade created by that run;
+* a killed run's in-flight reservation is healed after the configured timeout;
+* only an exhausted queue starts the next rotation. Explicit manual requests
+  can publish extras, but those extras do not consume another queued slot;
+* ``reset`` deliberately starts a new rotation and can repeat content. It is
+  never called automatically just because the UTC date changed.
+
+Cron still targets 12 runs per day, but GitHub can delay or omit scheduled
+events. The invariant is the content mix per 12 resolved slots, not a promise
+that every calendar day receives exactly 12 posts.
 
 State files (all under ``data/``, committed by the workflow):
 
-``schedule_state.json``   the day's plan: pending / in-flight / published
+``schedule_state.json``   pending / in-flight slots and a rotation-tagged ledger
 ``pending_run.json``      the effects of the run that is currently publishing
 ``publish_receipt.json``  the last publish outcome, for auditability
 ``slot_state.json``       legacy mirror, kept in sync for existing tooling
@@ -60,6 +63,10 @@ POSTED_COINS_FILE = ROOT_DIR / "data" / "posted_coins.json"
 STATE_VERSION = 1
 POST_TYPES = ("market_overview", "rapid_alert", "explained_setup", "meme_community")
 DEFAULT_IN_FLIGHT_TIMEOUT_MINUTES = 45
+# This is an audit ledger, not the queue itself. Keep it bounded even when the
+# bot runs for months; pending/published counts for the active rotation are
+# derived from rotation tags, never from the length of this retained history.
+MAX_PUBLISH_HISTORY = 240
 
 
 class ScheduleError(RuntimeError):
@@ -149,7 +156,7 @@ def load_config() -> dict[str, Any]:
 
 
 def load_plan(config: dict[str, Any] | None = None) -> list[dict[str, Any]]:
-    """Return the ordered slots that make up one daily rotation.
+    """Return the ordered slots that make up one complete rotation.
 
     ``bot/config.json`` is the only definition of the plan.
     """
@@ -206,17 +213,59 @@ def type_counts(plan: list[dict[str, Any]] | None = None) -> dict[str, int]:
 # State
 # ---------------------------------------------------------------------------
 
-def _fresh_state(day: str, plan: list[dict[str, Any]], reason: str) -> dict[str, Any]:
+def _fresh_state(
+    day: str,
+    plan: list[dict[str, Any]],
+    reason: str,
+    *,
+    previous: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Start a rotation, retaining the audit ledger on an explicit reset."""
+
+    now = _iso(_utc_now())
     return {
         "version": STATE_VERSION,
         "day_utc": day,
+        "rotation_started_utc": now,
         "pending": [entry["slot"] for entry in plan],
         "in_flight": None,
-        "published": [],
-        "rotations": 0,
+        "published": list((previous or {}).get("published") or [])[-MAX_PUBLISH_HISTORY:],
+        "rotations": _active_rotation(previous) if previous is not None else 0,
         "reset_reason": reason,
-        "updated_utc": _iso(_utc_now()),
+        "updated_utc": now,
+        "previous_day": _day_summary(previous) if previous is not None else None,
+        "previous_rotation": _rotation_summary(previous) if previous is not None else None,
+        "last_error": None,
     }
+
+
+def _active_rotation(state: dict[str, Any]) -> int:
+    try:
+        return max(0, int(state.get("rotations", 0) or 0)) + 1
+    except (TypeError, ValueError):
+        return 1
+
+
+def _rotation_records(
+    state: dict[str, Any], *, include_forced: bool = False
+) -> list[dict[str, Any]]:
+    """Queued slots resolved in this rotation; explicit extras don't count."""
+
+    rotation = _active_rotation(state)
+    return [
+        entry
+        for entry in state.get("published", [])
+        if isinstance(entry, dict)
+        and entry.get("rotation") == rotation
+        and (include_forced or not entry.get("forced", False))
+    ]
+
+
+def _record_day(entry: dict[str, Any]) -> str | None:
+    if entry.get("day_utc"):
+        return str(entry["day_utc"])
+    timestamp = _parse_iso(entry.get("published_utc") or entry.get("resolved_utc"))
+    return timestamp.strftime("%Y-%m-%d") if timestamp else None
 
 
 def _in_flight_timeout_minutes() -> int:
@@ -247,26 +296,51 @@ def _write_legacy_view(state: dict[str, Any]) -> None:
         {
             "last_slot": last.get("slot"),
             "last_type": last.get("type"),
-            "last_run_utc": last.get("published_utc") or state.get("updated_utc"),
+            "last_run_utc": last.get("published_utc") or last.get("resolved_utc") or state.get("updated_utc"),
             "day_utc": state.get("day_utc"),
+            "rotation": _active_rotation(state),
+            "rotation_started_utc": state.get("rotation_started_utc"),
+            "published_this_rotation": len(_rotation_records(state)),
             "pending_slots": state.get("pending", []),
             "in_flight": state.get("in_flight"),
         },
     )
 
 
-def _day_summary(state: dict[str, Any]) -> dict[str, Any]:
-    published = [entry for entry in state.get("published", []) if isinstance(entry, dict)]
+def _summary(
+    state: dict[str, Any], published: list[dict[str, Any]], **identity: Any
+) -> dict[str, Any]:
     counts: dict[str, int] = {}
     for entry in published:
         key = str(entry.get("type", "unknown"))
         counts[key] = counts.get(key, 0) + 1
     return {
-        "day_utc": state.get("day_utc"),
+        **identity,
         "published": len(published),
         "by_type": counts,
         "unpublished": [slot for slot in state.get("pending", []) if isinstance(slot, int)],
     }
+
+
+def _day_summary(state: dict[str, Any]) -> dict[str, Any]:
+    day = str(state.get("day_utc"))
+    published = [
+        entry
+        for entry in state.get("published", [])
+        if isinstance(entry, dict) and (_record_day(entry) or day) == day
+    ]
+    return _summary(state, published, day_utc=day)
+
+
+def _rotation_summary(state: dict[str, Any]) -> dict[str, Any]:
+    queued = _rotation_records(state)
+    return _summary(
+        state,
+        queued,
+        rotation=_active_rotation(state),
+        started_utc=state.get("rotation_started_utc"),
+        extras=len(_rotation_records(state, include_forced=True)) - len(queued),
+    )
 
 
 def _plan_by_slot(plan: list[dict[str, Any]]) -> dict[int, dict[str, Any]]:
@@ -319,42 +393,66 @@ def _heal_stale_run(state: dict[str, Any]) -> bool:
 
 
 def load_state(*, reset: bool = False, config: dict[str, Any] | None = None) -> dict[str, Any]:
-    """Return today's schedule, rolling the day over when the UTC date changed.
+    """Load the continuous rotation; a UTC date change never refills its queue.
 
-    A rebuilt or healed state is persisted immediately, so ``select_slot`` and
-    ``begin_run`` always agree on what "today" still needs.
+    Older state files have no rotation tags. Migrate them in place, preserving
+    pending and in-flight slots, so deploying this fix cannot itself cause the
+    repeat it is meant to prevent. Only an explicit reset starts over.
     """
 
     settings = config if config is not None else load_config()
     plan = load_plan(settings)
     today = _utc_now().strftime("%Y-%m-%d")
-
-    stored = None if reset else _read_json(STATE_FILE, None, tolerant=True)
+    stored = _read_json(STATE_FILE, None, tolerant=True)
 
     if not isinstance(stored, dict) or stored.get("version") != STATE_VERSION:
-        state = _fresh_state(today, plan, "manual reset" if reset else "no usable state file yet")
-        state["previous_day"] = _day_summary(stored) if isinstance(stored, dict) else None
-        _save_state(state)
-        return state
-
-    if str(stored.get("day_utc")) != today or reset:
-        state = _fresh_state(today, plan, "manual reset" if reset else "new UTC day")
-        state["previous_day"] = _day_summary(stored)
+        state = _fresh_state(today, plan, "no usable state file yet")
         _save_state(state)
         return state
 
     state = stored
+    migrated = (
+        "rotation_started_utc" not in state
+        or any("rotation" not in entry for entry in (state.get("published") or []) if isinstance(entry, dict))
+        or len(state.get("published") or []) > MAX_PUBLISH_HISTORY
+    )
+    state.setdefault("rotations", 0)
+    rotation = _active_rotation(state)
+    published = [entry for entry in (state.get("published") or []) if isinstance(entry, dict)]
+    for entry in published:
+        entry.setdefault("rotation", rotation)
+    state["published"] = published[-MAX_PUBLISH_HISTORY:]
+
+    if not _parse_iso(state.get("rotation_started_utc")):
+        timestamps = [
+            _parse_iso(entry.get("published_utc") or entry.get("resolved_utc"))
+            for entry in _rotation_records(state)
+        ]
+        started = min((value for value in timestamps if value is not None), default=_utc_now())
+        state["rotation_started_utc"] = _iso(started)
+
+    if isinstance(state.get("in_flight"), dict):
+        state["in_flight"].setdefault("rotation", rotation)
+
+    if reset:
+        state = _fresh_state(today, plan, "manual reset", previous=state)
+        _save_state(state)
+        return state
+
     known = set(_plan_by_slot(plan))
     cleaned: list[int] = []
     for slot in state.get("pending", []) or []:
         if isinstance(slot, int) and slot in known and slot not in cleaned:
             cleaned.append(slot)
 
-    published = [entry for entry in state.get("published", []) if isinstance(entry, dict)]
-    mutated = cleaned != (state.get("pending") or []) or len(published) != len(state.get("published", []) or [])
+    mutated = migrated or cleaned != (state.get("pending") or [])
     state["pending"] = cleaned
-    state["published"] = published
-    state.setdefault("rotations", 0)
+
+    if str(state.get("day_utc")) != today:
+        state["previous_day"] = _day_summary(state)
+        state["day_utc"] = today
+        mutated = True
+        print("[Schedule] New UTC day; preserving the unfinished rotation and its pending slots")
 
     if _heal_stale_run(state):
         mutated = True
@@ -393,16 +491,21 @@ def _normalise_request(request: str | None) -> tuple[str, Any]:
 
 
 def _wrap_if_exhausted(state: dict[str, Any], plan: list[dict[str, Any]]) -> bool:
-    """Restart the rotation once a day's twelve slots are all published."""
+    """Start the next rotation only after every queued slot was resolved."""
 
     if state["pending"]:
         return False
 
+    state["previous_rotation"] = _rotation_summary(state)
+    state["rotations"] = _active_rotation(state)
+    state["rotation_started_utc"] = _iso(_utc_now())
     state["pending"] = [entry["slot"] for entry in plan]
-    state["rotations"] = int(state.get("rotations", 0) or 0) + 1
+    state["reset_reason"] = "completed rotation"
+    # Keep the tagged ledger for daily reporting and auditability. The new
+    # rotation's progress is derived from its tag, not from len(published).
     print(
-        f"[Schedule] All {len(plan)} slots for {state['day_utc']} are published; "
-        f"continuing with rotation #{state['rotations'] + 1}"
+        f"[Schedule] All {len(plan)} slots in rotation #{state['rotations']} are resolved; "
+        f"continuing with rotation #{_active_rotation(state)}"
     )
     _save_state(state)
     return True
@@ -413,8 +516,8 @@ def select_slot(request: str | None = None, *, reset: bool = False) -> dict[str,
 
     ``request`` comes from the ``SLOT`` environment variable / the
     ``workflow_dispatch`` input. With no request the next pending slot of the
-    day is returned - which is what makes repeated manual runs produce a
-    sequence instead of the same post twice.
+    continuous rotation is returned, even across midnight. Explicit type/slot
+    requests retain their documented override behaviour.
     """
 
     config = load_config()
@@ -433,8 +536,8 @@ def select_slot(request: str | None = None, *, reset: bool = False) -> dict[str,
     elif kind == "type":
         match = next((slot for slot in state["pending"] if by_slot[slot]["type"] == value), None)
         if match is None:
-            # Every slot of this type is already published today: honour the
-            # manual request anyway without consuming another slot's turn.
+            # Every slot of this type is already resolved in this rotation:
+            # honour the manual request without consuming another slot's turn.
             match = next(slot for slot in sorted(by_slot) if by_slot[slot]["type"] == value)
             forced = True
         chosen_slot = match
@@ -454,9 +557,9 @@ def select_slot(request: str | None = None, *, reset: bool = False) -> dict[str,
             "wrapped": wrapped,
             "day_utc": state["day_utc"],
             "pending_before": len(state["pending"]),
-            "rotation": int(state.get("rotations", 0) or 0) + 1,
+            "rotation": _active_rotation(state),
             "total_slots": len(plan),
-            "published_before": len(state.get("published") or []),
+            "published_before": len(_rotation_records(state)),
         }
     )
     return entry
@@ -480,6 +583,7 @@ def begin_run(slot: dict[str, Any]) -> None:
         "forced": bool(slot.get("forced")),
         "started_utc": _iso(_utc_now()),
         "run_id": os.getenv("GITHUB_RUN_ID", "local"),
+        "rotation": _active_rotation(state),
     }
     state["last_error"] = None
     _save_state(state)
@@ -582,19 +686,22 @@ def publish_succeeded(*, mode: str = "unknown", attempts: int = 0, degraded: boo
         _clear_pending_run()
         return None
 
+    now = _utc_now()
     record = {
         "slot": in_flight.get("slot"),
         "type": in_flight.get("type"),
         "name": in_flight.get("name"),
         "forced": in_flight.get("forced", False),
-        "published_utc": _iso(_utc_now()),
+        "published_utc": _iso(now),
+        "day_utc": now.strftime("%Y-%m-%d"),
         "run_id": in_flight.get("run_id"),
+        "rotation": in_flight.get("rotation", _active_rotation(state)),
         "mode": mode,
         "attempts": attempts,
         "degraded": degraded,
         "coin": pending.get("coin") if isinstance(pending, dict) else None,
     }
-    state["published"] = (state.get("published") or []) + [record]
+    state["published"] = ((state.get("published") or []) + [record])[-MAX_PUBLISH_HISTORY:]
     state["in_flight"] = None
     state["last_error"] = None
     _save_state(state)
@@ -623,22 +730,25 @@ def publish_uncertain(reason: str) -> dict[str, Any] | None:
         _clear_pending_run()
         return None
 
+    now = _utc_now()
     record = {
         **in_flight,
         "published_utc": None,
-        "resolved_utc": _iso(_utc_now()),
+        "resolved_utc": _iso(now),
+        "day_utc": now.strftime("%Y-%m-%d"),
+        "rotation": in_flight.get("rotation", _active_rotation(state)),
         "mode": "uncertain",
         "attempts": 0,
         "degraded": True,
         "note": reason,
     }
-    state["published"] = (state.get("published") or []) + [record]
+    state["published"] = ((state.get("published") or []) + [record])[-MAX_PUBLISH_HISTORY:]
     state["in_flight"] = None
     state["last_error"] = {
         "reason": reason,
         "slot": in_flight.get("slot"),
         "type": in_flight.get("type"),
-        "at_utc": _iso(_utc_now()),
+        "at_utc": _iso(now),
         "action": "slot consumed without a retry; verify the Square profile",
     }
     _save_state(state)
@@ -695,17 +805,21 @@ def status(*, config: dict[str, Any] | None = None) -> dict[str, Any]:
         return {"slot": slot, "type": by_slot[slot]["type"], "name": by_slot[slot]["name"]}
 
     pending = [slot for slot in state.get("pending", []) if slot in by_slot]
+    current = _rotation_records(state, include_forced=True)
     return {
         "day_utc": state["day_utc"],
-        "rotation": int(state.get("rotations", 0) or 0) + 1,
+        "rotation": _active_rotation(state),
+        "rotation_started_utc": state.get("rotation_started_utc"),
         "total_slots": len(plan),
-        "published_today": len(state.get("published") or []),
+        "published_this_rotation": len(_rotation_records(state)),
+        "published_today": sum(_record_day(entry) == state["day_utc"] for entry in state.get("published", [])),
         "next_slot": describe(pending[0]) if pending else None,
         "in_flight": state.get("in_flight"),
         "pending": [describe(slot) for slot in pending],
-        "published": state.get("published") or [],
+        "published": current,
         "last_error": state.get("last_error"),
         "previous_day": state.get("previous_day"),
+        "previous_rotation": state.get("previous_rotation"),
     }
 
 
@@ -713,7 +827,9 @@ def render_summary(payload: dict[str, Any]) -> str:
     lines = [
         "### 🗓️ Posting schedule",
         f"- Day (UTC): **{payload['day_utc']}** · rotation #{payload['rotation']}",
-        f"- Published today: **{payload['published_today']}/{payload['total_slots']}**",
+        f"- Queued slots completed this rotation: **{payload.get('published_this_rotation', 0)}/{payload['total_slots']}**",
+        f"- Published today (including explicit extras): **{payload['published_today']}**",
+        "- The queue continues across midnight; only a completed rotation starts over.",
     ]
     if payload.get("next_slot"):
         nxt = payload["next_slot"]
@@ -735,17 +851,17 @@ def render_summary(payload: dict[str, Any]) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Inspect or drive the daily posting queue.")
-    parser.add_argument("--status", action="store_true", help="Print today's queue as JSON")
+    parser = argparse.ArgumentParser(description="Inspect or drive the continuous posting rotation.")
+    parser.add_argument("--status", action="store_true", help="Print the current rotation as JSON")
     parser.add_argument("--summary", action="store_true", help="Print a GitHub step summary block")
-    parser.add_argument("--reset", action="store_true", help="Rebuild today's queue from the plan")
+    parser.add_argument("--reset", action="store_true", help="Explicitly start a new rotation (can repeat content)")
     parser.add_argument("--peek", action="store_true", help="Show the slot the next run would take")
     parser.add_argument("--slot", default="", help="Slot number or type to preview")
     args = parser.parse_args(argv)
 
     if args.reset:
         load_state(reset=True)
-        print("[Schedule] Queue rebuilt from bot/config.json")
+        print("[Schedule] New rotation started from bot/config.json; earlier history retained")
 
     if args.peek:
         try:
