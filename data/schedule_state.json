@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-11-03",
   "pending": [
-    1,
     2,
     3,
     4,
@@ -26,12 +25,27 @@
       "mode": "image",
       "attempts": 1,
       "degraded": false,
-      "coin": null
+      "coin": null,
+      "rotation": 1
+    },
+    {
+      "slot": 1,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #1 (02:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-03T11:44:35.986480+00:00",
+      "day_utc": "2026-11-03",
+      "run_id": "41629846503",
+      "rotation": 1,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "HOT"
     }
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-11-03T03:23:07.996156+00:00",
+  "updated_utc": "2026-11-03T11:44:35.986502+00:00",
   "previous_day": {
     "day_utc": "2026-11-02",
     "published": 2,
@@ -52,5 +66,6 @@
       11
     ]
   },
-  "last_error": null
+  "last_error": null,
+  "rotation_started_utc": "2026-11-03T03:23:07.996141+00:00"
 }
