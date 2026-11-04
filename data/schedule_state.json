@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-11-04",
   "pending": [
-    5,
     6,
     7,
     8,
@@ -80,11 +79,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "ZEC"
+    },
+    {
+      "slot": 5,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #3 (10:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-04T17:51:21.832145+00:00",
+      "day_utc": "2026-11-04",
+      "run_id": "41880971928",
+      "rotation": 1,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "LSK"
     }
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-11-04T08:47:43.687219+00:00",
+  "updated_utc": "2026-11-04T17:51:21.832170+00:00",
   "previous_day": {
     "day_utc": "2026-11-03",
     "published": 3,
