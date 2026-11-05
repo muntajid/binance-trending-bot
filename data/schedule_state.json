@@ -1,8 +1,7 @@
 {
   "version": 1,
-  "day_utc": "2026-11-04",
+  "day_utc": "2026-11-05",
   "pending": [
-    7,
     8,
     9,
     10,
@@ -106,24 +105,34 @@
       "attempts": 1,
       "degraded": false,
       "coin": null
+    },
+    {
+      "slot": 7,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #3 (14:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-05T05:49:43.432203+00:00",
+      "day_utc": "2026-11-05",
+      "run_id": "41976357122",
+      "rotation": 1,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "BEAMX"
     }
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-11-04T23:24:53.942440+00:00",
+  "updated_utc": "2026-11-05T05:49:43.432225+00:00",
   "previous_day": {
-    "day_utc": "2026-11-03",
-    "published": 3,
+    "day_utc": "2026-11-04",
+    "published": 4,
     "by_type": {
-      "market_overview": 1,
-      "rapid_alert": 1,
-      "explained_setup": 1
+      "rapid_alert": 2,
+      "explained_setup": 1,
+      "meme_community": 1
     },
     "unpublished": [
-      3,
-      4,
-      5,
-      6,
       7,
       8,
       9,
