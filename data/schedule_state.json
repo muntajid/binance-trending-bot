@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-11-05",
   "pending": [
-    8,
     9,
     10,
     11
@@ -119,11 +118,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "BEAMX"
+    },
+    {
+      "slot": 8,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #4 (16:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-05T14:20:08.324240+00:00",
+      "day_utc": "2026-11-05",
+      "run_id": "42043843420",
+      "rotation": 1,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "INJ"
     }
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-11-05T05:49:43.432225+00:00",
+  "updated_utc": "2026-11-05T14:20:08.324259+00:00",
   "previous_day": {
     "day_utc": "2026-11-04",
     "published": 4,
