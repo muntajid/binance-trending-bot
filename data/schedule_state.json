@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-11-05",
   "pending": [
-    9,
     10,
     11
   ],
@@ -132,11 +131,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "INJ"
+    },
+    {
+      "slot": 9,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #4 (18:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-05T21:50:02.199516+00:00",
+      "day_utc": "2026-11-05",
+      "run_id": "42116059134",
+      "rotation": 1,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "TON"
     }
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-11-05T14:20:08.324259+00:00",
+  "updated_utc": "2026-11-05T21:50:02.199533+00:00",
   "previous_day": {
     "day_utc": "2026-11-04",
     "published": 4,
