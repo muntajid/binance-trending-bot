@@ -1,8 +1,7 @@
 {
   "version": 1,
-  "day_utc": "2026-11-05",
+  "day_utc": "2026-11-06",
   "pending": [
-    10,
     11
   ],
   "in_flight": null,
@@ -145,23 +144,33 @@
       "attempts": 1,
       "degraded": false,
       "coin": "TON"
+    },
+    {
+      "slot": 10,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #5 (20:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-06T02:05:21.508684+00:00",
+      "day_utc": "2026-11-06",
+      "run_id": "42147939440",
+      "rotation": 1,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "CYBER"
     }
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-11-05T21:50:02.199533+00:00",
+  "updated_utc": "2026-11-06T02:05:21.508707+00:00",
   "previous_day": {
-    "day_utc": "2026-11-04",
-    "published": 4,
+    "day_utc": "2026-11-05",
+    "published": 3,
     "by_type": {
-      "rapid_alert": 2,
-      "explained_setup": 1,
-      "meme_community": 1
+      "explained_setup": 2,
+      "rapid_alert": 1
     },
     "unpublished": [
-      7,
-      8,
-      9,
       10,
       11
     ]
