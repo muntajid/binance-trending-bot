@@ -1,9 +1,7 @@
 {
   "version": 1,
   "day_utc": "2026-11-06",
-  "pending": [
-    11
-  ],
+  "pending": [],
   "in_flight": null,
   "published": [
     {
@@ -158,11 +156,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "CYBER"
+    },
+    {
+      "slot": 11,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #5 (22:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-06T11:55:56.219624+00:00",
+      "day_utc": "2026-11-06",
+      "run_id": "42213744070",
+      "rotation": 1,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "ERA"
     }
   ],
   "rotations": 0,
   "reset_reason": "new UTC day",
-  "updated_utc": "2026-11-06T02:05:21.508707+00:00",
+  "updated_utc": "2026-11-06T11:55:56.219646+00:00",
   "previous_day": {
     "day_utc": "2026-11-05",
     "published": 3,
