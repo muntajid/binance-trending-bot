@@ -1,15 +1,27 @@
 {
-  "slot": 11,
-  "type": "explained_setup",
-  "name": "Explained Master Setup #5 (22:00 UTC)",
+  "slot": 0,
+  "type": "market_overview",
+  "name": "Macro & Bitcoin Outlook (00:00 UTC)",
   "forced": false,
-  "published_utc": "2026-11-06T11:55:56.219624+00:00",
+  "published_utc": "2026-11-06T19:05:09.884364+00:00",
   "day_utc": "2026-11-06",
-  "run_id": "42213744070",
-  "rotation": 1,
+  "run_id": "42276395341",
+  "rotation": 2,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": "ERA",
-  "pending_after": []
+  "coin": null,
+  "pending_after": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ]
 }

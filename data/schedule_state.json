@@ -1,7 +1,19 @@
 {
   "version": 1,
   "day_utc": "2026-11-06",
-  "pending": [],
+  "pending": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
   "in_flight": null,
   "published": [
     {
@@ -170,11 +182,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "ERA"
+    },
+    {
+      "slot": 0,
+      "type": "market_overview",
+      "name": "Macro & Bitcoin Outlook (00:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-06T19:05:09.884364+00:00",
+      "day_utc": "2026-11-06",
+      "run_id": "42276395341",
+      "rotation": 2,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": null
     }
   ],
-  "rotations": 0,
-  "reset_reason": "new UTC day",
-  "updated_utc": "2026-11-06T11:55:56.219646+00:00",
+  "rotations": 1,
+  "reset_reason": "completed rotation",
+  "updated_utc": "2026-11-06T19:05:09.884383+00:00",
   "previous_day": {
     "day_utc": "2026-11-05",
     "published": 3,
@@ -188,5 +214,18 @@
     ]
   },
   "last_error": null,
-  "rotation_started_utc": "2026-11-03T03:23:07.996141+00:00"
+  "rotation_started_utc": "2026-11-06T19:04:48.346702+00:00",
+  "previous_rotation": {
+    "rotation": 1,
+    "started_utc": "2026-11-03T03:23:07.996141+00:00",
+    "extras": 0,
+    "published": 12,
+    "by_type": {
+      "market_overview": 1,
+      "rapid_alert": 5,
+      "explained_setup": 5,
+      "meme_community": 1
+    },
+    "unpublished": []
+  }
 }
