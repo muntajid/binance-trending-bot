@@ -1,14 +1,5 @@
-🌐 MACRO & BITCOIN OUTLOOK: Bitcoin in bearish alignment, probing lower liquidity as dominance steadies 📊
-
-$BTC 24H: $75790 (-0.26%)
-Market Phase: Liquidity Hunt
-
-📊 Key Market Dynamics:
-• Bitcoin Structure: 1H shows a LL‑LH bearish continuation with price trading below EMA‑20 (76110) and EMA‑50 (76964); 4H remains bearish, RSI 35 and price under EMA‑20 (77273). BTC is testing the key support at 75,568 and eyes the next resistance at 76,376.
-• Altcoin Flows: Altcoins are outperforming BTC (average +16.5% 24h) with momentum leaders ONE (+52.6%) and CYBER (+44.9%) while BTC dominance sits at 59.17% and Fear‑Greed index at 28 (Fear).
-• Crucial Levels: Support $75568 | Resistance $76376.01
-
-💡 Trader Takeaway: Spot: consider buying on dips near 75,568 with tight stop‑loss; Futures: look for short entries on break of 76,376 on high volume, targeting the 75,568 support.
-
-$BTC $ETH #BinanceSquare #CryptoMarket
-⚠️ Educational market analysis only. Not financial advice. Always DYOR.
+⚡ $ONE LONG | Entry CMP $0.001803 | TP1 $0.0019 (+5.4%) / TP2 $0.00197 (+9.3%) | SL $0.00165 (-8.5%) | RR 1:0.6
+📊 RSI90.6 | VOL spike 2.3x | OI n/a | MTF up/down | Est Liq L 0.001614/S 0.001994
+💎 Bonus $SOXLB #CryptoTrading
+CTA: Verify levels before entry.
+⚠️ Not financial advice; manage risk.

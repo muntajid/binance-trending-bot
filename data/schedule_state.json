@@ -1,8 +1,7 @@
 {
   "version": 1,
-  "day_utc": "2026-11-06",
+  "day_utc": "2026-11-07",
   "pending": [
-    1,
     2,
     3,
     4,
@@ -196,19 +195,42 @@
       "attempts": 1,
       "degraded": false,
       "coin": null
+    },
+    {
+      "slot": 1,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #1 (02:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-07T00:00:30.896572+00:00",
+      "day_utc": "2026-11-07",
+      "run_id": "42315413655",
+      "rotation": 2,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "ONE"
     }
   ],
   "rotations": 1,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-06T19:05:09.884383+00:00",
+  "updated_utc": "2026-11-07T00:00:30.896596+00:00",
   "previous_day": {
-    "day_utc": "2026-11-05",
+    "day_utc": "2026-11-06",
     "published": 3,
     "by_type": {
-      "explained_setup": 2,
-      "rapid_alert": 1
+      "rapid_alert": 1,
+      "explained_setup": 1,
+      "market_overview": 1
     },
     "unpublished": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
       10,
       11
     ]
