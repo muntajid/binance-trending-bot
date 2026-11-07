@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-11-07",
   "pending": [
-    2,
     3,
     4,
     5,
@@ -209,11 +208,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "ONE"
+    },
+    {
+      "slot": 2,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #1 (04:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-07T05:48:41.757937+00:00",
+      "day_utc": "2026-11-07",
+      "run_id": "42344220029",
+      "rotation": 2,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "SPCXB"
     }
   ],
   "rotations": 1,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-07T00:00:30.896596+00:00",
+  "updated_utc": "2026-11-07T05:48:41.757961+00:00",
   "previous_day": {
     "day_utc": "2026-11-06",
     "published": 3,
