@@ -1,13 +1,12 @@
 {
-  "last_slot": 7,
-  "last_type": "explained_setup",
-  "last_run_utc": "2026-11-08T12:58:46.677683+00:00",
+  "last_slot": 8,
+  "last_type": "rapid_alert",
+  "last_run_utc": "2026-11-08T18:43:39.356454+00:00",
   "day_utc": "2026-11-08",
   "rotation": 2,
   "rotation_started_utc": "2026-11-06T19:04:48.346702+00:00",
-  "published_this_rotation": 8,
+  "published_this_rotation": 9,
   "pending_slots": [
-    8,
     9,
     10,
     11
