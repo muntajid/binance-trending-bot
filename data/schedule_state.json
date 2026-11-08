@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-11-08",
   "pending": [
-    7,
     8,
     9,
     10,
@@ -274,11 +273,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": null
+    },
+    {
+      "slot": 7,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #3 (14:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-08T12:58:46.677683+00:00",
+      "day_utc": "2026-11-08",
+      "run_id": "42482664433",
+      "rotation": 2,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "BMT"
     }
   ],
   "rotations": 1,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-08T05:12:23.984644+00:00",
+  "updated_utc": "2026-11-08T12:58:46.677709+00:00",
   "previous_day": {
     "day_utc": "2026-11-07",
     "published": 5,
