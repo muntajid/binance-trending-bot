@@ -1,18 +1,17 @@
 {
-  "slot": 8,
-  "type": "rapid_alert",
-  "name": "Rapid Signal Alert #4 (16:00 UTC)",
+  "slot": 9,
+  "type": "explained_setup",
+  "name": "Explained Master Setup #4 (18:00 UTC)",
   "forced": false,
-  "published_utc": "2026-11-08T18:43:39.356454+00:00",
+  "published_utc": "2026-11-08T23:30:30.611787+00:00",
   "day_utc": "2026-11-08",
-  "run_id": "42511356494",
+  "run_id": "42535424671",
   "rotation": 2,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": "HOT",
+  "coin": "RSR",
   "pending_after": [
-    9,
     10,
     11
   ]

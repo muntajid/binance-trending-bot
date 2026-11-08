@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-11-08",
   "pending": [
-    9,
     10,
     11
   ],
@@ -300,11 +299,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "HOT"
+    },
+    {
+      "slot": 9,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #4 (18:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-08T23:30:30.611787+00:00",
+      "day_utc": "2026-11-08",
+      "run_id": "42535424671",
+      "rotation": 2,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "RSR"
     }
   ],
   "rotations": 1,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-08T18:43:39.356476+00:00",
+  "updated_utc": "2026-11-08T23:30:30.611806+00:00",
   "previous_day": {
     "day_utc": "2026-11-07",
     "published": 5,
