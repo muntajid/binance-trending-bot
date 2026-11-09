@@ -1,17 +1,15 @@
 {
-  "slot": 10,
-  "type": "rapid_alert",
-  "name": "Rapid Signal Alert #5 (20:00 UTC)",
+  "slot": 11,
+  "type": "explained_setup",
+  "name": "Explained Master Setup #5 (22:00 UTC)",
   "forced": false,
-  "published_utc": "2026-11-09T05:24:28.596889+00:00",
+  "published_utc": "2026-11-09T15:38:35.564452+00:00",
   "day_utc": "2026-11-09",
-  "run_id": "42567041755",
+  "run_id": "42646575083",
   "rotation": 2,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": "ARB",
-  "pending_after": [
-    11
-  ]
+  "coin": "GNS",
+  "pending_after": []
 }

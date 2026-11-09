@@ -1,9 +1,7 @@
 {
   "version": 1,
   "day_utc": "2026-11-09",
-  "pending": [
-    11
-  ],
+  "pending": [],
   "in_flight": null,
   "published": [
     {
@@ -326,11 +324,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "ARB"
+    },
+    {
+      "slot": 11,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #5 (22:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-09T15:38:35.564452+00:00",
+      "day_utc": "2026-11-09",
+      "run_id": "42646575083",
+      "rotation": 2,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "GNS"
     }
   ],
   "rotations": 1,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-09T05:24:28.596913+00:00",
+  "updated_utc": "2026-11-09T15:38:35.564472+00:00",
   "previous_day": {
     "day_utc": "2026-11-08",
     "published": 4,
