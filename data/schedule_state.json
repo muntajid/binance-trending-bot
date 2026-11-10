@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-11-10",
   "pending": [
-    3,
     4,
     5,
     6,
@@ -390,11 +389,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "ONE"
+    },
+    {
+      "slot": 3,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #2 (06:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-10T22:58:54.145477+00:00",
+      "day_utc": "2026-11-10",
+      "run_id": "42919288971",
+      "rotation": 3,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "GRAM"
     }
   ],
   "rotations": 2,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-10T17:34:09.673775+00:00",
+  "updated_utc": "2026-11-10T22:58:54.145495+00:00",
   "previous_day": {
     "day_utc": "2026-11-09",
     "published": 2,
