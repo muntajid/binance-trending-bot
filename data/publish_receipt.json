@@ -1,15 +1,27 @@
 {
-  "slot": 11,
-  "type": "explained_setup",
-  "name": "Explained Master Setup #5 (22:00 UTC)",
+  "slot": 0,
+  "type": "market_overview",
+  "name": "Macro & Bitcoin Outlook (00:00 UTC)",
   "forced": false,
-  "published_utc": "2026-11-09T15:38:35.564452+00:00",
-  "day_utc": "2026-11-09",
-  "run_id": "42646575083",
-  "rotation": 2,
+  "published_utc": "2026-11-10T00:01:06.663870+00:00",
+  "day_utc": "2026-11-10",
+  "run_id": "42724914818",
+  "rotation": 3,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": "GNS",
-  "pending_after": []
+  "coin": null,
+  "pending_after": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ]
 }

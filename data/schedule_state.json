@@ -1,7 +1,19 @@
 {
   "version": 1,
-  "day_utc": "2026-11-09",
-  "pending": [],
+  "day_utc": "2026-11-10",
+  "pending": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
   "in_flight": null,
   "published": [
     {
@@ -338,29 +350,39 @@
       "attempts": 1,
       "degraded": false,
       "coin": "GNS"
+    },
+    {
+      "slot": 0,
+      "type": "market_overview",
+      "name": "Macro & Bitcoin Outlook (00:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-10T00:01:06.663870+00:00",
+      "day_utc": "2026-11-10",
+      "run_id": "42724914818",
+      "rotation": 3,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": null
     }
   ],
-  "rotations": 1,
+  "rotations": 2,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-09T15:38:35.564472+00:00",
+  "updated_utc": "2026-11-10T00:01:06.663894+00:00",
   "previous_day": {
-    "day_utc": "2026-11-08",
-    "published": 4,
+    "day_utc": "2026-11-09",
+    "published": 2,
     "by_type": {
-      "meme_community": 1,
-      "explained_setup": 2,
-      "rapid_alert": 1
+      "rapid_alert": 1,
+      "explained_setup": 1
     },
-    "unpublished": [
-      10,
-      11
-    ]
+    "unpublished": []
   },
   "last_error": null,
-  "rotation_started_utc": "2026-11-06T19:04:48.346702+00:00",
+  "rotation_started_utc": "2026-11-10T00:00:45.150467+00:00",
   "previous_rotation": {
-    "rotation": 1,
-    "started_utc": "2026-11-03T03:23:07.996141+00:00",
+    "rotation": 2,
+    "started_utc": "2026-11-06T19:04:48.346702+00:00",
     "extras": 0,
     "published": 12,
     "by_type": {
