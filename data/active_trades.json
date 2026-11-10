@@ -16,7 +16,7 @@
     "change": 16.228,
     "created_at": "2026-08-13T09:47:04.919612",
     "status": "ACTIVE",
-    "last_checked_at": "2026-11-10T02:25:53.633038+00:00",
+    "last_checked_at": "2026-11-10T10:13:53.546773+00:00",
     "trade_id": "utk-ef750a2c1e548ce3c9af"
   },
   {
@@ -687,7 +687,7 @@
     "slot_mode": "explained_setup",
     "trade_id": "b8c6354b4a7a46b5917083e02d6d3099",
     "created_at": "2026-10-31T17:00:59.128756+00:00",
-    "last_checked_at": "2026-11-10T02:25:54.933242+00:00",
+    "last_checked_at": "2026-11-10T10:13:54.937018+00:00",
     "status": "ACTIVE",
     "tp1_hit": true,
     "tp1_hit_price": 0.364,
@@ -1255,7 +1255,7 @@
     "slot_mode": "explained_setup",
     "trade_id": "cb7aebec777d4c67ba235bbf2202108a",
     "created_at": "2026-11-05T21:49:54.644884+00:00",
-    "last_checked_at": "2026-11-10T02:25:56.231236+00:00",
+    "last_checked_at": "2026-11-10T10:13:56.067514+00:00",
     "status": "ACTIVE"
   },
   {
@@ -1930,7 +1930,7 @@
     "slot_mode": "rapid_alert",
     "trade_id": "85f490b0d81045b18f6468573d904ce5",
     "created_at": "2026-11-10T09:27:51.553022+00:00",
-    "last_checked_at": "2026-11-10T09:27:51.553022+00:00",
+    "last_checked_at": "2026-11-10T10:13:57.185997+00:00",
     "status": "ACTIVE"
   }
 ]
