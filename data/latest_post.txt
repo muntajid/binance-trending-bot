@@ -1,14 +1,5 @@
-🌐 MACRO & BITCOIN OUTLOOK: BTC holds sideways near $75.4k as dominance steadies and fear sentiment deepens 📊
-
-$BTC 24H: $75370.02 (+0.76%)
-Market Phase: Consolidation with liquidity hunt potential
-
-📊 Key Market Dynamics:
-• Bitcoin Structure: On 1H BTC RSI sits at 68.4 with price above EMA‑20 (75,008) but below EMA‑200 (75,618), while 4H RSI has dropped to 45.9 and price sits under EMA‑20 (75,577) and well under EMA‑200 (78,460), indicating mixed short‑term bias and a sideways market structure (LH/HL) around key support at 75,171.9 and resistance at 75,793.8.
-• Altcoin Flows: Altcoins are outperforming BTC (≈20% avg 24h gain) with top gainers INIT (+56.9%) and SOXLB (+31.9%); BTC dominance at 59.74% and a Fear index at 32 suggest capital rotation into risk‑on assets.
-• Crucial Levels: Support $75171.89 | Resistance $75793.79
-
-💡 Trader Takeaway: Spot traders may buy on dips near $75,150‑$75,200 with tight stops below $75,100; futures positions should stay flat or consider short‑biased scalps if price breaks below $75,170 and confirms a move toward the $74,900 support zone.
-
-$BTC $ETH #BinanceSquare #CryptoMarket
-⚠️ Educational market analysis only. Not financial advice. Always DYOR.
+⚡ $INIT LONG | Entry CMP $0.22268 | TP1 $0.2373 (+6.6%) / TP2 $0.25 (+12.3%) | SL $0.21 (-5.7%) | RR 1:1.2
+📊 RSI67.5 | VOL normal | OI n/a | MTF flat/flat | Est Liq L 0.185716/S 0.260184
+💎 Bonus $SOXLB #CryptoTrading
+CTA: Drop your price prediction for $INI…
+⚠️ Not financial advice; manage risk.
