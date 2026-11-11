@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-11-11",
   "pending": [
-    8,
     9,
     10,
     11
@@ -455,11 +454,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "SNXXB"
+    },
+    {
+      "slot": 8,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #4 (16:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-11T21:08:26.913268+00:00",
+      "day_utc": "2026-11-11",
+      "run_id": "43100353695",
+      "rotation": 3,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "SNDKB"
     }
   ],
   "rotations": 2,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-11T16:44:29.277948+00:00",
+  "updated_utc": "2026-11-11T21:08:26.913291+00:00",
   "previous_day": {
     "day_utc": "2026-11-10",
     "published": 4,

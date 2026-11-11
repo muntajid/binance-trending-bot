@@ -1,21 +1,5 @@
-⚖️ $SNXXB evidence check — defined risk, clear invalidation (+35.8% 24H)
-
-👀 $SNXXB SHORT | Entry CMP $4.59 | TP1 $4.3 (+6.3%) | TP2 $4.15 (+9.6%) | SL $4.7 (-2.4%) | RR 1:2.64 | Conf 1%
-Why now: Trigger.
-
-Key evidence (verified):
-• Structure: Higher highs/lows on 1H, sideways 4H, downtrend 1D; bullish structure but overbought momentum and price near upper Bollinger band.
-• Indicators: EMA20 3.98, EMA50 3.74, EMA200 3.46; RSI 85.8; MACD +0.22/0.15; VWAP 3.66 vs price 4.59; BB upper 4.52, position 1.05; Stoch RSI K81/D82.
-• Participation: volume normal; taker buy share 51%; 24h turnover $8.2M | Futures: derivatives feed unavailable today
-• Liquidity: order book balanced (0.92x); est. liquidation magnets: shorts ~$4.8018 / longs ~$4.3582
-• Trend stack: 5m↑ 15m↑ 1H↑ 4H→ 1D↓ 1W→
-• Context: BTC mixed 1H/4H alignment (mixed, bearish); dominance 59.8%; F&G 29 Fear
-• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
-
-🔀 If price breaks above 4.62 resistance with a confirmed volume spike → path to $4.3 stays open; if price falls below 4.30 and respects the 4.12 support → thesis cancelled.
-❌ Invalidation: price above 4.70 (SL) or break above 4.62 resistance.
-🛡️ Risk: 1:2.5; 2% of account equity per trade; plan: Exit if price reaches 4.70 or breaches 4.62 resistance (validation 1/100)
-📎 Data confidence: derivatives feed unavailable — the rest is measured.
-Which hits first for $SNXXB: $4.62 or $4.12?
-Tags: $SNXXB $BTC #BinanceSquare
-⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
+⚡ $SNDKB LONG | Entry CMP $983.17 | TP1 $1011.14 (+2.8%) / TP2 $1050 (+6.8%) | SL $940 (-4.4%) | RR 1:0.6
+📊 RSI 73.4 | VOL normal | OI n/a | MTF 1H up / 4H flat | Est liq zones L 954.335/S 1012.68
+1H trigger.
+💎 Context: $SNXXB #BinanceSquareFamily
+⚠️ Not financial advice; verify levels first.
