@@ -58,7 +58,7 @@ def load_config() -> dict[str, Any]:
 
 
 def active_trade_ttl_hours(config: dict[str, Any] | None = None) -> float:
-    """Hours after which an untouched ``ACTIVE`` trade is treated as stale."""
+    """Hours after creation at which an unresolved ``ACTIVE`` trade is stale."""
 
     raw = os.getenv("ACTIVE_TRADE_TTL_HOURS", "")
     if not raw.strip():
@@ -77,9 +77,18 @@ def is_active(trade: dict[str, Any]) -> bool:
 
 
 def trade_age_hours(trade: dict[str, Any], *, now: datetime.datetime | None = None) -> float | None:
-    """Hours since the trade was created, or since it was last checked."""
+    """Hours since the trade was *created*, not since it was last checked.
 
-    reference = parse_iso(trade.get("last_checked_at")) or parse_iso(trade.get("created_at"))
+    The TTL must close the setup -> outcome story loop: a signal that has been
+    open longer than the TTL is stale even when the monitor can still scan it.
+    Measuring from ``last_checked_at`` let a scannable trade stay ``ACTIVE``
+    for months (it refreshed its own clock every run), which blocked the coin
+    from ever being signalled again and left the public narrative unresolved.
+    ``created_at`` is therefore the primary reference; ``last_checked_at`` is
+    only a fallback for legacy records without a creation timestamp.
+    """
+
+    reference = parse_iso(trade.get("created_at")) or parse_iso(trade.get("last_checked_at"))
     if reference is None:
         return None
     return ((now or utc_now()) - reference).total_seconds() / 3600.0

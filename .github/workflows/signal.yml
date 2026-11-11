@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       slot:
-        description: "Which post to publish"
+        description: "Which post to publish (scorecard/explainer are manual extras that never touch the rotation)"
         required: false
         default: auto
         type: choice
@@ -21,6 +21,8 @@ on:
           - rapid_alert
           - explained_setup
           - meme_community
+          - scorecard
+          - educational_explainer
       reset:
         description: "Start a new rotation (overrides the queue; may repeat content)"
         required: false
@@ -85,6 +87,8 @@ jobs:
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GROQ_MODEL: ${{ vars.GROQ_MODEL || 'openai/gpt-oss-120b' }}
+          # Watermark on published charts (same handle used on monitor cards)
+          CARD_USERNAME: ${{ vars.CARD_USERNAME || 'muntajid' }}
         run: python -m bot.main_signal
 
       - name: Download official Binance Square posting scripts

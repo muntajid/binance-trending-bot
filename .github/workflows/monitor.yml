@@ -64,10 +64,19 @@ jobs:
           SQUARE_PUBLISH_ATTEMPTS: ${{ vars.SQUARE_PUBLISH_ATTEMPTS || '3' }}
           SQUARE_PUBLISH_DEADLINE_SECONDS: ${{ vars.SQUARE_PUBLISH_DEADLINE_SECONDS || '240' }}
           TARGET_CARD_POSITION_SIZE_USDT: ${{ vars.TARGET_CARD_POSITION_SIZE_USDT || '5000' }}
-          TARGET_CARD_LEVERAGE: ${{ vars.TARGET_CARD_LEVERAGE || '15' }}
+          # Empty default = the card shows the trade's own configured leverage
+          # label (bot/config.json trading.leverage). Set the variable to force one.
+          TARGET_CARD_LEVERAGE: ${{ vars.TARGET_CARD_LEVERAGE || '' }}
           MONITOR_CANDLE_INTERVAL: ${{ vars.MONITOR_CANDLE_INTERVAL || '1m' }}
           MONITOR_MAX_LOOKBACK_HOURS: ${{ vars.MONITOR_MAX_LOOKBACK_HOURS || '168' }}
           MONITOR_MAX_KLINE_PAGES: ${{ vars.MONITOR_MAX_KLINE_PAGES || '20' }}
+          # Verified outcome narration: stop-loss resolution posts and one-shot
+          # under-pressure updates, both capped per UTC day. Defaults come from
+          # bot/config.json -> monitor; these variables are optional overrides.
+          MONITOR_SL_POSTS_ENABLED: ${{ vars.MONITOR_SL_POSTS_ENABLED || '' }}
+          MONITOR_SL_POST_MAX_PER_DAY: ${{ vars.MONITOR_SL_POST_MAX_PER_DAY || '' }}
+          MONITOR_PRESSURE_POSTS_ENABLED: ${{ vars.MONITOR_PRESSURE_POSTS_ENABLED || '' }}
+          MONITOR_PRESSURE_POST_MAX_PER_DAY: ${{ vars.MONITOR_PRESSURE_POST_MAX_PER_DAY || '' }}
           CARD_TIMEZONE: ${{ vars.CARD_TIMEZONE || 'UTC' }}
           CARD_USERNAME: ${{ vars.CARD_USERNAME || 'muntajid' }}
           BINANCE_REFERRAL_CODE: ${{ vars.BINANCE_REFERRAL_CODE || '768056928' }}

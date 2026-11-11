@@ -117,6 +117,25 @@ class EngineRunTestCase(unittest.TestCase, TempStateMixin):
         self.assertIn("Unknown slot request", str(ctx.exception))
         guard.assert_not_called()
 
+    def test_manual_scorecard_slot_runs_text_only_and_stays_off_queue(self) -> None:
+        stats = {"days": 7, "closed": 2, "tp2": 1, "tp1_partial": 0, "stopped": 1,
+                 "expired": 0, "superseded": 0, "open": 1, "avg_tp2_pct": 8.0, "avg_stop_pct": 3.0}
+        builder = mock.Mock(return_value=("📒 scorecard text", {"type": "scorecard", "stats": stats}, ""))
+        with mock.patch.dict(os.environ, {"SLOT": "scorecard"}), mock.patch.object(
+            main_signal, "_with_duplicate_guard", builder
+        ):
+            main_signal.run()
+
+        state = self.state()
+        self.assertEqual(state["in_flight"]["type"], "scorecard")
+        self.assertEqual(state["in_flight"]["slot"], 90)
+        self.assertTrue(state["in_flight"]["forced"], "manual types never consume the rotation")
+        self.assertEqual(state["pending"][0], 0, "the auto queue is untouched")
+        self.assertEqual(
+            self.data_dir.joinpath("latest_post.txt").read_text(encoding="utf-8"),
+            "📒 scorecard text",
+        )
+
 
 class DuplicateGuardTestCase(unittest.TestCase):
     def test_similar_caption_is_regenerated_then_accepted(self) -> None:

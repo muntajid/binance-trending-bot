@@ -9,8 +9,15 @@ from unittest.mock import Mock, patch
 from bot import signal_generator
 from bot.poster import (
     assert_clean_post_text,
+    assert_post_quality,
     format_explained_post,
+    format_explainer_post,
+    format_market_overview_post,
+    format_pressure_post,
     format_rapid_alert_post,
+    format_scorecard_post,
+    format_stop_post,
+    scorecard_stats,
 )
 
 
@@ -319,46 +326,195 @@ class SignalPostTests(unittest.TestCase):
             "institutional_analysis": research,
         }
 
-    def test_rapid_post_has_required_evidence_and_stays_120_to_300_chars(self):
-        post = format_rapid_alert_post(self._signal())
-        self.assertGreaterEqual(len(post), 120)
-        self.assertLessEqual(len(post), 300)
-        self.assertIn("Entry CMP", post)
-        self.assertIn("TP1", post)
-        self.assertIn("TP2", post)
-        self.assertIn("SL", post)
-        self.assertIn("RR", post)
-        self.assertIn("RSI", post)
-        self.assertIn("VOL", post)
-        self.assertIn("OI", post)
-        self.assertIn("MTF", post)
-        self.assertIn("Liq", post)
-        self.assertIn("Bonus", post)
-        self.assertIn("CTA:", post)
-        self.assertIn("#", post)
+    def _signal_with_hook(self):
+        signal = self._signal()
+        signal["hook_line"] = (
+            "ETH quiet at $100 while funding stays flat - the reclaim everyone "
+            "stopped watching is the interesting one."
+        )
+        signal["angle_family"] = "contrarian_conflict"
+        signal["scenarios"] = {
+            "bull_if": "price holds above $95",
+            "bear_if": "a 1H close below $95",
+        }
+        return signal
+
+    def test_rapid_post_leads_with_hook_and_keeps_verified_levels(self):
+        post = format_rapid_alert_post(self._signal_with_hook())
+        self.assertGreaterEqual(len(post), 150)
+        self.assertLessEqual(len(post), 720)
+        # Line 1 is the curiosity hook, not raw data.
+        first_line = post.splitlines()[0]
+        self.assertIn("reclaim", first_line.lower())
+        self.assertNotIn("Entry CMP", first_line)
+        for needle in (
+            "Entry CMP",
+            "TP1",
+            "TP2",
+            "SL",
+            "RR",
+            "RSI",
+            "VOL",
+            "OI",
+            "MTF",
+            "#",
+        ):
+            self.assertIn(needle, post)
         self.assertIn("not financial advice", post.lower())
         self.assert_clean(post)
 
-    def test_explained_post_has_all_sections_and_stays_in_target_range(self):
-        post = format_explained_post(self._signal())
-        self.assertGreaterEqual(len(post), 900)
+    def test_rapid_post_without_hook_stays_data_first_and_bounded(self):
+        post = format_rapid_alert_post(self._signal())
+        self.assertTrue(post.startswith("⚡ $ETH LONG | Entry CMP"))
+        self.assertLessEqual(len(post), 720)
+        self.assertIn("RR", post)
+        self.assert_clean(post)
+
+    def test_explained_post_is_hooks_bullets_scenarios_in_target_range(self):
+        post = format_explained_post(self._signal_with_hook())
+        self.assertGreaterEqual(len(post), 700)
         self.assertLessEqual(len(post), 1900)
-        self.assertTrue(post.startswith("👀 $ETH LONG | ENTRY CMP"))
-        for section in (
-            "TECHNICAL ANALYSIS",
-            "INDICATORS",
-            "VOLUME & FUTURES",
-            "LIQUIDITY & LIQUIDATION HEATMAP",
-            "MULTI-TIMEFRAME",
-            "MARKET / SENTIMENT / ON-CHAIN",
-            "MACRO & FUNDAMENTAL",
-            "VOLATILITY & VALIDATION",
-            "RISK MANAGEMENT",
-            "CTA:",
-            "Tags:",
+        self.assertTrue(post.splitlines()[0].lower().startswith("eth quiet"))
+        for needle in (
+            "Entry CMP $100",
+            "Why now:",
+            "Key evidence (verified):",
+            "• Structure:",
+            "• Indicators:",
+            "• Participation:",
+            "• Liquidity:",
+            "• Trend stack:",
+            "• Context:",
+            "🔀 If price holds above $95",
+            "❌ Invalidation:",
+            "🛡️ Risk:",
+            "Tags: $ETH",
             "not financial advice",
         ):
-            self.assertIn(section.lower(), post.lower())
+            self.assertIn(needle.lower(), post.lower())
+        # No machine-style fragments survived the rewrite.
+        self.assertNotIn("buying volume:", post.lower())
+        self.assertNotIn("volume_spike:", post.lower())
+        self.assert_clean(post)
+
+    def test_explained_post_without_hook_uses_rotated_fallback(self):
+        post = format_explained_post(self._signal())
+        self.assertLessEqual(len(post), 1900)
+        self.assertIn("$ETH", post.splitlines()[0])
+        # The binary scenario line falls back to the verified invalidation level.
+        self.assertIn("$95", post)
+        self.assert_clean(post)
+
+    def test_quality_gate_rejects_banned_claims_and_extra_questions(self):
+        good = format_rapid_alert_post(self._signal_with_hook())
+        self.assertEqual(assert_post_quality(good, self._signal_with_hook()), good)
+        with self.assertRaises(ValueError):
+            assert_post_quality("This setup is guaranteed to print money")
+        with self.assertRaises(ValueError):
+            assert_post_quality("One? Two? Three?")
+
+    def test_quality_gate_rejects_hook_numbers_absent_from_payload(self):
+        post = "ETH eyes $999 as funding flips"
+        payload = {"hook_line": "ETH eyes $999 as funding flips", "tp1": 110, "sl": 95}
+        with self.assertRaises(ValueError):
+            assert_post_quality(post, payload)
+        ok_payload = {"hook_line": "ETH holds $100 while TP1 sits at $110", "entry_price": 100, "tp1": 110}
+        ok_post = "ETH holds $100 while TP1 sits at $110"
+        self.assertEqual(assert_post_quality(ok_post, ok_payload), ok_post)
+
+    def test_stop_and_pressure_posts_are_honest_and_bounded(self):
+        trade = {
+            "coin": "CYBER",
+            "direction": "LONG",
+            "entry_price": 1.0,
+            "tp1": 1.08,
+            "tp2": 1.15,
+            "sl": 0.94,
+            "created_at": "2026-11-09T05:20:00+00:00",
+            "tp1_hit": True,
+        }
+        stop_post = format_stop_post(trade, 0.94)
+        self.assertIn("STOPPED", stop_post)
+        self.assertIn("TP1", stop_post)  # acknowledges the partial plan
+        self.assertIn("not financial advice", stop_post.lower())
+        self.assertLessEqual(len(stop_post), 1200)
+        self.assertNotIn("revenge trade — next", stop_post.lower())
+        self.assert_clean(stop_post)
+
+        pressure_post = format_pressure_post(trade, 0.955)
+        self.assertIn("under pressure", pressure_post.lower())
+        self.assertIn("$0.94", pressure_post)
+        self.assertLessEqual(len(pressure_post), 900)
+        self.assert_clean(pressure_post)
+
+    def test_scorecard_counts_wins_and_losses_symmetrically(self):
+        import datetime as _dt
+
+        now = _dt.datetime(2026, 11, 11, tzinfo=_dt.timezone.utc)
+        closed = [
+            {"status": "TP2_HIT", "entry_price": 100, "closed_price": 110, "tp2": 110,
+             "direction": "LONG", "closed_at": "2026-11-10T00:00:00+00:00"},
+            {"status": "SL_HIT", "entry_price": 100, "closed_price": 95, "sl": 95,
+             "direction": "LONG", "tp1_hit": True, "closed_at": "2026-11-10T01:00:00+00:00"},
+            {"status": "SL_HIT", "entry_price": 100, "closed_price": 95, "sl": 95,
+             "direction": "LONG", "closed_at": "2026-11-09T01:00:00+00:00"},
+            {"status": "SL_HIT", "entry_price": 100, "closed_price": 95, "sl": 95,
+             "direction": "LONG", "closed_at": "2026-10-01T01:00:00+00:00"},  # outside window
+        ]
+        stats = scorecard_stats(closed, [{"status": "ACTIVE"}], days=7, now=now)
+        self.assertEqual(stats["closed"], 3)
+        self.assertEqual(stats["tp2"], 1)
+        self.assertEqual(stats["stopped"], 2)
+        self.assertEqual(stats["tp1_partial"], 1)
+        self.assertEqual(stats["open"], 1)
+        post = format_scorecard_post(stats)
+        self.assertIn("Stopped at invalidation: 2", post)
+        self.assertIn("not guarantee future results", post.lower())
+        self.assert_clean(post)
+
+    def test_explainer_post_structure(self):
+        data = {
+            "title": "Reading a volume spike without fooling yourself",
+            "hook_line": "BTC volume ran 1.8x average today - here is what that does and does not prove.",
+            "concept": "Volume confirmation",
+            "points": [
+                "A spike means participation grew, not that direction is guaranteed.",
+                "Compare the spike against the same coin's average, not another coin.",
+                "Confirmation needs the breakout candle to hold on the next close.",
+            ],
+            "takeaway": "Spike plus held level beats spike alone.",
+            "question": "Which confirmation do you wait for before trusting a breakout?",
+        }
+        post = format_explainer_post(data)
+        self.assertIn("📚", post)
+        self.assertIn("1.", post)
+        self.assertIn("not financial advice", post.lower())
+        self.assert_clean(post)
+
+    def test_market_overview_carries_sentiment_and_flip_lines(self):
+        overview = {
+            "headline": "BTC Defends Range Low as Alts Rotate",
+            "hook_line": "Fear at 29 while BTC holds $73.8K - sentiment and price disagree.",
+            "btc_price": 73872.01,
+            "btc_change": -1.32,
+            "eth_price": 2068.5,
+            "eth_change": -2.4,
+            "market_phase": "Consolidation Range",
+            "btc_thesis": "BTC is holding the range low as volume rebuilds.",
+            "altcoin_summary": "Momentum rotates into selective high-volume names.",
+            "btc_support": 72000,
+            "btc_resistance": 75500,
+            "what_flips_bullish": "BTC reclaims $75.5K with volume",
+            "what_flips_bearish": "$72K gives way on a 1H close",
+            "strategy_outlook": "Respect the invalidation; avoid mid-range entries.",
+            "fear_greed": {"value": 29, "classification": "Fear", "estimated": False},
+            "btc_dominance": {"btc_dominance_percent": 59.8, "estimated": False},
+        }
+        post = format_market_overview_post(overview)
+        self.assertIn("Fear & Greed 29", post)
+        self.assertIn("dominance 59.8%", post)
+        self.assertIn("What flips it", post)
+        self.assertIn("not financial advice", post.lower())
         self.assert_clean(post)
 
     def assert_clean(self, post):

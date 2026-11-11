@@ -10,6 +10,7 @@ from typing import Any
 import requests
 from groq import Groq
 
+from bot import trade_state
 from bot.indicators import calculate_all_indicators
 from bot.market_context import get_market_context
 from bot.market_data import (
@@ -98,14 +99,25 @@ def get_trending_coins(
             if price <= 0 or change < min_change or volume < min_volume:
                 continue
 
-            filtered.append(
-                {
-                    "coin": symbol[:-4],
-                    "change": change,
-                    "volume": volume,
-                    "price": price,
-                }
-            )
+            entry_data: dict[str, Any] = {
+                "coin": symbol[:-4],
+                "change": change,
+                "volume": volume,
+                "price": price,
+            }
+            # Optional enrichment for topic scoring; absent on synthetic data.
+            for src_key, dst_key in (
+                ("highPrice", "high"),
+                ("lowPrice", "low"),
+                ("openPrice", "open"),
+                ("count", "trade_count"),
+            ):
+                try:
+                    entry_data[dst_key] = float(item[src_key])
+                except (KeyError, TypeError, ValueError):
+                    continue
+
+            filtered.append(entry_data)
         except (KeyError, TypeError, ValueError):
             continue
 
@@ -114,6 +126,143 @@ def get_trending_coins(
         raise RuntimeError("No valid trending coins found from verified API.")
 
     return filtered[:top_n]
+
+
+# ---------------------------------------------------------------------------
+# Topic scoring (content opportunity ranking)
+# ---------------------------------------------------------------------------
+
+# Narrative angle families, chosen by the model *from verified evidence* only.
+# They shape the hook and CTA; they never justify inventing data.
+ANGLE_FAMILIES = (
+    "contrarian_conflict",   # data pushes against the prevailing crowd read
+    "binary_scenario",       # reclaim X or sweep Y first
+    "data_finding",          # a measured datapoint is the story (flow, spike, OI)
+    "event_risk",            # verified macro/schedule context frames the setup
+    "outcome_update",        # follow-up on an existing thesis
+    "structure_break",       # level flip / breakout-retest
+)
+
+DEFAULT_TOPIC_WEIGHTS = {
+    "momentum": 0.35,
+    "volatility": 0.20,
+    "liquidity": 0.15,
+    "participation": 0.15,
+    "novelty": 0.15,
+}
+
+_NOVELTY_WINDOW_DAYS = 7.0
+
+
+def _component(value: float, cap: float) -> float:
+    if cap <= 0:
+        return 0.0
+    return max(0.0, min(1.0, value / cap))
+
+
+def score_trending_candidates(
+    candidates: list[dict[str, Any]],
+    posted_entries: list[dict[str, Any]] | None = None,
+    *,
+    now: datetime.datetime | None = None,
+    weights: dict[str, float] | None = None,
+) -> list[dict[str, Any]]:
+    """Rank candidates by composite topic score instead of raw 24h gain.
+
+    Components (each 0-1, weighted via ``trending.score_weights``):
+
+    * ``momentum``     — 24h % change (capped at +50%: beyond that the extra
+      attention a bigger candle buys is marginal);
+    * ``volatility``   — intraday high-low range (sharp moves are the raw
+      material of high-reach setups);
+    * ``liquidity``    — 24h quote volume (a setup the audience can actually
+      trade);
+    * ``participation``— Binance trade count (crowd attention proxy);
+    * ``novelty``      — decays over 7 days since the coin was last posted, so
+      the same hot coin does not monopolise the feed rotation after rotation.
+
+    Every component derives from fields already fetched from Binance or from
+    the local post history: no new network calls, no unverifiable "news".
+    The function is pure and offline-testable; it annotates each candidate
+    with ``score`` and ``score_parts`` and returns a copy sorted descending.
+    """
+
+    import datetime as _datetime  # local import keeps module import cost low
+
+    merged_weights = {**DEFAULT_TOPIC_WEIGHTS, **(weights or {})}
+    posted_entries = posted_entries if isinstance(posted_entries, list) else []
+    now = now or _datetime.datetime.now(_datetime.timezone.utc)
+
+    last_posted: dict[str, _datetime.datetime] = {}
+    for entry in posted_entries:
+        if not isinstance(entry, dict):
+            continue
+        coin_name = str(entry.get("coin", "")).upper().strip()
+        stamp = str(entry.get("time", "")).strip().replace("Z", "+00:00")
+        try:
+            moment = _datetime.datetime.fromisoformat(stamp)
+        except ValueError:
+            continue
+        if moment.tzinfo is None:
+            moment = moment.replace(tzinfo=_datetime.timezone.utc)
+        moment = moment.astimezone(_datetime.timezone.utc)
+        if coin_name and (coin_name not in last_posted or moment > last_posted[coin_name]):
+            last_posted[coin_name] = moment
+
+    scored: list[dict[str, Any]] = []
+    for candidate in candidates:
+        if not isinstance(candidate, dict):
+            continue
+        coin_name = str(candidate.get("coin", "")).upper().strip()
+        try:
+            change = float(candidate.get("change", 0.0))
+            volume = float(candidate.get("volume", 0.0))
+            price = float(candidate.get("price", 0.0))
+        except (TypeError, ValueError):
+            continue
+        if not coin_name or price <= 0:
+            continue
+
+        # Intraday range measures realised volatility; fall back to |change|.
+        try:
+            high = float(candidate.get("high", 0.0))
+            low = float(candidate.get("low", 0.0))
+            open_price = float(candidate.get("open", 0.0))
+        except (TypeError, ValueError):
+            high = low = open_price = 0.0
+        range_pct = ((high - low) / open_price * 100.0) if open_price > 0 and low > 0 else abs(change)
+
+        try:
+            trade_count = float(candidate.get("trade_count", 0.0))
+        except (TypeError, ValueError):
+            trade_count = 0.0
+
+        last_seen = last_posted.get(coin_name)
+        if last_seen is None:
+            novelty = 1.0
+        else:
+            days_since = max(0.0, (now - last_seen).total_seconds() / 86400.0)
+            novelty = min(1.0, days_since / _NOVELTY_WINDOW_DAYS)
+
+        parts = {
+            "momentum": _component(change, 50.0),
+            "volatility": _component(range_pct, 40.0),
+            "liquidity": _component(volume, 100_000_000.0),
+            # Neutral 0.5 when the ticker did not supply a trade count.
+            "participation": _component(trade_count, 2_000_000.0) if trade_count > 0 else 0.5,
+            "novelty": novelty,
+        }
+        total = sum(parts[name] * merged_weights.get(name, 0.0) for name in parts)
+        scored.append(
+            {
+                **candidate,
+                "score": round(total, 4),
+                "score_parts": {name: round(value, 4) for name, value in parts.items()},
+            }
+        )
+
+    scored.sort(key=lambda item: item["score"], reverse=True)
+    return scored
 
 
 def _available_groq_models(api_key: str) -> set[str] | None:
@@ -225,6 +374,43 @@ def _coerce_level(value: Any) -> float | None:
     if not math.isfinite(number) or number <= 0:
         return None
     return number
+
+
+def _configured_leverage() -> str:
+    """Single source of truth for the leverage label shown in payloads.
+
+    The value used to be hardcoded as ``15x`` here while ``bot/config.json``
+    said ``3x-5x`` and proof cards rendered another number. Content integrity
+    starts with the bot quoting one consistent risk label everywhere.
+    """
+
+    leverage = str(trade_state.load_config().get("trading", {}).get("leverage", "3x-5x")).strip()
+    return leverage or "3x-5x"
+
+
+def _sanitize_hook_line(value: Any, *, max_chars: int = 90) -> str:
+    """Keep the LLM's hook one-line, bounded, and free of banned promises."""
+
+    text = " ".join(str(value or "").split())
+    if len(text) > max_chars:
+        cut = text[: max_chars - 1].rstrip()
+        # Clip at the last sentence/phrase boundary so the cut looks deliberate.
+        boundary = max(cut.rfind(". "), cut.rfind("? "), cut.rfind("! "), cut.rfind("; "))
+        text = cut if boundary < max_chars * 0.5 else cut[: boundary + 1]
+    return text
+
+
+def _sanitize_angle_family(value: Any) -> str:
+    text = str(value or "").strip().lower().replace("-", "_").replace(" ", "_")
+    return text if text in ANGLE_FAMILIES else "structure_break"
+
+
+def _sanitize_scenarios(value: Any) -> dict[str, str]:
+    raw = value if isinstance(value, dict) else {}
+    return {
+        "bull_if": _sanitize_hook_line(raw.get("bull_if", ""), max_chars=140),
+        "bear_if": _sanitize_hook_line(raw.get("bear_if", ""), max_chars=140),
+    }
 
 
 def _round_level(price: float) -> float:
@@ -445,7 +631,10 @@ def _normalize_signal(
         "tp1": tp1,
         "tp2": tp2,
         "sl": stop,
-        "leverage": "15x",
+        "leverage": _configured_leverage(),
+        "hook_line": _sanitize_hook_line(result.get("hook_line", "")),
+        "angle_family": _sanitize_angle_family(result.get("angle_family")),
+        "scenarios": _sanitize_scenarios(result.get("scenarios")),
         "risk": str(result.get("risk", "Medium Risk")),
         "confidence": confidence,
         "why_now": why_now,
@@ -724,8 +913,15 @@ def generate_signal_with_groq(
     price: float,
     change: float,
     trending_bonus: str,
+    previous_angle_family: str = "",
 ) -> dict[str, Any]:
-    """Generate one validated signal with Why Now and Invalidation fields."""
+    """Generate one validated signal with hook, Why Now, scenarios and invalidation.
+
+    ``previous_angle_family`` is the last post's angle family; when two posts
+    in a row lead with the same hook pattern the feed starts to feel
+    templated (a documented weakness in the creator research), so the model
+    is nudged toward a different family whenever the data supports one.
+    """
 
     api_key = os.getenv("GROQ_API_KEY", "").strip()
     if not api_key:
@@ -757,15 +953,25 @@ def generate_signal_with_groq(
     )
 
     system_prompt = """
-You are an institutional crypto analyst using only verified Binance data. Distinguish measured data from estimated proxies and state when a feed is unavailable. Never invent prices, flows, token events, macro releases, or execution. Return exactly one valid JSON object, no prose outside JSON.
+You are an institutional crypto analyst who writes for busy mobile readers on Binance Square, using only verified Binance data. Distinguish measured data from estimated proxies and state when a feed is unavailable. Never invent prices, flows, token events, macro releases, or execution. Curiosity must come from a real tension in the measured data, never from clickbait or promises. Return exactly one valid JSON object, no prose outside JSON.
 """.strip()
 
+    angle_families = ", ".join(ANGLE_FAMILIES)
+    previous_family = str(previous_angle_family or "").strip().lower()
+    rotation_hint = (
+        f"The previous post on this account used hook angle '{previous_family}'. "
+        "If the data honestly supports a different angle family, choose it - "
+        "repeating the same hook shape twice in a row reads as templated. Never "
+        "force an angle the data contradicts.\n"
+        if previous_family in ANGLE_FAMILIES
+        else ""
+    )
     user_prompt = f"""
 Coin: {str(coin).upper()}
 Verified Binance live price (Entry CMP): {live_price}
 24h change: {float(change):.2f}%
 Context: {str(trending_bonus).upper()}
-
+{rotation_hint}
 Research snapshot (JSON):
 {research_json}
 
@@ -779,6 +985,12 @@ Return one valid JSON object with every required key below. Keep prose concise:
   "tp2": 0,
   "sl": 0,
   "confidence": 0,
+  "hook_line": "<=90 chars, one line. Lead with the sharpest verified tension in the data: crowd-vs-data conflict, a binary reclaim/sweep question, or one precise measured finding. No ALL-CAPS, no promises, no 'guaranteed', at most one '?'. Every number must come from the snapshot above.",
+  "angle_family": "exactly one of: {angle_families}",
+  "scenarios": {{
+    "bull_if": "one short clause: the measured condition that keeps the upside path open",
+    "bear_if": "one short clause: the measured condition that invalidates it"
+  }},
   "rapid_reason": "1H trigger.",
   "why_now": "Trigger.",
   "invalidation": "Invalidation level.",
@@ -804,7 +1016,9 @@ Rules:
 3. Use supplied SR/ATR if available; lower confidence if missing/conflicting.
 4. Never invent price, macro, token event, or flow; label remembered events unverified without dates; mark estimates as estimated.
 5. Keep every prose field to 1-2 short sentences.
-6. Return JSON only.
+6. hook_line: angle comes from the data, not the mood. If the snapshot disagrees with the crowd's likely read, say what the data shows instead; if volume/OI/structure contains one standout measured fact, lead with it. At most one question mark. Never "guaranteed", "can't lose", "100%" or a promise of outcome. Reference ${str(coin).upper()} or a level so the line is anchored.
+7. scenarios.bull_if / bear_if must be mutually exclusive conditions phrased as plain "if-then" clauses tied to measured levels.
+8. Return JSON only.
 """.strip()
 
     client = Groq(api_key=api_key)
@@ -949,11 +1163,12 @@ Verified Binance Market Data:
 Verified BTC/ETH technical and macro context (JSON; unavailable values are intentionally marked):
 {overview_research_json}
 
-Use the supplied BTC and ETH 1H/4H RSI and EMA20/50/200 readings in the thesis whenever present. Explicitly incorporate BTC dominance and Fear & Greed in the market pulse; if either is estimated, label it estimated. Do not invent technical readings or macro data. Keep the existing overview output structure.
+Use the supplied BTC and ETH 1H/4H RSI and EMA20/50/200 readings in the thesis whenever present. Explicitly incorporate BTC dominance and Fear & Greed in the market pulse; if either is estimated, label it estimated. Do not invent technical readings or macro data. Keep the existing overview output structure and add the new fields below.
 
 Return exactly this JSON structure:
 {{
   "headline": "Punchy market headline summarizing BTC structure and current market pulse",
+  "hook_line": "<=90 chars, one line: the single most interesting verified tension in today's data (e.g. price vs sentiment divergence, dominance shift vs alt momentum). No promises, no clickbait, no 'guaranteed'; every number from the supplied data.",
   "btc_price": {btc_price},
   "btc_change": {btc_change},
   "market_phase": "e.g. Bullish Expansion / Consolidation / Key Resistance Retest / Liquidity Hunt",
@@ -961,14 +1176,17 @@ Return exactly this JSON structure:
   "altcoin_summary": "1-2 sentences explaining altcoin capital rotation and momentum leaders.",
   "btc_support": <numeric nearby key support level below btc_price>,
   "btc_resistance": <numeric nearby key resistance level above btc_price>,
+  "what_flips_bullish": "one short measured condition that would strengthen the constructive read",
+  "what_flips_bearish": "one short measured condition that would weaken it",
   "strategy_outlook": "One clear, actionable rule/insight for spot and futures traders today."
 }}
 
 Rules:
 1. btc_price must equal {btc_price}.
 2. btc_support < btc_price < btc_resistance.
-3. Keep the tone professional, objective, and analytical.
-4. Return JSON only.
+3. Keep the tone professional, objective, and analytical; curiosity from data tension, never hype.
+4. hook_line must be anchored in BTC, ETH, dominance, or Fear & Greed numbers from the supplied data.
+5. Return JSON only.
 """.strip()
 
     client = Groq(api_key=api_key)
@@ -998,6 +1216,9 @@ Rules:
 
             overview = {
                 "headline": str(result.get("headline", "Bitcoin Consolidates as Momentum Expands across Altcoins")).strip(),
+                "hook_line": _sanitize_hook_line(result.get("hook_line", "")),
+                "what_flips_bullish": _sanitize_hook_line(result.get("what_flips_bullish", ""), max_chars=140),
+                "what_flips_bearish": _sanitize_hook_line(result.get("what_flips_bearish", ""), max_chars=140),
                 "btc_price": btc_price,
                 "btc_change": btc_change,
                 "eth_price": eth_price,
@@ -1032,8 +1253,13 @@ Rules:
     raise RuntimeError(f"All Groq market overview models failed: {summary}")
 
 
-def generate_meme_post_with_groq() -> dict[str, Any]:
-    """Generate high-engagement crypto trader psychology / community culture meme post."""
+def generate_meme_post_with_groq(trending_context: str = "") -> dict[str, Any]:
+    """Generate high-engagement crypto trader psychology / community culture meme post.
+
+    ``trending_context`` optionally names the day's strongest mover so the
+    humor reacts to today's market instead of floating in a vacuum; the
+    context is informational only and the meme must not state fake positions.
+    """
 
     api_key = os.getenv("GROQ_API_KEY", "").strip()
     if not api_key:
@@ -1042,6 +1268,12 @@ def generate_meme_post_with_groq() -> dict[str, Any]:
     btc_data = get_24h_data("BTCUSDT")
     btc_price = float(btc_data["price"])
     btc_change = float(btc_data["change_24h"])
+    trending_line = (
+        f"Today's hottest Binance mover: {trending_context.strip()}. "
+        "If it fits naturally, let the joke nod to that move; never claim a position in it.\n"
+        if str(trending_context or "").strip()
+        else ""
+    )
 
     system_prompt = """
 You are a witty, highly relatable crypto trader on Binance Square known for viral trading psychology observations, memes, and community culture commentary.
@@ -1052,7 +1284,7 @@ Return exactly one valid JSON object and no prose outside that JSON object.
 
     user_prompt = f"""
 Current Market Context: Bitcoin at ${btc_price:,.0f} ({btc_change:+.1f}% 24H).
-
+{trending_line}
 Return exactly this JSON structure:
 {{
   "title": "Short punchy meme headline or situation title (e.g. 'Trader Diary:', 'My Portfolio when:', 'The 3 Stages of a Leverage Trader:')",
@@ -1064,7 +1296,8 @@ Return exactly this JSON structure:
 Rules:
 1. Make it genuine, relatable, and funny for real crypto futures and spot traders.
 2. Avoid generic corporate speak.
-3. Return JSON only.
+3. Never state or imply a real position, entry, or P&L - comedy, not a trade call.
+4. Return JSON only.
 """.strip()
 
     client = Groq(api_key=api_key)
@@ -1106,3 +1339,156 @@ Rules:
 
     summary = " | ".join(failures) if failures else "no candidate model was attempted"
     raise RuntimeError(f"All Groq meme post models failed: {summary}")
+
+
+def generate_explainer_with_groq(top_coins: list[dict[str, Any]] | None = None) -> dict[str, Any]:
+    """Generate a data-driven educational explainer (manual ``educational_explainer`` slot).
+
+    Evergreen explainers are a proven reach-broadening pillar in the creator
+    research. This bot's edge is verified market plumbing (MTF trend stacks,
+    volume splits, funding/OI when available, liquidation zones), so the
+    explainer teaches one of those concepts *using today's measured numbers*
+    as the worked example. Nothing is invented: unavailable feeds must be
+    labelled, and the concept is chosen from what the data actually shows.
+    """
+
+    api_key = os.getenv("GROQ_API_KEY", "").strip()
+    if not api_key:
+        raise RuntimeError("GROQ_API_KEY not found in GitHub Secrets.")
+
+    btc_data = get_24h_data("BTCUSDT")
+    eth_data = get_24h_data("ETHUSDT")
+    btc_price = float(btc_data["price"])
+    btc_change = float(btc_data["change_24h"])
+
+    if not top_coins:
+        try:
+            top_coins = get_trending_coins(top_n=5, min_change=2.0, min_volume=3_000_000)
+        except Exception:
+            top_coins = []
+
+    try:
+        btc_klines_mtf = get_klines_multi_timeframe("BTCUSDT")
+    except Exception as exc:
+        print(f"[Explainer Warning] BTC multi-timeframe data unavailable: {exc}")
+        btc_klines_mtf = {frame: [] for frame in ("5m", "15m", "1h", "4h", "1d", "1w")}
+
+    btc_indicators_1h = calculate_all_indicators(btc_klines_mtf.get("1h", []))
+    try:
+        btc_funding = get_funding_rate("BTCUSDT")
+    except Exception:
+        btc_funding = None
+    try:
+        btc_oi = get_open_interest("BTCUSDT")
+    except Exception:
+        btc_oi = None
+
+    try:
+        context = get_market_context(btc_data, eth_data, top_coins or [])
+    except Exception as exc:
+        print(f"[Explainer Warning] Market context unavailable: {exc}")
+        context = {}
+
+    research = {
+        "btc": {
+            "price": btc_price,
+            "change_24h": btc_change,
+            "indicators_1h": btc_indicators_1h,
+            "funding_rate": btc_funding,
+            "open_interest": btc_oi,
+        },
+        "top_movers": [
+            {"coin": str(c.get("coin", "?")).upper(), "change": c.get("change")}
+            for c in (top_coins or [])[:5]
+        ],
+        "market_context": context,
+    }
+    research_json = json.dumps(research, ensure_ascii=False, separators=(",", ":"), default=str)
+
+    system_prompt = """
+You are a patient crypto market-structure educator on Binance Square. You teach one measurable concept per post using today's verified Binance data as the worked example. Plain English, zero hype, zero promises, no trade calls. Mark any unavailable feed as unavailable rather than guessing. Return exactly one valid JSON object, no prose outside JSON.
+""".strip()
+
+    user_prompt = f"""
+Verified data snapshot (JSON):
+{research_json}
+
+Pick ONE concept that today's data illustrates well (examples: multi-timeframe trend alignment, RSI vs price divergence, volume confirmation on breakouts, funding-rate extremes, open-interest build-up, support/resistance flips, risk:reward thinking). Teach it through the measured numbers above.
+
+Return exactly this JSON structure:
+{{
+  "title": "Short plain-English title, e.g. 'Reading a volume spike without fooling yourself'",
+  "hook_line": "<=90 chars: the curiosity gap the explainer resolves, anchored to one real number from the snapshot",
+  "concept": "The concept name, 2-5 words",
+  "points": ["3-5 short numbered teaching points, each <=200 chars, each citing a measured value from the snapshot where relevant"],
+  "takeaway": "One sentence: the habit the reader should repeat",
+  "question": "One genuine discussion question inviting readers to share how they use this concept"
+}}
+
+Rules:
+1. Teach, never pitch: no entry/target/stop, no P&L, no leverage mention, no 'guaranteed'.
+2. Every number must come from the snapshot; mark estimates as estimated.
+3. If funding or open interest is null/unavailable in the snapshot, do not teach that concept today.
+4. Return JSON only.
+""".strip()
+
+    client = Groq(api_key=api_key)
+    candidates = _groq_model_candidates(api_key)
+    failures: list[str] = []
+
+    for model in candidates:
+        print(f"[Groq] Generating educational explainer with model: {model}")
+        try:
+            completion = client.chat.completions.create(
+                model=model,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt},
+                ],
+                temperature=0.4,
+                **_groq_chat_kwargs(model, 8192),
+            )
+            result = _parse_json_object(completion.choices[0].message.content)
+
+            points_raw = result.get("points", [])
+            points = (
+                [" ".join(str(point).split()) for point in points_raw if str(point).strip()][:5]
+                if isinstance(points_raw, list)
+                else []
+            )
+            if len(points) < 3:
+                points = [
+                    f"BTC trades at ${btc_price:,.2f} ({btc_change:+.2f}% 24h); the 1H trend reading anchors the example.",
+                    "A signal is stronger when several independent measured clues agree than when one is loud.",
+                    "Check the same idea on a higher timeframe before trusting a lower-timeframe move.",
+                ]
+
+            explainer = {
+                "title": _sanitize_hook_line(result.get("title", "Reading today's market structure"), max_chars=80),
+                "hook_line": _sanitize_hook_line(result.get("hook_line", "")),
+                "concept": _sanitize_hook_line(result.get("concept", "Market structure"), max_chars=40),
+                "points": points,
+                "takeaway": _sanitize_hook_line(
+                    result.get("takeaway", "Verify the clue on your own chart before acting on it."),
+                    max_chars=200,
+                ),
+                "question": _sanitize_hook_line(
+                    result.get("question", "Which of these checks do you already use before entering a trade?"),
+                    max_chars=160,
+                ),
+                "groq_model": model,
+                "type": "educational_explainer",
+            }
+            print(f"[Groq] Educational explainer validated with {model}")
+            return explainer
+
+        except Exception as exc:
+            if _is_authentication_error(exc):
+                raise RuntimeError("GROQ_API_KEY authentication failed") from exc
+
+            failure = f"{model}: {type(exc).__name__}: {exc}"
+            failures.append(failure)
+            print(f"[Groq Warning] {failure}")
+
+    summary = " | ".join(failures) if failures else "no candidate model was attempted"
+    raise RuntimeError(f"All Groq explainer models failed: {summary}")

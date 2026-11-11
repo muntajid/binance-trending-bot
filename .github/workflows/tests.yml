@@ -50,6 +50,8 @@ jobs:
           test_slot_cadence
           test_signal_quality_pipeline
           test_square_publish_resilience
+          test_monitor_narration
+          test_performance_analyzer
 
       - name: Compile every module
         run: python -m compileall -q bot assets

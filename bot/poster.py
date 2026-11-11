@@ -158,41 +158,370 @@ DYNAMIC_HASHTAGS = (
     "#Altcoins",
 )
 
+# Phrases that must never leave the drafting pipeline. Accuracy is the brand;
+# outcomed-promising language is both a compliance and a trust hazard.
+BANNED_CLAIMS = (
+    "guaranteed",
+    "can't lose",
+    "cannot lose",
+    "100% win",
+    "sure shot",
+    "sure thing",
+    "risk-free profit",
+    "free money",
+    "all in",
+)
+
 
 def _get_dynamic_hashtag() -> str:
     """Return exactly 1-2 relevant dynamic hashtags per benchmark."""
     return _RNG.choice(DYNAMIC_HASHTAGS)
 
 
-def _get_cta_prompt(coin: str) -> str:
+def _content_config() -> dict[str, Any]:
+    """Content knobs from bot/config.json (cta mix, hook length)."""
+    try:
+        from bot import trade_state  # late import: keep module load cheap
+
+        content = trade_state.load_config().get("content", {})
+        return content if isinstance(content, dict) else {}
+    except Exception:
+        return {}
+
+
+def _cta_mix() -> dict[str, float]:
+    raw = _content_config().get("cta_mix", {})
+    mix = {"none": 0.5, "question": 0.35, "follow": 0.1, "comment": 0.05}
+    if isinstance(raw, dict):
+        for key in mix:
+            try:
+                value = float(raw.get(key, mix[key]))
+                mix[key] = max(0.0, min(1.0, value))
+            except (TypeError, ValueError):
+                continue
+    return mix
+
+
+def _question_from_context(coin: str, context: dict[str, Any] | None) -> str:
+    """Build a discussion question out of THIS post's own scenario levels.
+
+    Creator-research finding: the reply leaders pair the question with the
+    post's actual tension (131 replies on a content-specific prompt), not a
+    generic "where do you see it?" line.
     """
-    Evidence-based CTA distribution:
-    - 65% No CTA (Clean authoritative analyst tone)
-    - 20% Natural coin-specific discussion question
-    - 10% Value-based follow prompt
-    - 5% Explicit comment prompt
+
+    generic = (
+        f"Where do you see ${coin} by end of week?",
+        f"Are you trading this ${coin} setup or watching the reaction?",
+        f"What is your target for ${coin} on this structure?",
+    )
+    context = context if isinstance(context, dict) else {}
+
+    def _price(value: Any) -> str:
+        number = _as_number(value)
+        return _format_price(number) if number and number > 0 else ""
+
+    direction = str(context.get("direction", "LONG")).upper()
+    upside = _price(_first_value(context.get("resistance"), context.get("tp1")))
+    downside = _price(_first_value(context.get("support"), context.get("sl")))
+
+    if upside and downside:
+        return f"Which hits first for ${coin}: ${upside} or ${downside}?"
+    if upside:
+        return f"What does ${coin} need to show before ${upside} comes into play?"
+    return _RNG.choice(generic)
+
+
+def _get_cta_prompt(coin: str, context: dict[str, Any] | None = None) -> str:
+    """
+    CTA distribution (mix configurable via bot/config.json -> content.cta_mix):
+    - ~50% No CTA (clean analyst tone)
+    - ~35% Scenario-specific discussion question (built from the post's levels)
+    - ~10% Value-based follow prompt
+    - ~5% Explicit comment prompt
     - 0% Forced A/B
     """
     roll = _RNG.random()
+    mix = _cta_mix()
 
-    if roll < 0.65:
-        return ""  # 65% No CTA
+    q_end = mix["none"] + mix["question"]
+    f_end = q_end + mix["follow"]
 
-    if roll < 0.85:
-        # 20% Natural coin question
-        questions = (
-            f"Where do you see ${coin} by end of week?",
-            f"Are you trading this ${coin} setup or watching the reaction?",
-            f"What is your target for ${coin} on this structure?",
-        )
-        return f"\n{_RNG.choice(questions)}"
+    if roll < mix["none"]:
+        return ""
 
-    if roll < 0.95:
-        # 10% Value-based follow prompt
+    if roll < q_end:
+        return f"\n{_question_from_context(coin, context)}"
+
+    if roll < f_end:
         return "\nFollow for real-time TP updates & verified setups."
 
-    # 5% Explicit comment prompt
     return f"\nDrop your price prediction for ${coin} below."
+
+
+def _clip_sentence(text: Any, limit: int) -> str:
+    """Clip at a sentence/semicolon boundary so cuts never look like glitches."""
+
+    value = " ".join(str(text or "").split())
+    if limit <= 0:
+        return ""
+    if len(value) <= limit:
+        return value
+    cut = value[:limit].rstrip()
+    boundary = max(cut.rfind(". "), cut.rfind("; "), cut.rfind("? "), cut.rfind("! "))
+    if boundary >= limit * 0.45:
+        return cut[: boundary + 1].rstrip()
+    comma = cut.rfind(", ")
+    if comma >= limit * 0.6:
+        return cut[:comma].rstrip() + "."
+    return cut.rstrip(",;:") + "…"
+
+
+def assert_post_quality(post: str, payload: dict[str, Any] | None = None) -> str:
+    """Final editorial quality gate before a post may reach Binance Square.
+
+    Checks (in addition to ``assert_clean_post_text`` which owns length and
+    encoding):
+
+    * banned outcome-promising language;
+    * at most two question marks overall (one hook + one CTA question max);
+    * every number in the model-written ``hook_line`` must match a number that
+      exists in the verified payload (0.5% tolerance, matching the bot's
+      price-drift guard), so a hook can never quote an invented level.
+    """
+
+    text = str(post)
+    lowered = text.lower()
+    for phrase in BANNED_CLAIMS:
+        if phrase in lowered:
+            raise ValueError(f"Banned claim language detected in post: {phrase!r}")
+
+    if text.count("?") > 2:
+        raise ValueError("Post carries more than two questions; one hook + one CTA question max")
+
+    if isinstance(payload, dict):
+        hook = str(payload.get("hook_line", "")).strip()
+        # Ignore digits inside alphanumeric tokens (TP1, EMA20, 1H); only
+        # standalone or $-prefixed figures count as quoted numbers.
+        numbers = re.findall(r"(?<![A-Za-z])\d[\d,]*\.?\d*(?![A-Za-zx])", hook)
+        if numbers:
+            available: list[float] = []
+
+            def _collect(value: Any) -> None:
+                if isinstance(value, bool):
+                    return
+                if isinstance(value, (int, float)):
+                    if math.isfinite(float(value)):
+                        available.append(float(value))
+                elif isinstance(value, dict):
+                    for item in value.values():
+                        _collect(item)
+                elif isinstance(value, (list, tuple)):
+                    for item in value:
+                        _collect(item)
+
+            _collect(payload)
+            for raw in numbers:
+                try:
+                    target = float(raw.replace(",", ""))
+                except ValueError:
+                    continue
+                if target <= 0:
+                    continue
+                if not any(abs(known - target) <= abs(target) * 0.005 + 1e-12 for known in available):
+                    raise ValueError(
+                        f"Hook quotes {raw!r} which is absent from the verified payload"
+                    )
+
+    return text
+
+
+def _trend_arrow(value: Any) -> str:
+    mapping = {"up": "↑", "down": "↓", "flat": "→"}
+    return mapping.get(_trend_short(value), "·")
+
+
+def _fmt_volume_line(volume: Any) -> str:
+    """Human one-liner for spot participation: spike status and buy/sell split."""
+
+    v = _as_mapping(volume)
+    spike = _boolish(v.get("volume_spike"))
+    latest = _as_number(v.get("latest_volume"))
+    average = _as_number(v.get("average_volume"))
+    buy = _as_number(v.get("buying_volume"))
+    sell = _as_number(v.get("selling_volume"))
+    qv = _as_number(v.get("quote_volume_24h"))
+
+    parts: list[str] = []
+    if spike is True and average and average > 0 and latest is not None:
+        parts.append(f"volume spike {latest / average:.1f}x vs average")
+    elif spike is True:
+        parts.append("volume spike detected")
+    elif spike is False:
+        parts.append("volume normal")
+    if buy is not None and sell is not None and (buy + sell) > 0:
+        share = buy / (buy + sell) * 100.0
+        parts.append(f"taker buy share {share:.0f}%")
+    if qv is not None and qv > 0:
+        parts.append(f"24h turnover {_compact_money(qv)}")
+    if _boolish(v.get("estimated")) is True:
+        parts.append("(est.)")
+    return "; ".join(parts) if parts else "unavailable"
+
+
+def _fmt_futures_line(futures: Any) -> str:
+    """Human one-liner for derivatives positioning; honest when feeds are down."""
+
+    f = _as_mapping(futures)
+    oi = _first_value(
+        _nested_value(f, "open_interest", "open_interest_usdt"),
+        _nested_value(f, "open_interest", "notional_usdt"),
+        f.get("open_interest_usdt"),
+    )
+    funding = _first_value(
+        _nested_value(f, "funding_rate", "funding_rate_pct"),
+        _nested_value(f, "funding_rate", "rate"),
+    )
+    lsr = _nested_value(f, "long_short_ratio", "long_short_ratio")
+    liq = _nested_value(f, "liquidation_estimate")
+    liq_est = _boolish(_nested_value(liq, "estimated")) if isinstance(liq, dict) else None
+
+    parts: list[str] = []
+    if _as_number(oi) is not None:
+        parts.append(f"OI {_compact_money(oi)}")
+    if _as_number(funding) is not None:
+        parts.append(f"funding {_compact_number(float(funding), 4)}%")
+    if _as_number(lsr) is not None:
+        parts.append(f"L/S ratio {_compact_number(lsr, 2)}")
+    if not parts:
+        return "derivatives feed unavailable today"
+    suffix = " (est.)" if liq_est is True else ""
+    return "; ".join(parts) + suffix
+
+
+def _fmt_liquidity_line(liquidity: Any, heatmap: Any) -> str:
+    """Order-book balance plus estimated liquidation zones, in prose."""
+
+    book = _as_mapping(liquidity)
+    heat = _as_mapping(heatmap)
+    imbalance = str(book.get("imbalance", "")).replace("_", " ").strip()
+    ratio = _as_number(book.get("imbalance_ratio"))
+
+    parts: list[str] = []
+    if imbalance:
+        rendered = imbalance
+        if ratio is not None:
+            rendered += f" ({ratio:.2f}x)"
+        parts.append(f"order book {rendered}")
+
+    def _zone_mid(zone: Any) -> float | None:
+        zone_map = _as_mapping(zone)
+        return _as_number(_first_value(zone_map.get("mid"), zone_map.get("lower")))
+
+    long_zone = _zone_mid(heat.get("long_liquidation_zone"))
+    short_zone = _zone_mid(heat.get("short_liquidation_zone"))
+    if long_zone or short_zone:
+        zones = []
+        if short_zone:
+            zones.append(f"shorts ~${_format_price(short_zone)}")
+        if long_zone:
+            zones.append(f"longs ~${_format_price(long_zone)}")
+        parts.append("est. liquidation magnets: " + " / ".join(zones))
+    return "; ".join(parts) if parts else "unavailable"
+
+
+def _fmt_trend_stack(mtf: Any) -> str:
+    """Compact arrow stack across timeframes: 5m↓ 15m↑ 1H↑ 4H→ 1D↑ 1W·."""
+
+    m = _as_mapping(mtf)
+    labels = (("5m", "5m"), ("15m", "15m"), ("1h", "1H"), ("4h", "4H"), ("1d", "1D"), ("1w", "1W"))
+    stack = " ".join(f"{label}{_trend_arrow(m.get(key, m.get(key.upper(), 'unavailable')))}" for key, label in labels)
+    return stack
+
+
+def _fmt_context_line(market_context: Any, sentiment: Any) -> str:
+    """BTC trend, dominance and Fear & Greed in one measured sentence."""
+
+    ctx = _as_mapping(market_context)
+    sent = _as_mapping(sentiment)
+    btc_trend = str(ctx.get("bitcoin_trend", "")).strip()
+    dom = _as_number(_nested_value(ctx, "btc_dominance", "btc_dominance_percent"))
+    fg = _as_mapping(_first_value(_nested_value(ctx, "fear_greed"), sent.get("fear_greed")))
+    fg_value = _as_number(fg.get("value"))
+    fg_label = str(fg.get("classification", "")).strip()
+
+    parts: list[str] = []
+    if btc_trend:
+        parts.append(f"BTC {btc_trend}")
+    if dom is not None:
+        parts.append(f"dominance {dom:.1f}%")
+    if fg_value is not None:
+        parts.append(f"F&G {int(fg_value)}" + (f" {fg_label}" if fg_label else ""))
+    return "; ".join(parts) if parts else "broader market context unavailable"
+
+
+def _fmt_risk_line(risk: Any, fallback: dict[str, Any]) -> str:
+    """Readable risk line: RR, sizing rule, invalidation plan."""
+
+    r = _as_mapping(risk) or fallback
+    rr = _first_value(r.get("risk_reward"), r.get("risk_reward_tp1"))
+    sizing = _first_value(r.get("position_sizing"), r.get("guidance"))
+    plan = _first_value(r.get("invalidation_plan"), r.get("invalidation"))
+
+    parts: list[str] = []
+    if rr is not None:
+        rr_text = str(rr).strip()
+        if _as_number(rr) is not None:
+            rr_text = f"RR ≈1:{float(rr):.1f} to TP1"
+        parts.append(rr_text)
+    if sizing:
+        parts.append(str(sizing).strip().rstrip("."))
+    if plan:
+        parts.append(f"plan: {str(plan).strip()}")
+    return "; ".join(parts) if parts else "size positions to a predefined account-risk limit"
+
+
+def _fmt_macro_line(macro: Any, fundamental: Any) -> str:
+    """One honest macro/fundamental line; 'unavailable' when feeds are missing."""
+
+    m = _as_mapping(macro)
+    contexts = [str(m.get(key, "")).lower() for key in ("fed_rate_context", "cpi_context", "dxy_proxy")]
+    feeds_missing = contexts and all(("not fetched" in item or "no live" in item or "unavailable" in item) for item in contexts if item)
+    macro_text = "macro feeds unavailable - no event catalyst claimed" if feeds_missing else _describe_data(m, 90)
+    fund_text = _clip_sentence(_describe_data(fundamental, 80), 80)
+    return f"{macro_text}; token/event risk: {fund_text}"
+
+
+def _hook_lead(payload: dict[str, Any]) -> str:
+    """Return the model-written hook when present and usable, else ''."""
+
+    hook = " ".join(str(payload.get("hook_line", "") or "").split())
+    if not hook:
+        return ""
+    max_chars = 90
+    try:
+        max_chars = int(_content_config().get("hook_max_chars", 90))
+    except (TypeError, ValueError):
+        max_chars = 90
+    if len(hook) > max_chars:
+        hook = _clip_sentence(hook, max_chars)
+    lowered = hook.lower()
+    if any(phrase in lowered for phrase in BANNED_CLAIMS):
+        return ""
+    return hook
+
+
+def _cta_context(signal: dict[str, Any]) -> dict[str, Any]:
+    """Levels the contextual CTA question can reference."""
+    analysis = _as_mapping(signal.get("institutional_analysis"))
+    levels = _as_mapping(_nested_value(analysis, "indicators_1h", "support_resistance"))
+    return {
+        "direction": str(signal.get("direction", "LONG")).upper(),
+        "tp1": signal.get("tp1"),
+        "sl": signal.get("sl"),
+        "support": _first_value(levels.get("support"), signal.get("sl")),
+        "resistance": _first_value(levels.get("resistance"), signal.get("tp1")),
+    }
 
 
 def _clip(text: Any, limit: int) -> str:
@@ -390,7 +719,7 @@ def _institutional_scan_block(
 # ---------------------------------------------------------------------------
 
 def format_rapid_alert_post(signal: dict[str, Any]) -> str:
-    """Render a 120-300 character alert with price, risk, and live research cues."""
+    """Render a hook-led rapid alert (≈300-720 chars) with price, risk, and live research cues."""
 
     coin = _clip(signal["coin"], 12).upper().strip()
     entry = float(signal["entry_price"])
@@ -399,7 +728,7 @@ def format_rapid_alert_post(signal: dict[str, Any]) -> str:
     stop = float(signal["sl"])
     direction = _direction(signal)
     hashtag = _get_dynamic_hashtag()
-    cta = _get_cta_prompt(coin).strip()
+    cta = _get_cta_prompt(coin, _cta_context(signal)).strip()
 
     entry_s = _format_price(entry)
     tp1_s = _format_price(tp1)
@@ -481,27 +810,49 @@ def format_rapid_alert_post(signal: dict[str, Any]) -> str:
         f"SL ${sl_s} (-{stop_pct:.1f}%) | RR 1:{rr:.1f}"
     )
     detail = (
-        f"📊 RSI{rsi_text} | VOL {volume_text} | OI {oi_text} | "
-        f"MTF {trend_1h}/{trend_4h} | Est Liq {zones_text}"
+        f"📊 RSI {rsi_text} | VOL {volume_text} | OI {oi_text} | "
+        f"MTF 1H {trend_1h} / 4H {trend_4h} | Est liq zones {zones_text}"
     )
-    tag_line = f"💎 Bonus ${bonus} {hashtag}"
-    cta_line = f"CTA: {_clip(cta, 36)}" if cta else "CTA: Verify levels before entry."
-    disclaimer = "⚠️ Not financial advice; manage risk."
+    trigger = _clip_sentence(
+        signal.get("rapid_reason") or signal.get("why_now", ""),
+        120,
+    )
+    tag_line = f"💎 Context: ${bonus} {hashtag}"
+    disclaimer = "⚠️ Not financial advice; verify levels first."
 
-    max_body = 299  # _finalize_post appends one trailing newline.
-    fixed = len(headline) + len(tag_line) + len(cta_line) + len(disclaimer) + 3
-    detail = _clip(detail, max(20, max_body - fixed))
-    body = f"{headline}\n{detail}\n{tag_line}\n{cta_line}\n{disclaimer}"
-    if len(body) < 120:
-        reason = _clip(signal.get("rapid_reason", "Use the stated invalidation and recheck live conditions."), 90)
-        body = f"{headline}\n{detail}\n{reason}\n{tag_line}\n{cta_line}\n{disclaimer}"
+    hook = _hook_lead(signal)
+
+    # Rapid alert budget: enough for a narrative hook + levels + evidence, far
+    # above the old 120-300 char data line that gave the feed no story.
+    max_body = 720
+
+    lines: list[str] = [hook, headline, detail] if hook else [headline, detail]
+    lines.append(trigger)
+    lines.append(tag_line)
+    cta_line = _clip_sentence(cta, 140)
+    if cta_line:
+        lines.append(cta_line)
+    lines.append(disclaimer)
+
+    body = "\n".join(line for line in lines if line)
     if len(body) > max_body:
-        # Keep the entry/target/stop line at the very top; trim optional detail first.
-        detail_budget = max(0, max_body - len(headline) - len(tag_line) - len(cta_line) - len(disclaimer) - 4)
-        detail = _clip(detail, detail_budget)
-        body = f"{headline}\n{detail}\n{tag_line}\n{cta_line}\n{disclaimer}"
-        if len(body) > max_body:
-            body = body[: max_body - 1].rstrip()
+        # Trim working backwards: trigger first, then detail; never the hook
+        # or the verified levels line.
+        kept: list[str] = []
+        for line in lines:
+            if not line:
+                continue
+            if line == trigger and len(body) > max_body:
+                body = body.replace(line + "\n", "", 1)
+                continue
+            kept.append(line)
+        body = "\n".join(kept)
+    if len(body) > max_body:
+        overflow = len(body) - max_body
+        detail_budget = max(20, len(detail) - overflow - 2)
+        body = body.replace(detail, _clip(detail, detail_budget), 1)
+    if len(body) > max_body:
+        body = body[: max_body - 1].rstrip()
     return _finalize_post(body)
 
 
@@ -549,120 +900,162 @@ def format_explained_post(signal: dict[str, Any]) -> str:
     validation_value = _as_number(signal.get("validation_score", confidence))
     validation = max(0, min(100, int(round(validation_value if validation_value is not None else confidence))))
 
-    why_now = _clip(
+    why_now = _clip_sentence(
         signal.get(
             "why_now",
             f"{coin} has a {change:+.1f}% 24-hour move; wait for the measured trigger and volume confirmation.",
         ),
-        110,
+        150,
     )
-    invalidation = _clip(
+    invalidation = _clip_sentence(
         signal.get(
             "invalidation",
             f"A decisive move beyond the stated ${_format_price(stop)} stop invalidates this thesis.",
         ),
-        90,
-    )
-    technical = _clip(
-        _describe_data(
-            _first_value(signal.get("technical_analysis"), signal.get("smc_logic")), 110
-        ),
-        110,
-    )
-    indicators = _clip(
-        _describe_data(
-            _first_value(signal.get("indicators_summary"), _nested_value(analysis, "indicators_1h")),
-            95,
-        ),
-        95,
-    )
-    volume_futures = _clip(
-        f"Volume: {_describe_data(volume, 68)} | Futures: {_describe_data(futures, 68)}",
-        145,
-    )
-    liquidity_heatmap = _clip(
-        f"Order book: {_describe_data(liquidity, 58)} | Estimated liquidation zones: {_describe_data(heatmap, 58)}",
-        125,
-    )
-    mtf_summary = _clip(_describe_data(mtf, 85), 85)
-    market_sentiment = _clip(
-        f"Market: {_describe_data(market_context, 62)} | Sentiment/on-chain: {_describe_data(sentiment, 62)}",
         130,
     )
+    technical = _clip_sentence(
+        _describe_data(
+            _first_value(signal.get("technical_analysis"), signal.get("smc_logic")), 170
+        ),
+        170,
+    )
+    indicators = _clip_sentence(
+        _describe_data(
+            _first_value(signal.get("indicators_summary"), _nested_value(analysis, "indicators_1h")),
+            150,
+        ),
+        150,
+    )
+    participation_line = _clip_sentence(
+        f"{_fmt_volume_line(volume)} | Futures: {_fmt_futures_line(futures)}",
+        190,
+    )
+    liquidity_heatmap = _clip_sentence(_fmt_liquidity_line(liquidity, heatmap), 170)
+    mtf_summary = _fmt_trend_stack(mtf)
+    market_sentiment = _clip_sentence(_fmt_context_line(market_context, sentiment), 170)
     fundamental = _first_value(
         signal.get("fundamental_note"),
         signal.get("fundamental_risk"),
         _nested_value(market_context, "fundamental_notes"),
         "Token/event risk unavailable; do not assume a catalyst.",
     )
-    macro_fundamental = _clip(
-        f"Macro (Fed/CPI/DXY): {_describe_data(macro, 70)} | Fundamental: {_describe_data(fundamental, 55)}",
-        135,
-    )
-    volatility_validation = _clip(
-        f"ATR/volatility: {_describe_data(volatility, 73)} | Validation score: {validation}/100",
-        95,
-    )
-    risk_management = _clip(
-        _describe_data(
-            _first_value(
-                signal.get("risk_management"),
-                {"risk": signal.get("risk", "Medium Risk"), "confidence": confidence},
-            ),
-            100,
+    macro_fundamental = _clip_sentence(_fmt_macro_line(macro, fundamental), 190)
+    risk_management = _clip_sentence(
+        _fmt_risk_line(
+            signal.get("risk_management"),
+            {
+                "risk_reward": f"RR ≈1:{rr:.1f} to TP1",
+                "position_sizing": "size to a predefined account-risk limit",
+                "invalidation_plan": invalidation,
+            },
         ),
-        105,
+        200,
     )
 
-    hooks = (
-        f"📊 ${coin} 15-Point Institutional Scan ({change:+.1f}% 24H) — {direction} Thesis",
-        f"⚖️ ${coin} Evidence-Weighted {direction} Setup — Defined Risk, Clear Invalidation",
-        f"🔍 ${coin} Multi-Timeframe Read ({change:+.1f}% 24H) — Levels & Liquidity in Focus",
-        f"👀 ${coin} Market Structure Check ({change:+.1f}% 24H) — Setup Overview",
+    # Scenario pair: model-written when present, otherwise derived from the
+    # verified levels so the binary tension is always on the page.
+    scenarios = signal.get("scenarios") if isinstance(signal.get("scenarios"), dict) else {}
+    bull_if = " ".join(str(scenarios.get("bull_if", "") or "").split())
+    bear_if = " ".join(str(scenarios.get("bear_if", "") or "").split())
+    if not bull_if or not bear_if:
+        if direction == "LONG":
+            bull_if = bull_if or f"price holds above ${_format_price(stop)}"
+            bear_if = bear_if or f"a decisive close below ${_format_price(stop)} breaks structure"
+        else:
+            bull_if = bull_if or f"price stays capped below ${_format_price(stop)}"
+            bear_if = bear_if or f"a decisive close above ${_format_price(stop)} cancels the down-leg"
+
+    fallback_hooks = (
+        f"🔍 ${coin}: what the verified data says right now ({change:+.1f}% 24H)",
+        f"⚖️ ${coin} evidence check — defined risk, clear invalidation ({change:+.1f}% 24H)",
+        f"👀 ${coin} multi-timeframe read — the level that decides it ({change:+.1f}% 24H)",
     )
-    selected_hook = _RNG.choice(hooks)
-    cta = _get_cta_prompt(coin).strip()
+    selected_hook = _hook_lead(signal) or _RNG.choice(fallback_hooks)
+    cta = _get_cta_prompt(coin, _cta_context(signal)).strip()
     hashtag = _get_dynamic_hashtag()
-    cta_text = _clip(cta, 54) if cta else "Verify the setup against your own chart."
+
+    # Data-confidence note: when a feed is missing the post says so out loud.
+    # Honest gaps cost nothing; pretending completeness costs trust.
+    confidence_notes: list[str] = []
+    futures_map = futures if isinstance(futures, dict) else {}
+    if _first_value(
+        _nested_value(futures_map, "open_interest", "open_interest_usdt"),
+        _nested_value(futures_map, "funding_rate", "funding_rate_pct"),
+    ) is None:
+        confidence_notes.append("derivatives feed unavailable")
+    fg = _nested_value(market_context, "fear_greed")
+    if isinstance(fg, dict) and fg.get("estimated") is True:
+        confidence_notes.append("sentiment index estimated")
+    data_confidence = (
+        f"📎 Data confidence: {'; '.join(confidence_notes)} — the rest is measured."
+        if confidence_notes
+        else ""
+    )
 
     header = (
-        f"👀 ${coin} {direction} | ENTRY CMP ${_format_price(entry)} | "
+        f"👀 ${coin} {direction} | Entry CMP ${_format_price(entry)} | "
         f"TP1 ${_format_price(tp1)} ({tp1_pct:+.1f}%) | "
         f"TP2 ${_format_price(tp2)} ({tp2_pct:+.1f}%) | "
         f"SL ${_format_price(stop)} (-{stop_pct:.1f}%) | RR 1:{rr:.2f} | Conf {confidence}%"
     )
-    sections = (
-        f"TECHNICAL ANALYSIS: {technical}",
-        f"INDICATORS (EMA/RSI/MACD/VWAP/BB/Stoch RSI): {indicators}",
-        f"VOLUME & FUTURES: {volume_futures}",
-        f"LIQUIDITY & LIQUIDATION HEATMAP: {liquidity_heatmap}",
-        f"MULTI-TIMEFRAME (5m-1W): {mtf_summary}",
-        f"MARKET / SENTIMENT / ON-CHAIN: {market_sentiment}",
-        f"MACRO & FUNDAMENTAL: {macro_fundamental}",
-        f"VOLATILITY & VALIDATION: {volatility_validation}",
-        f"RISK MANAGEMENT: {risk_management}",
-    )
-    footer = (
-        f"CTA: {cta_text}\n"
-        f"Tags: ${coin} $BTC {hashtag}\n"
-        "⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk."
-    )
-    body = "\n".join(
-        [header, selected_hook, f"Why now: {why_now}", f"Invalidation: {invalidation}", *sections, footer]
+
+    evidence_bullets = [
+        f"Structure: {technical}",
+        f"Indicators: {indicators}",
+        f"Participation: {participation_line}",
+        f"Liquidity: {liquidity_heatmap}",
+        f"Trend stack: {mtf_summary}",
+        f"Context: {market_sentiment}",
+    ]
+
+    scenario_line = (
+        f"🔀 If {bull_if.rstrip('.')} → path to ${_format_price(tp1)} stays open; "
+        f"if {bear_if.rstrip('.')} → thesis cancelled."
     )
 
-    # Short inputs still get useful execution/data-quality context, not generic filler.
-    if len(body) < 900:
+    body_lines = [
+        selected_hook,
+        "",
+        header,
+        f"Why now: {why_now}",
+        "",
+        "Key evidence (verified):",
+        *(f"• {bullet}" for bullet in evidence_bullets),
+        f"• Macro & fundamental: {macro_fundamental}",
+        "",
+        scenario_line,
+        f"❌ Invalidation: {invalidation}",
+        f"🛡️ Risk: {risk_management} (validation {validation}/100)",
+    ]
+    if data_confidence:
+        body_lines.append(data_confidence)
+    if cta:
+        body_lines.append(_clip_sentence(cta, 140))
+    body_lines.append(f"Tags: ${coin} $BTC {hashtag}")
+    body_lines.append(
+        "⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk."
+    )
+    body = "\n".join(body_lines)
+
+    # If the model returned unusually thin prose, keep the useful data-quality
+    # context instead of shipping a naked skeleton.
+    if len(body) < 700:
         body += (
             "\nData discipline: Entry CMP comes from the verified live-price path; candles and volume are observations, "
             "while futures, order-book and liquidation levels are snapshots or estimates where marked. Unavailable "
             "sentiment, on-chain, Fed, CPI or DXY feeds are unknown rather than directional. Reconfirm the trigger "
             "before acting; use the stated invalidation and size positions to a predefined account-risk limit."
         )
-    if len(body) < 900:
-        body += " Higher-timeframe conflict or a changing volatility regime is a reason to reassess, not to widen the stop."
 
-    # Keep the target under 1,900 chars (well below the 2,100 hard cap) and preserve Entry at the top.
+    # Keep the target under 1,900 chars (well below the 2,100 hard cap).
+    if len(body) + 1 > 1900:
+        # Trim the lowest-signal bullets first (macro/context), keeping the
+        # hook, levels, scenario and invalidation fully intact.
+        for label in ("• Macro & fundamental: ", "• Context: ", "• Trend stack: "):
+            if len(body) + 1 <= 1900:
+                break
+            body = "\n".join(line for line in body.split("\n") if not line.startswith(label))
     if len(body) + 1 > 1900:
         body = body[:1899].rstrip()
     return _finalize_post(body)
@@ -689,21 +1082,143 @@ def format_market_overview_post(overview: dict[str, Any]) -> str:
     btc_sup_s = _format_price(btc_support)
     btc_res_s = _format_price(btc_resistance)
 
+    fear_greed = _as_mapping(overview.get("fear_greed"))
+    dominance = _as_mapping(overview.get("btc_dominance"))
+    fg_value = _as_number(fear_greed.get("value"))
+    fg_label = str(fear_greed.get("classification", "")).strip()
+    dom_pct = _as_number(dominance.get("btc_dominance_percent"))
+    fg_est = " (est.)" if fear_greed.get("estimated") is True else ""
+    dom_est = " (est.)" if dominance.get("estimated") is True else ""
+    sentiment_line = ""
+    if fg_value is not None or dom_pct is not None:
+        fg_text = f"Fear & Greed {int(fg_value)}{fg_est}" + (f" ({fg_label})" if fg_label else "") if fg_value is not None else ""
+        dom_text = f"BTC dominance {dom_pct:.1f}%{dom_est}" if dom_pct is not None else ""
+        sentiment_line = "\n📈 Sentiment: " + " | ".join(part for part in (fg_text, dom_text) if part)
+
+    flip_bull = " ".join(str(overview.get("what_flips_bullish", "") or "").split())
+    flip_bear = " ".join(str(overview.get("what_flips_bearish", "") or "").split())
+    flip_line = ""
+    if flip_bull or flip_bear:
+        flip_line = (
+            f"\n🔄 What flips it: bullish if {flip_bull.rstrip('.') or 'structure holds'}; "
+            f"watch out if {flip_bear.rstrip('.') or 'support gives way'}."
+        )
+
+    hook = _hook_lead(overview)
+    hook_block = f"{hook}\n\n" if hook else ""
+
     body = f"""🌐 MACRO & BITCOIN OUTLOOK: {headline} 📊
 
-$BTC 24H: ${btc_price_s} ({btc_change:+.2f}%)
+{hook_block}$BTC 24H: ${btc_price_s} ({btc_change:+.2f}%)
 Market Phase: {market_phase}
 
 📊 Key Market Dynamics:
 • Bitcoin Structure: {btc_thesis}
 • Altcoin Flows: {altcoin_summary}
-• Crucial Levels: Support ${btc_sup_s} | Resistance ${btc_res_s}
+• Crucial Levels: Support ${btc_sup_s} | Resistance ${btc_res_s}{sentiment_line}{flip_line}
 
 💡 Trader Takeaway: {strategy_outlook}
 
 $BTC $ETH #BinanceSquare #CryptoMarket
 ⚠️ Educational market analysis only. Not financial advice. Always DYOR."""
 
+    if len(body) + 1 > 1900:
+        body = body[:1899].rstrip()
+    return _finalize_post(body)
+
+
+def format_stop_post(trade: dict[str, Any], current_price: float) -> str:
+    """Verified loss-resolution post: the accountability half of the journal.
+
+    Creator research: loss-admission posts built trust AND ranked among the
+    highest-reply content. This bot can do it with a candle-verified ledger
+    behind every number, which is exactly the gap the researched creator has.
+    Tone: calm, factual, zero drama - the stop working as designed.
+    """
+
+    coin = str(trade["coin"]).upper().strip()
+    entry = float(trade["entry_price"])
+    stop = float(trade["sl"])
+    tp1 = float(trade.get("tp1", entry))
+    direction = _direction(trade)
+    price = float(current_price)
+    adverse = abs(_move_percent(entry, price, direction))
+
+    entry_s = _format_price(entry)
+    price_s = _format_price(price)
+    stop_s = _format_price(stop)
+
+    created = str(trade.get("created_at", ""))[:10]
+    called = f"called {created} " if re.fullmatch(r"\d{4}-\d{2}-\d{2}", created) else "called "
+
+    tp1_note = ""
+    if trade.get("tp1_hit"):
+        tp1_pct = abs(_move_percent(entry, tp1, direction))
+        tp1_note = (
+            f"\nTP1 (${_format_price(tp1)}, +{tp1_pct:.1f}%) was reached first — "
+            "partial profit discipline softened this one."
+        )
+
+    if direction == "LONG":
+        watch = f"Next watch: whether ${stop_s} holds as a floor on retest; a fresh setup needs a new verified trigger."
+    else:
+        watch = f"Next watch: whether ${stop_s} caps the reclaim; a fresh setup needs a new verified trigger."
+
+    body = f"""🛑 ${coin} {direction} STOPPED — invalidation respected at ${stop_s}
+
+Setup {called}at ${entry_s}; price traded to ${price_s} ({adverse:.1f}% against entry).{tp1_note}
+The risk was defined before entry and the exit did its job. No widening, no revenge entry.
+
+{watch}
+
+${coin} $BTC #BinanceSquare
+⚠️ Verified from the 1M candle ledger. Educational market analysis, not financial advice."""
+
+    if len(body) + 1 > 1200:
+        body = body[:1199].rstrip()
+    return _finalize_post(body)
+
+
+def format_pressure_post(trade: dict[str, Any], current_price: float) -> str:
+    """Mid-trade 'under pressure' journal update (max one per open trade).
+
+    Serialized tension is the researched creator's strongest narrative loop
+    (setup -> stress -> resolution). This is the verified version: no DCA
+    claims, no emotions invented - just the level that decides.
+    """
+
+    coin = str(trade["coin"]).upper().strip()
+    entry = float(trade["entry_price"])
+    stop = float(trade["sl"])
+    tp1 = float(trade["tp1"])
+    direction = _direction(trade)
+    price = float(current_price)
+
+    entry_s = _format_price(entry)
+    price_s = _format_price(price)
+    stop_s = _format_price(stop)
+    tp1_s = _format_price(tp1)
+    drift = _move_percent(entry, price, direction)
+
+    state_line = (
+        f"Entry ${entry_s} → now ${price_s} ({drift:+.1f}% vs entry)."
+    )
+    hold_line = (
+        f"While ${stop_s} holds, the thesis stays open. A decisive break closes it - no arguments, no moving the stop."
+    )
+
+    body = f"""⏳ ${coin} {direction} update — thesis under pressure
+
+{state_line}
+Price is testing the invalidation zone near ${stop_s}. {hold_line}
+
+Checkpoint unchanged: TP1 at ${tp1_s}. Nothing to do but watch the level do the talking.
+
+${coin} $BTC #BinanceSquare
+⚠️ Verified levels, not a prediction. Educational analysis only."""
+
+    if len(body) + 1 > 900:
+        body = body[:899].rstrip()
     return _finalize_post(body)
 
 
@@ -733,6 +1248,177 @@ def format_meme_community_post(meme_data: dict[str, Any]) -> str:
 
 $BTC $ETH {hashtag} #CryptoCommunity #TradingHumor"""
 
+    return _finalize_post(body)
+
+
+# ---------------------------------------------------------------------------
+# Verified Scorecard & Educational Explainer (manual dispatch types)
+# ---------------------------------------------------------------------------
+
+
+def scorecard_stats(
+    closed_trades: list[dict[str, Any]],
+    active_trades: list[dict[str, Any]],
+    *,
+    days: int = 7,
+    now: Any = None,
+) -> dict[str, Any]:
+    """Count outcomes from the verified ledger for the public scorecard.
+
+    Wins and losses are counted identically - that symmetry is the point.
+    """
+
+    import datetime as _dt
+
+    now = now or _dt.datetime.now(_dt.timezone.utc)
+    window_start = now - _dt.timedelta(days=max(1, int(days)))
+
+    def _parse(value: Any) -> Any:
+        if not value:
+            return None
+        try:
+            parsed = _dt.datetime.fromisoformat(str(value).strip().replace("Z", "+00:00"))
+        except (TypeError, ValueError):
+            return None
+        if parsed.tzinfo is None:
+            parsed = parsed.replace(tzinfo=_dt.timezone.utc)
+        return parsed.astimezone(_dt.timezone.utc)
+
+    closed_in_window = 0
+    tp2 = tp1_partial = stopped = expired = superseded = 0
+    gains_to_tp2: list[float] = []
+    losses_to_stop: list[float] = []
+
+    for trade in closed_trades or []:
+        if not isinstance(trade, dict):
+            continue
+        closed_at = _parse(trade.get("closed_at")) or _parse(trade.get("created_at"))
+        if closed_at is None or closed_at < window_start:
+            continue
+        closed_in_window += 1
+        status = str(trade.get("status", "")).upper()
+        if trade.get("tp1_hit") and status != "TP2_HIT":
+            tp1_partial += 1
+        if status == "TP2_HIT":
+            tp2 += 1
+        elif status == "SL_HIT":
+            stopped += 1
+            try:
+                entry = float(trade.get("entry_price", 0))
+                close = float(trade.get("closed_price", 0))
+                if entry > 0 and close > 0:
+                    losses_to_stop.append(abs(_move_percent(entry, close, _direction(trade))))
+            except (TypeError, ValueError):
+                continue
+        elif status == "EXPIRED":
+            expired += 1
+        elif status == "SUPERSEDED":
+            superseded += 1
+
+        if status == "TP2_HIT":
+            try:
+                entry = float(trade.get("entry_price", 0))
+                close = float(trade.get("closed_price", trade.get("tp2", 0)))
+                if entry > 0 and close > 0:
+                    gains_to_tp2.append(abs(_move_percent(entry, close, _direction(trade))))
+            except (TypeError, ValueError):
+                continue
+
+    open_now = sum(
+        1
+        for trade in active_trades or []
+        if isinstance(trade, dict)
+        and str(trade.get("status", "ACTIVE")).upper().strip() == "ACTIVE"
+    )
+
+    return {
+        "days": max(1, int(days)),
+        "closed": closed_in_window,
+        "tp2": tp2,
+        "tp1_partial": tp1_partial,
+        "stopped": stopped,
+        "expired": expired,
+        "superseded": superseded,
+        "open": open_now,
+        "avg_tp2_pct": (sum(gains_to_tp2) / len(gains_to_tp2)) if gains_to_tp2 else None,
+        "avg_stop_pct": (sum(losses_to_stop) / len(losses_to_stop)) if losses_to_stop else None,
+    }
+
+
+def format_scorecard_post(stats: dict[str, Any]) -> str:
+    """Render the weekly verified scorecard (wins and losses alike)."""
+
+    days = int(stats.get("days", 7))
+    closed = int(stats.get("closed", 0))
+    tp2 = int(stats.get("tp2", 0))
+    tp1_partial = int(stats.get("tp1_partial", 0))
+    stopped = int(stats.get("stopped", 0))
+    expired = int(stats.get("expired", 0))
+    open_now = int(stats.get("open", 0))
+
+    tp2_share = f" ({tp2 / closed * 100:.0f}% of closed)" if closed else ""
+    avg_tp2 = stats.get("avg_tp2_pct")
+    avg_stop = stats.get("avg_stop_pct")
+    avg_line = ""
+    if avg_tp2 is not None and avg_stop is not None:
+        avg_line = f"\nAverage verified move: +{avg_tp2:.1f}% to TP2, -{avg_stop:.1f}% to stop."
+
+    body = f"""📒 Verified Setup Scorecard — last {days} day(s)
+
+Every call this account publishes carries real Entry / TP1 / TP2 / SL levels, and every outcome below is counted from the 1-minute candle ledger - wins and losses the same way.
+
+Closed in window: {closed}
+• Reached TP2 (full target): {tp2}{tp2_share}
+• Banked TP1 first, then stopped: {tp1_partial}
+• Stopped at invalidation: {stopped}
+• Expired unresolved / superseded: {expired}
+Currently open: {open_now}{avg_line}
+
+Honesty note: a signal service that only shows wins is marketing. These numbers are the complete record for the window.
+
+$BTC #BinanceSquare
+⚠️ Past setups do not guarantee future results. Not financial advice."""
+
+    if len(body) + 1 > 1900:
+        body = body[:1899].rstrip()
+    return _finalize_post(body)
+
+
+def format_explainer_post(data: dict[str, Any]) -> str:
+    """Render the educational explainer (manual ``educational_explainer`` slot)."""
+
+    title = " ".join(str(data.get("title", "Reading today's market structure")).split())
+    hook = _hook_lead(data)
+    concept = " ".join(str(data.get("concept", "Market structure")).split())
+    points_raw = data.get("points", [])
+    points = (
+        [" ".join(str(point).split()) for point in points_raw if str(point).strip()][:5]
+        if isinstance(points_raw, list)
+        else []
+    )
+    takeaway = _clip_sentence(data.get("takeaway", ""), 200)
+    question = _clip_sentence(data.get("question", ""), 160)
+
+    numbered = [f"{index}. {point}" for index, point in enumerate(points, start=1)]
+
+    body_lines = [f"📚 {title}"]
+    if hook:
+        body_lines += ["", hook]
+    body_lines += ["", f"Concept: {concept}", ""]
+    body_lines += numbered
+    if takeaway:
+        body_lines += ["", f"💡 Takeaway: {takeaway}"]
+    if question:
+        body_lines += ["", question]
+    body_lines += [
+        "",
+        "$BTC $ETH #BinanceSquare #LearnCrypto",
+        "⚠️ Educational content only. Not financial advice; always DYOR.",
+    ]
+
+    body = "\n".join(body_lines)
+    if len(body) + 1 > 1900:
+        body = body[:1899].rstrip()
     return _finalize_post(body)
 
 

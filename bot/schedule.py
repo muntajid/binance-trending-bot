@@ -62,6 +62,16 @@ POSTED_COINS_FILE = ROOT_DIR / "data" / "posted_coins.json"
 
 STATE_VERSION = 1
 POST_TYPES = ("market_overview", "rapid_alert", "explained_setup", "meme_community")
+# Manual-only dispatch types: never part of the automatic rotation plan, but
+# valid as explicit ``slot:`` requests that run beside the queue as forced
+# extras. The scorecard is the public, verified outcomes ledger (wins and
+# losses alike); the explainer is a data-driven educational post.
+MANUAL_ONLY_TYPES = ("scorecard", "educational_explainer")
+MANUAL_SLOT_NUMBERS = {"scorecard": 90, "educational_explainer": 91}
+MANUAL_SLOT_NAMES = {
+    "scorecard": "Verified Setup Scorecard (manual)",
+    "educational_explainer": "Educational Explainer (manual)",
+}
 DEFAULT_IN_FLIGHT_TIMEOUT_MINUTES = 45
 # This is an audit ledger, not the queue itself. Keep it bounded even when the
 # bot runs for months; pending/published counts for the active rotation are
@@ -478,7 +488,7 @@ def _normalise_request(request: str | None) -> tuple[str, Any]:
         return "auto", None
     if raw in {"reset", "new_day", "fresh"}:
         return "reset", None
-    if raw in POST_TYPES:
+    if raw in POST_TYPES or raw in MANUAL_ONLY_TYPES:
         return "type", raw
     stripped = raw[4:].strip() if raw.startswith("slot") else raw
     try:
@@ -486,7 +496,7 @@ def _normalise_request(request: str | None) -> tuple[str, Any]:
     except (TypeError, ValueError):
         raise ScheduleError(
             f"Unknown slot request {request!r}. Use auto, reset, a slot number, "
-            f"or one of: {', '.join(POST_TYPES)}."
+            f"or one of: {', '.join(POST_TYPES + MANUAL_ONLY_TYPES)}."
         ) from None
 
 
@@ -533,6 +543,27 @@ def select_slot(request: str | None = None, *, reset: bool = False) -> dict[str,
         if not state["pending"]:
             raise ScheduleError("No pending slot is available and the queue did not refill")
         chosen_slot = state["pending"][0]
+    elif kind == "type" and value in MANUAL_ONLY_TYPES:
+        # Manual-only types are not in the rotation plan, so they synthesise a
+        # forced extra slot that leaves the automatic queue untouched.
+        entry = {
+            "slot": MANUAL_SLOT_NUMBERS[value],
+            "type": value,
+            "name": MANUAL_SLOT_NAMES[value],
+            "hour_utc": None,
+        }
+        entry.update(
+            {
+                "forced": True,
+                "wrapped": False,
+                "day_utc": state["day_utc"],
+                "pending_before": len(state["pending"]),
+                "rotation": _active_rotation(state),
+                "total_slots": len(plan),
+                "published_before": len(_rotation_records(state)),
+            }
+        )
+        return entry
     elif kind == "type":
         match = next((slot for slot in state["pending"] if by_slot[slot]["type"] == value), None)
         if match is None:

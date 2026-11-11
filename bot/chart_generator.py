@@ -106,7 +106,8 @@ def generate_trending_chart(
         mpf.make_addplot(plot_df["EMA50"], color="#2962ff", width=1.4),
     ]
 
-    title_text = f"{coin.upper()}/USDT • {timeframe.upper()} Smart Money Setup"
+    signal_direction = str(signal.get("direction", "")).upper().strip() or "TRADE"
+    title_text = f"{coin.upper()}/USDT • {timeframe.upper()} {signal_direction} Setup — Verified Levels"
 
     fig, axlist = mpf.plot(
         plot_df[["open", "high", "low", "close", "volume"]],
@@ -149,6 +150,12 @@ def generate_trending_chart(
     new_ymin = min(all_prices) - padding
     new_ymax = max(all_prices) + padding
     ax.set_ylim(new_ymin, new_ymax)
+
+    # Risk/reward zones: the eye should catch the trade geometry before
+    # reading any label - green path to targets, red path to invalidation.
+    ax.axhspan(min(entry, tp1), max(entry, tp1), color="#0ecb81", alpha=0.09, zorder=0)
+    ax.axhspan(min(tp1, tp2), max(tp1, tp2), color="#0ecb81", alpha=0.05, zorder=0)
+    ax.axhspan(min(entry, sl), max(entry, sl), color="#f6465d", alpha=0.09, zorder=0)
 
     entry_str = _format_chart_price(entry)
     tp1_str = _format_chart_price(tp1)
@@ -249,6 +256,23 @@ def generate_trending_chart(
             alpha=0.85,
         ),
     )
+
+    # Brand watermark: consistent attribution across every chart the account
+    # posts, in the spirit of the researched creator's chart watermarking.
+    handle = os.getenv("CARD_USERNAME", "").strip().lstrip("@")
+    if handle:
+        ax.text(
+            0.985,
+            0.015,
+            f"@{handle}",
+            transform=ax.transAxes,
+            color="#848e9c",
+            fontsize=10,
+            fontweight="bold",
+            ha="right",
+            va="bottom",
+            alpha=0.55,
+        )
 
     output_dir = os.path.dirname(save_path)
     if output_dir:
@@ -361,6 +385,21 @@ def generate_btc_market_chart(
             alpha=0.85,
         ),
     )
+
+    handle = os.getenv("CARD_USERNAME", "").strip().lstrip("@")
+    if handle:
+        ax.text(
+            0.985,
+            0.015,
+            f"@{handle}",
+            transform=ax.transAxes,
+            color="#848e9c",
+            fontsize=10,
+            fontweight="bold",
+            ha="right",
+            va="bottom",
+            alpha=0.55,
+        )
 
     output_dir = os.path.dirname(save_path)
     if output_dir:
