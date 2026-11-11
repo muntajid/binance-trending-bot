@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-11-11",
   "pending": [
-    7,
     8,
     9,
     10,
@@ -442,11 +441,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": null
+    },
+    {
+      "slot": 7,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #3 (14:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-11T16:44:29.277922+00:00",
+      "day_utc": "2026-11-11",
+      "run_id": "43061141767",
+      "rotation": 3,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "SNXXB"
     }
   ],
   "rotations": 2,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-11T13:48:21.968449+00:00",
+  "updated_utc": "2026-11-11T16:44:29.277948+00:00",
   "previous_day": {
     "day_utc": "2026-11-10",
     "published": 4,
