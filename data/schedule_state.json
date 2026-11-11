@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-11-11",
   "pending": [
-    6,
     7,
     8,
     9,
@@ -429,11 +428,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "SOXLB"
+    },
+    {
+      "slot": 6,
+      "type": "meme_community",
+      "name": "Trader Psychology & Community Meme (12:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-11T13:48:21.968425+00:00",
+      "day_utc": "2026-11-11",
+      "run_id": "43032365172",
+      "rotation": 3,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": null
     }
   ],
   "rotations": 2,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-11T12:00:06.862030+00:00",
+  "updated_utc": "2026-11-11T13:48:21.968449+00:00",
   "previous_day": {
     "day_utc": "2026-11-10",
     "published": 4,
