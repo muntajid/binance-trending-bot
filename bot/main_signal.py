@@ -29,6 +29,7 @@ from bot import schedule, trade_state
 from bot.chart_generator import generate_btc_market_chart, generate_single_chart
 from bot.market_data import MarketDataError
 from bot.meme_card_generator import generate_meme_card
+from bot.visual_strategy import select_visual_plan, validate_visual_asset
 from bot.poster import (
     assert_post_quality,
     check_and_record_similarity,
@@ -196,12 +197,21 @@ def save_active(signal: dict[str, Any]) -> dict[str, Any]:
 
 
 def validate_chart(path: str) -> bool:
-    """Confirm that a generated chart exists and is not empty or broken."""
+    """Confirm generated image integrity; warn on mobile-format concerns.
+
+    This deterministic check cannot establish visual relevance or whether a
+    human has inspected the image.
+    """
 
     if not path or not os.path.isfile(path):
         return False
     try:
-        return os.path.getsize(path) > 1000
+        if os.path.getsize(path) <= 1000:
+            return False
+        valid, issues = validate_visual_asset(path)
+        if not valid:
+            print(f"[Visual QC] Review {path}: {'; '.join(issues)}")
+        return True
     except OSError:
         return False
 
@@ -357,6 +367,8 @@ def _with_duplicate_guard(
 def build_market_overview(config: dict[str, Any]) -> tuple[str, dict[str, Any], str]:
     """Return ``(post_text, payload, chart_path)`` for the macro overview slot."""
 
+    plan = select_visual_plan("Bitcoin macro market overview", "market analysis")
+    print(f"[Visual Strategy] {plan.format}: {plan.purpose} ({plan.evidence})")
     print("[Engine] Generating Macro & Bitcoin Market Overview...")
     trending: list[dict[str, Any]] = []
     try:
@@ -377,6 +389,8 @@ def build_market_overview(config: dict[str, Any]) -> tuple[str, dict[str, Any], 
 def build_meme_post(config: dict[str, Any]) -> tuple[str, dict[str, Any], str]:
     """Return ``(post_text, payload, card_path)`` for the community meme slot."""
 
+    plan = select_visual_plan("trader psychology meme", "community editorial")
+    print(f"[Visual Strategy] {plan.format}: {plan.purpose} ({plan.evidence})")
     print("[Engine] Generating Viral Trader Psychology / Community Meme...")
     trending_context = ""
     try:
@@ -421,6 +435,8 @@ def build_signal_post(
             trending_bonus = candidate
             break
 
+    plan = select_visual_plan(f"{coin} verified price setup", "trade thesis")
+    print(f"[Visual Strategy] {plan.format}: {plan.purpose} ({plan.evidence})")
     print(
         f"[Selected] {coin} {change:+.2f}% @ ${live_price} "
         f"| momentum filter >={threshold}% | Context: {trending_bonus}"
@@ -504,6 +520,8 @@ def build_scorecard_post(config: dict[str, Any]) -> tuple[str, dict[str, Any], s
 def build_explainer_post(config: dict[str, Any]) -> tuple[str, dict[str, Any], str]:
     """Return ``(post_text, payload, chart_path)`` for the manual explainer slot."""
 
+    plan = select_visual_plan("crypto education concept", "explain")
+    print(f"[Visual Strategy] {plan.format}: {plan.purpose} ({plan.evidence})")
     print("[Engine] Generating the data-driven educational explainer...")
     trending: list[dict[str, Any]] = []
     try:
