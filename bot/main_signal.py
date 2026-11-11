@@ -30,19 +30,27 @@ from bot.chart_generator import generate_btc_market_chart, generate_single_chart
 from bot.market_data import MarketDataError
 from bot.meme_card_generator import generate_meme_card
 from bot.poster import (
+    assert_post_quality,
     check_and_record_similarity,
     format_explained_post,
+    format_explainer_post,
     format_market_overview_post,
     format_meme_community_post,
     format_rapid_alert_post,
+    format_scorecard_post,
+    scorecard_stats,
 )
 from bot.signal_generator import (
+    generate_explainer_with_groq,
     generate_market_overview_with_groq,
     generate_meme_post_with_groq,
     generate_signal_with_groq,
     get_live_price,
     get_trending_coins,
+    score_trending_candidates,
 )
+
+CLOSED_TRADES_FILE = "data/closed_trades.json"
 
 POSTED_FILE = "data/posted_coins.json"
 ACTIVE_FILE = "data/active_trades.json"
@@ -239,6 +247,8 @@ def select_trending_coin(
     cooldown_hours = float(settings.get("duplicate_filter_hours", 24))
     thresholds = _change_thresholds(settings)
     strict_threshold = thresholds[0]
+    score_weights = settings.get("trending", {}).get("score_weights")
+    score_weights = score_weights if isinstance(score_weights, dict) else None
     errors: list[str] = []
     blocked_active = blocked_cooldown = 0
 
@@ -251,6 +261,7 @@ def select_trending_coin(
             errors.append(f">={threshold}%: {exc}")
             continue
 
+        eligible: list[dict[str, Any]] = []
         for coin_data in trending:
             candidate = str(coin_data["coin"]).upper().strip()
             if candidate in active_coins:
@@ -261,12 +272,29 @@ def select_trending_coin(
             ):
                 blocked_cooldown += 1
                 continue
+            eligible.append(coin_data)
+
+        if eligible:
+            # Composite topic score (momentum + volatility + liquidity +
+            # participation + novelty) beats raw 24h gain ordering: the biggest
+            # green candle is not automatically the most interesting post.
+            ranked = score_trending_candidates(
+                eligible,
+                _read_json_list(POSTED_FILE),
+                now=_utc_now(),
+                weights=score_weights,
+            )
+            selected = ranked[0]
+            print(
+                f"[Topic Score] {selected['coin']} wins the pool: score {selected['score']} "
+                f"(parts: {selected['score_parts']}) among {len(ranked)} eligible candidate(s)"
+            )
             if threshold != strict_threshold:
                 print(
                     f"[Trending] Nothing passed the strict filter; relaxing the momentum "
                     f"threshold to >={threshold}%"
                 )
-            return coin_data, trending, threshold
+            return selected, trending, threshold
 
         errors.append(f">={threshold}%: all {len(trending)} candidates already open or in cooldown")
 
@@ -304,16 +332,25 @@ def _with_duplicate_guard(
 
     result = builder(config)
     for attempt in range(1, attempts + 1):
-        if check_and_record_similarity(result[0], max_similarity=max_similarity):
+        quality_error: str | None = None
+        try:
+            # Editorial gate: banned outcome language, question discipline, and
+            # hook numerals verified against the payload before duplication
+            # history is even considered.
+            assert_post_quality(result[0], result[1] if len(result) > 1 else None)
+        except (ValueError, IndexError) as exc:
+            quality_error = str(exc)
+
+        if quality_error is None and check_and_record_similarity(result[0], max_similarity=max_similarity):
             return result
         if attempt < attempts:
+            reason = quality_error or "too similar to a recent post"
             print(
-                f"[Duplicate Guard] Variant {attempt}/{attempts} is too similar to a recent "
-                "post; regenerating"
+                f"[Quality Guard] Variant {attempt}/{attempts} rejected ({reason}); regenerating"
             )
             result = builder(config)
 
-    print("[Duplicate Guard] Accepting the last variant to avoid losing the slot")
+    print("[Quality Guard] Accepting the last variant to avoid losing the slot")
     return result
 
 
@@ -341,7 +378,14 @@ def build_meme_post(config: dict[str, Any]) -> tuple[str, dict[str, Any], str]:
     """Return ``(post_text, payload, card_path)`` for the community meme slot."""
 
     print("[Engine] Generating Viral Trader Psychology / Community Meme...")
-    meme_data = generate_meme_post_with_groq()
+    trending_context = ""
+    try:
+        movers = get_trending_coins(top_n=1, min_change=2.0, min_volume=3_000_000)
+        if movers:
+            trending_context = f"{str(movers[0]['coin']).upper()} ({float(movers[0]['change']):+.1f}% 24h)"
+    except (RuntimeError, MarketDataError) as exc:
+        print(f"[Warning] No trending context for the meme slot: {exc}")
+    meme_data = generate_meme_post_with_groq(trending_context)
     post = format_meme_community_post(meme_data)
 
     card_path = generate_meme_card(
@@ -382,11 +426,22 @@ def build_signal_post(
         f"| momentum filter >={threshold}% | Context: {trending_bonus}"
     )
 
+    # Angle rotation: read the previous post's hook family so two consecutive
+    # posts do not lead with the same pattern when the data allows variety.
+    previous_angle = ""
+    try:
+        previous_payload = json.loads(Path(LATEST_SIGNAL_FILE).read_text(encoding="utf-8"))
+        if isinstance(previous_payload, dict):
+            previous_angle = str(previous_payload.get("angle_family", ""))
+    except (OSError, json.JSONDecodeError):
+        previous_angle = ""
+
     signal = generate_signal_with_groq(
         coin=coin,
         price=live_price,
         change=change,
         trending_bonus=trending_bonus,
+        previous_angle_family=previous_angle,
     )
     signal["coin"] = coin
     signal["entry_price"] = live_price
@@ -399,6 +454,17 @@ def build_signal_post(
         raise RuntimeError(f"Chart generation failed or invalid: {chart_path}")
 
     post = format_rapid_alert_post(signal) if mode == "rapid_alert" else format_explained_post(signal)
+
+    # Editorial quality gate before any state is mutated: an unverifiable or
+    # over-promising hook is repaired to the data-first header instead of
+    # being published or retrying with side effects. Deterministic and safe.
+    try:
+        assert_post_quality(post, signal)
+    except ValueError as quality_error:
+        print(f"[Quality Guard] Signal post failed editorial checks ({quality_error}); dropping the hook to the verified-levels fallback")
+        signal["hook_line"] = ""
+        post = format_rapid_alert_post(signal) if mode == "rapid_alert" else format_explained_post(signal)
+        assert_post_quality(post, signal)
 
     saved_trade = save_active(signal)
     posted_time = record_posted(coin)
@@ -413,6 +479,46 @@ def build_signal_post(
         f"(Trade ID: {saved_trade['trade_id']})"
     )
     return post, signal, chart_path, effects
+
+
+def build_scorecard_post(config: dict[str, Any]) -> tuple[str, dict[str, Any], str]:
+    """Return ``(post_text, payload, "")`` for the manual verified-scorecard slot.
+
+    Fully deterministic: every number comes from the candle-scanned trade
+    ledger (data/closed_trades.json + data/active_trades.json). No LLM call,
+    no chart - a text post is the honest format for an outcomes table.
+    """
+
+    print("[Engine] Building the verified setup scorecard (7d window)...")
+    closed = _read_json_list(CLOSED_TRADES_FILE)
+    try:
+        days = int(config.get("scorecard_days", 7))
+    except (TypeError, ValueError):
+        days = 7
+    stats = scorecard_stats(closed, _read_json_list(ACTIVE_FILE), days=days, now=_utc_now())
+    payload = {"type": "scorecard", "stats": stats}
+    post = format_scorecard_post(stats)
+    return post, payload, ""
+
+
+def build_explainer_post(config: dict[str, Any]) -> tuple[str, dict[str, Any], str]:
+    """Return ``(post_text, payload, chart_path)`` for the manual explainer slot."""
+
+    print("[Engine] Generating the data-driven educational explainer...")
+    trending: list[dict[str, Any]] = []
+    try:
+        trending = get_trending_coins(top_n=5, min_change=2.0, min_volume=3_000_000)
+    except (RuntimeError, MarketDataError) as exc:
+        print(f"[Warning] Could not get trending list for explainer context: {exc}")
+
+    explainer = generate_explainer_with_groq(trending)
+    post = format_explainer_post(explainer)
+
+    chart_path = generate_btc_market_chart(os.path.join(CHART_DIR, "BTC_1H.png"))
+    if not validate_chart(chart_path):
+        raise RuntimeError(f"BTC Chart generation failed: {chart_path}")
+
+    return post, explainer, chart_path
 
 
 # ---------------------------------------------------------------------------
@@ -461,11 +567,16 @@ def run() -> None:
     if slot.get("wrapped"):
         print("[Slot Engine] Every queued slot was resolved, so the next rotation started")
 
+    chart_path: str = ""
     try:
         if mode == "market_overview":
             post, payload, chart_path = _with_duplicate_guard(build_market_overview, config)
         elif mode == "meme_community":
             post, payload, chart_path = _with_duplicate_guard(build_meme_post, config)
+        elif mode == "scorecard":
+            post, payload, chart_path = _with_duplicate_guard(build_scorecard_post, config)
+        elif mode == "educational_explainer":
+            post, payload, chart_path = _with_duplicate_guard(build_explainer_post, config)
         else:
             post, payload, chart_path, effects = build_signal_post(mode, config)
             # Remember what this run mutated: a failed publish undoes exactly
@@ -487,13 +598,13 @@ def run() -> None:
         schedule.abort_run("preview-only run (no post was published)")
         print("[Preview] Post generated but not published; the slot is back in the queue.")
 
-    print(f"[Done] {mode} content generated. Chart: {chart_path}")
+    print(f"[Done] {mode} content generated. Chart: {chart_path or 'none (text-only post)'}")
     print(post)
     _write_step_summary(
         [
             f"### 📝 Slot #{slot['slot']} · `{mode}`",
             f"- Coin: `{payload.get('coin', 'n/a')}`" if payload.get("coin") else "- Coin: n/a",
-            f"- Chart: `{Path(chart_path).name}`",
+            f"- Chart: `{Path(chart_path).name}`" if chart_path else "- Chart: none (text-only post)",
             f"- Published: {'no (preview)' if preview_only else 'awaiting Square step'}",
         ]
     )

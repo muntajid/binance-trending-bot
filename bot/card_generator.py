@@ -242,7 +242,12 @@ def _prepare_qr(source: Path, final_size: int = 152) -> Image.Image:
     return output
 
 
-def _paste_brand_assets(card: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+def _paste_brand_assets(
+    card: Image.Image,
+    draw: ImageDraw.ImageDraw,
+    *,
+    show_referral: bool = True,
+) -> None:
     _ensure_generated_assets()
 
     try:
@@ -257,6 +262,11 @@ def _paste_brand_assets(card: Image.Image, draw: ImageDraw.ImageDraw) -> None:
         card.paste(logo, (45, 1114), logo)
     except (OSError, ValueError) as exc:
         print(f"[Card] Logo skipped: {exc}")
+
+    if not show_referral:
+        # No monetisation signals on a loss-resolution card: a referral code
+        # beside an admitted stop would read as profiting from losing advice.
+        return
 
     try:
         qr = _prepare_qr(QR_CODE, final_size=152)
@@ -279,6 +289,35 @@ def _paste_brand_assets(card: Image.Image, draw: ImageDraw.ImageDraw) -> None:
     )
 
 
+def _paste_outcome_badge(card: Image.Image, outcome: str) -> None:
+    """Top-right outcome chip: TP1 HIT / TP2 HIT / STOPPED - verifiable at a glance."""
+
+    text = str(outcome or "").upper().strip()
+    if not text:
+        return
+    draw = ImageDraw.Draw(card)
+    badge_font = get_font(FONT_BOLD, 30)
+    color = COLOR_GREEN if text != "STOPPED" else COLOR_RED
+    label = {"TP1": "TP1 HIT", "TP2": "TP2 HIT", "SL": "STOPPED", "STOPPED": "STOPPED"}.get(text, text)
+    box = draw.textbbox((0, 0), label, font=badge_font)
+    text_w, text_h = box[2] - box[0], box[3] - box[1]
+    pad_x, pad_y = 26, 14
+    right = CARD_WIDTH - 45
+    top = 79
+    draw.rounded_rectangle(
+        [(right - text_w - pad_x * 2, top), (right, top + text_h + pad_y * 2)],
+        radius=16,
+        outline=color,
+        width=3,
+    )
+    draw.text(
+        (right - pad_x - text_w, top + pad_y - 2),
+        label,
+        font=badge_font,
+        fill=color,
+    )
+
+
 def generate_position_card(
     coin: str,
     entry_price: float,
@@ -288,8 +327,15 @@ def generate_position_card(
     position_size: float = 5000.0,
     save_path: str = "charts/position_card.png",
     timestamp: datetime | None = None,
+    outcome: str = "",
+    called_at: str | None = None,
 ) -> tuple[str, dict[str, float | int | str]]:
-    """Generate one fully validated master position card."""
+    """Generate one fully validated master position card.
+
+    ``outcome`` is the event badge ("TP1", "TP2" or "SL"/"STOPPED"); a stopped
+    card renders without the referral/QR block. ``called_at`` optionally shows
+    when the setup was first published, tying the proof card back to its call.
+    """
 
     coin = str(coin).upper().strip()
     direction = str(direction).upper().strip()
@@ -313,7 +359,9 @@ def generate_position_card(
     draw = ImageDraw.Draw(card)
 
     # Watermark is deliberately placed before text.
-    _paste_brand_assets(card, draw)
+    outcome_text = str(outcome or "").upper().strip()
+    _paste_brand_assets(card, draw, show_referral=outcome_text not in {"SL", "STOPPED"})
+    _paste_outcome_badge(card, outcome_text)
 
     # Header
     _paste_profile(card, draw)
@@ -327,6 +375,17 @@ def generate_position_card(
         fill=COLOR_WHITE,
         anchor="lt",
     )
+
+    called_text = str(called_at or "").strip()[:10]
+    if called_text:
+        called_font = get_font(FONT_REGULAR, 26)
+        draw.text(
+            (165, 190),
+            f"Called {called_text}",
+            font=called_font,
+            fill=COLOR_GRAY,
+            anchor="lt",
+        )
 
     # Instrument and direction
     instrument = f"{coin}USDT Perpetual"

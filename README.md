@@ -6,10 +6,10 @@ dark-mode chart card, and publishes the result — then a separate monitor track
 posts proof when a target is hit.
 
 ```
-GitHub Actions cron ──> bot.main_signal (pick next queued slot → research → post text + chart)
+GitHub Actions cron ──> bot.main_signal (topic score → research → hook + verified levels → post + chart)
                      └─> bot.square_publisher (retry-aware publish via the official Square scripts)
-GitHub Actions cron ──> bot.monitor_runner  (1m candle scan → TP1/TP2 proof cards → close trades)
-                                  │
+GitHub Actions cron ──> bot.monitor_runner  (1m candle scan → TP1/TP2 proof cards; SL resolutions and
+                                  │           one-shot 'under pressure' journal updates within daily caps)
                                   └──> data/*.json committed back to this repo (that IS the database)
 ```
 
@@ -41,6 +41,32 @@ Explicit type/slot requests and `reset` are overrides, not part of the automatic
 extras or repeat content; leave `slot: auto` and `reset: false` for normal posting. The coin cooldown
 and caption similarity guard still apply, but they check wording/coins, not the daily content mix.
 
+## Content quality layer (hook, angle, structure)
+
+Posts now lead with a *verified narrative hook* instead of a raw levels line:
+
+- Every signal payload asks the model for a `hook_line` (≤90 chars, one curiosity
+  device, **every number must exist in the research snapshot**) and an
+  `angle_family` (`contrarian_conflict`, `binary_scenario`, `data_finding`,
+  `event_risk`, `outcome_update`, `structure_break`). The formatter puts the hook
+  on line 1, the verified Entry/TP1/TP2/SL line on line 2, and a compact human
+  evidence read (structure/indicators/participation/liquidity/trend stack/context)
+  after that. Consecutive posts avoid repeating the same angle family when the
+  data supports variety.
+- `bot/poster.py: assert_post_quality` is the editorial gate: banned outcome
+  promises (`guaranteed`, `can't lose`, …), at most one hook question plus one
+  CTA question, and a cross-check that every numeral in the hook exists in the
+  verified payload (0.5% tolerance, same as the price-drift guard). A failed
+  signal post falls back to the data-first header; overview/meme/explainer
+  variants are regenerated through the duplicate-guard loop.
+- CTAs are contextual: the discussion question is built from the post's own
+  scenario levels (`Which hits first for $X: $up or $down?`), with the mix in
+  `bot/config.json → content.cta_mix`.
+- Topic selection is a composite **topic score** (momentum, intraday volatility,
+  liquidity, participation, 7-day novelty; weights in `trending.score_weights`)
+  instead of "highest 24h gainer wins". Score components are printed in the run
+  log and step summary.
+
 ## Running it by hand
 
 *Actions → Signal Poster - 12-Slot Daily Rotation → Run workflow*
@@ -49,6 +75,8 @@ and caption similarity guard still apply, but they check wording/coins, not the 
 | --- | --- |
 | `slot: auto` (default) | Next pending slot of the continuous rotation |
 | `slot: market_overview` / `rapid_alert` / `explained_setup` / `meme_community` | Publish that type now (takes its pending slot if it still has one; otherwise a forced extra run that leaves the queue untouched) |
+| `slot: scorecard` | **Manual extra:** weekly verified outcomes ledger — wins and losses alike, counted from `data/closed_trades.json`, text-only, never part of the rotation |
+| `slot: educational_explainer` | **Manual extra:** data-driven teaching post (one market concept explained through today's verified numbers) + BTC chart |
 | `reset` | Deliberately start a new rotation from `bot/config.json`; may repeat content. Never enabled automatically at midnight. |
 | `preview` | Generate the post and chart, publish nothing, and roll the slot + its side effects back |
 
@@ -70,8 +98,10 @@ SLOT=rapid_alert PREVIEW_ONLY=1 python -m bot.main_signal   # generate without p
 | `data/publish_receipt.json` | Last publish outcome (mode, attempts, degraded flag) |
 | `data/active_trades.json` | Open setups the monitor watches |
 | `data/closed_trades.json` | Resolved or expired setups (proof log) |
+| `data/monitor_posts.json` | Today's outcome-narration counters (SL/pressure posts), reset every UTC day |
 | `data/posted_coins.json` | 24 h per-coin cooldown |
 | `data/posted_captions.json` | Recent captions, for the near-duplicate guard |
+| `data/performance/posts.csv` | Manual Square metrics log; see `data/performance/README.md` for the feedback loop |
 
 Writes are atomic, and both workflows share the `binance-bot-state-writer` concurrency group so they
 never race on the same file or the same push.
@@ -88,8 +118,18 @@ never race on the same file or the same push.
   the slot, with a `::warning::` annotation and a step-summary note.
 - **Duplicate guard.** A caption too similar to a recent one triggers a regeneration (up to
   `caption_regeneration_attempts`) rather than being published anyway.
-- **Stale trade TTL.** An `ACTIVE` setup nobody can resolve any more is archived as `EXPIRED` after
-  `trading.active_trade_ttl_hours` (72 h) so it stops blocking its coin.
+- **Stale trade TTL.** An `ACTIVE` setup unresolved for more than
+  `trading.active_trade_ttl_hours` (72 h) **from its creation time** is archived as `EXPIRED` so it
+  stops blocking its coin and its story closes. (The TTL used to measure from
+  `last_checked_at`, which let perpetually-scannable trades live for months.)
+- **Editorial quality gate.** `assert_post_quality` rejects banned outcome-promising language,
+  excessive question marks, and hooks quoting numbers that are not in the verified payload.
+  Signal posts fall back to the verified-levels header; overview/meme/explainer posts regenerate
+  through the duplicate-guard loop before a slot is at risk.
+- **Outcome honesty.** The monitor publishes stop-loss resolutions (with a red STOPPED card, no
+  referral block) and one-shot "under pressure" journal updates, capped per UTC day via
+  `bot/config.json → monitor` (`sl_posts_max_per_day` default 4, `pressure_posts_max_per_day`
+  default 2). The manual `slot: scorecard` post counts **every** outcome in the window.
 - **Quiet-market degradation.** If nothing clears the +5% momentum filter, the threshold relaxes
   through `trending.min_change_fallbacks` before the run gives up — a softer verified setup can still
   use the run's assigned slot when conditions are quiet.
@@ -102,7 +142,10 @@ never race on the same file or the same push.
 | `GROQ_API_KEY` | Secret | Post copy, signal narrative, market overview, meme |
 | `GROQ_MODEL` | Variable | Preferred model (default `openai/gpt-oss-120b`); the engine probes the account and falls back |
 | `SQUARE_PUBLISH_ATTEMPTS`, `SQUARE_POLL_*`, `SQUARE_PUBLISH_DEADLINE_SECONDS` | Variable | Media-upload retry tuning |
-| `CARD_USERNAME`, `CARD_TIMEZONE`, `BINANCE_REFERRAL_CODE`, `TARGET_CARD_*`, `MONITOR_*` | Variable | Proof-card look & scan window |
+| `CARD_USERNAME`, `CARD_TIMEZONE`, `BINANCE_REFERRAL_CODE`, `CARD_*` | Variable | Proof-card look; `CARD_USERNAME` also watermarks charts. Target-hit cards omit the referral/QR block on STOPPED outcomes |
+| `TARGET_CARD_LEVERAGE` | Variable | Optional override; empty (default) means each card shows the trade's own configured leverage label |
+| `MONITOR_CANDLE_INTERVAL`, `MONITOR_MAX_LOOKBACK_HOURS`, `MONITOR_MAX_KLINE_PAGES` | Variable | Scan window tuning |
+| `MONITOR_SL_POSTS_ENABLED`, `MONITOR_SL_POST_MAX_PER_DAY`, `MONITOR_PRESSURE_POSTS_ENABLED`, `MONITOR_PRESSURE_POST_MAX_PER_DAY` | Variable | Optional overrides for the outcome-narration knobs in `bot/config.json → monitor` |
 | `ACTIVE_TRADE_TTL_HOURS` | Variable | Stale-trade expiry override (`0` disables) |
 
 ## Workflows
