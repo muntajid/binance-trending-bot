@@ -8,8 +8,8 @@ posts proof when a target is hit.
 ```
 GitHub Actions cron ──> bot.main_signal (topic score → research → hook + verified levels → post + chart)
                      └─> bot.square_publisher (retry-aware publish via the official Square scripts)
-GitHub Actions cron ──> bot.monitor_runner  (1m candle scan → TP1/TP2 proof cards; SL resolutions and
-                                  │           one-shot 'under pressure' journal updates within daily caps)
+GitHub Actions cron ──> bot.monitor_runner  (1m candle scan → TP1/TP2 proof cards only;
+                                  │           SL/near-SL events are recorded silently, never posted)
                                   └──> data/*.json committed back to this repo (that IS the database)
 ```
 
@@ -102,7 +102,7 @@ SLOT=rapid_alert PREVIEW_ONLY=1 python -m bot.main_signal   # generate without p
 | `data/publish_receipt.json` | Last publish outcome (mode, attempts, degraded flag) |
 | `data/active_trades.json` | Open setups the monitor watches |
 | `data/closed_trades.json` | Resolved or expired setups (proof log) |
-| `data/monitor_posts.json` | Today's outcome-narration counters (SL/pressure posts), reset every UTC day |
+| `data/monitor_posts.json` | Legacy SL/pressure-post counters; retained but no longer read or updated |
 | `data/posted_coins.json` | 24 h per-coin cooldown |
 | `data/posted_captions.json` | Recent captions, for the near-duplicate guard |
 | `data/performance/posts.csv` | Manual Square metrics log; see `data/performance/README.md` for the feedback loop |
@@ -130,10 +130,10 @@ never race on the same file or the same push.
   excessive question marks, and hooks quoting numbers that are not in the verified payload.
   Signal posts fall back to the verified-levels header; overview/meme/explainer posts regenerate
   through the duplicate-guard loop before a slot is at risk.
-- **Outcome honesty.** The monitor publishes stop-loss resolutions (with a red STOPPED card, no
-  referral block) and one-shot "under pressure" journal updates, capped per UTC day via
-  `bot/config.json → monitor` (`sl_posts_max_per_day` default 4, `pressure_posts_max_per_day`
-  default 2). The manual `slot: scorecard` post counts **every** outcome in the window.
+- **TP-only monitor publishing.** The monitor posts verified TP1/TP2 hits only. Stop-loss hits are
+  still closed and saved to `data/closed_trades.json`, but are silent on Binance Square; near-stop
+  "under pressure" updates are disabled. The manual `slot: scorecard` post still summarizes all
+  outcomes when deliberately requested.
 - **Quiet-market degradation.** If nothing clears the +5% momentum filter, the threshold relaxes
   through `trending.min_change_fallbacks` before the run gives up — a softer verified setup can still
   use the run's assigned slot when conditions are quiet.
@@ -146,10 +146,9 @@ never race on the same file or the same push.
 | `GROQ_API_KEY` | Secret | Post copy, signal narrative, market overview, meme |
 | `GROQ_MODEL` | Variable | Preferred model (default `openai/gpt-oss-120b`); the engine probes the account and falls back |
 | `SQUARE_PUBLISH_ATTEMPTS`, `SQUARE_POLL_*`, `SQUARE_PUBLISH_DEADLINE_SECONDS` | Variable | Media-upload retry tuning |
-| `CARD_USERNAME`, `CARD_TIMEZONE`, `BINANCE_REFERRAL_CODE`, `CARD_*` | Variable | Proof-card look; `CARD_USERNAME` also watermarks charts. Target-hit cards omit the referral/QR block on STOPPED outcomes |
+| `CARD_USERNAME`, `CARD_TIMEZONE`, `BINANCE_REFERRAL_CODE`, `CARD_*` | Variable | Proof-card look; `CARD_USERNAME` also watermarks charts |
 | `TARGET_CARD_LEVERAGE` | Variable | Optional override; empty (default) means each card shows the trade's own configured leverage label |
 | `MONITOR_CANDLE_INTERVAL`, `MONITOR_MAX_LOOKBACK_HOURS`, `MONITOR_MAX_KLINE_PAGES` | Variable | Scan window tuning |
-| `MONITOR_SL_POSTS_ENABLED`, `MONITOR_SL_POST_MAX_PER_DAY`, `MONITOR_PRESSURE_POSTS_ENABLED`, `MONITOR_PRESSURE_POST_MAX_PER_DAY` | Variable | Optional overrides for the outcome-narration knobs in `bot/config.json → monitor` |
 | `ACTIVE_TRADE_TTL_HOURS` | Variable | Stale-trade expiry override (`0` disables) |
 
 ## Workflows
