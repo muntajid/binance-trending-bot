@@ -1,5 +1,21 @@
-⚡ $ERA LONG | Entry CMP $0.0934 | TP1 $0.094 (+0.6%) / TP2 $0.0955 (+2.2%) | SL $0.0905 (-3.1%) | RR 1:0.2
-📊 RSI 59.9 | VOL normal | OI n/a | MTF 1H up / 4H flat | Est liq zones L 0.085875/S 0.100725
-1H trigger.
-💎 Context: $ONE #BinanceSquare
-⚠️ Not financial advice; verify levels first.
+🔍 $ONE: what the verified data says right now (+6.7% 24H)
+
+👀 $ONE LONG | Entry CMP $0.001656 | TP1 $0.001699 (+2.6%) | TP2 $0.001785 (+7.8%) | SL $0.001642 (-0.8%) | RR 1:3.07 | Conf 1%
+Why now: Shooting star candlestick and bullish HH/HL structure.
+
+Key evidence (verified):
+• Structure: Higher highs and higher lows on MTF, 1H uptrend, resistance at $0.001699, support at $0.001642.
+• Indicators: EMA20 0.001576, EMA50 0.001607, EMA200 0.001823; RSI 69.2; MACD ~0, histogram ~0; VWAP 0.001727; Bollinger pos 0.89, bands 0.001367‑0.001695; Stoch R…
+• Participation: volume normal; taker buy share 49%; 24h turnover $11.6M | Futures: derivatives feed unavailable today
+• Liquidity: order book bid heavy (2.51x); est. liquidation magnets: shorts ~$0.001774 / longs ~$0.001542
+• Trend stack: 5m↓ 15m→ 1H↑ 4H→ 1D↑ 1W↑
+• Context: BTC bearish alignment on 1H and 4H; dominance 60.5%; F&G 28 Fear
+• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
+
+🔀 If if price breaks above $0.001699 with volume holding → path to $0.001699 stays open; if if price falls below $0.001642 and EMA20 turns down → thesis cancelled.
+❌ Invalidation: Break of support $0.001642.
+🛡️ Risk: ~3:1 (TP1‑entry 0.000043 vs SL‑entry 0.000014); 2‑3% of equity per trade; plan: Exit if price closes below $0.001642 or EMA20 slopes down (validation 7/100)
+📎 Data confidence: derivatives feed unavailable — the rest is measured.
+Follow for real-time TP updates & verified setups.
+Tags: $ONE $BTC #BinanceSquareFamily
+⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
