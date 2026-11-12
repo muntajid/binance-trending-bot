@@ -52,6 +52,7 @@ jobs:
           test_square_publish_resilience
           test_monitor_narration
           test_performance_analyzer
+          tests.test_chart_generator
 
       - name: Compile every module
         run: python -m compileall -q bot assets
