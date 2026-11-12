@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-11-12",
   "pending": [
-    10,
     11
   ],
   "in_flight": null,
@@ -481,11 +480,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "OPG"
+    },
+    {
+      "slot": 10,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #5 (20:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-12T11:52:45.231586+00:00",
+      "day_utc": "2026-11-12",
+      "run_id": "43212794726",
+      "rotation": 3,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "NIGHT"
     }
   ],
   "rotations": 2,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-12T02:45:42.688638+00:00",
+  "updated_utc": "2026-11-12T11:52:45.231608+00:00",
   "previous_day": {
     "day_utc": "2026-11-11",
     "published": 5,

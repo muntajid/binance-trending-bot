@@ -1,18 +1,17 @@
 {
-  "slot": 9,
-  "type": "explained_setup",
-  "name": "Explained Master Setup #4 (18:00 UTC)",
+  "slot": 10,
+  "type": "rapid_alert",
+  "name": "Rapid Signal Alert #5 (20:00 UTC)",
   "forced": false,
-  "published_utc": "2026-11-12T02:45:42.688621+00:00",
+  "published_utc": "2026-11-12T11:52:45.231586+00:00",
   "day_utc": "2026-11-12",
-  "run_id": "43143526364",
+  "run_id": "43212794726",
   "rotation": 3,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": "OPG",
+  "coin": "NIGHT",
   "pending_after": [
-    10,
     11
   ]
 }

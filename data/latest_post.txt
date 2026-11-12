@@ -1,20 +1,6 @@
-Price sits 4¢ below VWAP while a bullish engulfing pierces support at $0.132, hinting a t
-
-👀 $OPG LONG | Entry CMP $0.1351 | TP1 $0.1362 (+0.8%) | TP2 $0.1382 (+2.3%) | SL $0.132 (-2.3%) | RR 1:0.35 | Conf 1%
-Why now: Bullish engulfing on 1H.
-
-Key evidence (verified):
-• Structure: 5m up, 15m sideways, 1h sideways, 4h up, 1d sideways, 1w up; 4h HH‑HL bullish continuation; mixed LH/HL structure on 1h.
-• Indicators: EMA20 0.1368 > price, EMA50 0.1333 < price, RSI 45.4 neutral, MACD -0.0014 histogram, VWAP 0.1412 above price, Bollinger position 0.35, Stoch RSI 0/0.
-• Participation: volume normal; taker buy share 49%; 24h turnover $10.4M | Futures: derivatives feed unavailable today
-• Liquidity: order book bid heavy (1.30x); est. liquidation magnets: shorts ~$0.146093 / longs ~$0.124107
-• Trend stack: 5m↑ 15m→ 1H→ 4H↑ 1D→ 1W↑
-• Context: BTC bearish alignment on 1H and 4H; dominance 59.8%; F&G 28 Fear
-• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
-
-🔀 If if price breaks above $0.1362 with volume staying bullish → path to $0.1362 stays open; if if price falls back below $0.132 and MACD histogram stays negative → thesis cancelled.
-❌ Invalidation: Break below $0.132 support.
-🛡️ Risk: RR≈1.0 to TP2, 0.35 to TP1; Risk 1% of capital per trade (≈$30 per $3,000 account); plan: Exit if price ≤ $0.132 or MACD turns more bearish (validation 7/100)
-📎 Data confidence: derivatives feed unavailable — the rest is measured.
-Tags: $OPG $BTC #Write2Earn
-⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
+Price sits at the 0.0475 resistance while VWAP lags 7% below, hinting a pull‑back.
+⚡ $NIGHT SHORT | Entry CMP $0.04712 | TP1 $0.0467 (+0.9%) / TP2 $0.0458 (+2.8%) | SL $0.0478 (-1.4%) | RR 1:0.6
+📊 RSI 42 | VOL normal | OI n/a | MTF 1H down / 4H up | Est liq zones L 0.0458/S 0.04848
+1H trigger.
+💎 Context: $ERA #Altcoins
+⚠️ Not financial advice; verify levels first.
