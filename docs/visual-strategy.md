@@ -20,7 +20,7 @@ The implementation adopts the supported principles—visual evidence, one centra
 | Education, security, regulation | EXPLAINER, 4:5 | Short, ordered diagram/timeline from validated information |
 | Narrative without numeric evidence | EDITORIAL, square | Scene-only art; add any headline as code-rendered text, never ask the art model to draw text, logos, charts or numbers |
 
-Current production remains the existing `main_signal` workflow: signal slots generate verified 1H charts from `market_data`; overview and educational slots use the BTC chart; the community slot uses the existing Pillow meme card; scorecards remain text-only. Routing is advisory metadata for future specialized renderers and an explicit guardrail on what evidence is appropriate—it does not fabricate missing market data or change slot/publishing behavior.
+Current production remains the existing `main_signal` workflow: signal slots generate verified 1H charts from `market_data` rendered with mobile-first (4:5 portrait) TradingView and Binance Mobile styling across 5 specialized visual formats (`setup_box_arrow`, `trendline_retest`, `support_demand_zone`, `scenario_projection`, `breakout_expansion`); overview and educational slots use the styled 1H BTC chart; the community slot uses the existing Pillow meme card; scorecards remain text-only. Routing is advisory metadata for future specialized renderers and an explicit guardrail on what evidence is appropriate—it does not fabricate missing market data or change slot/publishing behavior.
 
 ## Shared design rules
 
