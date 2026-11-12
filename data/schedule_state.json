@@ -1,8 +1,7 @@
 {
   "version": 1,
-  "day_utc": "2026-11-11",
+  "day_utc": "2026-11-12",
   "pending": [
-    9,
     10,
     11
   ],
@@ -468,25 +467,34 @@
       "attempts": 1,
       "degraded": false,
       "coin": "SNDKB"
+    },
+    {
+      "slot": 9,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #4 (18:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-12T02:45:42.688621+00:00",
+      "day_utc": "2026-11-12",
+      "run_id": "43143526364",
+      "rotation": 3,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "OPG"
     }
   ],
   "rotations": 2,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-11T21:08:26.913291+00:00",
+  "updated_utc": "2026-11-12T02:45:42.688638+00:00",
   "previous_day": {
-    "day_utc": "2026-11-10",
-    "published": 4,
+    "day_utc": "2026-11-11",
+    "published": 5,
     "by_type": {
-      "market_overview": 1,
+      "explained_setup": 2,
       "rapid_alert": 2,
-      "explained_setup": 1
+      "meme_community": 1
     },
     "unpublished": [
-      4,
-      5,
-      6,
-      7,
-      8,
       9,
       10,
       11
