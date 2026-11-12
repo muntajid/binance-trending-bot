@@ -20,8 +20,6 @@ from bot import trade_state
 from bot.card_generator import generate_position_card, normalize_leverage
 from bot.market_data import INTERVAL_TO_MS, get_klines_range
 from bot.poster import (
-    format_pressure_post,
-    format_stop_post,
     format_success_post,
     get_current_price,
 )
@@ -29,7 +27,6 @@ from bot.poster import (
 ROOT_DIR = Path(__file__).resolve().parents[1]
 ACTIVE_FILE = ROOT_DIR / "data" / "active_trades.json"
 CLOSED_FILE = ROOT_DIR / "data" / "closed_trades.json"
-MONITOR_POSTS_FILE = ROOT_DIR / "data" / "monitor_posts.json"
 
 PublishFunction = Callable[[str, list[str]], Any]
 
@@ -295,137 +292,6 @@ def _monitor_max_pages() -> int:
     if not 1 <= value <= 100:
         raise ValueError("MONITOR_MAX_KLINE_PAGES must be between 1 and 100")
     return value
-
-
-# ---------------------------------------------------------------------------
-# Outcome-narration budget (SL resolutions + under-pressure updates)
-# ---------------------------------------------------------------------------
-
-
-def _monitor_config() -> dict[str, Any]:
-    settings = trade_state.load_config().get("monitor", {})
-    return settings if isinstance(settings, dict) else {}
-
-
-def _env_flag(name: str, default: bool) -> bool:
-    raw = os.getenv(name)
-    if raw is None or not raw.strip():
-        return default
-    return raw.strip().lower() in {"1", "true", "yes", "on"}
-
-
-def _sl_posts_enabled() -> bool:
-    default = bool(_monitor_config().get("sl_posts_enabled", True))
-    return _env_flag("MONITOR_SL_POSTS_ENABLED", default)
-
-
-def _pressure_posts_enabled() -> bool:
-    default = bool(_monitor_config().get("pressure_posts_enabled", True))
-    return _env_flag("MONITOR_PRESSURE_POSTS_ENABLED", default)
-
-
-def _daily_cap(kind: str) -> int:
-    """Per-UTC-day cap for an outcome-narration post kind (sl/pressure)."""
-
-    key = {"sl": "sl_posts_max_per_day", "pressure": "pressure_posts_max_per_day"}[kind]
-    env_name = {"sl": "MONITOR_SL_POST_MAX_PER_DAY", "pressure": "MONITOR_PRESSURE_POST_MAX_PER_DAY"}[kind]
-    default = {"sl": 4, "pressure": 2}[kind]
-    raw = os.getenv(env_name, "").strip()
-    if not raw:
-        try:
-            raw = str(int(_monitor_config().get(key, default)))
-        except (TypeError, ValueError):
-            raw = str(default)
-    try:
-        value = int(raw)
-    except (TypeError, ValueError):
-        return default
-    return max(0, min(24, value))
-
-
-def _load_monitor_budget(now: datetime) -> dict[str, Any]:
-    """Daily counters reset each UTC day; increments persist via the workflow commit."""
-
-    day = _iso_utc(now)[:10]
-    state: dict[str, Any] = {"day_utc": day, "sl_posts": 0, "pressure_posts": 0}
-    if MONITOR_POSTS_FILE.exists():
-        try:
-            stored = json.loads(MONITOR_POSTS_FILE.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError):
-            stored = {}
-        if isinstance(stored, dict) and stored.get("day_utc") == day:
-            for key in ("sl_posts", "pressure_posts"):
-                try:
-                    state[key] = max(0, int(stored.get(key, 0)))
-                except (TypeError, ValueError):
-                    state[key] = 0
-    return state
-
-
-def _save_monitor_budget(state: dict[str, Any]) -> None:
-    MONITOR_POSTS_FILE.parent.mkdir(parents=True, exist_ok=True)
-    temporary = MONITOR_POSTS_FILE.with_suffix(MONITOR_POSTS_FILE.suffix + ".tmp")
-    temporary.write_text(
-        json.dumps(state, indent=2, ensure_ascii=False) + "\n",
-        encoding="utf-8",
-    )
-    os.replace(temporary, MONITOR_POSTS_FILE)
-
-
-def _budget_allows(budget: dict[str, Any], kind: str) -> bool:
-    return int(budget.get(f"{kind}_posts", 0)) < _daily_cap(kind)
-
-
-def _near_invalidation(trade: dict[str, Any], current_price: float) -> bool:
-    """True when price is close to the stop without touching it.
-
-    'Close' is a fraction (monitor.pressure_zone_fraction, default 0.35) of the
-    trade's own entry->stop distance, so the zone scales with each setup's
-    volatility instead of being a fixed absolute number.
-    """
-
-    direction = _direction(trade)
-    entry = float(trade["entry_price"])
-    stop = float(trade["sl"])
-    risk = abs(entry - stop)
-    if risk <= 0 or current_price <= 0:
-        return False
-
-    try:
-        fraction = float(_monitor_config().get("pressure_zone_fraction", 0.35))
-    except (TypeError, ValueError):
-        fraction = 0.35
-    fraction = max(0.05, min(0.9, fraction))
-
-    if direction == "LONG":
-        return stop < current_price <= stop + fraction * risk
-    return stop > current_price >= stop - fraction * risk
-
-
-def _publish_stop(
-    publish_func: PublishFunction,
-    trade: dict[str, Any],
-    event: TradeEvent,
-) -> str | None:
-    """Publish the verified stop-resolution post + red STOPPED card."""
-
-    post = format_stop_post(trade, event.price)
-    card_path = _create_target_card(trade=trade, hit="SL", hit_price=event.price, hit_time=event.happened_at)
-    if not Path(card_path).is_file():
-        raise RuntimeError(f"Stop card is missing: {card_path}")
-    publish_func(post, [card_path])
-    return card_path
-
-
-def _publish_pressure(
-    publish_func: PublishFunction,
-    trade: dict[str, Any],
-    current_price: float,
-) -> None:
-    """Publish the mid-trade 'under pressure' journal update (text only)."""
-
-    post = format_pressure_post(trade, current_price)
-    publish_func(post, [])
 
 
 def _create_target_card(
@@ -722,10 +588,6 @@ def check_trades_and_maybe_post(publish_func: PublishFunction) -> None:
         print("No active trades remain after expiry.")
         return
 
-    monitor_now = _utc_now()
-    budget = _load_monitor_budget(monitor_now)
-    budget_changed = False
-
     remaining: list[dict[str, Any]] = []
 
     for trade in trades:
@@ -774,26 +636,10 @@ def check_trades_and_maybe_post(publish_func: PublishFunction) -> None:
                     )
 
                 _close_trade(trade, terminal, "SL_HIT")
-
-                # Verified outcome honesty: the loss gets a post too, budget
-                # capped so the feed is not flooded on a red day. The closure
-                # above must survive even when this post cannot be published.
-                if _sl_posts_enabled() and _budget_allows(budget, "sl"):
-                    try:
-                        _publish_stop(publish_func, trade, terminal)
-                        budget["sl_posts"] = int(budget.get("sl_posts", 0)) + 1
-                        budget_changed = True
-                        print(
-                            f"[Monitor] SL resolution post published for {coin} "
-                            f"({budget['sl_posts']}/{_daily_cap('sl')} today)"
-                        )
-                    except Exception as exc:
-                        print(f"[Monitor Warning] SL post for {coin} failed after closure: {exc}")
-                else:
-                    print(
-                        f"[Monitor] SL detected for {coin} at {_iso_utc(terminal.happened_at)}; "
-                        "closed (SL post disabled or daily cap reached)"
-                    )
+                print(
+                    f"[Monitor] SL detected for {coin} at {_iso_utc(terminal.happened_at)}; "
+                    "closed silently (no post)"
+                )
                 continue
 
             if new_tp1 and not trade.get("tp1_hit"):
@@ -803,27 +649,6 @@ def check_trades_and_maybe_post(publish_func: PublishFunction) -> None:
                     f"[Monitor] TP1 detected for {coin} at "
                     f"{_iso_utc(new_tp1.happened_at)}; image published"
                 )
-
-            # Mid-trade journal: one 'under pressure' update per open trade
-            # when price drifts close to invalidation without touching it.
-            if (
-                not trade.get("pressure_posted")
-                and _pressure_posts_enabled()
-                and _budget_allows(budget, "pressure")
-                and _near_invalidation(trade, current_price)
-            ):
-                try:
-                    _publish_pressure(publish_func, trade, current_price)
-                    trade["pressure_posted"] = True
-                    trade["pressure_posted_at"] = _iso_utc(scan_end)
-                    budget["pressure_posts"] = int(budget.get("pressure_posts", 0)) + 1
-                    budget_changed = True
-                    print(
-                        f"[Monitor] Under-pressure update published for {coin} "
-                        f"({budget['pressure_posts']}/{_daily_cap('pressure')} today)"
-                    )
-                except Exception as exc:
-                    print(f"[Monitor Warning] Pressure post for {coin} failed: {exc}")
 
             trade["last_checked_at"] = _iso_utc(scan_end)
             remaining.append(trade)
@@ -835,5 +660,3 @@ def check_trades_and_maybe_post(publish_func: PublishFunction) -> None:
             remaining.append(trade)
 
     save_active(remaining)
-    if budget_changed:
-        _save_monitor_budget(budget)

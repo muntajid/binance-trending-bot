@@ -13,10 +13,8 @@ from bot.poster import (
     format_explained_post,
     format_explainer_post,
     format_market_overview_post,
-    format_pressure_post,
     format_rapid_alert_post,
     format_scorecard_post,
-    format_stop_post,
     scorecard_stats,
 )
 
@@ -421,31 +419,6 @@ class SignalPostTests(unittest.TestCase):
         ok_payload = {"hook_line": "ETH holds $100 while TP1 sits at $110", "entry_price": 100, "tp1": 110}
         ok_post = "ETH holds $100 while TP1 sits at $110"
         self.assertEqual(assert_post_quality(ok_post, ok_payload), ok_post)
-
-    def test_stop_and_pressure_posts_are_honest_and_bounded(self):
-        trade = {
-            "coin": "CYBER",
-            "direction": "LONG",
-            "entry_price": 1.0,
-            "tp1": 1.08,
-            "tp2": 1.15,
-            "sl": 0.94,
-            "created_at": "2026-11-09T05:20:00+00:00",
-            "tp1_hit": True,
-        }
-        stop_post = format_stop_post(trade, 0.94)
-        self.assertIn("STOPPED", stop_post)
-        self.assertIn("TP1", stop_post)  # acknowledges the partial plan
-        self.assertIn("not financial advice", stop_post.lower())
-        self.assertLessEqual(len(stop_post), 1200)
-        self.assertNotIn("revenge trade — next", stop_post.lower())
-        self.assert_clean(stop_post)
-
-        pressure_post = format_pressure_post(trade, 0.955)
-        self.assertIn("under pressure", pressure_post.lower())
-        self.assertIn("$0.94", pressure_post)
-        self.assertLessEqual(len(pressure_post), 900)
-        self.assert_clean(pressure_post)
 
     def test_scorecard_counts_wins_and_losses_symmetrically(self):
         import datetime as _dt

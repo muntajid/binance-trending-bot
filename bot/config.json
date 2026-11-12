@@ -109,13 +109,5 @@
     "hook_max_chars": 90,
     "cta_mix": {"none": 0.5, "question": 0.35, "follow": 0.1, "comment": 0.05},
     "comment": "CTA mix was 65/20/10/5; research shows content-specific questions earn the most replies, so the question share rises and questions are built from the post's own scenario levels instead of generic prompts."
-  },
-  "monitor": {
-    "sl_posts_enabled": true,
-    "sl_posts_max_per_day": 4,
-    "pressure_posts_enabled": true,
-    "pressure_posts_max_per_day": 2,
-    "pressure_zone_fraction": 0.35,
-    "comment": "Verified outcome honesty: stop-loss resolutions and thesis-under-pressure updates are published from the candle-scanned ledger (sl_posts capped per UTC day to protect the feed; the weekly scorecard still counts every outcome). pressure_zone_fraction is the share of the entry->stop distance that counts as 'near invalidation'."
   }
 }
