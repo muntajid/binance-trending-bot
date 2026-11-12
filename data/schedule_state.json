@@ -494,11 +494,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "NIGHT"
+    },
+    {
+      "slot": 1,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #1 (02:00 UTC)",
+      "forced": true,
+      "published_utc": "2026-11-12T11:53:49.612897+00:00",
+      "day_utc": "2026-11-12",
+      "run_id": "43212934947",
+      "rotation": 3,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "ERA"
     }
   ],
   "rotations": 2,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-12T11:52:45.231608+00:00",
+  "updated_utc": "2026-11-12T11:53:49.612921+00:00",
   "previous_day": {
     "day_utc": "2026-11-11",
     "published": 5,

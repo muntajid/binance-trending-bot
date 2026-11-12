@@ -1,16 +1,16 @@
 {
-  "slot": 10,
+  "slot": 1,
   "type": "rapid_alert",
-  "name": "Rapid Signal Alert #5 (20:00 UTC)",
-  "forced": false,
-  "published_utc": "2026-11-12T11:52:45.231586+00:00",
+  "name": "Rapid Signal Alert #1 (02:00 UTC)",
+  "forced": true,
+  "published_utc": "2026-11-12T11:53:49.612897+00:00",
   "day_utc": "2026-11-12",
-  "run_id": "43212794726",
+  "run_id": "43212934947",
   "rotation": 3,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": "NIGHT",
+  "coin": "ERA",
   "pending_after": [
     11
   ]

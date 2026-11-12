@@ -1,7 +1,7 @@
 {
-  "last_slot": 10,
+  "last_slot": 1,
   "last_type": "rapid_alert",
-  "last_run_utc": "2026-11-12T11:52:45.231586+00:00",
+  "last_run_utc": "2026-11-12T11:53:49.612897+00:00",
   "day_utc": "2026-11-12",
   "rotation": 3,
   "rotation_started_utc": "2026-11-10T00:00:45.150467+00:00",
