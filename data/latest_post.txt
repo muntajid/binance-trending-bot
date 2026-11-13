@@ -1,18 +1,6 @@
-🌐 MACRO & BITCOIN OUTLOOK: Bitcoin in bearish alignment, dominance steady, altcoins surge 📊
-
-BTC -4.17% at $71,531, dominance 59.47%, Fear index 28 – risk‑off backdrop fuels altcoin
-
-$BTC 24H: $71531.05 (-4.17%)
-Market Phase: Liquidity Hunt
-
-📊 Key Market Dynamics:
-• Bitcoin Structure: 1H shows BTC deep oversold (RSI 12.2) with price below EMA20/50/200, while 4H confirms downtrend (RSI 30) and LL‑LH structure; key liquidity sits at $71,255 support and $73,438 resistance.
-• Altcoin Flows: Altcoins are outperforming BTC (+16.6% relative) with BARD up 57.9% and DODO up 23.8%, reflecting capital rotation into high‑momentum tokens.
-• Crucial Levels: Support $71255.02 | Resistance $73437.75
-📈 Sentiment: Fear & Greed 28 (Fear) | BTC dominance 59.5%
-🔄 What flips it: bullish if BTC closes above the 1H EMA20 ($72,499) with RSI climbing above 20; watch out if BTC breaks below the $71,255 support and RSI stays below 15.
-
-💡 Trader Takeaway: Stay short on BTC spot/futures until price retests $73,438 resistance; consider long altcoins with strong 24H gains, but limit exposure to BTC until a bullish EMA crossover occurs.
-
-$BTC $ETH #BinanceSquare #CryptoMarket
-⚠️ Educational market analysis only. Not financial advice. Always DYOR.
+⚡ $BARD LONG | Entry CMP $0.1408 | TP1 $0.144 (+2.3%) / TP2 $0.148 (+5.1%) | SL $0.138 (-2.0%) | RR 1:1.1
+📊 RSI 80.8 | VOL normal | OI n/a | MTF 1H up / 4H down | Est liq zones L 0.120032/S 0.161368
+1H MACD bullish histogram and RSI overbought signal a short‑term push.
+💎 Context: $DODO #CryptoTrading
+Follow for real-time TP updates & verified setups.
+⚠️ Not financial advice; verify levels first.
