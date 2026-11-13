@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-11-13",
   "pending": [
-    2,
     3,
     4,
     5,
@@ -559,11 +558,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "BARD"
+    },
+    {
+      "slot": 2,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #1 (04:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-13T11:58:42.436921+00:00",
+      "day_utc": "2026-11-13",
+      "run_id": "43421204824",
+      "rotation": 4,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "DODO"
     }
   ],
   "rotations": 3,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-13T02:29:00.667544+00:00",
+  "updated_utc": "2026-11-13T11:58:42.436939+00:00",
   "previous_day": {
     "day_utc": "2026-11-12",
     "published": 5,
