@@ -1,21 +1,7 @@
-Price sits just below the upper Bollinger band while VWAP lags, hinting a modest upside t
-
-👀 $DODO LONG | Entry CMP $0.02899 | TP1 $0.0295 (+1.8%) | TP2 $0.0308 (+6.2%) | SL $0.02773 (-4.3%) | RR 1:0.40 | Conf 1%
-Why now: Trigger.
-
-Key evidence (verified):
-• Structure: Higher highs/lows on 1H, sideways on 5m/15m, resistance at 0.0295, support at 0.0262.
-• Indicators: EMA20 0.0272, EMA50 0.0257, RSI 48, MACD flat, VWAP 0.0257, BB upper 0.02927, position 0.91, Stoch K 15.9.
-• Participation: volume normal; taker buy share 56%; 24h turnover $9.3M | Futures: derivatives feed unavailable today
-• Liquidity: order book balanced (0.94x); est. liquidation magnets: shorts ~$0.030884 / longs ~$0.027096
-• Trend stack: 5m→ 15m→ 1H↑ 4H→ 1D→ 1W↑
-• Context: BTC bearish alignment on 1H and 4H; dominance 59.7%; F&G 20 Extreme Fear
-• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
-
-🔀 If if price holds above VWAP and stays within the upper Bollinger band → path to $0.0295 stays open; if if price falls below the EMA20 (0.0272) support → thesis cancelled.
-❌ Invalidation: Break below EMA20 (0.0272).
-🛡️ Risk: TP1≈0.4R, TP2≈1.2R; risk 1% of capital at SL distance; plan: exit if price <0.0272 EMA20 (validation 7/100)
-📎 Data confidence: derivatives feed unavailable — the rest is measured.
-Which hits first for $DODO: $0.02951 or $0.0262?
-Tags: $DODO $BTC #Write2Earn
-⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
+RSI spikes to 99 while price sits 5% above VWAP, hinting a short‑squeeze risk.
+⚡ $SHELL SHORT | Entry CMP $0.03458 | TP1 $0.032 (+7.5%) / TP2 $0.03 (+13.2%) | SL $0.036 (-4.1%) | RR 1:1.8
+📊 RSI 99.2 | VOL spike 2.1x | OI n/a | MTF 1H flat / 4H down | Est liq zones L 0.031673/S 0.037507
+1H trigger.
+💎 Context: $SOPH #CryptoTrading
+Which hits first for $SHELL: $0.03578 or $0.01971?
+⚠️ Not financial advice; verify levels first.

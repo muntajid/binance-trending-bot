@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-11-13",
   "pending": [
-    3,
     4,
     5,
     6,
@@ -572,11 +571,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "DODO"
+    },
+    {
+      "slot": 3,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #2 (06:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-13T19:32:21.475672+00:00",
+      "day_utc": "2026-11-13",
+      "run_id": "43493006720",
+      "rotation": 4,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "SHELL"
     }
   ],
   "rotations": 3,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-13T11:58:42.436939+00:00",
+  "updated_utc": "2026-11-13T19:32:21.475695+00:00",
   "previous_day": {
     "day_utc": "2026-11-12",
     "published": 5,
