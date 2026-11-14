@@ -1,7 +1,20 @@
-Bid‑heavy order‑book keeps $DODO anchored below VWAP despite a 1H downtrend.
-⚡ $DODO LONG | Entry CMP $0.03148 | TP1 $0.0328 (+4.2%) / TP2 $0.0341 (+8.3%) | SL $0.0313 (-0.6%) | RR 1:7.3
-📊 RSI 47.3 | VOL normal | OI n/a | MTF 1H down / 4H up | Est liq zones L 0.029021/S 0.033939
-1H trigger.
-💎 Context: $SOPH #Altcoins
-Drop your price prediction for $DODO below.
-⚠️ Not financial advice; verify levels first.
+🔍 $SOPH: what the verified data says right now (+23.0% 24H)
+
+👀 $SOPH LONG | Entry CMP $0.00219 | TP1 $0.00239 (+9.1%) | TP2 $0.00261 (+19.2%) | SL $0.00212 (-3.2%) | RR 1:2.86 | Conf 1%
+Why now: Bullish engulfing and price above EMA‑20 on 1H.
+
+Key evidence (verified):
+• Structure: Mixed LH/HL structure on 1H, uptrend on 4H, bullish engulfing, support at 0.00216, resistance at 0.00239.
+• Indicators: EMA20 0.00205, EMA50 0.00183, EMA200 0.00151; RSI 54; MACD near zero; VWAP 0.00191; BB middle 0.00201, price near upper band (position 0.67); Stoch R…
+• Participation: volume normal; taker buy share 50%; 24h turnover $21.9M | Futures: derivatives feed unavailable today
+• Liquidity: order book bid heavy (2.22x); est. liquidation magnets: shorts ~$0.002634 / longs ~$0.001746
+• Trend stack: 5m→ 15m↑ 1H→ 4H↑ 1D↓ 1W→
+• Context: BTC bearish alignment on 1H and 4H; dominance 58.7%; F&G 13 Extreme Fear
+• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
+
+🔀 If if price breaks above 0.00239 with bullish volume divergence → path to $0.00239 stays open; if if price drops below 0.00216 support → thesis cancelled.
+❌ Invalidation: break of 0.00216 support
+🛡️ Risk: 1:2.5; risk 1% of capital to SL distance; plan: exit if price closes below 0.00216 (validation 1/100)
+📎 Data confidence: derivatives feed unavailable — the rest is measured.
+Tags: $SOPH $BTC #CryptoTrading
+⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
