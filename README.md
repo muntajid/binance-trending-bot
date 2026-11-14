@@ -6,40 +6,70 @@ dark-mode chart card, and publishes the result — then a separate monitor track
 posts proof when a target is hit.
 
 ```
-GitHub Actions cron ──> bot.main_signal (topic score → research → hook + verified levels → post + chart)
+Hourly Pacer        ──> dispatches signal.yml once per UTC hour (pacer.yml → bot.pacer)
+signal.yml          ──> bot.main_signal (topic score → research → hook + verified levels → post + chart)
                      └─> bot.square_publisher (retry-aware publish via the official Square scripts)
 GitHub Actions cron ──> bot.monitor_runner  (1m candle scan → TP1/TP2 proof cards only;
                                   │           SL/near-SL events are recorded silently, never posted)
                                   └──> data/*.json committed back to this repo (that IS the database)
 ```
 
-## The 12-post rotation
+## The 24-post hourly rotation
 
-`bot/config.json` → `schedule.slots` is the single source of truth (top-100-creator benchmark mix):
+`bot/config.json` → `schedule.slots` is the single source of truth: one post per hour, 24 per day.
 
 | Count | Type | What it is |
 | --- | --- | --- |
-| 5 | `rapid_alert` | Verified levels + a concise institutional read |
-| 5 | `explained_setup` | 15-point evidence, *Why now* + *What invalidates it* |
-| 1 | `market_overview` | Macro & Bitcoin structure, flows, key levels |
-| 1 | `meme_community` | Trader-psychology meme (highest median views, +49% paired uplift) |
+| 11 | `rapid_alert` | Verified levels + a concise institutional read |
+| 11 | `explained_setup` | 15-point evidence, *Why now* + *What invalidates it* |
+| 1 | `market_overview` | Macro & Bitcoin structure, flows, key levels (slot 0, 00:00 UTC) |
+| 1 | `meme_community` | Trader-psychology meme (slot 12, 12:00 UTC) |
+
+Rapid and explained posts alternate, so the same type never runs twice in a row (including the
+23 → 0 wrap). Editing the slot list is detected through a `plan_signature` in the state file, which
+starts a clean rotation instead of replaying an old queue against the new slot numbers.
+
+### Hourly cadence: the pacer
+
+GitHub cron is best effort. The old `0 */2 * * *` cron aimed for 12 runs a day, but the ledger shows only
+**2–5 posts actually went out per day** (3–14 Nov 2026). An hourly cron alone could never reach 24, so
+`pacer.yml` / `bot/pacer.py` acts as the clock:
+
+- a single long-running job checks every 5 minutes. It reads `data/schedule_state.json` through the
+  GitHub API and dispatches `signal.yml` (`paced: true`) when the current UTC hour has no post yet and
+  no signal run is queued or running;
+- a failed or cancelled run (for example a pending run replaced in the shared concurrency group) is
+  retried on a later tick, at most `schedule.pacer.max_dispatches_per_hour` (3) times per hour;
+- after `handoff_after_minutes` (330) it dispatches a fresh pacer, staying under GitHub's 6-hour job
+  limit. A `23 * * * *` cron revives the chain if a handoff is ever lost, and an extra pacer sees the
+  active one and exits;
+- **the double-post gate** (`python -m bot.schedule --due`) runs inside `signal.yml` for every paced and
+  cron run. It allows one queued post per UTC hour and never two within `schedule.min_gap_minutes`
+  (20), so the hourly backup cron, the pacer and retries can't publish twice. Manual runs skip the gate.
+
+The repository is public, so the pacer's runner minutes are free. The Groq account now handles about
+24 runs a day instead of about 4; if its daily quota runs out, generation falls back through the
+configured models and failed slots retry on the next tick.
 
 **The type is chosen by a continuous queue, not by the clock or calendar date.** Each automatic run
 takes the next pending slot, so:
 
-- cron (`0 */2 * * *`) targets 12 runs per day and walks the plan in order;
-- **midnight does not restart an unfinished rotation.** GitHub can delay or omit cron events; if the
-  runs arrive late, the 12-post mix simply spans multiple UTC days. This prevents a delayed BTC
+- the pacer (with an hourly cron backup) targets 24 runs per day and walks the plan in order;
+- **midnight does not restart an unfinished rotation.** If runs arrive late, the 24-post mix simply
+  spans multiple UTC days. This prevents a delayed BTC
   outlook from being followed immediately by the next day's outlook;
 - **manual runs with `slot: auto` advance the same queue**, rather than repeating the current hour's
   post type;
 - a retryable failure returns its slot to the **front** of the queue for the next run;
-- only after all 12 queued slots are resolved does the next rotation begin. An uncertain publish
+- only after all 24 queued slots are resolved does the next rotation begin. An uncertain publish
   consumes its slot without a retry because the post may already have reached Square.
 
 Explicit type/slot requests and `reset` are overrides, not part of the automatic mix. They can add
 extras or repeat content; leave `slot: auto` and `reset: false` for normal posting. The coin cooldown
 and caption similarity guard still apply, but they check wording/coins, not the daily content mix.
+With 22 coin signals a day, the 24 h per-coin cooldown can exhaust the pool on quiet days. After every
+momentum fallback has failed, selection retries with `duplicate_filter_fallback_hours` (12 h) before
+giving up. `trending.top_n` is 60, so coins in cooldown don't crowd out every candidate.
 
 ## Content quality layer (hook, angle, structure)
 
@@ -73,7 +103,7 @@ The existing chart/card pipeline now logs a topic-to-visual plan for signal, ove
 
 ## Running it by hand
 
-*Actions → Signal Poster - 12-Slot Daily Rotation → Run workflow*
+*Actions → Signal Poster - 24-Slot Hourly Rotation → Run workflow*
 
 | Input | Effect |
 | --- | --- |
@@ -90,6 +120,7 @@ the next queued slot, so a run explains itself in the GitHub UI. Locally:
 ```bash
 python -m bot.schedule --status          # current rotation and daily publish count as JSON
 python -m bot.schedule --peek --slot 7   # what "slot 7" / a type would resolve to
+python -m bot.schedule --due             # would an automatic run post right now? (the hourly gate)
 SLOT=rapid_alert PREVIEW_ONLY=1 python -m bot.main_signal   # generate without publishing
 ```
 
@@ -155,7 +186,8 @@ never race on the same file or the same push.
 
 | Workflow | Schedule | Does |
 | --- | --- | --- |
-| `signal.yml` — Signal Poster | `0 */2 * * *` (12×/day) | Publishes the next queued slot |
+| `pacer.yml` — Hourly Pacer | long-running, self-renewing; `23 * * * *` revive cron | Dispatches `signal.yml` once per UTC hour, retries failed or cancelled runs |
+| `signal.yml` — Signal Poster | dispatched by the pacer; `0 * * * *` backup cron | Publishes the next queued slot (hourly gate prevents double posts) |
 | `monitor.yml` — Live Monitor | `*/10 * * * *` | Candle-aware TP/SL detection, proof cards, state expiry |
 | `tests.yml` — Tests | push / PR | Offline unit suites + config validation + compile check |
 | `test-card.yml`, `binance-data-test.yml`, `price-consistency-test.yml` | manual | Card rendering check, live-data sanity checks |
@@ -164,7 +196,7 @@ never race on the same file or the same push.
 
 ```bash
 python -m venv .venv && .venv/bin/pip install -r requirements.txt
-.venv/bin/python -m unittest test_schedule_rotation test_trade_state test_slot_cadence \
+.venv/bin/python -m unittest test_schedule_rotation test_trade_state test_slot_cadence test_pacer \
     test_signal_quality_pipeline test_square_publish_resilience
 ```
 

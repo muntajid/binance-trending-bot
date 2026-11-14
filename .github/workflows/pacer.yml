@@ -1,0 +1,40 @@
+name: Hourly Pacer - 24 Posts per Day
+
+# GitHub cron is best effort: the 2-hourly signal cron used to deliver only
+# 2-5 of its 12 daily runs. This job is the reliable clock instead. It stays
+# alive for ~5.5 hours, dispatches "Signal Poster" once per UTC hour (retrying
+# when a run fails or is cancelled), then dispatches a fresh copy of itself.
+# The cron below only revives the chain if a handoff is ever lost; an extra
+# pacer notices the active one and exits within a few minutes.
+# Logic and tuning: bot/pacer.py and bot/config.json -> schedule.pacer.
+on:
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch:
+
+permissions:
+  # workflow_dispatch via GITHUB_TOKEN is allowed to start new workflow runs.
+  actions: write
+  contents: read
+
+jobs:
+  pace:
+    runs-on: ubuntu-latest
+    # GitHub kills jobs at 360 minutes; the pacer hands off at 330.
+    timeout-minutes: 350
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Dispatch one signal run per UTC hour
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -m bot.pacer

@@ -1,10 +1,10 @@
 {
   "schedule": {
-    "posts_per_day": 12,
-    "interval_hours": 2,
+    "posts_per_day": 24,
+    "interval_hours": 1,
     "timezone": "UTC",
     "in_flight_timeout_minutes": 45,
-    "comment": "slots[] is the single source of truth for the 12-post rotation. bot/schedule.py serves pending slots in order across UTC dates; midnight never restarts an unfinished rotation. Cron targets 12 runs/day, but delayed runs may span days. hour_utc is a nominal label only. Automatic runs preserve the mix; explicit type/slot requests or reset can publish extras.",
+    "comment": "slots[] is the single source of truth for the 24-post rotation (1 BTC outlook, 1 meme, 11 rapid alerts, 11 explained setups). bot/schedule.py serves pending slots in order across UTC dates; midnight never restarts an unfinished rotation. The pacer workflow (bot/pacer.py) dispatches one automatic run per UTC hour; min_gap_minutes and the one-post-per-UTC-hour rule stop cron, the pacer and retries from double-posting. hour_utc is a nominal label only. Changing the slot list starts a fresh rotation automatically. Explicit type/slot requests or reset can publish extras.",
     "slots": [
       {
         "slot": 0,
@@ -14,80 +14,164 @@
       },
       {
         "slot": 1,
-        "hour_utc": 2,
+        "hour_utc": 1,
         "type": "rapid_alert",
-        "name": "Rapid Signal Alert #1 (02:00 UTC)"
+        "name": "Rapid Signal Alert #1 (01:00 UTC)"
       },
       {
         "slot": 2,
-        "hour_utc": 4,
+        "hour_utc": 2,
         "type": "explained_setup",
-        "name": "Explained Master Setup #1 (04:00 UTC)"
+        "name": "Explained Master Setup #1 (02:00 UTC)"
       },
       {
         "slot": 3,
-        "hour_utc": 6,
+        "hour_utc": 3,
         "type": "rapid_alert",
-        "name": "Rapid Signal Alert #2 (06:00 UTC)"
+        "name": "Rapid Signal Alert #2 (03:00 UTC)"
       },
       {
         "slot": 4,
-        "hour_utc": 8,
+        "hour_utc": 4,
         "type": "explained_setup",
-        "name": "Explained Master Setup #2 (08:00 UTC)"
+        "name": "Explained Master Setup #2 (04:00 UTC)"
       },
       {
         "slot": 5,
-        "hour_utc": 10,
+        "hour_utc": 5,
         "type": "rapid_alert",
-        "name": "Rapid Signal Alert #3 (10:00 UTC)"
+        "name": "Rapid Signal Alert #3 (05:00 UTC)"
       },
       {
         "slot": 6,
+        "hour_utc": 6,
+        "type": "explained_setup",
+        "name": "Explained Master Setup #3 (06:00 UTC)"
+      },
+      {
+        "slot": 7,
+        "hour_utc": 7,
+        "type": "rapid_alert",
+        "name": "Rapid Signal Alert #4 (07:00 UTC)"
+      },
+      {
+        "slot": 8,
+        "hour_utc": 8,
+        "type": "explained_setup",
+        "name": "Explained Master Setup #4 (08:00 UTC)"
+      },
+      {
+        "slot": 9,
+        "hour_utc": 9,
+        "type": "rapid_alert",
+        "name": "Rapid Signal Alert #5 (09:00 UTC)"
+      },
+      {
+        "slot": 10,
+        "hour_utc": 10,
+        "type": "explained_setup",
+        "name": "Explained Master Setup #5 (10:00 UTC)"
+      },
+      {
+        "slot": 11,
+        "hour_utc": 11,
+        "type": "rapid_alert",
+        "name": "Rapid Signal Alert #6 (11:00 UTC)"
+      },
+      {
+        "slot": 12,
         "hour_utc": 12,
         "type": "meme_community",
         "name": "Trader Psychology & Community Meme (12:00 UTC)"
       },
       {
-        "slot": 7,
-        "hour_utc": 14,
+        "slot": 13,
+        "hour_utc": 13,
         "type": "explained_setup",
-        "name": "Explained Master Setup #3 (14:00 UTC)"
+        "name": "Explained Master Setup #6 (13:00 UTC)"
       },
       {
-        "slot": 8,
+        "slot": 14,
+        "hour_utc": 14,
+        "type": "rapid_alert",
+        "name": "Rapid Signal Alert #7 (14:00 UTC)"
+      },
+      {
+        "slot": 15,
+        "hour_utc": 15,
+        "type": "explained_setup",
+        "name": "Explained Master Setup #7 (15:00 UTC)"
+      },
+      {
+        "slot": 16,
         "hour_utc": 16,
         "type": "rapid_alert",
-        "name": "Rapid Signal Alert #4 (16:00 UTC)"
+        "name": "Rapid Signal Alert #8 (16:00 UTC)"
       },
       {
-        "slot": 9,
-        "hour_utc": 18,
+        "slot": 17,
+        "hour_utc": 17,
         "type": "explained_setup",
-        "name": "Explained Master Setup #4 (18:00 UTC)"
+        "name": "Explained Master Setup #8 (17:00 UTC)"
       },
       {
-        "slot": 10,
+        "slot": 18,
+        "hour_utc": 18,
+        "type": "rapid_alert",
+        "name": "Rapid Signal Alert #9 (18:00 UTC)"
+      },
+      {
+        "slot": 19,
+        "hour_utc": 19,
+        "type": "explained_setup",
+        "name": "Explained Master Setup #9 (19:00 UTC)"
+      },
+      {
+        "slot": 20,
         "hour_utc": 20,
         "type": "rapid_alert",
-        "name": "Rapid Signal Alert #5 (20:00 UTC)"
+        "name": "Rapid Signal Alert #10 (20:00 UTC)"
       },
       {
-        "slot": 11,
-        "hour_utc": 22,
+        "slot": 21,
+        "hour_utc": 21,
         "type": "explained_setup",
-        "name": "Explained Master Setup #5 (22:00 UTC)"
+        "name": "Explained Master Setup #10 (21:00 UTC)"
+      },
+      {
+        "slot": 22,
+        "hour_utc": 22,
+        "type": "rapid_alert",
+        "name": "Rapid Signal Alert #11 (22:00 UTC)"
+      },
+      {
+        "slot": 23,
+        "hour_utc": 23,
+        "type": "explained_setup",
+        "name": "Explained Master Setup #11 (23:00 UTC)"
       }
-    ]
+    ],
+    "min_gap_minutes": 20,
+    "pacer": {
+      "check_every_minutes": 5,
+      "max_dispatches_per_hour": 3,
+      "handoff_after_minutes": 330
+    }
   },
   "duplicate_filter_hours": 24,
+  "duplicate_filter_fallback_hours": 12,
+  "duplicate_filter_comment": "A coin is not signalled twice inside duplicate_filter_hours. 22 signals/day can exhaust the pool on quiet days, so as a last resort (after every momentum fallback) the cooldown relaxes to duplicate_filter_fallback_hours. Set it equal to duplicate_filter_hours to disable the relaxation.",
   "caption_similarity_max": 0.82,
   "caption_regeneration_attempts": 3,
   "trending": {
-    "top_n": 30,
+    "top_n": 60,
     "min_change_percent": 5,
     "min_volume_usdt": 5000000,
-    "min_change_fallbacks": [3, 1.5, 0.5],
+    "min_change_fallbacks": [
+      3,
+      1.5,
+      0.5
+    ],
     "comment": "If the strict momentum filter yields no postable coin, the change threshold is relaxed through min_change_fallbacks before the run gives up. A softer verified setup is still a better post than a missed slot.",
     "score_weights": {
       "momentum": 0.35,
@@ -107,7 +191,12 @@
   },
   "content": {
     "hook_max_chars": 90,
-    "cta_mix": {"none": 0.5, "question": 0.35, "follow": 0.1, "comment": 0.05},
+    "cta_mix": {
+      "none": 0.5,
+      "question": 0.35,
+      "follow": 0.1,
+      "comment": 0.05
+    },
     "comment": "CTA mix was 65/20/10/5; research shows content-specific questions earn the most replies, so the question share rises and questions are built from the post's own scenario levels instead of generic prompts."
   }
 }

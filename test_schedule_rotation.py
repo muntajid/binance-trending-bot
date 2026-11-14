@@ -18,10 +18,12 @@ from unittest import mock
 
 from bot import schedule
 
-EXPECTED_COUNTS = {"rapid_alert": 5, "explained_setup": 5, "market_overview": 1, "meme_community": 1}
+EXPECTED_COUNTS = {"rapid_alert": 11, "explained_setup": 11, "market_overview": 1, "meme_community": 1}
+TOTAL_SLOTS = 24
+MEME_SLOT = 12
 
 
-class QueueTestCase(unittest.TestCase):
+class QueueFixture(unittest.TestCase):
     """Every test runs against a throwaway copy of the repo's data/ directory."""
 
     def setUp(self) -> None:
@@ -66,6 +68,8 @@ class QueueTestCase(unittest.TestCase):
     def publish_all(self, runs: int) -> list[dict]:
         return [self.publish() for _ in range(runs)]
 
+
+class QueueTestCase(QueueFixture):
     # -- the reported bug ------------------------------------------------
     def test_corrupt_state_file_restarts_the_day_instead_of_blocking_forever(self) -> None:
         schedule.select_slot()  # create the state file
@@ -73,7 +77,7 @@ class QueueTestCase(unittest.TestCase):
 
         slot = schedule.select_slot()
         self.assertEqual(slot["slot"], 0, "a broken state file must not stop an autonomous bot")
-        self.assertEqual(len(self.read_state()["pending"]), 12)
+        self.assertEqual(len(self.read_state()["pending"]), TOTAL_SLOTS)
 
     def test_repeated_manual_runs_walk_the_queue(self) -> None:
         """Three runs minutes apart must not all produce the same post type."""
@@ -86,13 +90,13 @@ class QueueTestCase(unittest.TestCase):
     def test_a_full_rotation_yields_the_benchmark_mix(self) -> None:
         self.assertEqual(schedule.status()["published_today"], 0)
 
-        self.publish_all(12)
+        self.publish_all(TOTAL_SLOTS)
         published = self.read_state()["published"]
         counts: dict[str, int] = {}
         for entry in published:
             counts[entry["type"]] = counts.get(entry["type"], 0) + 1
 
-        self.assertEqual(len(published), 12)
+        self.assertEqual(len(published), TOTAL_SLOTS)
         self.assertEqual(counts, EXPECTED_COUNTS)
         self.assertEqual(self.read_state()["pending"], [], "a full rotation drains the queue")
 
@@ -143,10 +147,10 @@ class QueueTestCase(unittest.TestCase):
         self.assertNotIn(0, state["pending"])
         self.assertEqual(state["previous_day"]["by_type"], {"explained_setup": 1, "market_overview": 1})
 
-    def test_twelve_delayed_runs_keep_the_mix_across_calendar_days(self) -> None:
+    def test_a_full_rotation_of_delayed_runs_keeps_the_mix_across_calendar_days(self) -> None:
         now = datetime.datetime(2026, 11, 2, 20, 4, tzinfo=datetime.timezone.utc)
         with mock.patch.object(schedule, "_utc_now", side_effect=lambda: now):
-            for _ in range(12):
+            for _ in range(TOTAL_SLOTS):
                 self.publish()
                 now += datetime.timedelta(hours=7)
 
@@ -192,10 +196,10 @@ class QueueTestCase(unittest.TestCase):
     # -- explicit requests ----------------------------------------------
     def test_forced_type_consumes_its_own_pending_slot(self) -> None:
         slot = self.publish("meme_community")
-        self.assertEqual((slot["slot"], slot["type"]), (6, "meme_community"))
-        self.assertNotIn(6, self.read_state()["pending"])
+        self.assertEqual((slot["slot"], slot["type"]), (MEME_SLOT, "meme_community"))
+        self.assertNotIn(MEME_SLOT, self.read_state()["pending"])
 
-        # The auto queue keeps its place: slot 6 must not be published twice.
+        # The auto queue keeps its place: the meme slot must not be published twice.
         following = self.publish()
         self.assertEqual(following["slot"], 0, following)
 
@@ -205,7 +209,7 @@ class QueueTestCase(unittest.TestCase):
 
         slot = schedule.select_slot("meme_community")
         self.assertTrue(slot["forced"], slot)
-        self.assertEqual(slot["slot"], 6)
+        self.assertEqual(slot["slot"], MEME_SLOT)
 
         schedule.begin_run(slot)
         schedule.publish_succeeded()
@@ -222,8 +226,8 @@ class QueueTestCase(unittest.TestCase):
         self.assertIn("rapid_alert", str(ctx.exception))
 
     def test_slot_number_request(self) -> None:
-        slot = schedule.select_slot("slot 9")
-        self.assertEqual(slot["slot"], 9)
+        slot = schedule.select_slot("slot 10")
+        self.assertEqual(slot["slot"], 10)
         self.assertEqual(slot["type"], "explained_setup")
 
         with self.assertRaises(schedule.ScheduleError):
@@ -335,8 +339,8 @@ class QueueTestCase(unittest.TestCase):
 
         migrated = schedule.load_state()
         persisted = self.read_state()
-        self.assertEqual(migrated["pending"], list(range(2, 12)))
-        self.assertEqual(persisted["pending"], list(range(2, 12)))
+        self.assertEqual(migrated["pending"], list(range(2, TOTAL_SLOTS)))
+        self.assertEqual(persisted["pending"], list(range(2, TOTAL_SLOTS)))
         self.assertTrue(persisted["rotation_started_utc"])
         self.assertEqual([entry["rotation"] for entry in persisted["published"]], [1, 1])
 
@@ -353,7 +357,7 @@ class QueueTestCase(unittest.TestCase):
         schedule.STATE_FILE.write_text(json.dumps(state), encoding="utf-8")
 
         fresh = schedule.load_state()
-        self.assertEqual(fresh["pending"], list(range(3, 12)))
+        self.assertEqual(fresh["pending"], list(range(3, TOTAL_SLOTS)))
         self.assertEqual(len(fresh["published"]), 3)
         self.assertEqual(fresh["previous_day"]["published"], 3)
         self.assertEqual(fresh["rotations"], 0)
@@ -361,7 +365,7 @@ class QueueTestCase(unittest.TestCase):
         self.assertEqual(schedule.status()["published_today"], 0)
 
     def test_queue_wraps_only_after_all_slots_are_resolved(self) -> None:
-        self.publish_all(12)
+        self.publish_all(TOTAL_SLOTS)
         slot = schedule.select_slot()
 
         self.assertTrue(slot["wrapped"], slot)
@@ -374,8 +378,8 @@ class QueueTestCase(unittest.TestCase):
         self.publish()
         status = schedule.status()
         self.assertEqual(status["published_this_rotation"], 1)
-        self.assertEqual(status["published_today"], 13, "daily reporting still includes both rotations")
-        self.assertEqual(len(self.read_state()["published"]), 13, "a wrap keeps the audit trail")
+        self.assertEqual(status["published_today"], TOTAL_SLOTS + 1, "daily reporting still includes both rotations")
+        self.assertEqual(len(self.read_state()["published"]), TOTAL_SLOTS + 1, "a wrap keeps the audit trail")
         self.assertEqual(status["previous_rotation"]["by_type"], EXPECTED_COUNTS)
 
     def test_reset_starts_a_new_rotation_without_erasing_history(self) -> None:
@@ -403,16 +407,167 @@ class QueueTestCase(unittest.TestCase):
         self.assertIn(1, legacy["pending_slots"])
 
 
+OLD_12_SLOT_TYPES = [
+    "market_overview", "rapid_alert", "explained_setup", "rapid_alert", "explained_setup", "rapid_alert",
+    "meme_community", "explained_setup", "rapid_alert", "explained_setup", "rapid_alert", "explained_setup",
+]
+
+
+class PlanChangeTestCase(QueueFixture):
+    """Switching bot/config.json from the 12-slot to the 24-slot plan."""
+
+    def write_old_rotation(self, *, published: int, signature: str | None, in_flight: dict | None = None) -> None:
+        records = [
+            {
+                "slot": slot,
+                "type": OLD_12_SLOT_TYPES[slot],
+                "forced": False,
+                "published_utc": f"2026-11-14T{slot:02d}:10:00+00:00",
+                "day_utc": "2026-11-14",
+                "rotation": 4,
+                "mode": "image",
+            }
+            for slot in range(published)
+        ]
+        state = {
+            "version": 1,
+            "day_utc": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d"),
+            "rotation_started_utc": "2026-11-14T00:00:00+00:00",
+            "pending": list(range(published, 12)),
+            "in_flight": in_flight,
+            "published": records,
+            "rotations": 3,
+            "reset_reason": "completed rotation",
+            "last_error": None,
+        }
+        if signature is not None:
+            state["plan_signature"] = signature
+        schedule.STATE_FILE.write_text(json.dumps(state), encoding="utf-8")
+
+    def test_live_state_from_the_old_plan_starts_a_clean_24_slot_rotation(self) -> None:
+        """The real queue on 2026-11-14: slots 0-6 done (meme at 6), 7-11 pending."""
+
+        self.write_old_rotation(published=7, signature=None)
+        slot = schedule.select_slot()
+
+        self.assertEqual((slot["slot"], slot["type"]), (0, "market_overview"))
+        self.assertEqual(slot["rotation"], 5)
+        self.assertEqual(slot["published_before"], 0)
+        state = self.read_state()
+        self.assertEqual(state["pending"], list(range(TOTAL_SLOTS)))
+        self.assertEqual(state["reset_reason"], "plan changed in bot/config.json")
+        self.assertEqual(state["plan_signature"], schedule.plan_signature(schedule.load_plan()))
+        self.assertEqual(len(state["published"]), 7, "the old rotation stays in the audit ledger")
+        self.assertEqual(state["previous_rotation"]["unpublished"], [7, 8, 9, 10, 11])
+
+    def test_explicit_signature_change_starts_a_new_rotation(self) -> None:
+        self.write_old_rotation(published=3, signature="0:market_overview,1:rapid_alert")
+        state = schedule.load_state()
+        self.assertEqual(state["pending"], list(range(TOTAL_SLOTS)))
+        self.assertEqual(state["rotations"], 4)
+
+    def test_unsigned_state_consistent_with_the_plan_is_kept(self) -> None:
+        """Slots 0-2 have identical types in both plans: nothing to restart."""
+
+        self.write_old_rotation(published=3, signature=None)
+        state = schedule.load_state()
+        self.assertEqual(state["pending"], list(range(3, 12)))
+        self.assertEqual(state["plan_signature"], schedule.plan_signature(schedule.load_plan()))
+        self.assertEqual(state["rotations"], 3)
+
+    def test_plan_change_waits_for_an_in_flight_run(self) -> None:
+        in_flight = {
+            "slot": 7,
+            "type": "explained_setup",
+            "forced": False,
+            "started_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            "rotation": 4,
+        }
+        self.write_old_rotation(published=7, signature=None, in_flight=in_flight)
+        state = schedule.load_state()
+        self.assertEqual(state["in_flight"]["slot"], 7, "a publishing run is never pulled from under itself")
+
+        schedule.publish_succeeded(mode="image", attempts=1)
+        after = schedule.load_state()
+        self.assertEqual(after["pending"], list(range(TOTAL_SLOTS)))
+        self.assertIsNone(after["in_flight"])
+
+
+class DueGateTestCase(QueueFixture):
+    """One automatic post per UTC hour; never two inside the minimum gap."""
+
+    @staticmethod
+    def at(hour: int, minute: int) -> datetime.datetime:
+        return datetime.datetime(2026, 11, 15, hour, minute, tzinfo=datetime.timezone.utc)
+
+    def state_with(self, *stamps: str, forced: bool = False, in_flight: dict | None = None) -> dict:
+        return {
+            "published": [{"slot": 1, "type": "rapid_alert", "forced": forced, "published_utc": s} for s in stamps],
+            "in_flight": in_flight,
+        }
+
+    def test_empty_history_is_due(self) -> None:
+        self.assertTrue(schedule.due_status(None, now=self.at(10, 0))["due"])
+
+    def test_same_utc_hour_is_not_due(self) -> None:
+        verdict = schedule.due_status(self.state_with("2026-11-15T10:01:30+00:00"), now=self.at(10, 45))
+        self.assertFalse(verdict["due"])
+        self.assertIn("already has its post", verdict["reason"])
+
+    def test_next_hour_is_due(self) -> None:
+        verdict = schedule.due_status(self.state_with("2026-11-15T10:01:30+00:00"), now=self.at(11, 0), min_gap=20)
+        self.assertTrue(verdict["due"], verdict)
+
+    def test_min_gap_defers_a_post_after_a_late_one(self) -> None:
+        state = self.state_with("2026-11-15T10:58:00+00:00")
+        self.assertFalse(schedule.due_status(state, now=self.at(11, 0), min_gap=20)["due"])
+        self.assertTrue(schedule.due_status(state, now=self.at(11, 20), min_gap=20)["due"])
+
+    def test_manual_extras_do_not_cost_the_hour_its_post(self) -> None:
+        state = self.state_with("2026-11-15T11:05:00+00:00", forced=True)
+        self.assertTrue(schedule.due_status(state, now=self.at(11, 30))["due"])
+
+    def test_uncertain_publishes_count_as_the_hours_post(self) -> None:
+        state = {"published": [{"slot": 2, "forced": False, "published_utc": None,
+                                "resolved_utc": "2026-11-15T11:02:00+00:00", "mode": "uncertain"}]}
+        self.assertFalse(schedule.due_status(state, now=self.at(11, 30))["due"])
+
+    def test_live_in_flight_run_blocks_and_stale_one_does_not(self) -> None:
+        live = {"slot": 3, "forced": False, "started_utc": "2026-11-15T11:00:00+00:00"}
+        self.assertFalse(schedule.due_status(self.state_with(in_flight=live), now=self.at(11, 10))["due"])
+        self.assertTrue(
+            schedule.due_status(self.state_with(in_flight=live), now=self.at(13, 0), in_flight_timeout=45)["due"]
+        )
+
+    def test_cli_writes_the_github_output(self) -> None:
+        self.publish()
+        output = self.tmp / "github_output"
+        with mock.patch.dict(os.environ, {"GITHUB_OUTPUT": str(output), "GITHUB_STEP_SUMMARY": ""}):
+            with mock.patch("sys.stdout"):
+                self.assertEqual(schedule.main(["--due"]), 0)
+        self.assertEqual(output.read_text(encoding="utf-8"), "due=false\n", "a post was just published")
+
+
 class PlanLoadingTestCase(unittest.TestCase):
     def test_plan_matches_the_benchmark_mix(self) -> None:
         plan = schedule.load_plan()
-        self.assertEqual(len(plan), 12)
-        self.assertEqual([entry["slot"] for entry in plan], list(range(12)))
+        self.assertEqual(len(plan), TOTAL_SLOTS)
+        self.assertEqual([entry["slot"] for entry in plan], list(range(TOTAL_SLOTS)))
 
         counts: dict[str, int] = {}
         for entry in plan:
             counts[entry["type"]] = counts.get(entry["type"], 0) + 1
         self.assertEqual(counts, EXPECTED_COUNTS)
+
+    def test_hourly_layout_never_repeats_a_type_back_to_back(self) -> None:
+        plan = schedule.load_plan()
+        types = [entry["type"] for entry in plan]
+        self.assertEqual(types[0], "market_overview")
+        self.assertEqual(types[MEME_SLOT], "meme_community")
+        for index, current in enumerate(types):
+            following = types[(index + 1) % len(types)]  # includes the wrap 23 -> 0
+            self.assertNotEqual(current, following, f"slots {index} and {(index + 1) % len(types)}")
+        self.assertEqual([entry["hour_utc"] for entry in plan], list(range(TOTAL_SLOTS)))
 
     def test_config_is_the_single_source_of_truth(self) -> None:
         with self.assertRaises(schedule.ScheduleError):
@@ -436,7 +591,7 @@ class PlanLoadingTestCase(unittest.TestCase):
             schedule, "STATE_FILE", data_dir / "schedule_state.json"
         ), mock.patch.object(schedule, "LEGACY_SLOT_STATE_FILE", data_dir / "slot_state.json"):
             status = schedule.status()
-            self.assertEqual(status["total_slots"], 12)
+            self.assertEqual(status["total_slots"], TOTAL_SLOTS)
             self.assertEqual(status["published_today"], 0)
             self.assertEqual(status["next_slot"]["slot"], 0)
 

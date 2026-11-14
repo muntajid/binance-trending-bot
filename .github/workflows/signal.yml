@@ -1,13 +1,18 @@
-name: Signal Poster - 12-Slot Daily Rotation
+name: Signal Poster - 24-Slot Hourly Rotation
 
 # The plan is a continuous queue in data/schedule_state.json, not a clock
 # lookup or a queue that resets at midnight. Every automatic run takes the next
-# pending slot from bot/config.json. Cron targets 12 runs/day; if GitHub delays
-# events, the rotation spans calendar days instead of repeating its BTC outlook.
-# Manual "Run workflow" with slot=auto advances this same queue.
+# pending slot from bot/config.json (24 slots: 1 BTC outlook, 1 meme, 11 rapid
+# alerts, 11 explained setups).
+#
+# Automatic runs come from the Hourly Pacer (pacer.yml, the reliable clock) and
+# from the hourly cron below as a backup. Both pass the "due" gate, which allows
+# one queued post per UTC hour and never two within schedule.min_gap_minutes,
+# so the two triggers cannot double-post. Manual "Run workflow" with slot=auto
+# skips the gate and advances this same queue immediately.
 on:
   schedule:
-    - cron: "0 */2 * * *"
+    - cron: "0 * * * *"
   workflow_dispatch:
     inputs:
       slot:
@@ -33,6 +38,11 @@ on:
         required: false
         default: false
         type: boolean
+      paced:
+        description: "Internal (set by the Hourly Pacer): skip if this UTC hour already has its post"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -51,6 +61,7 @@ jobs:
       SLOT: ${{ inputs.slot || 'auto' }}
       SLOT_RESET: ${{ inputs.reset == true && '1' || '0' }}
       PREVIEW_ONLY: ${{ inputs.preview == true && '1' || '0' }}
+      AUTO_GATE: ${{ (github.event_name == 'schedule' || inputs.paced == true) && '1' || '0' }}
 
     steps:
       - name: Checkout repository
@@ -75,15 +86,27 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Check this UTC hour still needs a post
+        id: gate
+        run: |
+          if [ "${AUTO_GATE}" = "1" ]; then
+            python -m bot.schedule --due
+          else
+            echo "Manual run: the hourly gate does not apply."
+            echo "due=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Show the current posting rotation
         run: |
           python -m bot.schedule --status
           python -m bot.schedule --summary >> "$GITHUB_STEP_SUMMARY"
 
       - name: Clean old charts
+        if: ${{ steps.gate.outputs.due == 'true' }}
         run: rm -f charts/*.png || true
 
       - name: Generate the next queued post
+        if: ${{ steps.gate.outputs.due == 'true' }}
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GROQ_MODEL: ${{ vars.GROQ_MODEL || 'openai/gpt-oss-120b' }}
@@ -92,7 +115,7 @@ jobs:
         run: python -m bot.main_signal
 
       - name: Download official Binance Square posting scripts
-        if: ${{ inputs.preview != true }}
+        if: ${{ steps.gate.outputs.due == 'true' && inputs.preview != true }}
         run: |
           rm -rf /tmp/binance-skills-hub
           git clone --depth 1 \
@@ -100,14 +123,14 @@ jobs:
             /tmp/binance-skills-hub
 
       - name: Apply Square safety patches
-        if: ${{ inputs.preview != true }}
+        if: ${{ steps.gate.outputs.due == 'true' && inputs.preview != true }}
         run: |
           python -m bot.patch_square_utf8
           python -m bot.patch_square_upload
           node --check /tmp/binance-skills-hub/skills/binance/square-post/scripts/lib.mjs
 
       - name: Publish signal to Binance Square
-        if: ${{ inputs.preview != true }}
+        if: ${{ steps.gate.outputs.due == 'true' && inputs.preview != true }}
         env:
           BINANCE_SQUARE_OPENAPI_KEY: ${{ secrets.BINANCE_SQUARE_OPENAPI_KEY }}
           # Binance processes Square images asynchronously. The official helper
