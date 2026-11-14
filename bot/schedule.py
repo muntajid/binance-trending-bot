@@ -1,4 +1,4 @@
-"""Clock-independent, continuous queue for the 12-slot posting plan.
+"""Clock-independent, continuous queue for the 24-slot hourly posting plan.
 
 Why this module exists
 ----------------------
@@ -15,11 +15,14 @@ midnight reset put slot 0 at the head again for the next run at 03:23 UTC on
 
 This module makes the rotation durable, including across calendar days:
 
-* the plan comes only from ``bot/config.json``: normally 5 rapid alerts,
-  5 explained setups, 1 BTC outlook and 1 meme per complete rotation;
+* the plan comes only from ``bot/config.json``: normally 11 rapid alerts,
+  11 explained setups, 1 BTC outlook and 1 meme per complete rotation;
 * every automatic run takes the **next pending slot**, never a clock lookup;
-* midnight changes the reporting date, not the queue. Twelve delayed runs can
-  span several UTC days without restarting or skipping the remaining content;
+* midnight changes the reporting date, not the queue. Delayed runs can span
+  several UTC days without restarting or skipping the remaining content;
+* editing the slot list in ``bot/config.json`` is detected through a plan
+  signature and starts a clean rotation, so an old queue is never replayed
+  against a new plan with different slot types;
 * a retryable generation/publish failure returns its slot and rolls back the
   coin cooldown / open trade created by that run;
 * a killed run's in-flight reservation is healed after the configured timeout;
@@ -28,9 +31,12 @@ This module makes the rotation durable, including across calendar days:
 * ``reset`` deliberately starts a new rotation and can repeat content. It is
   never called automatically just because the UTC date changed.
 
-Cron still targets 12 runs per day, but GitHub can delay or omit scheduled
-events. The invariant is the content mix per 12 resolved slots, not a promise
-that every calendar day receives exactly 12 posts.
+The pacer workflow (``bot/pacer.py``) dispatches one automatic run per UTC
+hour, with an hourly cron as a backup. :func:`due_status` is the shared guard:
+an automatic run is skipped when the current UTC hour already has a queued
+post or the previous one is less than ``schedule.min_gap_minutes`` old, so
+cron, the pacer and retries cannot double-post. The invariant is the content
+mix per resolved rotation; a day receives 24 posts when every hour is served.
 
 State files (all under ``data/``, committed by the workflow):
 
@@ -73,6 +79,7 @@ MANUAL_SLOT_NAMES = {
     "educational_explainer": "Educational Explainer (manual)",
 }
 DEFAULT_IN_FLIGHT_TIMEOUT_MINUTES = 45
+DEFAULT_MIN_GAP_MINUTES = 20
 # This is an audit ledger, not the queue itself. Keep it bounded even when the
 # bot runs for months; pending/published counts for the active rotation are
 # derived from rotation tags, never from the length of this retained history.
@@ -219,6 +226,32 @@ def type_counts(plan: list[dict[str, Any]] | None = None) -> dict[str, int]:
     return counts
 
 
+def plan_signature(plan: list[dict[str, Any]]) -> str:
+    """Identify a plan by its ordered ``slot:type`` pairs (names are cosmetic)."""
+
+    return ",".join(f"{entry['slot']}:{entry['type']}" for entry in plan)
+
+
+def _rotation_matches_plan(state: dict[str, Any], plan: list[dict[str, Any]]) -> bool:
+    """Best-effort check for state written before plan signatures existed.
+
+    Every queued slot already resolved in the active rotation (and an in-flight
+    one) must still have the same type in the current plan.
+    """
+
+    by_slot = _plan_by_slot(plan)
+    records = list(_rotation_records(state))
+    if isinstance(state.get("in_flight"), dict) and not state["in_flight"].get("forced"):
+        records.append(state["in_flight"])
+    for entry in records:
+        slot = entry.get("slot")
+        if not isinstance(slot, int) or slot not in by_slot:
+            return False
+        if entry.get("type") and by_slot[slot]["type"] != entry.get("type"):
+            return False
+    return True
+
+
 # ---------------------------------------------------------------------------
 # State
 # ---------------------------------------------------------------------------
@@ -245,6 +278,7 @@ def _fresh_state(
         "updated_utc": now,
         "previous_day": _day_summary(previous) if previous is not None else None,
         "previous_rotation": _rotation_summary(previous) if previous is not None else None,
+        "plan_signature": plan_signature(plan),
         "last_error": None,
     }
 
@@ -449,6 +483,26 @@ def load_state(*, reset: bool = False, config: dict[str, Any] | None = None) -> 
         _save_state(state)
         return state
 
+    signature = plan_signature(plan)
+    stored_signature = state.get("plan_signature")
+    if stored_signature != signature:
+        if stored_signature is None and _rotation_matches_plan(state, plan):
+            # Pre-signature state that is still consistent with the plan.
+            state["plan_signature"] = signature
+            migrated = True
+        elif isinstance(state.get("in_flight"), dict):
+            # Never pull the rug from under a run that is publishing right
+            # now; its publish/abort hook resolves it and the next load resets.
+            print("[Schedule] Plan changed; waiting for the in-flight run before starting the new rotation")
+        else:
+            print(
+                f"[Schedule] bot/config.json now defines a different {len(plan)}-slot plan; "
+                "starting a fresh rotation instead of replaying the old queue"
+            )
+            state = _fresh_state(today, plan, "plan changed in bot/config.json", previous=state)
+            _save_state(state)
+            return state
+
     known = set(_plan_by_slot(plan))
     cleaned: list[int] = []
     for slot in state.get("pending", []) or []:
@@ -510,6 +564,7 @@ def _wrap_if_exhausted(state: dict[str, Any], plan: list[dict[str, Any]]) -> boo
     state["rotations"] = _active_rotation(state)
     state["rotation_started_utc"] = _iso(_utc_now())
     state["pending"] = [entry["slot"] for entry in plan]
+    state["plan_signature"] = plan_signature(plan)
     state["reset_reason"] = "completed rotation"
     # Keep the tagged ledger for daily reporting and auditability. The new
     # rotation's progress is derived from its tag, not from len(published).
@@ -823,6 +878,86 @@ def abort_run(reason: str) -> dict[str, Any] | None:
 
 
 # ---------------------------------------------------------------------------
+# Hourly cadence guard (shared by the pacer and automatic workflow runs)
+# ---------------------------------------------------------------------------
+
+def min_gap_minutes(config: dict[str, Any] | None = None) -> float:
+    settings = config if config is not None else load_config()
+    try:
+        return max(0.0, float(settings.get("schedule", {}).get("min_gap_minutes", DEFAULT_MIN_GAP_MINUTES)))
+    except (TypeError, ValueError):
+        return float(DEFAULT_MIN_GAP_MINUTES)
+
+
+def last_automatic_post(state: dict[str, Any] | None) -> datetime.datetime | None:
+    """When the queue last resolved a slot (published or uncertain).
+
+    Explicit manual extras are ignored: they never consume a queued slot, so
+    they must not cost the rotation its hourly post either.
+    """
+
+    latest: datetime.datetime | None = None
+    for entry in (state or {}).get("published") or []:
+        if not isinstance(entry, dict) or entry.get("forced"):
+            continue
+        stamp = _parse_iso(entry.get("published_utc") or entry.get("resolved_utc"))
+        if stamp and (latest is None or stamp > latest):
+            latest = stamp
+    return latest
+
+
+def due_status(
+    state: dict[str, Any] | None,
+    *,
+    now: datetime.datetime | None = None,
+    min_gap: float = DEFAULT_MIN_GAP_MINUTES,
+    in_flight_timeout: float | None = None,
+) -> dict[str, Any]:
+    """Decide whether an automatic run should publish the next slot now.
+
+    One queued post per UTC clock hour, and never two within ``min_gap``
+    minutes (a run delayed to 10:58 must not be followed by one at 11:00).
+    Pure function of the state dict so the pacer can evaluate the state it
+    fetched from GitHub without touching local files.
+    """
+
+    current = (now or _utc_now()).astimezone(datetime.timezone.utc)
+    timeout = float(in_flight_timeout if in_flight_timeout is not None else _in_flight_timeout_minutes())
+    in_flight = (state or {}).get("in_flight")
+    if isinstance(in_flight, dict) and not in_flight.get("forced"):
+        started = _parse_iso(in_flight.get("started_utc"))
+        if started and (current - started).total_seconds() / 60.0 < timeout:
+            return {"due": False, "reason": f"slot {in_flight.get('slot')} is already in flight", "last_post_utc": None}
+
+    last = last_automatic_post(state)
+    if last is None:
+        return {"due": True, "reason": "no automatic post on record", "last_post_utc": None}
+
+    age_minutes = (current - last).total_seconds() / 60.0
+    stamp = _iso(last)
+    if last.strftime("%Y-%m-%dT%H") == current.strftime("%Y-%m-%dT%H"):
+        return {"due": False, "reason": f"this UTC hour already has its post ({stamp})", "last_post_utc": stamp}
+    if age_minutes < min_gap:
+        return {
+            "due": False,
+            "reason": f"last post is only {age_minutes:.0f} min old (min gap {min_gap:.0f} min)",
+            "last_post_utc": stamp,
+        }
+    return {"due": True, "reason": f"last post {age_minutes:.0f} min ago", "last_post_utc": stamp}
+
+
+def local_due_status(*, now: datetime.datetime | None = None) -> dict[str, Any]:
+    """:func:`due_status` for the checked-out ``data/schedule_state.json`` (read-only)."""
+
+    state = _read_json(STATE_FILE, None, tolerant=True)
+    return due_status(
+        state if isinstance(state, dict) else None,
+        now=now,
+        min_gap=min_gap_minutes(),
+    )
+
+
+# ---------------------------------------------------------------------------
 # Reporting
 # ---------------------------------------------------------------------------
 
@@ -888,7 +1023,25 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--reset", action="store_true", help="Explicitly start a new rotation (can repeat content)")
     parser.add_argument("--peek", action="store_true", help="Show the slot the next run would take")
     parser.add_argument("--slot", default="", help="Slot number or type to preview")
+    parser.add_argument(
+        "--due",
+        action="store_true",
+        help="Report whether an automatic run should post this UTC hour (writes due=true/false to $GITHUB_OUTPUT)",
+    )
     args = parser.parse_args(argv)
+
+    if args.due:
+        verdict = local_due_status()
+        print(json.dumps(verdict, ensure_ascii=False))
+        output = os.getenv("GITHUB_OUTPUT")
+        if output:
+            with open(output, "a", encoding="utf-8") as handle:
+                handle.write(f"due={'true' if verdict['due'] else 'false'}\n")
+        summary = os.getenv("GITHUB_STEP_SUMMARY")
+        if summary and not verdict["due"]:
+            with open(summary, "a", encoding="utf-8") as handle:
+                handle.write(f"### ⏭️ Automatic run skipped\n- {verdict['reason']}\n")
+        return 0
 
     if args.reset:
         load_state(reset=True)

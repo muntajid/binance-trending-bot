@@ -1,10 +1,10 @@
 """Master multi-mode signal, macro overview, and community content engine.
 
-Executes the 12-slot portfolio rotation defined in ``bot/config.json``
+Executes the 24-slot hourly portfolio rotation defined in ``bot/config.json``
 (benchmarked against top 100 creator data):
 
-- 5x Rapid Alerts (verified trade levels plus a concise institutional read)
-- 5x Explained Master Setups (15-point evidence, Why Now + Invalidation)
+- 11x Rapid Alerts (verified trade levels plus a concise institutional read)
+- 11x Explained Master Setups (15-point evidence, Why Now + Invalidation)
 - 1x Macro & Bitcoin Market Overview (BTC structure, flows & market phases)
 - 1x Viral Trader Psychology & Community Meme (+49% paired uplift)
 
@@ -255,6 +255,16 @@ def select_trending_coin(
 
     active_coins = get_active_coins()
     cooldown_hours = float(settings.get("duplicate_filter_hours", 24))
+    try:
+        fallback_cooldown = float(settings.get("duplicate_filter_fallback_hours", cooldown_hours))
+    except (TypeError, ValueError):
+        fallback_cooldown = cooldown_hours
+    # 22 signals per day can exhaust the pool on quiet days. Only after every
+    # momentum fallback failed under the full cooldown is a shorter cooldown
+    # tried, so a coin repeats inside 24h only when nothing else is postable.
+    cooldown_passes = [cooldown_hours]
+    if 0 <= fallback_cooldown < cooldown_hours:
+        cooldown_passes.append(fallback_cooldown)
     thresholds = _change_thresholds(settings)
     strict_threshold = thresholds[0]
     score_weights = settings.get("trending", {}).get("score_weights")
@@ -262,51 +272,60 @@ def select_trending_coin(
     errors: list[str] = []
     blocked_active = blocked_cooldown = 0
 
-    for threshold in thresholds:
-        try:
-            trending = get_trending_coins(
-                top_n=top_n, min_change=threshold, min_volume=min_volume
-            )
-        except (RuntimeError, MarketDataError) as exc:
-            errors.append(f">={threshold}%: {exc}")
-            continue
-
-        eligible: list[dict[str, Any]] = []
-        for coin_data in trending:
-            candidate = str(coin_data["coin"]).upper().strip()
-            if candidate in active_coins:
-                blocked_active += 1
-                continue
-            if trade_state.in_cooldown(
-                _read_json_list(POSTED_FILE), candidate, hours=cooldown_hours, now=_utc_now()
-            ):
-                blocked_cooldown += 1
-                continue
-            eligible.append(coin_data)
-
-        if eligible:
-            # Composite topic score (momentum + volatility + liquidity +
-            # participation + novelty) beats raw 24h gain ordering: the biggest
-            # green candle is not automatically the most interesting post.
-            ranked = score_trending_candidates(
-                eligible,
-                _read_json_list(POSTED_FILE),
-                now=_utc_now(),
-                weights=score_weights,
-            )
-            selected = ranked[0]
-            print(
-                f"[Topic Score] {selected['coin']} wins the pool: score {selected['score']} "
-                f"(parts: {selected['score_parts']}) among {len(ranked)} eligible candidate(s)"
-            )
-            if threshold != strict_threshold:
-                print(
-                    f"[Trending] Nothing passed the strict filter; relaxing the momentum "
-                    f"threshold to >={threshold}%"
+    for cooldown in cooldown_passes:
+        for threshold in thresholds:
+            try:
+                trending = get_trending_coins(
+                    top_n=top_n, min_change=threshold, min_volume=min_volume
                 )
-            return selected, trending, threshold
+            except (RuntimeError, MarketDataError) as exc:
+                errors.append(f">={threshold}%: {exc}")
+                continue
 
-        errors.append(f">={threshold}%: all {len(trending)} candidates already open or in cooldown")
+            posted_log = _read_json_list(POSTED_FILE)
+            eligible: list[dict[str, Any]] = []
+            for coin_data in trending:
+                candidate = str(coin_data["coin"]).upper().strip()
+                if candidate in active_coins:
+                    blocked_active += 1
+                    continue
+                if trade_state.in_cooldown(posted_log, candidate, hours=cooldown, now=_utc_now()):
+                    blocked_cooldown += 1
+                    continue
+                eligible.append(coin_data)
+
+            if eligible:
+                # Composite topic score (momentum + volatility + liquidity +
+                # participation + novelty) beats raw 24h gain ordering: the
+                # biggest green candle is not automatically the most
+                # interesting post.
+                ranked = score_trending_candidates(
+                    eligible,
+                    posted_log,
+                    now=_utc_now(),
+                    weights=score_weights,
+                )
+                selected = ranked[0]
+                print(
+                    f"[Topic Score] {selected['coin']} wins the pool: score {selected['score']} "
+                    f"(parts: {selected['score_parts']}) among {len(ranked)} eligible candidate(s)"
+                )
+                if threshold != strict_threshold:
+                    print(
+                        f"[Trending] Nothing passed the strict filter; relaxing the momentum "
+                        f"threshold to >={threshold}%"
+                    )
+                if cooldown != cooldown_hours:
+                    print(
+                        f"[Trending] Every candidate was in the {cooldown_hours:g}h cooldown; "
+                        f"using the {cooldown:g}h last-resort cooldown"
+                    )
+                return selected, trending, threshold
+
+            errors.append(
+                f">={threshold}% ({cooldown:g}h cooldown): all {len(trending)} candidates "
+                "already open or in cooldown"
+            )
 
     raise RuntimeError(
         "No postable trending coin found. "

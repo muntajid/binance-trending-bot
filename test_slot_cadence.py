@@ -222,6 +222,54 @@ class TrendingSelectionTestCase(unittest.TestCase, TempStateMixin):
         self.assertEqual(threshold, 0.5)
         self.assertEqual(seen, [5.0, 3.0, 1.5, 0.5])
 
+    def _posted_recently(self, *coins: str, hours_ago: float) -> None:
+        stamp = (datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=hours_ago)).isoformat()
+        self.data_dir.joinpath("posted_coins.json").write_text(
+            json.dumps([{"coin": coin, "time": stamp} for coin in coins]), encoding="utf-8"
+        )
+
+    def test_cooldown_relaxes_only_after_every_momentum_fallback(self) -> None:
+        """22 signals/day can exhaust the 24h pool; 12h is the last resort."""
+
+        self._posted_recently("AMP", "TIA", hours_ago=14)
+        seen: list[float] = []
+
+        def fake_get_trending(*, top_n: int, min_change: float, min_volume: float):
+            seen.append(min_change)
+            return [
+                {"coin": "AMP", "change": 6.0, "volume": 9e6, "price": 1},
+                {"coin": "TIA", "change": 4.0, "volume": 9e6, "price": 1},
+            ]
+
+        config = {
+            "trending": {"min_change_percent": 5, "min_change_fallbacks": [3]},
+            "duplicate_filter_hours": 24,
+            "duplicate_filter_fallback_hours": 12,
+        }
+        with mock.patch.object(main_signal, "get_trending_coins", side_effect=fake_get_trending):
+            coin, _pool, _threshold = main_signal.select_trending_coin(config)
+
+        self.assertIn(coin["coin"], {"AMP", "TIA"})
+        self.assertEqual(seen, [5.0, 3.0, 5.0], "the full cooldown is tried at every threshold first")
+
+    def test_cooldown_fallback_still_blocks_very_recent_coins(self) -> None:
+        self._posted_recently("AMP", hours_ago=2)
+
+        with mock.patch.object(
+            main_signal,
+            "get_trending_coins",
+            return_value=[{"coin": "AMP", "change": 6.0, "volume": 9e6, "price": 1}],
+        ):
+            with self.assertRaises(RuntimeError) as ctx:
+                main_signal.select_trending_coin(
+                    {
+                        "trending": {"min_change_percent": 5, "min_change_fallbacks": []},
+                        "duplicate_filter_hours": 24,
+                        "duplicate_filter_fallback_hours": 12,
+                    }
+                )
+        self.assertIn("12h cooldown", str(ctx.exception))
+
     def test_every_threshold_blocked_reports_why(self) -> None:
         with mock.patch.object(
             main_signal, "get_trending_coins", side_effect=RuntimeError("No valid trending coins found")
