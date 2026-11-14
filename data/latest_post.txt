@@ -1,18 +1,7 @@
-🌐 MACRO & BITCOIN OUTLOOK: Bitcoin in downtrend, testing key support as fear spikes 📊
-
-BTC at $64,440, down 5.77% while Fear‑Greed sits at 13 and dominance near 59%
-
-$BTC 24H: $64439.88 (-5.77%)
-Market Phase: Liquidity Hunt
-
-📊 Key Market Dynamics:
-• Bitcoin Structure: Both 1H and 4H charts show a bearish LL‑LH continuation, RSI deep in oversold territory (22.6/13.9) and price trading below EMA20/50, targeting the nearby support at $63,944.
-• Altcoin Flows: Altcoins are outperforming BTC with a 13.3% average gain; top gainers SOPH (+27%), BANANAS31 (+7.9%) and DODO (+5%) lead the rotation.
-• Crucial Levels: Support $63944 | Resistance $65000
-📈 Sentiment: Fear & Greed 13 (Extreme Fear) | BTC dominance 59.0%
-🔄 What flips it: bullish if Close above the 4H EMA20 (~68,990) and RSI crossing above 30 on the 1H chart; watch out if Break below the $63,944 support zone with a surge in sell volume.
-
-💡 Trader Takeaway: Spot: consider short positions near $64,500 targeting $63,900; Futures: hedge long exposure with stops just above $65,000 and look for short entries on breakdown of $63,944.
-
-$BTC $ETH #BinanceSquare #CryptoMarket
-⚠️ Educational market analysis only. Not financial advice. Always DYOR.
+Bid‑heavy order‑book keeps $DODO anchored below VWAP despite a 1H downtrend.
+⚡ $DODO LONG | Entry CMP $0.03148 | TP1 $0.0328 (+4.2%) / TP2 $0.0341 (+8.3%) | SL $0.0313 (-0.6%) | RR 1:7.3
+📊 RSI 47.3 | VOL normal | OI n/a | MTF 1H down / 4H up | Est liq zones L 0.029021/S 0.033939
+1H trigger.
+💎 Context: $SOPH #Altcoins
+Drop your price prediction for $DODO below.
+⚠️ Not financial advice; verify levels first.

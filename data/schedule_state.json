@@ -3,7 +3,6 @@
   "day_utc": "2026-11-14",
   "rotation_started_utc": "2026-11-14T21:56:53.607040+00:00",
   "pending": [
-    1,
     2,
     3,
     4,
@@ -657,11 +656,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": null
+    },
+    {
+      "slot": 1,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #1 (01:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-14T22:37:30.449278+00:00",
+      "day_utc": "2026-11-14",
+      "run_id": "43648996465",
+      "rotation": 5,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "DODO"
     }
   ],
   "rotations": 4,
   "reset_reason": "plan changed in bot/config.json",
-  "updated_utc": "2026-11-14T21:57:41.445194+00:00",
+  "updated_utc": "2026-11-14T22:37:30.449304+00:00",
   "previous_day": {
     "day_utc": "2026-11-14",
     "published": 3,
