@@ -1,21 +1,5 @@
-🔍 $SOPH: what the verified data says right now (+32.1% 24H)
-
-👀 $SOPH LONG | Entry CMP $0.00173 | TP1 $0.00183 (+5.8%) | TP2 $0.0019 (+9.8%) | SL $0.00159 (-8.1%) | RR 1:0.71 | Conf 1%
-Why now: Trigger.
-
-Key evidence (verified):
-• Structure: Mixed MTF trend: 5m down, 15m up, 1h sideways, 4h up, 1d down. Structure shows LH/HL on 1H and HH‑HL on 4H. Support at 0.0017, resistance at 0.00183.
-• Indicators: EMA20≈0.00170, EMA50≈0.00154, EMA200≈0.00135; RSI 56.9; MACD near zero, histogram slightly negative; VWAP 0.00156 below price; Bollinger position 0.5…
-• Participation: volume normal; taker buy share 49%; 24h turnover $9.0M | Futures: derivatives feed unavailable today
-• Liquidity: order book bid heavy (1.31x); est. liquidation magnets: shorts ~$0.001944 / longs ~$0.001516
-• Trend stack: 5m↓ 15m↑ 1H→ 4H↑ 1D↓ 1W→
-• Context: BTC bearish alignment on 1H and 4H; dominance 58.9%; F&G 13 Extreme Fear
-• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
-
-🔀 If price holds above 0.0017 support and breaks above 0.0018 resistance → path to $0.00183 stays open; if price falls back below 0.0017 support on increased sell pressure → thesis cancelled.
-❌ Invalidation: Break of 0.0017 support.
-🛡️ Risk: 1:2.5 approx (SL 0.00159, TP1 0.00183); Risk ≤1% of account per trade; plan: Exit if price closes below 0.0017 support. (validation 0/100)
-📎 Data confidence: derivatives feed unavailable — the rest is measured.
-Which hits first for $SOPH: $0.00183 or $0.0017?
-Tags: $SOPH $BTC #Altcoins
-⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
+⚡ $SOXSB LONG | Entry CMP $52.8 | TP1 $53.285 (+0.9%) / TP2 $54.95 (+4.1%) | SL $52.5 (-0.6%) | RR 1:1.6
+📊 RSI 66.6 | VOL normal | OI n/a | MTF 1H up / 4H up | Est liq zones L 51.7039/S 53.8961
+1H trigger.
+💎 Context: $SHELL #BinanceSquare
+⚠️ Not financial advice; verify levels first.
