@@ -2,7 +2,6 @@
   "version": 1,
   "day_utc": "2026-11-14",
   "pending": [
-    6,
     7,
     8,
     9,
@@ -611,11 +610,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "SOXSB"
+    },
+    {
+      "slot": 6,
+      "type": "meme_community",
+      "name": "Trader Psychology & Community Meme (12:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-14T16:27:10.126939+00:00",
+      "day_utc": "2026-11-14",
+      "run_id": "43615626146",
+      "rotation": 4,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": null
     }
   ],
   "rotations": 3,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-14T08:45:19.297684+00:00",
+  "updated_utc": "2026-11-14T16:27:10.126960+00:00",
   "previous_day": {
     "day_utc": "2026-11-13",
     "published": 3,
