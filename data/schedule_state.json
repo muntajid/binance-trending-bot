@@ -1,12 +1,31 @@
 {
   "version": 1,
   "day_utc": "2026-11-14",
+  "rotation_started_utc": "2026-11-14T21:56:53.607040+00:00",
   "pending": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
     7,
     8,
     9,
     10,
-    11
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
   ],
   "in_flight": null,
   "published": [
@@ -624,22 +643,34 @@
       "attempts": 1,
       "degraded": false,
       "coin": null
+    },
+    {
+      "slot": 0,
+      "type": "market_overview",
+      "name": "Macro & Bitcoin Outlook (00:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-14T21:57:41.445165+00:00",
+      "day_utc": "2026-11-14",
+      "run_id": "43645436133",
+      "rotation": 5,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": null
     }
   ],
-  "rotations": 3,
-  "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-14T16:27:10.126960+00:00",
+  "rotations": 4,
+  "reset_reason": "plan changed in bot/config.json",
+  "updated_utc": "2026-11-14T21:57:41.445194+00:00",
   "previous_day": {
-    "day_utc": "2026-11-13",
+    "day_utc": "2026-11-14",
     "published": 3,
     "by_type": {
-      "rapid_alert": 2,
-      "explained_setup": 1
+      "explained_setup": 1,
+      "rapid_alert": 1,
+      "meme_community": 1
     },
     "unpublished": [
-      4,
-      5,
-      6,
       7,
       8,
       9,
@@ -647,19 +678,25 @@
       11
     ]
   },
-  "last_error": null,
-  "rotation_started_utc": "2026-11-12T21:21:40.312376+00:00",
   "previous_rotation": {
-    "rotation": 3,
-    "started_utc": "2026-11-10T00:00:45.150467+00:00",
-    "extras": 1,
-    "published": 12,
+    "rotation": 4,
+    "started_utc": "2026-11-12T21:21:40.312376+00:00",
+    "extras": 0,
+    "published": 7,
     "by_type": {
       "market_overview": 1,
-      "rapid_alert": 5,
-      "explained_setup": 5,
+      "rapid_alert": 3,
+      "explained_setup": 2,
       "meme_community": 1
     },
-    "unpublished": []
-  }
+    "unpublished": [
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  "plan_signature": "0:market_overview,1:rapid_alert,2:explained_setup,3:rapid_alert,4:explained_setup,5:rapid_alert,6:explained_setup,7:rapid_alert,8:explained_setup,9:rapid_alert,10:explained_setup,11:rapid_alert,12:meme_community,13:explained_setup,14:rapid_alert,15:explained_setup,16:rapid_alert,17:explained_setup,18:rapid_alert,19:explained_setup,20:rapid_alert,21:explained_setup,22:rapid_alert,23:explained_setup",
+  "last_error": null
 }

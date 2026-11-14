@@ -1,8 +1,246 @@
 {
-  "title": "Trader Diary: When Bitcoin Dips & Shell Explodes",
-  "content": "BTC slides 4.9% and I'm already scrolling 1‑minute candles like it's a Netflix series. Meanwhile SHELL rockets 21.8% and my FOMO alarm goes off louder than my coffee machine. \nExpectation: “I’ll wait for the dip.” Reality: “Buy the dip, sell the shell, repeat.”",
-  "lesson": "If a coin’s price moves faster than your coffee brews, step back and sip before you click.",
-  "question": "Who else stared at the chart until the 3 AM sunrise? Share your midnight meme moments 👇",
+  "headline": "Bitcoin in downtrend, testing key support as fear spikes",
+  "hook_line": "BTC at $64,440, down 5.77% while Fear‑Greed sits at 13 and dominance near 59%",
+  "what_flips_bullish": "Close above the 4H EMA20 (~68,990) and RSI crossing above 30 on the 1H chart.",
+  "what_flips_bearish": "Break below the $63,944 support zone with a surge in sell volume.",
+  "btc_price": 64439.88,
+  "btc_change": -5.768,
+  "eth_price": 1772.67,
+  "eth_change": -8.083,
+  "market_phase": "Liquidity Hunt",
+  "btc_thesis": "Both 1H and 4H charts show a bearish LL‑LH continuation, RSI deep in oversold territory (22.6/13.9) and price trading below EMA20/50, targeting the nearby support at $63,944.",
+  "altcoin_summary": "Altcoins are outperforming BTC with a 13.3% average gain; top gainers SOPH (+27%), BANANAS31 (+7.9%) and DODO (+5%) lead the rotation.",
+  "btc_support": 63944.0,
+  "btc_resistance": 65000.0,
+  "strategy_outlook": "Spot: consider short positions near $64,500 targeting $63,900; Futures: hedge long exposure with stops just above $65,000 and look for short entries on breakdown of $63,944.",
+  "btc_indicators_1h": {
+    "close": 64439.87,
+    "ema_20": 66400.60211754085,
+    "ema_50": 68111.84903753085,
+    "ema_200": 71313.9437414654,
+    "rsi": 22.645202083563362,
+    "macd": {
+      "macd": -979.4814482025395,
+      "signal": -861.6427904906886,
+      "histogram": -117.83865771185083
+    },
+    "bollinger_bands": {
+      "upper": 68349.2992610975,
+      "middle": 66476.46800000002,
+      "lower": 64603.63673890254,
+      "bandwidth": 5.634569096232616,
+      "position": -0.043721701550029045
+    },
+    "stoch_rsi": {
+      "k": 3.6802267945659115,
+      "d": 21.250497543109685
+    },
+    "vwap": 69817.30988218688,
+    "candlestick_patterns": [],
+    "support_resistance": {
+      "support": 63944.0,
+      "resistance": 65000.0,
+      "levels": [
+        65000.0,
+        66322.94,
+        66966.79,
+        67652.01666666666,
+        68103.0,
+        69252.6,
+        70214.31
+      ]
+    },
+    "trendlines": {
+      "trend": "downtrend",
+      "higher_highs": false,
+      "higher_lows": false,
+      "lower_highs": true,
+      "lower_lows": true,
+      "structure": "LH/LL"
+    },
+    "breakout_breakdown": {
+      "type": "none",
+      "level": null,
+      "confirmed": false
+    },
+    "market_structure": "LL-LH bearish continuation",
+    "atr": 696.8935714285706
+  },
+  "btc_indicators_4h": {
+    "close": 64439.87,
+    "ema_20": 68989.88811766997,
+    "ema_50": 72050.68768228307,
+    "ema_200": 76588.26071610439,
+    "rsi": 13.918198078728821,
+    "macd": {
+      "macd": -2267.6270672627725,
+      "signal": -1877.3796086236407,
+      "histogram": -390.24745863913176
+    },
+    "bollinger_bands": {
+      "upper": 75695.62418035777,
+      "middle": 69697.36050000001,
+      "lower": 63699.09681964225,
+      "bandwidth": 17.21231230946762,
+      "position": 0.06174896768739353
+    },
+    "stoch_rsi": {
+      "k": 22.05531466614886,
+      "d": 19.932453858398148
+    },
+    "vwap": 74778.83886513946,
+    "candlestick_patterns": [],
+    "support_resistance": {
+      "support": 63944.0,
+      "resistance": 67568.0,
+      "levels": [
+        67568.0,
+        70214.31,
+        72727.27,
+        73550.04333333333,
+        74811.45,
+        75569.63,
+        76224.995
+      ]
+    },
+    "trendlines": {
+      "trend": "downtrend",
+      "higher_highs": false,
+      "higher_lows": false,
+      "lower_highs": true,
+      "lower_lows": true,
+      "structure": "LH/LL"
+    },
+    "breakout_breakdown": {
+      "type": "none",
+      "level": null,
+      "confirmed": false
+    },
+    "market_structure": "LL-LH bearish continuation",
+    "atr": 1436.499285714285
+  },
+  "eth_indicators_1h": {
+    "close": 1772.32,
+    "ema_20": 1861.7058924950468,
+    "ema_50": 1913.7962030785068,
+    "ema_200": 1994.5721673110975,
+    "rsi": 19.822669542295614,
+    "macd": {
+      "macd": -36.41017649449486,
+      "signal": -27.53063755206315,
+      "histogram": -8.879538942431711
+    },
+    "bollinger_bands": {
+      "upper": 1956.492182558176,
+      "middle": 1870.7030000000002,
+      "lower": 1784.9138174418244,
+      "bandwidth": 9.171865609685316,
+      "position": -0.07339979858931711
+    },
+    "stoch_rsi": {
+      "k": 0.0,
+      "d": 4.914507903120856
+    },
+    "vwap": 1953.3733732370874,
+    "candlestick_patterns": [],
+    "support_resistance": {
+      "support": 1751.82,
+      "resistance": 1811.29,
+      "levels": [
+        1811.29,
+        1878.0,
+        1892.725,
+        1914.6550000000002,
+        1936.49,
+        1952.095,
+        1989.11,
+        2021.11
+      ]
+    },
+    "trendlines": {
+      "trend": "sideways",
+      "higher_highs": true,
+      "higher_lows": false,
+      "lower_highs": false,
+      "lower_lows": true,
+      "structure": "HH/LL"
+    },
+    "breakout_breakdown": {
+      "type": "none",
+      "level": null,
+      "confirmed": false
+    },
+    "market_structure": "mixed structure (HH/LL)",
+    "atr": 28.258571428571454
+  },
+  "eth_indicators_4h": {
+    "close": 1772.31,
+    "ema_20": 1938.6148509927882,
+    "ema_50": 2047.102783075962,
+    "ema_200": 2211.0520982463136,
+    "rsi": 20.217342087389653,
+    "macd": {
+      "macd": -71.6732750961985,
+      "signal": -60.21576978393159,
+      "histogram": -11.457505312266903
+    },
+    "bollinger_bands": {
+      "upper": 2118.218590004141,
+      "middle": 1954.9829999999997,
+      "lower": 1791.7474099958588,
+      "bandwidth": 16.699438307559817,
+      "position": -0.05953790467926064
+    },
+    "stoch_rsi": {
+      "k": 7.320387813128275,
+      "d": 11.99507223465658
+    },
+    "vwap": 2157.2278746439915,
+    "candlestick_patterns": [],
+    "support_resistance": {
+      "support": 1751.82,
+      "resistance": 1878.0,
+      "levels": [
+        1878.0,
+        1895.95,
+        1986.465,
+        2006.0,
+        2035.83,
+        2060.0,
+        2103.78,
+        2151.9,
+        2223.15,
+        2248.77
+      ]
+    },
+    "trendlines": {
+      "trend": "downtrend",
+      "higher_highs": false,
+      "higher_lows": false,
+      "lower_highs": true,
+      "lower_lows": true,
+      "structure": "LH/LL"
+    },
+    "breakout_breakdown": {
+      "type": "none",
+      "level": null,
+      "confirmed": false
+    },
+    "market_structure": "LL-LH bearish continuation",
+    "atr": 52.17928571428568
+  },
+  "btc_dominance": {
+    "btc_dominance_percent": 58.967299001440985,
+    "total_mcap_proxy": 2190763492234.074,
+    "source": "CoinGecko global market data",
+    "estimated": false
+  },
+  "fear_greed": {
+    "value": 13,
+    "classification": "Extreme Fear",
+    "estimated": false,
+    "source": "alternative.me Fear & Greed Index"
+  },
   "groq_model": "openai/gpt-oss-120b",
-  "type": "meme_community"
+  "type": "market_overview"
 }
