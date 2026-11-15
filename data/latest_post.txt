@@ -1,6 +1,21 @@
-Price sits just above VWAP while order‑book shows bid‑heavy imbalance, hinting at a modes
-⚡ $NIGHT LONG | Entry CMP $0.0473 | TP1 $0.0474 (+0.2%) / TP2 $0.04793 (+1.3%) | SL $0.0455 (-3.8%) | RR 1:0.1
-📊 RSI 52.5 | VOL normal | OI n/a | MTF 1H flat / 4H up | Est liq zones L 0.044896/S 0.049664
-1H trigger.
-💎 Context: $SOPH #BinanceSquareFamily
-⚠️ Not financial advice; verify levels first.
+Bid‑heavy order book and 1H downtrend keep $ZEC pressed below its $917.20 resistance desp
+
+👀 $ZEC SHORT | Entry CMP $915.81 | TP1 $893 (+2.5%) | TP2 $851 (+7.1%) | SL $922 (-0.7%) | RR 1:3.68 | Conf 1%
+Why now: 1H downtrend and EMA20/50 below price.
+
+Key evidence (verified):
+• Structure: Downtrend across multiple timeframes, bearish structure, price below resistance, EMA20/50 support, VWAP gap upward.
+• Indicators: EMA20 883, EMA50 907, EMA200 966; RSI 57; MACD -6.7/‑15.9 with positive histogram; VWAP 937; Bollinger position 0.86 near upper band; Stoch RSI 100/1…
+• Participation: volume normal; taker buy share 50%; 24h turnover $228.1M | Futures: derivatives feed unavailable today
+• Liquidity: order book bid heavy (5.73x); est. liquidation magnets: shorts ~$963.2979 / longs ~$867.6621
+• Trend stack: 5m↓ 15m↑ 1H↓ 4H↓ 1D↓ 1W→
+• Context: BTC bearish alignment on 1H and 4H; dominance 58.6%; F&G 10 Extreme Fear
+• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
+
+🔀 If if price breaks above $917.20 with a volume surge → path to $893 stays open; if if price stays below $917.20 and slides toward $893 support → thesis cancelled.
+❌ Invalidation: break above $920 resistance level
+🛡️ Risk: ~1:2.5; 2% of equity per trade; plan: Exit if price closes above $920 (validation 1/100)
+📎 Data confidence: derivatives feed unavailable — the rest is measured.
+Follow for real-time TP updates & verified setups.
+Tags: $ZEC $BTC #BinanceSquareFamily
+⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
