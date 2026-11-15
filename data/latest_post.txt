@@ -1,7 +1,21 @@
-VWAP sits 6% below price while RSI hovers near 73, hinting buyers still in control.
-⚡ $MEGA LONG | Entry CMP $0.04853 | TP1 $0.04936 (+1.7%) / TP2 $0.05135 (+5.8%) | SL $0.047 (-3.2%) | RR 1:0.5
-📊 RSI 72.9 | VOL normal | OI n/a | MTF 1H flat / 4H flat | Est liq zones L 0.04656/S 0.05066
-1H trigger.
-💎 Context: $INIT #Write2Earn
-Which hits first for $MEGA: $0.04936 or $0.04767?
-⚠️ Not financial advice; verify levels first.
+🔍 $SPCXB: what the verified data says right now (+1.0% 24H)
+
+👀 $SPCXB SHORT | Entry CMP $137.56 | TP1 $136.655 (+0.7%) | TP2 $135.5 (+1.5%) | SL $138.5 (-0.7%) | RR 1:0.96 | Conf 1%
+Why now: Price below VWAP with bullish MACD but bearish multi‑timeframe structure.
+
+Key evidence (verified):
+• Structure: Bearish continuation on 1H and 4H, EMA20/50 below price, EMA200 above, RSI 66, MACD positive but waning, VWAP 140.74, Bollinger near upper band, Stoch RSI 99.
+• Indicators: EMA20 136.42, EMA50 137.20, EMA200 141.31; RSI 65.8; MACD 0.21 vs -0.17 signal; VWAP 140.74; BB upper 138.07, position 0.89; Stoch RSI K 98.75 D 97.4…
+• Participation: volume normal; taker buy share 38%; 24h turnover $13.0M | Futures: derivatives feed unavailable today
+• Liquidity: order book balanced (1.04x); est. liquidation magnets: shorts ~$138.7729 / longs ~$136.3471
+• Trend stack: 5m→ 15m↑ 1H↓ 4H↓ 1D→ 1W→
+• Context: BTC mixed 1H/4H alignment (mixed, bearish); dominance 58.7%; F&G 10 Extreme Fear
+• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
+
+🔀 If price breaks above 138.0 and holds above VWAP → path to $136.655 stays open; if price stays below VWAP and slides to support 136.655 → thesis cancelled.
+❌ Invalidation: Break above 138.0 (near EMA200) invalidates short.
+🛡️ Risk: ~1:2.5; 2% of equity per trade; plan: Exit if price closes above 138.0 on 1H candle (validation 1/100)
+📎 Data confidence: derivatives feed unavailable — the rest is measured.
+Follow for real-time TP updates & verified setups.
+Tags: $SPCXB $BTC #BinanceSquare
+⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.

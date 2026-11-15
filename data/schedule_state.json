@@ -3,7 +3,6 @@
   "day_utc": "2026-11-15",
   "rotation_started_utc": "2026-11-14T21:56:53.607040+00:00",
   "pending": [
-    8,
     9,
     10,
     11,
@@ -748,11 +747,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "MEGA"
+    },
+    {
+      "slot": 8,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #4 (08:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-15T09:01:11.060206+00:00",
+      "day_utc": "2026-11-15",
+      "run_id": "43697106772",
+      "rotation": 5,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "SPCXB"
     }
   ],
   "rotations": 4,
   "reset_reason": "plan changed in bot/config.json",
-  "updated_utc": "2026-11-15T08:01:10.664016+00:00",
+  "updated_utc": "2026-11-15T09:01:11.060230+00:00",
   "previous_day": {
     "day_utc": "2026-11-14",
     "published": 6,
