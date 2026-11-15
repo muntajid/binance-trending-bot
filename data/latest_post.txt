@@ -1,21 +1,5 @@
-Price sits just above EMA50 while VWAP sits 3% higher, pitting bullish EMA bias against b
-
-👀 $QNT LONG | Entry CMP $153.82 | TP1 $154.52 (+0.5%) | TP2 $155.5 (+1.1%) | SL $152.5 (-0.9%) | RR 1:0.53 | Conf 1%
-Why now: Shooting‑star candle and bid‑heavy order‑book pressure.
-
-Key evidence (verified):
-• Structure: Higher highs/lows, EMA20 151.69, EMA50 153.65, RSI 66.8, MACD positive, VWAP 157.04, Bollinger position 0.73, Stoch RSI 82/76.
-• Indicators: EMA20 below price, EMA50 just below, RSI strong, MACD bullish, VWAP 3% higher, BB middle 149.58, price near upper band, Stoch RSI overbought.
-• Participation: volume normal; taker buy share 47%; 24h turnover $13.8M | Futures: derivatives feed unavailable today
-• Liquidity: order book bid heavy (1.29x); est. liquidation magnets: shorts ~$157.5571 / longs ~$150.0829
-• Trend stack: 5m→ 15m↓ 1H↑ 4H↓ 1D↑ 1W↑
-• Context: BTC bearish alignment on 1H and 4H; dominance 59.3%; F&G 10 Extreme Fear
-• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
-
-🔀 If if price holds above EMA50 and breaks resistance 154.52, upside stays open → path to $154.52 stays open; if if price falls below support 152.93 or drops under EMA20, bullish case invalidates → thesis cancelled.
-❌ Invalidation: Break of support 152.93.
-🛡️ Risk: 1.2:1 (SL 1.32 below entry, TP1 0.70 above); Risk 1% of capital per trade; plan: Exit if price closes below 152.93 support (validation 1/100)
-📎 Data confidence: derivatives feed unavailable — the rest is measured.
-Which hits first for $QNT: $154.52 or $152.93?
-Tags: $QNT $BTC #BinanceSquare
-⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
+⚡ $KAVA SHORT | Entry CMP $0.0312 | TP1 $0.0304 (+2.6%) / TP2 $0.0295 (+5.4%) | SL $0.0325 (-4.2%) | RR 1:0.6
+📊 RSI 53.3 | VOL normal | OI n/a | MTF 1H flat / 4H down | Est liq zones L 0.027505/S 0.034895
+1H trigger.
+💎 Context: $SHELL #Write2Earn
+⚠️ Not financial advice; verify levels first.
