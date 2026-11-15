@@ -3,7 +3,6 @@
   "day_utc": "2026-11-15",
   "rotation_started_utc": "2026-11-14T21:56:53.607040+00:00",
   "pending": [
-    9,
     10,
     11,
     12,
@@ -761,11 +760,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "SPCXB"
+    },
+    {
+      "slot": 9,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #5 (09:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-15T12:01:23.939997+00:00",
+      "day_utc": "2026-11-15",
+      "run_id": "43711628792",
+      "rotation": 5,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "WLFI"
     }
   ],
   "rotations": 4,
   "reset_reason": "plan changed in bot/config.json",
-  "updated_utc": "2026-11-15T11:10:58.074393+00:00",
+  "updated_utc": "2026-11-15T12:01:23.940016+00:00",
   "previous_day": {
     "day_utc": "2026-11-14",
     "published": 6,
@@ -819,10 +832,5 @@
     ]
   },
   "plan_signature": "0:market_overview,1:rapid_alert,2:explained_setup,3:rapid_alert,4:explained_setup,5:rapid_alert,6:explained_setup,7:rapid_alert,8:explained_setup,9:rapid_alert,10:explained_setup,11:rapid_alert,12:meme_community,13:explained_setup,14:rapid_alert,15:explained_setup,16:rapid_alert,17:explained_setup,18:rapid_alert,19:explained_setup,20:rapid_alert,21:explained_setup,22:rapid_alert,23:explained_setup",
-  "last_error": {
-    "reason": "RuntimeError: No postable trending coin found. >=5.0% (24h cooldown): all 3 candidates already open or in cooldown; >=3.0% (24h cooldown): all 3 candidates already open or in cooldown; >=1.5% (24h cooldown): all 5 candidates already open or in cooldown; >=0.5% (24h cooldown): all 5 candidates already open or in cooldown; >=5.0% (12h cooldown): all 3 candidates already open or in cooldown; >=3.0% (12h cooldown): all 3 candidates already open or in cooldown; >=1.5% (12h cooldown): all 5 candidates already open or in cooldown; >=0.5% (12h cooldown): all 5 candidates already open or in cooldown | blocked: 24 active, 8 in cooldown",
-    "slot": 9,
-    "type": "rapid_alert",
-    "at_utc": "2026-11-15T11:10:58.074374+00:00"
-  }
+  "last_error": null
 }
