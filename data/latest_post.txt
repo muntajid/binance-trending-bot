@@ -1,20 +1,5 @@
-🔍 $UNI: what the verified data says right now (+0.5% 24H)
-
-👀 $UNI LONG | Entry CMP $5.129 | TP1 $5.221 (+1.8%) | TP2 $5.481 (+6.9%) | SL $5.05 (-1.5%) | RR 1:1.16 | Conf 1%
-Why now: price near EMA20 and bullish HH‑HL structure on 1H.
-
-Key evidence (verified):
-• Structure: Higher‑high/higher‑low structure, bullish hammer, price above EMA20, below EMA50, RSI 64, MACD histogram positive, Bollinger position 0.71, VWAP far above.
-• Indicators: EMA20 5.098, EMA50 5.285, RSI 64.6, MACD –0.023/–0.063 (+0.04 hist), VWAP 5.598, BB middle 5.006, position 0.71, Stoch K 63, D 88.
-• Participation: volume normal; taker buy share 45%; 24h turnover $65.8M | Futures: derivatives feed unavailable today
-• Liquidity: order book balanced (1.05x); est. liquidation magnets: shorts ~$5.2466 / longs ~$5.0114
-• Trend stack: 5m→ 15m↓ 1H↑ 4H↓ 1D→ 1W↑
-• Context: BTC bearish alignment on 1H and 4H; dominance 59.4%; F&G 10 Extreme Fear
-• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified.
-
-🔀 If price holds above 5.08 support and breaks above 5.22 resistance → path to $5.221 stays open; if price falls below 5.08 support or fails to stay above entry → thesis cancelled.
-❌ Invalidation: break below 5.08 support
-🛡️ Risk: 1:2.5; 2 % of equity per trade; plan: Exit if price drops below 5.08 support (validation 1/100)
-📎 Data confidence: derivatives feed unavailable — the rest is measured.
-Tags: $UNI $BTC #Altcoins
-⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
+⚡ $HYPE SHORT | Entry CMP $67.02 | TP1 $66.655 (+0.5%) / TP2 $66 (+1.5%) | SL $67.5 (-0.7%) | RR 1:0.8
+📊 RSI 56.5 | VOL normal | OI n/a | MTF 1H flat / 4H down | Est liq zones L 65.5914/S 68.4286
+1H trigger.
+💎 Context: $INIT #BinanceSquare
+⚠️ Not financial advice; verify levels first.
