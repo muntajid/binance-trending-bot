@@ -1,11 +1,20 @@
-🎭 Trader Diary: The 3‑Minute Chart Stare
+🔍 $UNI: what the verified data says right now (+0.5% 24H)
 
-👀 1:00 am – I’m glued to the 1‑min BTC chart, heart pounding like a meme coin launch.
-🚀 2:00 am – Spot INIT soaring +25.7% and I’m like, “Should I add to my coffee or my position?”
-😂 3:00 am – Realize I’ve been watching the chart longer than my last relationship.
+👀 $UNI LONG | Entry CMP $5.129 | TP1 $5.221 (+1.8%) | TP2 $5.481 (+6.9%) | SL $5.05 (-1.5%) | RR 1:1.16 | Conf 1%
+Why now: price near EMA20 and bullish HH‑HL structure on 1H.
 
-💡 Reality Check: If the chart feels like a Netflix binge, hit pause – leverage isn’t a snack.
+Key evidence (verified):
+• Structure: Higher‑high/higher‑low structure, bullish hammer, price above EMA20, below EMA50, RSI 64, MACD histogram positive, Bollinger position 0.71, VWAP far above.
+• Indicators: EMA20 5.098, EMA50 5.285, RSI 64.6, MACD –0.023/–0.063 (+0.04 hist), VWAP 5.598, BB middle 5.006, position 0.71, Stoch K 63, D 88.
+• Participation: volume normal; taker buy share 45%; 24h turnover $65.8M | Futures: derivatives feed unavailable today
+• Liquidity: order book balanced (1.05x); est. liquidation magnets: shorts ~$5.2466 / longs ~$5.0114
+• Trend stack: 5m→ 15m↓ 1H↑ 4H↓ 1D→ 1W↑
+• Context: BTC bearish alignment on 1H and 4H; dominance 59.4%; F&G 10 Extreme Fear
+• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified.
 
-Who else was up at 2 am watching INIT explode and then questioning life choices? Be honest 👇
-
-$BTC $ETH #Write2Earn #CryptoCommunity #TradingHumor
+🔀 If price holds above 5.08 support and breaks above 5.22 resistance → path to $5.221 stays open; if price falls below 5.08 support or fails to stay above entry → thesis cancelled.
+❌ Invalidation: break below 5.08 support
+🛡️ Risk: 1:2.5; 2 % of equity per trade; plan: Exit if price drops below 5.08 support (validation 1/100)
+📎 Data confidence: derivatives feed unavailable — the rest is measured.
+Tags: $UNI $BTC #Altcoins
+⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
