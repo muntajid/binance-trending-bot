@@ -3,7 +3,6 @@
   "day_utc": "2026-11-15",
   "rotation_started_utc": "2026-11-14T21:56:53.607040+00:00",
   "pending": [
-    17,
     18,
     19,
     20,
@@ -865,11 +864,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "KAVA"
+    },
+    {
+      "slot": 17,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #8 (17:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-15T20:06:26.304170+00:00",
+      "day_utc": "2026-11-15",
+      "run_id": "43756049523",
+      "rotation": 5,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "RARE"
     }
   ],
   "rotations": 4,
   "reset_reason": "plan changed in bot/config.json",
-  "updated_utc": "2026-11-15T20:00:53.813169+00:00",
+  "updated_utc": "2026-11-15T20:06:26.304194+00:00",
   "previous_day": {
     "day_utc": "2026-11-14",
     "published": 6,
@@ -923,10 +936,5 @@
     ]
   },
   "plan_signature": "0:market_overview,1:rapid_alert,2:explained_setup,3:rapid_alert,4:explained_setup,5:rapid_alert,6:explained_setup,7:rapid_alert,8:explained_setup,9:rapid_alert,10:explained_setup,11:rapid_alert,12:meme_community,13:explained_setup,14:rapid_alert,15:explained_setup,16:rapid_alert,17:explained_setup,18:rapid_alert,19:explained_setup,20:rapid_alert,21:explained_setup,22:rapid_alert,23:explained_setup",
-  "last_error": {
-    "reason": "RuntimeError: Price mismatch detected for RARE: supplied=0.0152, verified=0.01533",
-    "slot": 17,
-    "type": "explained_setup",
-    "at_utc": "2026-11-15T20:00:53.813160+00:00"
-  }
+  "last_error": null
 }
