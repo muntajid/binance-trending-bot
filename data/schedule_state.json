@@ -700,7 +700,7 @@
   ],
   "rotations": 4,
   "reset_reason": "plan changed in bot/config.json",
-  "updated_utc": "2026-11-15T00:01:11.516463+00:00",
+  "updated_utc": "2026-11-15T01:01:00.538423+00:00",
   "previous_day": {
     "day_utc": "2026-11-14",
     "published": 6,
@@ -754,5 +754,10 @@
     ]
   },
   "plan_signature": "0:market_overview,1:rapid_alert,2:explained_setup,3:rapid_alert,4:explained_setup,5:rapid_alert,6:explained_setup,7:rapid_alert,8:explained_setup,9:rapid_alert,10:explained_setup,11:rapid_alert,12:meme_community,13:explained_setup,14:rapid_alert,15:explained_setup,16:rapid_alert,17:explained_setup,18:rapid_alert,19:explained_setup,20:rapid_alert,21:explained_setup,22:rapid_alert,23:explained_setup",
-  "last_error": null
+  "last_error": {
+    "reason": "RuntimeError: No postable trending coin found. >=5.0% (24h cooldown): all 2 candidates already open or in cooldown; >=3.0% (24h cooldown): all 2 candidates already open or in cooldown; >=1.5% (24h cooldown): all 2 candidates already open or in cooldown; >=0.5% (24h cooldown): all 2 candidates already open or in cooldown; >=5.0% (12h cooldown): all 2 candidates already open or in cooldown; >=3.0% (12h cooldown): all 2 candidates already open or in cooldown; >=1.5% (12h cooldown): all 2 candidates already open or in cooldown; >=0.5% (12h cooldown): all 2 candidates already open or in cooldown | blocked: 0 active, 16 in cooldown",
+    "slot": 4,
+    "type": "explained_setup",
+    "at_utc": "2026-11-15T01:01:00.538407+00:00"
+  }
 }
