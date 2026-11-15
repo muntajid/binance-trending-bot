@@ -1,9 +1,8 @@
 {
   "version": 1,
-  "day_utc": "2026-11-14",
+  "day_utc": "2026-11-15",
   "rotation_started_utc": "2026-11-14T21:56:53.607040+00:00",
   "pending": [
-    3,
     4,
     5,
     6,
@@ -683,25 +682,56 @@
       "attempts": 1,
       "degraded": false,
       "coin": "SOPH"
+    },
+    {
+      "slot": 3,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #2 (03:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-15T00:01:11.516443+00:00",
+      "day_utc": "2026-11-15",
+      "run_id": "43656005247",
+      "rotation": 5,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "NIGHT"
     }
   ],
   "rotations": 4,
   "reset_reason": "plan changed in bot/config.json",
-  "updated_utc": "2026-11-14T23:01:20.952973+00:00",
+  "updated_utc": "2026-11-15T00:01:11.516463+00:00",
   "previous_day": {
     "day_utc": "2026-11-14",
-    "published": 3,
+    "published": 6,
     "by_type": {
-      "explained_setup": 1,
-      "rapid_alert": 1,
-      "meme_community": 1
+      "explained_setup": 2,
+      "rapid_alert": 2,
+      "meme_community": 1,
+      "market_overview": 1
     },
     "unpublished": [
+      3,
+      4,
+      5,
+      6,
       7,
       8,
       9,
       10,
-      11
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
     ]
   },
   "previous_rotation": {
