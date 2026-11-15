@@ -1,21 +1,6 @@
-Bid‑heavy order book and bullish 1H EMA crossover keep $ONE poised near its 0.001403 resi
-
-👀 $ONE LONG | Entry CMP $0.001397 | TP1 $0.001403 (+0.4%) | TP2 $0.001427 (+2.1%) | SL $0.001388 (-0.6%) | RR 1:0.67 | Conf 1%
-Why now: Trigger.
-
-Key evidence (verified):
-• Structure: Higher highs/lows on 1H, EMA20/50 above price, RSI 68, MACD slight positive, VWAP above, Bollinger near upper band.
-• Indicators: EMA20 0.001339, EMA50 0.001362, EMA200 0.001467; RSI 68; MACD +0.000016; VWAP 0.001515; BB upper 0.001438, pos 0.85; Stoch K 81, D 89.
-• Participation: volume normal; taker buy share 50%; 24h turnover $5.1M | Futures: derivatives feed unavailable today
-• Liquidity: order book bid heavy (2.41x); est. liquidation magnets: shorts ~$0.00147 / longs ~$0.001324
-• Trend stack: 5m↓ 15m→ 1H↑ 4H↓ 1D↑ 1W↑
-• Context: BTC mixed 1H/4H alignment (mixed, bearish); dominance 59.4%; F&G 10 Extreme Fear
-• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
-
-🔀 If if price breaks above 0.001403 with volume holding → path to $0.001403 stays open; if if price falls below 0.001388 and EMA20 turns down → thesis cancelled.
-❌ Invalidation: Break below 0.001388 support.
-🛡️ Risk: ~3.3:1; 2% of equity; plan: Exit if price ≤0.001388 or EMA20 crosses below EMA50 (validation 7/100)
-📎 Data confidence: derivatives feed unavailable — the rest is measured.
-Follow for real-time TP updates & verified setups.
-Tags: $ONE $BTC #CryptoTrading
-⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
+⚡ $AAVE SHORT | Entry CMP $107.52 | TP1 $107 (+0.5%) / TP2 $106.5 (+0.9%) | SL $108.1 (-0.5%) | RR 1:0.9
+📊 RSI 80.7 | VOL normal | OI n/a | MTF 1H flat / 4H flat | Est liq zones L 104.68/S 110.32
+1H trigger.
+💎 Context: $INIT #CryptoTrading
+Which hits first for $AAVE: $107.86 or $106.93?
+⚠️ Not financial advice; verify levels first.

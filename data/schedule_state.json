@@ -3,7 +3,6 @@
   "day_utc": "2026-11-15",
   "rotation_started_utc": "2026-11-14T21:56:53.607040+00:00",
   "pending": [
-    11,
     12,
     13,
     14,
@@ -787,11 +786,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "ONE"
+    },
+    {
+      "slot": 11,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #6 (11:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-15T14:01:14.293539+00:00",
+      "day_utc": "2026-11-15",
+      "run_id": "43721953157",
+      "rotation": 5,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "AAVE"
     }
   ],
   "rotations": 4,
   "reset_reason": "plan changed in bot/config.json",
-  "updated_utc": "2026-11-15T13:01:15.002709+00:00",
+  "updated_utc": "2026-11-15T14:01:14.293562+00:00",
   "previous_day": {
     "day_utc": "2026-11-14",
     "published": 6,
