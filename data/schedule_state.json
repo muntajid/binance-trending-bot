@@ -726,7 +726,7 @@
   ],
   "rotations": 4,
   "reset_reason": "plan changed in bot/config.json",
-  "updated_utc": "2026-11-15T06:05:55.291463+00:00",
+  "updated_utc": "2026-11-15T06:10:57.512250+00:00",
   "previous_day": {
     "day_utc": "2026-11-14",
     "published": 6,
@@ -784,6 +784,6 @@
     "reason": "RuntimeError: No postable trending coin found. >=5.0% (24h cooldown): all 2 candidates already open or in cooldown; >=3.0% (24h cooldown): all 2 candidates already open or in cooldown; >=1.5% (24h cooldown): all 2 candidates already open or in cooldown; >=0.5% (24h cooldown): all 2 candidates already open or in cooldown; >=5.0% (12h cooldown): all 2 candidates already open or in cooldown; >=3.0% (12h cooldown): all 2 candidates already open or in cooldown; >=1.5% (12h cooldown): all 2 candidates already open or in cooldown; >=0.5% (12h cooldown): all 2 candidates already open or in cooldown | blocked: 8 active, 8 in cooldown",
     "slot": 6,
     "type": "explained_setup",
-    "at_utc": "2026-11-15T06:05:55.291446+00:00"
+    "at_utc": "2026-11-15T06:10:57.512233+00:00"
   }
 }
