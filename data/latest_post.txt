@@ -1,5 +1,20 @@
-⚡ $SHELL LONG | Entry CMP $0.03087 | TP1 $0.0316 (+2.4%) / TP2 $0.03321 (+7.6%) | SL $0.0279 (-9.6%) | RR 1:0.2
-📊 RSI 67.4 | VOL normal | OI n/a | MTF 1H down / 4H up | Est liq zones L 0.028154/S 0.033606
-1H bullish engulfing and positive MACD histogram.
-💎 Context: $SOPH #BinanceSquare
-⚠️ Not financial advice; verify levels first.
+⚖️ $INIT evidence check — defined risk, clear invalidation (+11.1% 24H)
+
+👀 $INIT SHORT | Entry CMP $0.12065 | TP1 $0.11638 (+3.5%) | TP2 $0.11176 (+7.4%) | SL $0.128 (-6.1%) | RR 1:0.58 | Conf 85%
+Why now: Trigger.
+
+Key evidence (verified):
+• Structure: Mixed structure, 4H downtrend, 1H sideways, price below VWAP, support at 0.1164, resistance at 0.1295.
+• Indicators: EMA20 0.1063, EMA50 0.1142, RSI 66.9, MACD +0.0009/‑0.0017, VWAP 0.1504, BB position 1.21, Stoch K 90.7/D 95.3.
+• Participation: volume normal; taker buy share 51%; 24h turnover $7.1M | Futures: derivatives feed unavailable today
+• Liquidity: order book ask heavy (0.33x); est. liquidation magnets: shorts ~$0.129879 / longs ~$0.111761
+• Trend stack: 5m→ 15m→ 1H→ 4H↓ 1D→ 1W→
+• Context: BTC bearish alignment on 1H and 4H; dominance 58.6%; F&G 10 Extreme Fear
+• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
+
+🔀 If price holds above 0.1195 and breaks above 0.1295 resistance → path to $0.11638 stays open; if price falls through 0.1164 support confirming downtrend → thesis cancelled.
+❌ Invalidation: break above 0.1295 resistance
+🛡️ Risk: ~0.6:1; risk 1% of account equity per trade; plan: exit if price closes above 0.1295 (validation 1/100)
+📎 Data confidence: derivatives feed unavailable — the rest is measured.
+Tags: $INIT $BTC #BinanceSquareFamily
+⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
