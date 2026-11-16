@@ -3,7 +3,6 @@
   "day_utc": "2026-11-16",
   "rotation_started_utc": "2026-11-16T03:00:44.204042+00:00",
   "pending": [
-    2,
     3,
     4,
     5,
@@ -1006,11 +1005,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "GLMR"
+    },
+    {
+      "slot": 2,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #1 (02:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-16T05:01:12.602229+00:00",
+      "day_utc": "2026-11-16",
+      "run_id": "43807445874",
+      "rotation": 6,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "ADA"
     }
   ],
   "rotations": 5,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-16T04:01:06.282542+00:00",
+  "updated_utc": "2026-11-16T05:01:12.602252+00:00",
   "previous_day": {
     "day_utc": "2026-11-15",
     "published": 18,
