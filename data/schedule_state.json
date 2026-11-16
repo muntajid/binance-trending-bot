@@ -3,7 +3,6 @@
   "day_utc": "2026-11-16",
   "rotation_started_utc": "2026-11-16T03:00:44.204042+00:00",
   "pending": [
-    13,
     14,
     15,
     16,
@@ -1149,11 +1148,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": null
+    },
+    {
+      "slot": 13,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #6 (13:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-16T16:01:24.109958+00:00",
+      "day_utc": "2026-11-16",
+      "run_id": "43902638592",
+      "rotation": 6,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "ICP"
     }
   ],
   "rotations": 5,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-16T15:00:55.838096+00:00",
+  "updated_utc": "2026-11-16T16:01:24.109984+00:00",
   "previous_day": {
     "day_utc": "2026-11-15",
     "published": 18,
