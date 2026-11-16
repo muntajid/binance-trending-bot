@@ -1,21 +1,6 @@
-⚖️ $ICP evidence check — defined risk, clear invalidation (+13.0% 24H)
-
-👀 $ICP SHORT | Entry CMP $2.463 | TP1 $2.44 (+0.9%) | TP2 $2.42 (+1.7%) | SL $2.5 (-1.5%) | RR 1:0.62 | Conf 1%
-Why now: Trigger.
-
-Key evidence (verified):
-• Structure: Multi‑timeframe downtrend (1H,4H,1D) with LL‑LH bearish continuation; price near resistance 2.48, support at 2.283.
-• Indicators: EMA20 2.289, EMA50 2.283, EMA200 2.404; RSI 77.6 (overbought); MACD +0.044/0.015; VWAP 2.366 (price above); Bollinger pos 1.13; Stoch RSI K 91/D 97.
-• Participation: volume normal; taker buy share 46%; 24h turnover $7.1M | Futures: derivatives feed unavailable today
-• Liquidity: order book bid heavy (1.78x); est. liquidation magnets: shorts ~$2.532 / longs ~$2.398
-• Trend stack: 5m→ 15m↑ 1H↓ 4H↓ 1D↓ 1W→
-• Context: BTC bearish alignment on 1H and 4H; dominance 58.5%; F&G 10 Extreme Fear
-• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
-
-🔀 If price breaks and holds above 2.48 with volume surge, invalidating the short bias → path to $2.44 stays open; if price falls below 2.44 and respects the 2.283 support, confirming the downside path → thesis cancelled.
-❌ Invalidation: 2.48 resistance break.
-🛡️ Risk: 1:2.5; 2% of equity per trade; plan: Close if price closes above 2.5 or breaks 2.48 with volume (validation 1/100)
-📎 Data confidence: derivatives feed unavailable — the rest is measured.
-Which hits first for $ICP: $2.48 or $2.283?
-Tags: $ICP $BTC #Altcoins
-⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
+Price sits at the top of a tight Bollinger band while 1H RSI spikes above 88, hinting at
+⚡ $HUMA SHORT | Entry CMP $0.00871 | TP1 $0.0083 (+4.7%) / TP2 $0.008 (+8.2%) | SL $0.009 (-3.3%) | RR 1:1.4
+📊 RSI 88.1 | VOL normal | OI n/a | MTF 1H flat / 4H down | Est liq zones L 0.00813/S 0.00925
+1H trigger.
+💎 Context: $RARE #BinanceSquare
+⚠️ Not financial advice; verify levels first.
