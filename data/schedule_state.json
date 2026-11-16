@@ -3,7 +3,6 @@
   "day_utc": "2026-11-16",
   "rotation_started_utc": "2026-11-16T03:00:44.204042+00:00",
   "pending": [
-    12,
     13,
     14,
     15,
@@ -1136,11 +1135,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "PAXG"
+    },
+    {
+      "slot": 12,
+      "type": "meme_community",
+      "name": "Trader Psychology & Community Meme (12:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-16T15:00:55.838077+00:00",
+      "day_utc": "2026-11-16",
+      "run_id": "43891767196",
+      "rotation": 6,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": null
     }
   ],
   "rotations": 5,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-16T14:01:27.993649+00:00",
+  "updated_utc": "2026-11-16T15:00:55.838096+00:00",
   "previous_day": {
     "day_utc": "2026-11-15",
     "published": 18,

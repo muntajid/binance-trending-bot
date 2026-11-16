@@ -1,13 +1,12 @@
 {
-  "last_slot": 11,
-  "last_type": "rapid_alert",
-  "last_run_utc": "2026-11-16T14:01:27.993612+00:00",
+  "last_slot": 12,
+  "last_type": "meme_community",
+  "last_run_utc": "2026-11-16T15:00:55.838077+00:00",
   "day_utc": "2026-11-16",
   "rotation": 6,
   "rotation_started_utc": "2026-11-16T03:00:44.204042+00:00",
-  "published_this_rotation": 12,
+  "published_this_rotation": 13,
   "pending_slots": [
-    12,
     13,
     14,
     15,
