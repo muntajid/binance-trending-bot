@@ -3,7 +3,6 @@
   "day_utc": "2026-11-16",
   "rotation_started_utc": "2026-11-16T03:00:44.204042+00:00",
   "pending": [
-    7,
     8,
     9,
     10,
@@ -1071,11 +1070,25 @@
       "attempts": 4,
       "degraded": true,
       "coin": "NVDAB"
+    },
+    {
+      "slot": 7,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #4 (07:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-16T10:16:48.026688+00:00",
+      "day_utc": "2026-11-16",
+      "run_id": "43844871269",
+      "rotation": 6,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "WLD"
     }
   ],
   "rotations": 5,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-16T09:02:16.653368+00:00",
+  "updated_utc": "2026-11-16T10:16:48.026707+00:00",
   "previous_day": {
     "day_utc": "2026-11-15",
     "published": 18,

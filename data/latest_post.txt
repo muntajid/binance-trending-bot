@@ -1,21 +1,6 @@
-⚖️ $NVDAB evidence check — defined risk, clear invalidation (+1.0% 24H)
-
-👀 $NVDAB SHORT | Entry CMP $162.02 | TP1 $161.3 (+0.4%) | TP2 $160.8 (+0.8%) | SL $163.2 (-0.7%) | RR 1:0.61 | Conf 1%
-Why now: Trigger.
-
-Key evidence (verified):
-• Structure: Downtrend on 1H, LL‑LH continuation, EMA20 above price, VWAP above price, Bollinger middle near price, RSI neutral.
-• Indicators: EMA20 162.23 > price 162.02 > EMA50 161.95, RSI 45, MACD histogram -0.20, VWAP 162.73, BB position 0.44, Stoch RSI K 0/D 25.9.
-• Participation: volume normal; taker buy share 47%; 24h turnover $51.4M | Futures: derivatives feed unavailable today
-• Liquidity: order book balanced (0.96x); est. liquidation magnets: shorts ~$165.1611 / longs ~$158.8589
-• Trend stack: 5m→ 15m→ 1H↓ 4H→ 1D↓ 1W↑
-• Context: BTC bearish alignment on 1H and 4H; dominance 59.3%; F&G 10 Extreme Fear
-• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
-
-🔀 If price breaks above VWAP and holds above EMA20 → path to $161.3 stays open; if price stays below EMA20 and respects support at 161.23 → thesis cancelled.
-❌ Invalidation: break above VWAP 162.73
-🛡️ Risk: 1:1.5; 2% of equity; plan: Exit if price closes above VWAP 162.73 (validation 1/100)
-📎 Data confidence: derivatives feed unavailable — the rest is measured.
-Follow for real-time TP updates & verified setups.
-Tags: $NVDAB $BTC #Altcoins
-⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
+⚡ $WLD SHORT | Entry CMP $0.2646 | TP1 $0.2627 (+0.7%) / TP2 $0.26 (+1.7%) | SL $0.267 (-0.9%) | RR 1:0.8
+📊 RSI 47.9 | VOL normal | OI n/a | MTF 1H flat / 4H down | Est liq zones L 0.258739/S 0.270461
+1H trigger.
+💎 Context: $RARE #Altcoins
+Which hits first for $WLD: $0.266533 or $0.26275?
+⚠️ Not financial advice; verify levels first.
