@@ -3,7 +3,6 @@
   "day_utc": "2026-11-16",
   "rotation_started_utc": "2026-11-16T03:00:44.204042+00:00",
   "pending": [
-    6,
     7,
     8,
     9,
@@ -1058,11 +1057,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "FF"
+    },
+    {
+      "slot": 6,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #3 (06:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-16T09:02:16.653341+00:00",
+      "day_utc": "2026-11-16",
+      "run_id": "43835893193",
+      "rotation": 6,
+      "mode": "text",
+      "attempts": 4,
+      "degraded": true,
+      "coin": "NVDAB"
     }
   ],
   "rotations": 5,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-16T08:01:24.272443+00:00",
+  "updated_utc": "2026-11-16T09:02:16.653368+00:00",
   "previous_day": {
     "day_utc": "2026-11-15",
     "published": 18,
