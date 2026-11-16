@@ -1,6 +1,21 @@
-⚡ $MSTRB SHORT | Entry CMP $102.45 | TP1 $101 (+1.4%) / TP2 $99.5 (+2.9%) | SL $105 (-2.5%) | RR 1:0.6
-📊 RSI 70.8 | VOL normal | OI n/a | MTF 1H up / 4H down | Est liq zones L 100.7679/S 104.1321
-1H trigger.
-💎 Context: $RARE #CryptoTrading
-Follow for real-time TP updates & verified setups.
-⚠️ Not financial advice; verify levels first.
+Bid‑heavy order book holds $SHELL near its 0.0292 support while price sits just above the
+
+👀 $SHELL LONG | Entry CMP $0.03003 | TP1 $0.0317 (+5.6%) | TP2 $0.03321 (+10.6%) | SL $0.0292 (-2.8%) | RR 1:2.01 | Conf 1%
+Why now: Trigger.
+
+Key evidence (verified):
+• Structure: Mixed HH/LL structure, price above EMA20/50/200, RSI 45, MACD slight positive, VWAP above price, Bollinger position 0.76 near upper band, Stoch RSI K 15/D 69.
+• Indicators: EMA20 0.02831, EMA50 0.02787, EMA200 0.02415; RSI 45; MACD 0.00037/0.00007; VWAP 0.03237; BB upper 0.03206 lower 0.02359; Stoch RSI K 15.3 D 69.4.
+• Participation: volume normal; taker buy share 51%; 24h turnover $10.6M | Futures: derivatives feed unavailable today
+• Liquidity: order book bid heavy (1.83x); est. liquidation magnets: shorts ~$0.032614 / longs ~$0.027466
+• Trend stack: 5m→ 15m↓ 1H→ 4H→ 1D→ 1W↑
+• Context: BTC bearish alignment on 1H and 4H; dominance 59.3%; F&G 10 Extreme Fear
+• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
+
+🔀 If price holds above 0.0292 and breaks the 0.0317 resistance → path to $0.0317 stays open; if price drops below the 0.0292 support → thesis cancelled.
+❌ Invalidation: 0.0292 support breach
+🛡️ Risk: ~1:2; 2% of equity per trade; plan: Exit if price closes below 0.0292 support (validation 1/100)
+📎 Data confidence: derivatives feed unavailable — the rest is measured.
+Drop your price prediction for $SHELL below.
+Tags: $SHELL $BTC #CryptoTrading
+⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
