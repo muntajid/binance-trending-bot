@@ -3,7 +3,6 @@
   "day_utc": "2026-11-16",
   "rotation_started_utc": "2026-11-16T03:00:44.204042+00:00",
   "pending": [
-    18,
     19,
     20,
     21,
@@ -1214,11 +1213,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "XPL"
+    },
+    {
+      "slot": 18,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #9 (18:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-16T21:01:27.955016+00:00",
+      "day_utc": "2026-11-16",
+      "run_id": "43955575863",
+      "rotation": 6,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "DOGE"
     }
   ],
   "rotations": 5,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-16T20:01:11.546912+00:00",
+  "updated_utc": "2026-11-16T21:01:27.955034+00:00",
   "previous_day": {
     "day_utc": "2026-11-15",
     "published": 18,
