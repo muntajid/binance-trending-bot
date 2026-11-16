@@ -3,7 +3,6 @@
   "day_utc": "2026-11-16",
   "rotation_started_utc": "2026-11-16T03:00:44.204042+00:00",
   "pending": [
-    11,
     12,
     13,
     14,
@@ -1123,11 +1122,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "GOOGLB"
+    },
+    {
+      "slot": 11,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #6 (11:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-16T14:01:27.993612+00:00",
+      "day_utc": "2026-11-16",
+      "run_id": "43881287445",
+      "rotation": 6,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "PAXG"
     }
   ],
   "rotations": 5,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-16T13:01:24.815437+00:00",
+  "updated_utc": "2026-11-16T14:01:27.993649+00:00",
   "previous_day": {
     "day_utc": "2026-11-15",
     "published": 18,
