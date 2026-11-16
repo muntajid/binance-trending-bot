@@ -3,7 +3,6 @@
   "day_utc": "2026-11-16",
   "rotation_started_utc": "2026-11-16T03:00:44.204042+00:00",
   "pending": [
-    19,
     20,
     21,
     22,
@@ -1227,11 +1226,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "DOGE"
+    },
+    {
+      "slot": 19,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #9 (19:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-16T22:01:11.637442+00:00",
+      "day_utc": "2026-11-16",
+      "run_id": "43965729316",
+      "rotation": 6,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "ASTER"
     }
   ],
   "rotations": 5,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-16T21:01:27.955034+00:00",
+  "updated_utc": "2026-11-16T22:01:11.637465+00:00",
   "previous_day": {
     "day_utc": "2026-11-15",
     "published": 18,
