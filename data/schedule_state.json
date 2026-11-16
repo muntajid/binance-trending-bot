@@ -3,7 +3,6 @@
   "day_utc": "2026-11-16",
   "rotation_started_utc": "2026-11-16T03:00:44.204042+00:00",
   "pending": [
-    8,
     9,
     10,
     11,
@@ -1084,11 +1083,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "WLD"
+    },
+    {
+      "slot": 8,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #4 (08:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-16T11:01:15.915600+00:00",
+      "day_utc": "2026-11-16",
+      "run_id": "43853860559",
+      "rotation": 6,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "TQQQB"
     }
   ],
   "rotations": 5,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-16T10:16:48.026707+00:00",
+  "updated_utc": "2026-11-16T11:01:15.915621+00:00",
   "previous_day": {
     "day_utc": "2026-11-15",
     "published": 18,
