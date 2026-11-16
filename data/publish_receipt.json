@@ -1,18 +1,17 @@
 {
-  "slot": 21,
-  "type": "explained_setup",
-  "name": "Explained Master Setup #10 (21:00 UTC)",
+  "slot": 22,
+  "type": "rapid_alert",
+  "name": "Rapid Signal Alert #11 (22:00 UTC)",
   "forced": false,
-  "published_utc": "2026-11-16T00:01:15.100859+00:00",
+  "published_utc": "2026-11-16T01:01:08.362463+00:00",
   "day_utc": "2026-11-16",
-  "run_id": "43777819359",
+  "run_id": "43783672611",
   "rotation": 5,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": "KORUB",
+  "coin": "SOXLB",
   "pending_after": [
-    22,
     23
   ]
 }

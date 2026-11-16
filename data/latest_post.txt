@@ -1,21 +1,6 @@
-Bid‑heavy order book pushes price toward the 7.88 resistance despite a 4‑hour downtrend.
-
-👀 $KORUB LONG | Entry CMP $7.73 | TP1 $7.88 (+1.9%) | TP2 $8.14 (+5.3%) | SL $7.35 (-4.9%) | RR 1:0.39 | Conf 1%
-Why now: Doji candle near VWAP on 1H.
-
-Key evidence (verified):
-• Structure: Higher‑high/higher‑low on 1H, bullish EMA20/50 cross, but 4H downtrend and LL‑LH structure. Strong bid side depth supports upside.
-• Indicators: EMA20 7.325, EMA50 7.344, RSI 73.8, MACD +0.106, VWAP 7.689, BB position 1.11, Stoch RSI ~100.
-• Participation: volume normal; taker buy share 45%; 24h turnover $5.7M | Futures: derivatives feed unavailable today
-• Liquidity: order book bid heavy (2.60x); est. liquidation magnets: shorts ~$7.9346 / longs ~$7.5254
-• Trend stack: 5m↑ 15m↑ 1H↑ 4H↓ 1D→ 1W→
-• Context: BTC mixed 1H/4H alignment (mixed, bearish); dominance 59.4%; F&G 10 Extreme Fear
-• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
-
-🔀 If price holds above VWAP 7.6886 and breaks the 7.88 resistance → path to $7.88 stays open; if price falls below the 7.47 support level → thesis cancelled.
-❌ Invalidation: Break below 7.47 support.
-🛡️ Risk: TP1 RR≈0.39, TP2 RR≈1.08; ≈2% of equity per trade; plan: Exit if price <7.47 (validation 1/100)
-📎 Data confidence: derivatives feed unavailable — the rest is measured.
-Follow for real-time TP updates & verified setups.
-Tags: $KORUB $BTC #BinanceSquare
-⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
+Price sits below VWAP while RSI spikes 79, hinting sellers may push toward the 56.27 supp
+⚡ $SOXLB SHORT | Entry CMP $59.08 | TP1 $58.5 (+1.0%) / TP2 $56.5 (+4.4%) | SL $59.6 (-0.9%) | RR 1:1.1
+📊 RSI 78.9 | VOL normal | OI n/a | MTF 1H flat / 4H flat | Est liq zones L 57.6196/S 60.5404
+1H trigger.
+💎 Context: $RARE #BinanceSquareFamily
+⚠️ Not financial advice; verify levels first.
