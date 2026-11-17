@@ -1,9 +1,8 @@
 {
   "version": 1,
-  "day_utc": "2026-11-16",
+  "day_utc": "2026-11-17",
   "rotation_started_utc": "2026-11-16T03:00:44.204042+00:00",
   "pending": [
-    21,
     22,
     23
   ],
@@ -1253,17 +1252,32 @@
       "attempts": 1,
       "degraded": false,
       "coin": "RARE"
+    },
+    {
+      "slot": 21,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #10 (21:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-17T00:01:20.313256+00:00",
+      "day_utc": "2026-11-17",
+      "run_id": "43984034843",
+      "rotation": 6,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "HYPE"
     }
   ],
   "rotations": 5,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-16T23:01:22.985471+00:00",
+  "updated_utc": "2026-11-17T00:01:20.313277+00:00",
   "previous_day": {
-    "day_utc": "2026-11-15",
-    "published": 18,
+    "day_utc": "2026-11-16",
+    "published": 24,
     "by_type": {
-      "rapid_alert": 9,
-      "explained_setup": 8,
+      "explained_setup": 11,
+      "rapid_alert": 11,
+      "market_overview": 1,
       "meme_community": 1
     },
     "unpublished": [

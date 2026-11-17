@@ -1,18 +1,17 @@
 {
-  "slot": 20,
-  "type": "rapid_alert",
-  "name": "Rapid Signal Alert #10 (20:00 UTC)",
+  "slot": 21,
+  "type": "explained_setup",
+  "name": "Explained Master Setup #10 (21:00 UTC)",
   "forced": false,
-  "published_utc": "2026-11-16T23:01:22.985447+00:00",
-  "day_utc": "2026-11-16",
-  "run_id": "43975345640",
+  "published_utc": "2026-11-17T00:01:20.313256+00:00",
+  "day_utc": "2026-11-17",
+  "run_id": "43984034843",
   "rotation": 6,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": "RARE",
+  "coin": "HYPE",
   "pending_after": [
-    21,
     22,
     23
   ]
