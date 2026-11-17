@@ -3,7 +3,6 @@
   "day_utc": "2026-11-17",
   "rotation_started_utc": "2026-11-17T03:00:41.477314+00:00",
   "pending": [
-    1,
     2,
     3,
     4,
@@ -1329,11 +1328,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": null
+    },
+    {
+      "slot": 1,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #1 (01:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-17T04:01:17.740505+00:00",
+      "day_utc": "2026-11-17",
+      "run_id": "44014098681",
+      "rotation": 7,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "SOPH"
     }
   ],
   "rotations": 6,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-17T03:01:30.911702+00:00",
+  "updated_utc": "2026-11-17T04:01:17.740526+00:00",
   "previous_day": {
     "day_utc": "2026-11-16",
     "published": 24,

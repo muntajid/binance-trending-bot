@@ -1,18 +1,7 @@
-🌐 MACRO & BITCOIN OUTLOOK: BTC holds near $64.5k as bearish 1H/4H structure persists, altcoins rally 📊
-
-BTC down 0.98% at $64,560 while Fear & Greed sits at 12 (Extreme Fear) and dominance at 5
-
-$BTC 24H: $64559.98 (-0.98%)
-Market Phase: Liquidity Hunt
-
-📊 Key Market Dynamics:
-• Bitcoin Structure: On 1H BTC sits below EMA20 (64,807) and EMA50 (65,143), RSI at 55, maintaining a LL‑LH bearish continuation with support at ~64,072. 4H shows a mixed LH/HL structure, EMA20 at 65,945 and EMA50 at 69,082, keeping price in a sideways corridor.
-• Altcoin Flows: Altcoins are outperforming BTC (average +11.95% vs BTC -0.98%); top gainers HUMA (+45.3%), GLMR (+20%) and ZRO (+10.5%) drive rotation into risk‑on assets.
-• Crucial Levels: Support $64072.35 | Resistance $64663.07
-📈 Sentiment: Fear & Greed 12 (Extreme Fear) | BTC dominance 58.5%
-🔄 What flips it: bullish if BTC closes above the 1H EMA20 (64,807) and sustains above the 4H EMA20 (65,945) with RSI staying above 50; watch out if BTC breaks and closes below the key 1H support at 64,072 with volume surge, pushing RSI toward oversold.
-
-💡 Trader Takeaway: Maintain short bias near the 64,660 resistance; consider long entries only on a clean close above EMA20 and a bounce off the 64,072 support, with tight stops at the nearest support/resistance levels.
-
-$BTC $ETH #BinanceSquare #CryptoMarket
-⚠️ Educational market analysis only. Not financial advice. Always DYOR.
+Price sits below VWAP while RSI stays bullish, a clash that could push $SOPH toward its l
+⚡ $SOPH SHORT | Entry CMP $0.001 | TP1 $0.00091 (+9.0%) / TP2 $0.00085 (+15.0%) | SL $0.00106 (-6.0%) | RR 1:1.5
+📊 RSI 62.1 | VOL normal | OI n/a | MTF 1H flat / 4H down | Est liq zones L 0.00093/S 0.00107
+1H trigger.
+💎 Context: $HUMA #Altcoins
+Drop your price prediction for $SOPH below.
+⚠️ Not financial advice; verify levels first.
