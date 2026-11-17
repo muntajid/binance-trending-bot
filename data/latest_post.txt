@@ -1,20 +1,5 @@
-👀 $INJ multi-timeframe read — the level that decides it (+8.6% 24H)
-
-👀 $INJ SHORT | Entry CMP $7.396 | TP1 $7.338 (+0.8%) | TP2 $7.234 (+2.2%) | SL $7.438 (-0.6%) | RR 1:1.38 | Conf 1%
-Why now: Trigger.
-
-Key evidence (verified):
-• Structure: Mixed LH/HL structure, sideways 4H, overbought RSI, price above VWAP, ask‑heavy order book.
-• Indicators: EMA20/50 below price, EMA200 7.27, RSI 79, MACD +0.10, VWAP 7.373, BB position 1.07, Stoch RSI 100.
-• Participation: volume normal; taker buy share 50%; 24h turnover $9.3M | Futures: derivatives feed unavailable today
-• Liquidity: order book ask heavy (0.65x); est. liquidation magnets: shorts ~$7.6002 / longs ~$7.1918
-• Trend stack: 5m↓ 15m↑ 1H→ 4H→ 1D↓ 1W↑
-• Context: BTC mixed 1H/4H alignment (mixed, bearish); dominance 58.5%; F&G 12 Extreme Fear
-• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
-
-🔀 If if price breaks above 7.438 resistance with volume surge → path to $7.338 stays open; if if price falls back below 7.338 support level → thesis cancelled.
-❌ Invalidation: Break above 7.438 invalidates short.
-🛡️ Risk: 1:2; 2% of equity; plan: Close if price >7.438 (validation 1/100)
-📎 Data confidence: derivatives feed unavailable — the rest is measured.
-Tags: $INJ $BTC #BinanceSquare
-⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
+⚡ $NIGHT LONG | Entry CMP $0.04879 | TP1 $0.0492 (+0.8%) / TP2 $0.05 (+2.5%) | SL $0.0486 (-0.4%) | RR 1:2.2
+📊 RSI 73.4 | VOL normal | OI n/a | MTF 1H flat / 4H down | Est liq zones L 0.047111/S 0.050469
+1H trigger.
+💎 Context: $HUMA #Write2Earn
+⚠️ Not financial advice; verify levels first.

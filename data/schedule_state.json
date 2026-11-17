@@ -3,7 +3,6 @@
   "day_utc": "2026-11-17",
   "rotation_started_utc": "2026-11-17T03:00:41.477314+00:00",
   "pending": [
-    3,
     4,
     5,
     6,
@@ -1355,11 +1354,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "INJ"
+    },
+    {
+      "slot": 3,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #2 (03:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-17T06:01:21.970105+00:00",
+      "day_utc": "2026-11-17",
+      "run_id": "44028016572",
+      "rotation": 7,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "NIGHT"
     }
   ],
   "rotations": 6,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-17T05:01:15.472922+00:00",
+  "updated_utc": "2026-11-17T06:01:21.970130+00:00",
   "previous_day": {
     "day_utc": "2026-11-16",
     "published": 24,
