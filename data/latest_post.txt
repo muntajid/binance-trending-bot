@@ -1,5 +1,20 @@
-⚡ $ENA SHORT | Entry CMP $0.1163 | TP1 $0.1155 (+0.7%) / TP2 $0.1145 (+1.5%) | SL $0.1175 (-1.0%) | RR 1:0.7
-📊 RSI 49 | VOL normal | OI n/a | MTF 1H flat / 4H down | Est liq zones L 0.112829/S 0.119771
-1H trigger.
-💎 Context: $BREV #BinanceSquareFamily
-⚠️ Not financial advice; verify levels first.
+👀 $SOXLB multi-timeframe read — the level that decides it (+3.4% 24H)
+
+👀 $SOXLB LONG | Entry CMP $50.45 | TP1 $51.22 (+1.5%) | TP2 $51.895 (+2.9%) | SL $49.5 (-1.9%) | RR 1:0.81 | Conf 1%
+Why now: Trigger.
+
+Key evidence (verified):
+• Structure: HH‑HL bullish continuation on 1H, downtrend on 4H, price between EMA20 and EMA50, VWAP just above price, Bollinger position 0.65 inside band.
+• Indicators: EMA20 49.28 pts, EMA50 50.79 pts, RSI 51.5, MACD –0.56 (hist +0.25), VWAP 51.28, BB middle 49.36, position 0.65, Stoch K 60.9 % > D 51.9 %.
+• Participation: volume normal; taker buy share 50%; 24h turnover $76.2M | Futures: derivatives feed unavailable today
+• Liquidity: order book balanced (0.95x); est. liquidation magnets: shorts ~$54.5354 / longs ~$46.3646
+• Trend stack: 5m↑ 15m→ 1H↑ 4H↓ 1D→ 1W→
+• Context: BTC bearish alignment on 1H and 4H; dominance 58.4%; F&G 12 Extreme Fear
+• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
+
+🔀 If price holds above EMA20 and pierces VWAP toward resistance → path to $51.22 stays open; if price drops below the 49.06 support level → thesis cancelled.
+❌ Invalidation: Break of 49.06 support.
+🛡️ Risk: ~1:2.5 (SL 1.0 pts, TP1 0.77 pts, TP2 1.44 pts); Risk ≤1 % of capital per trade; plan: Exit if price breaches 49.06 support or EMA20 sharply (validation 1/100)
+📎 Data confidence: derivatives feed unavailable — the rest is measured.
+Tags: $SOXLB $BTC #CryptoTrading
+⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.

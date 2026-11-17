@@ -3,7 +3,6 @@
   "day_utc": "2026-11-17",
   "rotation_started_utc": "2026-11-17T03:00:41.477314+00:00",
   "pending": [
-    19,
     20,
     21,
     22,
@@ -1563,11 +1562,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "ENA"
+    },
+    {
+      "slot": 19,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #9 (19:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-17T22:01:10.075060+00:00",
+      "day_utc": "2026-11-17",
+      "run_id": "44185647459",
+      "rotation": 7,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "SOXLB"
     }
   ],
   "rotations": 6,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-17T21:01:14.375513+00:00",
+  "updated_utc": "2026-11-17T22:01:10.075082+00:00",
   "previous_day": {
     "day_utc": "2026-11-16",
     "published": 24,
