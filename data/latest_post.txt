@@ -1,21 +1,6 @@
-Order‑book shows bid‑heavy imbalance while price sits just above VWAP, hinting sellers ma
-
-👀 $GRAM SHORT | Entry CMP $1.062 | TP1 $1.0567 (+0.5%) | TP2 $1.045 (+1.6%) | SL $1.0844 (-2.1%) | RR 1:0.24 | Conf 1%
-Why now: Trigger.
-
-Key evidence (verified):
-• Structure: Downtrend on 1H/4H, LL‑LH continuation, resistance at 1.0667, support at 1.0567.
-• Indicators: EMA20 1.043, EMA50 1.048, EMA200 1.081; RSI 56.9; MACD +0.0015/‑0.0026; VWAP 1.0553; BB position 0.94 near upper band; Stoch K 92/D 96.
-• Participation: volume normal; taker buy share 50%; 24h turnover $10.8M | Futures: derivatives feed unavailable today
-• Liquidity: order book bid heavy (1.33x); est. liquidation magnets: shorts ~$1.0896 / longs ~$1.0364
-• Trend stack: 5m→ 15m→ 1H↓ 4H↓ 1D→ 1W→
-• Context: BTC bearish alignment on 1H and 4H; dominance 58.3%; F&G 12 Extreme Fear
-• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
-
-🔀 If price breaks above 1.0667 resistance with volume spike → path to $1.0567 stays open; if price falls below 1.0567 support confirming downtrend → thesis cancelled.
-❌ Invalidation: Break above 1.0667 resistance invalidates short.
-🛡️ Risk: 0.0224 risk vs 0.0053 reward (~0.24 RR); size to risk ≤1% of capital on 0.0224 point move; plan: exit if price closes above 1.0667 (validation 1/100)
-📎 Data confidence: derivatives feed unavailable — the rest is measured.
-Follow for real-time TP updates & verified setups.
-Tags: $GRAM $BTC #Altcoins
-⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
+Bid‑heavy order book pushes UNI toward the 5.196 support while EMA20 sits at 5.267
+⚡ $UNI SHORT | Entry CMP $5.228 | TP1 $5.196 (+0.6%) / TP2 $5.15 (+1.5%) | SL $5.28 (-1.0%) | RR 1:0.6
+📊 RSI 43.9 | VOL normal | OI n/a | MTF 1H flat / 4H down | Est liq zones L 5.0939/S 5.3621
+1H trigger.
+💎 Context: $BREV #BinanceSquareFamily
+⚠️ Not financial advice; verify levels first.
