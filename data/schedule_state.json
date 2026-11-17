@@ -3,7 +3,6 @@
   "day_utc": "2026-11-17",
   "rotation_started_utc": "2026-11-17T03:00:41.477314+00:00",
   "pending": [
-    18,
     19,
     20,
     21,
@@ -1550,11 +1549,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "SOXSB"
+    },
+    {
+      "slot": 18,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #9 (18:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-17T21:01:14.375494+00:00",
+      "day_utc": "2026-11-17",
+      "run_id": "44175214421",
+      "rotation": 7,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "ENA"
     }
   ],
   "rotations": 6,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-17T20:01:14.928074+00:00",
+  "updated_utc": "2026-11-17T21:01:14.375513+00:00",
   "previous_day": {
     "day_utc": "2026-11-16",
     "published": 24,

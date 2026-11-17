@@ -1,21 +1,5 @@
-⚖️ $SOXSB evidence check — defined risk, clear invalidation (+8.7% 24H)
-
-👀 $SOXSB LONG | Entry CMP $62.5 | TP1 $65.4 (+4.6%) | TP2 $68 (+8.8%) | SL $61.2 (-2.1%) | RR 1:2.23 | Conf 1%
-Why now: EMA gap and VWAP offset signal a short‑term bias.
-
-Key evidence (verified):
-• Structure: Mixed MTF: sideways 1H, uptrend 4H, downtrend 1D; bullish HH‑HL structure on 4H; support 61.74, resistance 65.4.
-• Indicators: EMA20 59.36, EMA50 57.52, EMA200 54.50; RSI 61.5; MACD +0.40 histogram; VWAP 56.46; BB position 0.91 near upper band; Stoch %K 93.6, %D 94.3.
-• Participation: volume normal; taker buy share 31%; 24h turnover $14.0M | Futures: derivatives feed unavailable today
-• Liquidity: order book ask heavy (0.82x); est. liquidation magnets: shorts ~$66.8446 / longs ~$58.1554
-• Trend stack: 5m→ 15m→ 1H→ 4H↑ 1D↓ 1W→
-• Context: BTC bearish alignment on 1H and 4H; dominance 58.3%; F&G 12 Extreme Fear
-• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified.
-
-🔀 If price holds above 61.74 support and bearish volume divergence fades → path to $65.4 stays open; if price breaks below 61.2 support with accelerating sell volume → thesis cancelled.
-❌ Invalidation: Break of 61.2 support.
-🛡️ Risk: 2.2:1; 2% of equity per trade; plan: Exit if price ≤61.2 or sell‑volume surge (validation 1/100)
-📎 Data confidence: derivatives feed unavailable — the rest is measured.
-Follow for real-time TP updates & verified setups.
-Tags: $SOXSB $BTC #BinanceSquare
-⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
+⚡ $ENA SHORT | Entry CMP $0.1163 | TP1 $0.1155 (+0.7%) / TP2 $0.1145 (+1.5%) | SL $0.1175 (-1.0%) | RR 1:0.7
+📊 RSI 49 | VOL normal | OI n/a | MTF 1H flat / 4H down | Est liq zones L 0.112829/S 0.119771
+1H trigger.
+💎 Context: $BREV #BinanceSquareFamily
+⚠️ Not financial advice; verify levels first.
