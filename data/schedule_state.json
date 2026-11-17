@@ -3,7 +3,6 @@
   "day_utc": "2026-11-17",
   "rotation_started_utc": "2026-11-17T03:00:41.477314+00:00",
   "pending": [
-    12,
     13,
     14,
     15,
@@ -1472,11 +1471,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "BREV"
+    },
+    {
+      "slot": 12,
+      "type": "meme_community",
+      "name": "Trader Psychology & Community Meme (12:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-17T15:01:00.809066+00:00",
+      "day_utc": "2026-11-17",
+      "run_id": "44109345596",
+      "rotation": 7,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": null
     }
   ],
   "rotations": 6,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-17T14:01:31.972566+00:00",
+  "updated_utc": "2026-11-17T15:01:00.809089+00:00",
   "previous_day": {
     "day_utc": "2026-11-16",
     "published": 24,
