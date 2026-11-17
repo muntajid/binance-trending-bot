@@ -3,7 +3,6 @@
   "day_utc": "2026-11-17",
   "rotation_started_utc": "2026-11-17T03:00:41.477314+00:00",
   "pending": [
-    5,
     6,
     7,
     8,
@@ -1381,11 +1380,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "SOL"
+    },
+    {
+      "slot": 5,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #3 (05:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-17T08:01:20.123418+00:00",
+      "day_utc": "2026-11-17",
+      "run_id": "44043070931",
+      "rotation": 7,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "AAVE"
     }
   ],
   "rotations": 6,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-17T07:01:25.156114+00:00",
+  "updated_utc": "2026-11-17T08:01:20.123447+00:00",
   "previous_day": {
     "day_utc": "2026-11-16",
     "published": 24,

@@ -1,21 +1,5 @@
-SOL sits 0.86% below VWAP while RSI spikes above 70, hinting a bullish push toward the 73
-
-👀 $SOL LONG | Entry CMP $72.74 | TP1 $73.1125 (+0.5%) | TP2 $73.6864 (+1.3%) | SL $71.9 (-1.2%) | RR 1:0.44 | Conf 1%
-Why now: Price is 0.86% under VWAP, RSI 71, and bullish engulfing appear now.
-
-Key evidence (verified):
-• Structure: Higher highs/lows on 1H, bullish engulfing, EMA20/50 below price, MACD positive, price below VWAP.
-• Indicators: EMA20 72.03, EMA50 72.17 below price; RSI 71.6; MACD +0.30/0.15; VWAP 73.34 above; BB position 0.86 near upper band; Stoch RSI 96/93.
-• Participation: volume normal; taker buy share 46%; 24h turnover $193.4M | Futures: derivatives feed unavailable today
-• Liquidity: order book bid heavy (1.40x); est. liquidation magnets: shorts ~$73.6864 / longs ~$71.8136
-• Trend stack: 5m↓ 15m→ 1H↑ 4H→ 1D↓ 1W↑
-• Context: BTC bearish alignment on 1H and 4H; dominance 58.4%; F&G 12 Extreme Fear
-• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
-
-🔀 If price breaks above 73.11 with volume staying above average → path to $73.1125 stays open; if price falls below 72.04 support or MACD histogram turns negative → thesis cancelled.
-❌ Invalidation: Break below 72.04 support.
-🛡️ Risk: ~1:2.5 (SL 0.84, TP1 0.37, TP2 0.94); 2% of equity at risk; plan: Exit if price ≤72.04 or MACD histogram turns negative (validation 7/100)
-📎 Data confidence: derivatives feed unavailable — the rest is measured.
-Which hits first for $SOL: $73.1125 or $72.0367?
-Tags: $SOL $BTC #BinanceSquare
-⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
+⚡ $AAVE SHORT | Entry CMP $113.13 | TP1 $111.88 (+1.1%) / TP2 $110.5 (+2.3%) | SL $114.2 (-0.9%) | RR 1:1.2
+📊 RSI 82.9 | VOL normal | OI n/a | MTF 1H up / 4H up | Est liq zones L 111.3371/S 114.9029
+1H trigger.
+💎 Context: $HUMA #BinanceSquareFamily
+⚠️ Not financial advice; verify levels first.
