@@ -1,21 +1,6 @@
-TRX sits just below VWAP while price hugs the 0.3067 resistance, a tight swing between bu
-
-👀 $TRX LONG | Entry CMP $0.3057 | TP1 $0.3067 (+0.3%) | TP2 $0.3096 (+1.3%) | SL $0.3044 (-0.4%) | RR 1:0.77 | Conf 1%
-Why now: Doji candle at the entry level.
-
-Key evidence (verified):
-• Structure: Higher‑high/higher‑low on 1H, lower‑high/lower‑low on 4H; price between EMA20 (0.3056) and EMA50 (0.3059); tight Bollinger band, VWAP above price.
-• Indicators: EMA20 0.3056 < price < EMA50 0.3059, RSI 52.5 neutral, MACD near zero, VWAP 0.3082 above, BB position 0.41, Stoch RSI K 60.7/D 42.5.
-• Participation: volume normal; taker buy share 50%; 24h turnover $18.6M | Futures: derivatives feed unavailable today
-• Liquidity: order book bid heavy (1.21x); est. liquidation magnets: shorts ~$0.306611 / longs ~$0.304789
-• Trend stack: 5m→ 15m→ 1H↑ 4H↓ 1D→ 1W→
-• Context: BTC bearish alignment on 1H and 4H; dominance 59.2%; F&G 12 Extreme Fear
-• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
-
-🔀 If if price breaks and holds above 0.3067 with EMA20 staying supportive → path to $0.3067 stays open; if if price slips below 0.3044 and EMA20 turns down → thesis cancelled.
-❌ Invalidation: Break below 0.3044 support.
-🛡️ Risk: 1.5:1; 2% of equity per trade; plan: Exit if price closes below 0.3044 or EMA20 crosses under price (validation 7/100)
-📎 Data confidence: derivatives feed unavailable — the rest is measured.
-Which hits first for $TRX: $0.3067 or $0.304393?
-Tags: $TRX $BTC #BinanceSquareFamily
-⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
+MMT sits 0.1336 above VWAP 0.1146, yet 1H RSI 80.3 signals overbought—can it break the 0.
+⚡ $MMT LONG | Entry CMP $0.134 | TP1 $0.1426 (+6.4%) / TP2 $0.152 (+13.4%) | SL $0.129 (-3.7%) | RR 1:1.7
+📊 RSI 80.3 | VOL normal | OI n/a | MTF 1H up / 4H up | Est liq zones L 0.12655/S 0.14065
+1H RSI over 80 and MACD positive
+💎 Context: $HUMA #BinanceSquare
+⚠️ Not financial advice; verify levels first.
