@@ -1,20 +1,6 @@
-Price sits just above VWAP while EMA20 holds, but order‑book shows balanced pressure near
-
-👀 $PHA LONG | Entry CMP $0.0331 | TP1 $0.0338 (+2.1%) | TP2 $0.0343 (+3.6%) | SL $0.0326 (-1.5%) | RR 1:1.40 | Conf 1%
-Why now: Trigger.
-
-Key evidence (verified):
-• Structure: Mixed HH/LL structure, bullish 4H continuation, price above VWAP and EMA20.
-• Indicators: EMA20≈0.0330, EMA50≈0.0320, RSI 46, MACD ~0, VWAP 0.0323, BB middle 0.0331, position 0.46, Stoch RSI K 0, D 33.
-• Participation: volume normal; taker buy share 52%; 24h turnover $5.7M | Futures: derivatives feed unavailable today
-• Liquidity: order book balanced (0.97x); est. liquidation magnets: shorts ~$0.034854 / longs ~$0.031146
-• Trend stack: 5m↓ 15m↓ 1H→ 4H↑ 1D↓ 1W↑
-• Context: BTC bearish alignment on 1H and 4H; dominance 58.4%; F&G 12 Extreme Fear
-• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
-
-🔀 If if price holds above EMA20 and breaks 0.0338 resistance → path to $0.0338 stays open; if if price falls below support 0.0326 → thesis cancelled.
-❌ Invalidation: Support 0.0326 break.
-🛡️ Risk: ~1:2.5; 2% of equity; plan: Exit if price ≤0.0326 (validation 7/100)
-📎 Data confidence: derivatives feed unavailable — the rest is measured.
-Tags: $PHA $BTC #CryptoTrading
-⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
+Bid‑heavy order book pushes SPCXB toward the 140.5 resistance while the 5‑minute uptrend
+⚡ $SPCXB LONG | Entry CMP $140.35 | TP1 $140.5 (+0.1%) / TP2 $141.5 (+0.8%) | SL $138.8 (-1.1%) | RR 1:0.1
+📊 RSI 60 | VOL normal | OI n/a | MTF 1H up / 4H flat | Est liq zones L 138.1093/S 142.5707
+1H trigger.
+💎 Context: $BREV #CryptoTrading
+⚠️ Not financial advice; verify levels first.
