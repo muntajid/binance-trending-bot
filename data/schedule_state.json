@@ -3,7 +3,6 @@
   "day_utc": "2026-11-17",
   "rotation_started_utc": "2026-11-16T03:00:44.204042+00:00",
   "pending": [
-    22,
     23
   ],
   "in_flight": null,
@@ -1266,11 +1265,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "HYPE"
+    },
+    {
+      "slot": 22,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #11 (22:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-17T01:01:28.161038+00:00",
+      "day_utc": "2026-11-17",
+      "run_id": "43992153476",
+      "rotation": 6,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "PEPE"
     }
   ],
   "rotations": 5,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-17T00:01:20.313277+00:00",
+  "updated_utc": "2026-11-17T01:01:28.161061+00:00",
   "previous_day": {
     "day_utc": "2026-11-16",
     "published": 24,
