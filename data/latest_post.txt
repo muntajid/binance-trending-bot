@@ -1,20 +1,6 @@
-NEAR holds just above VWAP at $3.235 while price sits on the 1H EMA20, hinting a test of
-
-👀 $NEAR LONG | Entry CMP $3.235 | TP1 $3.264 (+0.9%) | TP2 $3.29 (+1.7%) | SL $3.228 (-0.2%) | RR 1:4.14 | Conf 70%
-Why now: Trigger.
-
-Key evidence (verified):
-• Structure: Higher highs/lows on 1H, EMA20/50 below price, RSI 56, MACD bullish, VWAP below entry, Bollinger band position 0.70, Stoch RSI neutral.
-• Indicators: EMA20 3.2096, EMA50 3.2016, RSI 56.9, MACD 0.020/0.014, VWAP 3.225, BB middle 3.199, Stoch %K 64.6, %D 78.7.
-• Participation: volume normal; taker buy share 50%; 24h turnover $70.7M | Futures: derivatives feed unavailable today
-• Liquidity: order book balanced (0.93x); est. liquidation magnets: shorts ~$3.3043 / longs ~$3.1657
-• Trend stack: 5m↓ 15m→ 1H↑ 4H↑ 1D↓ 1W→
-• Context: BTC bearish alignment on 1H and 4H; dominance 58.4%; F&G 12 Extreme Fear
-• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
-
-🔀 If if price closes above $3.264 with confirming volume, upside stays open → path to $3.264 stays open; if if price drops below $3.2313 support, bullish case invalidates → thesis cancelled.
-❌ Invalidation: break of $3.2313 support
-🛡️ Risk: 1:2.5; 2% of equity per trade; plan: Exit if price ≤ $3.2313 or EMA20 crossover down (validation 85/100)
-📎 Data confidence: derivatives feed unavailable — the rest is measured.
-Tags: $NEAR $BTC #Write2Earn
-⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
+XRP sits just below its 1‑hour EMA20 while buyers hold the bid side, testing the 0.9634 r
+⚡ $XRP LONG | Entry CMP $0.9593 | TP1 $0.9634 (+0.4%) / TP2 $0.9685 (+1.0%) | SL $0.9515 (-0.8%) | RR 1:0.5
+📊 RSI 53.4 | VOL normal | OI n/a | MTF 1H up / 4H down | Est liq zones L 0.948157/S 0.970443
+1H trigger.
+💎 Context: $HUMA #BinanceSquareFamily
+⚠️ Not financial advice; verify levels first.
