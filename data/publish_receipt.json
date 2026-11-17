@@ -1,17 +1,15 @@
 {
-  "slot": 22,
-  "type": "rapid_alert",
-  "name": "Rapid Signal Alert #11 (22:00 UTC)",
+  "slot": 23,
+  "type": "explained_setup",
+  "name": "Explained Master Setup #11 (23:00 UTC)",
   "forced": false,
-  "published_utc": "2026-11-17T01:01:28.161038+00:00",
+  "published_utc": "2026-11-17T02:01:27.332355+00:00",
   "day_utc": "2026-11-17",
-  "run_id": "43992153476",
+  "run_id": "43999761385",
   "rotation": 6,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": "PEPE",
-  "pending_after": [
-    23
-  ]
+  "coin": "ZEC",
+  "pending_after": []
 }

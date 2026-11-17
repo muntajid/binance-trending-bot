@@ -1,5 +1,20 @@
-⚡ $PEPE LONG | Entry CMP $0.000004 | TP1 $0.000004 (+0.8%) / TP2 $0.000004 (+1.3%) | SL $0.000004 (-1.0%) | RR 1:0.8
-📊 RSI 66.7 | VOL normal | OI n/a | MTF 1H flat / 4H flat | Est liq zones L 0.000004/S 0.000004
-1H trigger.
-💎 Context: $HUMA #Altcoins
-⚠️ Not financial advice; verify levels first.
+ZEC sits $6 above VWAP while RSI spikes 72, yet order‑book shows bid‑heavy pressure at $9
+
+👀 $ZEC LONG | Entry CMP $908.2 | TP1 $916.217 (+0.9%) | TP2 $929.525 (+2.3%) | SL $898.967 (-1.0%) | RR 1:0.87 | Conf 1%
+Why now: Trigger.
+
+Key evidence (verified):
+• Structure: HH‑HL bullish continuation on 1H, but 4H downtrend; price above EMA20/50 and VWAP, BB position 0.79, no reversal candlestick.
+• Indicators: EMA20/50 ~897, price 908; RSI 72; MACD +4/1.4; VWAP 902.5; BB position 0.79; Stoch RSI K100/D90.
+• Participation: volume normal; taker buy share 50%; 24h turnover $136.6M | Futures: derivatives feed unavailable today
+• Liquidity: order book bid heavy (5.11x); est. liquidation magnets: shorts ~$936.6429 / longs ~$880.7571
+• Trend stack: 5m↑ 15m↓ 1H↑ 4H↓ 1D↓ 1W→
+• Context: BTC bearish alignment on 1H and 4H; dominance 58.6%; F&G 12 Extreme Fear
+• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
+
+🔀 If price holds above VWAP and breaks resistance 916.22 → path to $916.217 stays open; if price falls below support 898.97 → thesis cancelled.
+❌ Invalidation: break below support 898.97
+🛡️ Risk: 0.8:1; 2% of equity; plan: SL at 898.97 or break of HH (validation 7/100)
+📎 Data confidence: derivatives feed unavailable — the rest is measured.
+Tags: $ZEC $BTC #Altcoins
+⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.

@@ -2,9 +2,7 @@
   "version": 1,
   "day_utc": "2026-11-17",
   "rotation_started_utc": "2026-11-16T03:00:44.204042+00:00",
-  "pending": [
-    23
-  ],
+  "pending": [],
   "in_flight": null,
   "published": [
     {
@@ -1279,11 +1277,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "PEPE"
+    },
+    {
+      "slot": 23,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #11 (23:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-17T02:01:27.332355+00:00",
+      "day_utc": "2026-11-17",
+      "run_id": "43999761385",
+      "rotation": 6,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "ZEC"
     }
   ],
   "rotations": 5,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-17T01:01:28.161061+00:00",
+  "updated_utc": "2026-11-17T02:01:27.332379+00:00",
   "previous_day": {
     "day_utc": "2026-11-16",
     "published": 24,
