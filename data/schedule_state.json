@@ -3,7 +3,6 @@
   "day_utc": "2026-11-17",
   "rotation_started_utc": "2026-11-17T03:00:41.477314+00:00",
   "pending": [
-    10,
     11,
     12,
     13,
@@ -1446,11 +1445,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "MMT"
+    },
+    {
+      "slot": 10,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #5 (10:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-17T13:01:24.458756+00:00",
+      "day_utc": "2026-11-17",
+      "run_id": "44088437216",
+      "rotation": 7,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "LUNC"
     }
   ],
   "rotations": 6,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-17T12:01:08.984314+00:00",
+  "updated_utc": "2026-11-17T13:01:24.458779+00:00",
   "previous_day": {
     "day_utc": "2026-11-16",
     "published": 24,
