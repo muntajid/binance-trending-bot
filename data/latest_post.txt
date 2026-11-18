@@ -1,5 +1,18 @@
-⚡ $SOL LONG | Entry CMP $75.13 | TP1 $75.72 (+0.8%) / TP2 $76.07 (+1.3%) | SL $74.2 (-1.2%) | RR 1:0.6
-📊 RSI 73.3 | VOL normal | OI n/a | MTF 1H flat / 4H up | Est liq zones L 73.9811/S 76.2589
-1H trigger.
-💎 Context: $MMT #CryptoTrading
-⚠️ Not financial advice; verify levels first.
+🌐 MACRO & BITCOIN OUTLOOK: BTC tests key support amid bearish 1H/4H alignment and extreme fear 📊
+
+BTC at $64,215 versus 59% dominance and Fear Greed 11 shows
+
+$BTC 24H: $64215.75 (-1.05%)
+Market Phase: Liquidity Hunt
+
+📊 Key Market Dynamics:
+• Bitcoin Structure: On 1H BTC sits in a mixed LH/HL structure, RSI at 38.8 and price below EMA20 (64,480) and EMA50 (64,627), while 4H shows a clear LL‑LH bearish continuation with price well under EMA20 (65,082) and EMA50 (67,719). The nearest support is 64,200 and resistance sits near 65,281, framing a tight range for short‑term liquidity grabs.
+• Altcoin Flows: Altcoins are outperforming BTC (average +25.6% vs BTC -1.05%); top gainers MMT (+100.4%), BREV (+53.6%) and ZKC (+37.7%) signal capital rotation into high‑beta assets as dominance stays near 59% and fear remains extreme.
+• Crucial Levels: Support $64200.61 | Resistance $65280.57
+📈 Sentiment: Fear & Greed 11 (Extreme Fear) | BTC dominance 59.0%
+🔄 What flips it: bullish if BTC closing above the 1H EMA20 (64,480) with RSI crossing; watch out if A break below the 1H support 64,200 accompanied by RSI falling under.
+
+💡 Trader Takeaway: Spot traders should consider buying on dips near 64,200 with tight stops; futures players may short on rallies toward 65,300 while protecting against a sudden EMA20 breakout.
+
+BTC $ETH #BinanceSquare #CryptoMarket
+⚠️ Educational market analysis only. Not financial advice. Always DYOR.

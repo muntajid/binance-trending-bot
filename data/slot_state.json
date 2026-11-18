@@ -1,13 +1,12 @@
 {
-  "last_slot": 5,
-  "last_type": "rapid_alert",
-  "last_run_utc": "2026-11-18T08:01:16.722725+00:00",
+  "last_slot": 0,
+  "last_type": "market_overview",
+  "last_run_utc": "2026-11-18T12:06:24.460296+00:00",
   "day_utc": "2026-11-18",
   "rotation": 9,
   "rotation_started_utc": "2026-11-18T09:00:43.812912+00:00",
-  "published_this_rotation": 0,
+  "published_this_rotation": 1,
   "pending_slots": [
-    0,
     1,
     2,
     3,

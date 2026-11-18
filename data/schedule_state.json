@@ -3,7 +3,6 @@
   "day_utc": "2026-11-18",
   "rotation_started_utc": "2026-11-18T09:00:43.812912+00:00",
   "pending": [
-    0,
     1,
     2,
     3,
@@ -1718,11 +1717,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "SOL"
+    },
+    {
+      "slot": 0,
+      "type": "market_overview",
+      "name": "BTC outlook",
+      "forced": false,
+      "published_utc": "2026-11-18T12:06:24.460296+00:00",
+      "day_utc": "2026-11-18",
+      "run_id": "44300588149",
+      "rotation": 9,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": null
     }
   ],
   "rotations": 8,
   "reset_reason": "plan changed in bot/config.json",
-  "updated_utc": "2026-11-18T09:00:43.813021+00:00",
+  "updated_utc": "2026-11-18T12:06:24.460318+00:00",
   "previous_day": {
     "day_utc": "2026-11-18",
     "published": 9,
