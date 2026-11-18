@@ -1,7 +1,20 @@
-Ask‑heavy order book pushes price toward the 6.97 support despite a bullish HH‑HL pattern.
-⚡ $KORUB SHORT | Entry CMP $7.06 | TP1 $6.97 (+1.3%) / TP2 $6.9 (+2.3%) | SL $7.14 (-1.1%) | RR 1:1.1
-📊 RSI 59 | VOL normal | OI n/a | MTF 1H up / 4H down | Est liq zones L 6.6657/S 7.4543
-1H trigger.
-💎 Context: $BREV #Write2Earn
-Follow for real-time TP updates & verified setups.
-⚠️ Not financial advice; verify levels first.
+⚖️ $TAO evidence check — defined risk, clear invalidation (+1.7% 24H)
+
+👀 $TAO LONG | Entry CMP $195.3 | TP1 $195.4 (+0.1%) | TP2 $199 (+1.9%) | SL $192.95 (-1.2%) | RR 1:0.04 | Conf 1%
+Why now: Trigger.
+
+Key evidence (verified):
+• Structure: Higher‑high/higher‑low pattern on 1H, bullish EMA crossover, MACD positive, VWAP below price, Bollinger position near upper band.
+• Indicators: EMA20 ≈ 193.57, EMA50 ≈ 193.08, RSI ≈ 50.5, MACD ≈ +0.40 histogram, VWAP ≈ 192.95, BB position ≈ 0.72, Stoch ≈ 47/65.
+• Participation: volume normal; taker buy share 51%; 24h turnover $10.3M | Futures: derivatives feed unavailable today
+• Liquidity: order book bid heavy (1.34x); est. liquidation magnets: shorts ~$199.5429 / longs ~$191.0571
+• Trend stack: 5m↓ 15m↑ 1H↑ 4H→ 1D↓ 1W↑
+• Context: BTC bearish alignment on 1H and 4H; dominance 58.4%; F&G 11 Extreme Fear
+• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
+
+🔀 If if price holds above EMA20 (≈193.57) and breaks resistance at 195.4, then upside remains viable → path to $195.4 stays open; if if price drops below EMA20 or falls through support at 192.95, then downside risk rises → thesis cancelled.
+❌ Invalidation: 4H support 188.2 as invalidation level.
+🛡️ Risk: ~1:2.5 (SL 2.35 $, TP1 0.1 $, TP2 3.7 $); Risk ≤1% of capital per trade; plan: Exit if price breaches 192.95 support or 4H structure flips to lower lows (validation 1/100)
+📎 Data confidence: derivatives feed unavailable — the rest is measured.
+Tags: $TAO $BTC #Altcoins
+⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.

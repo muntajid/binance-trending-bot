@@ -2,9 +2,7 @@
   "version": 1,
   "day_utc": "2026-11-18",
   "rotation_started_utc": "2026-11-17T03:00:41.477314+00:00",
-  "pending": [
-    23
-  ],
+  "pending": [],
   "in_flight": null,
   "published": [
     {
@@ -1615,11 +1613,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "KORUB"
+    },
+    {
+      "slot": 23,
+      "type": "explained_setup",
+      "name": "Explained Master Setup #11 (23:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-18T02:01:26.058453+00:00",
+      "day_utc": "2026-11-18",
+      "run_id": "44220025296",
+      "rotation": 7,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "TAO"
     }
   ],
   "rotations": 6,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-18T01:01:29.455546+00:00",
+  "updated_utc": "2026-11-18T02:01:26.058477+00:00",
   "previous_day": {
     "day_utc": "2026-11-17",
     "published": 24,
