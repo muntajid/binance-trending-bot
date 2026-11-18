@@ -1,18 +1,17 @@
 {
-  "slot": 21,
-  "type": "explained_setup",
-  "name": "Explained Master Setup #10 (21:00 UTC)",
+  "slot": 22,
+  "type": "rapid_alert",
+  "name": "Rapid Signal Alert #11 (22:00 UTC)",
   "forced": false,
-  "published_utc": "2026-11-18T00:01:16.399149+00:00",
+  "published_utc": "2026-11-18T01:01:29.455525+00:00",
   "day_utc": "2026-11-18",
-  "run_id": "44204185376",
+  "run_id": "44212399642",
   "rotation": 7,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": "INTCB",
+  "coin": "KORUB",
   "pending_after": [
-    22,
     23
   ]
 }

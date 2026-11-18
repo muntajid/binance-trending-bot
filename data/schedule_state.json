@@ -3,7 +3,6 @@
   "day_utc": "2026-11-18",
   "rotation_started_utc": "2026-11-17T03:00:41.477314+00:00",
   "pending": [
-    22,
     23
   ],
   "in_flight": null,
@@ -1602,11 +1601,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "INTCB"
+    },
+    {
+      "slot": 22,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #11 (22:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-18T01:01:29.455525+00:00",
+      "day_utc": "2026-11-18",
+      "run_id": "44212399642",
+      "rotation": 7,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "KORUB"
     }
   ],
   "rotations": 6,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-18T00:01:16.399172+00:00",
+  "updated_utc": "2026-11-18T01:01:29.455546+00:00",
   "previous_day": {
     "day_utc": "2026-11-17",
     "published": 24,
