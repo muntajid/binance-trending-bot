@@ -1,18 +1,17 @@
 {
-  "slot": 20,
-  "type": "rapid_alert",
-  "name": "Rapid Signal Alert #10 (20:00 UTC)",
+  "slot": 21,
+  "type": "explained_setup",
+  "name": "Explained Master Setup #10 (21:00 UTC)",
   "forced": false,
-  "published_utc": "2026-11-17T23:01:17.781759+00:00",
-  "day_utc": "2026-11-17",
-  "run_id": "44195416567",
+  "published_utc": "2026-11-18T00:01:16.399149+00:00",
+  "day_utc": "2026-11-18",
+  "run_id": "44204185376",
   "rotation": 7,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": "SNXXB",
+  "coin": "INTCB",
   "pending_after": [
-    21,
     22,
     23
   ]
