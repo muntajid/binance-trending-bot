@@ -1,18 +1,5 @@
-🌐 MACRO & BITCOIN OUTLOOK: BTC bears hold structure as dominance steadies, altcoins surge 📊
-
-BTC at $64,416 stalls below EMA20 as dominance holds 58.37% and Fear‑Greed index sits at
-
-$BTC 24H: $64416.57 (-0.17%)
-Market Phase: Liquidity Hunt / Bearish Continuation
-
-📊 Key Market Dynamics:
-• Bitcoin Structure: On both 1H and 4H charts Bitcoin remains in a lower‑low/lower‑high bearish continuation, trading below EMA20 and EMA50, with price hugging the 64158.6 support zone and eyeing the 65085.5 resistance band.
-• Altcoin Flows: Altcoins are outperforming Bitcoin, delivering ~18% 24h gains versus BTC's -0.17%; top gainers include BREV (+101.4%) and MMT (+24.8%).
-• Crucial Levels: Support $64158.59 | Resistance $65085.5
-📈 Sentiment: Fear & Greed 11 (Extreme Fear) | BTC dominance 58.4%
-🔄 What flips it: bullish if 4H close above the 4H EMA20 (≈65,310) with price holding above the 4H VWAP would signal a bullish shift; watch out if Break below the 1H support at 64,158.6 accompanied by RSI dropping below 30 would confirm deeper downside.
-
-💡 Trader Takeaway: Maintain short bias on futures; consider tight stop‑losses near 65,100 resistance, while spot traders may look for opportunistic buys near 64,150 support if price rebounds with bullish candle confirmation
-
-$BTC $ETH #BinanceSquare #CryptoMarket
-⚠️ Educational market analysis only. Not financial advice. Always DYOR.
+⚡ $ZEC LONG | Entry CMP $948.77 | TP1 $959.95 (+1.2%) / TP2 $973.87 (+2.6%) | SL $938 (-1.1%) | RR 1:1.0
+📊 RSI 51.5 | VOL normal | OI n/a | MTF 1H up / 4H flat | Est liq zones L 920.0339/S 977.2461
+1H trigger.
+💎 Context: $BREV #BinanceSquareFamily
+⚠️ Not financial advice; verify levels first.

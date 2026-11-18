@@ -3,7 +3,6 @@
   "day_utc": "2026-11-18",
   "rotation_started_utc": "2026-11-18T03:00:50.334632+00:00",
   "pending": [
-    1,
     2,
     3,
     4,
@@ -1665,11 +1664,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": null
+    },
+    {
+      "slot": 1,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #1 (01:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-18T04:01:16.694501+00:00",
+      "day_utc": "2026-11-18",
+      "run_id": "44234286477",
+      "rotation": 8,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "ZEC"
     }
   ],
   "rotations": 7,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-18T03:01:08.616712+00:00",
+  "updated_utc": "2026-11-18T04:01:16.694533+00:00",
   "previous_day": {
     "day_utc": "2026-11-17",
     "published": 24,
