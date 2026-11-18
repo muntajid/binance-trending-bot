@@ -3,7 +3,6 @@
   "day_utc": "2026-11-18",
   "rotation_started_utc": "2026-11-18T09:00:43.812912+00:00",
   "pending": [
-    2,
     3,
     4,
     5
@@ -1744,11 +1743,27 @@
       "attempts": 1,
       "degraded": false,
       "coin": "ZKC"
+    },
+    {
+      "slot": 2,
+      "type": "explained_setup",
+      "name": "Setup 2",
+      "forced": false,
+      "started_utc": "2026-11-18T20:31:08.295152+00:00",
+      "run_id": "44391716051",
+      "rotation": 9,
+      "published_utc": null,
+      "resolved_utc": "2026-11-18T20:32:16.117402+00:00",
+      "day_utc": "2026-11-18",
+      "mode": "skipped",
+      "attempts": 0,
+      "degraded": false,
+      "note": "No candidate passed the signal quality gates. MMT: All model completions were rejected by the signal quality gate: openai/gpt-oss-120b: setup failed minimum risk/reward or ATR-distance gate after deterministic derivation: TP1 RR 0.41 < 1.00; TP1 distance 0.53 ATR < 0.60 ATR | openai/gpt-oss-20b: setup failed minimum risk/reward or ATR-distance gate after deterministic derivation: TP1 RR 0.41 < 1.00; TP1 distance 0.53 ATR < 0.60 ATR | ZIL: No rule-based direction consensus for ZIL: {'1h_trend': 1, '4h_trend': -1, 'rsi': 1, 'vwap_side': 1} | ZKP: No rule-based direction consensus for ZKP: {'1h_trend': -1, '4h_trend': 1, 'rsi': -1, 'vwap_side': -1} | SOPH: No rule-based direction consensus for SOPH: {'1h_trend': 1, '4h_trend': -1, 'rsi': 1, 'vwap_side': -1} | HUMA: No rule-based direction consensus for HUMA: {'1h_trend': 0, '4h_trend': 0, 'rsi': 1, 'vwap_side': 1}"
     }
   ],
   "rotations": 8,
   "reset_reason": "plan changed in bot/config.json",
-  "updated_utc": "2026-11-18T16:31:49.651430+00:00",
+  "updated_utc": "2026-11-18T20:32:16.117418+00:00",
   "previous_day": {
     "day_utc": "2026-11-18",
     "published": 9,
