@@ -1,42 +1,17 @@
-"""Clock-independent, continuous queue for the 24-slot hourly posting plan.
+"""Clock-independent, continuous queue for the six-slot posting plan.
 
-Why this module exists
-----------------------
-The post type used to be derived from the wall clock inside ``main_signal``::
+The plan is read from ``bot/config.json``. Each automatic run takes the next
+pending slot, midnight does not restart an unfinished rotation, and changes to
+the slot list are detected by a plan signature. A retryable failure returns its
+slot to the queue and rolls back only that run's state effects; a killed run's
+in-flight reservation is healed after the configured timeout. Explicit manual
+requests can publish extras without consuming another queued slot.
 
-    slot_index = (utc_hour // 2) % 12
-
-That tied *what* gets posted to *when* the runner happened to start. Repeated
-manual runs could therefore publish the same type while other slots were lost.
-Replacing the lookup with a queue that reset at midnight fixed only half of the
-problem: GitHub delivered a late slot 0 at 20:04 UTC on 2026-11-02, then the
-midnight reset put slot 0 at the head again for the next run at 03:23 UTC on
-2026-11-03. Two BTC outlooks appeared consecutively.
-
-This module makes the rotation durable, including across calendar days:
-
-* the plan comes only from ``bot/config.json``: normally 11 rapid alerts,
-  11 explained setups, 1 BTC outlook and 1 meme per complete rotation;
-* every automatic run takes the **next pending slot**, never a clock lookup;
-* midnight changes the reporting date, not the queue. Delayed runs can span
-  several UTC days without restarting or skipping the remaining content;
-* editing the slot list in ``bot/config.json`` is detected through a plan
-  signature and starts a clean rotation, so an old queue is never replayed
-  against a new plan with different slot types;
-* a retryable generation/publish failure returns its slot and rolls back the
-  coin cooldown / open trade created by that run;
-* a killed run's in-flight reservation is healed after the configured timeout;
-* only an exhausted queue starts the next rotation. Explicit manual requests
-  can publish extras, but those extras do not consume another queued slot;
-* ``reset`` deliberately starts a new rotation and can repeat content. It is
-  never called automatically just because the UTC date changed.
-
-The pacer workflow (``bot/pacer.py``) dispatches one automatic run per UTC
-hour, with an hourly cron as a backup. :func:`due_status` is the shared guard:
-an automatic run is skipped when the current UTC hour already has a queued
-post or the previous one is less than ``schedule.min_gap_minutes`` old, so
-cron, the pacer and retries cannot double-post. The invariant is the content
-mix per resolved rotation; a day receives 24 posts when every hour is served.
+The pacer and hourly backup cron share :func:`due_status`. The configured
+230-minute minimum gap, a stable per-slot 3–40 minute posting delay, and the
+one-post-per-UTC-hour guard keep scheduled posts from clustering or landing at
+the same minute. A plan edit starts a clean rotation without rewriting the
+historical ledger.
 
 State files (all under ``data/``, committed by the workflow):
 
@@ -50,6 +25,7 @@ from __future__ import annotations
 
 import argparse
 import datetime
+import hashlib
 import json
 import os
 import sys
@@ -68,14 +44,14 @@ POSTED_COINS_FILE = ROOT_DIR / "data" / "posted_coins.json"
 
 STATE_VERSION = 1
 POST_TYPES = ("market_overview", "rapid_alert", "explained_setup", "meme_community")
-# Manual-only dispatch types: never part of the automatic rotation plan, but
+# Extra dispatch types: never part of the automatic rotation plan, but
 # valid as explicit ``slot:`` requests that run beside the queue as forced
 # extras. The scorecard is the public, verified outcomes ledger (wins and
 # losses alike); the explainer is a data-driven educational post.
 MANUAL_ONLY_TYPES = ("scorecard", "educational_explainer")
 MANUAL_SLOT_NUMBERS = {"scorecard": 90, "educational_explainer": 91}
 MANUAL_SLOT_NAMES = {
-    "scorecard": "Verified Setup Scorecard (manual)",
+    "scorecard": "Weekly Verified Setup Scorecard (extra)",
     "educational_explainer": "Educational Explainer (manual)",
 }
 DEFAULT_IN_FLIGHT_TIMEOUT_MINUTES = 45
@@ -240,6 +216,8 @@ def _rotation_matches_plan(state: dict[str, Any], plan: list[dict[str, Any]]) ->
     """
 
     by_slot = _plan_by_slot(plan)
+    if any(slot not in by_slot for slot in state.get("pending", [])):
+        return False
     records = list(_rotation_records(state))
     if isinstance(state.get("in_flight"), dict) and not state["in_flight"].get("forced"):
         records.append(state["in_flight"])
@@ -354,6 +332,8 @@ def _write_legacy_view(state: dict[str, Any]) -> None:
 def _summary(
     state: dict[str, Any], published: list[dict[str, Any]], **identity: Any
 ) -> dict[str, Any]:
+    skipped = sum(entry.get("mode") == "skipped" for entry in published)
+    published = [entry for entry in published if entry.get("mode") != "skipped"]
     counts: dict[str, int] = {}
     for entry in published:
         key = str(entry.get("type", "unknown"))
@@ -361,6 +341,7 @@ def _summary(
     return {
         **identity,
         "published": len(published),
+        "skipped": skipped,
         "by_type": counts,
         "unpublished": [slot for slot in state.get("pending", []) if isinstance(slot, int)],
     }
@@ -598,13 +579,13 @@ def select_slot(request: str | None = None, *, reset: bool = False) -> dict[str,
         if not state["pending"]:
             raise ScheduleError("No pending slot is available and the queue did not refill")
         chosen_slot = state["pending"][0]
-    elif kind == "type" and value in MANUAL_ONLY_TYPES:
-        # Manual-only types are not in the rotation plan, so they synthesise a
-        # forced extra slot that leaves the automatic queue untouched.
+    elif kind == "type" and not any(entry["type"] == value for entry in plan):
+        # Scorecards/explainers, plus a supported editorial type omitted from
+        # the current plan (e.g. rapid_alert), are non-consuming manual extras.
         entry = {
-            "slot": MANUAL_SLOT_NUMBERS[value],
+            "slot": MANUAL_SLOT_NUMBERS.get(value, 100 + (POST_TYPES.index(value) if value in POST_TYPES else 0)),
             "type": value,
-            "name": MANUAL_SLOT_NAMES[value],
+            "name": MANUAL_SLOT_NAMES.get(value, f"{value} (manual extra)"),
             "hour_utc": None,
         }
         entry.update(
@@ -799,6 +780,44 @@ def publish_succeeded(*, mode: str = "unknown", attempts: int = 0, degraded: boo
     return record
 
 
+def skip_run(reason: str) -> dict[str, Any] | None:
+    """Resolve a quality-rejected opportunity without publishing or retry spam.
+
+    The skip advances the queue and anchors the next cadence interval. It is
+    recorded as ``skipped``, not as a successful post. Preview runs use abort
+    instead, so previews do not consume even an unpublishable opportunity.
+    """
+
+    if state_disabled():
+        return None
+    pending = _read_json(PENDING_RUN_FILE, None, tolerant=True)
+    state = load_state()
+    in_flight = state.get("in_flight")
+    if not isinstance(in_flight, dict):
+        _clear_pending_run()
+        return None
+    if isinstance(pending, dict):
+        _rollback_run_effects(pending)
+    now = _utc_now()
+    record = {
+        **in_flight,
+        "published_utc": None,
+        "resolved_utc": _iso(now),
+        "day_utc": now.strftime("%Y-%m-%d"),
+        "mode": "skipped",
+        "attempts": 0,
+        "degraded": False,
+        "note": reason,
+    }
+    state["published"] = ((state.get("published") or []) + [record])[-MAX_PUBLISH_HISTORY:]
+    state["in_flight"] = None
+    state["last_error"] = None
+    _save_state(state)
+    _clear_pending_run()
+    _atomic_write_json(PUBLISH_RECEIPT_FILE, {**record, "pending_after": state["pending"]})
+    return record
+
+
 def publish_uncertain(reason: str) -> dict[str, Any] | None:
     """Consume the slot without claiming it was published.
 
@@ -878,7 +897,7 @@ def abort_run(reason: str) -> dict[str, Any] | None:
 
 
 # ---------------------------------------------------------------------------
-# Hourly cadence guard (shared by the pacer and automatic workflow runs)
+# Cadence guard (shared by the pacer and automatic workflow runs)
 # ---------------------------------------------------------------------------
 
 def min_gap_minutes(config: dict[str, Any] | None = None) -> float:
@@ -889,11 +908,64 @@ def min_gap_minutes(config: dict[str, Any] | None = None) -> float:
         return float(DEFAULT_MIN_GAP_MINUTES)
 
 
+def post_jitter_bounds(config: dict[str, Any] | None = None) -> tuple[int, int]:
+    """Return the inclusive randomized delay range, defaulting to no delay."""
+
+    settings = config if config is not None else load_config()
+    raw = settings.get("schedule", {})
+    if not isinstance(raw, dict):
+        raw = {}
+    try:
+        low = max(0, int(raw.get("post_jitter_min_minutes", 0)))
+        high = max(0, int(raw.get("post_jitter_max_minutes", low)))
+    except (TypeError, ValueError, OverflowError):
+        return (0, 0)
+    high = max(low, high)
+    return low, high
+
+
+def _stable_post_jitter(
+    state: dict[str, Any] | None,
+    *,
+    now: datetime.datetime,
+    minimum: int,
+    maximum: int,
+    last_post: datetime.datetime | None,
+) -> int:
+    """Choose one reproducible pseudo-random delay for the next queued slot.
+
+    Pacer ticks and the hourly backup cron must agree on the same release time;
+    seeding from the prior published timestamp, rotation and pending slot makes
+    the delay stable across processes without adding another state file.
+    """
+
+    if maximum <= 0:
+        return 0
+    state = state if isinstance(state, dict) else {}
+    pending = state.get("pending")
+    next_slot = pending[0] if isinstance(pending, list) and pending else "next"
+    try:
+        rotation = int(state.get("rotations", 0) or 0)
+    except (TypeError, ValueError):
+        rotation = 0
+    if last_post is not None:
+        anchor = last_post.astimezone(datetime.timezone.utc).isoformat()
+    else:
+        # Reuse a persisted start when available: an hourly-only backup must
+        # not move the first release window into the future on every retry.
+        first_anchor = _parse_iso(state.get("rotation_started_utc")) or now
+        anchor = first_anchor.astimezone(datetime.timezone.utc).strftime("%Y-%m-%dT%H")
+    seed = f"{anchor}|{rotation}|{next_slot}".encode("utf-8")
+    digest = hashlib.sha256(seed).digest()
+    span = maximum - minimum + 1
+    return minimum + int.from_bytes(digest[:8], "big") % span
+
+
 def last_automatic_post(state: dict[str, Any] | None) -> datetime.datetime | None:
-    """When the queue last resolved a slot (published or uncertain).
+    """When the queue last resolved an opportunity (published, uncertain or skipped).
 
     Explicit manual extras are ignored: they never consume a queued slot, so
-    they must not cost the rotation its hourly post either.
+    they do not defer the next automatic opportunity.
     """
 
     latest: datetime.datetime | None = None
@@ -911,14 +983,15 @@ def due_status(
     *,
     now: datetime.datetime | None = None,
     min_gap: float = DEFAULT_MIN_GAP_MINUTES,
+    jitter_min: int = 0,
+    jitter_max: int = 0,
     in_flight_timeout: float | None = None,
 ) -> dict[str, Any]:
     """Decide whether an automatic run should publish the next slot now.
 
-    One queued post per UTC clock hour, and never two within ``min_gap``
-    minutes (a run delayed to 10:58 must not be followed by one at 11:00).
-    Pure function of the state dict so the pacer can evaluate the state it
-    fetched from GitHub without touching local files.
+    One queued post per UTC clock hour, a minimum ``min_gap`` and a stable
+    pseudo-random per-slot delay. Pure function of the state dict so the pacer
+    and hourly backup gate make the same decision from GitHub state.
     """
 
     current = (now or _utc_now()).astimezone(datetime.timezone.utc)
@@ -930,30 +1003,75 @@ def due_status(
             return {"due": False, "reason": f"slot {in_flight.get('slot')} is already in flight", "last_post_utc": None}
 
     last = last_automatic_post(state)
+    minimum = max(0, int(jitter_min))
+    maximum = max(minimum, int(jitter_max))
+    jitter = _stable_post_jitter(
+        state,
+        now=current,
+        minimum=minimum,
+        maximum=maximum,
+        last_post=last,
+    )
+
     if last is None:
-        return {"due": True, "reason": "no automatic post on record", "last_post_utc": None}
+        first_anchor = _parse_iso((state or {}).get("rotation_started_utc")) or current
+        hour_start = first_anchor.replace(minute=0, second=0, microsecond=0)
+        release_at = hour_start + datetime.timedelta(minutes=jitter)
+        if current < release_at:
+            return {
+                "due": False,
+                "reason": f"first slot's randomized posting window opens at {_iso(release_at)}",
+                "last_post_utc": None,
+                "jitter_minutes": jitter,
+                "release_utc": _iso(release_at),
+            }
+        return {
+            "due": True,
+            "reason": f"no automatic post on record; randomized delay {jitter} min elapsed",
+            "last_post_utc": None,
+            "jitter_minutes": jitter,
+        }
 
     age_minutes = (current - last).total_seconds() / 60.0
     stamp = _iso(last)
     if last.strftime("%Y-%m-%dT%H") == current.strftime("%Y-%m-%dT%H"):
-        return {"due": False, "reason": f"this UTC hour already has its post ({stamp})", "last_post_utc": stamp}
-    if age_minutes < min_gap:
         return {
             "due": False,
-            "reason": f"last post is only {age_minutes:.0f} min old (min gap {min_gap:.0f} min)",
+            "reason": f"this UTC hour already has its post ({stamp})",
             "last_post_utc": stamp,
+            "jitter_minutes": jitter,
         }
-    return {"due": True, "reason": f"last post {age_minutes:.0f} min ago", "last_post_utc": stamp}
+    required_age = max(0.0, float(min_gap)) + jitter
+    if age_minutes < required_age:
+        return {
+            "due": False,
+            "reason": (
+                f"last post is only {age_minutes:.0f} min old "
+                f"(minimum {min_gap:.0f} + randomized delay {jitter} min)"
+            ),
+            "last_post_utc": stamp,
+            "jitter_minutes": jitter,
+        }
+    return {
+        "due": True,
+        "reason": f"last post {age_minutes:.0f} min ago; randomized delay {jitter} min elapsed",
+        "last_post_utc": stamp,
+        "jitter_minutes": jitter,
+    }
 
 
 def local_due_status(*, now: datetime.datetime | None = None) -> dict[str, Any]:
     """:func:`due_status` for the checked-out ``data/schedule_state.json`` (read-only)."""
 
     state = _read_json(STATE_FILE, None, tolerant=True)
+    config = load_config()
+    jitter_min, jitter_max = post_jitter_bounds(config)
     return due_status(
         state if isinstance(state, dict) else None,
         now=now,
-        min_gap=min_gap_minutes(),
+        min_gap=min_gap_minutes(config),
+        jitter_min=jitter_min,
+        jitter_max=jitter_max,
     )
 
 
@@ -978,7 +1096,10 @@ def status(*, config: dict[str, Any] | None = None) -> dict[str, Any]:
         "rotation_started_utc": state.get("rotation_started_utc"),
         "total_slots": len(plan),
         "published_this_rotation": len(_rotation_records(state)),
-        "published_today": sum(_record_day(entry) == state["day_utc"] for entry in state.get("published", [])),
+        "published_today": sum(_record_day(entry) == state["day_utc"] and entry.get("mode") != "skipped"
+                               for entry in state.get("published", [])),
+        "skipped_today": sum(_record_day(entry) == state["day_utc"] and entry.get("mode") == "skipped"
+                             for entry in state.get("published", [])),
         "next_slot": describe(pending[0]) if pending else None,
         "in_flight": state.get("in_flight"),
         "pending": [describe(slot) for slot in pending],
@@ -995,6 +1116,7 @@ def render_summary(payload: dict[str, Any]) -> str:
         f"- Day (UTC): **{payload['day_utc']}** · rotation #{payload['rotation']}",
         f"- Queued slots completed this rotation: **{payload.get('published_this_rotation', 0)}/{payload['total_slots']}**",
         f"- Published today (including explicit extras): **{payload['published_today']}**",
+        f"- Quality-skipped opportunities today (no post): **{payload.get('skipped_today', 0)}**",
         "- The queue continues across midnight; only a completed rotation starts over.",
     ]
     if payload.get("next_slot"):

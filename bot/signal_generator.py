@@ -20,6 +20,13 @@ from bot.market_data import (
     get_orderbook,
     get_ticker_24h_all,
 )
+from bot.content_quality import (
+    SignalContentError,
+    clip_sentence,
+    sanitize_hook,
+    validate_reason,
+    word_count as _word_count,
+)
 from bot.futures_data import (
     get_funding_rate,
     get_futures_vs_spot_volume,
@@ -37,6 +44,14 @@ DEFAULT_GROQ_MODELS = (
 )
 
 
+class SignalQualityError(ValueError):
+    """A candidate failed a deterministic safety or setup-quality gate."""
+
+
+_SIGNAL_REGENERATION_ATTEMPTS = 2
+_MIN_DIRECTION_VOTES = 3
+
+
 def get_live_price(coin: str) -> float:
     """Get the authoritative live price from the verified market-data layer."""
 
@@ -47,7 +62,7 @@ def get_live_price(coin: str) -> float:
         raise RuntimeError(f"Market data not verified for {symbol}")
 
     price = float(data["price"])
-    if price <= 0:
+    if not math.isfinite(price) or price <= 0:
         raise RuntimeError(f"Invalid verified price for {symbol}: {price}")
 
     print(f"[Live Price - VERIFIED] {symbol} = ${price}")
@@ -58,8 +73,21 @@ def get_trending_coins(
     top_n: int = 30,
     min_change: float = 5.0,
     min_volume: float = 5_000_000,
+    exclude_coins: list[str] | tuple[str, ...] | set[str] | None = None,
 ) -> list[dict[str, Any]]:
-    """Return positive-momentum USDT markets from verified Binance data."""
+    """Return verified USDT movers, excluding configured non-crypto markets."""
+
+    if exclude_coins is None:
+        try:
+            trending_config = trade_state.load_config().get("trending", {})
+            exclude_coins = trending_config.get("exclude_coins", [])
+        except Exception:
+            exclude_coins = []
+    excluded_bases = {
+        str(value).upper().strip().removesuffix("USDT")
+        for value in (exclude_coins or [])
+        if str(value).strip()
+    }
 
     data = get_ticker_24h_all()
 
@@ -87,7 +115,7 @@ def get_trending_coins(
             symbol = str(item["symbol"]).upper()
             if not symbol.endswith("USDT"):
                 continue
-            if symbol in excluded_symbols:
+            if symbol in excluded_symbols or symbol[:-4] in excluded_bases:
                 continue
             if any(marker in symbol for marker in leveraged_suffixes):
                 continue
@@ -96,7 +124,8 @@ def get_trending_coins(
             volume = float(item["quoteVolume"])
             price = float(item["lastPrice"])
 
-            if price <= 0 or change < min_change or volume < min_volume:
+            if (not all(math.isfinite(value) for value in (price, change, volume))
+                    or price <= 0 or change < min_change or volume < min_volume):
                 continue
 
             entry_data: dict[str, Any] = {
@@ -122,9 +151,6 @@ def get_trending_coins(
             continue
 
     filtered.sort(key=lambda item: item["change"], reverse=True)
-    if not filtered:
-        raise RuntimeError("No valid trending coins found from verified API.")
-
     return filtered[:top_n]
 
 
@@ -388,16 +414,10 @@ def _configured_leverage() -> str:
     return leverage or "3x-5x"
 
 
-def _sanitize_hook_line(value: Any, *, max_chars: int = 90) -> str:
-    """Keep the LLM's hook one-line, bounded, and free of banned promises."""
+def _sanitize_hook_line(value: Any, *, max_chars: int = 70) -> str:
+    """Shared whole-word/whole-price hook limit used again by the publisher."""
 
-    text = " ".join(str(value or "").split())
-    if len(text) > max_chars:
-        cut = text[: max_chars - 1].rstrip()
-        # Clip at the last sentence/phrase boundary so the cut looks deliberate.
-        boundary = max(cut.rfind(". "), cut.rfind("? "), cut.rfind("! "), cut.rfind("; "))
-        text = cut if boundary < max_chars * 0.5 else cut[: boundary + 1]
-    return text
+    return sanitize_hook(value, max_chars=max_chars)
 
 
 def _sanitize_angle_family(value: Any) -> str:
@@ -408,9 +428,146 @@ def _sanitize_angle_family(value: Any) -> str:
 def _sanitize_scenarios(value: Any) -> dict[str, str]:
     raw = value if isinstance(value, dict) else {}
     return {
-        "bull_if": _sanitize_hook_line(raw.get("bull_if", ""), max_chars=140),
-        "bear_if": _sanitize_hook_line(raw.get("bear_if", ""), max_chars=140),
+        "bull_if": clip_sentence(raw.get("bull_if", ""), 140),
+        "bear_if": clip_sentence(raw.get("bear_if", ""), 140),
     }
+
+
+def _validate_public_prose(result: dict[str, Any]) -> dict[str, str]:
+    """Reject missing, short or copied public explanations; request a new draft."""
+
+    fields = {
+        name: validate_reason(result.get(name), field=name)
+        for name in ("why_now", "rapid_reason")
+    }
+    hook = " ".join(str(result.get("hook_line", "") or "").split())
+    if hook:
+        validate_reason(hook, field="hook_line")
+    return fields
+
+
+def _trend_vote(value: Any) -> int:
+    text = str(value or "").strip().lower()
+    if text in {"up", "positive"} or any(marker in text for marker in ("bull", "uptrend", "upward", "rising", "higher")):
+        return 1
+    if text in {"down", "negative"} or any(marker in text for marker in ("bear", "downtrend", "downward", "falling", "lower")):
+        return -1
+    return 0
+
+
+def rule_based_direction(
+    live_price: float,
+    research: dict[str, Any] | None,
+    *,
+    min_votes: int = _MIN_DIRECTION_VOTES,
+) -> tuple[str | None, dict[str, int]]:
+    """Infer a direction from 1H/4H trends, RSI and price-vs-VWAP evidence.
+
+    A side is returned only when at least ``min_votes`` independent inputs
+    agree, with no opposing 4H trend. The model cannot choose a LONG/SHORT
+    against this rule-based read. RSI >=55 / <=45 and a VWAP distance over
+    0.1% count as directional votes; neutral/missing readings do not vote.
+    """
+
+    research = research if isinstance(research, dict) else {}
+    timeframes = research.get("timeframe_trends", {})
+    timeframes = timeframes if isinstance(timeframes, dict) else {}
+    indicators = research.get("indicators_1h", {})
+    indicators = indicators if isinstance(indicators, dict) else {}
+
+    votes: dict[str, int] = {
+        "1h_trend": _trend_vote(timeframes.get("1h", timeframes.get("1H"))),
+        "4h_trend": _trend_vote(timeframes.get("4h", timeframes.get("4H"))),
+    }
+    try:
+        rsi = float(indicators.get("rsi"))
+        if math.isfinite(rsi):
+            votes["rsi"] = 1 if rsi >= 55 else -1 if rsi <= 45 else 0
+    except (TypeError, ValueError, OverflowError):
+        pass
+
+    try:
+        vwap = float(indicators.get("vwap"))
+        if math.isfinite(vwap) and vwap > 0 and live_price > 0:
+            distance = (live_price - vwap) / live_price
+            votes["vwap_side"] = 1 if distance > 0.001 else -1 if distance < -0.001 else 0
+    except (TypeError, ValueError, OverflowError):
+        pass
+
+    bullish = sum(value == 1 for value in votes.values())
+    bearish = sum(value == -1 for value in votes.values())
+    if bullish >= max(1, min_votes) and bullish > bearish and votes["4h_trend"] != -1:
+        return "LONG", votes
+    if bearish >= max(1, min_votes) and bearish > bullish and votes["4h_trend"] != 1:
+        return "SHORT", votes
+    return None, votes
+
+
+def _trading_quality_settings(overrides: dict[str, Any] | None = None) -> dict[str, float]:
+    try:
+        stored = trade_state.load_config().get("trading", {})
+    except Exception:
+        stored = {}
+    values = dict(stored) if isinstance(stored, dict) else {}
+    if isinstance(overrides, dict):
+        values.update(overrides)
+
+    def number(key: str, fallback: float, *, minimum: float = 0.0) -> float:
+        try:
+            parsed = float(values.get(key, fallback))
+            return max(minimum, parsed) if math.isfinite(parsed) else fallback
+        except (TypeError, ValueError, OverflowError):
+            return fallback
+
+    return {
+        "min_rr_tp1": number("min_rr_tp1", 1.0, minimum=1.0),
+        "min_rr_tp2": number("min_rr_tp2", 2.0, minimum=2.0),
+        "min_tp1_atr_fraction": number("min_tp1_atr_fraction", 0.6, minimum=0.6),
+    }
+
+
+def _level_quality_failures(
+    entry: float,
+    tp1: float,
+    tp2: float,
+    stop: float,
+    research: dict[str, Any],
+    thresholds: dict[str, float],
+) -> list[str]:
+    """Check reward-to-risk and TP1 distance against the measured 1H ATR."""
+
+    risk = abs(entry - stop)
+    atr = _research_float(
+        _nested_dict(research, "indicators_1h", "atr"),
+        float("nan"),
+    )
+    if risk <= 0 or not math.isfinite(risk):
+        return ["stop distance is not positive"]
+    if not math.isfinite(atr) or atr <= 0:
+        return ["verified 1H ATR is unavailable"]
+
+    rr_tp1 = abs(tp1 - entry) / risk
+    rr_tp2 = abs(tp2 - entry) / risk
+    atr_distance = abs(tp1 - entry) / atr
+    failures: list[str] = []
+    if rr_tp1 + 1e-12 < thresholds["min_rr_tp1"]:
+        failures.append(f"TP1 RR {rr_tp1:.2f} < {thresholds['min_rr_tp1']:.2f}")
+    if rr_tp2 + 1e-12 < thresholds["min_rr_tp2"]:
+        failures.append(f"TP2 RR {rr_tp2:.2f} < {thresholds['min_rr_tp2']:.2f}")
+    if atr_distance + 1e-12 < thresholds["min_tp1_atr_fraction"]:
+        failures.append(
+            f"TP1 distance {atr_distance:.2f} ATR < {thresholds['min_tp1_atr_fraction']:.2f} ATR"
+        )
+    return failures
+
+
+def _nested_dict(value: Any, *keys: str) -> Any:
+    current = value
+    for key in keys:
+        if not isinstance(current, dict):
+            return None
+        current = current.get(key)
+    return current
 
 
 def _round_level(price: float) -> float:
@@ -505,18 +662,42 @@ def _normalize_signal(
     trending_bonus: str,
     model: str,
     research: dict[str, Any] | None = None,
+    trading_config: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    """Apply authoritative values and reject impossible TP/SL ordering."""
+    """Normalize verified levels and enforce deterministic direction/RR gates."""
 
+    if not math.isfinite(live_price) or live_price <= 0:
+        raise SignalQualityError("Verified entry price must be finite and positive")
     direction = str(result.get("direction", "LONG")).upper().strip()
     if direction not in {"LONG", "SHORT"}:
-        raise ValueError(f"Unsupported signal direction: {direction}")
+        raise SignalQualityError(f"Unsupported signal direction: {direction}")
 
-    tp1 = _coerce_level(result.get("tp1"))
-    tp2 = _coerce_level(result.get("tp2"))
-    stop = _coerce_level(result.get("sl"))
+    research = research if isinstance(research, dict) else {}
+    rule_direction, direction_votes = rule_based_direction(live_price, research)
+    if rule_direction is None:
+        raise SignalQualityError(
+            "rule-based direction has insufficient agreement across 1H/4H trend, RSI and VWAP "
+            f"(votes: {direction_votes})"
+        )
+    if direction != rule_direction:
+        raise SignalQualityError(
+            f"model direction {direction} conflicts with rule-based {rule_direction} "
+            f"(votes: {direction_votes})"
+        )
 
-    def _levels_ordered(stop_level: float, tp1_level: float, tp2_level: float) -> bool:
+    thresholds = _trading_quality_settings(trading_config)
+    # Round before the model gate so rounding-induced failures also get the
+    # deterministic repair attempt, then check the repaired values again.
+    def rounded(value: Any) -> float | None:
+        level = _coerce_level(value)
+        return _round_level(level) if level is not None else None
+
+    tp1, tp2, stop = (rounded(result.get(key)) for key in ("tp1", "tp2", "sl"))
+
+    def _levels_ordered(stop_level: float | None, tp1_level: float | None, tp2_level: float | None) -> bool:
+        if any(level is None or not math.isfinite(level) or level <= 0
+               for level in (stop_level, tp1_level, tp2_level)):
+            return False
         if direction == "LONG":
             return stop_level < live_price < tp1_level < tp2_level
         return tp2_level < tp1_level < live_price < stop_level
@@ -524,33 +705,45 @@ def _normalize_signal(
     missing = [
         name for name, value in (("tp1", tp1), ("tp2", tp2), ("sl", stop)) if value is None
     ]
-    if missing or not _levels_ordered(stop, tp1, tp2):
+    model_failures = [] if missing or not _levels_ordered(stop, tp1, tp2) else _level_quality_failures(
+        live_price, tp1, tp2, stop, research, thresholds
+    )
+    derive_reason = (
+        f"missing {', '.join(missing)}" if missing
+        else "unordered levels" if not _levels_ordered(stop, tp1, tp2)
+        else "; ".join(model_failures)
+    )
+    if derive_reason:
         derived_tp1, derived_tp2, derived_stop = _derive_levels(
             direction, live_price, research
         )
-        reason = f"missing {', '.join(missing)}" if missing else "unordered levels"
         print(
-            f"[Groq] Model levels unusable ({reason}); derived deterministic "
-            f"TP1={derived_tp1} TP2={derived_tp2} SL={derived_stop} from ATR/SR"
+            f"[Groq] Model levels failed quality checks ({derive_reason}); trying ATR/SR levels "
+            f"TP1={derived_tp1} TP2={derived_tp2} SL={derived_stop}"
         )
         tp1, tp2, stop = derived_tp1, derived_tp2, derived_stop
-    else:
-        tp1, tp2, stop = _round_level(tp1), _round_level(tp2), _round_level(stop)
+
+    derived_failures = [] if _levels_ordered(stop, tp1, tp2) else ["derived levels are not strictly ordered"]
+    if not derived_failures:
+        derived_failures = _level_quality_failures(
+            live_price, tp1, tp2, stop, research, thresholds
+        )
+    if derived_failures:
+        raise SignalQualityError(
+            "setup failed minimum risk/reward or ATR-distance gate after deterministic derivation: "
+            + "; ".join(derived_failures)
+        )
 
     def safe_text(field: str, fallback: str) -> str:
         value = result.get(field)
         text = str(value).strip() if value is not None else ""
         return text or fallback
 
-    why_now = safe_text(
-        "why_now",
-        f"Price broke above key 1H resistance with {change:+.1f}% 24H change; confirm with live volume.",
-    )
+    public_prose = _validate_public_prose(result)
+    why_now = public_prose["why_now"]
+    rapid_reason = public_prose["rapid_reason"]
     invalidation = safe_text(
         "invalidation", f"A 1H candle close beyond ${stop} invalidates this setup."
-    )
-    rapid_reason = safe_text(
-        "rapid_reason", "1H trigger unavailable; wait for price confirmation."
     )
 
     research = research if isinstance(research, dict) else {}
@@ -620,6 +813,25 @@ def _normalize_signal(
     mtf_default = research.get("timeframe_trends", {})
     mtf_default = mtf_default if isinstance(mtf_default, dict) else {}
     fundamental_default = market_context_default.get("fundamental_notes", "Event risk unverified.")
+    try:
+        content_config = trade_state.load_config().get("content", {})
+        hook_limit = min(70, max(1, int(content_config.get("hook_max_chars", 70))))
+    except (TypeError, ValueError, AttributeError):
+        hook_limit = 70
+    hook_line = _sanitize_hook_line(result.get("hook_line", ""), max_chars=hook_limit)
+    if hook_line and _word_count(hook_line) < 6:
+        raise SignalContentError(
+            f"hook_line was reduced below six words while trimming to {hook_limit} characters; regenerate it"
+        )
+    computed_risk_management = {
+        "entry": live_price,
+        "tp1": tp1,
+        "tp2": tp2,
+        "stop_loss": stop,
+        "risk_reward_tp1": abs(tp1 - live_price) / abs(live_price - stop),
+        "risk_reward_tp2": abs(tp2 - live_price) / abs(live_price - stop),
+        "guidance": "Position size must be based on a predefined account-risk limit.",
+    }
 
     normalized = {
         **result,
@@ -632,7 +844,8 @@ def _normalize_signal(
         "tp2": tp2,
         "sl": stop,
         "leverage": _configured_leverage(),
-        "hook_line": _sanitize_hook_line(result.get("hook_line", "")),
+        "hook_line": hook_line,
+        "direction_validation": {"direction": rule_direction, "votes": direction_votes},
         "angle_family": _sanitize_angle_family(result.get("angle_family")),
         "scenarios": _sanitize_scenarios(result.get("scenarios")),
         "risk": str(result.get("risk", "Medium Risk")),
@@ -660,17 +873,7 @@ def _normalize_signal(
         "volatility_assessment": safe_field(
             "volatility_assessment", volatility_default
         ),
-        "risk_management": safe_field(
-            "risk_management",
-            {
-                "entry": live_price,
-                "tp1": tp1,
-                "tp2": tp2,
-                "stop_loss": stop,
-                "risk_reward_tp1": abs(tp1 - live_price) / abs(live_price - stop),
-                "guidance": "Position size must be based on a predefined account-risk limit.",
-            },
-        ),
+        "risk_management": computed_risk_management,
         "validation_score": safe_score(
             result.get("validation_score", confidence), confidence
         ),
@@ -928,7 +1131,7 @@ def generate_signal_with_groq(
         raise RuntimeError("GROQ_API_KEY not found in GitHub Secrets.")
 
     supplied_price = float(price)
-    if supplied_price <= 0:
+    if not math.isfinite(supplied_price) or supplied_price <= 0:
         raise ValueError("Supplied signal price must be greater than zero")
 
     live_price = get_live_price(coin)
@@ -945,6 +1148,12 @@ def generate_signal_with_groq(
         live_price=live_price,
         trending_bonus=trending_bonus,
     )
+    expected_direction, votes = rule_based_direction(live_price, institutional_research)
+    if expected_direction is None:
+        raise SignalQualityError(f"No rule-based direction consensus for {coin}: {votes}")
+    atr = _research_float(_nested_dict(institutional_research, "indicators_1h", "atr"))
+    if atr <= 0:
+        raise SignalQualityError(f"Verified 1H ATR is unavailable for {coin}")
     research_json = json.dumps(
         institutional_research,
         ensure_ascii=False,
@@ -953,7 +1162,7 @@ def generate_signal_with_groq(
     )
 
     system_prompt = """
-You are an institutional crypto analyst who writes for busy mobile readers on Binance Square, using only verified Binance data. Distinguish measured data from estimated proxies and state when a feed is unavailable. Never invent prices, flows, token events, macro releases, or execution. Curiosity must come from a real tension in the measured data, never from clickbait or promises. Return exactly one valid JSON object, no prose outside JSON.
+You are an institutional crypto analyst writing for busy mobile readers on Binance Square. Use only the verified research snapshot. Distinguish measured values from estimates, but never advertise a missing feed; omit unavailable evidence from public prose. Never invent prices, flows, token events, macro releases or execution. Build curiosity from a real measured tension, not clickbait or promises. Return exactly one valid JSON object and no prose outside JSON.
 """.strip()
 
     angle_families = ", ".join(ANGLE_FAMILIES)
@@ -971,109 +1180,143 @@ Coin: {str(coin).upper()}
 Verified Binance live price (Entry CMP): {live_price}
 24h change: {float(change):.2f}%
 Context: {str(trending_bonus).upper()}
+Rule-based direction: {expected_direction} (4H trend cannot oppose it)
 {rotation_hint}
 Research snapshot (JSON):
 {research_json}
 
-Use only verified entry price. Assess EMA/RSI/MACD/VWAP/Bollinger/Stoch RSI, volume spike/breakout, futures OI/funding/long-short, order-book, liquidation heatmap zones, MTF 5m/15m/1H/4H/1D/1W, BTC dominance/trend, ETH/BTC, fear/greed, ATR, and Fed/CPI/DXY macros. Mark missing as unavailable; mark estimates as estimated. Keep all prose fields to 1-2 short sentences.
+Use only verified entry price. Assess EMA/RSI/MACD/VWAP/Bollinger/Stoch RSI, volume spike/breakout, futures OI/funding/long-short, order-book, liquidation heatmap zones, MTF 5m/15m/1H/4H/1D/1W, BTC dominance/trend, ETH/BTC, fear/greed, ATR, and Fed/CPI/DXY macros. Never turn missing feeds into a claim; the publisher omits unavailable evidence. Mark estimates only when an estimated measurement is actually used. Keep public prose direct and mobile-readable.
 
-Return one valid JSON object with every required key below. Keep prose concise:
+The JSON strings below are schema instructions, not text to copy. Replace every instruction with a complete, specific sentence grounded in the research snapshot. Never return literal placeholders such as "Trigger." or "1H trigger.". The publisher computes the risk line from verified entry, TP1 and SL; do not invent a risk score or sizing claim.
+
+Return one valid JSON object with every required key below:
 {{
-  "direction": "LONG or SHORT",
+  "direction": "LONG or SHORT, consistent with the supplied 1H/4H trend stack, RSI and price-vs-VWAP evidence",
   "entry_price": {live_price},
   "tp1": 0,
   "tp2": 0,
   "sl": 0,
   "confidence": 0,
-  "hook_line": "<=90 chars, one line. Lead with the sharpest verified tension in the data: crowd-vs-data conflict, a binary reclaim/sweep question, or one precise measured finding. No ALL-CAPS, no promises, no 'guaranteed', at most one '?'. Every number must come from the snapshot above.",
+  "hook_line": "Write one complete, verified hook in 6 or more words and 70 characters or fewer. Use one real data tension or finding; no promises or unsupported numbers.",
   "angle_family": "exactly one of: {angle_families}",
   "scenarios": {{
-    "bull_if": "one short clause: the measured condition that keeps the upside path open",
-    "bear_if": "one short clause: the measured condition that invalidates it"
+    "bull_if": "A concise measured condition that keeps the upside path open",
+    "bear_if": "A concise measured condition that invalidates the thesis"
   }},
-  "rapid_reason": "1H trigger.",
-  "why_now": "Trigger.",
-  "invalidation": "Invalidation level.",
-  "smc_logic": "2-3 sentences.",
-  "smc_logic_short": "Chart annotation.",
-  "technical_analysis": "Structure & confluence.",
-  "indicators_summary": "EMA/RSI/MACD/VWAP/BB/Stoch readout.",
-  "risk_management": {{"risk_reward": "...", "position_sizing": "...", "invalidation_plan": "..."}},
+  "rapid_reason": "One complete sentence of at least 6 words naming the measured 1H trigger or evidence and why it matters.",
+  "why_now": "One complete sentence of at least 6 words explaining the measured reason this setup exists now.",
+  "invalidation": "One precise invalidation condition tied to the verified stop level.",
+  "smc_logic": "A concise evidence-based structure read using only supplied observations.",
+  "smc_logic_short": "A short chart annotation based on a supplied measured level.",
+  "technical_analysis": "One concise sentence describing actual structure and indicator alignment.",
+  "indicators_summary": "Summarize only indicator readings present in the research snapshot.",
   "validation_score": 0,
-  "analysis_summary": "Concise readout.",
-  "risk_factors": ["Risk 1", "Risk 2"],
-  "fundamental_note": "Token unlock/listing risk unverified if not in snapshot."
+  "analysis_summary": "A concise readout using measured evidence only.",
+  "risk_factors": ["A specific measured or explicitly unverified risk", "Another relevant risk if supported"],
+  "fundamental_note": "A verified catalyst or a concise statement that none was confirmed in the supplied data."
 }}
 
 Do NOT output these keys; they are auto-attached from the verified research
 snapshot above: "volume_analysis", "futures_data", "liquidity_analysis",
 "liquidation_heatmap", "mtf_analysis", "market_context", "sentiment_onchain",
-"volatility_assessment", "macro_factors".
+"volatility_assessment", "macro_factors", "risk_management" (computed from levels).
 
 Rules:
 1. entry_price must equal {live_price} exactly.
-2. tp1, tp2, sl must be positive numbers, never null. LONG: SL < entry_price < TP1 < TP2; SHORT: TP2 < TP1 < entry_price < SL.
-3. Use supplied SR/ATR if available; lower confidence if missing/conflicting.
-4. Never invent price, macro, token event, or flow; label remembered events unverified without dates; mark estimates as estimated.
-5. Keep every prose field to 1-2 short sentences.
-6. hook_line: angle comes from the data, not the mood. If the snapshot disagrees with the crowd's likely read, say what the data shows instead; if volume/OI/structure contains one standout measured fact, lead with it. At most one question mark. Never "guaranteed", "can't lose", "100%" or a promise of outcome. Reference ${str(coin).upper()} or a level so the line is anchored.
-7. scenarios.bull_if / bear_if must be mutually exclusive conditions phrased as plain "if-then" clauses tied to measured levels.
-8. Return JSON only.
+2. tp1, tp2, sl must be positive numbers, never null. LONG: SL < entry_price < TP1 < TP2; SHORT: TP2 < TP1 < entry_price < SL. The bot will enforce RR >= 1.0 to TP1, RR >= 2.0 to TP2, and TP1 distance >= 0.6 of measured 1H ATR.
+3. Direction is not a free choice: use {expected_direction}, following the 1H/4H trend stack, RSI and VWAP side in the snapshot. A response that disagrees with the bot's rule-based direction check is rejected.
+4. Never invent a price, macro release, token event or flow. Do not advertise missing feeds. Mark a proxy estimated only when an estimated measurement is used.
+5. why_now and rapid_reason must each be a complete sentence of at least 6 words with a specific measured reason; never use generic trigger placeholders.
+6. hook_line must be 70 characters or fewer, at least 6 words, anchored to this coin or a verified finding, and must not end in a cut-off word or partial price. At most one question mark; no promises or banned claims.
+7. scenarios.bull_if / bear_if must be mutually exclusive conditions tied to measured levels.
+8. Return JSON only; do not copy any schema instruction string literally.
 """.strip()
 
     client = Groq(api_key=api_key)
     candidates = _groq_model_candidates(api_key)
     failures: list[str] = []
+    rejected_setups: list[str] = []
+    rejected_narratives: list[str] = []
+    try:
+        trading_config = trade_state.load_config().get("trading", {})
+    except Exception:
+        trading_config = {}
 
     for model in candidates:
         print(f"[Groq] Generating signal with model: {model}")
-        try:
-            completion = client.chat.completions.create(
-                model=model,
-                messages=[
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": user_prompt},
-                ],
-                temperature=0.2,
-                **_groq_chat_kwargs(model, 16384),
-            )
-            result = _parse_json_object(completion.choices[0].message.content)
-            normalized = _normalize_signal(
-                result,
-                coin=coin,
-                live_price=live_price,
-                change=float(change),
-                trending_bonus=trending_bonus,
-                model=model,
-                research=institutional_research,
-            )
-            normalized["institutional_analysis"] = institutional_research
-            normalized["analysis_summary"] = str(
-                result.get("analysis_summary", "15-point analysis attached from available market data.")
-            ).strip()
-            normalized["fundamental_risk"] = str(
-                result.get(
-                    "fundamental_risk",
-                    institutional_research.get("market_context", {}).get("fundamental_notes", "Unverified."),
+        for attempt in range(_SIGNAL_REGENERATION_ATTEMPTS):
+            user_message = user_prompt
+            if attempt:
+                user_message += (
+                    "\n\nREGENERATION REQUIRED: The previous draft used placeholder or too-short "
+                    "public prose. Write fresh, complete why_now and rapid_reason sentences (at "
+                    "least 6 words each) and a specific hook no longer than 70 characters. Do not "
+                    "copy instructions from the JSON schema. Return the full JSON object."
                 )
-            ).strip()
-            risk_factors = result.get("risk_factors", [])
-            normalized["risk_factors"] = (
-                [str(item).strip() for item in risk_factors if str(item).strip()][:5]
-                if isinstance(risk_factors, list)
-                else [str(risk_factors).strip()]
-            )
-            print(f"[Groq] Signal validated with {model}")
-            return normalized
+            try:
+                completion = client.chat.completions.create(
+                    model=model,
+                    messages=[
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": user_message},
+                    ],
+                    temperature=0.2,
+                    **_groq_chat_kwargs(model, 16384),
+                )
+                result = _parse_json_object(completion.choices[0].message.content)
+                normalized = _normalize_signal(
+                    result,
+                    coin=coin,
+                    live_price=live_price,
+                    change=float(change),
+                    trending_bonus=trending_bonus,
+                    model=model,
+                    research=institutional_research,
+                    trading_config=trading_config,
+                )
+                normalized["institutional_analysis"] = institutional_research
+                normalized["analysis_summary"] = str(
+                    result.get("analysis_summary", "Market structure and participation were checked against the available data.")
+                ).strip()
+                normalized["fundamental_risk"] = str(
+                    result.get(
+                        "fundamental_risk",
+                        institutional_research.get("market_context", {}).get("fundamental_notes", "Unverified."),
+                    )
+                ).strip()
+                risk_factors = result.get("risk_factors", [])
+                normalized["risk_factors"] = (
+                    [str(item).strip() for item in risk_factors if str(item).strip()][:5]
+                    if isinstance(risk_factors, list)
+                    else [str(risk_factors).strip()]
+                )
+                print(f"[Groq] Signal validated with {model}")
+                return normalized
 
-        except Exception as exc:
-            if _is_authentication_error(exc):
-                raise RuntimeError("GROQ_API_KEY authentication failed") from exc
+            except SignalContentError as exc:
+                failure = f"{model} attempt {attempt + 1}: {exc}"
+                print(f"[Groq Warning] {failure}")
+                if attempt + 1 == _SIGNAL_REGENERATION_ATTEMPTS:
+                    rejected_narratives.append(failure)
+            except SignalQualityError as exc:
+                failure = f"{model}: {exc}"
+                rejected_setups.append(failure)
+                print(f"[Signal Quality] {failure}")
+                break
+            except Exception as exc:
+                if _is_authentication_error(exc):
+                    raise RuntimeError("GROQ_API_KEY authentication failed") from exc
 
-            failure = f"{model}: {type(exc).__name__}: {exc}"
-            failures.append(failure)
-            print(f"[Groq Warning] {failure}")
+                failure = f"{model}: {type(exc).__name__}: {exc}"
+                failures.append(failure)
+                print(f"[Groq Warning] {failure}")
+                break
 
+    if rejected_setups or rejected_narratives:
+        reasons = rejected_setups + rejected_narratives
+        raise SignalQualityError(
+            "All model completions were rejected by the signal quality gate: " + " | ".join(reasons)
+        )
     summary = " | ".join(failures) if failures else "no candidate model was attempted"
     raise RuntimeError(f"All Groq signal models failed: {summary}")
 
@@ -1168,7 +1411,7 @@ Use the supplied BTC and ETH 1H/4H RSI and EMA20/50/200 readings in the thesis w
 Return exactly this JSON structure:
 {{
   "headline": "Punchy market headline summarizing BTC structure and current market pulse",
-  "hook_line": "<=90 chars, one line: the single most interesting verified tension in today's data (e.g. price vs sentiment divergence, dominance shift vs alt momentum). No promises, no clickbait, no 'guaranteed'; every number from the supplied data.",
+  "hook_line": "<=70 chars and at least 6 words, one line: the single most interesting verified tension in today's data (e.g. price vs sentiment divergence, dominance shift vs alt momentum). No promises, no clickbait, no 'guaranteed'; every number from the supplied data.",
   "btc_price": {btc_price},
   "btc_change": {btc_change},
   "market_phase": "e.g. Bullish Expansion / Consolidation / Key Resistance Retest / Liquidity Hunt",
@@ -1287,7 +1530,7 @@ Current Market Context: Bitcoin at ${btc_price:,.0f} ({btc_change:+.1f}% 24H).
 {trending_line}
 Return exactly this JSON structure:
 {{
-  "title": "Short punchy meme headline or situation title (e.g. 'Trader Diary:', 'My Portfolio when:', 'The 3 Stages of a Leverage Trader:')",
+  "title": "A short situation headline for explicitly fictional trading humor, not a personal trading diary",
   "content": "2-4 lines of witty, super-relatable trading humor / meme format (e.g. comparison, expectation vs reality, trader thoughts at 3 AM).",
   "lesson": "One short witty or real risk-management takeaway.",
   "question": "A fun, natural question for the community (e.g. 'Who else did this today? Be honest 👇')"
@@ -1296,7 +1539,7 @@ Return exactly this JSON structure:
 Rules:
 1. Make it genuine, relatable, and funny for real crypto futures and spot traders.
 2. Avoid generic corporate speak.
-3. Never state or imply a real position, entry, or P&L - comedy, not a trade call.
+3. This is fictional humor, not a personal diary. Never state or imply a real position, entry or P&L. Avoid claims about the author's actual day or account.
 4. Return JSON only.
 """.strip()
 
@@ -1418,7 +1661,7 @@ Pick ONE concept that today's data illustrates well (examples: multi-timeframe t
 Return exactly this JSON structure:
 {{
   "title": "Short plain-English title, e.g. 'Reading a volume spike without fooling yourself'",
-  "hook_line": "<=90 chars: the curiosity gap the explainer resolves, anchored to one real number from the snapshot",
+  "hook_line": "<=70 chars and at least 6 words: the curiosity gap the explainer resolves, anchored to one real number from the snapshot",
   "concept": "The concept name, 2-5 words",
   "points": ["3-5 short numbered teaching points, each <=200 chars, each citing a measured value from the snapshot where relevant"],
   "takeaway": "One sentence: the habit the reader should repeat",

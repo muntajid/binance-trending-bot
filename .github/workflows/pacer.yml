@@ -1,12 +1,9 @@
-name: Hourly Pacer - 24 Posts per Day
+name: Square Pacer - Six Scheduled Opportunities per Day
 
-# GitHub cron is best effort: the 2-hourly signal cron used to deliver only
-# 2-5 of its 12 daily runs. This job is the reliable clock instead. It stays
-# alive for ~5.5 hours, dispatches "Signal Poster" once per UTC hour (retrying
-# when a run fails or is cancelled), then dispatches a fresh copy of itself.
-# The cron below only revives the chain if a handoff is ever lost; an extra
-# pacer notices the active one and exits within a few minutes.
-# Logic and tuning: bot/pacer.py and bot/config.json -> schedule.pacer.
+# Reliable clock for the six-slot plan. Checks every few minutes but dispatches
+# only after the shared minimum-gap and stable per-slot jitter gates release.
+# A ~5.5-hour handoff renews the process; cron revives a lost chain. A duplicate
+# pacer yields to the active leader. Logic/config: bot/pacer.py, bot/config.json.
 on:
   schedule:
     - cron: "23 * * * *"
@@ -34,7 +31,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Dispatch one signal run per UTC hour
+      - name: Pace the six-slot schedule with posting-time variation
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python -m bot.pacer

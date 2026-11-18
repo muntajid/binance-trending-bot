@@ -47,6 +47,12 @@ REQUIRED_SIGNAL_FIELDS = (
 )
 
 
+VALID_PROSE = {
+    "why_now": "The measured hourly close reclaimed resistance with rising volume.",
+    "rapid_reason": "Hourly price reclaimed resistance while measured participation expanded above average.",
+}
+
+
 class SignalNormalizationTests(unittest.TestCase):
     def _research(self):
         return {
@@ -90,7 +96,7 @@ class SignalNormalizationTests(unittest.TestCase):
 
     def test_all_required_fields_have_safe_defaults_and_verified_entry(self):
         result = signal_generator._normalize_signal(
-            {"direction": "LONG", "tp1": 110, "tp2": 115, "sl": 95},
+            {**VALID_PROSE, "direction": "LONG", "tp1": 110, "tp2": 115, "sl": 95},
             coin="ETH",
             live_price=100,
             change=3.2,
@@ -111,7 +117,7 @@ class SignalNormalizationTests(unittest.TestCase):
     def test_unusable_model_levels_are_repaired_from_research(self):
         # Unordered LONG levels are replaced by deterministic ATR/SR levels.
         repaired = signal_generator._normalize_signal(
-            {"direction": "LONG", "tp1": 99, "tp2": 110, "sl": 95},
+            {**VALID_PROSE, "direction": "LONG", "tp1": 99, "tp2": 110, "sl": 95},
             coin="ETH",
             live_price=100,
             change=1,
@@ -122,14 +128,17 @@ class SignalNormalizationTests(unittest.TestCase):
         self.assertTrue(repaired["sl"] < 100 < repaired["tp1"] < repaired["tp2"])
 
         # Unordered SHORT levels are repaired too.
+        bearish_research = self._research()
+        bearish_research["timeframe_trends"] = {"1h": "bearish", "4h": "bearish"}
+        bearish_research["indicators_1h"]["rsi"] = 41
         repaired_short = signal_generator._normalize_signal(
-            {"direction": "SHORT", "tp1": 101, "tp2": 90, "sl": 105},
+            {**VALID_PROSE, "direction": "SHORT", "tp1": 101, "tp2": 90, "sl": 105},
             coin="ETH",
             live_price=100,
             change=-1,
             trending_bonus="BTC",
             model="offline-test",
-            research=self._research(),
+            research=bearish_research,
         )
         self.assertTrue(
             repaired_short["tp2"] < repaired_short["tp1"] < 100 < repaired_short["sl"]
@@ -137,7 +146,7 @@ class SignalNormalizationTests(unittest.TestCase):
 
         # Null levels (the CI failure mode) no longer raise; they are derived.
         derived = signal_generator._normalize_signal(
-            {"direction": "LONG", "tp1": None, "tp2": None, "sl": None},
+            {**VALID_PROSE, "direction": "LONG", "tp1": None, "tp2": None, "sl": None},
             coin="ETH",
             live_price=100,
             change=1,
@@ -149,23 +158,25 @@ class SignalNormalizationTests(unittest.TestCase):
 
         # String levels with currency noise are coerced, not rejected.
         coerced = signal_generator._normalize_signal(
-            {"direction": "LONG", "tp1": "$110.0", "tp2": "115", "sl": "95"},
+            {**VALID_PROSE, "direction": "LONG", "tp1": "$110.0", "tp2": "115", "sl": "95"},
             coin="ETH",
             live_price=100,
             change=1,
             trending_bonus="BTC",
             model="offline-test",
+            research=self._research(),
         )
         self.assertEqual((coerced["tp1"], coerced["tp2"], coerced["sl"]), (110.0, 115.0, 95.0))
 
         # Valid model levels are retained untouched.
         retained = signal_generator._normalize_signal(
-            {"direction": "LONG", "tp1": 110, "tp2": 115, "sl": 95},
+            {**VALID_PROSE, "direction": "LONG", "tp1": 110, "tp2": 115, "sl": 95},
             coin="ETH",
             live_price=100,
             change=1,
             trending_bonus="BTC",
             model="offline-test",
+            research=self._research(),
         )
         self.assertEqual((retained["tp1"], retained["tp2"], retained["sl"]), (110, 115, 95))
 
@@ -185,7 +196,7 @@ class SignalNormalizationTests(unittest.TestCase):
         self.assertNotIn("extra_body", plain)
 
     def test_prompt_requires_full_schema_and_repairs_invalid_model_levels(self):
-        invalid = {"direction": "LONG", "tp1": 99, "tp2": 115, "sl": 95}
+        invalid = {**VALID_PROSE, "direction": "LONG", "tp1": 99, "tp2": 115, "sl": 95}
 
         def response(payload):
             return SimpleNamespace(
@@ -368,37 +379,27 @@ class SignalPostTests(unittest.TestCase):
         self.assertIn("RR", post)
         self.assert_clean(post)
 
-    def test_explained_post_is_hooks_bullets_scenarios_in_target_range(self):
+    def test_explained_post_is_a_concise_mobile_setup_without_public_scores(self):
         post = format_explained_post(self._signal_with_hook())
-        self.assertGreaterEqual(len(post), 700)
-        self.assertLessEqual(len(post), 1900)
+        self.assertGreaterEqual(len(post), 300)
+        self.assertLessEqual(len(post), 1000)
+        self.assertLessEqual(len(post.splitlines()), 9)
+        self.assertLessEqual(len(post.splitlines()[0]), 70)
         self.assertTrue(post.splitlines()[0].lower().startswith("eth quiet"))
         for needle in (
-            "Entry CMP $100",
-            "Why now:",
-            "Key evidence (verified):",
-            "• Structure:",
-            "• Indicators:",
-            "• Participation:",
-            "• Liquidity:",
-            "• Trend stack:",
-            "• Context:",
-            "🔀 If price holds above $95",
-            "❌ Invalidation:",
-            "🛡️ Risk:",
-            "Tags: $ETH",
-            "not financial advice",
+            "Entry CMP $100", "Why now:", "Trigger:", "RSI", "VOL",
+            "Risk: RR 1:2.00 to TP1", "a 1H close below $95 invalidates",
+            "Which hits first", "not financial advice",
         ):
             self.assertIn(needle.lower(), post.lower())
-        # No machine-style fragments survived the rewrite.
-        self.assertNotIn("buying volume:", post.lower())
-        self.assertNotIn("volume_spike:", post.lower())
+        for absent in ("Conf 84", "validation", "15-POINT", "Key evidence", "buying volume:", "volume_spike:"):
+            self.assertNotIn(absent, post)
         self.assert_clean(post)
 
     def test_explained_post_without_hook_uses_rotated_fallback(self):
         post = format_explained_post(self._signal())
         self.assertLessEqual(len(post), 1900)
-        self.assertIn("$ETH", post.splitlines()[0])
+        self.assertIn("ETH", post.splitlines()[0])
         # The binary scenario line falls back to the verified invalidation level.
         self.assertIn("$95", post)
         self.assert_clean(post)

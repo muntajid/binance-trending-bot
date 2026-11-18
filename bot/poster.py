@@ -2,7 +2,7 @@
 
 Supports 4 core publication modes:
 1. Rapid Alert Mode (verified levels plus a concise 15-point evidence summary)
-2. Explained Master Setup Mode (15 numbered findings, Why Now, and Invalidation)
+2. Explained Setup Mode (hook, levels, two concise reasons and defined risk)
 3. Macro & Bitcoin Market Overview Mode (BTC structure, flows, and market phases)
 4. Viral Meme & Community Culture Mode (trader psychology and community culture)
 
@@ -19,6 +19,7 @@ import re
 from pathlib import Path
 from typing import Any
 
+from bot.content_quality import clip_sentence, clip_text, sanitize_hook, validate_reason, word_count
 from bot.market_data import get_24h_data
 
 _RNG = random.SystemRandom()
@@ -96,6 +97,20 @@ def _format_price(value: float) -> str:
     return result if result else "0"
 
 
+def _format_signal_price(value: float) -> str:
+    """Preserve normalized small-token precision in editorial setup text.
+
+    The legacy ``_format_price`` is deliberately left unchanged because TP-hit
+    captions must keep their existing rendering byte-for-byte.
+    """
+
+    value = float(value)
+    if not math.isfinite(value) or value <= 0:
+        raise ValueError("Signal price must be finite and positive")
+    decimals = 2 if value >= 1000 else 3 if value >= 100 else 4 if value >= 1 else 6 if value >= 0.01 else 8
+    return f"{value:.{decimals}f}".rstrip("0").rstrip(".")
+
+
 def _risk_reward(entry: float, target: float, stop: float) -> float:
     risk = abs(entry - stop)
     reward = abs(target - entry)
@@ -150,13 +165,16 @@ def check_and_record_similarity(caption: str, max_similarity: float = 0.82) -> b
 # Dynamic Hashtag & CTA Distributions (Based on 136k Post Benchmark)
 # ---------------------------------------------------------------------------
 
-DYNAMIC_HASHTAGS = (
-    "#Write2Earn",
-    "#BinanceSquareFamily",
-    "#CryptoTrading",
-    "#BinanceSquare",
-    "#Altcoins",
-)
+# Editorial hashtags describe the actual subject, never an engagement campaign.
+CONTEXT_HASHTAGS = {
+    "contrarian_conflict": "#MarketStructure",
+    "binary_scenario": "#PriceAction",
+    "data_finding": "#CryptoTrading",
+    "event_risk": "#RiskManagement",
+    "structure_break": "#TechnicalAnalysis",
+    "meme_community": "#TradingHumor",
+}
+
 
 # Phrases that must never leave the drafting pipeline. Accuracy is the brand;
 # outcomed-promising language is both a compliance and a trust hazard.
@@ -173,9 +191,43 @@ BANNED_CLAIMS = (
 )
 
 
-def _get_dynamic_hashtag() -> str:
-    """Return exactly 1-2 relevant dynamic hashtags per benchmark."""
-    return _RNG.choice(DYNAMIC_HASHTAGS)
+def _get_dynamic_hashtag(context: Any = None) -> str:
+    """Choose a topical tag instead of unrelated reward/family campaigns."""
+
+    if isinstance(context, dict):
+        coin = str(context.get("coin", "")).upper().strip()
+        if coin == "BTC":
+            return "#Bitcoin"
+        if coin == "ETH":
+            return "#Ethereum"
+        context = context.get("angle_family", "")
+    return CONTEXT_HASHTAGS.get(str(context or ""), "#CryptoTrading")
+
+
+def _limit_cashtags(text: str, *allowed_coins: str) -> str:
+    """At most two relevant cashtag occurrences, with no duplicate ticker tags.
+
+    Dollar-denominated prices are untouched. Other ticker mentions remain plain
+    words, so prose does not turn into an unrelated discovery-tag list.
+    """
+
+    try:
+        limit = min(2, max(0, int(_content_config().get("max_cashtags", 2))))
+    except (TypeError, ValueError, OverflowError):
+        limit = 2
+    allowed = {str(coin).upper().strip() for coin in allowed_coins if coin}
+    used: set[str] = set()
+
+    def replace(match: re.Match[str]) -> str:
+        coin = match.group(1).upper()
+        if re.fullmatch(r"\d+[KMB]", coin):
+            return match.group(0)  # A compact dollar amount, not a cashtag.
+        if coin not in allowed or coin in used or len(used) >= limit:
+            return match.group(1)
+        used.add(coin)
+        return "$" + coin
+
+    return re.sub(r"\$([A-Za-z][A-Za-z0-9]*|[0-9]+[A-Za-z][A-Za-z0-9]*)\b", replace, text)
 
 
 def _content_config() -> dict[str, Any]:
@@ -219,7 +271,7 @@ def _question_from_context(coin: str, context: dict[str, Any] | None) -> str:
 
     def _price(value: Any) -> str:
         number = _as_number(value)
-        return _format_price(number) if number and number > 0 else ""
+        return _format_signal_price(number) if number and number > 0 else ""
 
     direction = str(context.get("direction", "LONG")).upper()
     upside = _price(_first_value(context.get("resistance"), context.get("tp1")))
@@ -260,21 +312,7 @@ def _get_cta_prompt(coin: str, context: dict[str, Any] | None = None) -> str:
 
 
 def _clip_sentence(text: Any, limit: int) -> str:
-    """Clip at a sentence/semicolon boundary so cuts never look like glitches."""
-
-    value = " ".join(str(text or "").split())
-    if limit <= 0:
-        return ""
-    if len(value) <= limit:
-        return value
-    cut = value[:limit].rstrip()
-    boundary = max(cut.rfind(". "), cut.rfind("; "), cut.rfind("? "), cut.rfind("! "))
-    if boundary >= limit * 0.45:
-        return cut[: boundary + 1].rstrip()
-    comma = cut.rfind(", ")
-    if comma >= limit * 0.6:
-        return cut[:comma].rstrip() + "."
-    return cut.rstrip(",;:") + "…"
+    return clip_sentence(text, limit)
 
 
 def assert_post_quality(post: str, payload: dict[str, Any] | None = None) -> str:
@@ -290,7 +328,7 @@ def assert_post_quality(post: str, payload: dict[str, Any] | None = None) -> str
       price-drift guard), so a hook can never quote an invented level.
     """
 
-    text = str(post)
+    text = assert_clean_post_text(str(post))
     lowered = text.lower()
     for phrase in BANNED_CLAIMS:
         if phrase in lowered:
@@ -298,6 +336,17 @@ def assert_post_quality(post: str, payload: dict[str, Any] | None = None) -> str
 
     if text.count("?") > 2:
         raise ValueError("Post carries more than two questions; one hook + one CTA question max")
+
+    if isinstance(payload, dict) and all(key in payload for key in ("entry_price", "tp1", "tp2", "sl")):
+        for name in ("why_now", "rapid_reason"):
+            validate_reason(payload.get(name), field=name)
+        if re.search(r"\b(?:conf(?:idence)?|validation(?: score)?)\s*[:=]?\s*\d", text, re.IGNORECASE):
+            raise ValueError("Public signal text must not contain model confidence/validation numbers")
+        if re.search(r"\b(?:unavailable|n/a)\b", text, re.IGNORECASE):
+            raise ValueError("Unavailable-data notices must be omitted from public signal prose")
+        tags = re.findall(r"\$([A-Za-z][A-Za-z0-9]*)\b", text)
+        if len(tags) > 2:
+            raise ValueError("Signal text has more than two cashtag occurrences")
 
     if isinstance(payload, dict):
         hook = str(payload.get("hook_line", "")).strip()
@@ -357,16 +406,16 @@ def _fmt_volume_line(volume: Any) -> str:
         parts.append(f"volume spike {latest / average:.1f}x vs average")
     elif spike is True:
         parts.append("volume spike detected")
-    elif spike is False:
+    elif spike is False and latest is not None:
         parts.append("volume normal")
     if buy is not None and sell is not None and (buy + sell) > 0:
         share = buy / (buy + sell) * 100.0
         parts.append(f"taker buy share {share:.0f}%")
     if qv is not None and qv > 0:
         parts.append(f"24h turnover {_compact_money(qv)}")
-    if _boolish(v.get("estimated")) is True:
+    if parts and _boolish(v.get("estimated")) is True:
         parts.append("(est.)")
-    return "; ".join(parts) if parts else "unavailable"
+    return "; ".join(parts)
 
 
 def _fmt_futures_line(futures: Any) -> str:
@@ -394,7 +443,7 @@ def _fmt_futures_line(futures: Any) -> str:
     if _as_number(lsr) is not None:
         parts.append(f"L/S ratio {_compact_number(lsr, 2)}")
     if not parts:
-        return "derivatives feed unavailable today"
+        return ""
     suffix = " (est.)" if liq_est is True else ""
     return "; ".join(parts) + suffix
 
@@ -408,7 +457,7 @@ def _fmt_liquidity_line(liquidity: Any, heatmap: Any) -> str:
     ratio = _as_number(book.get("imbalance_ratio"))
 
     parts: list[str] = []
-    if imbalance:
+    if imbalance and not _missing_evidence(imbalance) and book.get("available") is not False:
         rendered = imbalance
         if ratio is not None:
             rendered += f" ({ratio:.2f}x)"
@@ -427,7 +476,7 @@ def _fmt_liquidity_line(liquidity: Any, heatmap: Any) -> str:
         if long_zone:
             zones.append(f"longs ~${_format_price(long_zone)}")
         parts.append("est. liquidation magnets: " + " / ".join(zones))
-    return "; ".join(parts) if parts else "unavailable"
+    return "; ".join(parts)
 
 
 def _fmt_trend_stack(mtf: Any) -> str:
@@ -435,8 +484,11 @@ def _fmt_trend_stack(mtf: Any) -> str:
 
     m = _as_mapping(mtf)
     labels = (("5m", "5m"), ("15m", "15m"), ("1h", "1H"), ("4h", "4H"), ("1d", "1D"), ("1w", "1W"))
-    stack = " ".join(f"{label}{_trend_arrow(m.get(key, m.get(key.upper(), 'unavailable')))}" for key, label in labels)
-    return stack
+    return " ".join(
+        f"{label}{_trend_arrow(value)}"
+        for key, label in labels
+        if _trend_short(value := m.get(key, m.get(key.upper()))) != "n/a"
+    )
 
 
 def _fmt_context_line(market_context: Any, sentiment: Any) -> str:
@@ -451,45 +503,42 @@ def _fmt_context_line(market_context: Any, sentiment: Any) -> str:
     fg_label = str(fg.get("classification", "")).strip()
 
     parts: list[str] = []
-    if btc_trend:
+    if btc_trend and not _missing_evidence(btc_trend):
         parts.append(f"BTC {btc_trend}")
     if dom is not None:
         parts.append(f"dominance {dom:.1f}%")
     if fg_value is not None:
         parts.append(f"F&G {int(fg_value)}" + (f" {fg_label}" if fg_label else ""))
-    return "; ".join(parts) if parts else "broader market context unavailable"
+    return "; ".join(parts)
 
 
 def _fmt_risk_line(risk: Any, fallback: dict[str, Any]) -> str:
-    """Readable risk line: RR, sizing rule, invalidation plan."""
+    """Ignore model risk prose: compute RR only from entry, TP1 and SL."""
 
-    r = _as_mapping(risk) or fallback
-    rr = _first_value(r.get("risk_reward"), r.get("risk_reward_tp1"))
-    sizing = _first_value(r.get("position_sizing"), r.get("guidance"))
-    plan = _first_value(r.get("invalidation_plan"), r.get("invalidation"))
+    entry = float(fallback["entry"])
+    tp1 = float(fallback["tp1"])
+    stop = float(fallback["sl"])
+    rr = _risk_reward(entry, tp1, stop)
+    side = "below" if str(fallback.get("direction", "LONG")).upper() == "LONG" else "above"
+    return f"RR 1:{rr:.2f} to TP1; a 1H close {side} ${_format_signal_price(stop)} invalidates."
 
-    parts: list[str] = []
-    if rr is not None:
-        rr_text = str(rr).strip()
-        if _as_number(rr) is not None:
-            rr_text = f"RR ≈1:{float(rr):.1f} to TP1"
-        parts.append(rr_text)
-    if sizing:
-        parts.append(str(sizing).strip().rstrip("."))
-    if plan:
-        parts.append(f"plan: {str(plan).strip()}")
-    return "; ".join(parts) if parts else "size positions to a predefined account-risk limit"
+
+def _missing_evidence(value: Any) -> bool:
+    text = str(value or "").lower().strip()
+    return not text or any(marker in text for marker in (
+        "unavailable", "n/a", "not fetched", "no live", "unverified", "unknown",
+        "insufficient data", "not provided",
+    ))
 
 
 def _fmt_macro_line(macro: Any, fundamental: Any) -> str:
-    """One honest macro/fundamental line; 'unavailable' when feeds are missing."""
+    """Only render confirmed macro/event evidence; omit absent feed notices."""
 
-    m = _as_mapping(macro)
-    contexts = [str(m.get(key, "")).lower() for key in ("fed_rate_context", "cpi_context", "dxy_proxy")]
-    feeds_missing = contexts and all(("not fetched" in item or "no live" in item or "unavailable" in item) for item in contexts if item)
-    macro_text = "macro feeds unavailable - no event catalyst claimed" if feeds_missing else _describe_data(m, 90)
-    fund_text = _clip_sentence(_describe_data(fundamental, 80), 80)
-    return f"{macro_text}; token/event risk: {fund_text}"
+    parts = [str(value).strip() for value in _as_mapping(macro).values()
+             if isinstance(value, str) and not _missing_evidence(value)]
+    if fundamental and not _missing_evidence(fundamental):
+        parts.append(_describe_data(fundamental, 100))
+    return _clip_sentence("; ".join(parts), 190)
 
 
 def _hook_lead(payload: dict[str, Any]) -> str:
@@ -498,13 +547,13 @@ def _hook_lead(payload: dict[str, Any]) -> str:
     hook = " ".join(str(payload.get("hook_line", "") or "").split())
     if not hook:
         return ""
-    max_chars = 90
     try:
-        max_chars = int(_content_config().get("hook_max_chars", 90))
-    except (TypeError, ValueError):
-        max_chars = 90
-    if len(hook) > max_chars:
-        hook = _clip_sentence(hook, max_chars)
+        max_chars = int(_content_config().get("hook_max_chars", 70))
+    except (TypeError, ValueError, OverflowError):
+        max_chars = 70
+    hook = sanitize_hook(hook, max_chars=max_chars)
+    if word_count(hook) < 6:
+        return ""
     lowered = hook.lower()
     if any(phrase in lowered for phrase in BANNED_CLAIMS):
         return ""
@@ -525,12 +574,7 @@ def _cta_context(signal: dict[str, Any]) -> dict[str, Any]:
 
 
 def _clip(text: Any, limit: int) -> str:
-    value = " ".join(str(text or "").split())
-    if limit <= 0:
-        return ""
-    if len(value) <= limit:
-        return value
-    return value[: max(0, limit - 1)].rstrip() + "…"
+    return clip_text(text, limit)
 
 
 def _as_mapping(value: Any) -> dict[str, Any]:
@@ -718,347 +762,107 @@ def _institutional_scan_block(
 # MODE 1: Rapid Alert Post (institutional scan summary)
 # ---------------------------------------------------------------------------
 
-def format_rapid_alert_post(signal: dict[str, Any]) -> str:
-    """Render a hook-led rapid alert (≈300-720 chars) with price, risk, and live research cues."""
+def _signal_cues(signal: dict[str, Any]) -> str:
+    """A few measured inputs, with absent feeds omitted rather than advertised."""
 
-    coin = _clip(signal["coin"], 12).upper().strip()
-    entry = float(signal["entry_price"])
-    tp1 = float(signal["tp1"])
-    tp2 = float(signal["tp2"])
-    stop = float(signal["sl"])
+    analysis = _as_mapping(signal.get("institutional_analysis"))
+    indicators = _as_mapping(analysis.get("indicators_1h"))
+    volume = _first_value(analysis.get("volume_analysis"), signal.get("volume_analysis"))
+    futures = _first_value(analysis.get("futures"), signal.get("futures_data"))
+    mtf = _first_value(analysis.get("timeframe_trends"), signal.get("mtf_analysis"))
+    parts: list[str] = []
+    rsi = _as_number(indicators.get("rsi"))
+    if rsi is not None:
+        parts.append(f"RSI {rsi:.1f}")
+    volume_text = _fmt_volume_line(volume)
+    if volume_text:
+        parts.append(f"VOL {volume_text}")
+    futures_text = _fmt_futures_line(futures)
+    if futures_text:
+        parts.append(futures_text)
+    trend_text = _fmt_trend_stack(mtf)
+    if trend_text:
+        parts.append(f"MTF {trend_text}")
+    return " | ".join(parts)
+
+
+def _signal_header(signal: dict[str, Any], *, icon: str) -> str:
+    coin = str(signal["coin"]).upper().strip()
     direction = _direction(signal)
-    hashtag = _get_dynamic_hashtag()
-    cta = _get_cta_prompt(coin, _cta_context(signal)).strip()
-
-    entry_s = _format_price(entry)
-    tp1_s = _format_price(tp1)
-    tp2_s = _format_price(tp2)
-    sl_s = _format_price(stop)
-    tp1_pct = _move_percent(entry, tp1, direction)
-    tp2_pct = _move_percent(entry, tp2, direction)
-    stop_pct = abs(_move_percent(entry, stop, direction))
-    rr = _risk_reward(entry, tp1, stop)
-
-    research = _as_mapping(signal.get("institutional_analysis"))
-    indicators = _as_mapping(research.get("indicators_1h"))
-    volume = _as_mapping(research.get("volume_analysis")) or _as_mapping(signal.get("volume_analysis"))
-    futures = _as_mapping(research.get("futures")) or _as_mapping(signal.get("futures_data"))
-    heatmap = _as_mapping(_nested_value(research, "futures", "liquidation_levels")) or _as_mapping(
-        signal.get("liquidation_heatmap")
-    )
-    mtf = _as_mapping(research.get("timeframe_trends")) or _as_mapping(
-        signal.get("mtf_analysis")
+    entry, tp1, tp2, stop = (float(signal[key]) for key in ("entry_price", "tp1", "tp2", "sl"))
+    return (
+        f"{icon} ${coin} {direction} | Entry CMP ${_format_signal_price(entry)} | "
+        f"TP1 ${_format_signal_price(tp1)} ({_move_percent(entry, tp1, direction):+.1f}%) | "
+        f"TP2 ${_format_signal_price(tp2)} ({_move_percent(entry, tp2, direction):+.1f}%) | "
+        f"SL ${_format_signal_price(stop)} (-{abs(_move_percent(entry, stop, direction)):.1f}%) | "
+        f"RR 1:{_risk_reward(entry, tp1, stop):.2f}"
     )
 
-    rsi = _first_value(indicators.get("rsi"), _nested_value(research, "indicators_1h", "rsi"))
-    rsi_text = _compact_number(rsi, 1)
-    spike = _boolish(volume.get("volume_spike"))
-    latest_volume = _as_number(volume.get("latest_volume"))
-    average_volume = _as_number(volume.get("average_volume"))
-    if spike is True and average_volume and average_volume > 0 and latest_volume is not None:
-        volume_text = f"spike {latest_volume / average_volume:.1f}x"
-    elif spike is True:
-        volume_text = "spike"
-    elif spike is False and latest_volume is not None:
-        volume_text = "normal"
-    else:
-        volume_text = "n/a"
-    if _boolish(volume.get("estimated")) is True:
-        volume_text = f"est {volume_text}"
 
-    oi = _first_value(
-        _nested_value(futures, "open_interest", "open_interest_usdt"),
-        _nested_value(futures, "open_interest", "notional_usdt"),
-        _nested_value(futures, "open_interest", "value"),
-        futures.get("open_interest_usdt"),
-        futures.get("open_interest"),
-        _nested_value(research, "futures", "open_interest", "open_interest_usdt"),
-    )
-    oi_estimated = _boolish(
-        _first_value(
-            _nested_value(futures, "open_interest", "estimated"),
-            futures.get("estimated"),
-        )
-    )
-    if isinstance(oi, dict):
-        oi = _first_value(oi.get("open_interest_usdt"), oi.get("notional_usdt"), oi.get("value"))
-    oi_text = _compact_money(oi)
-    if oi_estimated is True:
-        oi_text = f"est {oi_text}"
+def _signal_risk(signal: dict[str, Any]) -> str:
+    return _fmt_risk_line(None, {
+        "entry": signal["entry_price"], "tp1": signal["tp1"],
+        "sl": signal["sl"], "direction": _direction(signal),
+    })
 
-    def zone_text(value: Any) -> str:
-        if isinstance(value, dict):
-            value = _first_value(value.get("mid"), value.get("lower"), value.get("upper"))
-        number = _as_number(value)
-        return _format_price(number) if number and number > 0 else "n/a"
 
-    long_zone = zone_text(heatmap.get("long_liquidation_zone"))
-    short_zone = zone_text(heatmap.get("short_liquidation_zone"))
-    if long_zone == "n/a" and short_zone == "n/a":
-        magnet = zone_text(heatmap.get("magnet_price"))
-        zones_text = f"magnet {magnet}" if magnet != "n/a" else "zones n/a"
-    else:
-        zones_text = f"L {long_zone}/S {short_zone}"
+def _finish_signal(lines: list[str], signal: dict[str, Any], *, limit: int) -> str:
+    """Preserve complete levels/risk; remove optional cues before length fails."""
 
-    trend_1h = _trend_short(mtf.get("1h", mtf.get("1H", "unavailable")))
-    trend_4h = _trend_short(mtf.get("4h", mtf.get("4H", "unavailable")))
-    bonus = _clip(signal.get("trending_bonus", "BTC"), 12).upper() or "BTC"
+    coin = str(signal["coin"]).upper().strip()
+    bonus = "ETH" if coin == "BTC" else "BTC"
+    footer = f"Context: ${bonus} {_get_dynamic_hashtag(signal)}"
+    disclaimer = "⚠️ Not financial advice; verify live levels and manage risk."
+    text = _limit_cashtags("\n".join([*filter(None, lines), footer, disclaimer]), coin, bonus)
+    if len(text) + 1 > limit:
+        # Dropping one optional evidence line is safer than cutting a price,
+        # stop condition, disclaimer, or the end of a sentence mid-word.
+        lines = [line for line in lines if not line.startswith("📊 ")]
+        text = _limit_cashtags("\n".join([*filter(None, lines), footer, disclaimer]), coin, bonus)
+    if len(text) + 1 > limit:
+        raise ValueError(f"Signal draft exceeds the {limit}-character editorial budget")
+    return _finalize_post(text)
 
-    headline = (
-        f"⚡ ${coin} {direction} | Entry CMP ${entry_s} | "
-        f"TP1 ${tp1_s} (+{tp1_pct:.1f}%) / TP2 ${tp2_s} (+{tp2_pct:.1f}%) | "
-        f"SL ${sl_s} (-{stop_pct:.1f}%) | RR 1:{rr:.1f}"
-    )
-    detail = (
-        f"📊 RSI {rsi_text} | VOL {volume_text} | OI {oi_text} | "
-        f"MTF 1H {trend_1h} / 4H {trend_4h} | Est liq zones {zones_text}"
-    )
-    trigger = _clip_sentence(
-        signal.get("rapid_reason") or signal.get("why_now", ""),
-        120,
-    )
-    tag_line = f"💎 Context: ${bonus} {hashtag}"
-    disclaimer = "⚠️ Not financial advice; verify levels first."
 
-    hook = _hook_lead(signal)
+def format_rapid_alert_post(signal: dict[str, Any]) -> str:
+    """Manual rapid mode: verified levels and only the available evidence."""
 
-    # Rapid alert budget: enough for a narrative hook + levels + evidence, far
-    # above the old 120-300 char data line that gave the feed no story.
-    max_body = 720
-
-    lines: list[str] = [hook, headline, detail] if hook else [headline, detail]
-    lines.append(trigger)
-    lines.append(tag_line)
-    cta_line = _clip_sentence(cta, 140)
-    if cta_line:
-        lines.append(cta_line)
-    lines.append(disclaimer)
-
-    body = "\n".join(line for line in lines if line)
-    if len(body) > max_body:
-        # Trim working backwards: trigger first, then detail; never the hook
-        # or the verified levels line.
-        kept: list[str] = []
-        for line in lines:
-            if not line:
-                continue
-            if line == trigger and len(body) > max_body:
-                body = body.replace(line + "\n", "", 1)
-                continue
-            kept.append(line)
-        body = "\n".join(kept)
-    if len(body) > max_body:
-        overflow = len(body) - max_body
-        detail_budget = max(20, len(detail) - overflow - 2)
-        body = body.replace(detail, _clip(detail, detail_budget), 1)
-    if len(body) > max_body:
-        body = body[: max_body - 1].rstrip()
-    return _finalize_post(body)
+    reason = validate_reason(signal.get("rapid_reason"), field="rapid_reason")
+    cues = _signal_cues(signal)
+    lines = [
+        _hook_lead(signal),
+        _signal_header(signal, icon="⚡"),
+        _clip_sentence(reason, 125),
+        f"📊 {_clip_sentence(cues, 150)}" if cues else "",
+        f"🛡️ {_signal_risk(signal)}",
+    ]
+    return _finish_signal(lines, signal, limit=720)
 
 
 # ---------------------------------------------------------------------------
-# MODE 2: Explained Master Setup Post (up to the Square character limit)
+# MODE 2: Explained Setup (mobile-first, no indicator wall or public scores)
 # ---------------------------------------------------------------------------
 
 def format_explained_post(signal: dict[str, Any]) -> str:
-    """Format a concise but complete 15-point setup explanation (900-1900 chars)."""
+    """Hook, one levels line, two concise reasons, computed risk and a question."""
 
-    coin = _clip(signal["coin"], 12).upper().strip()
-    entry = float(signal["entry_price"])
-    tp1 = float(signal["tp1"])
-    tp2 = float(signal["tp2"])
-    stop = float(signal["sl"])
-    change = float(signal.get("change", 0.0))
-    direction = _direction(signal)
-    confidence_value = _as_number(signal.get("confidence", 85))
-    confidence = max(0, min(100, int(round(confidence_value or 85))))
-
-    tp1_pct = _move_percent(entry, tp1, direction)
-    tp2_pct = _move_percent(entry, tp2, direction)
-    stop_pct = abs(_move_percent(entry, stop, direction))
-    rr = _risk_reward(entry, tp1, stop)
-
-    analysis = _as_mapping(signal.get("institutional_analysis"))
-    volume = _first_value(analysis.get("volume_analysis"), signal.get("volume_analysis"))
-    futures = _first_value(analysis.get("futures"), signal.get("futures_data"))
-    liquidity = _first_value(analysis.get("orderbook"), signal.get("liquidity_analysis"))
-    heatmap = _first_value(
-        _nested_value(analysis, "futures", "liquidation_levels"), signal.get("liquidation_heatmap")
+    coin = str(signal["coin"]).upper().strip()
+    why = validate_reason(signal.get("why_now"), field="why_now")
+    trigger = validate_reason(signal.get("rapid_reason"), field="rapid_reason")
+    hook = _hook_lead(signal) or sanitize_hook(
+        f"{coin} setup: the measured trigger and the level that invalidates it"
     )
-    mtf = _first_value(analysis.get("timeframe_trends"), signal.get("mtf_analysis"))
-    market_context = _first_value(analysis.get("market_context"), signal.get("market_context"))
-    sentiment = _first_value(
-        {
-            "fear_greed": _nested_value(market_context, "fear_greed"),
-            "social_sentiment": _nested_value(market_context, "social_sentiment"),
-            "on_chain_proxy": _nested_value(market_context, "on_chain_proxy"),
-        },
-        signal.get("sentiment_onchain"),
-    )
-    macro = _first_value(_nested_value(market_context, "macro_factors"), signal.get("macro_factors"))
-    volatility = signal.get("volatility_assessment")
-    validation_value = _as_number(signal.get("validation_score", confidence))
-    validation = max(0, min(100, int(round(validation_value if validation_value is not None else confidence))))
-
-    why_now = _clip_sentence(
-        signal.get(
-            "why_now",
-            f"{coin} has a {change:+.1f}% 24-hour move; wait for the measured trigger and volume confirmation.",
-        ),
-        150,
-    )
-    invalidation = _clip_sentence(
-        signal.get(
-            "invalidation",
-            f"A decisive move beyond the stated ${_format_price(stop)} stop invalidates this thesis.",
-        ),
-        130,
-    )
-    technical = _clip_sentence(
-        _describe_data(
-            _first_value(signal.get("technical_analysis"), signal.get("smc_logic")), 170
-        ),
-        170,
-    )
-    indicators = _clip_sentence(
-        _describe_data(
-            _first_value(signal.get("indicators_summary"), _nested_value(analysis, "indicators_1h")),
-            150,
-        ),
-        150,
-    )
-    participation_line = _clip_sentence(
-        f"{_fmt_volume_line(volume)} | Futures: {_fmt_futures_line(futures)}",
-        190,
-    )
-    liquidity_heatmap = _clip_sentence(_fmt_liquidity_line(liquidity, heatmap), 170)
-    mtf_summary = _fmt_trend_stack(mtf)
-    market_sentiment = _clip_sentence(_fmt_context_line(market_context, sentiment), 170)
-    fundamental = _first_value(
-        signal.get("fundamental_note"),
-        signal.get("fundamental_risk"),
-        _nested_value(market_context, "fundamental_notes"),
-        "Token/event risk unavailable; do not assume a catalyst.",
-    )
-    macro_fundamental = _clip_sentence(_fmt_macro_line(macro, fundamental), 190)
-    risk_management = _clip_sentence(
-        _fmt_risk_line(
-            signal.get("risk_management"),
-            {
-                "risk_reward": f"RR ≈1:{rr:.1f} to TP1",
-                "position_sizing": "size to a predefined account-risk limit",
-                "invalidation_plan": invalidation,
-            },
-        ),
-        200,
-    )
-
-    # Scenario pair: model-written when present, otherwise derived from the
-    # verified levels so the binary tension is always on the page.
-    scenarios = signal.get("scenarios") if isinstance(signal.get("scenarios"), dict) else {}
-    bull_if = " ".join(str(scenarios.get("bull_if", "") or "").split())
-    bear_if = " ".join(str(scenarios.get("bear_if", "") or "").split())
-    if not bull_if or not bear_if:
-        if direction == "LONG":
-            bull_if = bull_if or f"price holds above ${_format_price(stop)}"
-            bear_if = bear_if or f"a decisive close below ${_format_price(stop)} breaks structure"
-        else:
-            bull_if = bull_if or f"price stays capped below ${_format_price(stop)}"
-            bear_if = bear_if or f"a decisive close above ${_format_price(stop)} cancels the down-leg"
-
-    fallback_hooks = (
-        f"🔍 ${coin}: what the verified data says right now ({change:+.1f}% 24H)",
-        f"⚖️ ${coin} evidence check — defined risk, clear invalidation ({change:+.1f}% 24H)",
-        f"👀 ${coin} multi-timeframe read — the level that decides it ({change:+.1f}% 24H)",
-    )
-    selected_hook = _hook_lead(signal) or _RNG.choice(fallback_hooks)
-    cta = _get_cta_prompt(coin, _cta_context(signal)).strip()
-    hashtag = _get_dynamic_hashtag()
-
-    # Data-confidence note: when a feed is missing the post says so out loud.
-    # Honest gaps cost nothing; pretending completeness costs trust.
-    confidence_notes: list[str] = []
-    futures_map = futures if isinstance(futures, dict) else {}
-    if _first_value(
-        _nested_value(futures_map, "open_interest", "open_interest_usdt"),
-        _nested_value(futures_map, "funding_rate", "funding_rate_pct"),
-    ) is None:
-        confidence_notes.append("derivatives feed unavailable")
-    fg = _nested_value(market_context, "fear_greed")
-    if isinstance(fg, dict) and fg.get("estimated") is True:
-        confidence_notes.append("sentiment index estimated")
-    data_confidence = (
-        f"📎 Data confidence: {'; '.join(confidence_notes)} — the rest is measured."
-        if confidence_notes
-        else ""
-    )
-
-    header = (
-        f"👀 ${coin} {direction} | Entry CMP ${_format_price(entry)} | "
-        f"TP1 ${_format_price(tp1)} ({tp1_pct:+.1f}%) | "
-        f"TP2 ${_format_price(tp2)} ({tp2_pct:+.1f}%) | "
-        f"SL ${_format_price(stop)} (-{stop_pct:.1f}%) | RR 1:{rr:.2f} | Conf {confidence}%"
-    )
-
-    evidence_bullets = [
-        f"Structure: {technical}",
-        f"Indicators: {indicators}",
-        f"Participation: {participation_line}",
-        f"Liquidity: {liquidity_heatmap}",
-        f"Trend stack: {mtf_summary}",
-        f"Context: {market_sentiment}",
+    cues = _signal_cues(signal)
+    lines = [
+        hook,
+        _signal_header(signal, icon="👀"),
+        f"Why now: {_clip_sentence(why, 155)}",
+        f"Trigger: {_clip_sentence(trigger, 150)}",
+        f"📊 {_clip_sentence(cues, 160)}" if cues else "",
+        f"🛡️ Risk: {_signal_risk(signal)}",
+        _clip_sentence(_question_from_context(coin, _cta_context(signal)), 120),
     ]
-
-    scenario_line = (
-        f"🔀 If {bull_if.rstrip('.')} → path to ${_format_price(tp1)} stays open; "
-        f"if {bear_if.rstrip('.')} → thesis cancelled."
-    )
-
-    body_lines = [
-        selected_hook,
-        "",
-        header,
-        f"Why now: {why_now}",
-        "",
-        "Key evidence (verified):",
-        *(f"• {bullet}" for bullet in evidence_bullets),
-        f"• Macro & fundamental: {macro_fundamental}",
-        "",
-        scenario_line,
-        f"❌ Invalidation: {invalidation}",
-        f"🛡️ Risk: {risk_management} (validation {validation}/100)",
-    ]
-    if data_confidence:
-        body_lines.append(data_confidence)
-    if cta:
-        body_lines.append(_clip_sentence(cta, 140))
-    body_lines.append(f"Tags: ${coin} $BTC {hashtag}")
-    body_lines.append(
-        "⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk."
-    )
-    body = "\n".join(body_lines)
-
-    # If the model returned unusually thin prose, keep the useful data-quality
-    # context instead of shipping a naked skeleton.
-    if len(body) < 700:
-        body += (
-            "\nData discipline: Entry CMP comes from the verified live-price path; candles and volume are observations, "
-            "while futures, order-book and liquidation levels are snapshots or estimates where marked. Unavailable "
-            "sentiment, on-chain, Fed, CPI or DXY feeds are unknown rather than directional. Reconfirm the trigger "
-            "before acting; use the stated invalidation and size positions to a predefined account-risk limit."
-        )
-
-    # Keep the target under 1,900 chars (well below the 2,100 hard cap).
-    if len(body) + 1 > 1900:
-        # Trim the lowest-signal bullets first (macro/context), keeping the
-        # hook, levels, scenario and invalidation fully intact.
-        for label in ("• Macro & fundamental: ", "• Context: ", "• Trend stack: "):
-            if len(body) + 1 <= 1900:
-                break
-            body = "\n".join(line for line in body.split("\n") if not line.startswith(label))
-    if len(body) + 1 > 1900:
-        body = body[:1899].rstrip()
-    return _finalize_post(body)
+    return _finish_signal(lines, signal, limit=1000)
 
 
 # ---------------------------------------------------------------------------
@@ -1123,8 +927,8 @@ $BTC $ETH #BinanceSquare #CryptoMarket
 ⚠️ Educational market analysis only. Not financial advice. Always DYOR."""
 
     if len(body) + 1 > 1900:
-        body = body[:1899].rstrip()
-    return _finalize_post(body)
+        body = _clip_sentence(body, 1899)
+    return _finalize_post(_limit_cashtags(body, "BTC", "ETH"))
 
 
 # ---------------------------------------------------------------------------
@@ -1141,9 +945,9 @@ def format_meme_community_post(meme_data: dict[str, Any]) -> str:
     content = str(meme_data.get("content", "Looking at the 1M chart: 'This is definitely a generational breakout.'\nLooking at the 1D chart: 'Oh.'")).strip()
     lesson = str(meme_data.get("lesson", "Always check higher timeframe structure before taking 20x leverage.")).strip()
     question = str(meme_data.get("question", "Who else can relate to this? Be honest 👇")).strip()
-    hashtag = _get_dynamic_hashtag()
+    hashtag = _get_dynamic_hashtag("meme_community")
 
-    body = f"""🎭 {title}
+    body = f"""🎭 Fictional trading humor — {title}
 
 {content}
 
@@ -1151,9 +955,9 @@ def format_meme_community_post(meme_data: dict[str, Any]) -> str:
 
 {question}
 
-$BTC $ETH {hashtag} #CryptoCommunity #TradingHumor"""
+$BTC $ETH {hashtag} #CryptoCommunity"""
 
-    return _finalize_post(body)
+    return _finalize_post(_limit_cashtags(body, "BTC", "ETH"))
 
 
 # ---------------------------------------------------------------------------
@@ -1198,11 +1002,11 @@ def scorecard_stats(
         if not isinstance(trade, dict):
             continue
         closed_at = _parse(trade.get("closed_at")) or _parse(trade.get("created_at"))
-        if closed_at is None or closed_at < window_start:
+        if closed_at is None or closed_at < window_start or closed_at > now:
             continue
         closed_in_window += 1
         status = str(trade.get("status", "")).upper()
-        if trade.get("tp1_hit") and status != "TP2_HIT":
+        if trade.get("tp1_hit") and status == "SL_HIT":
             tp1_partial += 1
         if status == "TP2_HIT":
             tp2 += 1
@@ -1259,6 +1063,7 @@ def format_scorecard_post(stats: dict[str, Any]) -> str:
     tp1_partial = int(stats.get("tp1_partial", 0))
     stopped = int(stats.get("stopped", 0))
     expired = int(stats.get("expired", 0))
+    superseded = int(stats.get("superseded", 0))
     open_now = int(stats.get("open", 0))
 
     tp2_share = f" ({tp2 / closed * 100:.0f}% of closed)" if closed else ""
@@ -1276,7 +1081,7 @@ Closed in window: {closed}
 • Reached TP2 (full target): {tp2}{tp2_share}
 • Banked TP1 first, then stopped: {tp1_partial}
 • Stopped at invalidation: {stopped}
-• Expired unresolved / superseded: {expired}
+• Expired unresolved: {expired} | Superseded: {superseded}
 Currently open: {open_now}{avg_line}
 
 Honesty note: a signal service that only shows wins is marketing. These numbers are the complete record for the window.
@@ -1285,7 +1090,7 @@ $BTC #BinanceSquare
 ⚠️ Past setups do not guarantee future results. Not financial advice."""
 
     if len(body) + 1 > 1900:
-        body = body[:1899].rstrip()
+        body = _clip_sentence(body, 1899)
     return _finalize_post(body)
 
 
@@ -1323,8 +1128,8 @@ def format_explainer_post(data: dict[str, Any]) -> str:
 
     body = "\n".join(body_lines)
     if len(body) + 1 > 1900:
-        body = body[:1899].rstrip()
-    return _finalize_post(body)
+        body = _clip_sentence(body, 1899)
+    return _finalize_post(_limit_cashtags(body, "BTC", "ETH"))
 
 
 # Backward-compatible wrapper

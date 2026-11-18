@@ -92,7 +92,7 @@ class EngineRunTestCase(unittest.TestCase, TempStateMixin):
 
         state = self.state()
         self.assertEqual(state["in_flight"], None)
-        self.assertEqual(state["pending"][0], 1, "a preview must not consume a slot")
+        self.assertEqual(state["pending"][0], 0, "a manual rapid preview must not consume a slot")
         self.assertFalse((self.data_dir / "pending_run.json").exists())
 
     def test_signal_run_records_its_effects_for_the_publisher(self) -> None:

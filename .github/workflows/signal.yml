@@ -1,22 +1,19 @@
-name: Signal Poster - 24-Slot Hourly Rotation
+name: Signal Poster - Six-Slot Rotation
 
-# The plan is a continuous queue in data/schedule_state.json, not a clock
-# lookup or a queue that resets at midnight. Every automatic run takes the next
-# pending slot from bot/config.json (24 slots: 1 BTC outlook, 1 meme, 11 rapid
-# alerts, 11 explained setups).
-#
-# Automatic runs come from the Hourly Pacer (pacer.yml, the reliable clock) and
-# from the hourly cron below as a backup. Both pass the "due" gate, which allows
-# one queued post per UTC hour and never two within schedule.min_gap_minutes,
-# so the two triggers cannot double-post. Manual "Run workflow" with slot=auto
-# skips the gate and advances this same queue immediately.
+# A continuous six-slot queue: 1 BTC outlook, 1 community meme, 4 explained
+# setups. The pacer and hourly backup share a 230-minute gap plus stable 3–40
+# minute jitter. A quality skip resolves an opportunity without posting.
+# The weekly scorecard is an aggregate recap (including losses), never an
+# SL-hit notification. Position cards and TP1/TP2 monitoring are unchanged.
+# Explicit manual dispatches bypass cadence and may publish extra posts.
 on:
   schedule:
     - cron: "0 * * * *"
+    - cron: "17 18 * * 0"  # Sunday 18:17 UTC: weekly outcomes recap
   workflow_dispatch:
     inputs:
       slot:
-        description: "Which post to publish (scorecard/explainer are manual extras that never touch the rotation)"
+        description: "Which post to publish (scorecard/explainer are extras that never touch the rotation)"
         required: false
         default: auto
         type: choice
@@ -39,7 +36,7 @@ on:
         default: false
         type: boolean
       paced:
-        description: "Internal (set by the Hourly Pacer): skip if this UTC hour already has its post"
+        description: "Internal (set by the pacer): apply minimum-gap and jitter gates"
         required: false
         default: false
         type: boolean
@@ -58,10 +55,10 @@ jobs:
     timeout-minutes: 15
 
     env:
-      SLOT: ${{ inputs.slot || 'auto' }}
+      SLOT: ${{ github.event_name == 'schedule' && github.event.schedule == '17 18 * * 0' && 'scorecard' || inputs.slot || 'auto' }}
       SLOT_RESET: ${{ inputs.reset == true && '1' || '0' }}
       PREVIEW_ONLY: ${{ inputs.preview == true && '1' || '0' }}
-      AUTO_GATE: ${{ (github.event_name == 'schedule' || inputs.paced == true) && '1' || '0' }}
+      AUTO_GATE: ${{ ((github.event_name == 'schedule' && github.event.schedule != '17 18 * * 0') || inputs.paced == true) && '1' || '0' }}
 
     steps:
       - name: Checkout repository
@@ -86,13 +83,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Check this UTC hour still needs a post
+      - name: Check minimum gap and randomized posting window
         id: gate
         run: |
           if [ "${AUTO_GATE}" = "1" ]; then
             python -m bot.schedule --due
           else
-            echo "Manual run: the hourly gate does not apply."
+            echo "Explicit run or weekly recap: automatic cadence gate does not apply."
             echo "due=true" >> "$GITHUB_OUTPUT"
           fi
 
@@ -106,6 +103,7 @@ jobs:
         run: rm -f charts/*.png || true
 
       - name: Generate the next queued post
+        id: generate
         if: ${{ steps.gate.outputs.due == 'true' }}
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
@@ -115,7 +113,7 @@ jobs:
         run: python -m bot.main_signal
 
       - name: Download official Binance Square posting scripts
-        if: ${{ steps.gate.outputs.due == 'true' && inputs.preview != true }}
+        if: ${{ steps.generate.outputs.ready == 'true' && inputs.preview != true }}
         run: |
           rm -rf /tmp/binance-skills-hub
           git clone --depth 1 \
@@ -123,14 +121,14 @@ jobs:
             /tmp/binance-skills-hub
 
       - name: Apply Square safety patches
-        if: ${{ steps.gate.outputs.due == 'true' && inputs.preview != true }}
+        if: ${{ steps.generate.outputs.ready == 'true' && inputs.preview != true }}
         run: |
           python -m bot.patch_square_utf8
           python -m bot.patch_square_upload
           node --check /tmp/binance-skills-hub/skills/binance/square-post/scripts/lib.mjs
 
       - name: Publish signal to Binance Square
-        if: ${{ steps.gate.outputs.due == 'true' && inputs.preview != true }}
+        if: ${{ steps.generate.outputs.ready == 'true' && inputs.preview != true }}
         env:
           BINANCE_SQUARE_OPENAPI_KEY: ${{ secrets.BINANCE_SQUARE_OPENAPI_KEY }}
           # Binance processes Square images asynchronously. The official helper

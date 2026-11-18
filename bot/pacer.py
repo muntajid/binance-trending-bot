@@ -1,32 +1,16 @@
-"""Hourly pacer: one automatic Square post per UTC hour (24 per day).
+"""Pacer for the six-slot Square schedule (roughly six scheduled posts/day).
 
-Why this exists
----------------
-GitHub cron is best effort. With ``0 */2 * * *`` the signal workflow targeted
-12 runs a day but the publish ledger shows only 2-5 posts per day actually
-went out (Nov 3-14, 2026): most scheduled events were delayed or dropped.
-An hourly cron alone would therefore never reach 24 posts.
-
-The pacer is a long-running workflow job that acts as a reliable clock:
-
-* every ``check_every_minutes`` it reads ``data/schedule_state.json`` from the
-  branch through the GitHub API and asks :func:`bot.schedule.due_status`
-  whether the current UTC hour still needs its post;
-* if so, and no signal run is already queued/running, it dispatches
-  ``signal.yml`` with ``paced=true``. A run that failed (the slot goes back to
-  the queue) or was cancelled by the shared concurrency group is retried on a
-  later tick, up to ``max_dispatches_per_hour`` times per hour;
-* GitHub caps a job at 6 hours, so after ``handoff_after_minutes`` the pacer
-  dispatches a fresh copy of itself and exits. An hourly cron on the pacer
-  workflow revives the chain if a handoff is ever lost, and the leader check
-  keeps exactly one pacer active.
+The long-running workflow checks committed schedule state every few minutes,
+then dispatches ``signal.yml`` only when the shared cadence gate says the next
+slot is due. The gate applies the 230-minute minimum gap, a stable randomized
+3–40 minute delay, and a one-post-per-UTC-hour guard. Failed runs are retried;
+a handoff keeps the pacer alive without relying on cron precision.
 
 Dispatching ``workflow_dispatch`` with the job's ``GITHUB_TOKEN`` is allowed
 by GitHub (it is the documented exception to the "token events don't trigger
 workflows" rule) and needs ``permissions: actions: write``. Public
-repositories pay nothing for these runner minutes.
-
-Only the standard library is used, so the job needs no ``pip install``.
+repositories pay nothing for these runner minutes. Only the standard library
+is used, so the job needs no ``pip install``.
 """
 
 from __future__ import annotations
@@ -109,12 +93,20 @@ def decide(
     dispatches_this_hour: int,
     max_dispatches: int,
     min_gap: float,
+    jitter_min: int = 0,
+    jitter_max: int = 0,
 ) -> tuple[bool, str]:
     """Return ``(dispatch?, reason)`` for one pacer tick."""
 
     if signal_active:
         return False, "a signal run is already queued or running"
-    verdict = schedule.due_status(state, now=now, min_gap=min_gap)
+    verdict = schedule.due_status(
+        state,
+        now=now,
+        min_gap=min_gap,
+        jitter_min=jitter_min,
+        jitter_max=jitter_max,
+    )
     if not verdict["due"]:
         return False, verdict["reason"]
     if dispatches_this_hour >= max_dispatches:
@@ -211,6 +203,7 @@ def run(
     config = schedule.load_config()
     settings = pacer_settings(config)
     min_gap = schedule.min_gap_minutes(config)
+    jitter_min, jitter_max = schedule.post_jitter_bounds(config)
     started = now()
     deadline = started + datetime.timedelta(minutes=settings["handoff_after_minutes"])
     report: dict[str, Any] = {"dispatched": [], "handoff": False, "led": False}
@@ -221,7 +214,8 @@ def run(
     report["led"] = True
     _log(
         f"Leading on ref {ref}: checks every {settings['check_every_minutes']:g} min, "
-        f"min gap {min_gap:g} min, handoff at {deadline.strftime('%H:%M')} UTC"
+        f"min gap {min_gap:g} min, randomized delay {jitter_min}–{jitter_max} min, "
+        f"handoff at {deadline.strftime('%H:%M')} UTC"
     )
 
     dispatches: dict[str, int] = {}
@@ -238,6 +232,8 @@ def run(
                 dispatches_this_hour=dispatches.get(hour_key, 0),
                 max_dispatches=int(settings["max_dispatches_per_hour"]),
                 min_gap=min_gap,
+                jitter_min=jitter_min,
+                jitter_max=jitter_max,
             )
             if go:
                 _log(f"Dispatching {SIGNAL_WORKFLOW} ({reason})")

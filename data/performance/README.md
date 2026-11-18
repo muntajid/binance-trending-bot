@@ -16,8 +16,8 @@ published_utc,url,type,coin,hook_family,views,likes,replies,shares,followers_gai
 ```
 
 - `type`: `rapid_alert`, `explained_setup`, `market_overview`, `meme_community`,
-  `scorecard`, `educational_explainer`, or the monitor's `target_hit`,
-  `stop_resolution`, `pressure_update`.
+  `scorecard`, `educational_explainer`, or the monitor's `target_hit`.
+  SL hits are silent; do not log a non-existent SL/pressure post.
 - `hook_family`: the `angle_family` the post used (`contrarian_conflict`,
   `binary_scenario`, `data_finding`, `event_risk`, `outcome_update`,
   `structure_break`). The engine logs the chosen angle in its step summary;
@@ -43,3 +43,16 @@ Rules of the loop:
 3. **Accuracy gates are never tuned by engagement.** The feedback loop adjusts
    topics, hooks, structure, CTAs and visuals only.
 4. **No viral guarantees.** The loop raises learning speed, nothing more.
+
+## First week after the six-slot update
+
+Keep the 230-minute gap, 3–40 minute jitter and strict quality gates unchanged
+for seven days. Scheduled opportunities with no strong candidate are skipped;
+log only posts actually published. TP1/TP2 posts remain unchanged and should be
+compared separately from the shorter setup posts. The weekly aggregate scorecard
+includes losses but is not an individual SL-hit notification.
+
+Use `python -m bot.analyze_performance --days 7` after entering real counters.
+Do not fill missing metrics with estimates or claim the update increased views
+before measurements exist. Replying thoughtfully to readers and participating in
+relevant discussions remain manual work, not something a template can replace.
