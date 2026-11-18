@@ -1,21 +1,6 @@
-Bid‑heavy order book and bullish 1‑hour MACD keep $SKHYB above its 126.03 support, but EM
-
-👀 $SKHYB LONG | Entry CMP $126.41 | TP1 $127.19 (+0.6%) | TP2 $129.9 (+2.8%) | SL $124 (-1.9%) | RR 1:0.32 | Conf 65%
-Why now: Trigger.
-
-Key evidence (verified):
-• Structure: HH‑HL bullish continuation on 1H, bid‑heavy order book, bullish MACD, RSI near 70, price above EMA20/50, VWAP slightly above entry.
-• Indicators: EMA20 125.08, EMA50 125.18 below price; EMA200 127.74 above price; RSI 69.6; MACD +0.74/0.36; VWAP 126.82; BB position 0.69; Stoch RSI K 96.8/D 76.5.
-• Participation: volume normal; taker buy share 57%; 24h turnover $9.3M | Futures: derivatives feed unavailable today
-• Liquidity: order book bid heavy (3.41x); est. liquidation magnets: shorts ~$129.9596 / longs ~$122.8604
-• Trend stack: 5m↑ 15m↓ 1H↑ 4H↓ 1D→ 1W→
-• Context: BTC bearish alignment on 1H and 4H; dominance 58.4%; F&G 11 Extreme Fear
-• Macro & fundamental: macro feeds unavailable - no event catalyst claimed; token/event risk: Token unlock/listing risk unverified if not in snapshot.
-
-🔀 If if price holds above 126.5 and breaks the 127.19 resistance, upside stays open → path to $127.19 stays open; if if price drops below the 126.03 support, the bullish case collapses → thesis cancelled.
-❌ Invalidation: Support 126.03
-🛡️ Risk: 1.5:1; 2% of equity; plan: Sell if price breaches 126.03 support (validation 7/100)
-📎 Data confidence: derivatives feed unavailable — the rest is measured.
-Which hits first for $SKHYB: $127.19 or $126.03?
-Tags: $SKHYB $BTC #BinanceSquareFamily
-⚠️ Educational market analysis, not financial advice. Recheck live data and manage risk.
+⚡ $QNT LONG | Entry CMP $155.61 | TP1 $157.167 (+1.0%) / TP2 $158.07 (+1.6%) | SL $154 (-1.0%) | RR 1:1.0
+📊 RSI 65.7 | VOL normal | OI n/a | MTF 1H up / 4H flat | Est liq zones L 152.3025/S 158.9175
+1H trigger.
+💎 Context: $BREV #Write2Earn
+Which hits first for $QNT: $157.1667 or $154.35?
+⚠️ Not financial advice; verify levels first.

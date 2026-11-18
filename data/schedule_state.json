@@ -3,7 +3,6 @@
   "day_utc": "2026-11-18",
   "rotation_started_utc": "2026-11-18T03:00:50.334632+00:00",
   "pending": [
-    3,
     4,
     5,
     6,
@@ -1691,11 +1690,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "SKHYB"
+    },
+    {
+      "slot": 3,
+      "type": "rapid_alert",
+      "name": "Rapid Signal Alert #2 (03:00 UTC)",
+      "forced": false,
+      "published_utc": "2026-11-18T06:01:09.562225+00:00",
+      "day_utc": "2026-11-18",
+      "run_id": "44248149097",
+      "rotation": 8,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "QNT"
     }
   ],
   "rotations": 7,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-18T05:01:19.831668+00:00",
+  "updated_utc": "2026-11-18T06:01:09.562246+00:00",
   "previous_day": {
     "day_utc": "2026-11-17",
     "published": 24,
