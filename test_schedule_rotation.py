@@ -18,9 +18,9 @@ from unittest import mock
 
 from bot import schedule
 
-EXPECTED_COUNTS = {"rapid_alert": 11, "explained_setup": 11, "market_overview": 1, "meme_community": 1}
-TOTAL_SLOTS = 24
-MEME_SLOT = 12
+EXPECTED_COUNTS = {"explained_setup": 4, "market_overview": 1, "meme_community": 1}
+TOTAL_SLOTS = 6
+MEME_SLOT = 3
 
 
 class QueueFixture(unittest.TestCase):
@@ -80,12 +80,12 @@ class QueueTestCase(QueueFixture):
         self.assertEqual(len(self.read_state()["pending"]), TOTAL_SLOTS)
 
     def test_repeated_manual_runs_walk_the_queue(self) -> None:
-        """Three runs minutes apart must not all produce the same post type."""
+        """Even adjacent slots of the same type advance their own queue entries."""
 
         slots = [self.publish()["slot"] for _ in range(3)]
         self.assertEqual(slots, [0, 1, 2], slots)
         types = [schedule.load_plan()[slot]["type"] for slot in slots]
-        self.assertEqual(len(set(types)), 3, types)
+        self.assertEqual(types, ["market_overview", "explained_setup", "explained_setup"])
 
     def test_a_full_rotation_yields_the_benchmark_mix(self) -> None:
         self.assertEqual(schedule.status()["published_today"], 0)
@@ -110,7 +110,7 @@ class QueueTestCase(QueueFixture):
         legacy_state = {
             "version": 1,
             "day_utc": "2026-11-02",
-            "pending": [0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+            "pending": [0, 1, 3, 4, 5],
             "in_flight": None,
             "published": [{
                 "slot": 2,
@@ -139,7 +139,7 @@ class QueueTestCase(QueueFixture):
             second = self.publish()
 
         self.assertEqual((first["slot"], first["type"]), (0, "market_overview"))
-        self.assertEqual((second["slot"], second["type"]), (1, "rapid_alert"))
+        self.assertEqual((second["slot"], second["type"]), (1, "explained_setup"))
         state = self.read_state()
         self.assertEqual(state["day_utc"], "2026-11-03")
         self.assertEqual(state["rotations"], 0, "midnight is not a new rotation")
@@ -226,8 +226,8 @@ class QueueTestCase(QueueFixture):
         self.assertIn("rapid_alert", str(ctx.exception))
 
     def test_slot_number_request(self) -> None:
-        slot = schedule.select_slot("slot 10")
-        self.assertEqual(slot["slot"], 10)
+        slot = schedule.select_slot("slot 4")
+        self.assertEqual(slot["slot"], 4)
         self.assertEqual(slot["type"], "explained_setup")
 
         with self.assertRaises(schedule.ScheduleError):
@@ -414,7 +414,7 @@ OLD_12_SLOT_TYPES = [
 
 
 class PlanChangeTestCase(QueueFixture):
-    """Switching bot/config.json from the 12-slot to the 24-slot plan."""
+    """Switching bot/config.json from an older plan to the six-slot plan."""
 
     def write_old_rotation(self, *, published: int, signature: str | None, in_flight: dict | None = None) -> None:
         records = [
@@ -444,7 +444,7 @@ class PlanChangeTestCase(QueueFixture):
             state["plan_signature"] = signature
         schedule.STATE_FILE.write_text(json.dumps(state), encoding="utf-8")
 
-    def test_live_state_from_the_old_plan_starts_a_clean_24_slot_rotation(self) -> None:
+    def test_live_state_from_the_old_plan_starts_a_clean_six_slot_rotation(self) -> None:
         """The real queue on 2026-11-14: slots 0-6 done (meme at 6), 7-11 pending."""
 
         self.write_old_rotation(published=7, signature=None)
@@ -467,11 +467,14 @@ class PlanChangeTestCase(QueueFixture):
         self.assertEqual(state["rotations"], 4)
 
     def test_unsigned_state_consistent_with_the_plan_is_kept(self) -> None:
-        """Slots 0-2 have identical types in both plans: nothing to restart."""
+        """An unsigned state using only the current slots is migrated in place."""
 
-        self.write_old_rotation(published=3, signature=None)
+        self.write_old_rotation(published=1, signature=None)
+        stored = self.read_state()
+        stored["pending"] = list(range(1, TOTAL_SLOTS))
+        schedule.STATE_FILE.write_text(json.dumps(stored), encoding="utf-8")
         state = schedule.load_state()
-        self.assertEqual(state["pending"], list(range(3, 12)))
+        self.assertEqual(state["pending"], list(range(1, TOTAL_SLOTS)))
         self.assertEqual(state["plan_signature"], schedule.plan_signature(schedule.load_plan()))
         self.assertEqual(state["rotations"], 3)
 
@@ -559,15 +562,15 @@ class PlanLoadingTestCase(unittest.TestCase):
             counts[entry["type"]] = counts.get(entry["type"], 0) + 1
         self.assertEqual(counts, EXPECTED_COUNTS)
 
-    def test_hourly_layout_never_repeats_a_type_back_to_back(self) -> None:
+    def test_six_slot_layout_has_four_setups_and_four_hour_example_spacing(self) -> None:
         plan = schedule.load_plan()
-        types = [entry["type"] for entry in plan]
-        self.assertEqual(types[0], "market_overview")
-        self.assertEqual(types[MEME_SLOT], "meme_community")
-        for index, current in enumerate(types):
-            following = types[(index + 1) % len(types)]  # includes the wrap 23 -> 0
-            self.assertNotEqual(current, following, f"slots {index} and {(index + 1) % len(types)}")
-        self.assertEqual([entry["hour_utc"] for entry in plan], list(range(TOTAL_SLOTS)))
+        self.assertEqual([entry["type"] for entry in plan], [
+            "market_overview", "explained_setup", "explained_setup",
+            "meme_community", "explained_setup", "explained_setup",
+        ])
+        self.assertEqual([entry["hour_utc"] for entry in plan], [0, 4, 8, 12, 16, 20])
+        self.assertEqual(schedule.min_gap_minutes(), 230)
+        self.assertEqual(schedule.post_jitter_bounds(), (3, 40))
 
     def test_config_is_the_single_source_of_truth(self) -> None:
         with self.assertRaises(schedule.ScheduleError):

@@ -6,7 +6,7 @@ dark-mode chart card, and publishes the result — then a separate monitor track
 posts proof when a target is hit.
 
 ```
-Hourly Pacer        ──> dispatches signal.yml once per UTC hour (pacer.yml → bot.pacer)
+Square Pacer        ──> checks every 5m; dispatches after gap + jitter (pacer.yml → bot.pacer)
 signal.yml          ──> bot.main_signal (topic score → research → hook + verified levels → post + chart)
                      └─> bot.square_publisher (retry-aware publish via the official Square scripts)
 GitHub Actions cron ──> bot.monitor_runner  (1m candle scan → TP1/TP2 proof cards only;
@@ -14,102 +14,117 @@ GitHub Actions cron ──> bot.monitor_runner  (1m candle scan → TP1/TP2 proo
                                   └──> data/*.json committed back to this repo (that IS the database)
 ```
 
-## The 24-post hourly rotation
+## The six-slot rotation
 
-`bot/config.json` → `schedule.slots` is the single source of truth: one post per hour, 24 per day.
+`bot/config.json` → `schedule.slots` is the single source of truth. The cadence targets
+**roughly six scheduled opportunities a day**, not 24 hourly posts:
 
 | Count | Type | What it is |
 | --- | --- | --- |
-| 11 | `rapid_alert` | Verified levels + a concise institutional read |
-| 11 | `explained_setup` | 15-point evidence, *Why now* + *What invalidates it* |
-| 1 | `market_overview` | Macro & Bitcoin structure, flows, key levels (slot 0, 00:00 UTC) |
-| 1 | `meme_community` | Trader-psychology meme (slot 12, 12:00 UTC) |
+| 4 | `explained_setup` | Hook, verified levels, two short reasons, computed risk and one relevant question |
+| 1 | `market_overview` | Bitcoin structure, market context and key levels |
+| 1 | `meme_community` | Explicitly labelled fictional trading humor |
 
-Rapid and explained posts alternate, so the same type never runs twice in a row (including the
-23 → 0 wrap). Editing the slot list is detected through a `plan_signature` in the state file, which
-starts a clean rotation instead of replaying an old queue against the new slot numbers.
+The example UTC hours are 00, 04, 08, 12, 16 and 20. They describe the plan's order, not
+fixed publish appointments: the continuous queue, minimum gap and jitter decide when a run is due.
+A `plan_signature` detects the change from the old plan and starts a fresh rotation while retaining
+the historical ledger. Midnight never resets an unfinished queue.
 
-### Hourly cadence: the pacer
+**The user's monitoring exceptions are preserved:** position cards are unchanged; every existing
+TP1/TP2-hit posting path and its text remain unchanged; SL hits close silently. There are **no new
+TP-post limits**. TP-hit posts, explicit manual runs and the weekly aggregate scorecard are additional
+to the six scheduled opportunities, so total account posts can exceed six.
 
-GitHub cron is best effort. The old `0 */2 * * *` cron aimed for 12 runs a day, but the ledger shows only
-**2–5 posts actually went out per day** (3–14 Nov 2026). An hourly cron alone could never reach 24, so
-`pacer.yml` / `bot/pacer.py` acts as the clock:
+### Cadence and posting-time variation
 
-- a single long-running job checks every 5 minutes. It reads `data/schedule_state.json` through the
-  GitHub API and dispatches `signal.yml` (`paced: true`) when the current UTC hour has no post yet and
-  no signal run is queued or running;
-- a failed or cancelled run (for example a pending run replaced in the shared concurrency group) is
-  retried on a later tick, at most `schedule.pacer.max_dispatches_per_hour` (3) times per hour;
-- after `handoff_after_minutes` (330) it dispatches a fresh pacer, staying under GitHub's 6-hour job
-  limit. A `23 * * * *` cron revives the chain if a handoff is ever lost, and an extra pacer sees the
-  active one and exits;
-- **the double-post gate** (`python -m bot.schedule --due`) runs inside `signal.yml` for every paced and
-  cron run. It allows one queued post per UTC hour and never two within `schedule.min_gap_minutes`
-  (20), so the hourly backup cron, the pacer and retries can't publish twice. Manual runs skip the gate.
+- `schedule.min_gap_minutes: 230` actually controls cadence; shortening the slot list alone would
+  merely repeat that list four times a day.
+- `post_jitter_min_minutes: 3` / `post_jitter_max_minutes: 40` add a stable pseudo-random delay to
+  each opportunity. The next release is the last automatic resolution + 230 minutes + that delay.
+  Selection is stable across pacer ticks/retries, using the prior timestamp, rotation and pending
+  slot. The first post waits for a randomized minute within the current UTC hour.
+- A single `pacer.yml` job checks state through the GitHub API every five minutes. Both it and the
+  hourly `signal.yml` backup use the same `bot.schedule.due_status` gate. The one-post-per-UTC-hour
+  safety guard remains, but an empty hour by itself is **not** permission to post.
+- Failed API/generation/publication runs return their slot to the queue and can retry; the pacer
+  allows at most three dispatches per hour. After ~330 minutes it hands off to a new pacer; cron
+  revives a lost chain and a leader check suppresses duplicate pacers.
+- A normal quality rejection is different from an outage: after up to five candidates, **no strong
+  setup means no post**. The opportunity is recorded as `mode: skipped`, the queue advances and the
+  cadence waits before trying again. No chart, active trade or coin cooldown is created for it.
+  The generation step reports `ready=false`, so the workflow cannot accidentally publish the old
+  `latest_post.txt`. Previews abort rather than consume a skipped opportunity.
 
-The repository is public, so the pacer's runner minutes are free. The Groq account now handles about
-24 runs a day instead of about 4; if its daily quota runs out, generation falls back through the
-configured models and failed slots retry on the next tick.
+Explicit manual type/slot requests and `reset` bypass automatic cadence. `rapid_alert` remains a
+manual extra even though it is absent from the six-slot plan. The full 24-hour per-coin cooldown
+is retained; legacy configurations can explicitly set a shorter cooldown fallback.
 
-**The type is chosen by a continuous queue, not by the clock or calendar date.** Each automatic run
-takes the next pending slot, so:
+### Weekly outcomes recap
 
-- the pacer (with an hourly cron backup) targets 24 runs per day and walks the plan in order;
-- **midnight does not restart an unfinished rotation.** If runs arrive late, the 24-post mix simply
-  spans multiple UTC days. This prevents a delayed BTC
-  outlook from being followed immediately by the next day's outlook;
-- **manual runs with `slot: auto` advance the same queue**, rather than repeating the current hour's
-  post type;
-- a retryable failure returns its slot to the **front** of the queue for the next run;
-- only after all 24 queued slots are resolved does the next rotation begin. An uncertain publish
-  consumes its slot without a retry because the post may already have reached Square.
+`signal.yml` also schedules a text-only **seven-day scorecard every Sunday at 18:17 UTC**. It uses
+`build_scorecard_post` and the existing closed/active trade ledgers, counts stopped setups as well
+as TP2 results, and runs as a non-consuming extra. It is an aggregate recap, **not an SL-hit post**;
+it does not touch monitor behavior or position-card rendering. `slot: scorecard` still works manually.
 
-Explicit type/slot requests and `reset` are overrides, not part of the automatic mix. They can add
-extras or repeat content; leave `slot: auto` and `reset: false` for normal posting. The coin cooldown
-and caption similarity guard still apply, but they check wording/coins, not the daily content mix.
-With 22 coin signals a day, the 24 h per-coin cooldown can exhaust the pool on quiet days. After every
-momentum fallback has failed, selection retries with `duplicate_filter_fallback_hours` (12 h) before
-giving up. `trending.top_n` is 60, so coins in cooldown don't crowd out every candidate.
+## Content and setup quality
 
-## Content quality layer (hook, angle, structure)
+- `why_now` and `rapid_reason` must each have at least six words and cannot be copied schema
+  instructions, empty strings or fragments like `Trigger.` / `1H trigger.`. A bad draft is regenerated
+  once per model; persistent failures reject the candidate instead of publishing placeholders.
+- Hooks are requested at **70 characters or fewer**. The drafter and formatter share a whole-word,
+  whole-price clipper; clipped hooks drop trailing numeric tokens and dangling prepositions. Short
+  or unusable hooks cannot become a malformed first line.
+- Direction is rule-checked using 1H/4H trends, RSI (>=55 bullish, <=45 bearish), and price versus
+  VWAP (>0.1% away). At least three inputs must agree and the 4H trend must not oppose the side.
+  Missing/neutral readings do not vote. A model direction that disagrees is rejected.
+- Rounded levels must be positive and correctly ordered, with **TP1 RR >=1.0**, **TP2 RR >=2.0**,
+  and **TP1 distance >=0.6 of measured 1H ATR**. Invalid/weak model levels get one deterministic
+  ATR/support-resistance derivation; derived levels must pass the same gates. Missing ATR or failed
+  derivation skips the coin, never stretches the targets just to fill a slot.
+- Topic scoring still combines momentum, volatility, liquidity, participation and novelty. Rejected
+  candidates are excluded from subsequent attempts. Tokenized stocks and gold-linked markets in
+  `trending.exclude_coins` are filtered in `get_trending_coins`, including calls used for context.
+  `min_change_fallbacks: []` means a quiet market does not relax the +5% filter.
+- Explained posts are at most **1,000 characters**, normally much shorter, with no 15-point indicator
+  wall. Public `Conf` and validation numbers are removed. Both the header and risk line calculate
+  RR directly from entry, TP1 and SL; model-written `risk_management` claims are ignored.
+- Missing derivatives/macro/context data are omitted, not repeated as `OI n/a` or feed warnings.
+  Available measurements still appear. This is a formatting fix, **not** a claim that missing futures
+  feeds have been restored; diagnostics remain in the run logs.
+- Signals use only the setup coin and BTC/ETH as discovery context, with at most **two relevant,
+  non-duplicated cashtag occurrences**. Hashtags describe the subject instead of reward campaigns.
+  This editorial tag policy deliberately does not alter the existing TP-hit post templates.
+- `assert_post_quality` rejects banned outcome promises, excessive questions, placeholders, public
+  confidence scores and hooks quoting figures absent from the payload. A bad hook can be dropped;
+  no direction, RR or explanation gate is relaxed to force publication.
 
-Posts now lead with a *verified narrative hook* instead of a raw levels line:
+### One-week measurement loop
 
-- Every signal payload asks the model for a `hook_line` (≤90 chars, one curiosity
-  device, **every number must exist in the research snapshot**) and an
-  `angle_family` (`contrarian_conflict`, `binary_scenario`, `data_finding`,
-  `event_risk`, `outcome_update`, `structure_break`). The formatter puts the hook
-  on line 1, the verified Entry/TP1/TP2/SL line on line 2, and a compact human
-  evidence read (structure/indicators/participation/liquidity/trend stack/context)
-  after that. Consecutive posts avoid repeating the same angle family when the
-  data supports variety.
-- `bot/poster.py: assert_post_quality` is the editorial gate: banned outcome
-  promises (`guaranteed`, `can't lose`, …), at most one hook question plus one
-  CTA question, and a cross-check that every numeral in the hook exists in the
-  verified payload (0.5% tolerance, same as the price-drift guard). A failed
-  signal post falls back to the data-first header; overview/meme/explainer
-  variants are regenerated through the duplicate-guard loop.
-- CTAs are contextual: the discussion question is built from the post's own
-  scenario levels (`Which hits first for $X: $up or $down?`), with the mix in
-  `bot/config.json → content.cta_mix`.
-- Topic selection is a composite **topic score** (momentum, intraday volatility,
-  liquidity, participation, 7-day novelty; weights in `trending.score_weights`)
-  instead of "highest 24h gainer wins". Score components are printed in the run
-  log and step summary.
+For the first week after deployment, keep this configuration stable. Record each published post's
+views, likes and replies at a consistent age (for example 24 hours) in
+[`data/performance/posts.csv`](data/performance/README.md), then run:
+
+```bash
+python -m bot.analyze_performance --days 7
+```
+
+Views are not available from the posting endpoint and must not be invented. Compare like-for-like
+posts, change one thing at a time, and keep all accuracy/risk gates. These changes address the report's
+code defects; increased reach is a hypothesis to measure, not a guarantee.
 
 ## Visual strategy and image quality
 
-The existing chart/card pipeline now logs a topic-to-visual plan for signal, overview, meme, and explainer assets. Routing rules, evidence requirements, research observations and limits, mobile-first design guidance, and human QC are documented in [`docs/visual-strategy.md`](docs/visual-strategy.md) and implemented in `bot/visual_strategy.py`. Signal and BTC charts use a near-square canvas; market values remain rendered from verified data in code, not generated by image models. The current publisher workflow and slot rotation are unchanged. Automated image checks are integrity/aspect warnings, not a substitute for human visual inspection.
+The existing chart/card pipeline now logs a topic-to-visual plan for signal, overview, meme, and explainer assets. Routing rules, evidence requirements, research observations and limits, mobile-first design guidance, and human QC are documented in [`docs/visual-strategy.md`](docs/visual-strategy.md) and implemented in `bot/visual_strategy.py`. Signal and BTC charts use a near-square canvas; market values remain rendered from verified data in code, not generated by image models. Position-card rendering and TP-hit publication remain unchanged by this update. Automated image checks are integrity/aspect warnings, not a substitute for human visual inspection.
 
 ## Running it by hand
 
-*Actions → Signal Poster - 24-Slot Hourly Rotation → Run workflow*
+*Actions → Signal Poster - Six-Slot Rotation → Run workflow*
 
 | Input | Effect |
 | --- | --- |
 | `slot: auto` (default) | Next pending slot of the continuous rotation |
 | `slot: market_overview` / `rapid_alert` / `explained_setup` / `meme_community` | Publish that type now (takes its pending slot if it still has one; otherwise a forced extra run that leaves the queue untouched) |
-| `slot: scorecard` | **Manual extra:** weekly verified outcomes ledger — wins and losses alike, counted from `data/closed_trades.json`, text-only, never part of the rotation |
+| `slot: scorecard` | **Extra:** seven-day outcomes ledger including losses; text-only, outside the queue; also scheduled weekly |
 | `slot: educational_explainer` | **Manual extra:** data-driven teaching post (one market concept explained through today's verified numbers) + BTC chart |
 | `reset` | Deliberately start a new rotation from `bot/config.json`; may repeat content. Never enabled automatically at midnight. |
 | `preview` | Generate the post and chart, publish nothing, and roll the slot + its side effects back |
@@ -119,8 +134,8 @@ the next queued slot, so a run explains itself in the GitHub UI. Locally:
 
 ```bash
 python -m bot.schedule --status          # current rotation and daily publish count as JSON
-python -m bot.schedule --peek --slot 7   # what "slot 7" / a type would resolve to
-python -m bot.schedule --due             # would an automatic run post right now? (the hourly gate)
+python -m bot.schedule --peek --slot 4   # what "slot 4" / a type would resolve to
+python -m bot.schedule --due             # would an automatic run post right now? (gap + jitter gate)
 SLOT=rapid_alert PREVIEW_ONLY=1 python -m bot.main_signal   # generate without publishing
 ```
 
@@ -130,7 +145,7 @@ SLOT=rapid_alert PREVIEW_ONLY=1 python -m bot.main_signal   # generate without p
 | --- | --- |
 | `data/schedule_state.json` | Continuous queue: `pending`, `in_flight`, rotation-tagged publish ledger, completed rotation count, last error. Older untagged state migrates without discarding pending slots. |
 | `data/pending_run.json` | What the current run mutated (slot, coin, `trade_id`) so a failed publish can undo exactly that |
-| `data/publish_receipt.json` | Last publish outcome (mode, attempts, degraded flag) |
+| `data/publish_receipt.json` | Last publish or quality-skip outcome (mode, attempts, reason) |
 | `data/active_trades.json` | Open setups the monitor watches |
 | `data/closed_trades.json` | Resolved or expired setups (proof log) |
 | `data/monitor_posts.json` | Legacy SL/pressure-post counters; retained but no longer read or updated |
@@ -163,11 +178,10 @@ never race on the same file or the same push.
   through the duplicate-guard loop before a slot is at risk.
 - **TP-only monitor publishing.** The monitor posts verified TP1/TP2 hits only. Stop-loss hits are
   still closed and saved to `data/closed_trades.json`, but are silent on Binance Square; near-stop
-  "under pressure" updates are disabled. The manual `slot: scorecard` post still summarizes all
-  outcomes when deliberately requested.
-- **Quiet-market degradation.** If nothing clears the +5% momentum filter, the threshold relaxes
-  through `trending.min_change_fallbacks` before the run gives up — a softer verified setup can still
-  use the run's assigned slot when conditions are quiet.
+  "under pressure" updates are disabled. The weekly aggregate scorecard separately summarizes wins
+  and losses; individual SL-hit posts remain disabled. Position cards/TP1/TP2 posting are unchanged.
+- **Quiet-market skip.** No momentum fallbacks are enabled. When no eligible candidate passes the
+  strict momentum/direction/RR/ATR gates, nothing is published and the skipped opportunity is logged.
 
 ## Required secrets and variables
 
@@ -186,8 +200,8 @@ never race on the same file or the same push.
 
 | Workflow | Schedule | Does |
 | --- | --- | --- |
-| `pacer.yml` — Hourly Pacer | long-running, self-renewing; `23 * * * *` revive cron | Dispatches `signal.yml` once per UTC hour, retries failed or cancelled runs |
-| `signal.yml` — Signal Poster | dispatched by the pacer; `0 * * * *` backup cron | Publishes the next queued slot (hourly gate prevents double posts) |
+| `pacer.yml` — Square Pacer | long-running, self-renewing; `23 * * * *` revive cron | Dispatches only after the 230-minute gap + per-opportunity jitter; retries outages |
+| `signal.yml` — Signal Poster | pacer + `0 * * * *` backup; Sunday `17 18 * * 0` recap | Six-slot rotation with quality skips, plus weekly text-only scorecard |
 | `monitor.yml` — Live Monitor | `*/10 * * * *` | Candle-aware TP/SL detection, proof cards, state expiry |
 | `tests.yml` — Tests | push / PR | Offline unit suites + config validation + compile check |
 | `test-card.yml`, `binance-data-test.yml`, `price-consistency-test.yml` | manual | Card rendering check, live-data sanity checks |
@@ -197,7 +211,7 @@ never race on the same file or the same push.
 ```bash
 python -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python -m unittest test_schedule_rotation test_trade_state test_slot_cadence test_pacer \
-    test_signal_quality_pipeline test_square_publish_resilience
+    test_signal_quality_pipeline test_report_updates test_square_publish_resilience test_monitor_narration
 ```
 
 `bot/schedule.py`, `bot/trade_state.py` and `bot/poster.py` are dependency-light on purpose, so the

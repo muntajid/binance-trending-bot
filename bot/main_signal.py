@@ -1,12 +1,9 @@
 """Master multi-mode signal, macro overview, and community content engine.
 
-Executes the 24-slot hourly portfolio rotation defined in ``bot/config.json``
-(benchmarked against top 100 creator data):
-
-- 11x Rapid Alerts (verified trade levels plus a concise institutional read)
-- 11x Explained Master Setups (15-point evidence, Why Now + Invalidation)
-- 1x Macro & Bitcoin Market Overview (BTC structure, flows & market phases)
-- 1x Viral Trader Psychology & Community Meme (+49% paired uplift)
+Executes the six-slot rotation in ``bot/config.json``: one BTC outlook, one
+explicitly fictional community meme and four concise explained setups. Manual
+rapid alerts and educational posts remain available; a weekly scorecard
+summarizes the ledger, including losses, without changing TP/SL hit handling.
 
 Which of those four shapes a run takes is decided by :mod:`bot.schedule`: the
 next *pending* slot of the continuous rotation. It is neither derived from the
@@ -20,6 +17,7 @@ from __future__ import annotations
 
 import datetime
 import json
+import math
 import os
 import uuid
 from pathlib import Path
@@ -58,6 +56,10 @@ ACTIVE_FILE = "data/active_trades.json"
 LATEST_POST_FILE = "data/latest_post.txt"
 LATEST_SIGNAL_FILE = "data/latest_signal.json"
 CHART_DIR = "charts"
+
+
+class NoPostableSignal(RuntimeError):
+    """A scheduled opportunity has no eligible, sufficiently strong setup."""
 
 
 def _utc_now() -> datetime.datetime:
@@ -231,18 +233,20 @@ def _change_thresholds(config: dict[str, Any]) -> list[float]:
             number = float(value)
         except (TypeError, ValueError):
             continue
-        if number >= 0 and number not in thresholds:
+        if math.isfinite(number) and number >= 0 and number not in thresholds:
             thresholds.append(number)
-    return thresholds or [0.5]
+    return thresholds or [5.0]
 
 
 def select_trending_coin(
     config: dict[str, Any] | None = None,
+    *,
+    skip_coins: set[str] | None = None,
 ) -> tuple[dict[str, Any], list[dict[str, Any]], float]:
     """Pick the strongest trending coin that is neither open nor in cooldown.
 
-    The thresholds are relaxed in turn (``trending.min_change_fallbacks``) so a
-    quiet market still yields a verified setup instead of a dead slot.
+    Only explicitly configured fallback thresholds are tried. The production
+    plan has no momentum relaxation: a quiet market produces no post.
     """
 
     settings = config if config is not None else load_config()
@@ -254,14 +258,16 @@ def select_trending_coin(
         top_n, min_volume = 30, 5_000_000
 
     active_coins = get_active_coins()
+    excluded = {str(coin).upper().strip().removesuffix("USDT")
+                for coin in trending_config.get("exclude_coins", [])}
+    excluded.update(str(coin).upper().strip() for coin in (skip_coins or set()))
     cooldown_hours = float(settings.get("duplicate_filter_hours", 24))
     try:
         fallback_cooldown = float(settings.get("duplicate_filter_fallback_hours", cooldown_hours))
     except (TypeError, ValueError):
         fallback_cooldown = cooldown_hours
-    # 22 signals per day can exhaust the pool on quiet days. Only after every
-    # momentum fallback failed under the full cooldown is a shorter cooldown
-    # tried, so a coin repeats inside 24h only when nothing else is postable.
+    # Legacy configurations can explicitly relax cooldowns. The six-slot plan
+    # keeps the full cooldown; quality and momentum gates never relax here.
     cooldown_passes = [cooldown_hours]
     if 0 <= fallback_cooldown < cooldown_hours:
         cooldown_passes.append(fallback_cooldown)
@@ -271,13 +277,18 @@ def select_trending_coin(
     score_weights = score_weights if isinstance(score_weights, dict) else None
     errors: list[str] = []
     blocked_active = blocked_cooldown = 0
+    fetched_pool = False
 
     for cooldown in cooldown_passes:
         for threshold in thresholds:
             try:
+                options = {}
+                if "exclude_coins" in trending_config:
+                    options["exclude_coins"] = trending_config["exclude_coins"]
                 trending = get_trending_coins(
-                    top_n=top_n, min_change=threshold, min_volume=min_volume
+                    top_n=top_n, min_change=threshold, min_volume=min_volume, **options
                 )
+                fetched_pool = True
             except (RuntimeError, MarketDataError) as exc:
                 errors.append(f">={threshold}%: {exc}")
                 continue
@@ -286,6 +297,8 @@ def select_trending_coin(
             eligible: list[dict[str, Any]] = []
             for coin_data in trending:
                 candidate = str(coin_data["coin"]).upper().strip()
+                if candidate in excluded:
+                    continue
                 if candidate in active_coins:
                     blocked_active += 1
                     continue
@@ -324,10 +337,11 @@ def select_trending_coin(
 
             errors.append(
                 f">={threshold}% ({cooldown:g}h cooldown): all {len(trending)} candidates "
-                "already open or in cooldown"
+                "excluded, quality-rejected, already open or in cooldown"
             )
 
-    raise RuntimeError(
+    error_type = NoPostableSignal if fetched_pool else RuntimeError
+    raise error_type(
         "No postable trending coin found. "
         + "; ".join(errors)
         + f" | blocked: {blocked_active} active, {blocked_cooldown} in cooldown"
@@ -379,7 +393,9 @@ def _with_duplicate_guard(
             )
             result = builder(config)
 
-    print("[Quality Guard] Accepting the last variant to avoid losing the slot")
+    if quality_error is not None:
+        raise NoPostableSignal(f"Editorial quality checks failed after {attempts} drafts: {quality_error}")
+    print("[Duplicate Guard] Using the final clean variant after similarity retries")
     return result
 
 
@@ -422,7 +438,7 @@ def build_meme_post(config: dict[str, Any]) -> tuple[str, dict[str, Any], str]:
     post = format_meme_community_post(meme_data)
 
     card_path = generate_meme_card(
-        title=meme_data.get("title", "Crypto Trader Psychology 101"),
+        title="Fictional humor: " + str(meme_data.get("title", "Crypto Trader Psychology 101")),
         content=meme_data.get(
             "content", "Me: 'Strict risk management today.'\nAlso me: 'Market order 50x!'"
         ),
@@ -442,64 +458,78 @@ def build_signal_post(
 ) -> tuple[str, dict[str, Any], str, dict[str, Any]]:
     """Return ``(post_text, payload, chart_path, effects)`` for a coin signal."""
 
-    selected, trending, threshold = select_trending_coin(config)
-    coin = str(selected["coin"]).upper().strip()
-    change = float(selected["change"])
-    live_price = get_live_price(coin)
-
-    trending_bonus = "BTC"
-    for coin_data in trending:
-        candidate = str(coin_data["coin"]).upper().strip()
-        if candidate != coin:
-            trending_bonus = candidate
-            break
-
-    plan = select_visual_plan(f"{coin} verified price setup", "trade thesis")
-    print(f"[Visual Strategy] {plan.format}: {plan.purpose} ({plan.evidence})")
-    print(
-        f"[Selected] {coin} {change:+.2f}% @ ${live_price} "
-        f"| momentum filter >={threshold}% | Context: {trending_bonus}"
-    )
-
-    # Angle rotation: read the previous post's hook family so two consecutive
-    # posts do not lead with the same pattern when the data allows variety.
+    try:
+        max_attempts = min(20, max(1, int(config.get("trading", {}).get("max_candidate_attempts", 5))))
+    except (TypeError, ValueError, OverflowError):
+        max_attempts = 5
     previous_angle = ""
     try:
         previous_payload = json.loads(Path(LATEST_SIGNAL_FILE).read_text(encoding="utf-8"))
         if isinstance(previous_payload, dict):
             previous_angle = str(previous_payload.get("angle_family", ""))
     except (OSError, json.JSONDecodeError):
-        previous_angle = ""
+        pass
 
-    signal = generate_signal_with_groq(
-        coin=coin,
-        price=live_price,
-        change=change,
-        trending_bonus=trending_bonus,
-        previous_angle_family=previous_angle,
-    )
-    signal["coin"] = coin
-    signal["entry_price"] = live_price
-    signal["change"] = change
-    signal["slot_mode"] = mode
+    rejected: set[str] = set()
+    reasons: list[str] = []
+    signal: dict[str, Any] | None = None
+    for attempt in range(max_attempts):
+        try:
+            selected, _pool, threshold = select_trending_coin(config, skip_coins=rejected)
+        except NoPostableSignal as exc:
+            reasons.append(str(exc))
+            break
+        coin = str(selected["coin"]).upper().strip()
+        change = float(selected["change"])
+        live_price = get_live_price(coin)
+        # A top gainer is not automatically related to this setup. Only a broad
+        # crypto-market context tag is used, never an arbitrary second mover.
+        trending_bonus = "ETH" if coin == "BTC" else "BTC"
+        print(
+            f"[Selected {attempt + 1}/{max_attempts}] {coin} {change:+.2f}% @ ${live_price} "
+            f"| momentum filter >={threshold}% | Context: {trending_bonus}"
+        )
+        try:
+            signal = generate_signal_with_groq(
+                coin=coin,
+                price=live_price,
+                change=change,
+                trending_bonus=trending_bonus,
+                previous_angle_family=previous_angle,
+            )
+            signal["coin"] = coin
+            # Keep the newer authoritative entry returned by normalization;
+            # overwriting it with selection-time CMP would corrupt computed RR.
+            signal["change"] = change
+            signal["trending_bonus"] = trending_bonus
+            signal["slot_mode"] = mode
+            formatter = format_rapid_alert_post if mode == "rapid_alert" else format_explained_post
+            post = formatter(signal)
+            try:
+                assert_post_quality(post, signal)
+            except ValueError:
+                # An unverifiable hook can be omitted; never relax a prose,
+                # direction or level-quality gate to fill a scheduled slot.
+                signal["hook_line"] = ""
+                post = formatter(signal)
+                assert_post_quality(post, signal)
+        except ValueError as exc:
+            signal = None
+            rejected.add(coin)
+            reasons.append(f"{coin}: {exc}")
+            print(f"[Signal Quality] Skipping {coin}: {exc}")
+            continue
+        break
 
+    if signal is None:
+        raise NoPostableSignal("No candidate passed the signal quality gates. " + " | ".join(reasons))
+
+    plan = select_visual_plan(f"{coin} verified price setup", "trade thesis")
+    print(f"[Visual Strategy] {plan.format}: {plan.purpose} ({plan.evidence})")
     print(f"[Chart] Generating single 1H chart for {coin}...")
     chart_path = generate_single_chart(coin, signal, out_dir=CHART_DIR)
     if not validate_chart(chart_path):
         raise RuntimeError(f"Chart generation failed or invalid: {chart_path}")
-
-    post = format_rapid_alert_post(signal) if mode == "rapid_alert" else format_explained_post(signal)
-
-    # Editorial quality gate before any state is mutated: an unverifiable or
-    # over-promising hook is repaired to the data-first header instead of
-    # being published or retrying with side effects. Deterministic and safe.
-    try:
-        assert_post_quality(post, signal)
-    except ValueError as quality_error:
-        print(f"[Quality Guard] Signal post failed editorial checks ({quality_error}); dropping the hook to the verified-levels fallback")
-        signal["hook_line"] = ""
-        post = format_rapid_alert_post(signal) if mode == "rapid_alert" else format_explained_post(signal)
-        assert_post_quality(post, signal)
 
     saved_trade = save_active(signal)
     posted_time = record_posted(coin)
@@ -517,7 +547,7 @@ def build_signal_post(
 
 
 def build_scorecard_post(config: dict[str, Any]) -> tuple[str, dict[str, Any], str]:
-    """Return ``(post_text, payload, "")`` for the manual verified-scorecard slot.
+    """Return ``(post_text, payload, "")`` for the weekly/manual aggregate-scorecard slot.
 
     Fully deterministic: every number comes from the candle-scanned trade
     ledger (data/closed_trades.json + data/active_trades.json). No LLM call,
@@ -573,7 +603,15 @@ def _write_step_summary(lines: list[str]) -> None:
         print(f"[Warning] Could not write the step summary: {exc}")
 
 
+def _generation_output(ready: bool) -> None:
+    output_file = os.getenv("GITHUB_OUTPUT")
+    if output_file:
+        with open(output_file, "a", encoding="utf-8") as handle:
+            handle.write(f"ready={'true' if ready else 'false'}\n")
+
+
 def run() -> None:
+    _generation_output(False)
     config = load_config()
     now = _utc_now()
     print(f"[Signal Engine] Starting run at {now.isoformat()}")
@@ -623,12 +661,24 @@ def run() -> None:
         Path(LATEST_POST_FILE).write_text(post, encoding="utf-8")
         _atomic_write_json(LATEST_SIGNAL_FILE, payload)
 
+    except NoPostableSignal as exc:
+        reason = str(exc)
+        if _env_flag("PREVIEW_ONLY"):
+            schedule.abort_run(f"preview: {reason}")
+        else:
+            schedule.skip_run(reason)
+        print(f"[Quality Skip] Nothing will be published: {reason}")
+        _write_step_summary([f"### ⏭️ Slot #{slot['slot']} skipped", f"- {reason}",
+                             "- No post or trade was created; quality gates were not relaxed."])
+        return
+
     except BaseException as exc:  # noqa: BLE001 - re-raised after cleanup
         reason = f"{type(exc).__name__}: {exc}"
         schedule.abort_run(reason)
         _write_step_summary([f"### ❌ Slot #{slot['slot']} failed", f"- {reason}", "- Slot returned to the queue."])
         raise
 
+    _generation_output(True)
     preview_only = _env_flag("PREVIEW_ONLY")
     if preview_only:
         # Nothing reached Square, so the slot and its side effects must be undone.
