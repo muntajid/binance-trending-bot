@@ -3,7 +3,6 @@
   "day_utc": "2026-11-18",
   "rotation_started_utc": "2026-11-18T09:00:43.812912+00:00",
   "pending": [
-    1,
     2,
     3,
     4,
@@ -1731,11 +1730,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": null
+    },
+    {
+      "slot": 1,
+      "type": "explained_setup",
+      "name": "Setup 1",
+      "forced": false,
+      "published_utc": "2026-11-18T16:31:49.651410+00:00",
+      "day_utc": "2026-11-18",
+      "run_id": "44347999836",
+      "rotation": 9,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "ZKC"
     }
   ],
   "rotations": 8,
   "reset_reason": "plan changed in bot/config.json",
-  "updated_utc": "2026-11-18T12:06:24.460318+00:00",
+  "updated_utc": "2026-11-18T16:31:49.651430+00:00",
   "previous_day": {
     "day_utc": "2026-11-18",
     "published": 9,
