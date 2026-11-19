@@ -1,18 +1,9 @@
-🌐 MACRO & BITCOIN OUTLOOK: Bitcoin holds bullish microstructure amid extreme fear and steady dominance 📊
-
-BTC at $63,898 with 58.9% dominance while Fear & Greed sits at Extreme
-
-$BTC 24H: $63898 (-0.25%)
-Market Phase: Consolidation with bullish bias
-
-📊 Key Market Dynamics:
-• Bitcoin Structure: On the 1H chart BTC trades above EMA20 (63,596) and EMA50 (63,829) with RSI 65, confirming short‑term strength, while the 4H frame shows a bearish EMA20/50 crossover and RSI 44, indicating mixed momentum; price sits between key support at 63,318 and resistance at 64,108.
-• Altcoin Flows: Altcoins are outperforming BTC, with a 9.7% average 24h gain; top gainers CHIP (+16.2%) and HUMA (+15.1%) signal capital rotating into high‑beta tokens amid low sentiment.
-• Crucial Levels: Support $63318 | Resistance $64108.4
-📈 Sentiment: Fear & Greed 10 (Extreme Fear) | BTC dominance 58.9%
-🔄 What flips it: bullish if Break above 64,108 resistance with close above EMA20 on 4H and RSI; watch out if Close below 63,318 support on 4H with RSI dropping under 30 and MACD.
-
-💡 Trader Takeaway: Spot traders may buy near 63,300–63,500 with tight stops at 63,200; futures can sell short if price pierces 64,108 and holds below on the 4H, targeting 62,800.
-
-BTC $ETH #BinanceSquare #CryptoMarket
-⚠️ Educational market analysis only. Not financial advice. Always DYOR.
+MMT rallies above EMA20 as RSI spikes, but support tightens.
+👀 $MMT LONG | Entry CMP $0.2835 | TP1 $0.3096 (+9.2%) | TP2 $0.325271 (+14.7%) | SL $0.2833 (-0.1%) | RR 1:130.50
+Why now: Entry sits above VWAP and EMA20 while price breaks higher highs on 4H.
+Trigger: 1H RSI at 78 indicates strong bullish momentum supporting a long entry.
+📊 RSI 78.0 | VOL volume normal; taker buy share 52%; 24h turnover $52.3M | MTF 5m↑ 15m→ 1H↑ 4H↑ 1D↓ 1W↓
+🛡️ Risk: RR 1:130.50 to TP1; a 1H close below $0.2833 invalidates.
+Which hits first for MMT: $0.3096 or $0.2833?
+Context: $BTC #CryptoTrading
+⚠️ Not financial advice; verify live levels and manage risk.
