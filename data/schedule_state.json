@@ -2,9 +2,7 @@
   "version": 1,
   "day_utc": "2026-11-19",
   "rotation_started_utc": "2026-11-18T09:00:43.812912+00:00",
-  "pending": [
-    5
-  ],
+  "pending": [],
   "in_flight": null,
   "published": [
     {
@@ -1785,11 +1783,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "SENT"
+    },
+    {
+      "slot": 5,
+      "type": "explained_setup",
+      "name": "Setup 4",
+      "forced": false,
+      "published_utc": "2026-11-19T09:01:14.634677+00:00",
+      "day_utc": "2026-11-19",
+      "run_id": "44492442654",
+      "rotation": 9,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "HUMA"
     }
   ],
   "rotations": 8,
   "reset_reason": "plan changed in bot/config.json",
-  "updated_utc": "2026-11-19T05:06:38.674046+00:00",
+  "updated_utc": "2026-11-19T09:01:14.634697+00:00",
   "previous_day": {
     "day_utc": "2026-11-18",
     "published": 11,
