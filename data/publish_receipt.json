@@ -1,15 +1,21 @@
 {
-  "slot": 5,
-  "type": "explained_setup",
-  "name": "Setup 4",
+  "slot": 0,
+  "type": "market_overview",
+  "name": "BTC outlook",
   "forced": false,
-  "published_utc": "2026-11-19T09:01:14.634677+00:00",
+  "published_utc": "2026-11-19T13:01:07.467300+00:00",
   "day_utc": "2026-11-19",
-  "run_id": "44492442654",
-  "rotation": 9,
+  "run_id": "44529169414",
+  "rotation": 10,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": "HUMA",
-  "pending_after": []
+  "coin": null,
+  "pending_after": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ]
 }
