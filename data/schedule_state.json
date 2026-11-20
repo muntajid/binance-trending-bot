@@ -2,9 +2,7 @@
   "version": 1,
   "day_utc": "2026-11-20",
   "rotation_started_utc": "2026-11-19T13:00:47.637826+00:00",
-  "pending": [
-    5
-  ],
+  "pending": [],
   "in_flight": null,
   "published": [
     {
@@ -1869,11 +1867,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "BMT"
+    },
+    {
+      "slot": 5,
+      "type": "explained_setup",
+      "name": "Setup 4",
+      "forced": false,
+      "published_utc": "2026-11-20T10:02:00.868657+00:00",
+      "day_utc": "2026-11-20",
+      "run_id": "44715478031",
+      "rotation": 10,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "RARE"
     }
   ],
   "rotations": 9,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-20T05:51:29.799050+00:00",
+  "updated_utc": "2026-11-20T10:02:00.868680+00:00",
   "previous_day": {
     "day_utc": "2026-11-19",
     "published": 6,
