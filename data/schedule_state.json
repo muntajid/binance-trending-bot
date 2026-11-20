@@ -3,7 +3,6 @@
   "day_utc": "2026-11-20",
   "rotation_started_utc": "2026-11-20T14:10:49.003747+00:00",
   "pending": [
-    2,
     3,
     4,
     5
@@ -1914,11 +1913,27 @@
       "attempts": 1,
       "degraded": false,
       "coin": "KERNEL"
+    },
+    {
+      "slot": 2,
+      "type": "explained_setup",
+      "name": "Setup 2",
+      "forced": false,
+      "started_utc": "2026-11-20T22:21:04.267693+00:00",
+      "run_id": "44828117742",
+      "rotation": 11,
+      "published_utc": null,
+      "resolved_utc": "2026-11-20T22:21:29.287544+00:00",
+      "day_utc": "2026-11-20",
+      "mode": "skipped",
+      "attempts": 0,
+      "degraded": false,
+      "note": "No candidate passed the signal quality gates. CYBER: No rule-based direction consensus for CYBER: {'1h_trend': 1, '4h_trend': 0, 'rsi': -1, 'vwap_side': -1} | BARD: No rule-based direction consensus for BARD: {'1h_trend': 1, '4h_trend': 0, 'rsi': -1, 'vwap_side': -1} | No postable trending coin found. >=5.0% (24h cooldown): all 3 candidates excluded, quality-rejected, already open or in cooldown | blocked: 1 active, 0 in cooldown"
     }
   ],
   "rotations": 10,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-20T18:11:14.184336+00:00",
+  "updated_utc": "2026-11-20T22:21:29.287569+00:00",
   "previous_day": {
     "day_utc": "2026-11-19",
     "published": 6,
