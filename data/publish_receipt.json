@@ -1,18 +1,17 @@
 {
-  "slot": 2,
-  "type": "explained_setup",
-  "name": "Setup 2",
+  "slot": 3,
+  "type": "meme_community",
+  "name": "Community",
   "forced": false,
-  "published_utc": "2026-11-19T21:21:29.295608+00:00",
-  "day_utc": "2026-11-19",
-  "run_id": "44617749266",
+  "published_utc": "2026-11-20T01:20:57.644618+00:00",
+  "day_utc": "2026-11-20",
+  "run_id": "44652875399",
   "rotation": 10,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": "LUNC",
+  "coin": null,
   "pending_after": [
-    3,
     4,
     5
   ]
