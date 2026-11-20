@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "day_utc": "2026-11-19",
+  "day_utc": "2026-11-20",
   "rotation_started_utc": "2026-11-19T13:00:47.637826+00:00",
   "pending": [
     3,
@@ -1847,15 +1847,15 @@
   ],
   "rotations": 9,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-19T21:21:29.295627+00:00",
+  "updated_utc": "2026-11-20T01:00:41.454121+00:00",
   "previous_day": {
-    "day_utc": "2026-11-18",
-    "published": 11,
-    "skipped": 1,
+    "day_utc": "2026-11-19",
+    "published": 6,
+    "skipped": 0,
     "by_type": {
-      "explained_setup": 5,
-      "rapid_alert": 4,
-      "market_overview": 2
+      "meme_community": 1,
+      "explained_setup": 4,
+      "market_overview": 1
     },
     "unpublished": [
       3,
