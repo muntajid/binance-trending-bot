@@ -3,7 +3,6 @@
   "day_utc": "2026-11-20",
   "rotation_started_utc": "2026-11-20T14:10:49.003747+00:00",
   "pending": [
-    1,
     2,
     3,
     4,
@@ -1901,11 +1900,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": null
+    },
+    {
+      "slot": 1,
+      "type": "explained_setup",
+      "name": "Setup 1",
+      "forced": false,
+      "published_utc": "2026-11-20T18:11:14.184306+00:00",
+      "day_utc": "2026-11-20",
+      "run_id": "44790231353",
+      "rotation": 11,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "KERNEL"
     }
   ],
   "rotations": 10,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-20T14:11:10.555283+00:00",
+  "updated_utc": "2026-11-20T18:11:14.184336+00:00",
   "previous_day": {
     "day_utc": "2026-11-19",
     "published": 6,
