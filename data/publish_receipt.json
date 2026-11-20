@@ -1,18 +1,17 @@
 {
-  "slot": 3,
-  "type": "meme_community",
-  "name": "Community",
+  "slot": 4,
+  "type": "explained_setup",
+  "name": "Setup 3",
   "forced": false,
-  "published_utc": "2026-11-20T01:20:57.644618+00:00",
+  "published_utc": "2026-11-20T05:51:29.799028+00:00",
   "day_utc": "2026-11-20",
-  "run_id": "44652875399",
+  "run_id": "44683674573",
   "rotation": 10,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": null,
+  "coin": "BMT",
   "pending_after": [
-    4,
     5
   ]
 }
