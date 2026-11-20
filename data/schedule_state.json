@@ -1,8 +1,14 @@
 {
   "version": 1,
   "day_utc": "2026-11-20",
-  "rotation_started_utc": "2026-11-19T13:00:47.637826+00:00",
-  "pending": [],
+  "rotation_started_utc": "2026-11-20T14:10:49.003747+00:00",
+  "pending": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
   "in_flight": null,
   "published": [
     {
@@ -1881,11 +1887,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "RARE"
+    },
+    {
+      "slot": 0,
+      "type": "market_overview",
+      "name": "BTC outlook",
+      "forced": false,
+      "published_utc": "2026-11-20T14:11:10.555260+00:00",
+      "day_utc": "2026-11-20",
+      "run_id": "44750893488",
+      "rotation": 11,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": null
     }
   ],
-  "rotations": 9,
+  "rotations": 10,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-20T10:02:00.868680+00:00",
+  "updated_utc": "2026-11-20T14:11:10.555283+00:00",
   "previous_day": {
     "day_utc": "2026-11-19",
     "published": 6,
@@ -1902,14 +1922,14 @@
     ]
   },
   "previous_rotation": {
-    "rotation": 9,
-    "started_utc": "2026-11-18T09:00:43.812912+00:00",
+    "rotation": 10,
+    "started_utc": "2026-11-19T13:00:47.637826+00:00",
     "extras": 0,
-    "published": 5,
-    "skipped": 1,
+    "published": 6,
+    "skipped": 0,
     "by_type": {
       "market_overview": 1,
-      "explained_setup": 3,
+      "explained_setup": 4,
       "meme_community": 1
     },
     "unpublished": []
