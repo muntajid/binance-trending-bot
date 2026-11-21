@@ -1,9 +1,8 @@
 {
   "version": 1,
-  "day_utc": "2026-11-20",
+  "day_utc": "2026-11-21",
   "rotation_started_utc": "2026-11-20T14:10:49.003747+00:00",
   "pending": [
-    3,
     4,
     5
   ],
@@ -1929,18 +1928,32 @@
       "attempts": 0,
       "degraded": false,
       "note": "No candidate passed the signal quality gates. CYBER: No rule-based direction consensus for CYBER: {'1h_trend': 1, '4h_trend': 0, 'rsi': -1, 'vwap_side': -1} | BARD: No rule-based direction consensus for BARD: {'1h_trend': 1, '4h_trend': 0, 'rsi': -1, 'vwap_side': -1} | No postable trending coin found. >=5.0% (24h cooldown): all 3 candidates excluded, quality-rejected, already open or in cooldown | blocked: 1 active, 0 in cooldown"
+    },
+    {
+      "slot": 3,
+      "type": "meme_community",
+      "name": "Community",
+      "forced": false,
+      "published_utc": "2026-11-21T02:45:57.421321+00:00",
+      "day_utc": "2026-11-21",
+      "run_id": "44857590376",
+      "rotation": 11,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": null
     }
   ],
   "rotations": 10,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-20T22:21:29.287569+00:00",
+  "updated_utc": "2026-11-21T02:45:57.421349+00:00",
   "previous_day": {
-    "day_utc": "2026-11-19",
-    "published": 6,
-    "skipped": 0,
+    "day_utc": "2026-11-20",
+    "published": 5,
+    "skipped": 1,
     "by_type": {
       "meme_community": 1,
-      "explained_setup": 4,
+      "explained_setup": 3,
       "market_overview": 1
     },
     "unpublished": [
