@@ -1,8 +1,14 @@
 {
   "version": 1,
   "day_utc": "2026-11-21",
-  "rotation_started_utc": "2026-11-20T14:10:49.003747+00:00",
-  "pending": [],
+  "rotation_started_utc": "2026-11-21T15:30:50.651645+00:00",
+  "pending": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
   "in_flight": null,
   "published": [
     {
@@ -1967,11 +1973,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "DODO"
+    },
+    {
+      "slot": 0,
+      "type": "market_overview",
+      "name": "BTC outlook",
+      "forced": false,
+      "published_utc": "2026-11-21T15:31:14.005282+00:00",
+      "day_utc": "2026-11-21",
+      "run_id": "44919524390",
+      "rotation": 12,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": null
     }
   ],
-  "rotations": 10,
+  "rotations": 11,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-21T11:26:26.868934+00:00",
+  "updated_utc": "2026-11-21T15:31:14.005306+00:00",
   "previous_day": {
     "day_utc": "2026-11-20",
     "published": 5,
@@ -1988,14 +2008,14 @@
     ]
   },
   "previous_rotation": {
-    "rotation": 10,
-    "started_utc": "2026-11-19T13:00:47.637826+00:00",
+    "rotation": 11,
+    "started_utc": "2026-11-20T14:10:49.003747+00:00",
     "extras": 0,
-    "published": 6,
-    "skipped": 0,
+    "published": 5,
+    "skipped": 1,
     "by_type": {
       "market_overview": 1,
-      "explained_setup": 4,
+      "explained_setup": 3,
       "meme_community": 1
     },
     "unpublished": []

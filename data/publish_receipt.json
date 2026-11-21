@@ -1,15 +1,21 @@
 {
-  "slot": 5,
-  "type": "explained_setup",
-  "name": "Setup 4",
+  "slot": 0,
+  "type": "market_overview",
+  "name": "BTC outlook",
   "forced": false,
-  "published_utc": "2026-11-21T11:26:26.868914+00:00",
+  "published_utc": "2026-11-21T15:31:14.005282+00:00",
   "day_utc": "2026-11-21",
-  "run_id": "44899029294",
-  "rotation": 11,
+  "run_id": "44919524390",
+  "rotation": 12,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": "DODO",
-  "pending_after": []
+  "coin": null,
+  "pending_after": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ]
 }
