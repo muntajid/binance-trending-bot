@@ -683,7 +683,7 @@
     "slot_mode": "explained_setup",
     "trade_id": "5736cba305f44c758940b240e81f2035",
     "created_at": "2026-11-20T18:11:06.204330+00:00",
-    "last_checked_at": "2026-11-21T18:16:18.849974+00:00",
+    "last_checked_at": "2026-11-21T23:27:23.188505+00:00",
     "status": "ACTIVE"
   },
   {
@@ -1375,7 +1375,7 @@
     "slot_mode": "explained_setup",
     "trade_id": "8deeef9617ca4b51bd0351c69ad1a9c0",
     "created_at": "2026-11-21T19:46:05.869778+00:00",
-    "last_checked_at": "2026-11-21T19:46:05.869778+00:00",
+    "last_checked_at": "2026-11-21T23:27:24.479057+00:00",
     "status": "ACTIVE"
   }
 ]
