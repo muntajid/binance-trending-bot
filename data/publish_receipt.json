@@ -1,17 +1,15 @@
 {
-  "slot": 4,
+  "slot": 5,
   "type": "explained_setup",
-  "name": "Setup 3",
+  "name": "Setup 4",
   "forced": false,
-  "published_utc": "2026-11-21T06:56:18.299640+00:00",
+  "published_utc": "2026-11-21T11:26:26.868914+00:00",
   "day_utc": "2026-11-21",
-  "run_id": "44877806990",
+  "run_id": "44899029294",
   "rotation": 11,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": "ENSO",
-  "pending_after": [
-    5
-  ]
+  "coin": "DODO",
+  "pending_after": []
 }
