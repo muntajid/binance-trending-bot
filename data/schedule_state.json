@@ -3,7 +3,6 @@
   "day_utc": "2026-11-21",
   "rotation_started_utc": "2026-11-20T14:10:49.003747+00:00",
   "pending": [
-    4,
     5
   ],
   "in_flight": null,
@@ -1942,11 +1941,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": null
+    },
+    {
+      "slot": 4,
+      "type": "explained_setup",
+      "name": "Setup 3",
+      "forced": false,
+      "published_utc": "2026-11-21T06:56:18.299640+00:00",
+      "day_utc": "2026-11-21",
+      "run_id": "44877806990",
+      "rotation": 11,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "ENSO"
     }
   ],
   "rotations": 10,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-21T02:45:57.421349+00:00",
+  "updated_utc": "2026-11-21T06:56:18.299664+00:00",
   "previous_day": {
     "day_utc": "2026-11-20",
     "published": 5,
