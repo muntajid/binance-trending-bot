@@ -3,7 +3,6 @@
   "day_utc": "2026-11-21",
   "rotation_started_utc": "2026-11-21T15:30:50.651645+00:00",
   "pending": [
-    1,
     2,
     3,
     4,
@@ -1987,11 +1986,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": null
+    },
+    {
+      "slot": 1,
+      "type": "explained_setup",
+      "name": "Setup 1",
+      "forced": false,
+      "published_utc": "2026-11-21T19:46:12.926784+00:00",
+      "day_utc": "2026-11-21",
+      "run_id": "44942623839",
+      "rotation": 12,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "BARD"
     }
   ],
   "rotations": 11,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-21T15:31:14.005306+00:00",
+  "updated_utc": "2026-11-21T19:46:12.926806+00:00",
   "previous_day": {
     "day_utc": "2026-11-20",
     "published": 5,
