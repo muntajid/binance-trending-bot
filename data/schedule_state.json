@@ -3,7 +3,6 @@
   "day_utc": "2026-11-21",
   "rotation_started_utc": "2026-11-21T15:30:50.651645+00:00",
   "pending": [
-    2,
     3,
     4,
     5
@@ -2000,11 +1999,27 @@
       "attempts": 1,
       "degraded": false,
       "coin": "BARD"
+    },
+    {
+      "slot": 2,
+      "type": "explained_setup",
+      "name": "Setup 2",
+      "forced": false,
+      "started_utc": "2026-11-21T23:45:48.798856+00:00",
+      "run_id": "44963326463",
+      "rotation": 12,
+      "published_utc": null,
+      "resolved_utc": "2026-11-21T23:46:43.480644+00:00",
+      "day_utc": "2026-11-21",
+      "mode": "skipped",
+      "attempts": 0,
+      "degraded": false,
+      "note": "No candidate passed the signal quality gates. ORCA: No rule-based direction consensus for ORCA: {'1h_trend': 0, '4h_trend': 0, 'rsi': 1, 'vwap_side': 1} | UNI: No rule-based direction consensus for UNI: {'1h_trend': 1, '4h_trend': -1, 'rsi': 1, 'vwap_side': -1} | RARE: No rule-based direction consensus for RARE: {'1h_trend': 0, '4h_trend': 0, 'rsi': 0, 'vwap_side': 1} | No postable trending coin found. >=5.0% (24h cooldown): all 6 candidates excluded, quality-rejected, already open or in cooldown | blocked: 1 active, 2 in cooldown"
     }
   ],
   "rotations": 11,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-21T19:46:12.926806+00:00",
+  "updated_utc": "2026-11-21T23:46:43.480670+00:00",
   "previous_day": {
     "day_utc": "2026-11-20",
     "published": 5,
