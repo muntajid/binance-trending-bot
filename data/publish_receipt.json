@@ -1,17 +1,15 @@
 {
-  "slot": 4,
+  "slot": 5,
   "type": "explained_setup",
-  "name": "Setup 3",
+  "name": "Setup 4",
   "forced": false,
-  "published_utc": "2026-11-22T08:21:58.005908+00:00",
+  "published_utc": "2026-11-22T12:51:14.452372+00:00",
   "day_utc": "2026-11-22",
-  "run_id": "45002341160",
+  "run_id": "45024344842",
   "rotation": 12,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": "HYPE",
-  "pending_after": [
-    5
-  ]
+  "coin": "NEAR",
+  "pending_after": []
 }
