@@ -3,7 +3,6 @@
   "day_utc": "2026-11-22",
   "rotation_started_utc": "2026-11-22T16:55:52.439707+00:00",
   "pending": [
-    1,
     2,
     3,
     4,
@@ -2073,11 +2072,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": null
+    },
+    {
+      "slot": 1,
+      "type": "explained_setup",
+      "name": "Setup 1",
+      "forced": false,
+      "published_utc": "2026-11-22T21:06:13.999157+00:00",
+      "day_utc": "2026-11-22",
+      "run_id": "45070090347",
+      "rotation": 13,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "AIGENSYN"
     }
   ],
   "rotations": 12,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-22T16:56:11.997314+00:00",
+  "updated_utc": "2026-11-22T21:06:13.999181+00:00",
   "previous_day": {
     "day_utc": "2026-11-21",
     "published": 5,
