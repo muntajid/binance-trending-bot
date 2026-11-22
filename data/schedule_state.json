@@ -2086,11 +2086,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "AIGENSYN"
+    },
+    {
+      "slot": 90,
+      "type": "scorecard",
+      "name": "Weekly Verified Setup Scorecard (extra)",
+      "forced": true,
+      "published_utc": "2026-11-22T23:38:30.492690+00:00",
+      "day_utc": "2026-11-22",
+      "run_id": "45084307372",
+      "rotation": 13,
+      "mode": "text",
+      "attempts": 1,
+      "degraded": false,
+      "coin": null
     }
   ],
   "rotations": 12,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-22T21:06:13.999181+00:00",
+  "updated_utc": "2026-11-22T23:38:30.492710+00:00",
   "previous_day": {
     "day_utc": "2026-11-21",
     "published": 5,

@@ -1,7 +1,7 @@
 {
-  "last_slot": 1,
-  "last_type": "explained_setup",
-  "last_run_utc": "2026-11-22T21:06:13.999157+00:00",
+  "last_slot": 90,
+  "last_type": "scorecard",
+  "last_run_utc": "2026-11-22T23:38:30.492690+00:00",
   "day_utc": "2026-11-22",
   "rotation": 13,
   "rotation_started_utc": "2026-11-22T16:55:52.439707+00:00",
