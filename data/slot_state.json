@@ -1,11 +1,17 @@
 {
-  "last_slot": 5,
-  "last_type": "explained_setup",
-  "last_run_utc": "2026-11-22T12:51:14.452372+00:00",
+  "last_slot": 0,
+  "last_type": "market_overview",
+  "last_run_utc": "2026-11-22T16:56:11.997292+00:00",
   "day_utc": "2026-11-22",
-  "rotation": 12,
-  "rotation_started_utc": "2026-11-21T15:30:50.651645+00:00",
-  "published_this_rotation": 6,
-  "pending_slots": [],
+  "rotation": 13,
+  "rotation_started_utc": "2026-11-22T16:55:52.439707+00:00",
+  "published_this_rotation": 1,
+  "pending_slots": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
   "in_flight": null
 }

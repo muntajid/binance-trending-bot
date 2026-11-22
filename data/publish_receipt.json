@@ -1,15 +1,21 @@
 {
-  "slot": 5,
-  "type": "explained_setup",
-  "name": "Setup 4",
+  "slot": 0,
+  "type": "market_overview",
+  "name": "BTC outlook",
   "forced": false,
-  "published_utc": "2026-11-22T12:51:14.452372+00:00",
+  "published_utc": "2026-11-22T16:56:11.997292+00:00",
   "day_utc": "2026-11-22",
-  "run_id": "45024344842",
-  "rotation": 12,
+  "run_id": "45046504013",
+  "rotation": 13,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": "NEAR",
-  "pending_after": []
+  "coin": null,
+  "pending_after": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ]
 }
