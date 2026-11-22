@@ -1,18 +1,17 @@
 {
-  "slot": 3,
-  "type": "meme_community",
-  "name": "Community",
+  "slot": 4,
+  "type": "explained_setup",
+  "name": "Setup 3",
   "forced": false,
-  "published_utc": "2026-11-22T03:51:00.587414+00:00",
+  "published_utc": "2026-11-22T08:21:58.005908+00:00",
   "day_utc": "2026-11-22",
-  "run_id": "44982415840",
+  "run_id": "45002341160",
   "rotation": 12,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": null,
+  "coin": "HYPE",
   "pending_after": [
-    4,
     5
   ]
 }
