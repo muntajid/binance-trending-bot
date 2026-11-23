@@ -1,18 +1,9 @@
-🌐 MACRO & BITCOIN OUTLOOK: Bitcoin holds sideways near $61.7k as dominance steadies and fear spikes 📊
-
-BTC at $61,677.81, ETH up 1.96%, dominance 57.9%, Fear & Greed
-
-$BTC 24H: $61677.81 (+1.59%)
-Market Phase: Consolidation with bullish bias
-
-📊 Key Market Dynamics:
-• Bitcoin Structure: On 1‑hour BTC shows a mixed HH/LL structure, price sits just below the 20‑EMA (61732) and above the 50‑EMA (61132); 4‑hour chart confirms an HH‑HL bullish continuation, keeping liquidity between the 1‑hour support at 61,290 and resistance at 61,850.
-• Altcoin Flows: Altcoins are broadly outperforming BTC (average +18% vs BTC +1.6%); top gainers ACE (+43.4%), LISTA (+21.2%) and ALGO (+14.5%) signal capital rotation into risk‑on assets.
-• Crucial Levels: Support $61290.06 | Resistance $61850.32
-📈 Sentiment: Fear & Greed 11 (Extreme Fear) | BTC dominance 57.9%
-🔄 What flips it: bullish if 4‑hour close above the 20‑EMA (≈61,125) with RSI staying; watch out if Close below the 1‑hour support 61,290 with RSI dropping under.
-
-💡 Trader Takeaway: Buy spot dips near $61,300‑$61,400 with stop‑loss just below $61,200; on futures, consider long entries on retests of $61,850 and tighten stops if price breaches $61,250
-
-BTC $ETH #BinanceSquare #CryptoMarket
-⚠️ Educational market analysis only. Not financial advice. Always DYOR.
+Hammer candle, price above VWAP, EMA20 signals bullish pressure
+👀 $MUBARAK LONG | Entry CMP $0.02586 | TP1 $0.02703 (+4.5%) | TP2 $0.0282 (+9.0%) | SL $0.02469 (-4.5%) | RR 1:1.00
+Why now: Price sits above VWAP and EMA20 while BTC shows mixed trend, reinforcing the long setup now.
+Trigger: Hammer candlestick on the 1H chart shows buying pressure near EMA20, confirming bullish bias.
+📊 RSI 65.4 | VOL volume normal; taker buy share 50%; 24h turnover $8.8M | MTF 5m↓ 15m↑ 1H↑ 4H↑ 1D↓ 1W→
+🛡️ Risk: RR 1:1.00 to TP1; a 1H close below $0.02469 invalidates.
+Which hits first for MUBARAK: $0.02634 or $0.02506?
+Context: $BTC #CryptoTrading
+⚠️ Not financial advice; verify live levels and manage risk.
