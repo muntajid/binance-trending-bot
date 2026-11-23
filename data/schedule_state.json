@@ -3,7 +3,6 @@
   "day_utc": "2026-11-23",
   "rotation_started_utc": "2026-11-22T16:55:52.439707+00:00",
   "pending": [
-    3,
     4,
     5
   ],
@@ -2113,11 +2112,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "PUMP"
+    },
+    {
+      "slot": 3,
+      "type": "meme_community",
+      "name": "Community",
+      "forced": false,
+      "published_utc": "2026-11-23T05:56:00.295226+00:00",
+      "day_utc": "2026-11-23",
+      "run_id": "45120772363",
+      "rotation": 13,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": null
     }
   ],
   "rotations": 12,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-23T01:26:16.250517+00:00",
+  "updated_utc": "2026-11-23T05:56:00.295248+00:00",
   "previous_day": {
     "day_utc": "2026-11-22",
     "published": 6,
