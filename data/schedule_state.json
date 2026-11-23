@@ -2,9 +2,7 @@
   "version": 1,
   "day_utc": "2026-11-23",
   "rotation_started_utc": "2026-11-22T16:55:52.439707+00:00",
-  "pending": [
-    5
-  ],
+  "pending": [],
   "in_flight": null,
   "published": [
     {
@@ -2141,11 +2139,25 @@
       "attempts": 0,
       "degraded": false,
       "note": "No candidate passed the signal quality gates. LISTA: No rule-based direction consensus for LISTA: {'1h_trend': 0, '4h_trend': 0, 'rsi': 1, 'vwap_side': 1} | NIGHT: No rule-based direction consensus for NIGHT: {'1h_trend': 1, '4h_trend': 0, 'rsi': 0, 'vwap_side': 1} | QNT: No rule-based direction consensus for QNT: {'1h_trend': 0, '4h_trend': 0, 'rsi': 1, 'vwap_side': 1} | No postable trending coin found. >=5.0% (24h cooldown): all 4 candidates excluded, quality-rejected, already open or in cooldown | blocked: 0 active, 1 in cooldown"
+    },
+    {
+      "slot": 5,
+      "type": "explained_setup",
+      "name": "Setup 4",
+      "forced": false,
+      "published_utc": "2026-11-23T14:26:18.540819+00:00",
+      "day_utc": "2026-11-23",
+      "run_id": "45194026694",
+      "rotation": 13,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "PROM"
     }
   ],
   "rotations": 12,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-23T10:21:42.577780+00:00",
+  "updated_utc": "2026-11-23T14:26:18.540839+00:00",
   "previous_day": {
     "day_utc": "2026-11-22",
     "published": 6,

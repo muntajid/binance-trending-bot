@@ -1,19 +1,15 @@
 {
-  "slot": 4,
+  "slot": 5,
   "type": "explained_setup",
-  "name": "Setup 3",
+  "name": "Setup 4",
   "forced": false,
-  "started_utc": "2026-11-23T10:20:47.009982+00:00",
-  "run_id": "45155183006",
-  "rotation": 13,
-  "published_utc": null,
-  "resolved_utc": "2026-11-23T10:21:42.577754+00:00",
+  "published_utc": "2026-11-23T14:26:18.540819+00:00",
   "day_utc": "2026-11-23",
-  "mode": "skipped",
-  "attempts": 0,
+  "run_id": "45194026694",
+  "rotation": 13,
+  "mode": "image",
+  "attempts": 1,
   "degraded": false,
-  "note": "No candidate passed the signal quality gates. LISTA: No rule-based direction consensus for LISTA: {'1h_trend': 0, '4h_trend': 0, 'rsi': 1, 'vwap_side': 1} | NIGHT: No rule-based direction consensus for NIGHT: {'1h_trend': 1, '4h_trend': 0, 'rsi': 0, 'vwap_side': 1} | QNT: No rule-based direction consensus for QNT: {'1h_trend': 0, '4h_trend': 0, 'rsi': 1, 'vwap_side': 1} | No postable trending coin found. >=5.0% (24h cooldown): all 4 candidates excluded, quality-rejected, already open or in cooldown | blocked: 0 active, 1 in cooldown",
-  "pending_after": [
-    5
-  ]
+  "coin": "PROM",
+  "pending_after": []
 }
