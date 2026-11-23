@@ -1,16 +1,9 @@
-📒 Verified Setup Scorecard — last 7 day(s)
-
-Every call this account publishes carries real Entry / TP1 / TP2 / SL levels, and every outcome below is counted from the 1-minute candle ledger - wins and losses the same way.
-
-Closed in window: 67
-• Reached TP2 (full target): 23 (34% of closed)
-• Banked TP1 first, then stopped: 18
-• Stopped at invalidation: 44
-• Expired unresolved: 0 | Superseded: 0
-Currently open: 3
-Average verified move: +3.0% to TP2, -2.9% to stop.
-
-Honesty note: a signal service that only shows wins is marketing. These numbers are the complete record for the window.
-
-$BTC #BinanceSquare
-⚠️ Past setups do not guarantee future results. Not financial advice.
+PUMP near VWAP, bullish 1H trend, 0.64 Bollinger position
+👀 $PUMP LONG | Entry CMP $0.00256 | TP1 $0.00262 (+2.3%) | TP2 $0.00268 (+4.7%) | SL $0.0025 (-2.3%) | RR 1:1.00
+Why now: Current 1H uptrend and 4H sideways structure support a short-term rally.
+Trigger: 1H RSI at 64.3 and price above VWAP indicate bullish momentum.
+📊 RSI 64.3 | VOL volume normal; taker buy share 48%; 24h turnover $9.0M | MTF 5m→ 15m→ 1H↑ 4H→ 1D↓ 1W↑
+🛡️ Risk: RR 1:1.00 to TP1; a 1H close below $0.0025 invalidates.
+Which hits first for PUMP: $0.002601 or $0.002536?
+Context: $BTC #CryptoTrading
+⚠️ Not financial advice; verify live levels and manage risk.
