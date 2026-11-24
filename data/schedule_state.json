@@ -1,9 +1,8 @@
 {
   "version": 1,
-  "day_utc": "2026-11-23",
+  "day_utc": "2026-11-24",
   "rotation_started_utc": "2026-11-23T18:25:51.938168+00:00",
   "pending": [
-    2,
     3,
     4,
     5
@@ -2186,20 +2185,33 @@
       "attempts": 1,
       "degraded": false,
       "coin": "MUBARAK"
+    },
+    {
+      "slot": 2,
+      "type": "explained_setup",
+      "name": "Setup 2",
+      "forced": false,
+      "published_utc": "2026-11-24T03:11:25.236167+00:00",
+      "day_utc": "2026-11-24",
+      "run_id": "45317617587",
+      "rotation": 14,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "LISTA"
     }
   ],
   "rotations": 13,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-23T22:41:11.245437+00:00",
+  "updated_utc": "2026-11-24T03:11:25.236186+00:00",
   "previous_day": {
-    "day_utc": "2026-11-22",
-    "published": 6,
-    "skipped": 0,
+    "day_utc": "2026-11-23",
+    "published": 5,
+    "skipped": 1,
     "by_type": {
-      "meme_community": 1,
       "explained_setup": 3,
-      "market_overview": 1,
-      "scorecard": 1
+      "meme_community": 1,
+      "market_overview": 1
     },
     "unpublished": [
       2,
