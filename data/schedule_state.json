@@ -3,7 +3,6 @@
   "day_utc": "2026-11-24",
   "rotation_started_utc": "2026-11-23T18:25:51.938168+00:00",
   "pending": [
-    3,
     4,
     5
   ],
@@ -2199,11 +2198,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "LISTA"
+    },
+    {
+      "slot": 3,
+      "type": "meme_community",
+      "name": "Community",
+      "forced": false,
+      "published_utc": "2026-11-24T07:46:05.401375+00:00",
+      "day_utc": "2026-11-24",
+      "run_id": "45350447395",
+      "rotation": 14,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": null
     }
   ],
   "rotations": 13,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-24T03:11:25.236186+00:00",
+  "updated_utc": "2026-11-24T07:46:05.401393+00:00",
   "previous_day": {
     "day_utc": "2026-11-23",
     "published": 5,

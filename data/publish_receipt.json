@@ -1,18 +1,17 @@
 {
-  "slot": 2,
-  "type": "explained_setup",
-  "name": "Setup 2",
+  "slot": 3,
+  "type": "meme_community",
+  "name": "Community",
   "forced": false,
-  "published_utc": "2026-11-24T03:11:25.236167+00:00",
+  "published_utc": "2026-11-24T07:46:05.401375+00:00",
   "day_utc": "2026-11-24",
-  "run_id": "45317617587",
+  "run_id": "45350447395",
   "rotation": 14,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": "LISTA",
+  "coin": null,
   "pending_after": [
-    3,
     4,
     5
   ]
