@@ -2,9 +2,7 @@
   "version": 1,
   "day_utc": "2026-11-24",
   "rotation_started_utc": "2026-11-23T18:25:51.938168+00:00",
-  "pending": [
-    5
-  ],
+  "pending": [],
   "in_flight": null,
   "published": [
     {
@@ -2227,11 +2225,25 @@
       "attempts": 0,
       "degraded": false,
       "note": "No candidate passed the signal quality gates. MMT: No rule-based direction consensus for MMT: {'1h_trend': 0, '4h_trend': -1, 'rsi': 1, 'vwap_side': 1} | SAHARA: No rule-based direction consensus for SAHARA: {'1h_trend': 0, '4h_trend': 0, 'rsi': 1, 'vwap_side': -1} | MUB: No rule-based direction consensus for MUB: {'1h_trend': -1, '4h_trend': 1, 'rsi': -1, 'vwap_side': 1} | SKHYB: No rule-based direction consensus for SKHYB: {'1h_trend': -1, '4h_trend': 0, 'rsi': -1, 'vwap_side': 1} | TSLAB: No rule-based direction consensus for TSLAB: {'1h_trend': -1, '4h_trend': 1, 'rsi': 0, 'vwap_side': 1}"
+    },
+    {
+      "slot": 5,
+      "type": "explained_setup",
+      "name": "Setup 4",
+      "forced": false,
+      "published_utc": "2026-11-24T16:31:14.043215+00:00",
+      "day_utc": "2026-11-24",
+      "run_id": "45437897148",
+      "rotation": 14,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "ATM"
     }
   ],
   "rotations": 13,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-24T12:12:14.574258+00:00",
+  "updated_utc": "2026-11-24T16:31:14.043244+00:00",
   "previous_day": {
     "day_utc": "2026-11-23",
     "published": 5,
