@@ -1,18 +1,19 @@
 {
-  "slot": 3,
-  "type": "meme_community",
-  "name": "Community",
+  "slot": 4,
+  "type": "explained_setup",
+  "name": "Setup 3",
   "forced": false,
-  "published_utc": "2026-11-24T07:46:05.401375+00:00",
-  "day_utc": "2026-11-24",
-  "run_id": "45350447395",
+  "started_utc": "2026-11-24T12:10:46.192581+00:00",
+  "run_id": "45390949807",
   "rotation": 14,
-  "mode": "image",
-  "attempts": 1,
+  "published_utc": null,
+  "resolved_utc": "2026-11-24T12:12:14.574235+00:00",
+  "day_utc": "2026-11-24",
+  "mode": "skipped",
+  "attempts": 0,
   "degraded": false,
-  "coin": null,
+  "note": "No candidate passed the signal quality gates. MMT: No rule-based direction consensus for MMT: {'1h_trend': 0, '4h_trend': -1, 'rsi': 1, 'vwap_side': 1} | SAHARA: No rule-based direction consensus for SAHARA: {'1h_trend': 0, '4h_trend': 0, 'rsi': 1, 'vwap_side': -1} | MUB: No rule-based direction consensus for MUB: {'1h_trend': -1, '4h_trend': 1, 'rsi': -1, 'vwap_side': 1} | SKHYB: No rule-based direction consensus for SKHYB: {'1h_trend': -1, '4h_trend': 0, 'rsi': -1, 'vwap_side': 1} | TSLAB: No rule-based direction consensus for TSLAB: {'1h_trend': -1, '4h_trend': 1, 'rsi': 0, 'vwap_side': 1}",
   "pending_after": [
-    4,
     5
   ]
 }
