@@ -1,9 +1,8 @@
 {
   "version": 1,
-  "day_utc": "2026-11-24",
+  "day_utc": "2026-11-25",
   "rotation_started_utc": "2026-11-24T20:31:03.022688+00:00",
   "pending": [
-    1,
     2,
     3,
     4,
@@ -2259,21 +2258,38 @@
       "attempts": 1,
       "degraded": false,
       "coin": null
+    },
+    {
+      "slot": 1,
+      "type": "explained_setup",
+      "name": "Setup 1",
+      "forced": false,
+      "started_utc": "2026-11-25T00:55:44.966849+00:00",
+      "run_id": "45521831066",
+      "rotation": 15,
+      "published_utc": null,
+      "resolved_utc": "2026-11-25T00:55:46.257024+00:00",
+      "day_utc": "2026-11-25",
+      "mode": "skipped",
+      "attempts": 0,
+      "degraded": false,
+      "note": "No candidate passed the signal quality gates. No postable trending coin found. >=5.0% (24h cooldown): all 2 candidates excluded, quality-rejected, already open or in cooldown | blocked: 1 active, 1 in cooldown"
     }
   ],
   "rotations": 14,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-24T20:31:19.825320+00:00",
+  "updated_utc": "2026-11-25T00:55:46.257049+00:00",
   "previous_day": {
-    "day_utc": "2026-11-23",
-    "published": 5,
+    "day_utc": "2026-11-24",
+    "published": 4,
     "skipped": 1,
     "by_type": {
-      "explained_setup": 3,
+      "explained_setup": 2,
       "meme_community": 1,
       "market_overview": 1
     },
     "unpublished": [
+      1,
       2,
       3,
       4,
