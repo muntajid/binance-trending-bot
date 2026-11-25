@@ -3,7 +3,6 @@
   "day_utc": "2026-11-25",
   "rotation_started_utc": "2026-11-24T20:31:03.022688+00:00",
   "pending": [
-    2,
     3,
     4,
     5
@@ -2274,11 +2273,25 @@
       "attempts": 0,
       "degraded": false,
       "note": "No candidate passed the signal quality gates. No postable trending coin found. >=5.0% (24h cooldown): all 2 candidates excluded, quality-rejected, already open or in cooldown | blocked: 1 active, 1 in cooldown"
+    },
+    {
+      "slot": 2,
+      "type": "explained_setup",
+      "name": "Setup 2",
+      "forced": false,
+      "published_utc": "2026-11-25T05:11:14.017373+00:00",
+      "day_utc": "2026-11-25",
+      "run_id": "45551705637",
+      "rotation": 15,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "OPG"
     }
   ],
   "rotations": 14,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-25T00:55:46.257049+00:00",
+  "updated_utc": "2026-11-25T05:11:14.017393+00:00",
   "previous_day": {
     "day_utc": "2026-11-24",
     "published": 4,
