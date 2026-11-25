@@ -1,18 +1,17 @@
 {
-  "slot": 2,
-  "type": "explained_setup",
-  "name": "Setup 2",
+  "slot": 3,
+  "type": "meme_community",
+  "name": "Community",
   "forced": false,
-  "published_utc": "2026-11-25T05:11:14.017373+00:00",
+  "published_utc": "2026-11-25T09:35:52.086708+00:00",
   "day_utc": "2026-11-25",
-  "run_id": "45551705637",
+  "run_id": "45586830624",
   "rotation": 15,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": "OPG",
+  "coin": null,
   "pending_after": [
-    3,
     4,
     5
   ]

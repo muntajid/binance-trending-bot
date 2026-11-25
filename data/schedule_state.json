@@ -3,7 +3,6 @@
   "day_utc": "2026-11-25",
   "rotation_started_utc": "2026-11-24T20:31:03.022688+00:00",
   "pending": [
-    3,
     4,
     5
   ],
@@ -2287,11 +2286,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "OPG"
+    },
+    {
+      "slot": 3,
+      "type": "meme_community",
+      "name": "Community",
+      "forced": false,
+      "published_utc": "2026-11-25T09:35:52.086708+00:00",
+      "day_utc": "2026-11-25",
+      "run_id": "45586830624",
+      "rotation": 15,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": null
     }
   ],
   "rotations": 14,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-25T05:11:14.017393+00:00",
+  "updated_utc": "2026-11-25T09:35:52.086736+00:00",
   "previous_day": {
     "day_utc": "2026-11-24",
     "published": 4,
