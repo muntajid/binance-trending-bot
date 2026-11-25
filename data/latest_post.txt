@@ -1,9 +1,18 @@
-MMT spikes 30% as RSI tops 80, price hugging upper Bollinger.
-👀 $MMT LONG | Entry CMP $0.291 | TP1 $0.313725 (+7.8%) | TP2 $0.33645 (+15.6%) | SL $0.271112 (-6.8%) | RR 1:1.14
-Why now: Entry price sits near the upper Bollinger band while VWAP lags, creating immediate pressure.
-Trigger: 1H RSI at 80.17 signals overbought momentum supporting a long bias.
-📊 RSI 80.2 | VOL volume normal; taker buy share 50%; 24h turnover $17.8M | MTF 5m→ 15m↑ 1H↓ 4H↑ 1D↑ 1W↓
-🛡️ Risk: RR 1:1.14 to TP1; a 1H close below $0.271112 invalidates.
-Which hits first for MMT: $0.2964 or $0.2749?
-Context: $BTC #CryptoTrading
-⚠️ Not financial advice; verify live levels and manage risk.
+🌐 MACRO & BITCOIN OUTLOOK: Bitcoin stalls near $60k as bearish LL‑LH pattern meets extreme fear sentiment 📊
+
+BTC at $60,043 vs 57.8% dominance and Fear & Greed 13 shows
+
+$BTC 24H: $60043.2 (+0.09%)
+Market Phase: Consolidation
+
+📊 Key Market Dynamics:
+• Bitcoin Structure: On 1H BTC sits in a LL‑LH bearish continuation with price just below the 20‑EMA (59,456) and RSI at 57.7, while 4H shows a mixed HH/LL structure, RSI 28.9 and price under the 20‑EMA (59,993), indicating pressure near key liquidity zones.
+• Altcoin Flows: Altcoins are roaring, with top gainers MANTRA (+103.6%) and BIGTIME (+69.8%) while BTC dominance sits at 57.8% and the Fear & Greed Index at 13 (Extreme Fear), suggesting capital is rotating into risk assets.
+• Crucial Levels: Support $59415.43 | Resistance $60200.34
+📈 Sentiment: Fear & Greed 13 (Extreme Fear) | BTC dominance 57.8%
+🔄 What flips it: bullish if A close above the 4H EMA‑20 (~59,993) and a break; watch out if A decisive break below the 1H support 59415 with MACD histogram.
+
+💡 Trader Takeaway: Spot traders may hold cash near $59.4k support; futures players could sell short on breaks below 59415 or buy long on a clean close above 60200 with tight stops at the nearest support.
+
+BTC $ETH #BinanceSquare #CryptoMarket
+⚠️ Educational market analysis only. Not financial advice. Always DYOR.
