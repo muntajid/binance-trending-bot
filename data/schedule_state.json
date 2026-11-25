@@ -2,9 +2,7 @@
   "version": 1,
   "day_utc": "2026-11-25",
   "rotation_started_utc": "2026-11-24T20:31:03.022688+00:00",
-  "pending": [
-    5
-  ],
+  "pending": [],
   "in_flight": null,
   "published": [
     {
@@ -2315,11 +2313,25 @@
       "attempts": 0,
       "degraded": false,
       "note": "No candidate passed the signal quality gates. BIGTIME: No rule-based direction consensus for BIGTIME: {'1h_trend': 0, '4h_trend': 0, 'rsi': 1, 'vwap_side': 1} | MANTRA: No rule-based direction consensus for MANTRA: {'1h_trend': 1, '4h_trend': -1, 'rsi': 1, 'vwap_side': 1} | MMT: All model completions were rejected by the signal quality gate: openai/gpt-oss-120b: setup failed minimum risk/reward or ATR-distance gate after deterministic derivation: TP1 RR 0.30 < 1.00; TP2 RR 1.42 < 2.00 | openai/gpt-oss-20b: setup failed minimum risk/reward or ATR-distance gate after deterministic derivation: TP1 RR 0.30 < 1.00; TP2 RR 1.42 < 2.00 | No postable trending coin found. >=5.0% (24h cooldown): all 4 candidates excluded, quality-rejected, already open or in cooldown | blocked: 1 active, 0 in cooldown"
+    },
+    {
+      "slot": 5,
+      "type": "explained_setup",
+      "name": "Setup 4",
+      "forced": false,
+      "published_utc": "2026-11-25T18:02:00.992102+00:00",
+      "day_utc": "2026-11-25",
+      "run_id": "45670641426",
+      "rotation": 15,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "MMT"
     }
   ],
   "rotations": 14,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-25T13:46:32.512383+00:00",
+  "updated_utc": "2026-11-25T18:02:00.992125+00:00",
   "previous_day": {
     "day_utc": "2026-11-24",
     "published": 4,
