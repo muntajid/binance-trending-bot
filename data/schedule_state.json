@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "day_utc": "2026-11-25",
+  "day_utc": "2026-11-26",
   "rotation_started_utc": "2026-11-25T22:25:43.513769+00:00",
   "pending": [
     1,
@@ -2351,11 +2351,11 @@
   ],
   "rotations": 15,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-25T22:26:02.867577+00:00",
+  "updated_utc": "2026-11-26T01:30:34.007417+00:00",
   "previous_day": {
-    "day_utc": "2026-11-24",
+    "day_utc": "2026-11-25",
     "published": 4,
-    "skipped": 1,
+    "skipped": 2,
     "by_type": {
       "explained_setup": 2,
       "meme_community": 1,
