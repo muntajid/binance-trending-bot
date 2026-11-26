@@ -2,9 +2,7 @@
   "version": 1,
   "day_utc": "2026-11-26",
   "rotation_started_utc": "2026-11-25T22:25:43.513769+00:00",
-  "pending": [
-    5
-  ],
+  "pending": [],
   "in_flight": null,
   "published": [
     {
@@ -2401,11 +2399,27 @@
       "attempts": 0,
       "degraded": false,
       "note": "No candidate passed the signal quality gates. INIT: No rule-based direction consensus for INIT: {'1h_trend': -1, '4h_trend': -1, 'rsi': 1, 'vwap_side': 1} | SSV: No rule-based direction consensus for SSV: {'1h_trend': 1, '4h_trend': -1, 'rsi': 1, 'vwap_side': 1} | MOVE: No rule-based direction consensus for MOVE: {'1h_trend': 0, '4h_trend': 1, 'rsi': -1, 'vwap_side': 1} | BTC: No rule-based direction consensus for BTC: {'1h_trend': 0, '4h_trend': -1, 'rsi': 1, 'vwap_side': 1} | ME: No rule-based direction consensus for ME: {'1h_trend': 1, '4h_trend': -1, 'rsi': 1, 'vwap_side': 1}"
+    },
+    {
+      "slot": 5,
+      "type": "explained_setup",
+      "name": "Setup 4",
+      "forced": false,
+      "started_utc": "2026-11-26T19:10:48.771770+00:00",
+      "run_id": "45881615410",
+      "rotation": 16,
+      "published_utc": null,
+      "resolved_utc": "2026-11-26T19:12:03.452283+00:00",
+      "day_utc": "2026-11-26",
+      "mode": "skipped",
+      "attempts": 0,
+      "degraded": false,
+      "note": "No candidate passed the signal quality gates. INIT: No rule-based direction consensus for INIT: {'1h_trend': 0, '4h_trend': -1, 'rsi': 1, 'vwap_side': 1} | SSV: No rule-based direction consensus for SSV: {'1h_trend': 1, '4h_trend': -1, 'rsi': 1, 'vwap_side': 1} | ME: No rule-based direction consensus for ME: {'1h_trend': 0, '4h_trend': 0, 'rsi': 1, 'vwap_side': 1} | SEI: All model completions were rejected by the signal quality gate: openai/gpt-oss-120b: setup failed minimum risk/reward or ATR-distance gate after deterministic derivation: TP1 RR 0.55 < 1.00; TP2 RR 1.10 < 2.00 | openai/gpt-oss-20b: setup failed minimum risk/reward or ATR-distance gate after deterministic derivation: TP1 RR 0.55 < 1.00; TP2 RR 1.10 < 2.00 | MOVE: No rule-based direction consensus for MOVE: {'1h_trend': -1, '4h_trend': 1, 'rsi': 0, 'vwap_side': -1}"
     }
   ],
   "rotations": 15,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-26T14:57:04.016294+00:00",
+  "updated_utc": "2026-11-26T19:12:03.452305+00:00",
   "previous_day": {
     "day_utc": "2026-11-25",
     "published": 4,
