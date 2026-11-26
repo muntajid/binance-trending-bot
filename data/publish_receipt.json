@@ -1,18 +1,19 @@
 {
-  "slot": 3,
-  "type": "meme_community",
-  "name": "Community",
+  "slot": 4,
+  "type": "explained_setup",
+  "name": "Setup 3",
   "forced": false,
-  "published_utc": "2026-11-26T10:31:01.374263+00:00",
-  "day_utc": "2026-11-26",
-  "run_id": "45801947004",
+  "started_utc": "2026-11-26T14:55:44.636552+00:00",
+  "run_id": "45843848441",
   "rotation": 16,
-  "mode": "image",
-  "attempts": 1,
+  "published_utc": null,
+  "resolved_utc": "2026-11-26T14:57:04.016276+00:00",
+  "day_utc": "2026-11-26",
+  "mode": "skipped",
+  "attempts": 0,
   "degraded": false,
-  "coin": null,
+  "note": "No candidate passed the signal quality gates. INIT: No rule-based direction consensus for INIT: {'1h_trend': -1, '4h_trend': -1, 'rsi': 1, 'vwap_side': 1} | SSV: No rule-based direction consensus for SSV: {'1h_trend': 1, '4h_trend': -1, 'rsi': 1, 'vwap_side': 1} | MOVE: No rule-based direction consensus for MOVE: {'1h_trend': 0, '4h_trend': 1, 'rsi': -1, 'vwap_side': 1} | BTC: No rule-based direction consensus for BTC: {'1h_trend': 0, '4h_trend': -1, 'rsi': 1, 'vwap_side': 1} | ME: No rule-based direction consensus for ME: {'1h_trend': 1, '4h_trend': -1, 'rsi': 1, 'vwap_side': 1}",
   "pending_after": [
-    4,
     5
   ]
 }
