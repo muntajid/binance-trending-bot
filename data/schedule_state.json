@@ -1,8 +1,14 @@
 {
   "version": 1,
   "day_utc": "2026-11-26",
-  "rotation_started_utc": "2026-11-25T22:25:43.513769+00:00",
-  "pending": [],
+  "rotation_started_utc": "2026-11-26T23:20:45.946434+00:00",
+  "pending": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
   "in_flight": null,
   "published": [
     {
@@ -2415,11 +2421,25 @@
       "attempts": 0,
       "degraded": false,
       "note": "No candidate passed the signal quality gates. INIT: No rule-based direction consensus for INIT: {'1h_trend': 0, '4h_trend': -1, 'rsi': 1, 'vwap_side': 1} | SSV: No rule-based direction consensus for SSV: {'1h_trend': 1, '4h_trend': -1, 'rsi': 1, 'vwap_side': 1} | ME: No rule-based direction consensus for ME: {'1h_trend': 0, '4h_trend': 0, 'rsi': 1, 'vwap_side': 1} | SEI: All model completions were rejected by the signal quality gate: openai/gpt-oss-120b: setup failed minimum risk/reward or ATR-distance gate after deterministic derivation: TP1 RR 0.55 < 1.00; TP2 RR 1.10 < 2.00 | openai/gpt-oss-20b: setup failed minimum risk/reward or ATR-distance gate after deterministic derivation: TP1 RR 0.55 < 1.00; TP2 RR 1.10 < 2.00 | MOVE: No rule-based direction consensus for MOVE: {'1h_trend': -1, '4h_trend': 1, 'rsi': 0, 'vwap_side': -1}"
+    },
+    {
+      "slot": 0,
+      "type": "market_overview",
+      "name": "BTC outlook",
+      "forced": false,
+      "published_utc": "2026-11-26T23:21:08.235144+00:00",
+      "day_utc": "2026-11-26",
+      "run_id": "45910339952",
+      "rotation": 17,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": null
     }
   ],
-  "rotations": 15,
+  "rotations": 16,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-26T19:12:03.452305+00:00",
+  "updated_utc": "2026-11-26T23:21:08.235164+00:00",
   "previous_day": {
     "day_utc": "2026-11-25",
     "published": 4,
@@ -2438,8 +2458,8 @@
     ]
   },
   "previous_rotation": {
-    "rotation": 15,
-    "started_utc": "2026-11-24T20:31:03.022688+00:00",
+    "rotation": 16,
+    "started_utc": "2026-11-25T22:25:43.513769+00:00",
     "extras": 0,
     "published": 4,
     "skipped": 2,
