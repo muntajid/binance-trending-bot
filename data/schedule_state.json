@@ -3,7 +3,6 @@
   "day_utc": "2026-11-26",
   "rotation_started_utc": "2026-11-25T22:25:43.513769+00:00",
   "pending": [
-    2,
     3,
     4,
     5
@@ -2360,11 +2359,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "ZEC"
+    },
+    {
+      "slot": 2,
+      "type": "explained_setup",
+      "name": "Setup 2",
+      "forced": false,
+      "published_utc": "2026-11-26T06:32:02.585064+00:00",
+      "day_utc": "2026-11-26",
+      "run_id": "45768649330",
+      "rotation": 16,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "BLUR"
     }
   ],
   "rotations": 15,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-26T02:32:11.551536+00:00",
+  "updated_utc": "2026-11-26T06:32:02.585113+00:00",
   "previous_day": {
     "day_utc": "2026-11-25",
     "published": 4,
