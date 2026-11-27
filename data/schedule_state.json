@@ -2,9 +2,7 @@
   "version": 1,
   "day_utc": "2026-11-27",
   "rotation_started_utc": "2026-11-26T23:20:45.946434+00:00",
-  "pending": [
-    5
-  ],
+  "pending": [],
   "in_flight": null,
   "published": [
     {
@@ -2487,11 +2485,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": "PORTAL"
+    },
+    {
+      "slot": 5,
+      "type": "explained_setup",
+      "name": "Setup 4",
+      "forced": false,
+      "published_utc": "2026-11-27T20:56:14.139558+00:00",
+      "day_utc": "2026-11-27",
+      "run_id": "46066866948",
+      "rotation": 17,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "CFG"
     }
   ],
   "rotations": 16,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-27T16:31:23.174596+00:00",
+  "updated_utc": "2026-11-27T20:56:14.139581+00:00",
   "previous_day": {
     "day_utc": "2026-11-26",
     "published": 4,

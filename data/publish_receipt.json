@@ -1,17 +1,15 @@
 {
-  "slot": 4,
+  "slot": 5,
   "type": "explained_setup",
-  "name": "Setup 3",
+  "name": "Setup 4",
   "forced": false,
-  "published_utc": "2026-11-27T16:31:23.174575+00:00",
+  "published_utc": "2026-11-27T20:56:14.139558+00:00",
   "day_utc": "2026-11-27",
-  "run_id": "46034171951",
+  "run_id": "46066866948",
   "rotation": 17,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": "PORTAL",
-  "pending_after": [
-    5
-  ]
+  "coin": "CFG",
+  "pending_after": []
 }
