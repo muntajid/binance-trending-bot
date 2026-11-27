@@ -1,18 +1,9 @@
-🌐 MACRO & BITCOIN OUTLOOK: BTC holds near $60.4k as dominance steadies and fear spikes 📊
-
-BTC at $60,436, dominance 57.9%, Fear & Greed 11, while altcoins surge
-
-$BTC 24H: $60436 (+0.21%)
-Market Phase: Liquidity Hunt
-
-📊 Key Market Dynamics:
-• Bitcoin Structure: On 1H BTC sits in a LL‑LH bearish continuation, price just above the 60423 support and below the 61067 resistance; 4H shows mixed LH/HL structure with EMA‑20 under price, indicating a fragile hold pending breakout.
-• Altcoin Flows: Altcoins are out‑performing BTC (average +18% 24h) with INIT (+66%), SSV (+25%) leading the rotation, reflecting the extreme‑fear sentiment and high BTC dominance.
-• Crucial Levels: Support $60423 | Resistance $61067.45
-📈 Sentiment: Fear & Greed 11 (Extreme Fear) | BTC dominance 57.9%
-🔄 What flips it: bullish if 1H RSI climbs above 40 and price closes above the 20‑EMA, confirming; watch out if Price breaks and closes below the 60423 support or 1H RSI falls under.
-
-💡 Trader Takeaway: Maintain short bias near the $61k resistance; consider long entries only on a clean close above $60,500 with RSI >45 and tighten stops at $60,200
-
-BTC $ETH #BinanceSquare #CryptoMarket
-⚠️ Educational market analysis only. Not financial advice. Always DYOR.
+ONE bullish as RSI nears overbought, price above VWAP
+👀 $ONE LONG | Entry CMP $0.001127 | TP1 $0.001168 (+3.6%) | TP2 $0.0012 (+6.5%) | SL $0.0011 (-2.4%) | RR 1:1.52
+Why now: BTC’s mixed bullish trend lifts altcoins, pushing ONE above VWAP.
+Trigger: The 1H doji candle near the EMA20 signals a potential breakout.
+📊 RSI 70.1 | VOL volume spike 1.8x vs average; taker buy share 50%; 24h turnover $6.5M | MTF 5m→ 15m↑ 1H→ 4H↑ 1D↓ 1W→
+🛡️ Risk: RR 1:1.52 to TP1; a 1H close below $0.0011 invalidates.
+Which hits first for ONE: $0.001168 or $0.0011?
+Context: $BTC #CryptoTrading
+⚠️ Not financial advice; verify live levels and manage risk.

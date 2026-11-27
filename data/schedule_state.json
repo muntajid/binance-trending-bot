@@ -3,7 +3,6 @@
   "day_utc": "2026-11-27",
   "rotation_started_utc": "2026-11-26T23:20:45.946434+00:00",
   "pending": [
-    1,
     2,
     3,
     4,
@@ -2435,11 +2434,25 @@
       "attempts": 1,
       "degraded": false,
       "coin": null
+    },
+    {
+      "slot": 1,
+      "type": "explained_setup",
+      "name": "Setup 1",
+      "forced": false,
+      "published_utc": "2026-11-27T03:46:57.224503+00:00",
+      "day_utc": "2026-11-27",
+      "run_id": "45935999605",
+      "rotation": 17,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": "ONE"
     }
   ],
   "rotations": 16,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-27T02:42:46.889987+00:00",
+  "updated_utc": "2026-11-27T03:46:57.224530+00:00",
   "previous_day": {
     "day_utc": "2026-11-26",
     "published": 4,
