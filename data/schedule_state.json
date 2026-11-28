@@ -1,8 +1,14 @@
 {
   "version": 1,
-  "day_utc": "2026-11-27",
-  "rotation_started_utc": "2026-11-26T23:20:45.946434+00:00",
-  "pending": [],
+  "day_utc": "2026-11-28",
+  "rotation_started_utc": "2026-11-28T01:05:48.538701+00:00",
+  "pending": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
   "in_flight": null,
   "published": [
     {
@@ -2499,37 +2505,44 @@
       "attempts": 1,
       "degraded": false,
       "coin": "CFG"
+    },
+    {
+      "slot": 0,
+      "type": "market_overview",
+      "name": "BTC outlook",
+      "forced": false,
+      "published_utc": "2026-11-28T01:06:08.401072+00:00",
+      "day_utc": "2026-11-28",
+      "run_id": "46091312716",
+      "rotation": 18,
+      "mode": "image",
+      "attempts": 1,
+      "degraded": false,
+      "coin": null
     }
   ],
-  "rotations": 16,
+  "rotations": 17,
   "reset_reason": "completed rotation",
-  "updated_utc": "2026-11-27T20:56:14.139581+00:00",
+  "updated_utc": "2026-11-28T01:06:08.401096+00:00",
   "previous_day": {
-    "day_utc": "2026-11-26",
-    "published": 4,
-    "skipped": 2,
+    "day_utc": "2026-11-27",
+    "published": 5,
+    "skipped": 0,
     "by_type": {
-      "explained_setup": 2,
-      "meme_community": 1,
-      "market_overview": 1
+      "explained_setup": 4,
+      "meme_community": 1
     },
-    "unpublished": [
-      1,
-      2,
-      3,
-      4,
-      5
-    ]
+    "unpublished": []
   },
   "previous_rotation": {
-    "rotation": 16,
-    "started_utc": "2026-11-25T22:25:43.513769+00:00",
+    "rotation": 17,
+    "started_utc": "2026-11-26T23:20:45.946434+00:00",
     "extras": 0,
-    "published": 4,
-    "skipped": 2,
+    "published": 6,
+    "skipped": 0,
     "by_type": {
       "market_overview": 1,
-      "explained_setup": 2,
+      "explained_setup": 4,
       "meme_community": 1
     },
     "unpublished": []

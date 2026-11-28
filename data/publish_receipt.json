@@ -1,15 +1,21 @@
 {
-  "slot": 5,
-  "type": "explained_setup",
-  "name": "Setup 4",
+  "slot": 0,
+  "type": "market_overview",
+  "name": "BTC outlook",
   "forced": false,
-  "published_utc": "2026-11-27T20:56:14.139558+00:00",
-  "day_utc": "2026-11-27",
-  "run_id": "46066866948",
-  "rotation": 17,
+  "published_utc": "2026-11-28T01:06:08.401072+00:00",
+  "day_utc": "2026-11-28",
+  "run_id": "46091312716",
+  "rotation": 18,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": "CFG",
-  "pending_after": []
+  "coin": null,
+  "pending_after": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ]
 }
