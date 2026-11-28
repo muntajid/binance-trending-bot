@@ -1,18 +1,17 @@
 {
-  "slot": 2,
-  "type": "explained_setup",
-  "name": "Setup 2",
+  "slot": 3,
+  "type": "meme_community",
+  "name": "Community",
   "forced": false,
-  "published_utc": "2026-11-28T09:11:29.733523+00:00",
+  "published_utc": "2026-11-28T13:10:58.142675+00:00",
   "day_utc": "2026-11-28",
-  "run_id": "46129198953",
+  "run_id": "46148272465",
   "rotation": 18,
   "mode": "image",
   "attempts": 1,
   "degraded": false,
-  "coin": "TLM",
+  "coin": null,
   "pending_after": [
-    3,
     4,
     5
   ]
